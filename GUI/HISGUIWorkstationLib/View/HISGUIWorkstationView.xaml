@@ -1,0 +1,28 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIWorkstationLib.View.HISGUIWorkstationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIWorkstationLib.View"
+             xmlns:prism="http://www.codeplex.com/prism"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
+    <Grid >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.ColumnSpan="3">
+            <ContentControl prism:RegionManager.RegionName="UpRegion"/>
+        </Border>
+
+        <Border Grid.Row="1" Grid.ColumnSpan="3">
+            <ContentControl prism:RegionManager.RegionName="DownRegion"/>
+        </Border>
+    </Grid>
+</HISGUICore:HISGUIViewBase>

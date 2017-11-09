@@ -1,0 +1,163 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIRegistrationLib.Views.HISGUIRegistrationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIRegistrationLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
+    <Grid Background="#f5f5f5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TreeView  x:Name="departmentTree" Background="#ffffff" Margin="3,3,3,3" TreeViewItem.Selected="departmentTree_Selected">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Nodes}">
+                    <StackPanel>
+                        <TextBlock VerticalAlignment="Center" FontSize="14" Text="{Binding Name}" Margin="2,0,0,0"></TextBlock>
+                    </StackPanel>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+        <Grid Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Background="#ffffff" Margin="3,3,3,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid Margin="3,3,3,3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">姓名：</Label>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">性别：</Label>
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">身份证号：</Label>
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">现居住地：</Label>
+                    <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right">手机号码：</Label>
+                    <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">就诊卡号：</Label>
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding PatientMsgTest.Name}" 
+                             IsReadOnly="True"></TextBox>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Margin="3,3,3,3" Text="{Binding PatientMsgTest.Gender}">
+                        <ComboBoxItem>男</ComboBoxItem>
+                        <ComboBoxItem>女</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Grid.Row="2" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding PatientMsgTest.IdCardNum}"
+                             IsReadOnly="True"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding PatientMsgTest.Addr}"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding PatientMsgTest.Tel}"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding PatientMsgTest.PatientCardNum}"
+                             IsReadOnly="True"></TextBox>
+
+                    <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right">费别：</Label>
+                    <ComboBox Grid.Row="1" Grid.Column="3" Margin="3,3,3,3" Text="{Binding PatientMsgTest.FeeType}">
+                        <ComboBoxItem>自费</ComboBoxItem>
+                        <ComboBoxItem>城镇职工医保</ComboBoxItem>
+                        <ComboBoxItem>城乡居民医保</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+                <Grid Margin="3,3,3,3" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">挂号单号：</Label>
+                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">就诊日期：</Label>
+                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">号别：</Label>
+                    <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">院内减免：</Label>
+                    <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right">挂号时间：</Label>
+                    <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">退号时间：</Label>
+
+                    <TextBox Grid.Row="0" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding RegistrationBillTest.BillNo}"></TextBox>
+                    <DatePicker Grid.Row="1" Grid.Column="1" Margin="3,3,3,3" Grid.ColumnSpan="3" Text="{Binding SignalSourceTest.VistTime}"></DatePicker>
+                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="3,3,3,3" Text="{Binding SignalSourceTest.SignalType}">
+                        <ComboBoxItem>普通门诊</ComboBoxItem>
+                        <ComboBoxItem>专家</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Grid.Row="3" Grid.Column="1" Margin="3,3,3,3"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="1" Margin="3,3,3,3" Text="{Binding RegistrationBillTest.MakeTime}"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="1" Margin="3,3,3,3" Text="{Binding RegistrationBillTest.CancelTime}"></TextBox>
+
+                    <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">专家：</Label>
+                    <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right">医保报销：</Label>
+                    <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right">挂号经办：</Label>
+                    <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right">退号经办：</Label>
+
+                    <TextBox x:Name="ZhuanjiaText" Grid.Row="2" Grid.Column="3" Margin="3,3,3,3" Text="{Binding SignalSourceTest.Specialist}"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="3" Margin="3,3,3,3"></TextBox>
+                    <TextBox Grid.Row="4" Grid.Column="3" Margin="3,3,3,3" Text="{Binding RegistrationBillTest.MakerUser}"></TextBox>
+                    <TextBox Grid.Row="5" Grid.Column="3" Margin="3,3,3,3" Text="{Binding RegistrationBillTest.CancelUser}"></TextBox>
+
+                    <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right">就诊状态：</Label>
+                    <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right">就诊时段：</Label>
+                    <Label Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right">费用：</Label>
+                    <Label Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right">自付：</Label>
+                    <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Margin="3,3,3,3" Click="Button_Click_21">挂号</Button>
+                    <Button Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Margin="3,3,3,3">退号</Button>
+
+                    <ComboBox Grid.Row="0" Grid.Column="5" Margin="3,3,3,3" Text="{Binding RegistrationBillTest.SeeDoctorStatus}">
+                        <ComboBoxItem>未就诊</ComboBoxItem>
+                        <ComboBoxItem>已就诊</ComboBoxItem>
+                    </ComboBox>
+                    <ComboBox Grid.Row="1" Grid.Column="5" Margin="3,3,3,3" Text="{Binding SignalSourceTest.TimeIntival}">
+                        <ComboBoxItem>上午</ComboBoxItem>
+                        <ComboBoxItem>下午</ComboBoxItem>
+                        <ComboBoxItem>晚上</ComboBoxItem>
+                    </ComboBox>
+                    <TextBox Grid.Row="2" Grid.Column="5" Margin="3,3,3,3" Text="{Binding SignalSourceTest.Price}"></TextBox>
+                    <TextBox Grid.Row="3" Grid.Column="5" Margin="3,3,3,3"></TextBox>
+                </Grid>
+            </Grid>
+            <Grid Background="#ffffff" Grid.Row="1" Margin="3,3,3,3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <!--<Viewbox Grid.Row="0" VerticalAlignment="Center">-->
+                    <DataGrid x:Name="grid1" AutoGenerateColumns="True" SelectionUnit="Cell" SelectionMode="Single"
+                          CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" 
+                              SelectedCellsChanged="grid1_SelectedCellsChanged_1"></DataGrid>
+                <!--</Viewbox>-->
+            
+                <ListView Name="listView1" Grid.Row="1" Margin="3,2,3,3" SelectionChanged="listView1_SelectionChanged">
+                    <ListView.View>
+                        <GridView x:Name="gridView1">
+                            <GridViewColumn Header="号源编号" DisplayMemberBinding="{Binding Path=SignalID}"></GridViewColumn>
+                            <GridViewColumn Header="号源类别" DisplayMemberBinding="{Binding Path=SignalType}"></GridViewColumn>
+                            <GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=Specialist}"></GridViewColumn>
+                            <GridViewColumn Header="最大号源" DisplayMemberBinding="{Binding Path=MaxNum}"></GridViewColumn>
+                            <GridViewColumn Header="已挂号源" DisplayMemberBinding="{Binding Path=HasUsedNum}"></GridViewColumn>
+                            <GridViewColumn Header="费用" DisplayMemberBinding="{Binding Path=Price}"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Grid>
+</HISGUICore:HISGUIViewBase>
