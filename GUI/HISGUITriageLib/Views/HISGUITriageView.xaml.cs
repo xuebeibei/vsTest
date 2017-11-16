@@ -19,16 +19,23 @@ using Prism.Regions;
 using HISGUICore;
 using HISGUITriageLib.ViewModels;
 using System.Data;
+
+
 namespace HISGUITriageLib.Views
 {
-    /// <summary>
-    /// HISGUITriageView.xaml 的交互逻辑
-    /// </summary>
-    public partial class HISGUITriageView : UserControl
+    [Export]
+    [Export("HISGUITriageView", typeof(HISGUITriageView))]
+    public partial class HISGUITriageView : HISGUIViewBase
     {
         public HISGUITriageView()
         {
             InitializeComponent();
+        }
+
+        [Import]
+        private HISGUITriageVM ImportVM
+        {
+            set { this.VM = value; }
         }
     }
 }

@@ -1,0 +1,137 @@
+﻿<UserControl x:Class="HISGUITriageLib.Views.BodyCharacteristics"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUITriageLib.Views"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
+            <Label>体重(KG)</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
+            <Label>身高(CM)</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
+            <Label>BMI指数</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
+            <Label>血型</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Height="25" Margin="2"></ComboBox>
+                <ComboBox Grid.Column="1" Height="25" Margin="2"></ComboBox>
+            </Grid>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
+            <Label>体温（°C）</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Column="0" Height="25" Margin="2"></ComboBox>
+                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+            </Grid>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="5">
+            <Label>呼吸(次/分钟)</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
+            <Label>脉搏(次/分钟)</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3" Grid.Column="1" Margin="5">
+            <Label>血压（mmHg）</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Height="25" Margin="2"></TextBox>
+                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+            </Grid>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="0" Margin="5">
+            <Label>血糖浓度（mmol/l）</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DatePicker Grid.Column="0" Height="25" Margin="2"></DatePicker>
+                <ComboBox Grid.Column="1" Height="25" Margin="2"></ComboBox>
+                <TextBox Grid.Column="2" Height="25" Margin="2"></TextBox>
+            </Grid>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4" Grid.Column="1" Margin="5">
+            <Label>视力（°C）</Label>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0" Height="25" Margin="2"></TextBox>
+                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+            </Grid>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="0" Margin="5">
+            <Label>氧饱和度(%)</Label>
+            <TextBox Height="25" Margin="2"></TextBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Grid.Column="1" Margin="5">
+            <Label>疼痛评分(0-10)</Label>
+            <ComboBox Height="25" Margin="2"></ComboBox>
+            <Label></Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="5">保存</Button>
+            <Button Margin="5">取消</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

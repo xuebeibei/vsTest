@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="HISGUITriageLib.Views.PersonalInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUITriageLib.Views"
+             >
+    <Grid>
+        <TabControl x:Name="tabControl" Margin="5">
+            <TabItem Header="体征信息">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:BodyCharacteristics></local:BodyCharacteristics>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="病历信息">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:MedicalHistory></local:MedicalHistory>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="病历登记">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:MedicalRecord></local:MedicalRecord>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="HISGUITriageLib.Views.MedicalRecord"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUITriageLib.Views"
+             >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <local:MyTextEdit></local:MyTextEdit>
+        
+        <StackPanel Grid.Row="1"  Margin="5">
+            <Label Margin="2">现病史：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            </TextBox>
+            <Label HorizontalAlignment="Right">0/500</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2"  Margin="5">
+            <Label Margin="2">既往史：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            </TextBox>
+            <Label HorizontalAlignment="Right">0/500</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="3"  Margin="5">
+            <Label Margin="2">体格检查：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            </TextBox>
+            <Label HorizontalAlignment="Right">0/500</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="4"  Margin="5">
+            <Label Margin="2">备注：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            </TextBox>
+            <Label HorizontalAlignment="Right">0/500</Label>
+        </StackPanel>
+
+        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="5">
+            <Button Margin="2">保存</Button>
+            <Button Margin="2">取消</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
