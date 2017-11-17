@@ -6,7 +6,31 @@
              xmlns:local="clr-namespace:HISGUITriageLib.Views"
              >
     <Grid>
-        <Border Background="#FFB4D375"></Border>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="NotTriage">
+                <VisualState x:Name="VisualState">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button1">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="VisualState1">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE25588"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Border x:Name="border" Background="#FFB4D375"></Border>
         <Grid Background="White" Margin="5">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -41,8 +65,8 @@
                     <ColumnDefinition></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
-                <Button Margin="5,5,0,5" Grid.Column="0" Click="Button_Click">完善信息</Button>
-                <Button Margin="0,5,0,5" Grid.Column="1" Click="Button_Click_1">选择医生</Button>
+                <Button x:Name="button1" Margin="5,5,0,5" Grid.Column="0" Click="Button_Click">完善信息</Button>
+                <Button x:Name="button" Margin="0,5,0,5" Grid.Column="1" Click="Button_Click_1">选择医生</Button>
             </Grid>
         </Grid>
     </Grid>

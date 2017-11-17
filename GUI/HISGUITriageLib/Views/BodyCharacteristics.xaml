@@ -6,132 +6,587 @@
              xmlns:local="clr-namespace:HISGUITriageLib.Views"
              >
     <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="WeightStateGroup">
+                <VisualState x:Name="WeightNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="WeightError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="WeightErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="WeightBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="WeightLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="WeightBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="WeightError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="HeightStateGroup">
+                <VisualState x:Name="HeightNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="HeightError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="HeightErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="HeightBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="HeightLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="HeightBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="HeightError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="BMIStateGroup">
+                <VisualState x:Name="BMINormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BMIError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="BMIErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="BMIBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BMILabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="BMIBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="TemperatureStateGroup">
+                <VisualState x:Name="TemperatureNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="TemperatureError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="TemperatureErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="TemperatureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="TemperatureLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="TemperatureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="TemperatureError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="BreathStateGroup">
+                <VisualState x:Name="BreathNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BreathErrorLabel">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="BreathErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BreathLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="BreathBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="BreathBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BreathErrorLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="PulseStateGroup">
+                <VisualState x:Name="PulseNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PulseError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PulseErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="PulseBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="PulseLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="PulseBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="PulseError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="BloodPressureGroup">
+                <VisualState x:Name="BloodPressureNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BloodPressureError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="BloodPressureErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="SystolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="DiastolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="DiastolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="SystolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="SystolicPressureErrorState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="SystolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="DiastolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="SystolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="DiastolicPressureErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="DiastolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="DiastolicPressureBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodPressureError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="BloodGlucoseStateGroup">
+                <VisualState x:Name="BloodGlucoseNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="BloodGlucoseError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="BloodGlucoseErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodGlucoseLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="BloodGlucoseBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="BloodGlucoseBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="BloodGlucoseError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="EyeStateGroup">
+                <VisualState x:Name="EyeNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="EyeError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="EyeErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="LeftEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="RightEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="LeftEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="RightEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="LeftEyeErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="LeftEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="LeftEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="RightEyeErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush)" Storyboard.TargetName="RightEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Null}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="RightEyeEdit">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFEA2D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="EyeError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFEA2D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="OxygenSaturationStateGroup">
+                <VisualState x:Name="OxygenSaturationNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="OxygenSaturationError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="OxygenSaturationErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="OxygenSaturationLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE12D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="OxygenSaturationBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFE12D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="OxygenSaturationError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE12D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+            <VisualStateGroup x:Name="PainGradeStateGroup">
+                <VisualState x:Name="PainGradeNormalState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="PainGradeError">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Hidden}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="PainGradeErrorState">
+                    <Storyboard>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="PainGradeLabel">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE12D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background)" Storyboard.TargetName="PainGradeBorder">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <SolidColorBrush Color="#FFE12D2D"/>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextElement.Foreground).(SolidColorBrush.Color)" Storyboard.TargetName="PainGradeError">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE12D2D"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
-            <Label>体重(KG)</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="WeightLabel" Content="体重(KG)"/>
+            <Border x:Name="WeightBorder">
+                <TextBox x:Name="WeightEdit" Height="25" Margin="2" TextChanged="WeightEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="WeightError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
-            <Label>身高(CM)</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="HeightLabel" Content="身高(CM)"/>
+            <Border x:Name="HeightBorder">
+                <TextBox x:Name="HeightEdit" Height="25" Margin="2" TextChanged="HeightEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="HeightError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
-            <Label>BMI指数</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="BMILabel" Content="BMI指数"/>
+            <Border x:Name="BMIBorder">
+                <TextBox x:Name="BMIEdit" Height="25" Margin="2" IsEnabled="False" TextChanged="BMIEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="BMIError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1" Margin="5">
-            <Label>血型</Label>
+            <Label x:Name="BloodGroupLabel" Content="血型"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Height="25" Margin="2"></ComboBox>
-                <ComboBox Grid.Column="1" Height="25" Margin="2"></ComboBox>
+                <ComboBox x:Name="BloodGroupABO" Grid.Column="0" Height="25" Margin="2">
+                    <ComboBoxItem Content="A型" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="B型" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="O型" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="AB型" HorizontalAlignment="Left" Width="99"/>
+                </ComboBox>
+                <ComboBox x:Name="BloodGroupRh" Grid.Column="1" Height="25" Margin="2">
+                    <ComboBoxItem Content="Rh阳性" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="Rh阴性" HorizontalAlignment="Left" Width="99"/>
+                </ComboBox>
             </Grid>
-            <Label></Label>
+            <Label x:Name="BloodGroupError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="0" Margin="5">
-            <Label>体温（°C）</Label>
+            <Label x:Name="TemperatureLabel" Content="体温（°C）"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ComboBox Grid.Column="0" Height="25" Margin="2"></ComboBox>
-                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+                <ComboBox x:Name="TemperatureCombo" Grid.Column="0" Height="25" Margin="2">
+                    <ComboBoxItem Content="耳温" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="口温" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="额温" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="腋温" HorizontalAlignment="Left" Width="99"/>
+                    <ComboBoxItem Content="肛温" HorizontalAlignment="Left" Width="99"/>
+                </ComboBox>
+                <Border x:Name="TemperatureBorder" Grid.Column="1" >
+                    <TextBox x:Name="TemperatureBox" Height="25" Margin="2" TextChanged="textBox_TextChanged"/>
+                </Border>
             </Grid>
-            <Label></Label>
+            <Label x:Name="TemperatureError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="5">
-            <Label>呼吸(次/分钟)</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="BreathLabel" Content="呼吸(次/分钟)"/>
+            <Border x:Name="BreathBorder">
+                <TextBox x:Name="BreathEdit" Height="25" Margin="2" TextChanged="BreathEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="BreathErrorLabel"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
-            <Label>脉搏(次/分钟)</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="PulseLabel" Content="脉搏(次/分钟)"/>
+            <Border x:Name="PulseBorder">
+                <TextBox x:Name="PulseEdit" Height="25" Margin="2" TextChanged="PulseEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="PulseError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.Column="1" Margin="5">
-            <Label>血压（mmHg）</Label>
+            <Label x:Name="BloodPressureLabel" Content="血压（mmHg）"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Height="25" Margin="2"></TextBox>
-                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+                <Border x:Name="SystolicPressureBorder" Grid.Column="0" >
+                    <TextBox x:Name="SystolicPressureEdit" Height="25" Margin="2" TextChanged="SystolicPressureEdit_TextChanged"/>
+                </Border>
+                <Border x:Name="DiastolicPressureBorder" Grid.Column="1">
+                    <TextBox x:Name="DiastolicPressureEdit" Height="25" Margin="2" TextChanged="DiastolicPressureEdit_TextChanged"/>
+                </Border>
             </Grid>
-            <Label></Label>
+            <Label x:Name="BloodPressureError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="0" Margin="5">
-            <Label>血糖浓度（mmol/l）</Label>
+            <Label x:Name="BloodGlucoseLabel" Content="血糖浓度（mmol/l）"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Grid.Column="0" Height="25" Margin="2"></DatePicker>
-                <ComboBox Grid.Column="1" Height="25" Margin="2"></ComboBox>
-                <TextBox Grid.Column="2" Height="25" Margin="2"></TextBox>
+                <DatePicker Grid.Column="0" Height="25" Margin="2"/>
+                <ComboBox Grid.Column="1" Height="25" Margin="2"/>
+                <Border x:Name="BloodGlucoseBorder" Grid.Column="2">
+                    <TextBox x:Name="BloodGlucoseEdit" Height="25" Margin="2" TextChanged="BloodGlucoseEdit_TextChanged"/>
+                </Border>
             </Grid>
-            <Label></Label>
+            <Label x:Name="BloodGlucoseError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="4" Grid.Column="1" Margin="5">
-            <Label>视力（°C）</Label>
+            <Label x:Name="EyeLabel" Content="视力（°C）"/>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0" Height="25" Margin="2"></TextBox>
-                <TextBox Grid.Column="1" Height="25" Margin="2"></TextBox>
+                <Border x:Name="LeftEyeEdit" Grid.Column="0">
+                    <TextBox Height="25" Margin="2" TextChanged="TextBox_TextChanged_1"/>
+                </Border>
+                <Border x:Name="RightEyeEdit" Grid.Column="1">
+                    <TextBox Height="25" Margin="2" TextChanged="TextBox_TextChanged_2"/>
+                </Border>
             </Grid>
-            <Label></Label>
+            <Label x:Name="EyeError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="0" Margin="5">
-            <Label>氧饱和度(%)</Label>
-            <TextBox Height="25" Margin="2"></TextBox>
-            <Label></Label>
+            <Label x:Name="OxygenSaturationLabel" Content="氧饱和度(%)"/>
+            <Border x:Name="OxygenSaturationBorder">
+                <TextBox x:Name="OxygenSaturationEdit" Height="25" Margin="2" TextChanged="OxygenSaturationEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="OxygenSaturationError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="5">
-            <Label>疼痛评分(0-10)</Label>
-            <ComboBox Height="25" Margin="2"></ComboBox>
-            <Label></Label>
+            <Label x:Name="PainGradeLabel" Content="疼痛评分(0-10)"/>
+            <Border x:Name="PainGradeBorder">
+                <TextBox x:Name="PainGradeEdit" Height="25" Margin="2" TextChanged="PainGradeEdit_TextChanged"/>
+            </Border>
+            <Label x:Name="PainGradeError"/>
         </StackPanel>
 
         <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Margin="5" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Margin="5">保存</Button>
-            <Button Margin="5">取消</Button>
+            <Button x:Name="SaveBtn" Margin="5" Content="保存" Click="SaveBtn_Click"/>
+            <Button x:Name="CancelBtn" Margin="5" Content="取消" Click="CancelBtn_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

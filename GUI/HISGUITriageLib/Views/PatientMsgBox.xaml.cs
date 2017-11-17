@@ -47,6 +47,9 @@ namespace HISGUITriageLib.Views
 
             window.Content = jks;
             window.ShowDialog();
+
+            var visualUsername = true ? "VisualState1" : "VisualState";
+            VisualStateManager.GoToState(this, visualUsername, false);
         }
     }
 }
