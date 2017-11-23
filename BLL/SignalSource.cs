@@ -20,10 +20,20 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
-                                                                where u.DepartmentID == DepartmentID &&
+                                                                where u.Department.ID == DepartmentID &&
                                                                 u.TimeIntival == timeInterval &&
                                                                 SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0
                                                                 select u;
+                //IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
+                //                                                join order in ctx.Departments on
+                //                                                u.Department.ID equals order.ID
+
+                //                                                where order.ID == DepartmentID &&
+                //                                                u.TimeIntival == timeInterval &&
+                //                                                SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0
+                //                                                select u;
+
+
                 List<CommContracts.SignalSource> myList = new List<CommContracts.SignalSource>();
                 foreach (DAL.SignalSource tem in queryResultList)
                 {
@@ -33,7 +43,10 @@ namespace BLL
                     temp1.Price = tem.Price;                 // 号源单价
                     temp1.VistTime = tem.VistTime;           // 看诊日期
                     temp1.TimeIntival = tem.TimeIntival;     // 看诊时段ID
-                    temp1.DepartmentID = tem.DepartmentID;   // 科室
+                    CommContracts.Department department = new CommContracts.Department();
+                    department.ID = DepartmentID;
+
+                    temp1.GetDepartment = department;   // 科室
                     temp1.SignalType = tem.SignalType;       // 号别
                     temp1.MaxNum = tem.MaxNum;               // 最大号源
                     temp1.AddMaxNum = tem.AddMaxNum;         // 临时加号号源
@@ -53,7 +66,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var temp = (from u in ctx.SignalSources
-                            where u.DepartmentID == DepartmentID &&
+                            where u.Department.ID == DepartmentID &&
                             SqlFunctions.DateDiff("day", DateTime.Now, u.VistTime) > 0
                             select DbFunctions.TruncateTime(u.VistTime)).Distinct();
 
@@ -73,7 +86,7 @@ namespace BLL
                 }
                 catch (Exception ex)
                 {
-                    
+
                 }
                 return myList;
             }
@@ -84,7 +97,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var temp = (from u in ctx.SignalSources
-                            where u.DepartmentID == DepartmentID &&
+                            where u.Department.ID == DepartmentID &&
                             SqlFunctions.DateDiff("day", DateTime.Now, u.VistTime) > 0
                             select u.TimeIntival).Distinct();
 
@@ -116,9 +129,9 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
-                                                                where SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0 && u.TimeIntival == TimeIntival && u.DepartmentID == DepartmentID
+                                                                where SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0 && u.TimeIntival == TimeIntival && u.Department.ID == DepartmentID
                                                                 select u;
-     
+
                 int PuTong = 0;
                 int ZhuanJia = 0;
 
@@ -145,17 +158,17 @@ namespace BLL
 
                     }
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
 
                 }
 
-                if(nAll>0)
+                if (nAll > 0)
                 {
                     temp = "普通号：" + PuTongShengYu.ToString() + "/" + PuTong.ToString() +
                     "\n专家号：" + ZhuanJiaShengYu.ToString() + "/" + ZhuanJia.ToString();
                 }
-                
+
                 return temp;
             }
         }

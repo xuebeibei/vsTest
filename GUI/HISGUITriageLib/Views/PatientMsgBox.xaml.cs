@@ -20,9 +20,15 @@ namespace HISGUITriageLib.Views
     /// </summary>
     public partial class PatientMsgBox : UserControl
     {
-        public PatientMsgBox()
+        public PatientMsgBox(CommClient.Registration registration)
         {
             InitializeComponent();
+            
+            this.TimeLabel.Content = "登记：" + registration.GetDateTime();
+            PatientMsgLabel.Content = registration.getPatientMsg();
+            DepartmentLabel.Content = "科室：" + registration.getDepartment();
+            DoctorLabel.Content = "医生：" + registration.getDoctor();
+            VisitingTimeLabel.Content = "看诊时间:" + registration.getVisitingTime().ToString();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

@@ -172,9 +172,6 @@ namespace HISGUITriageLib.Views
                 }
             }
 
-            //var visualUsername = bSystolicPressure ? "SystolicPressureNormalState" : "SystolicPressureErrorState";
-            //VisualStateManager.GoToState(this, visualUsername, false);
-
             // 对舒张压输入的控制
             bool bDiastolicPressure = true;
             int nBreath = 0;

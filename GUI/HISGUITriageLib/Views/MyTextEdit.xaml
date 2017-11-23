@@ -7,10 +7,33 @@
              >
     <Grid>
         <StackPanel  Margin="5">
-            <Label x:Name="TittleName" Margin="2">标题：</Label>
-            <TextBox x:Name="TextEdit" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            <Label x:Name="TittleLabel" Margin="2"></Label>
+            <TextBox x:Name="TextEdit" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2" >
+                <TextBox.Resources>
+                    <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
+                        <VisualBrush.Visual>
+                            <TextBlock FontStyle="Italic" Text="提示文字"/>
+                        </VisualBrush.Visual>
+                    </VisualBrush>
+                </TextBox.Resources>
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <Trigger Property="Text" Value="{x:Null}">
+                                <Setter Property="Background" Value="{StaticResource HintText}"/>
+                            </Trigger>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Background" Value="{StaticResource HintText}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
             </TextBox>
-            <Label x:Name="TextNum" HorizontalAlignment="Right">0/500</Label>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Label x:Name="TextNum" HorizontalAlignment="Right"></Label>
+                <Label x:Name="TextNumFG" HorizontalAlignment="Center">/</Label>
+                <Label x:Name="TextMaxNum" HorizontalAlignment="Left"></Label>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

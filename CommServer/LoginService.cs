@@ -67,5 +67,11 @@ namespace CommServer
             BLL.SignalSource temp = new BLL.SignalSource();
             return temp.getSignalSourceTip(DepartmentID, dateTime, TimeIntival);
         }
+
+        public bool SaveRegistration(Registration registration)
+        {
+            BLL.Registration temp = new BLL.Registration(registration);
+            return temp.SaveRegistration();
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace CommContracts
         [DataMember]
         public int TimeIntival { get; set; }      // 看诊时段ID
         [DataMember]
-        public int DepartmentID { get; set; }     // 科室
+        public Department GetDepartment { get; set; } // 科室
         [DataMember]
         public int SignalType { get; set; }       // 号别
         [DataMember]

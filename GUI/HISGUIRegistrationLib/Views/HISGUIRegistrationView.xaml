@@ -145,7 +145,7 @@
                               SelectedCellsChanged="grid1_SelectedCellsChanged_1"></DataGrid>
                 <!--</Viewbox>-->
             
-                <ListView Name="listView1" Grid.Row="1" Margin="3,2,3,3" SelectionChanged="listView1_SelectionChanged">
+                <ListView Name="listView1" Grid.Row="1" Margin="0,3,0,3" SelectionChanged="listView1_SelectionChanged">
                     <ListView.View>
                         <GridView x:Name="gridView1">
                             <GridViewColumn Header="号源编号" DisplayMemberBinding="{Binding Path=SignalID}"></GridViewColumn>

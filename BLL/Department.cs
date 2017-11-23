@@ -38,11 +38,11 @@ namespace BLL
                 foreach(DAL.Department tem in queryResultList)
                 {
                     CommContracts.Department temp1 = new CommContracts.Department();
-                    temp1.ID = tem.DepartmentID;
-                    temp1.Name = tem.DepartmentName;
+                    temp1.ID = tem.ID;
+                    temp1.Name = tem.Name;
                     temp1.Abbr = tem.Abbr;
                     temp1.IsDoctorDepartment = tem.IsDoctorDepartment;
-                    temp1.ParentDepartmentID = tem.ParentDepartmentID;
+                    temp1.ParentDepartmentID = tem.ParentID;
 
                     myList.Add(temp1);
                 }

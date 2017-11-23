@@ -23,6 +23,12 @@ namespace HISGUITriageLib.Views
         public MedicalRecord()
         {
             InitializeComponent();
+            //MyTextEditText textZhusu = new MyTextEditText();
+            //textZhusu.SetValue(MyTextEditText.TittleProperty, "主诉*");
+            //textZhusu.SetValue(MyTextEditText.TextProperty, "11111111111111111111111111");
+            //textZhusu.SetValue(MyTextEditText.MaxNumProperty, 10000);
+            //textZhusu.SetValue(MyTextEditText.MaxNumProperty, 500);
+            //ZhuSu.mytext = textZhusu;
         }
     }
 }

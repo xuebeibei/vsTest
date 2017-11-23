@@ -22,5 +22,6 @@ namespace HISGUITriageLib.ViewModels
     [Export("HISGUITriageVM", typeof(HISGUIVMBase))]
     class HISGUITriageVM : HISGUIVMBase
     {
+        
     }
 }

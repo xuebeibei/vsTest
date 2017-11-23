@@ -46,7 +46,9 @@
     <Compile Include="Department.cs" />
     <Compile Include="LoginUser.cs" />
     <Compile Include="ILoginService.cs" />
+    <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

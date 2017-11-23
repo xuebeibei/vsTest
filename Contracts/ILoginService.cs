@@ -34,5 +34,9 @@ namespace CommContracts
 
         [OperationContract]
         string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival);
+
+        [OperationContract]
+
+        bool SaveRegistration(Registration registration);
     }
 }

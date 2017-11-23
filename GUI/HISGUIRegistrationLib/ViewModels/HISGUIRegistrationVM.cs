@@ -173,7 +173,7 @@ namespace HISGUIRegistrationLib.ViewModels
                 SignalSource temp = new SignalSource();
 
                 temp.SignalID = sg.ID;
-                temp.DepartmentID = sg.DepartmentID;
+                temp.DepartmentID = sg.GetDepartment.ID;
                 temp.VistTime = sg.VistTime;
 
                 if (sg.TimeIntival == 1)
@@ -307,6 +307,17 @@ namespace HISGUIRegistrationLib.ViewModels
             {
                 return false;
             }
+
+            CommClient.Registration myd = new CommClient.Registration();
+
+            CommContracts.Registration registration = new CommContracts.Registration();
+            registration.Fee = 20.0;
+            registration.GetDateTime = DateTime.Now;
+            
+            myd.SetRegistration(registration);
+            myd.SaveRegistration();
+
+
 
             return true;
         }

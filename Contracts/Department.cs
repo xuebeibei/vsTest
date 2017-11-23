@@ -16,6 +16,9 @@ namespace CommContracts
         {
             this.Nodes = new List<Department>();
             this.ParentDepartmentID = 0;//主节点的父id默认为0
+
+            this.Name = "";
+            this.Abbr = "";
         }
         [DataMember]
         public List<Department> Nodes { get; set; }

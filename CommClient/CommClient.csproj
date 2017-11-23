@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="Department.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
   </ItemGroup>
   <ItemGroup>
