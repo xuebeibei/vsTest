@@ -19,6 +19,12 @@ namespace DAL
     
     public class User
     {
+        public User()
+        {
+            this.Username = "";
+            this.Password = "";
+            this.Status = LoginStatus.unknow;
+        }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
         public string Username { get; set; }
@@ -29,6 +35,13 @@ namespace DAL
 
     public class Department
     {
+        public Department()
+        {
+            this.Name = "";
+            this.Abbr = "";
+            this.IsDoctorDepartment = false;
+            this.ParentID = 0;
+        }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Abbr { get; set; }
@@ -38,6 +51,18 @@ namespace DAL
 
     public class SignalSource
     {
+        public SignalSource()
+        {
+            this.Price = 0.0;
+            this.TimeIntival = 1;
+            this.Department = new Department();
+            this.SignalType = 1;
+            this.MaxNum = 0;
+            this.AddMaxNum = 0;
+            this.HasUsedNum = 0;
+            this.Specialist = 0;
+            this.Explain = "";
+        }
         public int ID { get; set; }              // 号源ID
         public double Price { get; set; }        // 号源单价
 
@@ -54,6 +79,28 @@ namespace DAL
 
     public class Registration
     {
+        public Registration()
+        {
+            //this.ID = 0;
+            this.Patient = new Patient();
+            this.SignalSource = new SignalSource();
+            this.User = new User();
+            this.Fee = 0.0;
+            this.DateTime = DateTime.Now;
+        }
+
+        public Registration(CommContracts.Registration registration)
+        {
+            this.Patient = new Patient();
+            this.Patient.ID = 1;
+
+            this.SignalSource = new SignalSource();
+            this.SignalSource.ID = 2;
+            this.SignalSource.Department.ID = 3;
+            this.User = new User();
+            this.Fee = registration.Fee;
+            this.DateTime = registration.GetDateTime;
+        }
         public int ID { get; set; }              // 挂号单ID
         public Patient Patient { get; set; }       // 患者ID
         public SignalSource SignalSource { get; set; }  // 号源ID
@@ -64,6 +111,12 @@ namespace DAL
 
     public class Patient
     {
+        public Patient()
+        {
+            this.Name = "";
+            this.Gender = GenderEnum.man;
+            this.Volk = VolkEnum.hanzu;
+        }
         public enum GenderEnum { man, woman };
         public enum VolkEnum { hanzu, other };   
         public int ID { get; set; }              // 患者ID

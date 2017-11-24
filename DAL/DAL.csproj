@@ -67,5 +67,11 @@
       <DependentUpon>201711230745046_PaperTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Contracts\CommContracts.csproj">
+      <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
+      <Name>CommContracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

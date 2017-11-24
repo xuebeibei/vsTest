@@ -18,7 +18,7 @@ namespace HISGUITriageLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUITriageView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUITriageView));
         }
     }
 }
