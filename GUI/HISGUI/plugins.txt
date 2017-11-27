@@ -3,3 +3,4 @@ Plugins\HISGUIMenuLib.dll
 Plugins\HISGUIRegistrationLib.dll
 Plugins\HISGUIWorkstationLib.dll
 Plugins\HISGUITriageLib.dll
+Plugins\HISGUIClinicDoctorLib.dll

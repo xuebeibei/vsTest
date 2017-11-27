@@ -16,6 +16,29 @@ namespace BLL
             this.registration = registration;
         }
 
+        public Registration()
+        {
+
+        }
+
+        public List<CommContracts.Registration> getAllRegistration()
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var aa = ctx.Registrations.FirstOrDefault();
+
+                List<CommContracts.Registration> list = new List<CommContracts.Registration>();
+                CommContracts.Registration bb = new CommContracts.Registration();
+
+                //list.Add(aa);
+                bb.Fee = aa.Fee;
+                bb.GetDateTime = aa.DateTime;
+                //bb.GetLoginUser = aa.User;
+
+                return list;
+            }
+        }
+
         public bool SaveRegistration()
         {
             using (DAL.HisContext ctx = new DAL.HisContext())

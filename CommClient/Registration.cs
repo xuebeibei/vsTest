@@ -23,6 +23,11 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
+        public List<CommContracts.Registration> getAllRegistration()
+        {
+            return client.getAllRegistration();
+        }
+
         public void SetRegistration(CommContracts.Registration registration)
         {
             this.registration = registration;

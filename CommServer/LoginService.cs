@@ -73,5 +73,11 @@ namespace CommServer
             BLL.Registration temp = new BLL.Registration(registration);
             return temp.SaveRegistration();
         }
+
+        public List<CommContracts.Registration> getAllRegistration()
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.getAllRegistration();
+        }
     }
 }
