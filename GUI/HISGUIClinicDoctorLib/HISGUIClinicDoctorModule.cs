@@ -18,7 +18,7 @@ namespace HISGUIClinicDoctorLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIClinicDoctorView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIClinicDoctorView));
         }
     }
 }

@@ -63,7 +63,16 @@
     <Compile Include="HISGUIMoudleBase.cs" />
     <Compile Include="HISGUIViewBase.cs" />
     <Compile Include="HISGUIVMBase.cs" />
+    <Compile Include="MyContorls\FindDateContorl.xaml.cs">
+      <DependentUpon>FindDateContorl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MyContorls\FindDateContorl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

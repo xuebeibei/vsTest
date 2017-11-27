@@ -41,5 +41,7 @@ namespace HISGUIClinicDoctorLib.Views
         private void ClinicDoctor_Loaded(object sender, RoutedEventArgs e)
         {
         }
+
+
     }
 }

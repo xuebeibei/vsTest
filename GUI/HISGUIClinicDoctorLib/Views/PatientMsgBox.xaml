@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.PatientMsgBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="NotTriage">
+                <VisualState x:Name="VisualState">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button1">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="True"/>
+                        </BooleanAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="VisualState1">
+                    <Storyboard>
+                        <BooleanAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.IsEnabled)" Storyboard.TargetName="button">
+                            <DiscreteBooleanKeyFrame KeyTime="0" Value="False"/>
+                        </BooleanAnimationUsingKeyFrames>
+                        <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)" Storyboard.TargetName="border">
+                            <EasingColorKeyFrame KeyTime="0" Value="#FFE25588"/>
+                        </ColorAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        <Border x:Name="border" Background="#FFB4D375"></Border>
+        <Grid Background="White" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" HorizontalAlignment="Left">vip</Label>
+                <Label x:Name="TimeLabel" Grid.Column="1" HorizontalAlignment="Right">到诊12：00</Label>
+            </Grid>
+            <Label Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" >
+                <Image Height="80" Width="80" Source="C:\Users\xuebei\Downloads\人.png"></Image>
+            </Label>
+            <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" >
+                <Label x:Name="PatientMsgLabel">姓名 （性别 年龄）</Label>
+                <Label x:Name="DepartmentLabel">BMI：</Label>
+                <Label x:Name="DoctorLabel">初诊</Label>
+                <Label x:Name="VisitingTimeLabel">等待时间：</Label>
+                <Label>初步判断：</Label>
+            </StackPanel>
+            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="40">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="button" Margin="0,5,0,5" Grid.Column="0" Click="button_Click">接诊</Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

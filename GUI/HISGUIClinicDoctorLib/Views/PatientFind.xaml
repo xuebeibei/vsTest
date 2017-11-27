@@ -1,0 +1,16 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.PatientFind"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <DatePicker Margin="5"></DatePicker>
+            <Label Margin="5">-</Label>
+            <DatePicker Margin="5"></DatePicker>
+            <TextBox Width="80" Margin="5,5,0,5"></TextBox>
+            <Button Margin="0,5,5,5">查找</Button>
+        </StackPanel>
+    </Grid>
+</UserControl>

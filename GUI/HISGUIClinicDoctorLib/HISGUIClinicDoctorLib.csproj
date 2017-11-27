@@ -91,8 +91,44 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUIClinicDoctorVM.cs" />
+    <Compile Include="Views\Assay.xaml.cs">
+      <DependentUpon>Assay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicRecipe.xaml.cs">
+      <DependentUpon>ClinicRecipe.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicRemedy.xaml.cs">
+      <DependentUpon>ClinicRemedy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CostPreview.xaml.cs">
+      <DependentUpon>CostPreview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HISGUIClinicDoctorView.xaml.cs">
       <DependentUpon>HISGUIClinicDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inspect.xaml.cs">
+      <DependentUpon>Inspect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PageFind.xaml.cs">
+      <DependentUpon>PageFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientBMIMsg.xaml.cs">
+      <DependentUpon>PatientBMIMsg.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientFind.xaml.cs">
+      <DependentUpon>PatientFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientMedicalRecord.xaml.cs">
+      <DependentUpon>PatientMedicalRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientMsgBox.xaml.cs">
+      <DependentUpon>PatientMsgBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReceivingNewPatients.xaml.cs">
+      <DependentUpon>ReceivingNewPatients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report.xaml.cs">
+      <DependentUpon>Report.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -110,7 +146,55 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\Assay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClinicRecipe.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClinicRemedy.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CostPreview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\HISGUIClinicDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inspect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PageFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientBMIMsg.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientMedicalRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientMsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReceivingNewPatients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Report.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

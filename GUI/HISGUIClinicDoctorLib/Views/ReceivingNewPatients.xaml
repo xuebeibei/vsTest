@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.ReceivingNewPatients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid ShowGridLines="True" Grid.Row="0" Grid.ColumnSpan="2" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0">logo接诊</Label>
+            <StackPanel Grid.Column="2" Orientation="Horizontal"  HorizontalAlignment="Right">
+                <Button Margin="5" Click="Button_Click">费用预览</Button>
+                <Button Margin="5">结束接诊</Button>
+            </StackPanel>
+        </Grid>
+
+        <local:PatientBMIMsg Grid.Row="1" Grid.Column="0"></local:PatientBMIMsg>
+
+        <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"   Grid.Row="1" Grid.Column="1">
+            <TabItem Header="病历">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Border BorderBrush="Black">
+                        <local:PatientMedicalRecord></local:PatientMedicalRecord>
+                    </Border>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="处方">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <local:ClinicRecipe></local:ClinicRecipe>
+
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="治疗">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <local:ClinicRemedy></local:ClinicRemedy>
+
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="检验">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <local:Assay></local:Assay>
+
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="检查">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+                    <local:Inspect></local:Inspect>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="材料">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="其他">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="报告">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:Report></local:Report>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
