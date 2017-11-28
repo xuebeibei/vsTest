@@ -8,6 +8,9 @@ using System.Data.Entity;
 
 namespace DAL
 {
+    public enum GenderEnum { man, woman };
+    public enum VolkEnum { hanzu, other };
+
     public class HisContext : DbContext
     {
         public DbSet<User> Users { get; set; }
@@ -15,6 +18,8 @@ namespace DAL
         public DbSet<SignalSource> SignalSources { get; set; }
         public DbSet<Registration> Registrations { get; set; }
         public DbSet<Patient> Patients { get; set; }
+        public DbSet<Job> Jobs { get; set; }
+        public DbSet<Employee> Employees { get; set; }
     }
     
     public class User
@@ -31,6 +36,7 @@ namespace DAL
         public string Password { get; set; }
         public LoginStatus Status { get; set; }
         public DateTime LastLogin { get; set; }
+        public Employee Employee { get; set; }
     }
 
     public class Department
@@ -117,12 +123,38 @@ namespace DAL
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
         }
-        public enum GenderEnum { man, woman };
-        public enum VolkEnum { hanzu, other };   
+       
         public int ID { get; set; }              // 患者ID
         public string Name { get; set; }         // 姓名
         public GenderEnum Gender { get; set; }   // 性别
         public DateTime BirthDay { get; set; }   // 出生日期
         public VolkEnum Volk { get; set; }       // 民族
+    }
+
+    public class Employee
+    {
+        public Employee()
+        {
+            Name = "";
+            Department = new Department();
+            Job = new Job();
+        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public Department Department { get; set; }
+        public Job Job { get; set; }
+        public GenderEnum Gender { get; set; }   // 性别
+    }
+
+    public class Job
+    {
+        public Job()
+        {
+            Name = "";
+        }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public bool Default { get; set; }
     }
 }

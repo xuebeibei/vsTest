@@ -21,6 +21,8 @@ namespace CommClient
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
+
+            registration = new CommContracts.Registration();
         }
 
         public List<CommContracts.Registration> getAllRegistration()
@@ -35,7 +37,7 @@ namespace CommClient
 
         public DateTime GetDateTime ()
         {
-             return registration.GetDateTime;
+            return registration.GetDateTime;
         }
 
         public string getPatientMsg()

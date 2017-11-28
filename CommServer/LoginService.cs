@@ -79,5 +79,11 @@ namespace CommServer
             BLL.Registration temp = new BLL.Registration();
             return temp.getAllRegistration();
         }
+
+        public List<CommContracts.Employee> getAllDoctor()
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.getAllDoctor();
+        }
     }
 }

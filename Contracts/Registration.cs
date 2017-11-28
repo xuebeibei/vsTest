@@ -10,6 +10,14 @@ namespace CommContracts
     [DataContract]
     public class Registration
     {
+        public Registration()
+        {
+            GetPatient = new Patient();
+            GetSignalSource = new SignalSource();
+            GetLoginUser = new LoginUser();
+            GetDateTime = DateTime.Now;
+            Fee = 0.0;
+        }
         [DataMember]
         public Patient GetPatient { get; set; }
 

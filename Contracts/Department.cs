@@ -11,7 +11,6 @@ namespace CommContracts
     [DataContract]
     public class Department
     {
-        
         public Department()
         {
             this.Nodes = new List<Department>();

@@ -40,5 +40,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Registration> getAllRegistration();
+
+        [OperationContract]
+        List<CommContracts.Employee> getAllDoctor();
     }
 }

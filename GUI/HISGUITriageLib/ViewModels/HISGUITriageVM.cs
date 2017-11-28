@@ -62,5 +62,14 @@ namespace HISGUITriageLib.ViewModels
 
             return list;
         }
+
+        public List<CommContracts.Employee> getAllDoctor()
+        {
+            List<CommContracts.Employee> list = new List<CommContracts.Employee>();
+
+            CommClient.Employee myd = new CommClient.Employee();
+            list = myd.getAllDoctor();
+            return list;
+        }
     }
 }

@@ -7,13 +7,12 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
+    public enum GenderEnum { man, woman };
+    public enum VolkEnum { hanzu, other };
+
     [DataContract]
     public class Patient
     {
-        public enum GenderEnum{ man, woman };
-
-        public enum VolkEnum { hanzu , other };
-
         [DataMember]
         public string Name { get; set; }
 
