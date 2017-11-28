@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.MedicalRecordContent"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label MinWidth="75" Margin="5" Grid.Row="0" Grid.Column="0">主诉：</Label>
+        <TextBox x:Name="zhusu" Margin="5" Grid.Row="0" Grid.Column="1" TextWrapping="Wrap"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="2">0/500</Label>
+
+        <Label  MinWidth="75" Margin="5" Grid.Row="1" Grid.Column="0">现病史：</Label>
+        <TextBox x:Name="xianbingshi" Margin="5" Grid.Row="1" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="1" Grid.Column="2">0/500</Label>
+
+        <Label  MinWidth="75" Margin="5" Grid.Row="2" Grid.Column="0">体格检查：</Label>
+        <TextBox x:Name="tigejiancha" Margin="4" Grid.Row="2" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="2" Grid.Column="2">0/500</Label>
+
+        <Label  MinWidth="75" Margin="5" Grid.Row="3" Grid.Column="0">初步诊断：</Label>
+        <TextBox x:Name="chubuzhenduan" Margin="5" Grid.Row="3" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="3" Grid.Column="2">0/500</Label>
+
+        <Label  MinWidth="75" Margin="5" Grid.Row="4" Grid.Column="0">治疗意见：</Label>
+        <TextBox x:Name="zhiliaoyijian" Margin="5" Grid.Row="4" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="4" Grid.Column="2">0/500</Label>
+
+        <Label  MinWidth="75" Margin="5" Grid.Row="5" Grid.Column="0">备注：</Label>
+        <TextBox x:Name="beizhu" Margin="5" Grid.Row="5" Grid.Column="1"></TextBox>
+        <Label VerticalAlignment="Bottom" Grid.Row="5" Grid.Column="2">0/500</Label>
+
+    </Grid>
+</UserControl>

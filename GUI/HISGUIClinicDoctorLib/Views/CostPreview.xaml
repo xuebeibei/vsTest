@@ -9,9 +9,9 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0">
-            <StackPanel>
-                <Label x:Name="PhotoLabel" Margin="5">照片</Label>
+        <Border BorderBrush="Black" BorderThickness="1" Grid.Column="0" Margin="5">
+            <StackPanel Margin="5">
+                <Label x:Name="PhotoLabel">照片</Label>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
                     <Label Margin="2">姓名:</Label>
@@ -40,8 +40,8 @@
 
             </StackPanel>
         </Border>
-        <StackPanel Grid.Column="1">
-            <DataGrid x:Name="zhongyao" Margin="2" ItemsSource="{Binding}" AutoGenerateColumns="False">
+        <StackPanel Grid.Column="1" Margin="5">
+            <DataGrid x:Name="zhongyao" ItemsSource="{Binding}" AutoGenerateColumns="False" Margin="0,0,0,5">
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="30">
                         <DataGridTemplateColumn.HeaderTemplate>
@@ -51,26 +51,26 @@
                         </DataGridTemplateColumn.HeaderTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="收费项名称"
-                                            Width="90"
+                                            Width="100"
                                             Binding="{Binding Unit}" />
                     <DataGridTextColumn Header="单价"
                                             Width="80"
                                             Binding="{Binding Value}" />
                     <DataGridTextColumn Header="数量"
-                                            Width="80"
+                                            Width="50"
                                             Binding="{Binding LowerLimit}" />
                     <DataGridTextColumn Header="单位"
-                                            Width="80"
+                                            Width="50"
                                             Binding="{Binding UpperLimit}" />
                     <DataGridTextColumn Header="折扣"
-                                            Width="40"
+                                            Width="50"
                                             Binding="{Binding UpperLimit}" />
-                    <DataGridTextColumn Header="折扣后金额"
-                                            Width="40"
+                    <DataGridTextColumn Header="金额"
+                                            Width="50"
                                             Binding="{Binding UpperLimit}" />
                 </DataGrid.Columns>
             </DataGrid>
-            <Grid>
+            <Grid Margin="0,5,0,5">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>

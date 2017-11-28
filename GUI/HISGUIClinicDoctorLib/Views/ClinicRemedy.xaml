@@ -7,7 +7,7 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="2">选择模板</Button>
+                <Button Margin="2" Click="Button_Click">选择模板</Button>
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

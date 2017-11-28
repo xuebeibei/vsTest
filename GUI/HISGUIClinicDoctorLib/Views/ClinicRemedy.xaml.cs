@@ -24,5 +24,17 @@ namespace HISGUIClinicDoctorLib.Views
         {
             InitializeComponent();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new Window();//Windows窗体
+            TempletList jks = new TempletList();  //UserControl写的界面   
+            window.Title = "西/成药处方模板";
+            window.Height = 500;
+            window.Width = 300;
+
+            window.Content = jks;
+            window.ShowDialog();
+        }
     }
 }

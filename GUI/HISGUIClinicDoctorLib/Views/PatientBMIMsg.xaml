@@ -14,7 +14,7 @@
                     <Label x:Name="NameLabel" Margin="2"></Label>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Button x:Name="HistoryBtn" Margin="2,2,5,2">历史病例</Button>
+                    <Button x:Name="HistoryBtn" Margin="2,2,5,2" Click="HistoryBtn_Click">历史病例</Button>
                     <Button x:Name="EditBtn" Margin="5,2,2,2">完善信息</Button>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">

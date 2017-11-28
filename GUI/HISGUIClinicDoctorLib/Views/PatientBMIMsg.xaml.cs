@@ -24,5 +24,17 @@ namespace HISGUIClinicDoctorLib.Views
         {
             InitializeComponent();
         }
+
+        private void HistoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new Window();//Windows窗体
+            CaseHistory jks = new CaseHistory();  //UserControl写的界面   
+            window.Title = "历史病历";
+            window.Height = 400;
+            window.Width = 533;
+
+            window.Content = jks;
+            window.ShowDialog();
+        }
     }
 }

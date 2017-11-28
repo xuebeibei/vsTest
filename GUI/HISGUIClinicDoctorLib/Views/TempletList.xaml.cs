@@ -16,18 +16,13 @@ using System.Windows.Shapes;
 namespace HISGUIClinicDoctorLib.Views
 {
     /// <summary>
-    /// ClinicRecipe.xaml 的交互逻辑
+    /// TempletList.xaml 的交互逻辑
     /// </summary>
-    public partial class ClinicRecipe : UserControl
+    public partial class TempletList : UserControl
     {
-        public ClinicRecipe()
+        public TempletList()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
