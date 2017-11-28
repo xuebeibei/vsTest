@@ -63,13 +63,69 @@
     <Compile Include="HISGUIMoudleBase.cs" />
     <Compile Include="HISGUIViewBase.cs" />
     <Compile Include="HISGUIVMBase.cs" />
+    <Compile Include="MyContorls\BodyCharacteristics.xaml.cs">
+      <DependentUpon>BodyCharacteristics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\DoctorFind.xaml.cs">
+      <DependentUpon>DoctorFind.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyContorls\FindDateContorl.xaml.cs">
       <DependentUpon>FindDateContorl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\MedicalHistory.xaml.cs">
+      <DependentUpon>MedicalHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\MedicalRecord.xaml.cs">
+      <DependentUpon>MedicalRecord.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\MyTextEdit.xaml.cs">
+      <DependentUpon>MyTextEdit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\PageFind.xaml.cs">
+      <DependentUpon>PageFind.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\PatientMsgBox.xaml.cs">
+      <DependentUpon>PatientMsgBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\PersonalInformation.xaml.cs">
+      <DependentUpon>PersonalInformation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="MyContorls\BodyCharacteristics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\DoctorFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyContorls\FindDateContorl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\MedicalHistory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\MedicalRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\MyTextEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\PageFind.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\PatientMsgBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\PersonalInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

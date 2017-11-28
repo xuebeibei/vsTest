@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUITriageLib.Views"
-             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <TabControl x:Name="tabControl" Margin="5" VerticalAlignment="Top" >
             <TabItem Header="待分诊">
@@ -16,10 +17,10 @@
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                            <local:PatientFind ></local:PatientFind>
+                            <Controls:FindDateContorl></Controls:FindDateContorl>
                             <Button Margin="5">一键分诊</Button>
                         </StackPanel>
-                        
+
                         <Grid x:Name="aaa" Grid.Row="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
@@ -32,20 +33,24 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                         </Grid>
-                        <local:PageFind Grid.Row="2"></local:PageFind>
+                        <Controls:PageFind Grid.Row="2"></Controls:PageFind>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="已分诊">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="8*"/>
+                            <ColumnDefinition Width="73*"/>
+                        </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
-                        <local:PatientFind HorizontalAlignment="Right"></local:PatientFind>
-                        <Grid x:Name="bbb" Grid.Row="1">
+                        <Controls:FindDateContorl></Controls:FindDateContorl>
+                        <Grid x:Name="bbb" Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,35.2" Grid.RowSpan="2">
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
@@ -57,7 +62,7 @@
                                 <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                         </Grid>
-                        <local:PageFind Grid.Row="2"></local:PageFind>
+                        <Controls:PageFind Grid.Row="2" Grid.ColumnSpan="2" Margin="0,0,0,0.2"></Controls:PageFind>
                     </Grid>
                 </ScrollViewer>
             </TabItem>

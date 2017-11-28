@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HISGUITriageLib.Views
+namespace HISGUICore.MyContorls
 {
     /// <summary>
     /// BodyCharacteristics.xaml 的交互逻辑
@@ -188,7 +188,7 @@ namespace HISGUITriageLib.Views
                 }
             }
             var visualUsername = "BloodPressureNormalState";
-            if(!bSystolicPressure && bDiastolicPressure)
+            if (!bSystolicPressure && bDiastolicPressure)
             {
                 visualUsername = "SystolicPressureErrorState";
             }
@@ -196,11 +196,11 @@ namespace HISGUITriageLib.Views
             {
                 visualUsername = "DiastolicPressureErrorState";
             }
-            else if(!bSystolicPressure && !bDiastolicPressure)
+            else if (!bSystolicPressure && !bDiastolicPressure)
             {
                 visualUsername = "BloodPressureErrorState";
             }
-            
+
             VisualStateManager.GoToState(this, visualUsername, false);
         }
 
@@ -239,13 +239,13 @@ namespace HISGUITriageLib.Views
         private void TextBox_TextChanged_1(object sender, TextChangedEventArgs e)
         {
             // 对左眼输入的控制
-          
+
         }
 
         private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
         {
             // 对右眼输入的控制
-           
+
         }
 
         private void OxygenSaturationEdit_TextChanged(object sender, TextChangedEventArgs e)

@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
+using HISGUICore.MyContorls;
 using HISGUITriageLib.ViewModels;
 using System.Data;
 
@@ -51,7 +52,7 @@ namespace HISGUITriageLib.Views
                 for (int i = 0; i < list.Count(); i++)
                 {
                     // 实例化一个控件
-                    PatientMsgBox msgBox = new PatientMsgBox(list.ElementAt(i));
+                    PatientMsgBox msgBox = new PatientMsgBox(/*list.ElementAt(i)*/);
 
                     // 添加到布局中去
                     this.aaa.Children.Add(msgBox);

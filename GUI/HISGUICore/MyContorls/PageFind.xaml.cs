@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HISGUITriageLib.Views
+namespace HISGUICore.MyContorls
 {
     /// <summary>
-    /// PatientFind.xaml 的交互逻辑
+    /// PageFind.xaml 的交互逻辑
     /// </summary>
-    public partial class PatientFind : UserControl
+    public partial class PageFind : UserControl
     {
-        public PatientFind()
+        public PageFind()
         {
             InitializeComponent();
         }

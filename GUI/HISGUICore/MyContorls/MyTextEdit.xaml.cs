@@ -13,9 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HISGUITriageLib.Views
+namespace HISGUICore.MyContorls
 {
-    public class MyTextEditText:DependencyObject
+    public class MyTextEditText : DependencyObject
     {
         public string Tittle
         {

@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="HISGUITriageLib.Views.PageFind"
+﻿<UserControl x:Class="HISGUICore.MyContorls.PageFind"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUITriageLib.Views"
-             >
+             xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <Button Margin="5">上一页</Button>

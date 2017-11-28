@@ -38,9 +38,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="HISGUICore">
-      <HintPath>C:\Users\xuebei\source\repos\HISPrism\HISGUI\HISGUICore\bin\Debug\HISGUICore.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>C:\Users\xuebei\source\repos\HISPrism\HISGUI\PrismLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -88,35 +85,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUITriageVM.cs" />
-    <Compile Include="Views\BodyCharacteristics.xaml.cs">
-      <DependentUpon>BodyCharacteristics.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DoctorFind.xaml.cs">
-      <DependentUpon>DoctorFind.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\HISGUITriageView.xaml.cs">
       <DependentUpon>HISGUITriageView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MedicalHistory.xaml.cs">
-      <DependentUpon>MedicalHistory.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MedicalRecord.xaml.cs">
-      <DependentUpon>MedicalRecord.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MyTextEdit.xaml.cs">
-      <DependentUpon>MyTextEdit.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PageFind.xaml.cs">
-      <DependentUpon>PageFind.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PatientFind.xaml.cs">
-      <DependentUpon>PatientFind.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PatientMsgBox.xaml.cs">
-      <DependentUpon>PatientMsgBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PersonalInformation.xaml.cs">
-      <DependentUpon>PersonalInformation.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -128,43 +98,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\BodyCharacteristics.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\DoctorFind.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\HISGUITriageView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MedicalHistory.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MedicalRecord.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MyTextEdit.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PageFind.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PatientFind.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PatientMsgBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PersonalInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -177,6 +111,10 @@
     <ProjectReference Include="..\..\Contracts\CommContracts.csproj">
       <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
       <Name>CommContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HISGUICore\HISGUICore.csproj">
+      <Project>{8fe73f6f-1765-4814-885d-320d7694e890}</Project>
+      <Name>HISGUICore</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

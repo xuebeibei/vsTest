@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HISGUITriageLib.Views
+namespace HISGUICore.MyContorls
 {
     /// <summary>
     /// MedicalHistory.xaml 的交互逻辑
