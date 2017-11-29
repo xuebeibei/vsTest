@@ -14,7 +14,15 @@
             <TextBox Width="50" Margin="0,5,0,5"></TextBox>
             <Button Margin="0,5,5,5" Click="Button_Click">查找</Button>
         </StackPanel>
-        <DataGrid Grid.Row="1" Margin="5"></DataGrid>
+        <ListView Name="listView1" Grid.Row="1" Margin="5" SelectionChanged="listView1_SelectionChanged">
+            <ListView.View>
+                <GridView x:Name="gridView1">
+                    <GridViewColumn Header="医生编号" DisplayMemberBinding="{Binding Path=DoctorId}"></GridViewColumn>
+                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=DoctorName}"></GridViewColumn>
+                    <GridViewColumn Header="科室" DisplayMemberBinding="{Binding Path=DoctorDepartment}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
             <Button Margin="5">确定</Button>
             <Button Margin="5,5,0,5">取消</Button>
