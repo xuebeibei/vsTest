@@ -17,7 +17,6 @@ using System.Windows.Shapes;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
-using HISGUICore.MyContorls;
 using HISGUILoginLib.ViewModels;
 
 namespace HISGUILoginLib.Views

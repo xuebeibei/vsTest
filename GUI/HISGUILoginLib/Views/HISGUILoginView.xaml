@@ -36,7 +36,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <!--<Label x:Name="currentDateTime" Height="55" Margin="5,5,5,5" VerticalContentAlignment="Center" Foreground="#FFFAF5F5">Monday, 25-10-2015 3:14 PM</Label>
+            <Label x:Name="currentDateTime" Height="55" Margin="5,5,5,5" VerticalContentAlignment="Center" Foreground="#FFFAF5F5">Monday, 25-10-2015 3:14 PM</Label>
             <Button x:Name="RefechBtn" Grid.Column="2" Height="55" Width="55" Margin="5,5,5,5" Background="#FF27A9EC" BorderBrush="{x:Null}">
                 <Grid Margin="5,5,5,5">
                     <Image Source="C:\Users\xuebei\Downloads\刷新.png"></Image>
@@ -46,8 +46,7 @@
                 <Grid Margin="5,5,5,5">
                     <Image Source="C:\Users\xuebei\Downloads\退出.png"></Image>
                 </Grid>
-            </Button>-->
-            <contorls:FindDateContorl></contorls:FindDateContorl>
+            </Button>
         </Grid>
         <Image  Grid.Row="2" Width="150" Height="150" Margin="5,5,5,5" Source="C:\Users\xuebei\Downloads\医院.png"></Image>
         <Grid Grid.Row="4" Width="350" Height="200" Margin="5,5,5,5">
