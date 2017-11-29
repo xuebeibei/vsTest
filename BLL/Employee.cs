@@ -14,8 +14,7 @@ namespace BLL
             List<CommContracts.Employee> list = new List<CommContracts.Employee>();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from u in ctx.Employees where u.Job.ID == 1
-                            select u;
+                var query = ctx.Employees.Include("Job").Include("Department").ToList();
 
                 foreach(DAL.Employee tem in query)
                 {
