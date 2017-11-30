@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
+using AutoMapper;
 
 namespace BLL
 {
@@ -23,20 +24,22 @@ namespace BLL
 
         public List<CommContracts.Registration> getAllRegistration()
         {
+            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
+
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var aa = ctx.Registrations.FirstOrDefault();
+                var query = ctx.Registrations.Include("Patient").Include("SignalSource").Include("User").ToList();
 
-                List<CommContracts.Registration> list = new List<CommContracts.Registration>();
-                CommContracts.Registration bb = new CommContracts.Registration();
+                Mapper.Initialize(x => x.CreateMap<DAL.Registration, CommContracts.Registration>());
 
-                //list.Add(aa);
-                bb.Fee = aa.Fee;
-                bb.GetDateTime = aa.DateTime;
-                //bb.GetLoginUser = aa.User;
-
-                return list;
+                foreach (DAL.Registration tem in query)
+                {
+                    var dto = Mapper.Map<CommContracts.Registration>(tem);
+                    list.Add(dto);
+                }
             }
+
+            return list;
         }
 
         public bool SaveRegistration()
