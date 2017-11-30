@@ -24,7 +24,7 @@ namespace BLL
 
         public Dictionary<int ,string> getAllRegistration()
         {
-            Dictionary<int, string> list = new Dictionary<int, string>();
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -32,12 +32,12 @@ namespace BLL
 
                 foreach (DAL.Registration tem in query)
                 {
-                    string str = tem.ToString(); 
-                    list.Add(tem.ID, str);
+                    string str = tem.ToString();
+                    dictionary.Add(tem.ID, str);
                 }
             }
 
-            return list;
+            return dictionary;
         }
 
         public bool SaveRegistration()

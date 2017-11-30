@@ -44,15 +44,15 @@ namespace HISGUITriageLib.Views
         {
             var vm = this.DataContext as HISGUITriageVM;
 
-            Dictionary<int, string> list = new Dictionary<int, string>();
-            list = vm?.GetAllUnTriagePatient();
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            dictionary = vm?.GetAllUnTriagePatient();
 
-            if (list != null)
+            if (dictionary != null)
             {
-                for (int i = 0; i < list.Count(); i++)
+                for (int i = 0; i < dictionary.Count(); i++)
                 {
                     // 实例化一个控件
-                    PatientMsgBox msgBox = new PatientMsgBox(list.ElementAt(i).Value);
+                    PatientMsgBox msgBox = new PatientMsgBox(dictionary.ElementAt(i).Value);
 
                     // 添加到布局中去
                     this.aaa.Children.Add(msgBox);
