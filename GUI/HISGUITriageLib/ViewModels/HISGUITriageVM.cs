@@ -21,13 +21,13 @@ namespace HISGUITriageLib.ViewModels
     [Export("HISGUITriageVM", typeof(HISGUIVMBase))]
     class HISGUITriageVM : HISGUIVMBase
     {
-        public List<CommClient.Registration> GetAllUnTriagePatient()
+        public List<string> GetAllUnTriagePatient()
         {
             CommClient.Registration myd = new CommClient.Registration();
-            myd.getAllRegistration();
+            //myd.getAllRegistration();
             
             //// 得到所有的待分诊患者列表
-            CommClient.Registration registration = new CommClient.Registration();
+            //CommClient.Registration registration = new CommClient.Registration();
 
             //CommContracts.Department department = new CommContracts.Department();
             //department.ID = 1;
@@ -57,8 +57,9 @@ namespace HISGUITriageLib.ViewModels
             //registration1.GetSignalSource = signalSource;
             //registration.SetRegistration(registration1);
 
-            List<CommClient.Registration> list = new List<CommClient.Registration>();
-            list.Add(registration);
+            List<string> list = new List<string>();
+            //list.Add(registration);
+            list = myd.getAllRegistration();
 
             return list;
         }

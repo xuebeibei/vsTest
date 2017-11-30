@@ -34,31 +34,19 @@
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Row="0" Grid.ColumnSpan="2" Margin="5,5,5,5">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" HorizontalAlignment="Left">vip</Label>
-                <Label x:Name="TimeLabel" Grid.Column="1" HorizontalAlignment="Right">登记12：00</Label>
-            </Grid>
-            <Label Grid.Row="1" Grid.Column="0" Margin="5,5,5,5" >
+            
+            <Label Grid.Row="0" Grid.Column="0" Margin="10,20,5,5" >
                 <Image Height="80" Width="80" Source="C:\Users\xuebei\Downloads\人.png"></Image>
             </Label>
-            <StackPanel Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" >
-                <Label x:Name="PatientMsgLabel">姓名 （性别 年龄）</Label>
-                <Label x:Name="DepartmentLabel">科室：</Label>
-                <Label x:Name="DoctorLabel">医生：</Label>
-                <Label x:Name="VisitingTimeLabel">看诊时间：</Label>
-                <Label>预约详情：</Label>
+            <StackPanel Grid.Row="0" Grid.Column="1" Margin="5,20,5,5" >
+                <TextBlock x:Name="PatientMsgText" LineHeight="20"></TextBlock>
             </StackPanel>
-            <Grid Grid.Row="2" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="40">
+            <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>

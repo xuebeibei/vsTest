@@ -39,7 +39,7 @@ namespace CommContracts
         bool SaveRegistration(Registration registration);
 
         [OperationContract]
-        List<CommContracts.Registration> getAllRegistration();
+        List<string> getAllRegistration();
 
         [OperationContract]
         List<CommContracts.Employee> getAllDoctor();

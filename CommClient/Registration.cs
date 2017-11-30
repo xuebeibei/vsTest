@@ -25,7 +25,7 @@ namespace CommClient
             registration = new CommContracts.Registration();
         }
 
-        public List<CommContracts.Registration> getAllRegistration()
+        public List<string> getAllRegistration()
         {
             return client.getAllRegistration();
         }

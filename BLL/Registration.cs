@@ -22,21 +22,23 @@ namespace BLL
 
         }
 
-        public List<CommContracts.Registration> getAllRegistration()
+        public List<string> getAllRegistration()
         {
-            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
+            List<string> list = new List<string>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = ctx.Registrations.Include("Patient").Include("SignalSource").Include("User").ToList();
 
-                var config = new MapperConfiguration(cfg => cfg.CreateMap<DAL.Registration, CommContracts.Registration>());
-                var mapper = config.CreateMapper();
-
                 foreach (DAL.Registration tem in query)
                 {
-                    var dto = mapper.Map<CommContracts.Registration>(tem);
-                    //        list.Add(dto);
+                    string str = tem.Patient.Name +" "+ 
+                        (tem.Patient.Gender == DAL.GenderEnum.man ? "男 ":"女 ") + 
+                        (DateTime.Now.Year - tem.Patient.BirthDay.Year).ToString() +"岁\r\n" +
+                        "科室：外科\r\n" + 
+                        "医生："+tem.SignalSource.Specialist.ToString() + "\r\n" +
+                        "看诊时间："+tem.SignalSource.VistTime.ToString() + "\r\n" ; 
+                    list.Add(str);
                 }
             }
 
