@@ -61,7 +61,7 @@ namespace DAL
         {
             this.Price = 0.0;
             this.TimeIntival = 1;
-            this.Department = new Department();
+            this.DepartmentID = 0;
             this.SignalType = 1;
             this.MaxNum = 0;
             this.AddMaxNum = 0;
@@ -74,7 +74,7 @@ namespace DAL
 
         public DateTime VistTime { get; set; }    // 看诊日期
         public int TimeIntival { get; set; }      // 看诊时段ID
-        public Department Department { get; set; }// 科室
+        public int DepartmentID { get; set; }// 科室
         public int SignalType { get; set; }       // 号别
         public int MaxNum { get; set; }           // 最大号源
         public int AddMaxNum { get; set; }        // 临时加号号源
@@ -102,7 +102,7 @@ namespace DAL
 
             this.SignalSource = new SignalSource();
             this.SignalSource.ID = 2;
-            this.SignalSource.Department.ID = 3;
+            this.SignalSource.DepartmentID = 3;
             this.User = new User();
             this.Fee = registration.Fee;
             this.DateTime = registration.GetDateTime;

@@ -20,7 +20,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
-                                                                where u.Department.ID == DepartmentID &&
+                                                                where u.DepartmentID == DepartmentID &&
                                                                 u.TimeIntival == timeInterval &&
                                                                 SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0
                                                                 select u;
@@ -66,7 +66,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var temp = (from u in ctx.SignalSources
-                            where u.Department.ID == DepartmentID &&
+                            where u.DepartmentID == DepartmentID &&
                             SqlFunctions.DateDiff("day", DateTime.Now, u.VistTime) > 0
                             select DbFunctions.TruncateTime(u.VistTime)).Distinct();
 
@@ -97,7 +97,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var temp = (from u in ctx.SignalSources
-                            where u.Department.ID == DepartmentID &&
+                            where u.DepartmentID == DepartmentID &&
                             SqlFunctions.DateDiff("day", DateTime.Now, u.VistTime) > 0
                             select u.TimeIntival).Distinct();
 
@@ -129,7 +129,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
-                                                                where SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0 && u.TimeIntival == TimeIntival && u.Department.ID == DepartmentID
+                                                                where SqlFunctions.DateDiff("day", dateTime, u.VistTime) == 0 && u.TimeIntival == TimeIntival && u.DepartmentID == DepartmentID
                                                                 select u;
 
                 int PuTong = 0;

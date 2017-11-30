@@ -30,12 +30,13 @@ namespace BLL
             {
                 var query = ctx.Registrations.Include("Patient").Include("SignalSource").Include("User").ToList();
 
-                Mapper.Initialize(x => x.CreateMap<DAL.Registration, CommContracts.Registration>());
+                var config = new MapperConfiguration(cfg => cfg.CreateMap<DAL.Registration, CommContracts.Registration>());
+                var mapper = config.CreateMapper();
 
                 foreach (DAL.Registration tem in query)
                 {
-                    var dto = Mapper.Map<CommContracts.Registration>(tem);
-                    list.Add(dto);
+                    var dto = mapper.Map<CommContracts.Registration>(tem);
+                    //        list.Add(dto);
                 }
             }
 
@@ -47,7 +48,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var aa = ctx.Registrations.FirstOrDefault();
-                if(aa == null)
+                if (aa == null)
                 {
                     aa = new DAL.Registration();
                 }
@@ -58,7 +59,7 @@ namespace BLL
                 var pp = ctx.Patients.FirstOrDefault();
 
                 var uu = ctx.Users.FirstOrDefault();
-                if(uu == null)
+                if (uu == null)
                 {
                     uu = new DAL.User();
                     uu.Username = "uu";

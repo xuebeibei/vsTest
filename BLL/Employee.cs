@@ -17,13 +17,15 @@ namespace BLL
             {
                 var query = ctx.Employees.Include("Job").Include("Department").ToList();
 
-               // var aa = from c in query where c.Job.ID == 1 select c;
-
-                Mapper.Initialize(x => x.CreateMap<DAL.Employee, CommContracts.Employee>());
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.Employee, CommContracts.Employee>();
+                });
+                var mapper = config.CreateMapper();
 
                 foreach (DAL.Employee tem in query)
                 {
-                    var dto = Mapper.Map<CommContracts.Employee>(tem);
+                    var dto = mapper.Map<CommContracts.Employee>(tem);
                     list.Add(dto);
                 }
             }
