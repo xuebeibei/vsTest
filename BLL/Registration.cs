@@ -22,9 +22,9 @@ namespace BLL
 
         }
 
-        public List<string> getAllRegistration()
+        public Dictionary<int ,string> getAllRegistration()
         {
-            List<string> list = new List<string>();
+            Dictionary<int, string> list = new Dictionary<int, string>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -32,9 +32,8 @@ namespace BLL
 
                 foreach (DAL.Registration tem in query)
                 {
-                    string str = tem.ToString() + ";" +
-                        tem.ID.ToString(); 
-                    list.Add(str);
+                    string str = tem.ToString(); 
+                    list.Add(tem.ID, str);
                 }
             }
 

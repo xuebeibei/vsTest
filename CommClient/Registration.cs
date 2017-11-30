@@ -25,7 +25,7 @@ namespace CommClient
             registration = new CommContracts.Registration();
         }
 
-        public List<string> getAllRegistration()
+        public Dictionary<int, string> getAllRegistration()
         {
             return client.getAllRegistration();
         }

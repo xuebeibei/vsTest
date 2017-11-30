@@ -74,7 +74,7 @@ namespace CommServer
             return temp.SaveRegistration();
         }
 
-        public List<string> getAllRegistration()
+        public Dictionary<int, string> getAllRegistration()
         {
             BLL.Registration temp = new BLL.Registration();
             return temp.getAllRegistration();
