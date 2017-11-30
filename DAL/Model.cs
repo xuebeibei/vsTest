@@ -10,6 +10,8 @@ namespace DAL
 {
     public enum GenderEnum { man, woman };
     public enum VolkEnum { hanzu, other };
+    public enum SeeDoctorStatusEnum { watting, seeing, leaved};
+    public enum TriageStatusEnum { no, yes};
 
     public class HisContext : DbContext
     {
@@ -87,7 +89,6 @@ namespace DAL
     {
         public Registration()
         {
-            //this.ID = 0;
             this.Patient = new Patient();
             this.SignalSource = new SignalSource();
             this.User = new User();
@@ -95,18 +96,18 @@ namespace DAL
             this.DateTime = DateTime.Now;
         }
 
-        public Registration(CommContracts.Registration registration)
-        {
-            this.Patient = new Patient();
-            this.Patient.ID = 1;
+        //public Registration(CommContracts.Registration registration)
+        //{
+        //    this.Patient = new Patient();
+        //    this.Patient.ID = 1;
 
-            this.SignalSource = new SignalSource();
-            this.SignalSource.ID = 2;
-            this.SignalSource.DepartmentID = 3;
-            this.User = new User();
-            this.Fee = registration.Fee;
-            this.DateTime = registration.GetDateTime;
-        }
+        //    this.SignalSource = new SignalSource();
+        //    this.SignalSource.ID = 2;
+        //    this.SignalSource.DepartmentID = 3;
+        //    this.User = new User();
+        //    this.Fee = registration.Fee;
+        //    this.DateTime = registration.GetDateTime;
+        //}
 
         public override string ToString()
         {
@@ -118,12 +119,15 @@ namespace DAL
                         "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
             return str;
         }
-        public int ID { get; set; }              // 挂号单ID
-        public Patient Patient { get; set; }       // 患者ID
+        public int ID { get; set; }                     // 挂号单ID
+        public Patient Patient { get; set; }            // 患者ID
         public SignalSource SignalSource { get; set; }  // 号源ID
-        public User User { get; set; }          // 经办人ID
-        public double Fee { get; set; }          // 费用
-        public DateTime DateTime { get; set; }   // 经办时间  
+        public User User { get; set; }                  // 经办人ID
+        public double Fee { get; set; }                 // 挂号费用
+        public DateTime DateTime { get; set; }          // 经办时间 
+        public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
+        public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
+        public int EmployeeID { get; set; }                       // 接诊医生
     }
 
     public class Patient
