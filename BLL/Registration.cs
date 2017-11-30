@@ -28,7 +28,7 @@ namespace BLL
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = ctx.Registrations.Include("Patient").Include("SignalSource").Include("User").ToList();
+                var query = ctx.Registrations.Include("Patient").Include("SignalSource").ToList();
 
                 foreach (DAL.Registration tem in query)
                 {
@@ -70,9 +70,9 @@ namespace BLL
                 aa.SignalSource = ss;
                 aa.Patient = pp;
 
-                aa.Fee = 20;
-                aa.User = uu;
-                aa.DateTime = DateTime.Now;
+                aa.RegisterFee = 20;
+                aa.RegisterUser = uu;
+                aa.RegisterTime = DateTime.Now;
                 ctx.Registrations.Add(aa);
                 try
                 {

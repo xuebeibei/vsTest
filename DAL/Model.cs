@@ -91,9 +91,9 @@ namespace DAL
         {
             this.Patient = new Patient();
             this.SignalSource = new SignalSource();
-            this.User = new User();
-            this.Fee = 0.0;
-            this.DateTime = DateTime.Now;
+            this.RegisterUser = new User();
+            this.RegisterFee = 0.0;
+            this.RegisterTime = DateTime.Now;
         }
 
         //public Registration(CommContracts.Registration registration)
@@ -122,12 +122,16 @@ namespace DAL
         public int ID { get; set; }                     // 挂号单ID
         public Patient Patient { get; set; }            // 患者ID
         public SignalSource SignalSource { get; set; }  // 号源ID
-        public User User { get; set; }                  // 经办人ID
-        public double Fee { get; set; }                 // 挂号费用
-        public DateTime DateTime { get; set; }          // 经办时间 
+        public User RegisterUser { get; set; }                // 经办人ID
+        public double RegisterFee { get; set; }               // 挂号费用
+        public DateTime RegisterTime { get; set; }            // 经办时间 
+        public DateTime CancelTime { get; set; }              // 退号时间
+        public User CancelUser { get; set; }                  // 退号经办人ID
+        public double CancelFee { get; set; }                 // 退号所收取的手续费
+        public DateTime ArrivalTime { get; set; }             // 到诊时间
+        public int ArrivalNum { get; set; }                   // 到诊序号
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
-        public int EmployeeID { get; set; }                       // 接诊医生
     }
 
     public class Patient

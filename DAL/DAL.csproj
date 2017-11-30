@@ -64,6 +64,14 @@
     <Compile Include="Migrations\201711300902571_PaperTest3.Designer.cs">
       <DependentUpon>201711300902571_PaperTest3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711300918296_PaperTest4.cs" />
+    <Compile Include="Migrations\201711300918296_PaperTest4.Designer.cs">
+      <DependentUpon>201711300918296_PaperTest4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711300928270_PaperTest5.cs" />
+    <Compile Include="Migrations\201711300928270_PaperTest5.Designer.cs">
+      <DependentUpon>201711300928270_PaperTest5.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -86,6 +94,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711300902571_PaperTest3.resx">
       <DependentUpon>201711300902571_PaperTest3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711300918296_PaperTest4.resx">
+      <DependentUpon>201711300918296_PaperTest4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711300928270_PaperTest5.resx">
+      <DependentUpon>201711300928270_PaperTest5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
