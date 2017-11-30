@@ -45,24 +45,24 @@ namespace HISGUICore.MyContorls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<Doctor> signalList = new List<Doctor>();
-            signalList.Add(new Doctor(1, "aa", "bb"));
+            //signalList.Add(new Doctor(1, "aa", "bb"));
 
-            //CommClient.Employee myd = new CommClient.Employee();
-            //// 得到所有有效号源
-            //List<CommContracts.Employee> listOfSignalSource = myd.getAllDoctor();
+            CommClient.Employee myd = new CommClient.Employee();
+            // 得到所有有效号源
+            List<CommContracts.Employee> listOfSignalSource = myd.getAllDoctor();
 
 
-            //foreach (CommContracts.Employee sg in listOfSignalSource)
-            //{
-            //    Doctor temp = new Doctor();
+            foreach (CommContracts.Employee sg in listOfSignalSource)
+            {
+                Doctor temp = new Doctor();
 
-            //    temp.DoctorId = sg.ID;
-            //    temp.DoctorName = sg.Name;
-            //    temp.DoctorDepartment = sg.GetDepartment.Name;
+                temp.DoctorId = sg.ID;
+                temp.DoctorName = sg.Name;
+                temp.DoctorDepartment = sg.GetDepartment.Name;
 
-            //    signalList.Add(temp);
+                signalList.Add(temp);
 
-            //}
+            }
 
             this.listView1.ItemsSource = signalList;
         }
