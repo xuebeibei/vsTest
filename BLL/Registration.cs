@@ -32,12 +32,8 @@ namespace BLL
 
                 foreach (DAL.Registration tem in query)
                 {
-                    string str = tem.Patient.Name +" "+ 
-                        (tem.Patient.Gender == DAL.GenderEnum.man ? "男 ":"女 ") + 
-                        (DateTime.Now.Year - tem.Patient.BirthDay.Year).ToString() +"岁\r\n" +
-                        "科室：外科\r\n" + 
-                        "医生："+tem.SignalSource.Specialist.ToString() + "\r\n" +
-                        "看诊时间："+tem.SignalSource.VistTime.ToString() + "\r\n" ; 
+                    string str = tem.ToString() + ";" +
+                        tem.ID.ToString(); 
                     list.Add(str);
                 }
             }

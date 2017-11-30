@@ -107,6 +107,17 @@ namespace DAL
             this.Fee = registration.Fee;
             this.DateTime = registration.GetDateTime;
         }
+
+        public override string ToString()
+        {
+            string str = Patient.Name + " " +
+                        (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
+                        (DateTime.Now.Year - Patient.BirthDay.Year).ToString() + "岁\r\n" +
+                        "科室：外科\r\n" +
+                        "医生：" + SignalSource.Specialist.ToString() + "\r\n" +
+                        "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
+            return str;
+        }
         public int ID { get; set; }              // 挂号单ID
         public Patient Patient { get; set; }       // 患者ID
         public SignalSource SignalSource { get; set; }  // 号源ID
