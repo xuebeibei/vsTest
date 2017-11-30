@@ -45,10 +45,9 @@ namespace HISGUICore.MyContorls
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             List<Doctor> signalList = new List<Doctor>();
-            //signalList.Add(new Doctor(1, "aa", "bb"));
 
             CommClient.Employee myd = new CommClient.Employee();
-            // 得到所有有效号源
+            // 得到所有当天科室坐诊医生
             List<CommContracts.Employee> listOfSignalSource = myd.getAllDoctor();
 
 
