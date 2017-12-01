@@ -39,7 +39,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            
+
             <Label Grid.Row="0" Grid.Column="0" Margin="10,20,5,5" >
                 <Image Height="80" Width="80" Source="C:\Users\xuebei\Downloads\人.png"></Image>
             </Label>
@@ -49,11 +49,9 @@
             <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5" Height="40">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
 
                 </Grid.ColumnDefinitions>
                 <Button x:Name="button1" Margin="5,5,0,5" Grid.Column="0" Click="Button_Click">完善信息</Button>
-                <Button x:Name="button" Margin="0,5,0,5" Grid.Column="1" Click="Button_Click_1">选择医生</Button>
             </Grid>
         </Grid>
     </Grid>

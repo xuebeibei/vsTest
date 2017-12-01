@@ -34,19 +34,19 @@ namespace HISGUICore.MyContorls
             window.ShowDialog();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            var window = new Window();//Windows窗体
-            DoctorFind jks = new DoctorFind();  //UserControl写的界面   
-            window.Title = "查找医生";
-            window.Height = 400;
-            window.Width = 660;
+        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //{
+        //    var window = new Window();//Windows窗体
+        //    DoctorFind jks = new DoctorFind();  //UserControl写的界面   
+        //    window.Title = "查找医生";
+        //    window.Height = 400;
+        //    window.Width = 660;
 
-            window.Content = jks;
-            window.ShowDialog();
+        //    window.Content = jks;
+        //    window.ShowDialog();
 
-            var visualUsername = true ? "VisualState1" : "VisualState";
-            VisualStateManager.GoToState(this, visualUsername, false);
-        }
+        //    var visualUsername = true ? "VisualState1" : "VisualState";
+        //    VisualStateManager.GoToState(this, visualUsername, false);
+        //}
     }
 }
