@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HISGUIWorkstationLib.View"
              xmlns:prism="http://www.codeplex.com/prism"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
-    <Grid >
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>

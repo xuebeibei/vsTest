@@ -20,21 +20,27 @@ using Prism.Commands;
 namespace HISGUITriageLib.ViewModels
 {
     [Export]
-    [Export("HISGUITriageVM", typeof(HISGUIVMBase))]
-    class HISGUITriageVM : HISGUIVMBase
+    [Export("TriageVM", typeof(HISGUIVMBase))]
+    class TriageVM : HISGUIVMBase
     {
-        public ICommand DailyPointsManageCommand { get; set; }
+        public ICommand TestCommand { get; set; }
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
-            DailyPointsManageCommand = new DelegateCommand(DailyPointsManage);
+            TestCommand = new DelegateCommand(TestManage);
         }
 
         //巡检点位管理
-        public void DailyPointsManage()
+        public void TestManage()
         {
-            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+            this.RegionManager.RequestNavigate("DownRegion", "SelectDoctorView");
+        }
+
+        public Dictionary<int, string> GetAllUnTriagePatient()
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.getAllRegistration();
         }
     }
 }

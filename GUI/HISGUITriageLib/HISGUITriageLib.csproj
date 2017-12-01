@@ -85,8 +85,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUITriageVM.cs" />
+    <Compile Include="ViewModels\SelectDoctorVM.cs" />
+    <Compile Include="ViewModels\TriageVM.cs" />
     <Compile Include="Views\HISGUITriageView.xaml.cs">
       <DependentUpon>HISGUITriageView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SelectDoctorView.xaml.cs">
+      <DependentUpon>SelectDoctorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TriageView.xaml.cs">
+      <DependentUpon>TriageView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -99,6 +107,14 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\HISGUITriageView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SelectDoctorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TriageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

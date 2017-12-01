@@ -23,9 +23,5 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="5">
-            <Button Margin="5">确定</Button>
-            <Button Margin="5,5,0,5">取消</Button>
-        </StackPanel>
     </Grid>
 </UserControl>

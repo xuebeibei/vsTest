@@ -1,4 +1,4 @@
-﻿<HISGUICore:HISGUIViewBase x:Class="HISGUITriageLib.Views.HISGUITriageView"
+﻿<HISGUICore:HISGUIViewBase  x:Class="HISGUITriageLib.Views.TriageView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,7 +9,7 @@
     <Grid>
         <!--<TabControl x:Name="tabControl" Margin="5" VerticalAlignment="Top" >
             <TabItem Header="候诊分诊">-->
-        <!--<ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -20,7 +20,7 @@
                     <RadioButton Margin="5,10,5,0" IsChecked="True">待分诊</RadioButton>
                     <RadioButton Margin="5,10,5,0">已分诊</RadioButton>
                     <Controls:FindDateContorl></Controls:FindDateContorl>
-                    <Button Margin="5" Command="{Binding DailyPointsManageCommand}">选择医生</Button>
+                    <Button Margin="5" Command="{Binding TestCommand}">选择医生</Button>
                 </StackPanel>
 
                 <Grid x:Name="aaa" Grid.Row="1">
@@ -37,7 +37,7 @@
                 </Grid>
                 <Controls:PageFind Grid.Row="2"></Controls:PageFind>
             </Grid>
-        </ScrollViewer>-->
+        </ScrollViewer>
         <!--</TabItem>-->
         <!--<TabItem Header="注射输液">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

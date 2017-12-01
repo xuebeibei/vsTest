@@ -31,7 +31,7 @@ namespace HISGUICore
 
         public HISGUIVMBase()
         {
-
+            RegisterCommands();
         }
 
         public virtual void OnNavigatedTo(NavigationContext navigationContext)
