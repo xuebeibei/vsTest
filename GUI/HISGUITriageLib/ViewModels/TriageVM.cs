@@ -23,18 +23,25 @@ namespace HISGUITriageLib.ViewModels
     [Export("TriageVM", typeof(HISGUIVMBase))]
     class TriageVM : HISGUIVMBase
     {
-        public ICommand TestCommand { get; set; }
+        public ICommand SelectDoctorCommand { get; set; }
+        public ICommand EditPatientMsgCommand { get; set; }
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
-            TestCommand = new DelegateCommand(TestManage);
+            SelectDoctorCommand = new DelegateCommand(SelectDoctor);
+            EditPatientMsgCommand = new DelegateCommand(EditPatientMsg);
         }
 
         //巡检点位管理
-        public void TestManage()
+        public void SelectDoctor()
         {
             this.RegionManager.RequestNavigate("DownRegion", "SelectDoctorView");
+        }
+
+        public void EditPatientMsg()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "EditPatientMsgView");
         }
 
         public Dictionary<int, string> GetAllUnTriagePatient()

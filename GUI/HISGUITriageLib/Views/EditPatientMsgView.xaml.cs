@@ -21,30 +21,21 @@ using HISGUICore.MyContorls;
 using HISGUITriageLib.ViewModels;
 using System.Data;
 
-
 namespace HISGUITriageLib.Views
 {
     [Export]
-    [Export("HISGUITriageView", typeof(HISGUITriageView))]
-    public partial class HISGUITriageView : HISGUIViewBase
+    [Export("EditPatientMsgView", typeof(EditPatientMsgView))]
+    public partial class EditPatientMsgView : HISGUIViewBase
     {
-        public HISGUITriageView()
+        public EditPatientMsgView()
         {
             InitializeComponent();
-            this.Loaded += Triage_Loaded;
         }
 
         [Import]
-        private HISGUITriageVM ImportVM
+        private EditPatientMsgVM ImportVM
         {
             set { this.VM = value; }
         }
-
-        private void Triage_Loaded(object sender, RoutedEventArgs e)
-        {
-            var vm = this.DataContext as HISGUITriageVM;
-            vm?.TriageManage();
-        }
-
     }
 }

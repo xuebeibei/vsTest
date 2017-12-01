@@ -20,21 +20,28 @@ using Prism.Commands;
 namespace HISGUITriageLib.ViewModels
 {
     [Export]
-    [Export("HISGUITriageVM", typeof(HISGUIVMBase))]
-    class HISGUITriageVM : HISGUIVMBase
+    [Export("EditPatientMsgVM", typeof(HISGUIVMBase))]
+    class EditPatientMsgVM : HISGUIVMBase
     {
-       // public ICommand TriageCommand { get; set; }
+        public ICommand EditPatientMsgOKCommand { get; set; }
+        public ICommand EditPatientMsgCancelCommand { get; set; }
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
-           // TriageCommand = new DelegateCommand(TriageManage);
+            EditPatientMsgOKCommand = new DelegateCommand(EditPatientMsgOK);
+            EditPatientMsgCancelCommand = new DelegateCommand(EditPatientMsgCancel);
         }
 
-        //巡检点位管理
-        public void TriageManage()
+        public void EditPatientMsgOK()
         {
             this.RegionManager.RequestNavigate("DownRegion", "TriageView");
         }
+
+        public void EditPatientMsgCancel()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+        }
+
     }
 }

@@ -43,9 +43,9 @@
             <Label HorizontalAlignment="Right">0/500</Label>
         </StackPanel>
 
-        <StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="5">
+        <!--<StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="5">
             <Button Margin="2">保存</Button>
             <Button Margin="2">取消</Button>
-        </StackPanel>
+        </StackPanel>-->
     </Grid>
 </UserControl>

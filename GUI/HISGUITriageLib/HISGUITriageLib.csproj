@@ -84,9 +84,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ViewModels\EditPatientMsgVM.cs" />
     <Compile Include="ViewModels\HISGUITriageVM.cs" />
     <Compile Include="ViewModels\SelectDoctorVM.cs" />
     <Compile Include="ViewModels\TriageVM.cs" />
+    <Compile Include="Views\EditPatientMsgView.xaml.cs">
+      <DependentUpon>EditPatientMsgView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HISGUITriageView.xaml.cs">
       <DependentUpon>HISGUITriageView.xaml</DependentUpon>
     </Compile>
@@ -106,6 +110,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\EditPatientMsgView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HISGUITriageView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
