@@ -31,15 +31,15 @@ namespace HISGUICore.MyContorls
         public string DoctorName { get; set; }
         public string DoctorDepartment { get; set; }
     }
-    /// <summary>
-    /// DoctorFind.xaml 的交互逻辑
-    /// </summary>
+
     public partial class DoctorFind : UserControl
     {
         
         public DoctorFind()
         {
             InitializeComponent();
+
+            this.Loaded += Button_Click;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
