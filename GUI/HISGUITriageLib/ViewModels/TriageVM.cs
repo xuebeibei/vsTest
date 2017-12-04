@@ -33,7 +33,7 @@ namespace HISGUITriageLib.ViewModels
             EditPatientMsgCommand = new DelegateCommand(EditPatientMsg);
         }
 
-        //巡检点位管理
+        //展开选择医生界面
         public void SelectDoctor()
         {
             this.RegionManager.RequestNavigate("DownRegion", "SelectDoctorView");

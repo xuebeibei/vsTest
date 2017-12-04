@@ -29,8 +29,8 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-        <Border x:Name="border" Background="#FFB4D375"></Border>
-        <Grid Background="White" Margin="5">
+        <!--<Border x:Name="border" Background="#FFB4D375"></Border>-->
+        <Grid  Margin="5"><!--Background="White"-->
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>

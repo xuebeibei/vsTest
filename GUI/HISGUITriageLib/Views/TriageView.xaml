@@ -27,19 +27,13 @@
                         <Controls:FindDateContorl></Controls:FindDateContorl>
                     </StackPanel>
                 </Grid>
-
-                <Grid x:Name="aaa" Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                </Grid>
+                <ListBox x:Name="aaa" Grid.Row="1" SelectionMode="Extended" Margin="5">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
                 <Controls:PageFind Grid.Row="2"></Controls:PageFind>
             </Grid>
         </ScrollViewer>

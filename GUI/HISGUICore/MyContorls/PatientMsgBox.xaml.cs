@@ -17,36 +17,28 @@ namespace HISGUICore.MyContorls
 {
     public partial class PatientMsgBox : UserControl
     {
+        public PatientMsgBox()
+        {
+            InitializeComponent();
+            this.PatientMsgText.Text = "测试测试测试";
+        }
         public PatientMsgBox(string str)
         {
             InitializeComponent();
             this.PatientMsgText.Text = str;
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new Window();//Windows窗体
-            PersonalInformation jks = new PersonalInformation();  //UserControl写的界面   
-            window.Title = "个人信息";
-            window.Height = 700;
-            window.Width = 660;
-
-            window.Content = jks;
-            window.ShowDialog();
-        }
-
-        //private void Button_Click_1(object sender, RoutedEventArgs e)
+        //private void Button_Click(object sender, RoutedEventArgs e)
         //{
         //    var window = new Window();//Windows窗体
-        //    DoctorFind jks = new DoctorFind();  //UserControl写的界面   
-        //    window.Title = "查找医生";
-        //    window.Height = 400;
+        //    PersonalInformation jks = new PersonalInformation();  //UserControl写的界面   
+        //    window.Title = "个人信息";
+        //    window.Height = 700;
         //    window.Width = 660;
 
         //    window.Content = jks;
         //    window.ShowDialog();
-
-        //    var visualUsername = true ? "VisualState1" : "VisualState";
-        //    VisualStateManager.GoToState(this, visualUsername, false);
         //}
+
+ 
     }
 }

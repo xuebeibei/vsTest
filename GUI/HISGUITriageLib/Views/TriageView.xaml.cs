@@ -53,19 +53,18 @@ namespace HISGUITriageLib.Views
 
             if (dictionary != null)
             {
+                this.aaa.Items.Clear();
                 for (int i = 0; i < dictionary.Count(); i++)
                 {
                     // 实例化一个控件
                     PatientMsgBox msgBox = new PatientMsgBox(dictionary.ElementAt(i).Value);
 
-                    // 添加到布局中去
-                    this.aaa.Children.Add(msgBox);
-
-                    // 设置控件在布局中的位置
-                    Grid.SetRow(msgBox, i / 3);
-                    Grid.SetColumn(msgBox, i % 3);
+                    // 添加到list中去
+                    this.aaa.Items.Add(msgBox);
                 }
+
             }
+            
         }
     }
 }
