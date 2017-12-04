@@ -117,9 +117,6 @@
     <Compile Include="Views\PatientBMIMsg.xaml.cs">
       <DependentUpon>PatientBMIMsg.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PatientFind.xaml.cs">
-      <DependentUpon>PatientFind.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PatientMedicalRecord.xaml.cs">
       <DependentUpon>PatientMedicalRecord.xaml</DependentUpon>
     </Compile>
@@ -192,10 +189,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientBMIMsg.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PatientFind.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
