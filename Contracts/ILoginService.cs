@@ -43,5 +43,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Employee> getAllDoctor();
+
+        [OperationContract]
+        bool SaveTriage(int nDoctorID, int nRegistrationID);
     }
 }

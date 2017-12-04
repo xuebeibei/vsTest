@@ -85,5 +85,11 @@ namespace CommServer
             BLL.Employee temp = new BLL.Employee();
             return temp.getAllDoctor();
         }
+
+        public bool SaveTriage(int nDoctorID, int nRegistrationID)
+        {
+            BLL.Triage temp = new BLL.Triage();
+            return temp.SaveTriage(nDoctorID, nRegistrationID);
+        }
     }
 }

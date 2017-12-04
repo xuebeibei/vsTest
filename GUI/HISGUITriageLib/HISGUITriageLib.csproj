@@ -86,7 +86,6 @@
     </Compile>
     <Compile Include="ViewModels\EditPatientMsgVM.cs" />
     <Compile Include="ViewModels\HISGUITriageVM.cs" />
-    <Compile Include="ViewModels\SelectDoctorVM.cs" />
     <Compile Include="ViewModels\TriageVM.cs" />
     <Compile Include="Views\EditPatientMsgView.xaml.cs">
       <DependentUpon>EditPatientMsgView.xaml</DependentUpon>

@@ -49,6 +49,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
+    <Compile Include="Triage.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\CommContracts.csproj">

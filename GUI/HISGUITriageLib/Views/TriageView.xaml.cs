@@ -73,6 +73,23 @@ namespace HISGUITriageLib.Views
             }
 
             var vm = this.DataContext as TriageVM;
+            //if(vm?.CurrentPatientList == null)
+            //{
+
+            //}
+            //vm?.CurrentPatientList.Clear();
+            List<int> list = new List<int>();
+            for (int i = 0; i < this.aaa.SelectedItems.Count; i++)
+            {
+                PatientMsgBox aa = this.aaa.SelectedItems[i] as PatientMsgBox;
+                if (aa != null)
+                {
+                    list.Add(aa.ID);
+                }
+            }
+
+            vm?.setList(list);
+
             vm?.SelectDoctor();
         }
     }

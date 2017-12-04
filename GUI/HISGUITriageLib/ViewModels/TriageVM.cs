@@ -25,20 +25,26 @@ namespace HISGUITriageLib.ViewModels
     {
         public ICommand SelectDoctorCommand { get; set; }
         public ICommand EditPatientMsgCommand { get; set; }
+        public ICommand SelectDoctorCancelCommand { get; set; }
+
+        private List<int> CurrentPatientList = new List<int>();
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
             SelectDoctorCommand = new DelegateCommand(SelectDoctor);
             EditPatientMsgCommand = new DelegateCommand(EditPatientMsg);
+            SelectDoctorCancelCommand = new DelegateCommand(SelectDoctorCancel);
+        }
+
+        public void setList(List<int> list)
+        {
+            CurrentPatientList = list;
         }
 
         //展开选择医生界面
         public void SelectDoctor()
         {
-            // 第一，判断选择是否合法，不合法即返回
-
-            // 第二，跳转到选择医生界面，选择医生
             this.RegionManager.RequestNavigate("DownRegion", "SelectDoctorView");
         }
 
@@ -51,6 +57,37 @@ namespace HISGUITriageLib.ViewModels
         {
             CommClient.Registration myd = new CommClient.Registration();
             return myd.getAllRegistration();
+        }
+
+        public void SelectDoctorOK()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+        }
+
+        public void SelectDoctorCancel()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+        }
+
+        public List<CommContracts.Employee> getAllDoctor()
+        {
+            List<CommContracts.Employee> list = new List<CommContracts.Employee>();
+
+            CommClient.Employee myd = new CommClient.Employee();
+            list = myd.getAllDoctor();
+            return list;
+        }
+
+        public bool SaveTriage(int DoctorID)
+        {
+            bool aa = true;
+            foreach(int tem in CurrentPatientList)
+            {
+                CommClient.Triage myd = new CommClient.Triage();
+                myd.SaveTriage(DoctorID, tem);
+            }
+
+            return aa;
         }
     }
 }
