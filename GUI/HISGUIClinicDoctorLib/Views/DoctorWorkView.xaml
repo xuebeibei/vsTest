@@ -42,7 +42,7 @@
                                 <RadioButton Margin="5">未接诊</RadioButton>
                                 <RadioButton Margin="5">已接诊</RadioButton>
                             </StackPanel>
-                            <local:PatientFind ></local:PatientFind>
+                            <Controls:FindDateContorl></Controls:FindDateContorl>
                         </StackPanel>
                         <ListBox x:Name="AllPatientList" Grid.Row="1">
                             <ListBox.ItemsPanel>
@@ -51,7 +51,7 @@
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                         </ListBox>
-                        <local:PageFind Grid.Row="2"></local:PageFind>
+                        <Controls:PageFind Grid.Row="2"></Controls:PageFind>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
