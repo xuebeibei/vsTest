@@ -64,6 +64,7 @@ namespace HISGUICore.MyContorls
             }
 
             this.listView1.ItemsSource = signalList;
+            SelectDoctorID = 0;
         }
 
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
