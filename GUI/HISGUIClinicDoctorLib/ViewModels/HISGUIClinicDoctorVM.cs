@@ -14,6 +14,8 @@ using System.Xml;
 using HISGUIClinicDoctorLib;
 using HISGUICore;
 using System.Data;
+using System.Windows.Input;
+using Prism.Commands;
 
 namespace HISGUIClinicDoctorLib.ViewModels
 {
@@ -21,15 +23,23 @@ namespace HISGUIClinicDoctorLib.ViewModels
     [Export("HISGUIClinicDoctorVM", typeof(HISGUIVMBase))]
     class HISGUIClinicDoctorVM : HISGUIVMBase
     {
+        public ICommand RecevingOverCommand { get; set; }
+
         public override void RegisterCommands()
         {
             base.RegisterCommands();
+            RecevingOverCommand = new DelegateCommand(RecevintOver);
         }
 
         //显示分诊界面
         public void DoctorWorkManage()
         {
             this.RegionManager.RequestNavigate("DownRegion", "DoctorWorkView");
+        }
+
+        public void RecevintOver()
+        {
+            DoctorWorkManage();
         }
 
         // 获得当前医生的患者

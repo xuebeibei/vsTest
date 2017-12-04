@@ -23,7 +23,7 @@
             <Label Grid.Column="0">logo接诊</Label>
             <StackPanel Grid.Column="2" Orientation="Horizontal"  HorizontalAlignment="Right">
                 <Button Margin="5" Click="Button_Click">费用预览</Button>
-                <Button Margin="5">结束接诊</Button>
+                <Button Margin="5" Command="{Binding RecevingOverCommand}">结束接诊</Button>
             </StackPanel>
         </Grid>
 
