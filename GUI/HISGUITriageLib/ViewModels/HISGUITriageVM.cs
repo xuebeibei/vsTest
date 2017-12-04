@@ -31,7 +31,7 @@ namespace HISGUITriageLib.ViewModels
            // TriageCommand = new DelegateCommand(TriageManage);
         }
 
-        //巡检点位管理
+        //显示分诊界面
         public void TriageManage()
         {
             this.RegionManager.RequestNavigate("DownRegion", "TriageView");

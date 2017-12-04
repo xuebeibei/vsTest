@@ -21,5 +21,28 @@ namespace HISGUIClinicDoctorLib.ViewModels
     [Export("HISGUIClinicDoctorVM", typeof(HISGUIVMBase))]
     class HISGUIClinicDoctorVM : HISGUIVMBase
     {
+        public override void RegisterCommands()
+        {
+            base.RegisterCommands();
+        }
+
+        //显示分诊界面
+        public void DoctorWorkManage()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "DoctorWorkView");
+        }
+
+        // 获得当前医生的患者
+        public Dictionary<int, string> GetPatients()
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.getAllRegistration();
+        }
+
+        // 显示接诊界面
+        public void ReceivingNewPatientsManage()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
+        }
     }
 }
