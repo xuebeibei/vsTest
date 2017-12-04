@@ -36,6 +36,9 @@ namespace HISGUITriageLib.ViewModels
         //展开选择医生界面
         public void SelectDoctor()
         {
+            // 第一，判断选择是否合法，不合法即返回
+
+            // 第二，跳转到选择医生界面，选择医生
             this.RegionManager.RequestNavigate("DownRegion", "SelectDoctorView");
         }
 

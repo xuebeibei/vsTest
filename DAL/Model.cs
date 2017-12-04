@@ -10,8 +10,8 @@ namespace DAL
 {
     public enum GenderEnum { man, woman };
     public enum VolkEnum { hanzu, other };
-    public enum SeeDoctorStatusEnum { watting, seeing, leaved};
-    public enum TriageStatusEnum { no, yes};
+    public enum SeeDoctorStatusEnum { watting, seeing, leaved };
+    public enum TriageStatusEnum { no, yes };
 
     public class HisContext : DbContext
     {
@@ -22,8 +22,9 @@ namespace DAL
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Triage> Triages { get; set; }
     }
-    
+
     public class User
     {
         public User()
@@ -94,20 +95,11 @@ namespace DAL
             this.RegisterUser = new User();
             this.RegisterFee = 0.0;
             this.RegisterTime = DateTime.Now;
+            this.CancelFee = 0.0;
+            this.ArrivalNum = 0;
+            this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
+            this.TriageStatus = TriageStatusEnum.no;
         }
-
-        //public Registration(CommContracts.Registration registration)
-        //{
-        //    this.Patient = new Patient();
-        //    this.Patient.ID = 1;
-
-        //    this.SignalSource = new SignalSource();
-        //    this.SignalSource.ID = 2;
-        //    this.SignalSource.DepartmentID = 3;
-        //    this.User = new User();
-        //    this.Fee = registration.Fee;
-        //    this.DateTime = registration.GetDateTime;
-        //}
 
         public override string ToString()
         {
@@ -119,19 +111,34 @@ namespace DAL
                         "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
             return str;
         }
-        public int ID { get; set; }                     // 挂号单ID
-        public Patient Patient { get; set; }            // 患者ID
-        public SignalSource SignalSource { get; set; }  // 号源ID
-        public User RegisterUser { get; set; }                // 经办人ID
-        public double RegisterFee { get; set; }               // 挂号费用
-        public DateTime RegisterTime { get; set; }            // 经办时间 
-        public DateTime CancelTime { get; set; }              // 退号时间
-        public User CancelUser { get; set; }                  // 退号经办人ID
-        public double CancelFee { get; set; }                 // 退号所收取的手续费
-        public DateTime ArrivalTime { get; set; }             // 到诊时间
-        public int ArrivalNum { get; set; }                   // 到诊序号
+        public int ID { get; set; }                               // 挂号单ID
+        public Patient Patient { get; set; }                      // 患者ID
+        public SignalSource SignalSource { get; set; }            // 号源ID
+        public User RegisterUser { get; set; }                    // 经办人ID
+        public double RegisterFee { get; set; }                   // 挂号费用
+        public DateTime RegisterTime { get; set; }                // 经办时间 
+        public DateTime CancelTime { get; set; }                  // 退号时间
+        public User CancelUser { get; set; }                      // 退号经办人ID
+        public double CancelFee { get; set; }                     // 退号所收取的手续费
+        public DateTime ArrivalTime { get; set; }                 // 到诊时间
+        public int ArrivalNum { get; set; }                       // 到诊序号
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
+    }
+
+    public class Triage
+    {
+         // 分诊表，记录分诊结果
+        public Triage()
+        {
+            
+        }
+
+        public int ID { get; set; }                            // 分诊ID
+        public int RegistrationID { get; set; }                // 挂号单ID
+        public int DoctorID { get; set; }                      // 分诊医生ID 
+        public User User { get; set; }                         // 分诊经办人
+        public DateTime DateTime { get; set; }                 // 分诊时间
     }
 
     public class Patient
@@ -142,7 +149,7 @@ namespace DAL
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
         }
-       
+
         public int ID { get; set; }              // 患者ID
         public string Name { get; set; }         // 姓名
         public GenderEnum Gender { get; set; }   // 性别

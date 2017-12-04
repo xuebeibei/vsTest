@@ -17,28 +17,18 @@ namespace HISGUICore.MyContorls
 {
     public partial class PatientMsgBox : UserControl
     {
+        public int ID { get; set; }
         public PatientMsgBox()
         {
             InitializeComponent();
             this.PatientMsgText.Text = "测试测试测试";
+            this.ID = 0;
         }
-        public PatientMsgBox(string str)
+        public PatientMsgBox(int id,string str)
         {
             InitializeComponent();
             this.PatientMsgText.Text = str;
+            this.ID = id;
         }
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var window = new Window();//Windows窗体
-        //    PersonalInformation jks = new PersonalInformation();  //UserControl写的界面   
-        //    window.Title = "个人信息";
-        //    window.Height = 700;
-        //    window.Width = 660;
-
-        //    window.Content = jks;
-        //    window.ShowDialog();
-        //}
-
- 
     }
 }

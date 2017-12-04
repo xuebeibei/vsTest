@@ -51,20 +51,29 @@ namespace HISGUITriageLib.Views
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             dictionary = vm?.GetAllUnTriagePatient();
 
+            List<PatientMsgBox> list = new List<PatientMsgBox>();
             if (dictionary != null)
             {
-                this.aaa.Items.Clear();
                 for (int i = 0; i < dictionary.Count(); i++)
                 {
                     // 实例化一个控件
-                    PatientMsgBox msgBox = new PatientMsgBox(dictionary.ElementAt(i).Value);
-
-                    // 添加到list中去
-                    this.aaa.Items.Add(msgBox);
+                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
                 }
 
+                this.aaa.ItemsSource = list;
             }
-            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.aaa.SelectedItems.Count <= 0)
+            {
+                MessageBox.Show("请选择患者!");
+                return;
+            }
+
+            var vm = this.DataContext as TriageVM;
+            vm?.SelectDoctor();
         }
     }
 }

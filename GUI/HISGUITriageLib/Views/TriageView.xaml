@@ -19,7 +19,7 @@
                 <Grid Grid.Row="0">
                     <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
                         <Button Margin="5" Command="{Binding EditPatientMsgCommand}" Width="100" HorizontalAlignment="Left">完善个人信息</Button>
-                        <Button Margin="5" Command="{Binding SelectDoctorCommand}" Width="100" HorizontalAlignment="Left">选择医生</Button>
+                        <Button Margin="5" Click="Button_Click" Width="100" HorizontalAlignment="Left">选择医生</Button>
                     </StackPanel>
                     <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
                         <RadioButton Margin="5,10,5,0" IsChecked="True">待分诊</RadioButton>
