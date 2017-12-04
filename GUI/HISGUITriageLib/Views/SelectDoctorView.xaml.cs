@@ -38,5 +38,19 @@ namespace HISGUITriageLib.Views
             set { this.VM = value; }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.DoctorFindList.SelectDoctorID <= 0)
+            {
+                MessageBox.Show("请选择医生!");
+                return;
+            }
+
+            var vm = this.DataContext as SelectDoctorVM;
+            // 将选择好的医生信息连同挂号信息一同保存到分诊表中
+            
+            // 跳转回去
+            vm?.SelectDoctorOK();
+        }
     }
 }

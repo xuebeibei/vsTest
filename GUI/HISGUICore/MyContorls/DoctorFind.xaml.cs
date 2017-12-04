@@ -34,7 +34,7 @@ namespace HISGUICore.MyContorls
 
     public partial class DoctorFind : UserControl
     {
-        
+        public int SelectDoctorID { get; set; }
         public DoctorFind()
         {
             InitializeComponent();
@@ -68,7 +68,11 @@ namespace HISGUICore.MyContorls
 
         private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            Doctor aa =  this.listView1.SelectedItem as Doctor;
+            if(aa != null)
+            {
+                SelectDoctorID = aa.DoctorId;
+            }
         }
     }
 }

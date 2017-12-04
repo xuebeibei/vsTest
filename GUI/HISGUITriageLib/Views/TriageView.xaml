@@ -7,8 +7,6 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
-        <!--<TabControl x:Name="tabControl" Margin="5" VerticalAlignment="Top" >
-            <TabItem Header="候诊分诊">-->
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <Grid>
                 <Grid.RowDefinitions>
@@ -37,17 +35,5 @@
                 <Controls:PageFind Grid.Row="2"></Controls:PageFind>
             </Grid>
         </ScrollViewer>
-        <!--</TabItem>-->
-        <!--<TabItem Header="注射输液">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="不良反应">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-
-                </ScrollViewer>
-            </TabItem>-->
-        <!--</TabControl>-->
     </Grid>
 </HISGUICore:HISGUIViewBase>

@@ -24,13 +24,13 @@ namespace HISGUITriageLib.ViewModels
     [Export("SelectDoctorVM", typeof(HISGUIVMBase))]
     class SelectDoctorVM : HISGUIVMBase
     {
-        public ICommand SelectDoctorOKCommand { get; set; }
+        //public ICommand SelectDoctorOKCommand { get; set; }
         public ICommand SelectDoctorCancelCommand { get; set; }
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
-            SelectDoctorOKCommand = new DelegateCommand(SelectDoctorOK);
+            //SelectDoctorOKCommand = new DelegateCommand(SelectDoctorOK);
             SelectDoctorCancelCommand = new DelegateCommand(SelectDoctorCancel);
         }
 
