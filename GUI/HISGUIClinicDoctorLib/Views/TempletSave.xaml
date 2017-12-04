@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.TempletSave"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIClinicDoctorLib.Views.TempletSave"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel Margin="5">
             <StackPanel Orientation="Horizontal">
@@ -15,11 +17,11 @@
                 <RadioButton x:Name="TempletTypeAllBtn"  Margin="5" MinWidth="100">通用</RadioButton>
                 <RadioButton x:Name="TempletTypeSelfBtn"  Margin="5" MinWidth="100">个人</RadioButton>
             </StackPanel>
-            <local:MedicalRecordContent IsEnabled="False"></local:MedicalRecordContent>
+            <Controls:MedicalRecord IsEnabled="False"></Controls:MedicalRecord>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5">确定</Button>
                 <Button Margin="5">取消</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
-</UserControl>
+</HISGUICore:HISGUIViewBase>

@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.PatientMedicalRecord"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIClinicDoctorLib.Views.PatientMedicalRecord"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -26,7 +28,7 @@
                 <Button Margin="5,5,0,5" Click="Button_Click_1">复制病历</Button>
             </StackPanel>
         </Grid>
-        <local:MedicalRecordContent Grid.Row="1"></local:MedicalRecordContent>
+        <Controls:MedicalRecord Grid.Row="1"></Controls:MedicalRecord>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -44,4 +46,4 @@
         </Grid>
 
     </Grid>
-</UserControl>
+</HISGUICore:HISGUIViewBase>

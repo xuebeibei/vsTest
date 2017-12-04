@@ -111,9 +111,6 @@
     <Compile Include="Views\Inspect.xaml.cs">
       <DependentUpon>Inspect.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MedicalRecordContent.xaml.cs">
-      <DependentUpon>MedicalRecordContent.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PatientBMIMsg.xaml.cs">
       <DependentUpon>PatientBMIMsg.xaml</DependentUpon>
     </Compile>
@@ -181,10 +178,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Inspect.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MedicalRecordContent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

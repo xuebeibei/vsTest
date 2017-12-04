@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using HISGUICore;
+using HISGUICore.MyContorls;
+using HISGUIClinicDoctorLib.ViewModels;
+using System.Data;
 
 namespace HISGUIClinicDoctorLib.Views
 {
-    /// <summary>
-    /// PatientMedicalRecord.xaml 的交互逻辑
-    /// </summary>
-    public partial class PatientMedicalRecord : UserControl
+    [Export]
+    [Export("PatientMedicalRecord", typeof(PatientMedicalRecord))]
+    public partial class PatientMedicalRecord : HISGUIViewBase
     {
         public PatientMedicalRecord()
         {
             InitializeComponent();
+        }
+
+        [Import]
+        private HISGUIClinicDoctorVM ImportVM
+        {
+            set { this.VM = value; }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,8 +67,8 @@ namespace HISGUIClinicDoctorLib.Views
             var window = new Window();//Windows窗体
             TempletSave jks = new TempletSave();  //UserControl写的界面   
             window.Title = "新增病历模板";
-            window.Height = 400;
-            window.Width = 533;
+            window.Height = 700;
+            window.Width = 600;
 
             window.Content = jks;
             window.ShowDialog();
