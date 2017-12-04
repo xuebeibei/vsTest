@@ -12,8 +12,8 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left">
-            <Button Content="确认" Command="{Binding SelectDoctorOKCommand}" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
-            <Button Content="取消" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+            <Button Content="确认" Click="Button_Click" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
+            <Button Content="取消" Command="{Binding SelectDoctorCancelCommand}" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
         </StackPanel>
         <Controls:DoctorFind x:Name="DoctorFindList" Grid.Row="0"></Controls:DoctorFind>
     </Grid>
