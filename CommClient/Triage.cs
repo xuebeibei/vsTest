@@ -32,7 +32,6 @@ namespace CommClient
             }
 
             return client.SaveTriage(nDoctorID, nRegistrationID);
-            return true;
         }
     }
 }
