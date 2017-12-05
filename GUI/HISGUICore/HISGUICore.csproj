@@ -78,6 +78,9 @@
     <Compile Include="MyContorls\MedicalRecord.xaml.cs">
       <DependentUpon>MedicalRecord.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyContorls\MyTableEdit.xaml.cs">
+      <DependentUpon>MyTableEdit.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyContorls\MyTextEdit.xaml.cs">
       <DependentUpon>MyTextEdit.xaml</DependentUpon>
     </Compile>
@@ -110,6 +113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyContorls\MedicalRecord.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\MyTableEdit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
