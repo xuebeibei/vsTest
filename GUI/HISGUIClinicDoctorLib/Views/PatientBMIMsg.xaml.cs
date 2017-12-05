@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using HISGUICore;
+using HISGUICore.MyContorls;
+using HISGUIClinicDoctorLib.ViewModels;
+using System.Data;
 
 namespace HISGUIClinicDoctorLib.Views
 {
-    /// <summary>
-    /// PatientBMIMsg.xaml 的交互逻辑
-    /// </summary>
-    public partial class PatientBMIMsg : UserControl
+    [Export]
+    [Export("PatientBMIMsg", typeof(PatientBMIMsg))]
+    public partial class PatientBMIMsg : HISGUIViewBase
     {
         public PatientBMIMsg()
         {
             InitializeComponent();
+        }
+
+        [Import]
+        private HISGUIClinicDoctorVM ImportVM
+        {
+            set { this.VM = value; }
         }
 
         private void HistoryBtn_Click(object sender, RoutedEventArgs e)
@@ -31,6 +44,18 @@ namespace HISGUIClinicDoctorLib.Views
             CaseHistory jks = new CaseHistory();  //UserControl写的界面   
             window.Title = "历史病历";
             window.Height = 400;
+            window.Width = 533;
+
+            window.Content = jks;
+            window.ShowDialog();
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new Window();//Windows窗体
+            PersonalInformation jks = new PersonalInformation();  //UserControl写的界面   
+            window.Title = "完善信息";
+            window.Height = 700;
             window.Width = 533;
 
             window.Content = jks;
