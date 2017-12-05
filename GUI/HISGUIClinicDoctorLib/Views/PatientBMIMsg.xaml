@@ -10,70 +10,70 @@
         <Border BorderBrush="Black" BorderThickness="1">
             <StackPanel>
 
-                <Label x:Name="PhotoLabel" Margin="2">照片</Label>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">姓名:</Label>
-                    <Label x:Name="NameLabel" Margin="2"></Label>
+                <Label x:Name="PhotoLabel" Margin="5">照片</Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">姓名:</Label>
+                    <Label x:Name="NameLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                     <Button x:Name="HistoryBtn" Margin="2,2,5,2" Click="HistoryBtn_Click">历史病例</Button>
                     <Button x:Name="EditBtn" Margin="5,2,2,2" Click="EditBtn_Click">完善信息</Button>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">性别:</Label>
-                    <Label x:Name="SexLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">性别:</Label>
+                    <Label x:Name="SexLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">年龄:</Label>
-                    <Label x:Name="AgeLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">年龄:</Label>
+                    <Label x:Name="AgeLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">身高:</Label>
-                    <Label x:Name="HeightLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">身高:</Label>
+                    <Label x:Name="HeightLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">体重:</Label>
-                    <Label x:Name="WeightLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">体重:</Label>
+                    <Label x:Name="WeightLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">BMI指数:</Label>
-                    <Label x:Name="BMILabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">BMI指数:</Label>
+                    <Label x:Name="BMILabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">体温:</Label>
-                    <Label x:Name="TemperatureLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">体温:</Label>
+                    <Label x:Name="TemperatureLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">呼吸:</Label>
-                    <Label x:Name="BreatheLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">呼吸:</Label>
+                    <Label x:Name="BreatheLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">脉搏:</Label>
-                    <Label x:Name="PulseLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">脉搏:</Label>
+                    <Label x:Name="PulseLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">血压:</Label>
-                    <Label x:Name="BloodPressureLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">血压:</Label>
+                    <Label x:Name="BloodPressureLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">血糖浓度:</Label>
-                    <Label x:Name="BloodSugarLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">血糖浓度:</Label>
+                    <Label x:Name="BloodSugarLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">视力:</Label>
-                    <Label x:Name="VisionLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">视力:</Label>
+                    <Label x:Name="VisionLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">氧饱和度:</Label>
-                    <Label x:Name="OxygenSaturationLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">氧饱和度:</Label>
+                    <Label x:Name="OxygenSaturationLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">疼痛评分:</Label>
-                    <Label x:Name="PainGradeLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">疼痛评分:</Label>
+                    <Label x:Name="PainGradeLabel" Margin="5"></Label>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">初步诊断:</Label>
-                    <Label x:Name="PreliminaryRulingLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">初步诊断:</Label>
+                    <Label x:Name="PreliminaryRulingLabel" Margin="5"></Label>
                 </StackPanel>
             </StackPanel>
         </Border>

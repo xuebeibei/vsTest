@@ -13,29 +13,29 @@
             <StackPanel Margin="5">
                 <Label x:Name="PhotoLabel">照片</Label>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">姓名:</Label>
-                    <Label x:Name="NameLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">姓名:</Label>
+                    <Label x:Name="NameLabel" Margin="5"></Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">余额:</Label>
-                    <Label x:Name="RemainingSumLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">余额:</Label>
+                    <Label x:Name="RemainingSumLabel" Margin="5"></Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">性别:</Label>
-                    <Label x:Name="SexLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">性别:</Label>
+                    <Label x:Name="SexLabel" Margin="5"></Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">婚姻:</Label>
-                    <Label x:Name="MarriageLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">婚姻:</Label>
+                    <Label x:Name="MarriageLabel" Margin="5"></Label>
                 </StackPanel>
 
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="2">
-                    <Label Margin="2">就诊日期:</Label>
-                    <Label x:Name="VisitingDateLabel" Margin="2"></Label>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
+                    <Label Margin="5">就诊日期:</Label>
+                    <Label x:Name="VisitingDateLabel" Margin="5"></Label>
                 </StackPanel>
 
             </StackPanel>
@@ -106,9 +106,9 @@
                 <Label Grid.Row="2" Grid.Column="5"></Label>
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button Margin="2">补录费用</Button>
-                <Button Margin="2">打印</Button>
-                <Button Margin="2">￥付账</Button>
+                <Button Margin="5">补录费用</Button>
+                <Button Margin="5">打印</Button>
+                <Button Margin="5">￥付账</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

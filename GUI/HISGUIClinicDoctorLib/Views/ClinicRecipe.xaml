@@ -11,15 +11,15 @@
                 <TextBlock></TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="2" Click="Button_Click">选择模板</Button>
-                <Button Margin="2">选择药品</Button>
-                <Button Margin="2">复制处方</Button>
+                <Button Margin="5" Click="Button_Click">选择模板</Button>
+                <Button Margin="5" Click="Button_Click_11">选择药品</Button>
+                <Button Margin="5" Click="Button_Click_12">复制处方</Button>
             </StackPanel>
-            <TabControl x:Name="tabControl"  Margin="2" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
+            <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <DataGrid x:Name="xiyao" Margin="2" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                            <DataGrid x:Name="xiyao" Margin="5" ItemsSource="{Binding}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="组号"
                                             Width="40"
@@ -51,11 +51,11 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <Button Margin="2" Width="20">+</Button>
-                                <Button Margin="2" Width="20">-</Button>
-                                <Button Margin="2">保存</Button>
-                                <Button Margin="2">保存模板</Button>
-                                <Button Margin="2">打印处方</Button>
+                                <Button Margin="5" Width="20" Click="Button_Click_1">+</Button>
+                                <Button Margin="5" Width="20" Click="Button_Click_2">-</Button>
+                                <Button Margin="5" Click="Button_Click_3">保存</Button>
+                                <Button Margin="5" Click="Button_Click_4">保存模板</Button>
+                                <Button Margin="5" Click="Button_Click_5">打印处方</Button>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -63,7 +63,7 @@
                 <TabItem Header="中药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel>
-                            <DataGrid x:Name="zhongyao" Margin="2" ItemsSource="{Binding}" AutoGenerateColumns="False">
+                            <DataGrid x:Name="zhongyao" Margin="5" ItemsSource="{Binding}" AutoGenerateColumns="False">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Header="组号"
                                             Width="40"
@@ -92,11 +92,11 @@
                                 </DataGrid.Columns>
                             </DataGrid>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <Button Margin="2" Width="20">+</Button>
-                                <Button Margin="2" Width="20">-</Button>
-                                <Button Margin="2">保存</Button>
-                                <Button Margin="2">保存模板</Button>
-                                <Button Margin="2">打印处方</Button>
+                                <Button Margin="5" Width="20" Click="Button_Click_6">+</Button>
+                                <Button Margin="5" Width="20" Click="Button_Click_7">-</Button>
+                                <Button Margin="5" Click="Button_Click_8">保存</Button>
+                                <Button Margin="5" Click="Button_Click_9">保存模板</Button>
+                                <Button Margin="5" Click="Button_Click_10">打印处方</Button>
                             </StackPanel>
                         </StackPanel>
                     </ScrollViewer>

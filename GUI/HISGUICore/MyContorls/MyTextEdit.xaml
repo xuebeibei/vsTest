@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel  Margin="5">
-            <Label x:Name="TittleLabel" Margin="2" Content="标题文字"></Label>
-            <TextBox x:Name="TextEdit" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Margin="2" 
+            <Label x:Name="TittleLabel" Margin="5" Content="标题文字"></Label>
+            <TextBox x:Name="TextEdit" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Margin="5" 
                      KeyDown="TextEdit_KeyDown"><!--AcceptsReturn="True"-->
                 <TextBox.Resources>
                     <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">

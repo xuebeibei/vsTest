@@ -437,7 +437,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Margin="5">
             <Label x:Name="WeightLabel" Content="体重(KG)"/>
             <Border x:Name="WeightBorder">
-                <TextBox x:Name="WeightEdit" Height="25" Margin="2" TextChanged="WeightEdit_TextChanged"/>
+                <TextBox x:Name="WeightEdit" Height="25" Margin="5" TextChanged="WeightEdit_TextChanged"/>
             </Border>
             <Label x:Name="WeightError"/>
         </StackPanel>
@@ -445,7 +445,7 @@
         <StackPanel Grid.Row="0" Grid.Column="1" Margin="5">
             <Label x:Name="HeightLabel" Content="身高(CM)"/>
             <Border x:Name="HeightBorder">
-                <TextBox x:Name="HeightEdit" Height="25" Margin="2" TextChanged="HeightEdit_TextChanged"/>
+                <TextBox x:Name="HeightEdit" Height="25" Margin="5" TextChanged="HeightEdit_TextChanged"/>
             </Border>
             <Label x:Name="HeightError"/>
         </StackPanel>
@@ -453,7 +453,7 @@
         <StackPanel Grid.Row="1" Grid.Column="0" Margin="5">
             <Label x:Name="BMILabel" Content="BMI指数"/>
             <Border x:Name="BMIBorder">
-                <TextBox x:Name="BMIEdit" Height="25" Margin="2" IsEnabled="False" TextChanged="BMIEdit_TextChanged"/>
+                <TextBox x:Name="BMIEdit" Height="25" Margin="5" IsEnabled="False" TextChanged="BMIEdit_TextChanged"/>
             </Border>
             <Label x:Name="BMIError"/>
         </StackPanel>
@@ -465,13 +465,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="BloodGroupABO" Grid.Column="0" Height="25" Margin="2">
+                <ComboBox x:Name="BloodGroupABO" Grid.Column="0" Height="25" Margin="5">
                     <ComboBoxItem Content="A型" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="B型" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="O型" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="AB型" HorizontalAlignment="Left" Width="99"/>
                 </ComboBox>
-                <ComboBox x:Name="BloodGroupRh" Grid.Column="1" Height="25" Margin="2">
+                <ComboBox x:Name="BloodGroupRh" Grid.Column="1" Height="25" Margin="5">
                     <ComboBoxItem Content="Rh阳性" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="Rh阴性" HorizontalAlignment="Left" Width="99"/>
                 </ComboBox>
@@ -486,7 +486,7 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <ComboBox x:Name="TemperatureCombo" Grid.Column="0" Height="25" Margin="2">
+                <ComboBox x:Name="TemperatureCombo" Grid.Column="0" Height="25" Margin="5">
                     <ComboBoxItem Content="耳温" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="口温" HorizontalAlignment="Left" Width="99"/>
                     <ComboBoxItem Content="额温" HorizontalAlignment="Left" Width="99"/>
@@ -494,7 +494,7 @@
                     <ComboBoxItem Content="肛温" HorizontalAlignment="Left" Width="99"/>
                 </ComboBox>
                 <Border x:Name="TemperatureBorder" Grid.Column="1" >
-                    <TextBox x:Name="TemperatureBox" Height="25" Margin="2" TextChanged="textBox_TextChanged"/>
+                    <TextBox x:Name="TemperatureBox" Height="25" Margin="5" TextChanged="textBox_TextChanged"/>
                 </Border>
             </Grid>
             <Label x:Name="TemperatureError"/>
@@ -503,7 +503,7 @@
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="5">
             <Label x:Name="BreathLabel" Content="呼吸(次/分钟)"/>
             <Border x:Name="BreathBorder">
-                <TextBox x:Name="BreathEdit" Height="25" Margin="2" TextChanged="BreathEdit_TextChanged"/>
+                <TextBox x:Name="BreathEdit" Height="25" Margin="5" TextChanged="BreathEdit_TextChanged"/>
             </Border>
             <Label x:Name="BreathErrorLabel"/>
         </StackPanel>
@@ -511,7 +511,7 @@
         <StackPanel Grid.Row="3" Grid.Column="0" Margin="5">
             <Label x:Name="PulseLabel" Content="脉搏(次/分钟)"/>
             <Border x:Name="PulseBorder">
-                <TextBox x:Name="PulseEdit" Height="25" Margin="2" TextChanged="PulseEdit_TextChanged"/>
+                <TextBox x:Name="PulseEdit" Height="25" Margin="5" TextChanged="PulseEdit_TextChanged"/>
             </Border>
             <Label x:Name="PulseError"/>
         </StackPanel>
@@ -524,10 +524,10 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="SystolicPressureBorder" Grid.Column="0" >
-                    <TextBox x:Name="SystolicPressureEdit" Height="25" Margin="2" TextChanged="SystolicPressureEdit_TextChanged"/>
+                    <TextBox x:Name="SystolicPressureEdit" Height="25" Margin="5" TextChanged="SystolicPressureEdit_TextChanged"/>
                 </Border>
                 <Border x:Name="DiastolicPressureBorder" Grid.Column="1">
-                    <TextBox x:Name="DiastolicPressureEdit" Height="25" Margin="2" TextChanged="DiastolicPressureEdit_TextChanged"/>
+                    <TextBox x:Name="DiastolicPressureEdit" Height="25" Margin="5" TextChanged="DiastolicPressureEdit_TextChanged"/>
                 </Border>
             </Grid>
             <Label x:Name="BloodPressureError"/>
@@ -541,10 +541,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <DatePicker Grid.Column="0" Height="25" Margin="2"/>
-                <ComboBox Grid.Column="1" Height="25" Margin="2"/>
+                <DatePicker Grid.Column="0" Height="25" Margin="5"/>
+                <ComboBox Grid.Column="1" Height="25" Margin="5"/>
                 <Border x:Name="BloodGlucoseBorder" Grid.Column="2">
-                    <TextBox x:Name="BloodGlucoseEdit" Height="25" Margin="2" TextChanged="BloodGlucoseEdit_TextChanged"/>
+                    <TextBox x:Name="BloodGlucoseEdit" Height="25" Margin="5" TextChanged="BloodGlucoseEdit_TextChanged"/>
                 </Border>
             </Grid>
             <Label x:Name="BloodGlucoseError"/>
@@ -558,10 +558,10 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Border x:Name="LeftEyeEdit" Grid.Column="0">
-                    <TextBox Height="25" Margin="2" TextChanged="TextBox_TextChanged_1"/>
+                    <TextBox Height="25" Margin="5" TextChanged="TextBox_TextChanged_1"/>
                 </Border>
                 <Border x:Name="RightEyeEdit" Grid.Column="1">
-                    <TextBox Height="25" Margin="2" TextChanged="TextBox_TextChanged_2"/>
+                    <TextBox Height="25" Margin="5" TextChanged="TextBox_TextChanged_2"/>
                 </Border>
             </Grid>
             <Label x:Name="EyeError"/>
@@ -570,7 +570,7 @@
         <StackPanel Grid.Row="5" Grid.Column="0" Margin="5">
             <Label x:Name="OxygenSaturationLabel" Content="氧饱和度(%)"/>
             <Border x:Name="OxygenSaturationBorder">
-                <TextBox x:Name="OxygenSaturationEdit" Height="25" Margin="2" TextChanged="OxygenSaturationEdit_TextChanged"/>
+                <TextBox x:Name="OxygenSaturationEdit" Height="25" Margin="5" TextChanged="OxygenSaturationEdit_TextChanged"/>
             </Border>
             <Label x:Name="OxygenSaturationError"/>
         </StackPanel>
@@ -578,7 +578,7 @@
         <StackPanel Grid.Row="5" Grid.Column="1" Margin="5">
             <Label x:Name="PainGradeLabel" Content="疼痛评分(0-10)"/>
             <Border x:Name="PainGradeBorder">
-                <TextBox x:Name="PainGradeEdit" Height="25" Margin="2" TextChanged="PainGradeEdit_TextChanged"/>
+                <TextBox x:Name="PainGradeEdit" Height="25" Margin="5" TextChanged="PainGradeEdit_TextChanged"/>
             </Border>
             <Label x:Name="PainGradeError"/>
         </StackPanel>

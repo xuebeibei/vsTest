@@ -16,36 +16,36 @@
         <local:MyTextEdit x:Name="ZhuSu" ></local:MyTextEdit>
 
         <StackPanel Grid.Row="1"  Margin="5">
-            <Label Margin="2">现病史：</Label>
-            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            <Label Margin="5">现病史：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="5">
             </TextBox>
             <Label HorizontalAlignment="Right">0/500</Label>
         </StackPanel>
 
         <StackPanel Grid.Row="2"  Margin="5">
-            <Label Margin="2">既往史：</Label>
-            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            <Label Margin="5">既往史：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="5">
             </TextBox>
             <Label HorizontalAlignment="Right">0/500</Label>
         </StackPanel>
 
         <StackPanel Grid.Row="3"  Margin="5">
-            <Label Margin="2">体格检查：</Label>
-            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            <Label Margin="5">体格检查：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="5">
             </TextBox>
             <Label HorizontalAlignment="Right">0/500</Label>
         </StackPanel>
 
         <StackPanel Grid.Row="4"  Margin="5">
-            <Label Margin="2">备注：</Label>
-            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2">
+            <Label Margin="5">备注：</Label>
+            <TextBox TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="5">
             </TextBox>
             <Label HorizontalAlignment="Right">0/500</Label>
         </StackPanel>
 
         <!--<StackPanel Grid.Row="5" Orientation="Horizontal" HorizontalAlignment="Right"  Margin="5">
-            <Button Margin="2">保存</Button>
-            <Button Margin="2">取消</Button>
+            <Button Margin="5">保存</Button>
+            <Button Margin="5">取消</Button>
         </StackPanel>-->
     </Grid>
 </UserControl>

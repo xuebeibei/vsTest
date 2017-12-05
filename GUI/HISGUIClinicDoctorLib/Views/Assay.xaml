@@ -7,14 +7,14 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="2">选择模板</Button>
+                <Button Margin="5">选择模板</Button>
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <DataGrid x:Name="dgMeasurements"
                           HorizontalAlignment="Left"
-                          Margin="2"
+                          Margin="5"
                           ItemsSource="{Binding}"
                           AutoGenerateColumns="False">
                             <DataGrid.Columns>
@@ -33,11 +33,11 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Margin="2" Width="20">+</Button>
-                            <Button Margin="2" Width="20">-</Button>
-                            <Button Margin="2">保存</Button>
-                            <Button Margin="2">保存模板</Button>
-                            <Button Margin="2">打印申请单</Button>
+                            <Button Margin="5" Width="20">+</Button>
+                            <Button Margin="5" Width="20">-</Button>
+                            <Button Margin="5">保存</Button>
+                            <Button Margin="5">保存模板</Button>
+                            <Button Margin="5">打印申请单</Button>
                         </StackPanel>
                     </StackPanel>
 
