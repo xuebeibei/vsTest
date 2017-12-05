@@ -6,12 +6,13 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel  Margin="5">
-            <Label x:Name="TittleLabel" Margin="2"></Label>
-            <TextBox x:Name="TextEdit" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" Margin="2" >
+            <Label x:Name="TittleLabel" Margin="2" Content="标题文字"></Label>
+            <TextBox x:Name="TextEdit" TextWrapping="Wrap" VerticalScrollBarVisibility="Visible" Margin="2" 
+                     KeyDown="TextEdit_KeyDown"><!--AcceptsReturn="True"-->
                 <TextBox.Resources>
                     <VisualBrush x:Key="HintText" TileMode="None" Opacity="0.5" Stretch="None" AlignmentX="Left">
                         <VisualBrush.Visual>
-                            <TextBlock FontStyle="Italic" Text="提示文字"/>
+                            <TextBlock x:Name="TipBlock" FontStyle="Italic" Text="{Binding Path=Content,ElementName=TittleLabel,Mode=OneWay}"/>
                         </VisualBrush.Visual>
                     </VisualBrush>
                 </TextBox.Resources>
@@ -29,7 +30,7 @@
                 </TextBox.Style>
             </TextBox>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Label x:Name="TextNum" HorizontalAlignment="Right"></Label>
+                <Label x:Name="TextNum" HorizontalAlignment="Right" Content="{Binding Path=Text.Length, ElementName=TextEdit, Mode=OneWay}"></Label>
                 <Label x:Name="TextNumFG" HorizontalAlignment="Center">/</Label>
                 <Label x:Name="TextMaxNum" HorizontalAlignment="Left"></Label>
             </StackPanel>
