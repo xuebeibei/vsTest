@@ -10,7 +10,9 @@
         <!--<Border BorderBrush="Black" BorderThickness="1">-->
             <StackPanel>
 
-                <Label x:Name="PhotoLabel" Margin="5">照片</Label>
+            <Label x:Name="PhotoLabel" Margin="5" HorizontalAlignment="Center">
+                <Image Height="80" Width="80" Source="C:\Users\xuebei\Downloads\人.png"></Image>
+            </Label>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="5">
                     <Label Margin="5">姓名:</Label>
                     <Label x:Name="NameLabel" Margin="5"></Label>
