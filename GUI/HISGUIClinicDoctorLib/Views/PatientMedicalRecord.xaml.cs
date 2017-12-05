@@ -27,9 +27,26 @@ namespace HISGUIClinicDoctorLib.Views
     [Export("PatientMedicalRecord", typeof(PatientMedicalRecord))]
     public partial class PatientMedicalRecord : HISGUIViewBase
     {
+        private List<MyTextEdit> myTextList;
+
         public PatientMedicalRecord()
         {
             InitializeComponent();
+
+            string str = "主诉;现病史;既往史;过敏史;个人史;家族史;疫苗接种史;检验检查;体格检查;初步诊断;治疗意见;备注";
+            string[] q = str.Split(';');
+            if (q != null)
+            {
+                myTextList = new List<MyTextEdit>();
+                for (int i = 0; i < 11; i++)
+                {
+                    MyTextEdit myText = new MyTextEdit(q[i], 500);
+                    myTextList.Add(myText);
+                    this.MedicalRecordPanel.Children.Add(myText);
+                    if (i <= 7 && i >= 2)
+                        myText.Visibility = Visibility.Collapsed;
+                }
+            }
         }
 
         [Import]
@@ -88,6 +105,37 @@ namespace HISGUIClinicDoctorLib.Views
             //previewWnd.Owner = this;
             //previewWnd.ShowInTaskbar = false;//设置预览窗体在最小化时不要出现在任务栏中   
             //previewWnd.ShowDialog();//显示打印预览窗体
+
+
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            Button aa = sender as Button;
+            int n = int.Parse(aa.DataContext.ToString());
+
+            string btnContent = aa.Content.ToString();
+            if (string.IsNullOrEmpty(btnContent))
+                return;
+
+            string str = btnContent.Substring(0,1);
+            string str1 = btnContent.Substring(1,btnContent.Length - 1);
+            if(str == "+")
+            {
+                if (myTextList.ElementAt(n) != null)
+                {
+                    myTextList.ElementAt(n).Visibility = Visibility.Visible;
+                    aa.Content = "-" + str1;
+                }
+            }
+            else if(str == "-")
+            {
+                if (myTextList.ElementAt(n) != null)
+                {
+                    myTextList.ElementAt(n).Visibility = Visibility.Collapsed;
+                    aa.Content = "+" + str1;
+                }
+            }
         }
     }
 }

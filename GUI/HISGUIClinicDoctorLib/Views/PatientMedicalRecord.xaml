@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
@@ -20,15 +21,24 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Column="0">
-                <Label MinWidth="75" Margin="0,5,5,5">发病日期：</Label>
-                <DatePicker x:Name="fabingdate" Margin="5" ></DatePicker>
+                <Label Margin="0,5,5,5">发病日期：</Label>
+                <DatePicker x:Name="fabingdate" Margin="5" SelectedDate="{x:Static sys:DateTime.Now}"></DatePicker>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="5" Grid.Column="1">
                 <Button Margin="5" Click="Button_Click">选择模板</Button>
                 <Button Margin="5,5,0,5" Click="Button_Click_1">复制病历</Button>
             </StackPanel>
         </Grid>
-        <Controls:MedicalRecord Grid.Row="1"></Controls:MedicalRecord>
+        <StackPanel x:Name="MedicalRecordPanel" Grid.Row="1">
+            <StackPanel Orientation="Horizontal">
+                <Button Margin="5" DataContext="2" Click="Button_Click_4">+既往史</Button>
+                <Button Margin="5" DataContext="3" Click="Button_Click_4">+过敏史</Button>
+                <Button Margin="5" DataContext="4" Click="Button_Click_4">+个人史</Button>
+                <Button Margin="5" DataContext="5" Click="Button_Click_4">+家族史</Button>
+                <Button Margin="5" DataContext="6" Click="Button_Click_4">+疫苗接种史</Button>
+                <Button Margin="5" DataContext="7" Click="Button_Click_4">+检验检查</Button>
+            </StackPanel>
+        </StackPanel>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
