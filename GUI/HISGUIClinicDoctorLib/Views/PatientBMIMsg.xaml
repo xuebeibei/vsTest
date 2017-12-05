@@ -7,7 +7,7 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid Margin="5" MaxWidth="200" MinWidth="120">
-        <Border BorderBrush="Black" BorderThickness="1">
+        <!--<Border BorderBrush="Black" BorderThickness="1">-->
             <StackPanel>
 
                 <Label x:Name="PhotoLabel" Margin="5">照片</Label>
@@ -76,6 +76,6 @@
                     <Label x:Name="PreliminaryRulingLabel" Margin="5"></Label>
                 </StackPanel>
             </StackPanel>
-        </Border>
+        <!--</Border>-->
     </Grid>
 </HISGUICore:HISGUIViewBase>
