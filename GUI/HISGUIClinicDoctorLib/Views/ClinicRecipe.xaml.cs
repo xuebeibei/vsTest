@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,80 +14,41 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using HISGUICore;
+using HISGUICore.MyContorls;
+using HISGUIClinicDoctorLib.ViewModels;
+using System.Data;
 
 namespace HISGUIClinicDoctorLib.Views
 {
-    /// <summary>
-    /// ClinicRecipe.xaml 的交互逻辑
-    /// </summary>
-    public partial class ClinicRecipe : UserControl
+    [Export]
+    [Export("ClinicRecipe", typeof(ClinicRecipe))]
+    public partial class ClinicRecipe : HISGUIViewBase
     {
         public ClinicRecipe()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        [Import]
+        private HISGUIClinicDoctorVM ImportVM
+        {
+            set { this.VM = value; }
+        }
+
+        private void SelectTempletBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void SelectDrugBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_6(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_7(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_8(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_9(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_10(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_11(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_12(object sender, RoutedEventArgs e)
+        private void CopyRecipeBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
