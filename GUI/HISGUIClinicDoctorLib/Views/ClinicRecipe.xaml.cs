@@ -30,6 +30,8 @@ namespace HISGUIClinicDoctorLib.Views
         public ClinicRecipe()
         {
             InitializeComponent();
+            xiyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.xichengyao));
+            zhongyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.zhongyao));
         }
 
         [Import]

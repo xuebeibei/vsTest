@@ -6,18 +6,7 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel>
-            <DataGrid x:Name="zhongyao" Margin="5" AutoGenerateColumns="False">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="C1"
-                                            Width="40"
-                                            Binding="{Binding C1}" />
-                    <DataGridTextColumn Header="C2"
-                                            Width="90"
-                                            Binding="{Binding C2}" />
-                    <DataGridTextColumn Header="C3"
-                                            Width="80"
-                                            Binding="{Binding C3}" />
-                </DataGrid.Columns>
+            <DataGrid x:Name="MyDataGrid" Margin="5" AutoGenerateColumns="False" LoadingRow="MyDataGrid_LoadingRow" CanUserAddRows="False">
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button x:Name="AddBtn" Margin="5" Width="20" Click="AddBtn_Click">+</Button>

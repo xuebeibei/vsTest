@@ -20,88 +20,14 @@
             <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <!--<DataGrid x:Name="xiyao" Margin="5" ItemsSource="{Binding}" AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="组号"
-                                            Width="40"
-                                            Binding="{Binding Name}" />
-                                    <DataGridTextColumn Header="药品名"
-                                            Width="90"
-                                            Binding="{Binding Unit}" />
-                                    <DataGridTextColumn Header="单次计量"
-                                            Width="80"
-                                            Binding="{Binding Value}" />
-                                    <DataGridTextColumn Header="用法"
-                                            Width="80"
-                                            Binding="{Binding LowerLimit}" />
-                                    <DataGridTextColumn Header="皮试"
-                                            Width="40"
-                                            Binding="{Binding LowerLimit}" />
-                                    <DataGridTextColumn Header="用药频次"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="天数"
-                                            Width="40"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="总量"
-                                            Width="40"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="说明"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <Button Margin="5" Width="20" Click="Button_Click_1">+</Button>
-                                <Button Margin="5" Width="20" Click="Button_Click_2">-</Button>
-                                <Button Margin="5" Click="Button_Click_3">保存</Button>
-                                <Button Margin="5" Click="Button_Click_4">保存模板</Button>
-                                <Button Margin="5" Click="Button_Click_5">打印处方</Button>
-                            </StackPanel>-->
-                            <Controls:MyTableEdit></Controls:MyTableEdit>
+                        <StackPanel x:Name="xiyaoPanel">
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="中药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <StackPanel>
-                            <!--<DataGrid x:Name="zhongyao" Margin="5" ItemsSource="{Binding}" AutoGenerateColumns="False">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="组号"
-                                            Width="40"
-                                            Binding="{Binding Name}" />
-                                    <DataGridTextColumn Header="药品名"
-                                            Width="90"
-                                            Binding="{Binding Unit}" />
-                                    <DataGridTextColumn Header="单次计量"
-                                            Width="80"
-                                            Binding="{Binding Value}" />
-                                    <DataGridTextColumn Header="用法"
-                                            Width="80"
-                                            Binding="{Binding LowerLimit}" />
-                                    <DataGridTextColumn Header="用药频次"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="天数"
-                                            Width="40"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="总量"
-                                            Width="40"
-                                            Binding="{Binding UpperLimit}" />
-                                    <DataGridTextColumn Header="说明"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                                </DataGrid.Columns>
-                            </DataGrid>
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                                <Button Margin="5" Width="20" Click="Button_Click_6">+</Button>
-                                <Button Margin="5" Width="20" Click="Button_Click_7">-</Button>
-                                <Button Margin="5" Click="Button_Click_8">保存</Button>
-                                <Button Margin="5" Click="Button_Click_9">保存模板</Button>
-                                <Button Margin="5" Click="Button_Click_10">打印处方</Button>
-                            </StackPanel>-->
-                            <Controls:MyTableEdit></Controls:MyTableEdit>
+                        <StackPanel x:Name="zhongyaoPanel">
+                            
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
