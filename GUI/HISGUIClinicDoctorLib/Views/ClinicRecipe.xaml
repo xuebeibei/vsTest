@@ -27,7 +27,38 @@
                 <TabItem Header="中药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="zhongyaoPanel">
-                            
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition></RowDefinition>
+                                    <RowDefinition></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="5" Grid.Row="0" Grid.Column="0">用法：</Label>
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="1"></TextBox>
+                                <Label Margin="5" Grid.Row="0" Grid.Column="2">每日剂量：</Label>
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="3"></TextBox>
+                                <Label Margin="5" Grid.Row="0" Grid.Column="4">天数：</Label>
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="5"></TextBox>
+                                <Label Margin="5" Grid.Row="0" Grid.Column="6">总剂量：</Label>
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="7"></TextBox>
+                                <Label Margin="5" Grid.Row="0" Grid.Column="8">频次：</Label>
+                                <TextBox Margin="5" Grid.Row="0" Grid.Column="9"></TextBox>
+                                <Label Margin="5" Grid.Row="1" Grid.Column="0">服药要求：</Label>
+                                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"></TextBox>
+                            </Grid>
+
+
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>

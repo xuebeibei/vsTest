@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="HISGUIClinicDoctorLib.Views.ClinicRemedy"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIClinicDoctorLib.Views.ClinicRemedy"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views">
+             xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -11,41 +13,11 @@
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel>
-                        <DataGrid x:Name="dgMeasurements"
-                          HorizontalAlignment="Left"
-                          Margin="5"
-                          ItemsSource="{Binding}"
-                          AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="序号"
-                                            Width="40"
-                                            Binding="{Binding Name}" />
-                                <DataGridTextColumn Header="名称"
-                                            Width="90"
-                                            Binding="{Binding Unit}" />
-                                <DataGridTextColumn Header="单位"
-                                            Width="80"
-                                            Binding="{Binding Value}" />
-                                <DataGridTextColumn Header="次数"
-                                            Width="80"
-                                            Binding="{Binding LowerLimit}" />
-                                <DataGridTextColumn Header="说明"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Margin="5" Width="20">+</Button>
-                            <Button Margin="5" Width="20">-</Button>
-                            <Button Margin="5">保存</Button>
-                            <Button Margin="5">保存模板</Button>
-                            <Button Margin="5">打印治疗单</Button>
-                        </StackPanel>
+                    <StackPanel x:Name="RemedyPanel">
                     </StackPanel>
 
                 </ScrollViewer>
             </StackPanel>
         </StackPanel>
     </Grid>
-</UserControl>
+</HISGUICore:HISGUIViewBase>
