@@ -80,6 +80,18 @@
     <Compile Include="Migrations\201712040303003_PaperTest7.Designer.cs">
       <DependentUpon>201712040303003_PaperTest7.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712110959363_PaperTest8.cs" />
+    <Compile Include="Migrations\201712110959363_PaperTest8.Designer.cs">
+      <DependentUpon>201712110959363_PaperTest8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712111105436_PaperTest9.cs" />
+    <Compile Include="Migrations\201712111105436_PaperTest9.Designer.cs">
+      <DependentUpon>201712111105436_PaperTest9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712120332323_PaperTest10.cs" />
+    <Compile Include="Migrations\201712120332323_PaperTest10.Designer.cs">
+      <DependentUpon>201712120332323_PaperTest10.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,6 +126,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712040303003_PaperTest7.resx">
       <DependentUpon>201712040303003_PaperTest7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712110959363_PaperTest8.resx">
+      <DependentUpon>201712110959363_PaperTest8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712111105436_PaperTest9.resx">
+      <DependentUpon>201712111105436_PaperTest9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712120332323_PaperTest10.resx">
+      <DependentUpon>201712120332323_PaperTest10.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

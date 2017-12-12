@@ -23,6 +23,10 @@ namespace DAL
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Triage> Triages { get; set; }
+
+        public DbSet<Medicine> Medicines { get; set; }
+        public DbSet<MedicineAlias> MedicineAliases { get; set; }
+        public DbSet<MedicinePacking> MedicinePackings { get; set; }
     }
 
     public class User
@@ -77,7 +81,7 @@ namespace DAL
 
         public DateTime VistTime { get; set; }    // 看诊日期
         public int TimeIntival { get; set; }      // 看诊时段ID
-        public int DepartmentID { get; set; }// 科室
+        public int DepartmentID { get; set; }     // 科室
         public int SignalType { get; set; }       // 号别
         public int MaxNum { get; set; }           // 最大号源
         public int AddMaxNum { get; set; }        // 临时加号号源
@@ -128,10 +132,10 @@ namespace DAL
 
     public class Triage
     {
-         // 分诊表，记录分诊结果
+        // 分诊表，记录分诊结果
         public Triage()
         {
-            
+
         }
 
         public int ID { get; set; }                            // 分诊ID
@@ -183,4 +187,128 @@ namespace DAL
         public string Name { get; set; }
         public bool Default { get; set; }
     }
+
+    public enum RecipeTypeEnum
+    {
+        PuTong,
+        JiZhen,
+        ErKe,
+        MaJingYi,
+        JingEr
+    }
+
+    public class Recipe
+    {
+        
+        public Recipe()
+        {
+            this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
+        }
+
+        public int ID { get; set; }                               // 处方ID
+        public string No { get; set; }                            // 处方编号
+        public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
+        public string MedicalInstitution { get; set; }            // 医疗机构名称
+        public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
+        public int RegistrationID { get; set; }                   // 门诊ID
+        public int InpatientID { get; set; }                      // 住院ID
+        public string ClinicalDiagnosis { get; set; }             // 临床诊断
+        public string PatientsIDCardNum { get; set; }             // 患者身份证    -- 麻醉和精一处方
+        public string ProxyIDCardNum { get; set; }                // 代办人身份证  -- 麻醉和精一处方
+        public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
+
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+
+        public int AuditorUserID { get; set; }                    // 审核、调配，核对、发药人员
+        public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
+    }
+
+    public class RecipeDetails
+    {
+        public RecipeDetails()
+        {
+
+        }
+
+        public int ID { get; set; }                               // 处方正文ID
+        public string GroupNum { set; get; }                      // 组别
+        public int DrugID { get; set; }                           // 药品ID
+        public int SingleDose { get; set; }                       // 单次剂量
+        public string Usage { get; set; }                         // 用法
+        public string DDDS { get; set; }                          // 使用频率
+        public int DaysNum { get; set; }                          // 天数
+        public int IntegralDose { get; set; }                     // 总量
+        public string Illustration { get; set; }                  // 说明
+
+        public int RecipeID { get; set; }                         // 所属处方ID
+    }
+
+    public enum MedicineTypeEnum
+    {
+        putong,
+        teshu
+    }
+    public enum YiBaoEnum
+    {
+        jia,
+        yi,
+        feijiafeiyi
+    }
+
+    public class Medicine
+    {
+        public Medicine()
+        {
+
+        }
+
+        public int ID { get; set; }                                 // ID
+        public MedicineTypeEnum MedicineTypeEnum { get; set; }      // 药品类型
+        public string Name { get; set; }                            // 药品品名
+        public string DosageForm { get; set; }                      // 药品剂型
+        public string AdministrationRoute { get; set; }             // 给药方式
+        public string Specifications { get; set; }                  // 规格
+        public string Manufacturer { get; set; }                    // 生产厂家
+        public bool PoisonousHemp { get; set; }                     // 毒麻
+        public bool Valuable { get; set; }                          // 贵重
+        public bool EssentialDrugs { get; set; }                    // 基本药物
+        public YiBaoEnum YiBaoEnum { get; set; }                    // 医保甲乙类
+        public int MaxNum { get; set; }                             // 最大库存量
+        public int MinNum { get; set; }                             // 最小库存量
+
+    }
+
+    // 药品名称表
+    public class MedicineAlias
+    {
+        public MedicineAlias()
+        {
+
+        }
+
+        public int ID { get; set; }
+        public string Alias { get; set; }
+
+        public int MedicineID { get; set; }
+    }
+
+    // 药品包装表
+    public class MedicinePacking
+    {
+        public MedicinePacking()
+        {
+
+        }
+
+        public int ID { get; set; }
+        public string BigUnit { get; set; }   // 包装
+        public int Num { get; set; }          // 换算量，最小包装为0
+        public int SmallID { get; set; }      // 小包装ID,最小包装为0
+
+        public int MedicineID { get; set; }   // 药品
+    }
+
+    // 
 }
