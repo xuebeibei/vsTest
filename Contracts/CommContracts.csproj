@@ -50,6 +50,8 @@
     <Compile Include="ILoginService.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recipe.cs" />
+    <Compile Include="RecipeDetails.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
     <Compile Include="Triage.cs" />
