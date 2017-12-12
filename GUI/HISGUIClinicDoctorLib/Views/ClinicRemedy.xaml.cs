@@ -50,5 +50,20 @@ namespace HISGUIClinicDoctorLib.Views
             window.Content = jks;
             window.ShowDialog();
         }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

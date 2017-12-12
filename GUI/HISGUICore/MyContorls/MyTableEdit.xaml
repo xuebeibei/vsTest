@@ -11,9 +11,6 @@
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <Button x:Name="AddBtn" Margin="5" Width="20" Click="AddBtn_Click">+</Button>
                 <Button x:Name="DeleteBtn" Margin="5" Width="20" Click="DeleteBtn_Click">-</Button>
-                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存模板</Button>
-                <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

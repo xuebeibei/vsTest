@@ -10,6 +10,9 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button Margin="5">选择模板</Button>
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存模板</Button>
+                <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

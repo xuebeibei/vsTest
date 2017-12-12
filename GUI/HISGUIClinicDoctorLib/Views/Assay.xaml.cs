@@ -38,5 +38,20 @@ namespace HISGUIClinicDoctorLib.Views
         {
             set { this.VM = value; }
         }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

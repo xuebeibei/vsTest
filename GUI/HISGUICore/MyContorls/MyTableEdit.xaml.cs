@@ -50,7 +50,7 @@ namespace HISGUICore.MyContorls
 
         }
 
-        public MyTableTittle( string name, string bindingname, bool bReadonly = true, int width = 50, Visibility visibility = Visibility.Visible)
+        public MyTableTittle(string name, string bindingname, bool bReadonly = true, int width = 50, Visibility visibility = Visibility.Visible)
         {
             this.TittleWidth = width;
             this.TittleName = name;
@@ -156,7 +156,7 @@ namespace HISGUICore.MyContorls
             item.IntegralDoseUnit = "盒";
             item.Illustration = "饭后温水送服";
 
-        items.Add(item);
+            items.Add(item);
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -168,26 +168,14 @@ namespace HISGUICore.MyContorls
             }
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-            string str = "";
-            for (int i = 0; i < items.Count; i++)
-            {
-                DynamicXiYao dynamic = items.ElementAt(i);
-                str += dynamic.GroupNum;
-            }
-            MessageBox.Show(str);
-        }
 
-        private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void PrintBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        //string str = "";
+        //for (int i = 0; i < items.Count; i++)
+        //{
+        //    DynamicXiYao dynamic = items.ElementAt(i);
+        //    str += dynamic.GroupNum;
+        //}
+        //MessageBox.Show(str);
 
         private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
