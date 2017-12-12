@@ -43,7 +43,7 @@ namespace HISGUIClinicDoctorLib.Views
         {
             var window = new Window();//Windows窗体
             TempletList jks = new TempletList();  //UserControl写的界面   
-            window.Title = "西/成药处方模板";
+            window.Title = "治疗模板";
             window.Height = 500;
             window.Width = 300;
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,29 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using HISGUICore;
+using HISGUICore.MyContorls;
+using HISGUIClinicDoctorLib.ViewModels;
+using System.Data;
 
 namespace HISGUIClinicDoctorLib.Views
 {
-    /// <summary>
-    /// Assay.xaml 的交互逻辑
-    /// </summary>
-    public partial class Assay : UserControl
+    [Export]
+    [Export("Assay", typeof(Assay))]
+    public partial class Assay : HISGUIViewBase
     {
         public Assay()
         {
             InitializeComponent();
+            AssayPanel.Children.Add(new MyTableEdit(MyTableEditEnum.jianyan));
+        }
+
+        [Import]
+        private HISGUIClinicDoctorVM ImportVM
+        {
+            set { this.VM = value; }
         }
     }
 }
