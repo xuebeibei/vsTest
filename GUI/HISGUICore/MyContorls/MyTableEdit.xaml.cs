@@ -86,163 +86,57 @@ namespace HISGUICore.MyContorls
             initTable();
         }
 
-        private void initDrugTable()
+        List<MyTableTittle> GetList()
         {
             List<MyTableTittle> list = new List<MyTableTittle>();
-            list.Add(new MyTableTittle("药品ID", "DrugID", true, 40,  Visibility.Hidden));
-            list.Add(new MyTableTittle("组号", "GroupNum", false));
-            list.Add(new MyTableTittle("药品名称", "DrugName", false, 100));
-            list.Add(new MyTableTittle("单次剂量", "SingleDose", false));
-            list.Add(new MyTableTittle("单次量单位", "SingleDoseUnit"));
-            list.Add(new MyTableTittle("用法", "Usage", false));
-            list.Add(new MyTableTittle("用药频次", "DDDS", false));
-            list.Add(new MyTableTittle("天数", "DaysNum"));
-            list.Add(new MyTableTittle("总量", "IntegralDose"));
-            list.Add(new MyTableTittle("总量单位", "IntegralDoseUnit"));
-            list.Add(new MyTableTittle("说明", "Illustration"));
-
-            for (int i = 0; i<list.Count();i++)
+            if (myTableEditEnum == MyTableEditEnum.xichengyao)
             {
-                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = list.ElementAt(i).TittleName,
-                    Binding = new Binding(list.ElementAt(i).TittleBinding),
-                    Width = list.ElementAt(i).TittleWidth,
-                    Visibility = list.ElementAt(i).Visibility
-                });
+                list.Add(new MyTableTittle("药品ID", "DrugID", true, 40, Visibility.Hidden));
+                list.Add(new MyTableTittle("组号", "GroupNum", false));
+                list.Add(new MyTableTittle("药品名称", "DrugName", false, 100));
+                list.Add(new MyTableTittle("单次剂量", "SingleDose", false));
+                list.Add(new MyTableTittle("单次量单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("用法", "Usage", false));
+                list.Add(new MyTableTittle("用药频次", "DDDS", false));
+                list.Add(new MyTableTittle("天数", "DaysNum"));
+                list.Add(new MyTableTittle("总量", "IntegralDose"));
+                list.Add(new MyTableTittle("总量单位", "IntegralDoseUnit"));
+                list.Add(new MyTableTittle("说明", "Illustration"));
             }
-        }
-
-        private void initZhiLiao()
-        {
-
-            List<MyTableTittle> list = new List<MyTableTittle>();
-            list.Add(new MyTableTittle("名称", "Name", false, 100));
-            list.Add(new MyTableTittle("单位", "Unit", false));
-            list.Add(new MyTableTittle("次数", "Num", false));
-            list.Add(new MyTableTittle("说明", "Illustration"));
-
-            for (int i = 0; i < list.Count(); i++)
+            else if (myTableEditEnum == MyTableEditEnum.zhongyao)
             {
-                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = list.ElementAt(i).TittleName,
-                    Binding = new Binding(list.ElementAt(i).TittleBinding),
-                    Width = list.ElementAt(i).TittleWidth,
-                    Visibility = list.ElementAt(i).Visibility
-                });
+                list.Add(new MyTableTittle("药品名称", "DrugName", false, 100));
+                list.Add(new MyTableTittle("剂量", "SingleDose"));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("特殊要求", "Usage"));
             }
-        }
-
-        private void initJianYan()
-        {
-            List<MyTableTittle> list = new List<MyTableTittle>();
-            list.Add(new MyTableTittle("名称", "Name", false, 100));
-            list.Add(new MyTableTittle("单位", "Unit", false));
-            list.Add(new MyTableTittle("次数", "Num", false));
-            list.Add(new MyTableTittle("说明", "Illustration"));
-
-            for (int i = 0; i < list.Count(); i++)
+            else if (myTableEditEnum == MyTableEditEnum.zhiliao ||
+                myTableEditEnum == MyTableEditEnum.jianyan ||
+                myTableEditEnum == MyTableEditEnum.jiancha)
             {
-                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = list.ElementAt(i).TittleName,
-                    Binding = new Binding(list.ElementAt(i).TittleBinding),
-                    Width = list.ElementAt(i).TittleWidth,
-                    Visibility = list.ElementAt(i).Visibility
-                });
+                list.Add(new MyTableTittle("名称", "Name", false, 100));
+                list.Add(new MyTableTittle("单位", "Unit", false));
+                list.Add(new MyTableTittle("次数", "Num", false));
+                list.Add(new MyTableTittle("说明", "Illustration"));
             }
-        }
-
-        private void initJianCha()
-        {
-            List<MyTableTittle> list = new List<MyTableTittle>();
-            list.Add(new MyTableTittle("名称", "Name", false, 100));
-            list.Add(new MyTableTittle("单位", "Unit", false));
-            list.Add(new MyTableTittle("次数", "Num", false));
-            list.Add(new MyTableTittle("说明", "Illustration"));
-
-            for (int i = 0; i < list.Count(); i++)
-            {
-                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-                {
-                    Header = list.ElementAt(i).TittleName,
-                    Binding = new Binding(list.ElementAt(i).TittleBinding),
-                    Width = list.ElementAt(i).TittleWidth,
-                    Visibility = list.ElementAt(i).Visibility
-                });
-            }
-        }
-
-        private void initXiChengYao()
-        {
-            initDrugTable();
-        }
-
-        private void initZhongYao()
-        {
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "药品名称",
-                Binding = new Binding("DrugName"),
-                Width = 100
-            });
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "剂量",
-                Binding = new Binding("SingleDose"),
-                Width = 80
-            });
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "单位",
-                Binding = new Binding("SingleDoseUnit"),
-                Width = 80,
-                IsReadOnly = true
-            });
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "特殊要求",
-                Binding = new Binding("Usage"),
-                Width = 80,
-                IsReadOnly = true
-            });
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "总量",
-                Binding = new Binding("DDDS"),
-                Width = 80
-            });
-            this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-            {
-                Header = "状态",
-                Binding = new Binding("DaysNum"),
-                Width = 40
-            });
+            return list;
         }
 
         public void initTable()
         {
-            if(myTableEditEnum == MyTableEditEnum.xichengyao)
+            List<MyTableTittle> list = GetList();
+
+            for (int i = 0; i < list.Count(); i++)
             {
-                initXiChengYao();
+                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = list.ElementAt(i).TittleName,
+                    Binding = new Binding(list.ElementAt(i).TittleBinding),
+                    Width = list.ElementAt(i).TittleWidth,
+                    Visibility = list.ElementAt(i).Visibility
+                });
             }
-            else if(myTableEditEnum == MyTableEditEnum.zhongyao)
-            {
-                initZhongYao();
-            }
-            else if(myTableEditEnum == MyTableEditEnum.zhiliao)
-            {
-                initZhiLiao();
-            }
-            else if(myTableEditEnum == MyTableEditEnum.jianyan)
-            {
-                initJianYan();
-            }
-            else if(myTableEditEnum == MyTableEditEnum.jiancha)
-            {
-                initJianCha();
-            }
+
             MyDataGrid.ItemsSource = items;
         }
 
@@ -298,23 +192,7 @@ namespace HISGUICore.MyContorls
         private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             // 添加行号, 不智能，删除时候行号会乱
-            //e.Row.Header = e.Row.GetIndex() + 1;
-
-            //var drv = e.Row.Item as DataRowView;
-            //switch (drv["GroupNum"].ToString())
-            //{
-            //    case "1":
-            //        e.Row.Background = new SolidColorBrush(Colors.Green);
-            //        break;
-            //    case "2":
-            //        e.Row.Background = new SolidColorBrush(Colors.Yellow);
-            //        break;
-            //    case "3":
-            //        e.Row.Background = new SolidColorBrush(Colors.CadetBlue);
-            //        break;
-
-
-            //}
+            //e.Row.Header = e.Row.GetIndex() + 1; 
         }
     }
 }
