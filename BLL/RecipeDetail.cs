@@ -11,7 +11,7 @@ using System.Collections;
 
 namespace BLL
 {
-    public class RecipeDetails
+    public class RecipeDetail
     {
     }
 }

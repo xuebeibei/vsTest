@@ -54,5 +54,14 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
+
+        public bool SaveRecipe()
+        {
+            CommClient.Recipe myd = new CommClient.Recipe();
+            if (myd.SaveRecipe())
+                return true;
+            else
+                return false;
+        }
     }
 }

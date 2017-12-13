@@ -91,5 +91,11 @@ namespace CommServer
             BLL.Triage temp = new BLL.Triage();
             return temp.SaveTriage(nDoctorID, nRegistrationID);
         }
+
+        public bool SaveRecipe()
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.SaveRecipe();
+        }
     }
 }

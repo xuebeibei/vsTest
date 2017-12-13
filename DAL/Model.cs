@@ -24,6 +24,8 @@ namespace DAL
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Triage> Triages { get; set; }
 
+        public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<RecipeDetail> RecipeDetails { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicineAlias> MedicineAliases { get; set; }
         public DbSet<MedicinePacking> MedicinePackings { get; set; }
@@ -225,9 +227,9 @@ namespace DAL
         public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
     }
 
-    public class RecipeDetails
+    public class RecipeDetail
     {
-        public RecipeDetails()
+        public RecipeDetail()
         {
 
         }

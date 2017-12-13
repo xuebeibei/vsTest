@@ -8,9 +8,9 @@ using System.Runtime.Serialization;
 namespace CommContracts
 {
     [DataContract]
-    public class RecipeDetails
+    public class RecipeDetail
     {
-        public RecipeDetails()
+        public RecipeDetail()
         {
 
         }

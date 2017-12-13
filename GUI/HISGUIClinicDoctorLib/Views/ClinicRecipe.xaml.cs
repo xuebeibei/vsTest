@@ -57,7 +57,23 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            bool? saveResult = vm?.SaveRecipe();
+            if (!saveResult.HasValue)
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
+            else if ((bool)saveResult.Value)
+            {
+                MessageBox.Show("保存成功！");
+                //vm?.newRegistrationBill();
+            }
+            else
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
         }
 
         private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
