@@ -46,7 +46,9 @@ namespace DAL
         public string Password { get; set; }
         public LoginStatus Status { get; set; }
         public DateTime LastLogin { get; set; }
-        public Employee Employee { get; set; }
+
+        public int EmployeeID { get; set; }
+        public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
     }
@@ -59,12 +61,15 @@ namespace DAL
             this.Abbr = "";
             this.IsDoctorDepartment = false;
             this.ParentID = 0;
+            SignalSources = new List<SignalSource>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Abbr { get; set; }
         public bool IsDoctorDepartment { get; set; }
         public int ParentID { get; set; }    // 父类科室
+
+        public virtual ICollection<SignalSource> SignalSources { get; set; }
     }
 
     public class SignalSource
@@ -97,6 +102,7 @@ namespace DAL
         public string Explain { get; set; }       // 说明
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
+        public virtual Department Department { get; set; }          
     }
 
     public class Registration
@@ -198,13 +204,17 @@ namespace DAL
             Name = "";
             Department = new Department();
             Job = new Job();
+            Users = new List<User>();
         }
 
         public int ID { get; set; }
         public string Name { get; set; }
         public Department Department { get; set; }
-        public Job Job { get; set; }
+        public int JobID { get; set; }
+        public virtual Job Job { get; set; }
         public GenderEnum Gender { get; set; }   // 性别
+
+        public virtual ICollection<User> Users { get; set; }
     }
 
     public class Job
@@ -212,10 +222,13 @@ namespace DAL
         public Job()
         {
             Name = "";
+            Employees = new List<Employee>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
         public bool Default { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 
     public enum RecipeTypeEnum
