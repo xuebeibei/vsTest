@@ -117,6 +117,26 @@ namespace DAL
                         "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
             return str;
         }
+
+        public string ToBMIMsg()
+        {
+            string str = "姓名：" + Patient.Name + "\r\n" +
+                        "性别：" + (Patient.Gender == DAL.GenderEnum.man ? "男" : "女") + "\r\n" +
+                        "年龄：" + (DateTime.Now.Year - Patient.BirthDay.Year).ToString() + "岁\r\n" +
+                        "身高：165CM\r\n" +
+                        "体重：50KG"+ "\r\n" +
+                        "BIM指数：" + "\r\n" +
+                        "体温：" + "\r\n" +
+                        "呼吸：" + "\r\n" +
+                        "脉搏：" + "\r\n" +
+                        "血压：" + "\r\n" +
+                        "血糖浓度：" + "\r\n" +
+                        "视力：" + "\r\n" +
+                        "氧饱和度：" + "\r\n" +
+                        "疼痛评分：" + "\r\n" +
+                        "初步诊断：" + "\r\n";
+            return str;
+        }
         public int ID { get; set; }                               // 挂号单ID
         public Patient Patient { get; set; }                      // 患者ID
         public SignalSource SignalSource { get; set; }            // 号源ID

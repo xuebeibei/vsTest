@@ -67,6 +67,8 @@ namespace HISGUIClinicDoctorLib.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
+            vm.RegistrationID = thePatient.ID;
             vm?.ReceivingNewPatientsManage();
         }
     }

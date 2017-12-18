@@ -63,5 +63,24 @@ namespace HISGUIClinicDoctorLib.ViewModels
             else
                 return false;
         }
+
+        public string getPatientBMIMsg()
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.getPatientBMIMsg(RegistrationID);
+        }
+
+        // 当前医生看诊的挂号单ID
+        #region RegistrationID
+        public static readonly DependencyProperty RegistrationIDProperty = DependencyProperty.Register(
+            "RegistrationID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public int RegistrationID
+        {
+            get { return (int)GetValue(RegistrationIDProperty); }
+            set { SetValue(RegistrationIDProperty, value); }
+        }
+
+        #endregion
     }
 }

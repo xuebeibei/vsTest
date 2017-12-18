@@ -42,6 +42,9 @@ namespace CommContracts
         Dictionary<int, string> getAllRegistration();
 
         [OperationContract]
+        string getPatientBMIMsg(int RegistrationID);
+
+        [OperationContract]
         List<CommContracts.Employee> getAllDoctor();
 
         [OperationContract]

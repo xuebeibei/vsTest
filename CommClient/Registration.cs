@@ -30,6 +30,11 @@ namespace CommClient
             return client.getAllRegistration();
         }
 
+        public string getPatientBMIMsg(int RegistrationID)
+        {
+            return client.getPatientBMIMsg(RegistrationID);
+        }
+
         public void SetRegistration(CommContracts.Registration registration)
         {
             this.registration = registration;

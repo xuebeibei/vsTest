@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HISGUIClinicDoctorLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <Grid>
+    <Grid x:Name="RecevingGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>

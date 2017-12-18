@@ -80,6 +80,12 @@ namespace CommServer
             return temp.getAllRegistration();
         }
 
+        public string getPatientBMIMsg(int RegistrationID)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.getPatientBMIMsg(RegistrationID);
+        }
+
         public List<CommContracts.Employee> getAllDoctor()
         {
             BLL.Employee temp = new BLL.Employee();

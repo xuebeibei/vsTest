@@ -30,12 +30,20 @@ namespace HISGUIClinicDoctorLib.Views
         public PatientBMIMsg()
         {
             InitializeComponent();
+            this.Loaded += PatientBMIMsg_Loaded;
         }
 
         [Import]
         private HISGUIClinicDoctorVM ImportVM
         {
             set { this.VM = value; }
+        }
+
+        private void PatientBMIMsg_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            string str = vm?.getPatientBMIMsg();
+            this.BMILabel.Content = str;
         }
 
         private void HistoryBtn_Click(object sender, RoutedEventArgs e)
