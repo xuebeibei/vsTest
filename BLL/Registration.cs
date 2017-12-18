@@ -45,11 +45,12 @@ namespace BLL
             string strBMIMsg = "";
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                //var query = ctx.Registrations.Include("Patient").Include("SignalSource").ToList();
-
                 var query = ctx.Registrations.Find(RegistrationID); // 不带外键
                 var temp = query as DAL.Registration;
-                strBMIMsg = temp.ToBMIMsg();
+
+                int PatientID = temp.PatientID;
+                var patient = ctx.Patients.Find(PatientID);
+                strBMIMsg = patient.ToBMIMsg();
             }
 
             return strBMIMsg;

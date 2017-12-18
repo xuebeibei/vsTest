@@ -118,27 +118,9 @@ namespace DAL
             return str;
         }
 
-        public string ToBMIMsg()
-        {
-            string str = "姓名：" + Patient.Name + "\r\n" +
-                        "性别：" + (Patient.Gender == DAL.GenderEnum.man ? "男" : "女") + "\r\n" +
-                        "年龄：" + (DateTime.Now.Year - Patient.BirthDay.Year).ToString() + "岁\r\n" +
-                        "身高：165CM\r\n" +
-                        "体重：50KG"+ "\r\n" +
-                        "BIM指数：" + "\r\n" +
-                        "体温：" + "\r\n" +
-                        "呼吸：" + "\r\n" +
-                        "脉搏：" + "\r\n" +
-                        "血压：" + "\r\n" +
-                        "血糖浓度：" + "\r\n" +
-                        "视力：" + "\r\n" +
-                        "氧饱和度：" + "\r\n" +
-                        "疼痛评分：" + "\r\n" +
-                        "初步诊断：" + "\r\n";
-            return str;
-        }
+        
         public int ID { get; set; }                               // 挂号单ID
-        public Patient Patient { get; set; }                      // 患者ID
+        public int PatientID { get; set; }                      // 患者ID
         public SignalSource SignalSource { get; set; }            // 号源ID
         public User RegisterUser { get; set; }                    // 经办人ID
         public double RegisterFee { get; set; }                   // 挂号费用
@@ -150,6 +132,8 @@ namespace DAL
         public int ArrivalNum { get; set; }                       // 到诊序号
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
+
+        public virtual Patient Patient { get; set; }                      // 患者
     }
 
     public class Triage
@@ -174,13 +158,35 @@ namespace DAL
             this.Name = "";
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
+            Registrations = new List<Registration>();
         }
 
+        public string ToBMIMsg()
+        {
+            string str = "姓名：" + this.Name + "\r\n" +
+                        "性别：" + (this.Gender == DAL.GenderEnum.man ? "男" : "女") + "\r\n" +
+                        "年龄：" + (DateTime.Now.Year - this.BirthDay.Year).ToString() + "岁\r\n" +
+                        "身高：165CM\r\n" +
+                        "体重：50KG" + "\r\n" +
+                        "BIM指数：" + "\r\n" +
+                        "体温：" + "\r\n" +
+                        "呼吸：" + "\r\n" +
+                        "脉搏：" + "\r\n" +
+                        "血压：" + "\r\n" +
+                        "血糖浓度：" + "\r\n" +
+                        "视力：" + "\r\n" +
+                        "氧饱和度：" + "\r\n" +
+                        "疼痛评分：" + "\r\n" +
+                        "初步诊断：" + "\r\n";
+            return str;
+        }
         public int ID { get; set; }              // 患者ID
         public string Name { get; set; }         // 姓名
         public GenderEnum Gender { get; set; }   // 性别
         public DateTime BirthDay { get; set; }   // 出生日期
         public VolkEnum Volk { get; set; }       // 民族
+
+        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
     }
 
     public class Employee
