@@ -12,6 +12,12 @@ namespace DAL
     public enum VolkEnum { hanzu, other };
     public enum SeeDoctorStatusEnum { watting, seeing, leaved };
     public enum TriageStatusEnum { no, yes };
+    public enum JobEnum
+    {
+        Initial,        // 初级
+        Middle,         // 中级
+        Senior          // 高级
+    }
 
     public class HisContext : DbContext
     {
@@ -214,10 +220,12 @@ namespace DAL
         {
             Name = "";
             Employees = new List<Employee>();
+            JobEnum = JobEnum.Initial;
         }
         public int ID { get; set; }
         public string Name { get; set; }
         public bool Default { get; set; }
+        public JobEnum JobEnum { get; set; }
 
         public virtual ICollection<Employee> Employees { get; set; }
     }
