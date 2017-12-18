@@ -25,15 +25,15 @@ namespace DAL.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
+                        DepartmentID = c.Int(nullable: false),
+                        JobID = c.Int(nullable: false),
                         Gender = c.Int(nullable: false),
-                        Department_ID = c.Int(),
-                        Job_ID = c.Int(),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Departments", t => t.Department_ID)
-                .ForeignKey("dbo.Jobs", t => t.Job_ID)
-                .Index(t => t.Department_ID)
-                .Index(t => t.Job_ID);
+                .ForeignKey("dbo.Departments", t => t.DepartmentID, cascadeDelete: true)
+                .ForeignKey("dbo.Jobs", t => t.JobID, cascadeDelete: true)
+                .Index(t => t.DepartmentID)
+                .Index(t => t.JobID);
             
             CreateTable(
                 "dbo.Jobs",
@@ -42,6 +42,72 @@ namespace DAL.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Default = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Username = c.String(),
+                        Password = c.String(),
+                        Status = c.Int(nullable: false),
+                        LastLogin = c.DateTime(nullable: false),
+                        EmployeeID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Employees", t => t.EmployeeID, cascadeDelete: true)
+                .Index(t => t.EmployeeID);
+            
+            CreateTable(
+                "dbo.Registrations",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        PatientID = c.Int(nullable: false),
+                        SignalSourceID = c.Int(nullable: false),
+                        RegisterUserID = c.Int(nullable: false),
+                        RegisterFee = c.Double(nullable: false),
+                        RegisterTime = c.DateTime(nullable: false),
+                        SeeDoctorStatus = c.Int(nullable: false),
+                        TriageStatus = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.Patients", t => t.PatientID, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.RegisterUserID, cascadeDelete: true)
+                .ForeignKey("dbo.SignalSources", t => t.SignalSourceID, cascadeDelete: true)
+                .Index(t => t.PatientID)
+                .Index(t => t.SignalSourceID)
+                .Index(t => t.RegisterUserID);
+            
+            CreateTable(
+                "dbo.Patients",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Gender = c.Int(nullable: false),
+                        BirthDay = c.DateTime(nullable: false),
+                        Volk = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
+                "dbo.SignalSources",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        Price = c.Double(nullable: false),
+                        VistTime = c.DateTime(nullable: false),
+                        TimeIntival = c.Int(nullable: false),
+                        DepartmentID = c.Int(nullable: false),
+                        SignalType = c.Int(nullable: false),
+                        MaxNum = c.Int(nullable: false),
+                        AddMaxNum = c.Int(nullable: false),
+                        HasUsedNum = c.Int(nullable: false),
+                        Specialist = c.Int(nullable: false),
+                        Explain = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -84,72 +150,6 @@ namespace DAL.Migrations
                         YiBaoEnum = c.Int(nullable: false),
                         MaxNum = c.Int(nullable: false),
                         MinNum = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Patients",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
-                        Gender = c.Int(nullable: false),
-                        BirthDay = c.DateTime(nullable: false),
-                        Volk = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID);
-            
-            CreateTable(
-                "dbo.Registrations",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        PatientID = c.Int(nullable: false),
-                        SignalSourceID = c.Int(nullable: false),
-                        RegisterUserID = c.Int(nullable: false),
-                        RegisterFee = c.Double(nullable: false),
-                        RegisterTime = c.DateTime(nullable: false),
-                        SeeDoctorStatus = c.Int(nullable: false),
-                        TriageStatus = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Patients", t => t.PatientID, cascadeDelete: true)
-                .ForeignKey("dbo.Users", t => t.RegisterUserID, cascadeDelete: true)
-                .ForeignKey("dbo.SignalSources", t => t.SignalSourceID, cascadeDelete: true)
-                .Index(t => t.PatientID)
-                .Index(t => t.SignalSourceID)
-                .Index(t => t.RegisterUserID);
-            
-            CreateTable(
-                "dbo.Users",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
-                        Password = c.String(),
-                        Status = c.Int(nullable: false),
-                        LastLogin = c.DateTime(nullable: false),
-                        Employee_ID = c.Int(),
-                    })
-                .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Employees", t => t.Employee_ID)
-                .Index(t => t.Employee_ID);
-            
-            CreateTable(
-                "dbo.SignalSources",
-                c => new
-                    {
-                        ID = c.Int(nullable: false, identity: true),
-                        Price = c.Double(nullable: false),
-                        VistTime = c.DateTime(nullable: false),
-                        TimeIntival = c.Int(nullable: false),
-                        DepartmentID = c.Int(nullable: false),
-                        SignalType = c.Int(nullable: false),
-                        MaxNum = c.Int(nullable: false),
-                        AddMaxNum = c.Int(nullable: false),
-                        HasUsedNum = c.Int(nullable: false),
-                        Specialist = c.Int(nullable: false),
-                        Explain = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -214,27 +214,27 @@ namespace DAL.Migrations
             DropForeignKey("dbo.Triages", "User_ID", "dbo.Users");
             DropForeignKey("dbo.Registrations", "SignalSourceID", "dbo.SignalSources");
             DropForeignKey("dbo.Registrations", "RegisterUserID", "dbo.Users");
-            DropForeignKey("dbo.Users", "Employee_ID", "dbo.Employees");
             DropForeignKey("dbo.Registrations", "PatientID", "dbo.Patients");
-            DropForeignKey("dbo.Employees", "Job_ID", "dbo.Jobs");
-            DropForeignKey("dbo.Employees", "Department_ID", "dbo.Departments");
+            DropForeignKey("dbo.Users", "EmployeeID", "dbo.Employees");
+            DropForeignKey("dbo.Employees", "JobID", "dbo.Jobs");
+            DropForeignKey("dbo.Employees", "DepartmentID", "dbo.Departments");
             DropIndex("dbo.Triages", new[] { "User_ID" });
-            DropIndex("dbo.Users", new[] { "Employee_ID" });
             DropIndex("dbo.Registrations", new[] { "RegisterUserID" });
             DropIndex("dbo.Registrations", new[] { "SignalSourceID" });
             DropIndex("dbo.Registrations", new[] { "PatientID" });
-            DropIndex("dbo.Employees", new[] { "Job_ID" });
-            DropIndex("dbo.Employees", new[] { "Department_ID" });
+            DropIndex("dbo.Users", new[] { "EmployeeID" });
+            DropIndex("dbo.Employees", new[] { "JobID" });
+            DropIndex("dbo.Employees", new[] { "DepartmentID" });
             DropTable("dbo.Triages");
             DropTable("dbo.Recipes");
             DropTable("dbo.RecipeDetails");
-            DropTable("dbo.SignalSources");
-            DropTable("dbo.Users");
-            DropTable("dbo.Registrations");
-            DropTable("dbo.Patients");
             DropTable("dbo.Medicines");
             DropTable("dbo.MedicinePackings");
             DropTable("dbo.MedicineAlias");
+            DropTable("dbo.SignalSources");
+            DropTable("dbo.Patients");
+            DropTable("dbo.Registrations");
+            DropTable("dbo.Users");
             DropTable("dbo.Jobs");
             DropTable("dbo.Employees");
             DropTable("dbo.Departments");

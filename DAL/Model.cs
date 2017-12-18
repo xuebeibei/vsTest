@@ -61,31 +61,21 @@ namespace DAL
             this.Abbr = "";
             this.IsDoctorDepartment = false;
             this.ParentID = 0;
-            SignalSources = new List<SignalSource>();
+            Employees = new List<Employee>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Abbr { get; set; }
         public bool IsDoctorDepartment { get; set; }
         public int ParentID { get; set; }    // 父类科室
-
-        public virtual ICollection<SignalSource> SignalSources { get; set; }
+        
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 
     public class SignalSource
     {
         public SignalSource()
         {
-            this.Price = 0.0;
-            this.TimeIntival = 1;
-            this.DepartmentID = 0;
-            this.SignalType = 1;
-            this.MaxNum = 0;
-            this.AddMaxNum = 0;
-            this.HasUsedNum = 0;
-            this.Specialist = 0;
-            this.Explain = "";
-
             Registrations = new List<Registration>();
         }
         public int ID { get; set; }              // 号源ID
@@ -101,8 +91,7 @@ namespace DAL
         public int Specialist { get; set; }       // 专家ID
         public string Explain { get; set; }       // 说明
 
-        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
-        public virtual Department Department { get; set; }          
+        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
     }
 
     public class Registration
@@ -209,12 +198,14 @@ namespace DAL
 
         public int ID { get; set; }
         public string Name { get; set; }
-        public Department Department { get; set; }
+        public int DepartmentID { get; set; }
         public int JobID { get; set; }
-        public virtual Job Job { get; set; }
+        
         public GenderEnum Gender { get; set; }   // 性别
 
         public virtual ICollection<User> Users { get; set; }
+        public virtual Job Job { get; set; }
+        public virtual Department Department { get; set; }
     }
 
     public class Job
@@ -246,6 +237,7 @@ namespace DAL
         public Recipe()
         {
             this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
+            RecipeDetails = new List<RecipeDetail>();
         }
 
         public int ID { get; set; }                               // 处方ID
@@ -266,13 +258,15 @@ namespace DAL
 
         public int AuditorUserID { get; set; }                    // 审核、调配，核对、发药人员
         public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
+
+        public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
     }
 
     public class RecipeDetail
     {
         public RecipeDetail()
         {
-
+            Recipe = new Recipe();
         }
 
         public int ID { get; set; }                               // 处方正文ID
@@ -286,6 +280,7 @@ namespace DAL
         public string Illustration { get; set; }                  // 说明
 
         public int RecipeID { get; set; }                         // 所属处方ID
+        public virtual Recipe Recipe { get; set; }                
     }
 
     public enum MedicineTypeEnum
@@ -304,7 +299,8 @@ namespace DAL
     {
         public Medicine()
         {
-
+            MedicineAlias = new List<MedicineAlias>();
+            MedicinePacking = new List<MedicinePacking>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -321,6 +317,9 @@ namespace DAL
         public int MaxNum { get; set; }                             // 最大库存量
         public int MinNum { get; set; }                             // 最小库存量
 
+        public virtual ICollection<MedicineAlias> MedicineAlias { get; set; }
+        public virtual ICollection<MedicinePacking> MedicinePacking { get; set; }
+
     }
 
     // 药品名称表
@@ -328,13 +327,14 @@ namespace DAL
     {
         public MedicineAlias()
         {
-
+            Medicine = new Medicine();
         }
 
         public int ID { get; set; }
         public string Alias { get; set; }
 
         public int MedicineID { get; set; }
+        public virtual Medicine Medicine { get; set; }
     }
 
     // 药品包装表
@@ -342,7 +342,7 @@ namespace DAL
     {
         public MedicinePacking()
         {
-
+            Medicine = new Medicine();
         }
 
         public int ID { get; set; }
@@ -350,8 +350,7 @@ namespace DAL
         public int Num { get; set; }          // 换算量，最小包装为0
         public int SmallID { get; set; }      // 小包装ID,最小包装为0
 
-        public int MedicineID { get; set; }   // 药品
+        public int MedicineID { get; set; }
+        public virtual Medicine Medicine { get; set; }
     }
-
-    // 
 }
