@@ -45,7 +45,7 @@ namespace BLL
             string strBMIMsg = "";
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = ctx.Registrations.Find(RegistrationID); // 不带外键
+                var query = ctx.Registrations.Find(RegistrationID); 
                 var temp = query as DAL.Registration;
 
                 int PatientID = temp.PatientID;

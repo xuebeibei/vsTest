@@ -38,6 +38,7 @@ namespace DAL
             this.Username = "";
             this.Password = "";
             this.Status = LoginStatus.unknow;
+            Registrations = new List<Registration>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -46,6 +47,8 @@ namespace DAL
         public LoginStatus Status { get; set; }
         public DateTime LastLogin { get; set; }
         public Employee Employee { get; set; }
+
+        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
     }
 
     public class Department
@@ -61,7 +64,7 @@ namespace DAL
         public string Name { get; set; }
         public string Abbr { get; set; }
         public bool IsDoctorDepartment { get; set; }
-        public int ParentID { get; set; }
+        public int ParentID { get; set; }    // 父类科室
     }
 
     public class SignalSource
@@ -77,6 +80,8 @@ namespace DAL
             this.HasUsedNum = 0;
             this.Specialist = 0;
             this.Explain = "";
+
+            Registrations = new List<Registration>();
         }
         public int ID { get; set; }              // 号源ID
         public double Price { get; set; }        // 号源单价
@@ -90,6 +95,8 @@ namespace DAL
         public int HasUsedNum { get; set; }       // 已挂号源
         public int Specialist { get; set; }       // 专家ID
         public string Explain { get; set; }       // 说明
+
+        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
     }
 
     public class Registration
@@ -101,8 +108,6 @@ namespace DAL
             this.RegisterUser = new User();
             this.RegisterFee = 0.0;
             this.RegisterTime = DateTime.Now;
-            this.CancelFee = 0.0;
-            this.ArrivalNum = 0;
             this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
             this.TriageStatus = TriageStatusEnum.no;
         }
@@ -120,20 +125,17 @@ namespace DAL
 
         
         public int ID { get; set; }                               // 挂号单ID
-        public int PatientID { get; set; }                      // 患者ID
-        public SignalSource SignalSource { get; set; }            // 号源ID
-        public User RegisterUser { get; set; }                    // 经办人ID
+        public int PatientID { get; set; }                        // 患者ID
+        public int SignalSourceID { get; set; }                   // 号源ID
+        public int RegisterUserID { get; set; }                   // 经办人ID
         public double RegisterFee { get; set; }                   // 挂号费用
-        public DateTime RegisterTime { get; set; }                // 经办时间 
-        public DateTime CancelTime { get; set; }                  // 退号时间
-        public User CancelUser { get; set; }                      // 退号经办人ID
-        public double CancelFee { get; set; }                     // 退号所收取的手续费
-        public DateTime ArrivalTime { get; set; }                 // 到诊时间
-        public int ArrivalNum { get; set; }                       // 到诊序号
+        public DateTime RegisterTime { get; set; }                // 经办时间
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
 
         public virtual Patient Patient { get; set; }                      // 患者
+        public virtual SignalSource SignalSource { get; set; }            // 号源
+        public virtual User RegisterUser { get; set; }                    // 经办人
     }
 
     public class Triage
