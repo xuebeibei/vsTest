@@ -64,6 +64,18 @@
     <Compile Include="Migrations\201712180936494_PaperTest3.Designer.cs">
       <DependentUpon>201712180936494_PaperTest3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712180957568_PaperTest4.cs" />
+    <Compile Include="Migrations\201712180957568_PaperTest4.Designer.cs">
+      <DependentUpon>201712180957568_PaperTest4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712181013292_PaperTest5.cs" />
+    <Compile Include="Migrations\201712181013292_PaperTest5.Designer.cs">
+      <DependentUpon>201712181013292_PaperTest5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712190152126_PaperTest6.cs" />
+    <Compile Include="Migrations\201712190152126_PaperTest6.Designer.cs">
+      <DependentUpon>201712190152126_PaperTest6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -92,6 +104,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712180936494_PaperTest3.resx">
       <DependentUpon>201712180936494_PaperTest3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712180957568_PaperTest4.resx">
+      <DependentUpon>201712180957568_PaperTest4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712181013292_PaperTest5.resx">
+      <DependentUpon>201712181013292_PaperTest5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712190152126_PaperTest6.resx">
+      <DependentUpon>201712190152126_PaperTest6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

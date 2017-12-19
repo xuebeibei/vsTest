@@ -18,6 +18,24 @@ namespace DAL
         Middle,         // 中级
         Senior          // 高级
     }
+    public enum DepartmentEnum
+    {
+        Other,     // 其他科室
+        LinChuang, // 临床科室
+        YiJi       // 医技科室  
+    }
+
+    public enum MedicineTypeEnum
+    {
+        putong,
+        teshu
+    }
+    public enum YiBaoEnum
+    {
+        jia,
+        yi,
+        feijiafeiyi
+    }
 
     public class HisContext : DbContext
     {
@@ -29,12 +47,12 @@ namespace DAL
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Triage> Triages { get; set; }
-
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeDetail> RecipeDetails { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicineAlias> MedicineAliases { get; set; }
         public DbSet<MedicinePacking> MedicinePackings { get; set; }
+        public DbSet<DosageForm> DosageForms { get; set; }
     }
 
     public class User
@@ -58,6 +76,7 @@ namespace DAL
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
     }
+    
 
     public class Department
     {
@@ -65,14 +84,14 @@ namespace DAL
         {
             this.Name = "";
             this.Abbr = "";
-            this.IsDoctorDepartment = false;
+            this.DepartmentEnum = DepartmentEnum.Other;
             this.ParentID = 0;
             Employees = new List<Employee>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
         public string Abbr { get; set; }
-        public bool IsDoctorDepartment { get; set; }
+        public DepartmentEnum DepartmentEnum { get; set; }
         public int ParentID { get; set; }    // 父类科室
         
         public virtual ICollection<Employee> Employees { get; set; }
@@ -204,6 +223,7 @@ namespace DAL
 
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Abbr { get; set; }
         public int DepartmentID { get; set; }
         public int JobID { get; set; }
         
@@ -291,18 +311,6 @@ namespace DAL
         public virtual Recipe Recipe { get; set; }                
     }
 
-    public enum MedicineTypeEnum
-    {
-        putong,
-        teshu
-    }
-    public enum YiBaoEnum
-    {
-        jia,
-        yi,
-        feijiafeiyi
-    }
-
     public class Medicine
     {
         public Medicine()
@@ -314,7 +322,7 @@ namespace DAL
         public int ID { get; set; }                                 // ID
         public MedicineTypeEnum MedicineTypeEnum { get; set; }      // 药品类型
         public string Name { get; set; }                            // 药品品名
-        public string DosageForm { get; set; }                      // 药品剂型
+        public int DosageFormID { get; set; }                       // 药品剂型ID       
         public string AdministrationRoute { get; set; }             // 给药方式
         public string Specifications { get; set; }                  // 规格
         public string Manufacturer { get; set; }                    // 生产厂家
@@ -327,7 +335,7 @@ namespace DAL
 
         public virtual ICollection<MedicineAlias> MedicineAlias { get; set; }
         public virtual ICollection<MedicinePacking> MedicinePacking { get; set; }
-
+        public virtual DosageForm DosageForm { get; set; }
     }
 
     // 药品名称表
@@ -360,5 +368,26 @@ namespace DAL
 
         public int MedicineID { get; set; }
         public virtual Medicine Medicine { get; set; }
+    }
+
+    public enum DosageFormEnum
+    {
+        Xiyao,                  // 西药
+        ZhongChengYao           // 中成药  
+    }
+
+
+    // 药品剂型
+    public class DosageForm
+    {
+        public DosageForm()
+        {
+            Medicines = new List<Medicine>();
+        }
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public DosageFormEnum DosageFormEnum { get; set; }
+
+        public virtual ICollection<Medicine> Medicines { get; set; }
     }
 }
