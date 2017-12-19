@@ -123,9 +123,6 @@ namespace DAL
     {
         public Registration()
         {
-            this.Patient = new Patient();
-            this.SignalSource = new SignalSource();
-            this.RegisterUser = new User();
             this.RegisterFee = 0.0;
             this.RegisterTime = DateTime.Now;
             this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
@@ -216,8 +213,6 @@ namespace DAL
         public Employee()
         {
             Name = "";
-            Department = new Department();
-            Job = new Job();
             Users = new List<User>();
         }
 
@@ -294,7 +289,6 @@ namespace DAL
     {
         public RecipeDetail()
         {
-            Recipe = new Recipe();
         }
 
         public int ID { get; set; }                               // 处方正文ID
@@ -343,7 +337,6 @@ namespace DAL
     {
         public MedicineAlias()
         {
-            Medicine = new Medicine();
         }
 
         public int ID { get; set; }
@@ -358,7 +351,6 @@ namespace DAL
     {
         public MedicinePacking()
         {
-            Medicine = new Medicine();
         }
 
         public int ID { get; set; }
