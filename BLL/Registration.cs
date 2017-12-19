@@ -28,7 +28,8 @@ namespace BLL
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = ctx.Registrations.Include("Patient").Include("SignalSource").ToList();
+                var query = from r in ctx.Registrations
+                            select r;
 
                 foreach (DAL.Registration tem in query)
                 {
