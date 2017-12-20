@@ -15,7 +15,8 @@ namespace BLL
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = ctx.Employees.Include("Job").Include("Department").ToList();
+                var query = from e in ctx.Employees 
+                            select e;
 
                 var config = new MapperConfiguration(cfg =>
                 {
