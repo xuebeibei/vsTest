@@ -320,5 +320,10 @@ namespace HISGUICore.MyContorls
             List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
             return list;
         }
+
+        private void SelectTempletBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
