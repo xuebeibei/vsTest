@@ -18,6 +18,12 @@ using System.Windows.Shapes;
 
 namespace HISGUICore.MyContorls
 {
+    public enum UsageEnum
+    {
+        口服,
+        注射
+    }
+
     //数据类
     public class MyDetail : INotifyPropertyChanged
     {
@@ -26,7 +32,7 @@ namespace HISGUICore.MyContorls
         public string DrugName { set; get; }
         public int SingleDose { get; set; }
         public string SingleDoseUnit { get; set; }
-        public string Usage { get; set; }
+        public UsageEnum Usage { get; set; }
         public string DDDS { get; set; }
         public int DaysNum { get; set; }
         public int IntegralDose { get; set; }
@@ -57,6 +63,7 @@ namespace HISGUICore.MyContorls
             string bindingname,
             int width = 50,
             bool bReadonly = true,
+            bool bIsCombo = false,
             Visibility visibility = Visibility.Visible)
         {
             this.TittleWidth = width;
@@ -64,12 +71,14 @@ namespace HISGUICore.MyContorls
             this.IsReadOnly = bReadonly;
             this.TittleBinding = bindingname;
             this.Visibility = visibility;
+            this.bIsCombo = bIsCombo;
         }
         public int TittleWidth { get; set; }
         public string TittleName { get; set; }
         public bool IsReadOnly { get; set; }
         public string TittleBinding { get; set; }
         public Visibility Visibility { get; set; }
+        public bool bIsCombo { get; set; }
     }
 
     public enum MyTableEditEnum
@@ -98,15 +107,15 @@ namespace HISGUICore.MyContorls
             List<MyTableTittle> list = new List<MyTableTittle>();
             if (myTableEditEnum == MyTableEditEnum.xichengyao)
             {
-                list.Add(new MyTableTittle("ID", "DrugID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("ID", "DrugID", 40, true, false, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "DrugName", 150));
                 list.Add(new MyTableTittle("规格", "Specifications", 80));
                 list.Add(new MyTableTittle("包装", "MedicinePacking", 80));
                 list.Add(new MyTableTittle("单次剂量*", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
                 list.Add(new MyTableTittle("关联", "GroupNum", 50, false));
-                list.Add(new MyTableTittle("频次*", "DDDS", 80, false));
-                list.Add(new MyTableTittle("用法*", "Usage", 80, false));
+                list.Add(new MyTableTittle("频次*", "DDDS", 80, false, true));
+                list.Add(new MyTableTittle("用法*", "Usage", 80, false, true));
                 list.Add(new MyTableTittle("天数*", "DayNum", 80, false));
                 list.Add(new MyTableTittle("总量", "IntegralDose"));
                 list.Add(new MyTableTittle("单位", "IntegralDoseUnit"));
@@ -137,15 +146,27 @@ namespace HISGUICore.MyContorls
 
             for (int i = 0; i < list.Count(); i++)
             {
-                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
+                if(list.ElementAt(i).bIsCombo)
                 {
-                    Header = list.ElementAt(i).TittleName,
-                    Binding = new Binding(list.ElementAt(i).TittleBinding),
-                    Width = list.ElementAt(i).TittleWidth,
-                    IsReadOnly = list.ElementAt(i).IsReadOnly,
-                    Visibility = list.ElementAt(i).Visibility
+                    this.MyDataGrid.Columns.Add(new DataGridComboBoxColumn()
+                    {
+                        Header = list.ElementAt(i).TittleName,
+                        SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
+                        ItemsSource = Enum.GetValues(typeof(UsageEnum))
+                    });
+                }
+                else
+                {
+                    this.MyDataGrid.Columns.Add(new DataGridTextColumn()
+                    {
+                        Header = list.ElementAt(i).TittleName,
+                        Binding = new Binding(list.ElementAt(i).TittleBinding),
+                        Width = list.ElementAt(i).TittleWidth,
+                        IsReadOnly = list.ElementAt(i).IsReadOnly,
+                        Visibility = list.ElementAt(i).Visibility
 
-                });
+                    });
+                }
             }
 
             MyDataGrid.ItemsSource = items;
@@ -236,7 +257,7 @@ namespace HISGUICore.MyContorls
             dynamic item = new MyDetail();
             item.DrugID = medicine.ID;
             item.DrugName = medicine.Name;
-            item.Usage = medicine.AdministrationRoute;
+            item.Usage = UsageEnum.口服;
             item.Specifications = medicine.Specifications;
 
 
