@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace HISGUICore.MyContorls
 {
@@ -240,8 +241,6 @@ namespace HISGUICore.MyContorls
                 DataGrid dg = sender as DataGrid;
                 if (dg.SelectedCells.Count <= 0)
                 {
-                    // 此处直接查找框可编辑
-                    //this.FindNameEdit.Focus();
                     return;
                 }
 
@@ -257,6 +256,8 @@ namespace HISGUICore.MyContorls
                         if (nIndex == m_skipList.Count - 1)
                         {
                             this.MyDataGrid.SelectedCells.Clear();
+                            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, 
+                                (Action)(() => { Keyboard.Focus(FindNameEdit); }));
                         }
                         else
                         {
