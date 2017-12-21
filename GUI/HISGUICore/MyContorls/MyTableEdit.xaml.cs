@@ -34,9 +34,9 @@ namespace HISGUICore.MyContorls
     //数据类
     public class MyDetail : INotifyPropertyChanged
     {
-        public int DrugID { get; set; }
+        public int ID { get; set; }
         public string GroupNum { set; get; }
-        public string DrugName { set; get; }
+        public string Name { set; get; }
         public int SingleDose { get; set; }
         public string SingleDoseUnit { get; set; }
         public UsageEnum Usage { get; set; }
@@ -123,14 +123,14 @@ namespace HISGUICore.MyContorls
             m_skipList.Clear();
             if (m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
             {
-                list.Add(new MyTableTittle("ID", "DrugID", 40, true, Visibility.Hidden));
-                list.Add(new MyTableTittle("名称", "DrugName", 150));
+                list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("名称", "Name", 150));
                 list.Add(new MyTableTittle("规格", "Specifications", 80));
                 list.Add(new MyTableTittle("包装", "MedicinePacking", 80));
                 list.Add(new MyTableTittle("单次剂量*", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
                 list.Add(new MyTableTittle("频次*", "DDDS", 80, false));
-                list.Add(new MyTableTittle("天数*", "DayNum", 80, false));
+                list.Add(new MyTableTittle("天数*", "DaysNum", 80, false));
                 list.Add(new MyTableTittle("总量", "IntegralDose"));
                 list.Add(new MyTableTittle("单位", "IntegralDoseUnit"));
                 list.Add(new MyTableTittle("关联", "GroupNum", 50, false));
@@ -157,18 +157,19 @@ namespace HISGUICore.MyContorls
                 m_myTableEditEnum == MyTableEditEnum.jianyan ||
                 m_myTableEditEnum == MyTableEditEnum.jiancha)
             {
-                list.Add(new MyTableTittle("ID", "DrugID", 40, true, Visibility.Hidden));
-                list.Add(new MyTableTittle("名称", "Name", 100, false));
-                list.Add(new MyTableTittle("单位", "Unit", 80, false));
-                list.Add(new MyTableTittle("次数", "Num", 50, false));
-                list.Add(new MyTableTittle("说明", "Illustration"));
+                list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("名称", "Name", 150));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("次数", "SingleDose", 80, false));
+                list.Add(new MyTableTittle("备注", "Illustration", 120, true));
+
 
                 m_nIDIndex = 0;
                 m_nSingleDoseIndex = 3;
                 m_nIllustrationIndex = 4;
 
-                //m_skipList.Add(m_nSingleDoseIndex);
-                //m_skipList.Add(m_nIllustrationIndex);
+                m_skipList.Add(m_nSingleDoseIndex);
+                m_skipList.Add(m_nIllustrationIndex);
 
             }
             m_skipList.Sort();
@@ -260,8 +261,6 @@ namespace HISGUICore.MyContorls
                         else
                         {
                             GridSkipTo(rowIdnex, m_skipList.ElementAt(nIndex + 1));
-
-                            // 在跳转数量少的情况下会中断执行，原因待查
                         }
                     }
                 }
