@@ -13,17 +13,8 @@
                 <Border Background="BlanchedAlmond">
                     <TextBlock>faadsfdf</TextBlock>
                 </Border>
-
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="SelectTempletBtn" Margin="5" Click="SelectTempletBtn_Click">选择模板</Button>
-                <Button x:Name="SelectDrugBtn" Margin="5" Click="SelectDrugBtn_Click">选择药品</Button>
-                <Button x:Name="CopyRecipeBtn" Margin="5" Click="CopyRecipeBtn_Click">复制处方</Button>
-
-                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存模板</Button>
-                <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
-            </StackPanel>
+            
             <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -34,43 +25,15 @@
                 <TabItem Header="中药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="zhongyaoPanel">
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition></RowDefinition>
-                                    <RowDefinition></RowDefinition>
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="17.2"></ColumnDefinition>
-                                    <ColumnDefinition Width="62.8"/>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">用法：</Label>
-                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="2"></TextBox>
-                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="3">每日剂量：</Label>
-                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="4"></TextBox>
-                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="5">天数：</Label>
-                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="6"></TextBox>
-                                <Label Margin="5,5,5.2,5.2" Grid.Row="0" Grid.Column="7">总剂量：</Label>
-                                <TextBox Margin="4.8,5,5,4.2" Grid.Row="0" Grid.Column="8"></TextBox>
-                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="9">频次：</Label>
-                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="10"></TextBox>
-                                <Label Margin="5,4.8,5,5.4" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">服药要求：</Label>
-                                <TextBox Margin="5,4.8,5,4.4" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="9"></TextBox>
-                            </Grid>
-
-
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存模板</Button>
+                <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

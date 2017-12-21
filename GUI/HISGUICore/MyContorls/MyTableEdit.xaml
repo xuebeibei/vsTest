@@ -6,6 +6,12 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBox x:Name="FindNameEdit" Margin="5" Width="100" KeyDown="FindNameEdit_KeyDown"></TextBox>
+                <Button x:Name="SelectTempletBtn" Margin="5" Click="SelectTempletBtn_Click">选择模板</Button>
+                <!--<Button x:Name="CopyRecipeBtn" Margin="5" Click="CopyRecipeBtn_Click">复制处方</Button>-->
+                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">删除</Button>
+            </StackPanel>
             <DataGrid x:Name="MyDataGrid" Margin="5" AutoGenerateColumns="False"
                       LoadingRow="MyDataGrid_LoadingRow" 
                       SelectionUnit="CellOrRowHeader"
@@ -28,11 +34,6 @@
                 </DataGrid.RowStyle>-->
                 <!--隔行变色 AlternationCount="2"-->
             </DataGrid>
-
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBox x:Name="FindNameEdit" Margin="5" Width="100" KeyDown="FindNameEdit_KeyDown"></TextBox>
-                <Button x:Name="DeleteBtn" Margin="5" Width="20" Click="DeleteBtn_Click">-</Button>
-            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>
