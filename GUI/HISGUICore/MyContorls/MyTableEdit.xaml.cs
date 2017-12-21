@@ -289,9 +289,12 @@ namespace HISGUICore.MyContorls
 
         private void InsertIntoMedicine(CommContracts.Medicine medicine)
         {
+            if (medicine == null)
+                return;
+
             dynamic item = new MyDetail();
-            item.DrugID = medicine.ID;
-            item.DrugName = medicine.Name;
+            item.ID = medicine.ID;
+            item.Name = medicine.Name;
             item.Usage = UsageEnum.口服;
             item.Specifications = medicine.Specifications;
 
