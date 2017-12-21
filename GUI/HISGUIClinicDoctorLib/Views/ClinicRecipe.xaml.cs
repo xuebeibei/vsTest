@@ -27,10 +27,12 @@ namespace HISGUIClinicDoctorLib.Views
     [Export("ClinicRecipe", typeof(ClinicRecipe))]
     public partial class ClinicRecipe : HISGUIViewBase
     {
+        private MyTableEdit myTableEdit;
         public ClinicRecipe()
         {
             InitializeComponent();
-            xiyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.xichengyao));
+            myTableEdit = new MyTableEdit(MyTableEditEnum.xichengyao);
+            xiyaoPanel.Children.Add(myTableEdit);
             zhongyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.zhongyao));
         }
 
@@ -38,11 +40,6 @@ namespace HISGUIClinicDoctorLib.Views
         private HISGUIClinicDoctorVM ImportVM
         {
             set { this.VM = value; }
-        }
-
-        private void SelectTempletBtn_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void SelectDrugBtn_Click(object sender, RoutedEventArgs e)
@@ -57,8 +54,11 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<MyDetail> list = myTableEdit.GetAllDetails();
             var vm = this.DataContext as HISGUIClinicDoctorVM;
+
             bool? saveResult = vm?.SaveRecipe();
+
             if (!saveResult.HasValue)
             {
                 MessageBox.Show("保存失败！");

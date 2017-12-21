@@ -256,7 +256,7 @@ namespace HISGUICore.MyContorls
                         if (nIndex == m_skipList.Count - 1)
                         {
                             this.MyDataGrid.SelectedCells.Clear();
-                            this.Dispatcher.BeginInvoke(DispatcherPriority.Background, 
+                            this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                                 (Action)(() => { Keyboard.Focus(FindNameEdit); }));
                         }
                         else
@@ -316,9 +316,15 @@ namespace HISGUICore.MyContorls
             Dg.SelectedCells.Add(Dg.CurrentCell);
         }
 
-        public List<CommContracts.Medicine> GetAllDetails()
+        public List<MyDetail> GetAllDetails()
         {
-            List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
+            List<MyDetail> list = new List<MyDetail>();
+
+            for (int i = 0; i < m_items.Count; i++)
+            {
+                var tem = m_items.ElementAt(i) as MyDetail;
+                list.Add(tem);
+            }
             return list;
         }
 
