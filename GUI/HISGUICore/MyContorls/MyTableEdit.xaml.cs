@@ -19,7 +19,7 @@ using System.Windows.Shapes;
 namespace HISGUICore.MyContorls
 {
     //数据类
-    public class DynamicXiYao : INotifyPropertyChanged
+    public class MyDetail : INotifyPropertyChanged
     {
         public int DrugID { get; set; }
         public string GroupNum { set; get; }
@@ -32,6 +32,8 @@ namespace HISGUICore.MyContorls
         public int IntegralDose { get; set; }
         public string IntegralDoseUnit { get; set; }
         public string Illustration { get; set; }
+        public string MedicinePacking { get; set; }
+        public string Specifications { get; set; }
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
@@ -50,7 +52,12 @@ namespace HISGUICore.MyContorls
 
         }
 
-        public MyTableTittle(string name, string bindingname, bool bReadonly = true, int width = 50, Visibility visibility = Visibility.Visible)
+        public MyTableTittle(
+            string name,
+            string bindingname,
+            int width = 50,
+            bool bReadonly = true,
+            Visibility visibility = Visibility.Visible)
         {
             this.TittleWidth = width;
             this.TittleName = name;
@@ -91,21 +98,23 @@ namespace HISGUICore.MyContorls
             List<MyTableTittle> list = new List<MyTableTittle>();
             if (myTableEditEnum == MyTableEditEnum.xichengyao)
             {
-                list.Add(new MyTableTittle("药品ID", "DrugID", true, 40, Visibility.Hidden));
-                list.Add(new MyTableTittle("组号", "GroupNum", false));
-                list.Add(new MyTableTittle("药品名称", "DrugName", false, 100));
-                list.Add(new MyTableTittle("单次剂量", "SingleDose", false));
-                list.Add(new MyTableTittle("单次量单位", "SingleDoseUnit"));
-                list.Add(new MyTableTittle("用法", "Usage", false));
-                list.Add(new MyTableTittle("用药频次", "DDDS", false));
-                list.Add(new MyTableTittle("天数", "DaysNum"));
+                list.Add(new MyTableTittle("ID", "DrugID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("名称", "DrugName", 150));
+                list.Add(new MyTableTittle("规格", "Specifications", 80));
+                list.Add(new MyTableTittle("包装", "MedicinePacking", 80));
+                list.Add(new MyTableTittle("单次剂量*", "SingleDose", 80, false));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("关联", "GroupNum", 50, false));
+                list.Add(new MyTableTittle("频次*", "DDDS", 80, false));
+                list.Add(new MyTableTittle("用法*", "Usage", 80, false));
+                list.Add(new MyTableTittle("天数*", "DayNum", 80, false));
                 list.Add(new MyTableTittle("总量", "IntegralDose"));
-                list.Add(new MyTableTittle("总量单位", "IntegralDoseUnit"));
-                list.Add(new MyTableTittle("说明", "Illustration"));
+                list.Add(new MyTableTittle("单位", "IntegralDoseUnit"));
+                list.Add(new MyTableTittle("备注", "Illustration", 120, true));
             }
             else if (myTableEditEnum == MyTableEditEnum.zhongyao)
             {
-                list.Add(new MyTableTittle("药品名称", "DrugName", false, 100));
+                list.Add(new MyTableTittle("药品名称", "DrugName", 100, false));
                 list.Add(new MyTableTittle("剂量", "SingleDose"));
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
                 list.Add(new MyTableTittle("特殊要求", "Usage"));
@@ -114,9 +123,9 @@ namespace HISGUICore.MyContorls
                 myTableEditEnum == MyTableEditEnum.jianyan ||
                 myTableEditEnum == MyTableEditEnum.jiancha)
             {
-                list.Add(new MyTableTittle("名称", "Name", false, 100));
-                list.Add(new MyTableTittle("单位", "Unit", false));
-                list.Add(new MyTableTittle("次数", "Num", false));
+                list.Add(new MyTableTittle("名称", "Name", 100, false));
+                list.Add(new MyTableTittle("单位", "Unit", 80, false));
+                list.Add(new MyTableTittle("次数", "Num", 50, false));
                 list.Add(new MyTableTittle("说明", "Illustration"));
             }
             return list;
@@ -133,30 +142,13 @@ namespace HISGUICore.MyContorls
                     Header = list.ElementAt(i).TittleName,
                     Binding = new Binding(list.ElementAt(i).TittleBinding),
                     Width = list.ElementAt(i).TittleWidth,
+                    IsReadOnly = list.ElementAt(i).IsReadOnly,
                     Visibility = list.ElementAt(i).Visibility
+
                 });
             }
 
             MyDataGrid.ItemsSource = items;
-        }
-
-        private void AddBtn_Click(object sender, RoutedEventArgs e)
-        {
-            dynamic item = new DynamicXiYao();
-            item.DrugID = 0;
-            item.GroupNum = "1";
-            item.DrugName = "阿莫西林";
-            item.SingleDose = 3;
-
-            item.SingleDoseUnit = "片";
-            item.Usage = "口服";
-            item.DaysNum = 1;
-            item.DDDS = "一日三次";
-            item.IntegralDose = 1;
-            item.IntegralDoseUnit = "盒";
-            item.Illustration = "饭后温水送服";
-
-            items.Add(item);
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
@@ -168,19 +160,98 @@ namespace HISGUICore.MyContorls
             }
         }
 
-
-        //string str = "";
-        //for (int i = 0; i < items.Count; i++)
-        //{
-        //    DynamicXiYao dynamic = items.ElementAt(i);
-        //    str += dynamic.GroupNum;
-        //}
-        //MessageBox.Show(str);
-
         private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             // 添加行号, 不智能，删除时候行号会乱
             //e.Row.Header = e.Row.GetIndex() + 1; 
+        }
+
+        private void MyDataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+                DataGrid dg = sender as DataGrid;
+                if (dg.SelectedCells.Count <= 0)
+                {
+                    this.FindNameEdit.Focus();
+                    return;
+                }
+
+
+                int columnIndex = dg.SelectedCells[0].Column.DisplayIndex;  // 列坐标
+                int rowIdnex = int.Parse(dg.Items.IndexOf(dg.SelectedCells[0].Item).ToString()); // 行坐标
+
+                if (columnIndex == 4)
+                {
+                    GridSkipTo(rowIdnex, 6);
+                }
+                else if (columnIndex == 6)
+                {
+                    GridSkipTo(rowIdnex, 7);
+                }
+                else if (columnIndex == 7)
+                {
+                    this.MyDataGrid.SelectedCells.Clear();
+                    //this.FindNameEdit.Focus();
+                }
+            }
+        }
+
+        private void FindNameEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            this.DeleteBtn.Focus();
+
+            if (e.Key == Key.Enter || e.Key == Key.Return)
+            {
+                var window = new Window();
+                SelectItemsList list = new SelectItemsList();
+                window.Content = list;
+                bool? bResult = window.ShowDialog();
+
+                if (bResult.Value)
+                {
+                    this.FindNameEdit.Text = "";
+                    InsertIntoMedicine(list.CurrentMedicine);
+                }
+            }
+        }
+
+        private void InsertIntoMedicine(CommContracts.Medicine medicine)
+        {
+
+            //public int DrugID { get; set; }
+            //public string GroupNum { set; get; }
+            //public string DrugName { set; get; }
+            //public int SingleDose { get; set; }
+            //public string SingleDoseUnit { get; set; }
+            //public string Usage { get; set; }
+            //public string DDDS { get; set; }
+            //public int DaysNum { get; set; }
+            //public int IntegralDose { get; set; }
+            //public string IntegralDoseUnit { get; set; }
+            //public string Illustration { get; set; }
+            //public string MedicinePacking { get; set; }
+            //public string Specifications { get; set; }
+
+            dynamic item = new MyDetail();
+            item.DrugID = medicine.ID;
+            item.DrugName = medicine.Name;
+            item.Usage = medicine.AdministrationRoute;
+            item.Specifications = medicine.Specifications;
+
+
+            items.Add(item);
+            // 设置该行单次剂量默认选中可填
+            GridSkipTo(items.Count - 1, 4);
+        }
+
+        private void GridSkipTo(int row, int column)
+        {
+            var Dg = this.MyDataGrid;
+            Dg.SelectedCells.Clear();
+            Dg.Focus();
+            Dg.CurrentCell = new DataGridCellInfo(Dg.Items[row], Dg.Columns[column]);
+            Dg.SelectedCells.Add(Dg.CurrentCell);
         }
     }
 }

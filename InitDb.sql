@@ -58,6 +58,8 @@ insert into Employees values(N'孙医生', 2,  1, 1, 'SZR');
 select * from Medicines;
 
 insert into Medicines values(0,N'阿莫西林', N'口服',N'1.33g/片',N'新华制药',0,0,1,0,300,100,1);
+insert into Medicines values(0,N'感冒胶囊', N'口服',N'1.33g/粒',N'新华制药',0,0,1,0,300,100,2);
+insert into Medicines values(0,N'板蓝根冲剂', N'口服',N'1.33g/包',N'新华制药',0,0,1,0,300,100,8);
 
 select * from MedicineAlias;
 -- 别名表
@@ -72,6 +74,7 @@ insert into DosageForms values(N'片剂',0);
 insert into DosageForms values(N'胶囊',0);
 insert into DosageForms values(N'粉针剂',0);
 insert into DosageForms values(N'水剂',0);
+insert into DosageForms values(N'颗粒冲剂',0);
 
 insert into DosageForms values(N'大蜜丸',1);
 insert into DosageForms values(N'小蜜丸',1);

@@ -6,10 +6,31 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel>
-            <DataGrid x:Name="MyDataGrid" Margin="5" AutoGenerateColumns="False" LoadingRow="MyDataGrid_LoadingRow" CanUserAddRows="False">
+            <DataGrid x:Name="MyDataGrid" Margin="5" AutoGenerateColumns="False"
+                      LoadingRow="MyDataGrid_LoadingRow" 
+                      SelectionUnit="CellOrRowHeader"
+                      CanUserAddRows="False"
+                      PreviewKeyDown="MyDataGrid_PreviewKeyDown" 
+                      >
+                <!--<DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex"
+                         Value="0">
+                                <Setter Property="Background" Value="#FFE4DDB3" />
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex"
+                         Value="1">
+                                <Setter Property="Background" Value="#FFF2F2F2" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>-->
+                <!--隔行变色 AlternationCount="2"-->
             </DataGrid>
+
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button x:Name="AddBtn" Margin="5" Width="20" Click="AddBtn_Click">+</Button>
+                <TextBox x:Name="FindNameEdit" Margin="5" Width="100" KeyDown="FindNameEdit_KeyDown"></TextBox>
                 <Button x:Name="DeleteBtn" Margin="5" Width="20" Click="DeleteBtn_Click">-</Button>
             </StackPanel>
         </StackPanel>

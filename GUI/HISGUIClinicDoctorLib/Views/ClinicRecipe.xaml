@@ -10,7 +10,10 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label>过敏史：</Label>
-                <TextBlock></TextBlock>
+                <Border Background="BlanchedAlmond">
+                    <TextBlock>faadsfdf</TextBlock>
+                </Border>
+
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="SelectTempletBtn" Margin="5" Click="SelectTempletBtn_Click">选择模板</Button>
@@ -37,7 +40,8 @@
                                     <RowDefinition></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="17.2"></ColumnDefinition>
+                                    <ColumnDefinition Width="62.8"/>
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
@@ -48,18 +52,18 @@
                                     <ColumnDefinition Width="auto"></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                                <Label Margin="5" Grid.Row="0" Grid.Column="0">用法：</Label>
-                                <TextBox Margin="5" Grid.Row="0" Grid.Column="1"></TextBox>
-                                <Label Margin="5" Grid.Row="0" Grid.Column="2">每日剂量：</Label>
-                                <TextBox Margin="5" Grid.Row="0" Grid.Column="3"></TextBox>
-                                <Label Margin="5" Grid.Row="0" Grid.Column="4">天数：</Label>
-                                <TextBox Margin="5" Grid.Row="0" Grid.Column="5"></TextBox>
-                                <Label Margin="5" Grid.Row="0" Grid.Column="6">总剂量：</Label>
-                                <TextBox Margin="5" Grid.Row="0" Grid.Column="7"></TextBox>
-                                <Label Margin="5" Grid.Row="0" Grid.Column="8">频次：</Label>
-                                <TextBox Margin="5" Grid.Row="0" Grid.Column="9"></TextBox>
-                                <Label Margin="5" Grid.Row="1" Grid.Column="0">服药要求：</Label>
-                                <TextBox Margin="5" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="9"></TextBox>
+                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">用法：</Label>
+                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="2"></TextBox>
+                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="3">每日剂量：</Label>
+                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="4"></TextBox>
+                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="5">天数：</Label>
+                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="6"></TextBox>
+                                <Label Margin="5,5,5.2,5.2" Grid.Row="0" Grid.Column="7">总剂量：</Label>
+                                <TextBox Margin="4.8,5,5,4.2" Grid.Row="0" Grid.Column="8"></TextBox>
+                                <Label Margin="5,5,5,5.2" Grid.Row="0" Grid.Column="9">频次：</Label>
+                                <TextBox Margin="5,5,5,4.2" Grid.Row="0" Grid.Column="10"></TextBox>
+                                <Label Margin="5,4.8,5,5.4" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">服药要求：</Label>
+                                <TextBox Margin="5,4.8,5,4.4" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="9"></TextBox>
                             </Grid>
 
 
