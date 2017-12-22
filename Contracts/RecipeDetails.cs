@@ -7,6 +7,19 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
+    public enum UsageEnum
+    {
+        口服,
+        注射
+    }
+
+    public enum DDDSEnum
+    {
+        一日1次,
+        一日2次,
+        一日3次
+    }
+
     [DataContract]
     public class RecipeDetail
     {
@@ -24,9 +37,9 @@ namespace CommContracts
         [DataMember]
         public int SingleDose { get; set; }                       // 单次剂量
         [DataMember]
-        public string Usage { get; set; }                         // 用法
+        public UsageEnum Usage { get; set; }                         // 用法
         [DataMember]
-        public string DDDS { get; set; }                          // 使用频率
+        public DDDSEnum DDDS { get; set; }                          // 使用频率
         [DataMember]
         public int DaysNum { get; set; }                          // 天数
         [DataMember]

@@ -37,6 +37,19 @@ namespace DAL
         feijiafeiyi
     }
 
+    public enum UsageEnum
+    {
+        口服,
+        注射
+    }
+
+    public enum DDDSEnum
+    {
+        一日1次,
+        一日2次,
+        一日3次
+    }
+
     public class HisContext : DbContext
     {
         public DbSet<User> Users { get; set; }
@@ -295,8 +308,8 @@ namespace DAL
         public string GroupNum { set; get; }                      // 组别
         public int MedicineID { get; set; }                       // 药品ID
         public int SingleDose { get; set; }                       // 单次剂量
-        public string Usage { get; set; }                         // 用法
-        public string DDDS { get; set; }                          // 使用频率
+        public UsageEnum Usage { get; set; }                      // 用法
+        public DDDSEnum DDDS { get; set; }                        // 使用频率
         public int DaysNum { get; set; }                          // 天数
         public int IntegralDose { get; set; }                     // 总量
         public string Illustration { get; set; }                  // 说明
@@ -367,10 +380,10 @@ namespace DAL
         public virtual Medicine Medicine { get; set; }
     }
 
-    public enum DosageFormEnum
+    public enum DosageFormEnum   // 剂型分类
     {
-        Xiyao,                  // 西药
-        ZhongChengYao           // 中成药  
+        Xiyao,                   // 西药
+        ZhongChengYao            // 中成药  
     }
 
 

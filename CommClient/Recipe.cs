@@ -73,8 +73,8 @@ namespace CommClient
                 recipeDetail.GroupNum = tem.GroupNum;
                 recipeDetail.MedicineID = tem.MedicineID;
                 recipeDetail.SingleDose = tem.SingleDose;
-                recipeDetail.Usage = tem.Usage.ToString();
-                recipeDetail.DDDS = tem.DDDS.ToString();
+                recipeDetail.Usage = tem.Usage;
+                recipeDetail.DDDS = tem.DDDS;
                 recipeDetail.DaysNum = tem.DaysNum;
                 recipeDetail.IntegralDose = tem.IntegralDose;
                 recipeDetail.Illustration = tem.Illustration;

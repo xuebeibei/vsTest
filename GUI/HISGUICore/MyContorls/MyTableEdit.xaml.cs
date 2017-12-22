@@ -19,19 +19,6 @@ using System.Windows.Threading;
 
 namespace HISGUICore.MyContorls
 {
-    public enum UsageEnum
-    {
-        口服,
-        注射
-    }
-
-    public enum DDDSEnum
-    {
-        一日1次,
-        一日2次,
-        一日3次
-    }
-
     //数据类
     public class MyDetail : INotifyPropertyChanged
     {
@@ -40,8 +27,8 @@ namespace HISGUICore.MyContorls
         public string Name { set; get; }
         public int SingleDose { get; set; }
         public string SingleDoseUnit { get; set; }
-        public UsageEnum Usage { get; set; }
-        public DDDSEnum DDDS { get; set; }
+        public CommContracts.UsageEnum Usage { get; set; }
+        public CommContracts.DDDSEnum DDDS { get; set; }
         public int DaysNum { get; set; }
         public int IntegralDose { get; set; }
         public string IntegralDoseUnit { get; set; }
@@ -190,7 +177,7 @@ namespace HISGUICore.MyContorls
                     {
                         Header = list.ElementAt(i).TittleName,
                         SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
-                        ItemsSource = Enum.GetValues(typeof(DDDSEnum))
+                        ItemsSource = Enum.GetValues(typeof(CommContracts.DDDSEnum))
                     });
                 }
                 else if (i == m_nUsageIndex) // 用法
@@ -199,7 +186,7 @@ namespace HISGUICore.MyContorls
                     {
                         Header = list.ElementAt(i).TittleName,
                         SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
-                        ItemsSource = Enum.GetValues(typeof(UsageEnum))
+                        ItemsSource = Enum.GetValues(typeof(CommContracts.UsageEnum))
                     });
                 }
                 else
@@ -296,7 +283,7 @@ namespace HISGUICore.MyContorls
             dynamic item = new MyDetail();
             item.ID = medicine.ID;
             item.Name = medicine.Name;
-            item.Usage = UsageEnum.口服;
+            item.Usage = CommContracts.UsageEnum.口服;
             item.Specifications = medicine.Specifications;
 
             m_items.Add(item);

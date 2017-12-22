@@ -44,8 +44,8 @@ namespace BLL
                     recipeDetail.GroupNum = tem.GroupNum;
                     recipeDetail.MedicineID = tem.MedicineID;
                     recipeDetail.SingleDose = tem.SingleDose;
-                    recipeDetail.Usage = tem.Usage.ToString();
-                    recipeDetail.DDDS = tem.DDDS.ToString();
+                    recipeDetail.Usage = (DAL.UsageEnum)tem.Usage;
+                    recipeDetail.DDDS = (DAL.DDDSEnum)tem.DDDS;
                     recipeDetail.DaysNum = tem.DaysNum;
                     recipeDetail.IntegralDose = tem.IntegralDose;
                     recipeDetail.Illustration = tem.Illustration;

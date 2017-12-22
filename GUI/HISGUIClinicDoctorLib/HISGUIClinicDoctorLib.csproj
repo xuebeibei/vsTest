@@ -143,6 +143,10 @@
       <Project>{ab36f953-cc8d-427c-a427-36ddb542f73c}</Project>
       <Name>CommClient</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Contracts\CommContracts.csproj">
+      <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
+      <Name>CommContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HISGUICore\HISGUICore.csproj">
       <Project>{8fe73f6f-1765-4814-885d-320d7694e890}</Project>
       <Name>HISGUICore</Name>
