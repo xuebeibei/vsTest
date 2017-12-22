@@ -37,6 +37,24 @@ namespace BLL
                 myRecipe.WriteUserID = recipe.WriteUserID;
                 myRecipe.AuditorTime = DateTime.Now;
 
+                List<DAL.RecipeDetail> list = new List<DAL.RecipeDetail>();
+                foreach (var tem in recipe.RecipeDetails)
+                {
+                    DAL.RecipeDetail recipeDetail = new DAL.RecipeDetail();
+                    recipeDetail.GroupNum = tem.GroupNum;
+                    recipeDetail.DrugID = tem.DrugID;
+                    recipeDetail.SingleDose = tem.SingleDose;
+                    recipeDetail.Usage = tem.Usage.ToString();
+                    recipeDetail.DDDS = tem.DDDS.ToString();
+                    recipeDetail.DaysNum = tem.DaysNum;
+                    recipeDetail.IntegralDose = tem.IntegralDose;
+                    recipeDetail.Illustration = tem.Illustration;
+
+                    list.Add(recipeDetail);
+                }
+
+                myRecipe.RecipeDetails = list;
+
                 ctx.Recipes.Add(myRecipe);
                 try
                 {

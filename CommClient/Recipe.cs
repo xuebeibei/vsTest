@@ -65,6 +65,24 @@ namespace CommClient
             recipe.AuditorTime = this.AuditorTime;
             recipe.AuditorUserID = this.AuditorUserID;
 
+            List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
+            foreach (var tem in RecipeDetails)
+            {
+                CommContracts.RecipeDetail recipeDetail = new CommContracts.RecipeDetail();
+                recipeDetail.ID = tem.ID;
+                recipeDetail.GroupNum = tem.GroupNum;
+                recipeDetail.DrugID = tem.DrugID;
+                recipeDetail.SingleDose = tem.SingleDose;
+                recipeDetail.Usage = tem.Usage.ToString();
+                recipeDetail.DDDS = tem.DDDS.ToString();
+                recipeDetail.DaysNum = tem.DaysNum;
+                recipeDetail.IntegralDose = tem.IntegralDose;
+                recipeDetail.Illustration = tem.Illustration;
+
+                list.Add(recipeDetail);
+            }
+
+            recipe.RecipeDetails = list;
 
             return client.SaveRecipe(recipe); 
         }

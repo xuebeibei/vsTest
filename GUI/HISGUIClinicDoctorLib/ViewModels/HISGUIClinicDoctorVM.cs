@@ -55,7 +55,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
 
-        public bool SaveRecipe()
+        public bool SaveRecipe(List<CommClient.RecipeDetail> list)
         {
             CommClient.Recipe myd = new CommClient.Recipe();
 
@@ -67,6 +67,8 @@ namespace HISGUIClinicDoctorLib.ViewModels
             myd.SumOfMoney = 500.00;
             myd.WriteTime = DateTime.Now;
             myd.WriteUserID = 1;
+
+            myd.RecipeDetails = list;
 
             if (myd.SaveRecipe())
                 return true;

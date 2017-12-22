@@ -138,4 +138,8 @@ select * from Recipes;
 
 delete from Recipes;
 
+select * from RecipeDetails;
+
+delete from RecipeDetails;
+
 

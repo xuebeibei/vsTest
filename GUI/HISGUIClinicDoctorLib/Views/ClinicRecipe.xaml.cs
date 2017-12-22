@@ -54,10 +54,25 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            List<MyDetail> list = myTableEdit.GetAllDetails();
+            List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             var vm = this.DataContext as HISGUIClinicDoctorVM;
 
-            bool? saveResult = vm?.SaveRecipe();
+            List<CommClient.RecipeDetail> list = new List<CommClient.RecipeDetail>();
+            foreach(var tem in listDetail)
+            {
+                CommClient.RecipeDetail recipeDetail = new CommClient.RecipeDetail();
+                recipeDetail.GroupNum = tem.GroupNum;
+                recipeDetail.DrugID = tem.ID;
+                recipeDetail.SingleDose = tem.SingleDose;
+                recipeDetail.Usage = tem.Usage.ToString();
+                recipeDetail.DDDS = tem.DDDS.ToString();
+                recipeDetail.DaysNum = tem.DaysNum;
+                recipeDetail.IntegralDose = tem.IntegralDose;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
+
+            bool? saveResult = vm?.SaveRecipe(list);
 
             if (!saveResult.HasValue)
             {
