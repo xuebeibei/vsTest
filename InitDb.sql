@@ -134,7 +134,8 @@ update SignalSources set HasUsedNum = 5 where ID = 1;
 select * from Triages;
 -- 分诊表
 
+select * from Recipes;
 
-
+delete from Recipes;
 
 

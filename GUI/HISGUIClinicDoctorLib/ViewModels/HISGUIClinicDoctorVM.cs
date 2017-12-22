@@ -58,6 +58,16 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public bool SaveRecipe()
         {
             CommClient.Recipe myd = new CommClient.Recipe();
+
+            myd.No = "0001";
+            myd.MedicalInstitution = "北京市积水潭总院";
+            myd.ChargeTypeEnum = 1;
+            myd.RegistrationID = RegistrationID;
+            myd.ClinicalDiagnosis = "感冒";
+            myd.SumOfMoney = 500.00;
+            myd.WriteTime = DateTime.Now;
+            myd.WriteUserID = 1;
+
             if (myd.SaveRecipe())
                 return true;
             else

@@ -13,5 +13,9 @@ namespace BLL
 {
     public class RecipeDetail
     {
+        public bool SaveRecipeDetail()
+        {
+            return true;
+        }
     }
 }

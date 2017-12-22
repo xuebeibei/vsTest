@@ -54,6 +54,9 @@ namespace CommContracts
         bool SaveTriage(int nDoctorID, int nRegistrationID);
 
         [OperationContract]
-        bool SaveRecipe();
+        bool SaveRecipe(CommContracts.Recipe recipe); 
+
+        [OperationContract]
+        bool SaveRecipeDetail();
     }
 }

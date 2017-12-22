@@ -104,10 +104,16 @@ namespace CommServer
             return temp.SaveTriage(nDoctorID, nRegistrationID);
         }
 
-        public bool SaveRecipe()
+        public bool SaveRecipe(CommContracts.Recipe recipe)
         {
             BLL.Recipe temp = new BLL.Recipe();
-            return temp.SaveRecipe();
+            return temp.SaveRecipe(recipe);
+        }
+
+        public bool SaveRecipeDetail()
+        {
+            BLL.RecipeDetail temp = new BLL.RecipeDetail();
+            return temp.SaveRecipeDetail();
         }
     }
 }

@@ -21,22 +21,22 @@ namespace BLL
             }
         }
 
-        public bool SaveRecipe()
+        public bool SaveRecipe(CommContracts.Recipe recipe)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var myRecipe = new DAL.Recipe();
-
-                myRecipe.No = "123";
+                myRecipe.No = recipe.No;
                 myRecipe.RecipeTypeEnum = DAL.RecipeTypeEnum.PuTong;
-                myRecipe.MedicalInstitution = "三河市燕郊镇开发区卫生院";
-                myRecipe.ChargeTypeEnum = 1;
-                myRecipe.RegistrationID = 1;
-                myRecipe.ClinicalDiagnosis = "感冒发烧";
-                myRecipe.SumOfMoney = 60.0;
-                myRecipe.WriteTime = DateTime.Now;
-                myRecipe.WriteUserID = 1;
+                myRecipe.MedicalInstitution = recipe.MedicalInstitution;
+                myRecipe.ChargeTypeEnum = recipe.ChargeTypeEnum;
+                myRecipe.RegistrationID = recipe.RegistrationID;
+                myRecipe.ClinicalDiagnosis = recipe.ClinicalDiagnosis;
+                myRecipe.SumOfMoney = recipe.SumOfMoney;
+                myRecipe.WriteTime = recipe.WriteTime;
+                myRecipe.WriteUserID = recipe.WriteUserID;
                 myRecipe.AuditorTime = DateTime.Now;
+
                 ctx.Recipes.Add(myRecipe);
                 try
                 {
