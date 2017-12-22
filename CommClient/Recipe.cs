@@ -32,9 +32,6 @@ namespace CommClient
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
 
-        public int AuditorUserID { get; set; }                    // 审核、调配，核对、发药人员
-        public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
-
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
 
         public Recipe()
@@ -62,8 +59,6 @@ namespace CommClient
             recipe.SumOfMoney = this.SumOfMoney;
             recipe.WriteTime = this.WriteTime;
             recipe.WriteUserID = this.WriteUserID;
-            recipe.AuditorTime = this.AuditorTime;
-            recipe.AuditorUserID = this.AuditorUserID;
 
             List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
             foreach (var tem in RecipeDetails)

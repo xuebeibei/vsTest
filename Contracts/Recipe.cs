@@ -47,10 +47,6 @@ namespace CommContracts
         [DataMember]
         public int WriteUserID { get; set; }                      // 开具医生
         [DataMember]
-        public int AuditorUserID { get; set; }                    // 审核、调配，核对、发药人员
-        [DataMember]
-        public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
-        [DataMember]
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
     }
 }

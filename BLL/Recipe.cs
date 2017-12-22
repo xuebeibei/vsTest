@@ -20,7 +20,7 @@ namespace BLL
                 var recipe = context.Recipes.Find(3);
             }
         }
-
+        
         public bool SaveRecipe(CommContracts.Recipe recipe)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
@@ -35,7 +35,7 @@ namespace BLL
                 myRecipe.SumOfMoney = recipe.SumOfMoney;
                 myRecipe.WriteTime = recipe.WriteTime;
                 myRecipe.WriteUserID = recipe.WriteUserID;
-                myRecipe.AuditorTime = DateTime.Now;
+                
 
                 List<DAL.RecipeDetail> list = new List<DAL.RecipeDetail>();
                 foreach (var tem in recipe.RecipeDetails)
