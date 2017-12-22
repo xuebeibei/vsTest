@@ -100,5 +100,12 @@ namespace HISGUIClinicDoctorLib.Views
         {
 
         }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            string str = vm?.newRecipe();
+            this.RecipeMsg.Text = str;
+        }
     }
 }

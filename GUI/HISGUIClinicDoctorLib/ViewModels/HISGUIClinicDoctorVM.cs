@@ -55,25 +55,51 @@ namespace HISGUIClinicDoctorLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
 
+        public string newRecipe()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();
+            recipe.No = "0002";
+            recipe.WriteTime = DateTime.Now;
+
+            ClinicRecipe = recipe;
+            return ClinicRecipe.ToTipString();
+        }
+
         public bool SaveRecipe(List<CommClient.RecipeDetail> list)
         {
-            CommClient.Recipe myd = new CommClient.Recipe();
+            //CommClient.Recipe myd = new CommClient.Recipe();
 
-            myd.No = "0001";
-            myd.MedicalInstitution = "北京市积水潭总院";
-            myd.ChargeTypeEnum = 1;
-            myd.RegistrationID = RegistrationID;
-            myd.ClinicalDiagnosis = "感冒";
-            myd.SumOfMoney = 500.00;
-            myd.WriteTime = DateTime.Now;
-            myd.WriteUserID = 1;
+            //myd.No = "0001";
+            //myd.MedicalInstitution = "北京市积水潭总院";
+            //myd.ChargeTypeEnum = 1;
+            //myd.RegistrationID = RegistrationID;
+            //myd.ClinicalDiagnosis = "感冒";
+            //myd.SumOfMoney = 500.00;
+            //myd.WriteTime = DateTime.Now;
+            //myd.WriteUserID = 1;
 
-            myd.RecipeDetails = list;
+            //myd.RecipeDetails = list;
 
-            if (myd.SaveRecipe())
+            //if (myd.SaveRecipe())
+            //    return true;
+            //else
+            //    return false;
+            ClinicRecipe.No = "0001";
+            ClinicRecipe.MedicalInstitution = "北京市积水潭总院";
+            ClinicRecipe.ChargeTypeEnum = 1;
+            ClinicRecipe.RegistrationID = RegistrationID;
+            ClinicRecipe.ClinicalDiagnosis = "感冒";
+            ClinicRecipe.SumOfMoney = 500.00;
+            ClinicRecipe.WriteTime = DateTime.Now;
+            ClinicRecipe.WriteUserID = 1;
+
+            ClinicRecipe.RecipeDetails = list;
+
+            if (ClinicRecipe.SaveRecipe())
                 return true;
             else
                 return false;
+
         }
 
         public string getPatientBMIMsg()
@@ -91,6 +117,19 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             get { return (int)GetValue(RegistrationIDProperty); }
             set { SetValue(RegistrationIDProperty, value); }
+        }
+
+        #endregion
+
+        // 当前医生看诊的挂号单ID
+        #region ClinicRecipe
+        public static readonly DependencyProperty ClinicRecipeProperty = DependencyProperty.Register(
+            "ClinicRecipe", typeof(CommClient.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommClient.Recipe ClinicRecipe
+        {
+            get { return (CommClient.Recipe)GetValue(ClinicRecipeProperty); }
+            set { SetValue(ClinicRecipeProperty, value); }
         }
 
         #endregion
