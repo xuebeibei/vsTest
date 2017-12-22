@@ -76,6 +76,7 @@ namespace DAL
             this.Password = "";
             this.Status = LoginStatus.unknow;
             Registrations = new List<Registration>();
+            Recipes = new List<Recipe>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -88,6 +89,7 @@ namespace DAL
         public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
+        public virtual ICollection<Recipe> Recipes { get; set; }   // 所有开具的处方
     }
     
 
@@ -291,9 +293,7 @@ namespace DAL
         public double SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
-
-        public int AuditorUserID { get; set; }                    // 审核、调配，核对、发药人员
-        public DateTime AuditorTime { get; set; }                 // 审核、调配，核对、发药时间
+        public virtual User WriteUser { get; set; }               // 开具医生
 
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
     }
