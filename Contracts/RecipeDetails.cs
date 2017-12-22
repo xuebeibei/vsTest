@@ -20,7 +20,7 @@ namespace CommContracts
         [DataMember]
         public string GroupNum { set; get; }                      // 组别
         [DataMember]
-        public int DrugID { get; set; }                           // 药品ID
+        public int MedicineID { get; set; }                           // 药品ID
         [DataMember]
         public int SingleDose { get; set; }                       // 单次剂量
         [DataMember]

@@ -159,7 +159,7 @@ namespace DAL.Migrations
                     {
                         ID = c.Int(nullable: false, identity: true),
                         GroupNum = c.String(),
-                        DrugID = c.Int(nullable: false),
+                        MedicineID = c.Int(nullable: false),
                         SingleDose = c.Int(nullable: false),
                         Usage = c.String(),
                         DDDS = c.String(),

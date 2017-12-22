@@ -42,7 +42,7 @@ namespace BLL
                 {
                     DAL.RecipeDetail recipeDetail = new DAL.RecipeDetail();
                     recipeDetail.GroupNum = tem.GroupNum;
-                    recipeDetail.DrugID = tem.DrugID;
+                    recipeDetail.MedicineID = tem.MedicineID;
                     recipeDetail.SingleDose = tem.SingleDose;
                     recipeDetail.Usage = tem.Usage.ToString();
                     recipeDetail.DDDS = tem.DDDS.ToString();

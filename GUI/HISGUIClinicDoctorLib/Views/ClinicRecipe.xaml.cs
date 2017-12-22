@@ -62,7 +62,7 @@ namespace HISGUIClinicDoctorLib.Views
             {
                 CommClient.RecipeDetail recipeDetail = new CommClient.RecipeDetail();
                 recipeDetail.GroupNum = tem.GroupNum;
-                recipeDetail.DrugID = tem.ID;
+                recipeDetail.MedicineID = tem.ID;
                 recipeDetail.SingleDose = tem.SingleDose;
                 recipeDetail.Usage = tem.Usage.ToString();
                 recipeDetail.DDDS = tem.DDDS.ToString();

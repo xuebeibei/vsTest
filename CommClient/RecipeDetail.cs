@@ -16,7 +16,7 @@ namespace CommClient
 
         public int ID { get; set; }                               // 处方正文ID
         public string GroupNum { set; get; }                      // 组别
-        public int DrugID { get; set; }                           // 药品ID
+        public int MedicineID { get; set; }                           // 药品ID
         public int SingleDose { get; set; }                       // 单次剂量
         public string Usage { get; set; }                         // 用法
         public string DDDS { get; set; }                          // 使用频率
