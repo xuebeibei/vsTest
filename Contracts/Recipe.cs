@@ -16,6 +16,9 @@ namespace CommContracts
         {
             this.RecipeTypeEnum = RecipeTypeEnum.XiChengYao;
             RecipeDetails = new List<RecipeDetail>();
+
+            this.No = DateTime.Now.ToString("yyMMddhhmmss");
+            this.WriteTime = DateTime.Now;
         }
 
         [DataMember]

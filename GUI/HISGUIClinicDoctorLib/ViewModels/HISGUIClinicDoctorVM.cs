@@ -58,8 +58,8 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public string newRecipe()
         {
             CommContracts.Recipe recipe = new CommContracts.Recipe();
-            recipe.No = "0002";
-            recipe.WriteTime = DateTime.Now;
+            //recipe.No = "0002";
+            //recipe.WriteTime = DateTime.Now;
             
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();

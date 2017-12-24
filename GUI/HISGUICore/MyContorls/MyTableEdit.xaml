@@ -12,8 +12,8 @@
                       SelectionUnit="CellOrRowHeader"
                       CanUserAddRows="False"
                       PreviewKeyDown="MyDataGrid_PreviewKeyDown" 
-                      AlternationCount="2">
-                <DataGrid.RowStyle>
+                      >
+                <!--<DataGrid.RowStyle>
                     <Style TargetType="{x:Type DataGridRow}">
                         <Style.Triggers>
                             <Trigger Property="ItemsControl.AlternationIndex"
@@ -26,8 +26,8 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                </DataGrid.RowStyle>
-                <!--隔行变色 -->
+                </DataGrid.RowStyle>-->
+                <!--隔行变色 AlternationCount="2"-->
             </DataGrid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                 <TextBox x:Name="FindNameEdit" Margin="5" Width="100" KeyDown="FindNameEdit_KeyDown"></TextBox>
