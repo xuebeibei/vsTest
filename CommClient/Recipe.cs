@@ -16,30 +16,12 @@ namespace CommClient
 
         public CommContracts.Recipe MyRecipe { get; set; }
 
-        //public int ID { get; set; }                               // 处方ID
-        //public string No { get; set; }                            // 处方编号
-        //public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
-        //public string MedicalInstitution { get; set; }            // 医疗机构名称
-        //public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
-        //public int RegistrationID { get; set; }                   // 门诊ID
-        //public int InpatientID { get; set; }                      // 住院ID
-        //public string ClinicalDiagnosis { get; set; }             // 临床诊断
-        //public string PatientsIDCardNum { get; set; }             // 患者身份证    -- 麻醉和精一处方
-        //public string ProxyIDCardNum { get; set; }                // 代办人身份证  -- 麻醉和精一处方
-        //public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
-
-        //public double SumOfMoney { get; set; }                    // 金额
-        //public DateTime WriteTime { get; set; }                   // 开具时间
-        //public int WriteUserID { get; set; }                      // 开具医生
-
-        //public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
-
         public Recipe()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-            //RecipeDetails = new List<RecipeDetail>();
+
             MyRecipe = new CommContracts.Recipe();
         }
 
@@ -47,40 +29,6 @@ namespace CommClient
 
         public bool SaveRecipe()
         {
-            //recipe.ID = this.ID;
-            //recipe.No = this.No;
-            //recipe.RecipeTypeEnum = this.RecipeTypeEnum;
-            //recipe.MedicalInstitution = this.MedicalInstitution;
-            //recipe.ChargeTypeEnum = this.ChargeTypeEnum;
-            //recipe.RegistrationID = this.RegistrationID;
-            //recipe.InpatientID = this.InpatientID;
-            //recipe.ClinicalDiagnosis = this.ClinicalDiagnosis;
-            //recipe.PatientsIDCardNum = this.PatientsIDCardNum;
-            //recipe.ProxyIDCardNum = this.ProxyIDCardNum;
-            //recipe.ProxyName = this.ProxyName;
-            //recipe.SumOfMoney = this.SumOfMoney;
-            //recipe.WriteTime = this.WriteTime;
-            //recipe.WriteUserID = this.WriteUserID;
-
-            //List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
-            //foreach (var tem in RecipeDetails)
-            //{
-            //    CommContracts.RecipeDetail recipeDetail = new CommContracts.RecipeDetail();
-            //    recipeDetail.ID = tem.ID;
-            //    recipeDetail.GroupNum = tem.GroupNum;
-            //    recipeDetail.MedicineID = tem.MedicineID;
-            //    recipeDetail.SingleDose = tem.SingleDose;
-            //    recipeDetail.Usage = tem.Usage;
-            //    recipeDetail.DDDS = tem.DDDS;
-            //    recipeDetail.DaysNum = tem.DaysNum;
-            //    recipeDetail.IntegralDose = tem.IntegralDose;
-            //    recipeDetail.Illustration = tem.Illustration;
-
-            //    list.Add(recipeDetail);
-            //}
-
-            //recipe.RecipeDetails = list;
-
             return client.SaveRecipe(MyRecipe); 
         }   
     }
