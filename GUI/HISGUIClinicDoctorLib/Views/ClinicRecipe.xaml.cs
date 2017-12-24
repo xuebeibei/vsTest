@@ -57,10 +57,10 @@ namespace HISGUIClinicDoctorLib.Views
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             var vm = this.DataContext as HISGUIClinicDoctorVM;
 
-            List<CommClient.RecipeDetail> list = new List<CommClient.RecipeDetail>();
+            List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
             foreach(var tem in listDetail)
             {
-                CommClient.RecipeDetail recipeDetail = new CommClient.RecipeDetail();
+                CommContracts.RecipeDetail recipeDetail = new CommContracts.RecipeDetail();
                 recipeDetail.GroupNum = tem.GroupNum;
                 recipeDetail.MedicineID = tem.ID;
                 recipeDetail.SingleDose = tem.SingleDose;

@@ -48,5 +48,16 @@ namespace CommContracts
         public int WriteUserID { get; set; }                      // 开具医生
         [DataMember]
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
+
+        public string ToTipString()
+        {
+            string str = "";
+
+            str = "处方号：" + this.No + "  " +
+                "处方日期：" + this.WriteTime.ToString() + "  " +
+                "就诊科室：" + "外科" + "  " +
+                "看诊医师：" + "张医生" + "  ";
+            return str;
+        }
     }
 }

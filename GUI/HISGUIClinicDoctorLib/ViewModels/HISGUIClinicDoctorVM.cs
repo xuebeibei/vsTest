@@ -57,17 +57,17 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
         public string newRecipe()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
+            CommContracts.Recipe recipe = new CommContracts.Recipe();
             recipe.No = "0002";
             recipe.WriteTime = DateTime.Now;
-
+            
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();
         }
 
-        public bool SaveRecipe(List<CommClient.RecipeDetail> list)
+        public bool SaveRecipe(List<CommContracts.RecipeDetail> list)
         {
-            //CommClient.Recipe myd = new CommClient.Recipe();
+            CommClient.Recipe myd = new CommClient.Recipe();
 
             //myd.No = "0001";
             //myd.MedicalInstitution = "北京市积水潭总院";
@@ -94,8 +94,9 @@ namespace HISGUIClinicDoctorLib.ViewModels
             ClinicRecipe.WriteUserID = 1;
 
             ClinicRecipe.RecipeDetails = list;
+            myd.MyRecipe = ClinicRecipe;
 
-            if (ClinicRecipe.SaveRecipe())
+            if (myd.SaveRecipe())
                 return true;
             else
                 return false;
@@ -124,11 +125,11 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前医生看诊的挂号单ID
         #region ClinicRecipe
         public static readonly DependencyProperty ClinicRecipeProperty = DependencyProperty.Register(
-            "ClinicRecipe", typeof(CommClient.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "ClinicRecipe", typeof(CommContracts.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommClient.Recipe ClinicRecipe
+        public CommContracts.Recipe ClinicRecipe
         {
-            get { return (CommClient.Recipe)GetValue(ClinicRecipeProperty); }
+            get { return (CommContracts.Recipe)GetValue(ClinicRecipeProperty); }
             set { SetValue(ClinicRecipeProperty, value); }
         }
 
