@@ -45,7 +45,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Grid.Column="0">
-                <Button Margin="5">保存</Button>
+                <Button Margin="5" Click="Button_Click_5">保存</Button>
                 <Button Margin="5">取消</Button>
             </StackPanel>
 

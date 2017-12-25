@@ -143,3 +143,8 @@ select * from RecipeDetails;
 delete from RecipeDetails;
 
 
+select * from MedicalRecords;
+
+delete from MedicalRecords;
+
+

@@ -92,6 +92,32 @@ namespace HISGUIClinicDoctorLib.ViewModels
             return myd.getPatientBMIMsg(RegistrationID);
         }
 
+
+        public bool SaveClinicMedicalRecord(string strTextContent)
+        {
+            CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
+
+            CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
+            medicalRecord.RegistrationID = RegistrationID;
+            medicalRecord.NO = "001";
+            medicalRecord.MedicalRecordEnum = CommContracts.MedicalRecordEnum.MenZhen;
+            medicalRecord.WriteUserID = 1;
+            medicalRecord.WriteTime = DateTime.Now;
+            medicalRecord.ContentXml = strTextContent;
+
+            return myd.SaveMedicalRecord(medicalRecord);
+        }
+
+        public string RaveClinicMedicalRecord()
+        {
+            CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
+
+            CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
+            medicalRecord = myd.GetMedicalRecord(RegistrationID);
+
+            return medicalRecord.ContentXml; 
+        }
+
         // 当前医生看诊的挂号单ID
         #region RegistrationID
         public static readonly DependencyProperty RegistrationIDProperty = DependencyProperty.Register(

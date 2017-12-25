@@ -115,5 +115,17 @@ namespace CommServer
             BLL.RecipeDetail temp = new BLL.RecipeDetail();
             return temp.SaveRecipeDetail();
         }
+
+        public CommContracts.MedicalRecord GetMedicalRecord(int id)
+        {
+            BLL.MedicalRecord temp = new BLL.MedicalRecord();
+            return temp.GetMedicalRecord(id);
+        }
+
+        public bool SaveMedicalRecord(CommContracts.MedicalRecord medicalRecord)
+        {
+            BLL.MedicalRecord temp = new BLL.MedicalRecord();
+            return temp.SaveMedicalRecord(medicalRecord);
+        }
     }
 }

@@ -427,14 +427,11 @@ namespace DAL
         public string NO { get; set; } // 病历号
         public MedicalRecordEnum MedicalRecordEnum { get; set; }  // 类别
         public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
         public DateTime WriteTime { get; set; }                   // 编辑时间
         public int WriteUserID { get; set; }                      // 编写人的用户ID
         public string ContentXml { get; set; }                    // 内容xml
         
         public virtual Registration Registration { get; set; }
-        public virtual Inpatient Inpatient { get; set; }
-
     }
 
     // 住院病人
@@ -442,7 +439,6 @@ namespace DAL
     {
         public Inpatient()
         {
-            this.MedicalRecords = new List<MedicalRecord>();
         }
 
         public int ID { get; set; }                              // ID
@@ -455,7 +451,5 @@ namespace DAL
         //public virtual Patient Patient { get; set; }           // 报错，会形成循环或者树状引用
         //public Department Department { get; set; }
         //public Employee Doctor { get; set; }      
-        
-        public virtual ICollection<MedicalRecord> MedicalRecords { get; set; }  // 病历列表
     }
 }

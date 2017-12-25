@@ -25,6 +25,7 @@ namespace HISGUICore.MyContorls
         public MyTextEdit(string strTittle, int maxnum)
         {
             InitializeComponent();
+
             this.TittleLabel.Content = strTittle;
             this.TextMaxNum.Content = maxnum.ToString();
             this.TextEdit.MaxLength = maxnum;
@@ -58,6 +59,21 @@ namespace HISGUICore.MyContorls
                 //MessageBox.Show(strSelect);
 
             }
+        }
+
+        public string GetTittle()
+        {
+            return this.TittleLabel.Content.ToString();
+        }
+
+        public string GetTextContent()
+        {
+            return this.TextEdit.Text;
+        }
+
+        public void SetTextContent(string strContent)
+        {
+            this.TextEdit.Text = strContent;
         }
     }
 }

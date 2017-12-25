@@ -20,6 +20,8 @@ using HISGUICore;
 using HISGUICore.MyContorls;
 using HISGUIClinicDoctorLib.ViewModels;
 using System.Data;
+using System.IO;
+using System.Xml;
 
 namespace HISGUIClinicDoctorLib.Views
 {
@@ -33,6 +35,18 @@ namespace HISGUIClinicDoctorLib.Views
         {
             InitializeComponent();
 
+            initText();
+            this.Loaded += Login_Loaded;
+        }
+
+        [Import]
+        private HISGUIClinicDoctorVM ImportVM
+        {
+            set { this.VM = value; }
+        }
+
+        public void initText()
+        {
             string str = "主诉;现病史;既往史;过敏史;个人史;家族史;疫苗接种史;检验检查;体格检查;初步诊断;治疗意见;备注";
             string[] q = str.Split(';');
             if (q != null)
@@ -49,10 +63,26 @@ namespace HISGUIClinicDoctorLib.Views
             }
         }
 
-        [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            set { this.VM = value; }
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+
+            string strXML = vm?.RaveClinicMedicalRecord();
+            if (string.IsNullOrEmpty(strXML))
+                return;
+
+            StringReader Reader = new StringReader(strXML);
+
+            XmlDocument xmlDoc = new XmlDocument();
+
+            xmlDoc.Load(Reader);
+            foreach(var tem in myTextList)
+            {
+                string strTittle = "//" + tem.GetTittle();
+                XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(strTittle);
+                tem.SetTextContent(node.InnerText);
+            }
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -136,6 +166,31 @@ namespace HISGUIClinicDoctorLib.Views
                     aa.Content = "+" + str1;
                 }
             }
+        }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+
+            string strXML = "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\"?><note>";
+            foreach(var tem in myTextList)
+            {
+                strXML += "<" + tem.GetTittle() + ">" + tem.GetTextContent() + "</" + tem.GetTittle() + ">"; 
+            }
+            strXML += "</note>";
+
+            bool? result = vm?.SaveClinicMedicalRecord(strXML);
+
+            if(result.HasValue)
+            {
+                if (result.Value)
+                {
+                    MessageBox.Show("保存成功！");
+                    return;
+                }
+            }
+
+            MessageBox.Show("保存失败！");
         }
     }
 }

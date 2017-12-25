@@ -58,5 +58,11 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveRecipeDetail();
+
+        [OperationContract]
+        CommContracts.MedicalRecord GetMedicalRecord(int id);
+
+        [OperationContract]
+        bool SaveMedicalRecord(CommContracts.MedicalRecord medicalRecord);
     }
 }
