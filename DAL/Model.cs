@@ -66,6 +66,9 @@ namespace DAL
         public DbSet<MedicineAlias> MedicineAliases { get; set; }
         public DbSet<MedicinePacking> MedicinePackings { get; set; }
         public DbSet<DosageForm> DosageForms { get; set; }
+        public DbSet<MedicalRecord> MedicalRecords { get; set; }
+        public DbSet<Inpatient> Inpatients { get; set; }
+
     }
 
     public class User
@@ -142,6 +145,7 @@ namespace DAL
             this.RegisterTime = DateTime.Now;
             this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
             this.TriageStatus = TriageStatusEnum.no;
+            this.MedicalRecords = new List<MedicalRecord>();
         }
 
         public override string ToString()
@@ -168,6 +172,7 @@ namespace DAL
         public virtual Patient Patient { get; set; }                      // 患者
         public virtual SignalSource SignalSource { get; set; }            // 号源
         public virtual User RegisterUser { get; set; }                    // 经办人
+        public virtual ICollection<MedicalRecord> MedicalRecords { get; set; }  // 病历列表
     }
 
     public class Triage
@@ -399,5 +404,58 @@ namespace DAL
         public DosageFormEnum DosageFormEnum { get; set; }
 
         public virtual ICollection<Medicine> Medicines { get; set; }
+    }
+
+    public enum MedicalRecordEnum
+    {
+        MenZhen,              // 门诊病历
+        RuYuan,               // 入院记录 
+        BingCheng,            // 病程记录
+        ChuYuan,              // 出院记录
+        BiangAnShouYe         // 病案首页 
+    }
+
+    // 病历
+    public class MedicalRecord
+    {
+        public MedicalRecord()
+        {
+
+        }
+
+        public int ID { get; set; }  // ID
+        public string NO { get; set; } // 病历号
+        public MedicalRecordEnum MedicalRecordEnum { get; set; }  // 类别
+        public int RegistrationID { get; set; }                   // 门诊ID
+        public int InpatientID { get; set; }                      // 住院ID
+        public DateTime WriteTime { get; set; }                   // 编辑时间
+        public int WriteUserID { get; set; }                      // 编写人的用户ID
+        public string ContentXml { get; set; }                    // 内容xml
+        
+        public virtual Registration Registration { get; set; }
+        public virtual Inpatient Inpatient { get; set; }
+
+    }
+
+    // 住院病人
+    public class Inpatient
+    {
+        public Inpatient()
+        {
+            this.MedicalRecords = new List<MedicalRecord>();
+        }
+
+        public int ID { get; set; }                              // ID
+        public string No { get; set; }                           // 住院号
+        public int PatientID { get; set; }                       // 患者ID
+        public DateTime InHospitalTime { get; set; }             // 入院时间
+        public int DoctorID { get; set; }                        // 接诊医生
+        public int DepertmentID { get; set; }                    // 接诊科室
+
+        //public virtual Patient Patient { get; set; }           // 报错，会形成循环或者树状引用
+        //public Department Department { get; set; }
+        //public Employee Doctor { get; set; }      
+        
+        public virtual ICollection<MedicalRecord> MedicalRecords { get; set; }  // 病历列表
     }
 }
