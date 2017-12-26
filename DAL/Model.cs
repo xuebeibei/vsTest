@@ -272,11 +272,11 @@ namespace DAL
 
     public enum RecipeTypeEnum
     {
-        PuTong,
-        JiZhen,
-        ErKe,
-        MaJingYi,
-        JingEr
+        PuTong,             // 普通处方
+        JiZhen,             // 急诊处方
+        ErKe,               // 儿科处方  
+        MaJingYi,           // 麻精一   
+        JingEr              // 精二  
     }
 
     public class Recipe
