@@ -74,6 +74,8 @@ namespace DAL
         public DbSet<BodyRegion> BodyRegions { get; set; }
         public DbSet<TherapyItem> TherapyItems { get; set; }
         public DbSet<MaterialItem> MaterialItems { get; set; }
+        public DbSet<Therapy> Therapies { get; set; }
+        public DbSet<TherapyDetail> TherapyDetails { get; set; }
     }
 
     public class User
@@ -85,6 +87,7 @@ namespace DAL
             this.Status = LoginStatus.unknow;
             Registrations = new List<Registration>();
             Recipes = new List<Recipe>();
+            Therapys = new List<Therapy>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -97,7 +100,8 @@ namespace DAL
         public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
-        public virtual ICollection<Recipe> Recipes { get; set; }   // 所有开具的处方
+        public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
+        public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
     }
     
 
@@ -530,6 +534,7 @@ namespace DAL
     {
         public TherapyItem()
         {
+            TherapyDetails = new List<TherapyDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -537,6 +542,8 @@ namespace DAL
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
         public double Price { get; set; }                       // 价格
+
+        public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
 
 
@@ -555,4 +562,43 @@ namespace DAL
         public double StockPrice { get; set; }                  // 入库价格
     }
 
+
+    // 治疗单
+    public class Therapy
+    {
+        public Therapy()
+        {
+            TherapyDetails = new List<TherapyDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }           // 编号
+        public int RegistrationID { get; set; }                   // 门诊ID
+        public int InpatientID { get; set; }                      // 住院ID
+
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+        public virtual User WriteUser { get; set; }               // 开具医生
+
+        public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
+    }
+
+    public class TherapyDetail
+    {
+        public TherapyDetail()
+        {
+            
+        }
+
+        public int ID { get; set; }                               // ID
+        public int TherapyItemID { get; set; }                    // 治疗ID
+        public int Num { get; set; }                              // 次数
+        public string Illustration { get; set; }                  // 说明
+
+        public int TherapyID { get; set; }                         // 所属治疗单ID
+        public virtual Therapy Therapy { get; set; }
+
+        public virtual TherapyItem TherapyItem { get; set; }
+    }
 }
