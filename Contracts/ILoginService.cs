@@ -70,5 +70,8 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveTherapy(CommContracts.Therapy therapy);
+
+        [OperationContract]
+        List<CommContracts.TherapyItem> GetAllTherapyItems(string strName);
     }
 }

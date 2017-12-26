@@ -271,8 +271,11 @@ namespace HISGUICore.MyContorls
                 if (bResult.Value)
                 {
                     this.FindNameEdit.Clear();
-                    if(m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
+                    if (m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
                         InsertIntoMedicine(list.CurrentMedicine);
+                    else if (m_myTableEditEnum == MyTableEditEnum.zhiliao)
+                        InsertIntoTherapyItem(list.CurrentTherapyItem);
+                        
                 }
             }
         }
@@ -287,6 +290,23 @@ namespace HISGUICore.MyContorls
             item.Name = medicine.Name;
             item.Usage = CommContracts.UsageEnum.口服;
             item.Specifications = medicine.Specifications;
+
+            m_items.Add(item);
+            // 跳转到单次剂量
+            if (m_skipList.Count > 0)
+            {
+                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+            }
+        }
+
+        private void InsertIntoTherapyItem(CommContracts.TherapyItem therapyItem)
+        {
+            if (therapyItem == null)
+                return;
+
+            dynamic item = new MyDetail();
+            item.ID = therapyItem.ID;
+            item.Name = therapyItem.Name;
 
             m_items.Add(item);
             // 跳转到单次剂量

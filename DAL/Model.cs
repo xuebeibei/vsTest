@@ -475,7 +475,8 @@ namespace DAL
         public string AbbrWB { get; set; }                      // 五笔简称
         public double Price { get; set; }                       // 价格
         public int SpecimenID { get; set; }                     // 检验标本
-        
+        public string Unit { get; set; }                        // 单位
+
         public virtual Specimen Specimen { get; set; }
     }
 
@@ -508,6 +509,7 @@ namespace DAL
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
         public double Price { get; set; }                       // 价格
+        public string Unit { get; set; }                        // 单位
 
         public virtual ICollection<BodyRegion> BodyRegions { get; set; }
     }
@@ -537,11 +539,12 @@ namespace DAL
             TherapyDetails = new List<TherapyDetail>();
         }
 
-        public int ID { get; set; }                             // ID
-        public string Name { get; set; }                        // 名称
-        public string AbbrPY { get; set; }                      // 拼音简称
-        public string AbbrWB { get; set; }                      // 五笔简称
-        public double Price { get; set; }                       // 价格
+        public int ID { get; set; }                                 // ID
+        public string Name { get; set; }                            // 名称
+        public string AbbrPY { get; set; }                          // 拼音简称
+        public string AbbrWB { get; set; }                          // 五笔简称
+        public double Price { get; set; }                           // 价格
+        public string Unit { get; set; }                            // 单位
 
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
@@ -560,6 +563,14 @@ namespace DAL
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
         public double StockPrice { get; set; }                  // 入库价格
+        public string Unit { get; set; }                        // 单位
+        public string Specifications { get; set; }              // 规格
+        public string Manufacturer { get; set; }                // 生产厂家
+        public bool Valuable { get; set; }                      // 是否是贵重
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类
+        public int MaxNum { get; set; }                         // 最大库存量
+        public int MinNum { get; set; }                         // 最小库存量
+
     }
 
 

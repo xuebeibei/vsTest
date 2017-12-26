@@ -25,6 +25,8 @@ namespace CommContracts
         [DataMember]
         public double Price { get; set; }                       // 价格
         [DataMember]
+        public string Unit { get; set; }                        // 单位
+        [DataMember]
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
 }

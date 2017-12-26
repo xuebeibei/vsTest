@@ -148,3 +148,8 @@ select * from MedicalRecords;
 delete from MedicalRecords;
 
 
+select * from TherapyItems;
+
+insert into TherapyItems values(N'氧气吸入', 'YQXR', null, 1.6);
+
+update TherapyItems set Unit  = N'小时';

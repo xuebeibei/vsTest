@@ -139,5 +139,11 @@ namespace CommServer
             BLL.Therapy temp = new BLL.Therapy();
             return temp.SaveTherapy(therapy);
         }
+
+        public List<CommContracts.TherapyItem> GetAllTherapyItems(string strName)
+        {
+            BLL.TherapyItem temp = new BLL.TherapyItem();
+            return temp.GetAllTherapyItems(strName);
+        }
     }
 }
