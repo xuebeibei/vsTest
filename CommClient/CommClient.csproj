@@ -42,8 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assay.cs" />
+    <Compile Include="AssayItem.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Inspect.cs" />
+    <Compile Include="InspectItem.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />

@@ -118,6 +118,10 @@
     <Compile Include="Migrations\201712260848401_PaperTest16.Designer.cs">
       <DependentUpon>201712260848401_PaperTest16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712261028021_PaperTest17.cs" />
+    <Compile Include="Migrations\201712261028021_PaperTest17.Designer.cs">
+      <DependentUpon>201712261028021_PaperTest17.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,12 +131,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Contracts\CommContracts.csproj">
-      <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
-      <Name>CommContracts</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201712180838305_PaperTest.resx">
@@ -185,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712260848401_PaperTest16.resx">
       <DependentUpon>201712260848401_PaperTest16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712261028021_PaperTest17.resx">
+      <DependentUpon>201712261028021_PaperTest17.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

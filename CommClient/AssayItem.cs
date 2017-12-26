@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace CommClient
 {
-    class AssayItem
+    public class AssayItem
     {
         private ILoginService client;
 

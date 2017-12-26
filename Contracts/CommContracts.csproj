@@ -43,8 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assay.cs" />
+    <Compile Include="AssayDetail.cs" />
+    <Compile Include="AssayItem.cs" />
+    <Compile Include="BodyRegion.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="Inspect.cs" />
+    <Compile Include="InspectDetail.cs" />
+    <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="LoginUser.cs" />
     <Compile Include="ILoginService.cs" />
@@ -56,6 +63,7 @@
     <Compile Include="RecipeDetails.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
+    <Compile Include="Specimen.cs" />
     <Compile Include="Therapy.cs" />
     <Compile Include="TherapyDetail.cs" />
     <Compile Include="TherapyItem.cs" />

@@ -12,7 +12,7 @@ namespace CommContracts
     {
         public InspectDetail()
         {
-
+            
         }
         [DataMember]
         public int ID { get; set; }                               // ID
@@ -28,5 +28,6 @@ namespace CommContracts
         public virtual Inspect Inspect { get; set; }
         [DataMember]
         public virtual InspectItem InspectItem { get; set; }
+        
     }
 }

@@ -27,10 +27,14 @@ namespace HISGUIClinicDoctorLib.Views
     [Export("Inspect", typeof(Inspect))]
     public partial class Inspect : HISGUIViewBase
     {
+        private MyTableEdit myTableEdit;
         public Inspect()
         {
             InitializeComponent();
-            InspectPanel.Children.Add(new MyTableEdit(MyTableEditEnum.jiancha));
+            
+            myTableEdit = new MyTableEdit(MyTableEditEnum.jiancha);
+            InspectPanel.Children.Add(myTableEdit);
+            this.Loaded += View_Loaded;
         }
 
         [Import]
@@ -39,9 +43,43 @@ namespace HISGUIClinicDoctorLib.Views
             set { this.VM = value; }
         }
 
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            string str = vm?.newInspect();
+        }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<MyDetail> listDetail = myTableEdit.GetAllDetails();
+            List<CommContracts.InspectDetail> list = new List<CommContracts.InspectDetail>();
+            foreach (var tem in listDetail)
+            {
+                CommContracts.InspectDetail recipeDetail = new CommContracts.InspectDetail();
+                recipeDetail.InspectItemID = tem.ID;
+                recipeDetail.Num = tem.SingleDose;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
 
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            bool? saveResult = vm?.SaveInspect(list);
+
+            if (!saveResult.HasValue)
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
+            else if ((bool)saveResult.Value)
+            {
+                MessageBox.Show("保存成功！");
+                //vm?.newRegistrationBill();
+            }
+            else
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
         }
 
         private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)

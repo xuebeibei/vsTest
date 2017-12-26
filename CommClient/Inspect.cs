@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace CommClient
 {
-    class Inspect
+    public class Inspect
     {
         private ILoginService client;
 

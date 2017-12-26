@@ -638,6 +638,7 @@ namespace DAL
 
         public int ID { get; set; }
         public string NO { get; set; }
+        public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
         public double SumOfMoney { get; set; }                    // 金额
@@ -657,7 +658,7 @@ namespace DAL
         }
 
         public int ID { get; set; }                               // ID
-        public int AssayItemID { get; set; }                    // 治疗ID
+        public int AssayItemID { get; set; }                      // 治疗ID
         public int Num { get; set; }                              // 次数
         public string Illustration { get; set; }                  // 说明
 
@@ -677,6 +678,7 @@ namespace DAL
 
         public int ID { get; set; }
         public string NO { get; set; }
+        public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
         public double SumOfMoney { get; set; }                    // 金额

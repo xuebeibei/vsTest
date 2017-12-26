@@ -86,7 +86,7 @@ namespace HISGUICore.MyContorls
     {
         private ObservableCollection<dynamic> m_items = new ObservableCollection<dynamic>();
 
-        private MyTableEditEnum m_myTableEditEnum { get; set; }
+        private MyTableEditEnum editEnum { get; set; }
 
         private int m_nIDIndex = -1;
         private int m_nSingleDoseIndex = -1;
@@ -101,7 +101,7 @@ namespace HISGUICore.MyContorls
         public MyTableEdit(MyTableEditEnum editEnum)
         {
             InitializeComponent();
-            m_myTableEditEnum = editEnum;
+            this.editEnum = editEnum;
             initTable();
         }
 
@@ -109,7 +109,7 @@ namespace HISGUICore.MyContorls
         {
             List<MyTableTittle> list = new List<MyTableTittle>();
             m_skipList.Clear();
-            if (m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
+            if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
             {
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -141,9 +141,9 @@ namespace HISGUICore.MyContorls
                 m_skipList.Add(m_nIllustrationIndex);
 
             }
-            else if (m_myTableEditEnum == MyTableEditEnum.zhiliao ||
-                m_myTableEditEnum == MyTableEditEnum.jianyan ||
-                m_myTableEditEnum == MyTableEditEnum.jiancha)
+            else if (editEnum == MyTableEditEnum.zhiliao ||
+                editEnum == MyTableEditEnum.jianyan ||
+                editEnum == MyTableEditEnum.jiancha)
             {
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -264,18 +264,30 @@ namespace HISGUICore.MyContorls
             {
                 var window = new Window();
 
-                SelectItemsList list = new SelectItemsList(m_myTableEditEnum);
+                SelectItemsList list = new SelectItemsList(editEnum);
                 window.Content = list;
                 bool? bResult = window.ShowDialog();
 
                 if (bResult.Value)
                 {
                     this.FindNameEdit.Clear();
-                    if (m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
+                    if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
+                    {
                         InsertIntoMedicine(list.CurrentMedicine);
-                    else if (m_myTableEditEnum == MyTableEditEnum.zhiliao)
+                    }
+                    else if (editEnum == MyTableEditEnum.zhiliao)
+                    {
                         InsertIntoTherapyItem(list.CurrentTherapyItem);
-                        
+                    }   
+                    else if (editEnum == MyTableEditEnum.jianyan)
+                    {
+                        InsertIntoAssayItem(list.CurrentAssayItem);
+                    }
+                    else if (editEnum == MyTableEditEnum.jiancha)
+                    {
+                        InsertIntoInspectItem(list.CurrentInspectItem);
+                    }
+
                 }
             }
         }
@@ -317,6 +329,41 @@ namespace HISGUICore.MyContorls
             }
         }
 
+        private void InsertIntoAssayItem(CommContracts.AssayItem assayItem)
+        {
+            if (assayItem == null)
+                return;
+
+            dynamic item = new MyDetail();
+            item.ID = assayItem.ID;
+            item.Name = assayItem.Name;
+            item.SingleDoseUnit = assayItem.Unit;
+
+            m_items.Add(item);
+            // 跳转到单次剂量
+            if (m_skipList.Count > 0)
+            {
+                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+            }
+        }
+
+        private void InsertIntoInspectItem(CommContracts.InspectItem inspectItem)
+        {
+            if (inspectItem == null)
+                return;
+
+            dynamic item = new MyDetail();
+            item.ID = inspectItem.ID;
+            item.Name = inspectItem.Name;
+            item.SingleDoseUnit = inspectItem.Unit;
+
+            m_items.Add(item);
+            // 跳转到单次剂量
+            if (m_skipList.Count > 0)
+            {
+                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+            }
+        }
         private void GridSkipTo(int row, int column)
         {
             var Dg = this.MyDataGrid;

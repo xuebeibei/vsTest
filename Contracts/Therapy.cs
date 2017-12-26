@@ -33,5 +33,16 @@ namespace CommContracts
         public virtual LoginUser WriteUser { get; set; }               // 开具医生
         [DataMember]
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
+
+        public string ToTipString()
+        {
+            string str = "";
+
+            str = "处方号：" + this.NO + "  " +
+                "处方日期：" + this.WriteTime.ToString() + "  " +
+                "就诊科室：" + "外科" + "  " +
+                "看诊医师：" + "张医生" + "  ";
+            return str;
+        }
     }
 }

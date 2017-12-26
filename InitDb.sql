@@ -157,3 +157,7 @@ update TherapyItems set Unit  = N'小时';
 select * from Therapies;
 
 select * from TherapyDetails;
+
+select * from AssayItems;
+
+select * from Assays;

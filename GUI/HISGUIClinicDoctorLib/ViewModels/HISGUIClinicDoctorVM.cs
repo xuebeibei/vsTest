@@ -58,9 +58,6 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public string newRecipe()
         {
             CommContracts.Recipe recipe = new CommContracts.Recipe();
-            //recipe.No = "0002";
-            //recipe.WriteTime = DateTime.Now;
-
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();
         }
@@ -68,11 +65,22 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public string newTherapy()
         {
             CommContracts.Therapy therapy = new CommContracts.Therapy();
-            //recipe.No = "0002";
-            //recipe.WriteTime = DateTime.Now;
-
             ClinicTherapy = therapy;
-            return ClinicTherapy.ToString();
+            return ClinicTherapy.ToTipString();
+        }
+
+        public string newAssay()
+        {
+            CommContracts.Assay assay = new CommContracts.Assay();
+            ClinicAssay = assay;
+            return ClinicAssay.ToTipString();
+        }
+
+        public string newInspect()
+        {
+            CommContracts.Inspect inspect = new CommContracts.Inspect();
+            ClinicInspect = inspect;
+            return ClinicInspect.ToTipString();
         }
 
         public bool SaveRecipe(List<CommContracts.RecipeDetail> list)
@@ -106,6 +114,46 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
             ClinicTherapy.TherapyDetails = list;
             if (therapy.SaveTherapy(ClinicTherapy))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool SaveAssay(List<CommContracts.AssayDetail> list)
+        {
+            CommClient.Assay therapy = new CommClient.Assay();
+            ClinicAssay.NO = "001";
+            ClinicAssay.RegistrationID = RegistrationID;
+            ClinicAssay.SumOfMoney = 300;
+            ClinicAssay.WriteTime = DateTime.Now;
+            ClinicAssay.WriteUserID = 1;
+
+            ClinicAssay.AssayDetails = list;
+            if (therapy.SaveAssay(ClinicAssay))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool SaveInspect(List<CommContracts.InspectDetail> list)
+        {
+            CommClient.Inspect therapy = new CommClient.Inspect();
+            ClinicInspect.NO = "001";
+            ClinicInspect.RegistrationID = RegistrationID;
+            ClinicInspect.SumOfMoney = 300;
+            ClinicInspect.WriteTime = DateTime.Now;
+            ClinicInspect.WriteUserID = 1;
+
+            ClinicInspect.InspectDetails = list;
+            if (therapy.SaveInspect(ClinicInspect))
             {
                 return true;
             }
@@ -182,6 +230,31 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             get { return (CommContracts.Therapy)GetValue(ClinicTherapyProperty); }
             set { SetValue(ClinicTherapyProperty, value); }
+        }
+        #endregion
+
+        // 当前治疗单
+        #region ClinicAssay
+        public static readonly DependencyProperty ClinicAssayProperty = DependencyProperty.Register(
+            "ClinicAssay", typeof(CommContracts.Assay), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Assay ClinicAssay
+        {
+            get { return (CommContracts.Assay)GetValue(ClinicAssayProperty); }
+            set { SetValue(ClinicAssayProperty, value); }
+        }
+        #endregion
+
+
+        // 当前治疗单
+        #region ClinicInspect
+        public static readonly DependencyProperty ClinicInspectProperty = DependencyProperty.Register(
+            "ClinicInspect", typeof(CommContracts.Inspect), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Inspect ClinicInspect
+        {
+            get { return (CommContracts.Inspect)GetValue(ClinicInspectProperty); }
+            set { SetValue(ClinicInspectProperty, value); }
         }
         #endregion
     }
