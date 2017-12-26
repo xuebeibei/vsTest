@@ -98,6 +98,14 @@
     <Compile Include="Migrations\201712250919309_PaperTest11.Designer.cs">
       <DependentUpon>201712250919309_PaperTest11.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712260229364_PaperTest12.cs" />
+    <Compile Include="Migrations\201712260229364_PaperTest12.Designer.cs">
+      <DependentUpon>201712260229364_PaperTest12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712260234196_PaperTest13.cs" />
+    <Compile Include="Migrations\201712260234196_PaperTest13.Designer.cs">
+      <DependentUpon>201712260234196_PaperTest13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -150,6 +158,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712250919309_PaperTest11.resx">
       <DependentUpon>201712250919309_PaperTest11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712260229364_PaperTest12.resx">
+      <DependentUpon>201712260229364_PaperTest12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712260234196_PaperTest13.resx">
+      <DependentUpon>201712260234196_PaperTest13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

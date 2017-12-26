@@ -68,7 +68,12 @@ namespace DAL
         public DbSet<DosageForm> DosageForms { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Inpatient> Inpatients { get; set; }
-
+        public DbSet<AssayItem> AssayItems { get; set; }
+        public DbSet<Specimen> Specimens { get; set; }
+        public DbSet<InspectItem> InspectItems { get; set; }
+        public DbSet<BodyRegion> BodyRegions { get; set; }
+        public DbSet<TherapyItem> TherapyItems { get; set; }
+        public DbSet<MaterialItem> MaterialItems { get; set; }
     }
 
     public class User
@@ -452,4 +457,102 @@ namespace DAL
         //public Department Department { get; set; }
         //public Employee Doctor { get; set; }      
     }
+
+    // 检验项目
+    public class AssayItem
+    {
+        public AssayItem()
+        {
+        }
+
+        public int ID { get; set; }                             // ID
+        public string Name { get; set; }                        // 名称
+        public string AbbrPY { get; set; }                      // 拼音简称
+        public string AbbrWB { get; set; }                      // 五笔简称
+        public double Price { get; set; }                       // 价格
+        public int SpecimenID { get; set; }                     // 检验标本
+        
+        public virtual Specimen Specimen { get; set; }
+    }
+
+    // 检验标本
+    public class Specimen
+    {
+        public Specimen()
+        {
+            AssayItems = new List<AssayItem>();
+        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string AbbrPY { get; set; }
+        public string AbbrWB { get; set; }
+
+        public virtual ICollection<AssayItem> AssayItems { get; set; }     // 该标本可执行的所有检验项目
+    }
+
+    // 检查项目
+    public class InspectItem
+    {
+        public InspectItem()
+        {
+            BodyRegions = new List<BodyRegion>();
+        }
+
+        public int ID { get; set; }                             // ID
+        public string Name { get; set; }                        // 名称
+        public string AbbrPY { get; set; }                      // 拼音简称
+        public string AbbrWB { get; set; }                      // 五笔简称
+        public double Price { get; set; }                       // 价格
+
+        public virtual ICollection<BodyRegion> BodyRegions { get; set; }
+    }
+
+    // 检查部位
+    public class BodyRegion
+    {
+        public BodyRegion()
+        {
+
+        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string AbbrPY { get; set; }
+        public string AbbrWB { get; set; }
+        public int InspectItemID { get; set; }        
+
+        public virtual InspectItem InspectItem { get; set; }     // 可以检查该部位的检查项目
+    }
+
+    // 治疗项目
+    public class TherapyItem
+    {
+        public TherapyItem()
+        {
+        }
+
+        public int ID { get; set; }                             // ID
+        public string Name { get; set; }                        // 名称
+        public string AbbrPY { get; set; }                      // 拼音简称
+        public string AbbrWB { get; set; }                      // 五笔简称
+        public double Price { get; set; }                       // 价格
+    }
+
+
+    // 物资项目
+    public class MaterialItem
+    {
+        public MaterialItem()
+        {
+
+        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }                        // 名称
+        public string AbbrPY { get; set; }                      // 拼音简称
+        public string AbbrWB { get; set; }                      // 五笔简称
+        public double StockPrice { get; set; }                  // 入库价格
+    }
+
 }
