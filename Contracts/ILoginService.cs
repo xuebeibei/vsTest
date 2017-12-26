@@ -64,5 +64,11 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveMedicalRecord(CommContracts.MedicalRecord medicalRecord);
+
+        [OperationContract]
+        CommContracts.Therapy GetTherapy(int Id);
+
+        [OperationContract]
+        bool SaveTherapy(CommContracts.Therapy therapy);
     }
 }

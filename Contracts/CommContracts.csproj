@@ -56,6 +56,9 @@
     <Compile Include="RecipeDetails.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
+    <Compile Include="Therapy.cs" />
+    <Compile Include="TherapyDetail.cs" />
+    <Compile Include="TherapyItem.cs" />
     <Compile Include="Triage.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -53,6 +53,7 @@
     <Compile Include="RecipeDetail.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
+    <Compile Include="Therapy.cs" />
     <Compile Include="Triage.cs" />
   </ItemGroup>
   <ItemGroup>

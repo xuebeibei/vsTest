@@ -127,5 +127,17 @@ namespace CommServer
             BLL.MedicalRecord temp = new BLL.MedicalRecord();
             return temp.SaveMedicalRecord(medicalRecord);
         }
+
+        public CommContracts.Therapy GetTherapy(int Id)
+        {
+            BLL.Therapy therapy = new BLL.Therapy();
+            return therapy.GetTherapy(Id);
+        }
+
+        public bool SaveTherapy(CommContracts.Therapy therapy)
+        {
+            BLL.Therapy temp = new BLL.Therapy();
+            return temp.SaveTherapy(therapy);
+        }
     }
 }
