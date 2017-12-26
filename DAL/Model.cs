@@ -76,6 +76,10 @@ namespace DAL
         public DbSet<MaterialItem> MaterialItems { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<TherapyDetail> TherapyDetails { get; set; }
+        public DbSet<Assay> Assays { get; set; }
+        public DbSet<AssayDetail> AssayDetails { get; set; }
+        public DbSet<Inspect> Inspects { get; set; }
+        public DbSet<InspectDetail> InspectDetails { get; set; }
     }
 
     public class User
@@ -88,6 +92,8 @@ namespace DAL
             Registrations = new List<Registration>();
             Recipes = new List<Recipe>();
             Therapys = new List<Therapy>();
+            Assays = new List<Assay>();
+            Inspects = new List<Inspect>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -102,6 +108,8 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
+        public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的检验申请单
+        public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
     }
     
 
@@ -467,6 +475,7 @@ namespace DAL
     {
         public AssayItem()
         {
+            AssayDetails = new List<AssayDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -478,6 +487,8 @@ namespace DAL
         public string Unit { get; set; }                        // 单位
 
         public virtual Specimen Specimen { get; set; }
+
+        public virtual ICollection<AssayDetail> AssayDetails { get; set; }
     }
 
     // 检验标本
@@ -502,6 +513,7 @@ namespace DAL
         public InspectItem()
         {
             BodyRegions = new List<BodyRegion>();
+            InspectDetails = new List<InspectDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -512,6 +524,8 @@ namespace DAL
         public string Unit { get; set; }                        // 单位
 
         public virtual ICollection<BodyRegion> BodyRegions { get; set; }
+
+        public virtual ICollection<InspectDetail> InspectDetails { get; set; }
     }
 
     // 检查部位
@@ -583,7 +597,7 @@ namespace DAL
         }
 
         public int ID { get; set; }
-        public string NO { get; set; }           // 编号
+        public string NO { get; set; }                            // 编号
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
@@ -595,6 +609,7 @@ namespace DAL
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
 
+    // 治疗单明细
     public class TherapyDetail
     {
         public TherapyDetail()
@@ -611,5 +626,83 @@ namespace DAL
         public virtual Therapy Therapy { get; set; }
 
         public virtual TherapyItem TherapyItem { get; set; }
+    }
+
+    // 检验申请单
+    public class Assay
+    {
+        public Assay()
+        {
+            AssayDetails = new List<AssayDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public int InpatientID { get; set; }                      // 住院ID
+
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+        public virtual User WriteUser { get; set; }               // 开具医生
+
+        public virtual ICollection<AssayDetail> AssayDetails { get; set; }
+    }
+
+    // 检验申请单明细
+    public class AssayDetail
+    {
+        public AssayDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                               // ID
+        public int AssayItemID { get; set; }                    // 治疗ID
+        public int Num { get; set; }                              // 次数
+        public string Illustration { get; set; }                  // 说明
+
+        public int AssayID { get; set; }                          // 所属检验申请单ID
+        public virtual Assay Assay { get; set; }
+
+        public virtual AssayItem AssayItem { get; set; }
+    }
+
+    // 检查申请单
+    public class Inspect
+    {
+        public Inspect()
+        {
+            InspectDetails = new List<InspectDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public int InpatientID { get; set; }                      // 住院ID
+
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+        public virtual User WriteUser { get; set; }               // 开具医生
+
+        public virtual ICollection<InspectDetail> InspectDetails { get; set; }
+    }
+
+    // 检查申请单明细
+    public class InspectDetail
+    {
+        public InspectDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                               // ID
+        public int InspectItemID { get; set; }                    // 治疗ID
+        public int Num { get; set; }                              // 次数
+        public string Illustration { get; set; }                  // 说明
+
+        public int InspectID { get; set; }                          // 所属检验申请单ID
+        public virtual Inspect Inspect { get; set; }
+
+        public virtual InspectItem InspectItem { get; set; }
     }
 }
