@@ -147,13 +147,13 @@ namespace HISGUICore.MyContorls
             {
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
+                list.Add(new MyTableTittle("数量", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
-                list.Add(new MyTableTittle("次数", "SingleDose", 80, false));
-                list.Add(new MyTableTittle("备注", "Illustration", 120, true));
+                list.Add(new MyTableTittle("备注", "Illustration", 120, false));
 
 
                 m_nIDIndex = 0;
-                m_nSingleDoseIndex = 3;
+                m_nSingleDoseIndex = 2;
                 m_nIllustrationIndex = 4;
 
                 m_skipList.Add(m_nSingleDoseIndex);
@@ -307,6 +307,7 @@ namespace HISGUICore.MyContorls
             dynamic item = new MyDetail();
             item.ID = therapyItem.ID;
             item.Name = therapyItem.Name;
+            item.SingleDoseUnit = therapyItem.Unit;
 
             m_items.Add(item);
             // 跳转到单次剂量
