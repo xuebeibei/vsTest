@@ -73,5 +73,23 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.TherapyItem> GetAllTherapyItems(string strName);
+
+        [OperationContract]
+        CommContracts.Assay GetAssay(int Id);
+
+        [OperationContract]
+        bool SaveAssay(CommContracts.Assay assay);
+
+        [OperationContract]
+        CommContracts.Inspect GetInspect(int Id);
+
+        [OperationContract]
+        bool SaveInspect(CommContracts.Inspect inspect);
+
+        [OperationContract]
+        List<CommContracts.AssayItem> GetAllAssayItems(string strName);
+
+        [OperationContract]
+        List<CommContracts.InspectItem> GetAllInspectItems(string strName);
     }
 }

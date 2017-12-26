@@ -145,5 +145,45 @@ namespace CommServer
             BLL.TherapyItem temp = new BLL.TherapyItem();
             return temp.GetAllTherapyItems(strName);
         }
+
+        public CommContracts.Assay GetAssay(int Id)
+        {
+            BLL.Assay temp = new BLL.Assay();
+            return temp.GetAssay(Id);
+        }
+
+        public bool SaveAssay(CommContracts.Assay assay)
+        {
+            BLL.Assay temp = new BLL.Assay();
+            return temp.SaveAssay(assay);
+        }
+
+        public CommContracts.Inspect GetInspect(int Id)
+        {
+            BLL.Inspect temp = new BLL.Inspect();
+            return temp.GetInspect(Id);
+        }
+
+        public bool SaveInspect(CommContracts.Inspect inspect)
+        {
+            BLL.Inspect temp = new BLL.Inspect();
+            return temp.SaveInspect(inspect);
+        }
+
+
+        public List<CommContracts.AssayItem> GetAllAssayItems(string strName)
+        {
+            BLL.AssayItem temp = new BLL.AssayItem();
+            return temp.GetAllAssayItems(strName);
+        }
+
+
+
+        public List<CommContracts.InspectItem> GetAllInspectItems(string strName)
+        {
+            BLL.InspectItem temp = new BLL.InspectItem();
+            return temp.GetAllInspectItems(strName);
+        }
+
     }
 }
