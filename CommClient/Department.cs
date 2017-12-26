@@ -13,8 +13,6 @@ namespace CommClient
     public class Department
     {
         private ILoginService client;
-        //private CommContracts.Department MyDepartment;
-
 
         public Department()
         {
