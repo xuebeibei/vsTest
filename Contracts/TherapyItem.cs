@@ -12,7 +12,6 @@ namespace CommContracts
     {
         public TherapyItem()
         {
-            TherapyDetails = new List<TherapyDetail>();
         }
         [DataMember]
         public int ID { get; set; }                             // ID
@@ -26,7 +25,5 @@ namespace CommContracts
         public double Price { get; set; }                       // 价格
         [DataMember]
         public string Unit { get; set; }                        // 单位
-        [DataMember]
-        public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
 }
