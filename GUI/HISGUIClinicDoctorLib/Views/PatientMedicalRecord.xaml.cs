@@ -68,21 +68,29 @@ namespace HISGUIClinicDoctorLib.Views
             var vm = this.DataContext as HISGUIClinicDoctorVM;
 
             string strXML = vm?.RaveClinicMedicalRecord();
-            if (string.IsNullOrEmpty(strXML))
-                return;
 
-            StringReader Reader = new StringReader(strXML);
-
-            XmlDocument xmlDoc = new XmlDocument();
-
-            xmlDoc.Load(Reader);
-            foreach(var tem in myTextList)
+            if (!string.IsNullOrEmpty(strXML))
             {
-                string strTittle = "//" + tem.GetTittle();
-                XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(strTittle);
-                tem.SetTextContent(node.InnerText);
+                StringReader Reader = new StringReader(strXML);
+
+                XmlDocument xmlDoc = new XmlDocument();
+
+                xmlDoc.Load(Reader);
+                foreach (var tem in myTextList)
+                {
+
+                    string strTittle = "//" + tem.GetTittle();
+                    XmlNode node = xmlDoc.DocumentElement.SelectSingleNode(strTittle);
+                    tem.SetTextContent(node.InnerText);
+                }
             }
-            
+            else
+            {
+                foreach (var tem in myTextList)
+                {
+                    tem.SetTextContent("");
+                }
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
