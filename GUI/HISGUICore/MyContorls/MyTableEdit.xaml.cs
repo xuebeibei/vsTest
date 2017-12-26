@@ -263,14 +263,16 @@ namespace HISGUICore.MyContorls
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 var window = new Window();
-                SelectItemsList list = new SelectItemsList();
+
+                SelectItemsList list = new SelectItemsList(m_myTableEditEnum);
                 window.Content = list;
                 bool? bResult = window.ShowDialog();
 
                 if (bResult.Value)
                 {
                     this.FindNameEdit.Clear();
-                    InsertIntoMedicine(list.CurrentMedicine);
+                    if(m_myTableEditEnum == MyTableEditEnum.xichengyao || m_myTableEditEnum == MyTableEditEnum.zhongyao)
+                        InsertIntoMedicine(list.CurrentMedicine);
                 }
             }
         }

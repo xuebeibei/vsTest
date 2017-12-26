@@ -15,16 +15,14 @@ using System.Windows.Shapes;
 
 namespace HISGUICore.MyContorls
 {
-    /// <summary>
-    /// SelectItemsList.xaml 的交互逻辑
-    /// </summary>
     public partial class SelectItemsList : UserControl
     {
         public CommContracts.Medicine CurrentMedicine { get; set; }
-        public SelectItemsList()
+        private MyTableEditEnum editEnum;
+        public SelectItemsList(MyTableEditEnum itemEnum)
         {
             InitializeComponent();
-
+            editEnum = itemEnum;
             initGrid();
             getAllData();
         }
@@ -35,14 +33,14 @@ namespace HISGUICore.MyContorls
 
         private void getAllData()
         {
-            CommClient.Medicine myd = new CommClient.Medicine();
-            // 得到所有当天科室坐诊医生
+            if(editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
+            {
+                CommClient.Medicine myd = new CommClient.Medicine();
+                List<CommContracts.Medicine> list = myd.getAllMedicine();
 
-            List<CommContracts.Medicine> list = myd.getAllMedicine();
-
-            this.Grid1.ItemsSource = list;
-            this.Grid1.Focus();
-            
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
         }
 
        
@@ -50,11 +48,14 @@ namespace HISGUICore.MyContorls
         {
             if(e.Key == Key.Enter || e.Key == Key.Return)
             {
-                CommContracts.Medicine medicine = ((sender as DataGrid).CurrentCell.Item as CommContracts.Medicine);
+                if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
+                {
+                    CommContracts.Medicine medicine = ((sender as DataGrid).CurrentCell.Item as CommContracts.Medicine);
 
-                CurrentMedicine = medicine;
-                (this.Parent as Window).DialogResult = true;
-                (this.Parent as Window).Close();
+                    CurrentMedicine = medicine;
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+                }
             }
         }
     }
