@@ -34,12 +34,18 @@ namespace HISGUIClinicDoctorLib.Views
             myTableEdit = new MyTableEdit(MyTableEditEnum.xichengyao);
             xiyaoPanel.Children.Add(myTableEdit);
             zhongyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.zhongyao));
+            this.Loaded += View_Loaded;
         }
 
         [Import]
         private HISGUIClinicDoctorVM ImportVM
         {
             set { this.VM = value; }
+        }
+
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            newRecipe();
         }
 
         private void SelectDrugBtn_Click(object sender, RoutedEventArgs e)
@@ -102,6 +108,11 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            newRecipe();
+        }
+
+        private void newRecipe()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             string str = vm?.newRecipe();
