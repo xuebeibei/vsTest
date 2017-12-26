@@ -36,7 +36,7 @@ namespace HISGUIClinicDoctorLib.Views
             InitializeComponent();
 
             initText();
-            this.Loaded += Login_Loaded;
+            this.Loaded += View_Loaded;
         }
 
         [Import]
@@ -63,7 +63,7 @@ namespace HISGUIClinicDoctorLib.Views
             }
         }
 
-        private void Login_Loaded(object sender, RoutedEventArgs e)
+        private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
 
