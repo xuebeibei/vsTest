@@ -27,16 +27,25 @@ namespace HISGUIClinicDoctorLib.Views
     [Export("ClinicRemedy", typeof(ClinicRemedy))]
     public partial class ClinicRemedy : HISGUIViewBase
     {
+        private MyTableEdit myTableEdit;
         public ClinicRemedy()
         {
             InitializeComponent();
-            RemedyPanel.Children.Add(new MyTableEdit(MyTableEditEnum.zhiliao));
+            myTableEdit = new MyTableEdit(MyTableEditEnum.zhiliao);
+            RemedyPanel.Children.Add(myTableEdit);
+            this.Loaded += View_Loaded;
         }
 
         [Import]
         private HISGUIClinicDoctorVM ImportVM
         {
             set { this.VM = value; }
+        }
+
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            string str = vm?.newTherapy();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -53,7 +62,35 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<MyDetail> listDetail = myTableEdit.GetAllDetails();
+            List<CommContracts.TherapyDetail> list = new List<CommContracts.TherapyDetail>();
+            foreach (var tem in listDetail)
+            {
+                CommContracts.TherapyDetail recipeDetail = new CommContracts.TherapyDetail();
+                recipeDetail.TherapyItemID = tem.ID;
+                recipeDetail.Num = tem.SingleDose;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
 
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            bool? saveResult = vm?.SaveTherapy(list);
+
+            if (!saveResult.HasValue)
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
+            else if ((bool)saveResult.Value)
+            {
+                MessageBox.Show("保存成功！");
+                //vm?.newRegistrationBill();
+            }
+            else
+            {
+                MessageBox.Show("保存失败！");
+                return;
+            }
         }
 
         private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)

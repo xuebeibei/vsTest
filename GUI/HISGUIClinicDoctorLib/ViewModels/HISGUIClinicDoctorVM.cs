@@ -60,9 +60,19 @@ namespace HISGUIClinicDoctorLib.ViewModels
             CommContracts.Recipe recipe = new CommContracts.Recipe();
             //recipe.No = "0002";
             //recipe.WriteTime = DateTime.Now;
-            
+
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();
+        }
+
+        public string newTherapy()
+        {
+            CommContracts.Therapy therapy = new CommContracts.Therapy();
+            //recipe.No = "0002";
+            //recipe.WriteTime = DateTime.Now;
+
+            ClinicTherapy = therapy;
+            return ClinicTherapy.ToString();
         }
 
         public bool SaveRecipe(List<CommContracts.RecipeDetail> list)
@@ -83,7 +93,26 @@ namespace HISGUIClinicDoctorLib.ViewModels
                 return true;
             else
                 return false;
+        }
 
+        public bool SaveTherapy(List<CommContracts.TherapyDetail> list)
+        {
+            CommClient.Therapy therapy = new CommClient.Therapy();
+            ClinicTherapy.NO = "001";
+            ClinicTherapy.RegistrationID = RegistrationID;
+            ClinicTherapy.SumOfMoney = 300;
+            ClinicTherapy.WriteTime = DateTime.Now;
+            ClinicTherapy.WriteUserID = 1;
+
+            ClinicTherapy.TherapyDetails = list;
+            if (therapy.SaveTherapy(ClinicTherapy))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public string getPatientBMIMsg()
@@ -115,7 +144,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
             CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
             medicalRecord = myd.GetMedicalRecord(RegistrationID);
 
-            return medicalRecord.ContentXml; 
+            return medicalRecord.ContentXml;
         }
 
         // 当前医生看诊的挂号单ID
@@ -131,7 +160,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
         #endregion
 
-        // 当前医生看诊的挂号单ID
+        // 当前处方单
         #region ClinicRecipe
         public static readonly DependencyProperty ClinicRecipeProperty = DependencyProperty.Register(
             "ClinicRecipe", typeof(CommContracts.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
@@ -142,6 +171,18 @@ namespace HISGUIClinicDoctorLib.ViewModels
             set { SetValue(ClinicRecipeProperty, value); }
         }
 
+        #endregion
+
+        // 当前治疗单
+        #region ClinicTherapy
+        public static readonly DependencyProperty ClinicTherapyProperty = DependencyProperty.Register(
+            "ClinicTherapy", typeof(CommContracts.Therapy), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Therapy ClinicTherapy
+        {
+            get { return (CommContracts.Therapy)GetValue(ClinicTherapyProperty); }
+            set { SetValue(ClinicTherapyProperty, value); }
+        }
         #endregion
     }
 }

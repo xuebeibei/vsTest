@@ -61,8 +61,6 @@ namespace HISGUIClinicDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
-
             List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
             foreach(var tem in listDetail)
             {
@@ -78,6 +76,7 @@ namespace HISGUIClinicDoctorLib.Views
                 list.Add(recipeDetail);
             }
 
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
             bool? saveResult = vm?.SaveRecipe(list);
 
             if (!saveResult.HasValue)
