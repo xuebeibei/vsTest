@@ -512,7 +512,6 @@ namespace DAL
     {
         public InspectItem()
         {
-            BodyRegions = new List<BodyRegion>();
             InspectDetails = new List<InspectDetail>();
         }
 
@@ -522,9 +521,9 @@ namespace DAL
         public string AbbrWB { get; set; }                      // 五笔简称
         public double Price { get; set; }                       // 价格
         public string Unit { get; set; }                        // 单位
+        public int BodyRegionID { get; set; }                   // 检查部位 
 
-        public virtual ICollection<BodyRegion> BodyRegions { get; set; }
-
+        public virtual BodyRegion BodyRegion { get; set; }
         public virtual ICollection<InspectDetail> InspectDetails { get; set; }
     }
 
@@ -533,16 +532,15 @@ namespace DAL
     {
         public BodyRegion()
         {
-
+            InspectItems = new List<InspectItem>();
         }
 
         public int ID { get; set; }
         public string Name { get; set; }
         public string AbbrPY { get; set; }
         public string AbbrWB { get; set; }
-        public int InspectItemID { get; set; }        
 
-        public virtual InspectItem InspectItem { get; set; }     // 可以检查该部位的检查项目
+        public virtual ICollection<InspectItem> InspectItems { get; set; }
     }
 
     // 治疗项目

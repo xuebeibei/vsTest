@@ -12,7 +12,7 @@ namespace CommContracts
     {
         public BodyRegion()
         {
-
+            InspectItems = new List<InspectItem>();
         }
         [DataMember]
         public int ID { get; set; }
@@ -23,8 +23,6 @@ namespace CommContracts
         [DataMember]
         public string AbbrWB { get; set; }
         [DataMember]
-        public int InspectItemID { get; set; }
-        [DataMember]
-        public virtual InspectItem InspectItem { get; set; }     // 可以检查该部位的检查项目
+        public virtual ICollection<InspectItem> InspectItems { get; set; }
     }
 }
