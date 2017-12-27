@@ -9,8 +9,9 @@ namespace CommContracts
 {
     public enum MedicineTypeEnum
     {
-        putong,
-        teshu
+        xiyao,
+        zhongchengyao,
+        zhongyao
     }
     public enum YiBaoEnum
     {

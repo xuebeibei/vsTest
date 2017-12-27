@@ -55,9 +55,22 @@ namespace HISGUIClinicDoctorLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
 
-        public string newRecipe()
+        public List<CommContracts.Recipe> getAllXiCheng()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();
+            return recipe.getAllXiCheng(RegistrationID);
+        }
+
+        public List<CommContracts.Recipe> getAllZhong()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();
+            return recipe.getAllZhong(RegistrationID);
+        }
+
+        public string newRecipe(CommContracts.RecipeContentEnum recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao)
         {
             CommContracts.Recipe recipe = new CommContracts.Recipe();
+            recipe.RecipeContentEnum = recipeContentEnum;
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();
         }

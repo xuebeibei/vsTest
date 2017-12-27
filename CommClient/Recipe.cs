@@ -25,11 +25,19 @@ namespace CommClient
             MyRecipe = new CommContracts.Recipe();
         }
 
-        
-
         public bool SaveRecipe()
         {
             return client.SaveRecipe(MyRecipe); 
-        }   
+        }
+
+        public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
+        {
+            return client.getAllXiCheng(RegistrationID);
+        }
+
+        public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
+        {
+            return client.getAllZhong(RegistrationID);
+        }
     }
 }

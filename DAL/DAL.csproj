@@ -126,6 +126,14 @@
     <Compile Include="Migrations\201712270212145_PaperTest18.Designer.cs">
       <DependentUpon>201712270212145_PaperTest18.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712270332143_PaperTest19.cs" />
+    <Compile Include="Migrations\201712270332143_PaperTest19.Designer.cs">
+      <DependentUpon>201712270332143_PaperTest19.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712270527234_PaperTest20.cs" />
+    <Compile Include="Migrations\201712270527234_PaperTest20.Designer.cs">
+      <DependentUpon>201712270527234_PaperTest20.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -193,6 +201,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712270212145_PaperTest18.resx">
       <DependentUpon>201712270212145_PaperTest18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270332143_PaperTest19.resx">
+      <DependentUpon>201712270332143_PaperTest19.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712270527234_PaperTest20.resx">
+      <DependentUpon>201712270527234_PaperTest20.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

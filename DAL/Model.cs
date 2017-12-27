@@ -27,8 +27,9 @@ namespace DAL
 
     public enum MedicineTypeEnum
     {
-        putong,
-        teshu
+        xiyao,
+        zhongchengyao,
+        zhongyao
     }
     public enum YiBaoEnum
     {
@@ -291,6 +292,12 @@ namespace DAL
         JingEr              // 精二  
     }
 
+    public enum RecipeContentEnum
+    {
+        XiChengYao,
+        ZhongYao
+    }
+
     public class Recipe
     {
         
@@ -303,6 +310,7 @@ namespace DAL
         public int ID { get; set; }                               // 处方ID
         public string No { get; set; }                            // 处方编号
         public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
+        public RecipeContentEnum RecipeContentEnum { get; set; }    // 处方内容类别：西/ 成药、中药
         public string MedicalInstitution { get; set; }            // 医疗机构名称
         public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
         public int RegistrationID { get; set; }                   // 门诊ID

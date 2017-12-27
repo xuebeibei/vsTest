@@ -21,12 +21,24 @@
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
                 <Button x:Name="DeleteBtn" Margin="5" Click="PrintBtn_Click">作废</Button>
             </StackPanel>
-            <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
+            <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1" 
+                        SelectionChanged="tabControl_SelectionChanged">
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="xiyaoPanel" Orientation="Vertical">
+                            <ListView Name="AllXiChengList" Margin="5" SelectionChanged="AllXiChengList_SelectionChanged">
+                                <ListView.View>
+                                    <GridView x:Name="gridView1">
+                                        <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
+                                        <GridViewColumn Header="处方类别" DisplayMemberBinding="{Binding Path=RecipeTypeEnum}"></GridViewColumn>
+                                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
+                                        <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            
                             <WrapPanel Orientation="Horizontal">
-                                <TextBlock x:Name="RecipeMsg" Margin="5"></TextBlock>
+                                <TextBlock x:Name="XiChengRecipeMsg" Margin="5"></TextBlock>
                             </WrapPanel>
                         </StackPanel>
                     </ScrollViewer>
@@ -34,6 +46,19 @@
                 <TabItem Header="中药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="zhongyaoPanel">
+                            <ListView x:Name="AllZhongList" Margin="5" SelectionChanged="AllZhongList_SelectionChanged">
+                                <ListView.View>
+                                    <GridView x:Name="gridView2">
+                                        <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
+                                        <GridViewColumn Header="处方类别" DisplayMemberBinding="{Binding Path=RecipeTypeEnum}"></GridViewColumn>
+                                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
+                                        <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            <WrapPanel Orientation="Horizontal">
+                                <TextBlock x:Name="ZhongRecipeMsg" Margin="5"></TextBlock>
+                            </WrapPanel>
                         </StackPanel>
                     </ScrollViewer>
                 </TabItem>

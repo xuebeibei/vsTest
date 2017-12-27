@@ -61,11 +61,17 @@ insert into Medicines values(0,N'阿莫西林', N'口服',N'1.33g/片',N'新华�
 insert into Medicines values(0,N'感冒胶囊', N'口服',N'1.33g/粒',N'新华制药',0,0,1,0,300,100,2);
 insert into Medicines values(0,N'板蓝根冲剂', N'口服',N'1.33g/包',N'新华制药',0,0,1,0,300,100,8);
 
+insert into Medicines values(1,N'牛黄清心丸',N'口服',N'3g/丸',N'北京同仁堂',0,0,1,0,300,100,6);
+
+
+
+
 select * from MedicineAlias;
 -- 别名表
 
 insert into MedicineAlias values('AMXL',3);
 insert into MedicineAlias values('AMoXiLin',3);
+insert into MedicineAlias values('NHQXW', 6);
 
 
 select * from DosageForms; -- 0 西药，1中成药
@@ -88,6 +94,10 @@ insert into MedicinePackings values(N'片',0, 0, 3);
 insert into MedicinePackings values(N'板',6, 1, 3);
 insert into MedicinePackings values(N'盒',2, 2, 3);
 insert into MedicinePackings values(N'箱',150, 3, 3);
+
+insert into MedicinePackings values(N'丸',0,0,6);
+insert into MedicinePackings values(N'瓶',10,5,6);
+
 
 
 select * from Patients;
@@ -196,6 +206,7 @@ insert into AssayItems values(N'尿道狭窄扩张术','	NDXZKZS', NULL, 20.0000
 insert into AssayItems values(N'便常规','BCG', NULL, 5.0000, 3, N'次');
 
 select * from Assays;
+select * from AssayDetails;
 
 select * from Specimen;
 
@@ -215,4 +226,7 @@ insert into InspectItems values(N'B超常规检查（腹部）','BCCGJCFB', NULL
 insert into InspectItems values(N'B超常规检查（胃肠道、泌尿系）','BCCGJCWCDMNX', NULL, 20.8000, N'次', 3);
 
 
+
+select * from Inspects;
+select * from InspectDetails;
 

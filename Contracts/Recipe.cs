@@ -7,14 +7,28 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum RecipeTypeEnum { XiChengYao, ZhaoYao };
+    public enum RecipeTypeEnum
+    {
+        PuTong,             // 普通处方
+        JiZhen,             // 急诊处方
+        ErKe,               // 儿科处方  
+        MaJingYi,           // 麻精一   
+        JingEr              // 精二  
+    }
+
+    public enum RecipeContentEnum
+    {
+        XiChengYao,
+        ZhongYao
+    }
 
     [DataContract]
     public class Recipe
     {
         public Recipe()
         {
-            this.RecipeTypeEnum = RecipeTypeEnum.XiChengYao;
+            this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
+            this.RecipeContentEnum = RecipeContentEnum.XiChengYao;
             RecipeDetails = new List<RecipeDetail>();
 
             this.No = DateTime.Now.ToString("yyMMddhhmmss");
@@ -27,6 +41,8 @@ namespace CommContracts
         public string No { get; set; }                            // 处方编号
         [DataMember]
         public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
+        [DataMember]
+        public RecipeContentEnum RecipeContentEnum { get; set; }   // 处方内容类别：西/ 成药、中药
         [DataMember]
         public string MedicalInstitution { get; set; }            // 医疗机构名称
         [DataMember]

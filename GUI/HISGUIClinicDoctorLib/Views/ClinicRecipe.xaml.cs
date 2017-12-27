@@ -27,13 +27,16 @@ namespace HISGUIClinicDoctorLib.Views
     [Export("ClinicRecipe", typeof(ClinicRecipe))]
     public partial class ClinicRecipe : HISGUIViewBase
     {
-        private MyTableEdit myTableEdit;
+        private MyTableEdit myXiChengTableEdit;
+        private MyTableEdit myZhongTableEdit;
+
         public ClinicRecipe()
         {
             InitializeComponent();
-            myTableEdit = new MyTableEdit(MyTableEditEnum.xichengyao);
-            xiyaoPanel.Children.Add(myTableEdit);
-            zhongyaoPanel.Children.Add(new MyTableEdit(MyTableEditEnum.zhongyao));
+            myXiChengTableEdit = new MyTableEdit(MyTableEditEnum.xichengyao);
+            xiyaoPanel.Children.Add(myXiChengTableEdit);
+            myZhongTableEdit = new MyTableEdit(MyTableEditEnum.zhongyao);
+            zhongyaoPanel.Children.Add(myZhongTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -45,7 +48,9 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+            getAllRecipeList();
             newRecipe();
+
         }
 
         private void SelectDrugBtn_Click(object sender, RoutedEventArgs e)
@@ -60,7 +65,16 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            List<MyDetail> listDetail = myTableEdit.GetAllDetails();
+            List<MyDetail> listDetail = new List<MyDetail>();
+            if (this.tabControl.SelectedIndex == 0)
+            {
+                listDetail = myXiChengTableEdit.GetAllDetails();
+            }
+            else if (this.tabControl.SelectedIndex == 1)
+            {
+                listDetail = myZhongTableEdit.GetAllDetails();
+            }
+
             List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
             foreach(var tem in listDetail)
             {
@@ -87,7 +101,6 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                //vm?.newRegistrationBill();
             }
             else
             {
@@ -114,8 +127,56 @@ namespace HISGUIClinicDoctorLib.Views
         private void newRecipe()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            string str = vm?.newRecipe();
-            this.RecipeMsg.Text = str;
+            
+            if (this.tabControl.SelectedIndex == 0)
+            {
+                string str = vm?.newRecipe();
+                this.XiChengRecipeMsg.Text = str;
+            } 
+            else if (this.tabControl.SelectedIndex == 1)
+            {
+                string str = vm?.newRecipe(CommContracts.RecipeContentEnum.ZhongYao);
+                this.ZhongRecipeMsg.Text = str;
+            }
+        }
+
+        private void getAllRecipeList()
+        {
+            if (this.tabControl.SelectedIndex == 0)
+                getAllXiCheng();
+            else if (this.tabControl.SelectedIndex == 1)
+                getAllZhong();
+        }
+
+        private void getAllXiCheng()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.AllXiChengList.ItemsSource = vm?.getAllXiCheng();
+
+        }
+        private void getAllZhong()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.AllZhongList.ItemsSource = vm?.getAllZhong();
+        }
+
+        private void AllXiChengList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (e.Source is TabControl)
+            {
+                getAllRecipeList();
+                newRecipe();
+            }
         }
     }
 }

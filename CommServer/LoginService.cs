@@ -109,6 +109,18 @@ namespace CommServer
             BLL.Recipe temp = new BLL.Recipe();
             return temp.SaveRecipe(recipe);
         }
+        
+        public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.getAllXiCheng(RegistrationID);
+        }
+
+        public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.getAllZhong(RegistrationID);
+        }
 
         public bool SaveRecipeDetail()
         {
