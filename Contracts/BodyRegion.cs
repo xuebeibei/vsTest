@@ -12,7 +12,6 @@ namespace CommContracts
     {
         public BodyRegion()
         {
-            InspectItems = new List<InspectItem>();
         }
         [DataMember]
         public int ID { get; set; }
@@ -22,7 +21,10 @@ namespace CommContracts
         public string AbbrPY { get; set; }
         [DataMember]
         public string AbbrWB { get; set; }
-        [DataMember]
-        public virtual ICollection<InspectItem> InspectItems { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
