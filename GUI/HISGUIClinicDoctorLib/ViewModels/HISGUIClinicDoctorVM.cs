@@ -67,10 +67,9 @@ namespace HISGUIClinicDoctorLib.ViewModels
             return recipe.getAllZhong(RegistrationID);
         }
 
-        public string newRecipe(CommContracts.RecipeContentEnum recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao)
+        public string newRecipe()
         {
             CommContracts.Recipe recipe = new CommContracts.Recipe();
-            recipe.RecipeContentEnum = recipeContentEnum;
             ClinicRecipe = recipe;
             return ClinicRecipe.ToTipString();
         }
@@ -96,10 +95,11 @@ namespace HISGUIClinicDoctorLib.ViewModels
             return ClinicInspect.ToTipString();
         }
 
-        public bool SaveRecipe(List<CommContracts.RecipeDetail> list)
+        public bool SaveRecipe(CommContracts.RecipeContentEnum recipeContentEnum, List<CommContracts.RecipeDetail> list)
         {
             CommClient.Recipe myd = new CommClient.Recipe();
             ClinicRecipe.MedicalInstitution = "北京市积水潭总院";
+            ClinicRecipe.RecipeContentEnum = recipeContentEnum;
             ClinicRecipe.ChargeTypeEnum = 1;
             ClinicRecipe.RegistrationID = RegistrationID;
             ClinicRecipe.ClinicalDiagnosis = "感冒";

@@ -49,8 +49,7 @@ namespace HISGUIClinicDoctorLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             getAllRecipeList();
-            newRecipe();
-
+            newAllRecipe();
         }
 
         private void SelectDrugBtn_Click(object sender, RoutedEventArgs e)
@@ -66,17 +65,20 @@ namespace HISGUIClinicDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = new List<MyDetail>();
+            CommContracts.RecipeContentEnum recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao;
             if (this.tabControl.SelectedIndex == 0)
             {
                 listDetail = myXiChengTableEdit.GetAllDetails();
+                recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao;
             }
             else if (this.tabControl.SelectedIndex == 1)
             {
                 listDetail = myZhongTableEdit.GetAllDetails();
+                recipeContentEnum = CommContracts.RecipeContentEnum.ZhongYao;
             }
 
             List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
-            foreach(var tem in listDetail)
+            foreach (var tem in listDetail)
             {
                 CommContracts.RecipeDetail recipeDetail = new CommContracts.RecipeDetail();
                 recipeDetail.GroupNum = tem.GroupNum;
@@ -91,7 +93,7 @@ namespace HISGUIClinicDoctorLib.Views
             }
 
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            bool? saveResult = vm?.SaveRecipe(list);
+            bool? saveResult = vm?.SaveRecipe(recipeContentEnum, list);
 
             if (!saveResult.HasValue)
             {
@@ -101,6 +103,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
+                newRecipe();
+                getRecipeList();
             }
             else
             {
@@ -126,26 +130,52 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void newRecipe()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
-            
             if (this.tabControl.SelectedIndex == 0)
             {
-                string str = vm?.newRecipe();
-                this.XiChengRecipeMsg.Text = str;
-            } 
+                newXiChengYao();
+            }
             else if (this.tabControl.SelectedIndex == 1)
             {
-                string str = vm?.newRecipe(CommContracts.RecipeContentEnum.ZhongYao);
-                this.ZhongRecipeMsg.Text = str;
+                newZhongYao();
             }
+        }
+
+        private void newAllRecipe()
+        {
+            newXiChengYao();
+            newZhongYao();
+        }
+
+        private void newXiChengYao()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.XiChengRecipeMsg.Text = vm?.newRecipe();
+            this.myXiChengTableEdit.ClearAllDetails();
+        }
+
+        private void newZhongYao()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.ZhongRecipeMsg.Text = vm?.newRecipe();
+            this.myZhongTableEdit.ClearAllDetails();
         }
 
         private void getAllRecipeList()
         {
+            getAllXiCheng();
+            getAllZhong();
+        }
+
+        private void getRecipeList()
+        {
             if (this.tabControl.SelectedIndex == 0)
+            {
                 getAllXiCheng();
+            }
             else if (this.tabControl.SelectedIndex == 1)
+            {
                 getAllZhong();
+            }
         }
 
         private void getAllXiCheng()
@@ -168,15 +198,6 @@ namespace HISGUIClinicDoctorLib.Views
         private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
-        private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (e.Source is TabControl)
-            {
-                getAllRecipeList();
-                newRecipe();
-            }
         }
     }
 }

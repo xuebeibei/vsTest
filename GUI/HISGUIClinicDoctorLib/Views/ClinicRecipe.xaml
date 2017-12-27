@@ -10,8 +10,8 @@
         <StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label>过敏史：</Label>
-                <Border Background="BlanchedAlmond">
-                    <TextBlock>faadsfdf</TextBlock>
+                <Border Background="BlanchedAlmond" Margin="5">
+                    <TextBlock Width="200">faadsfdf</TextBlock>
                 </Border>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
@@ -21,8 +21,7 @@
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
                 <Button x:Name="DeleteBtn" Margin="5" Click="PrintBtn_Click">作废</Button>
             </StackPanel>
-            <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1" 
-                        SelectionChanged="tabControl_SelectionChanged">
+            <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="xiyaoPanel" Orientation="Vertical">

@@ -389,5 +389,10 @@ namespace HISGUICore.MyContorls
         {
 
         }
+
+        public void ClearAllDetails()
+        {
+            m_items.Clear();
+        }
     }
 }
