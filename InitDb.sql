@@ -159,5 +159,60 @@ select * from Therapies;
 select * from TherapyDetails;
 
 select * from AssayItems;
+--insert into AssayItems values(N'血浆黏度测定','XJNDCD', NULL, 6.4, 1, N'项');
+
+--delete from AssayItems;
+insert into AssayItems values(N'血细胞分析','XXBFX', NULL, 0.8000, 1, N'项');
+insert into AssayItems values(N'血流变','XLB', NULL, 56.0000	, 1, N'次');
+insert into AssayItems values(N'血沉	','XC', NULL, 16.0000, 1, N'次');
+insert into AssayItems values(N'血脂四项','XZSX', NULL, 25.6000, 1, N'次');
+insert into AssayItems values(N'血型','XX', NULL, 9.6000	, 1, N'次');
+insert into AssayItems values(N'血栓性外痔切除术','XSXWZQCS', NULL, 192.0000, 1, N'次');
+insert into AssayItems values(N'血细胞分析（11项以上每增一项指标加收）','XXBFX11XYSMZYXZBJS', NULL, 	0.4800, 1, N'项');
+insert into AssayItems values(N'血浆粘度测定','XJZDCD', NULL, 	6.4000, 1, N'项');
+insert into AssayItems values(N'血清直接胆红素测定干化学法	','XQZJDHSCDGHXF', NULL, 6.4000, 1, N'次');
+insert into AssayItems values(N'血清总胆红素测定干化学法','XQZDHSCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清丙氨酸氨基转移酶测定干化学法','XQBASAJZYMCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清天门冬氨酸氨基转移酶测定干化学法','XQTMDASAJZYMCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清总蛋白测定干化学法','XQZDBCDGHXF', NULL, 4.8000	, 1, N'次');
+insert into AssayItems values(N'血清白蛋白测定干化学法','XQBDBCDGHXF', NULL, 4.8000	, 1, N'次');
+insert into AssayItems values(N'血清总胆汁酸测定干化学法','XQZDZSCDGHXF', NULL, 9.6000	, 1, N'次');
+insert into AssayItems values(N'血清尿酸测定','XQNSCD', NULL, 	3.2000	, 1, N'次');
+insert into AssayItems values(N'血清总胆固醇测定干化学法','XQZDGCCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清甘油三酯测定干化学法','XQGYSZCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清高密度脂蛋白胆固醇测定','XQGMDZDBDGCCD	', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血清低密度脂蛋白胆固醇测定干化学法','XQDMDZDBDGCCDGHXF', NULL, 6.4000	, 1, N'次');
+insert into AssayItems values(N'血浆凝血酶原时间测定(PT)（仪器法）','XJNXMYSJCDPTYQF', NULL, 15.0000	, 1, N'次');
+insert into AssayItems values(N'血浆纤维蛋白原测定（仪器法）','XJXWDBYCDYQF', NULL, 12.8000	, 1, N'次');
+insert into AssayItems values(N'血浆纤维蛋白原测定','XJXWDBYCD', NULL, 12.0000	, 1, N'次');
+insert into AssayItems values(N'血小板粘附功能测定(PAdT)（流式细胞仪法）','	XXBZFGNCDPADTLSXBYF', NULL, 12.8000	, 1, N'次');
+
+insert into AssayItems values(N'尿常规检查','NCGJC', NULL, 2.4000, 2, N'次');
+insert into AssayItems values(N'尿素测定干化学法','NSCDGHXF', NULL, 4.8000, 2, N'次');
+insert into AssayItems values(N'尿液分析','NYFX', NULL, 4.8000, 2, N'次');
+insert into AssayItems values(N'尿妊娠','NRS', NULL, 9.0000, 2, N'次');
+insert into AssayItems values(N'尿道狭窄扩张术','	NDXZKZS', NULL, 20.0000, 2, N'次');
+
+insert into AssayItems values(N'便常规','BCG', NULL, 5.0000, 3, N'次');
 
 select * from Assays;
+
+select * from Specimen;
+
+insert into Specimen values(N'血液', 'XY', NULL);
+insert into Specimen values(N'尿液', 'NY', NULL);
+insert into Specimen values(N'粪便', 'FB', NULL);
+insert into Specimen values(N'唾液', 'TY', NULL);
+
+select * from BodyRegions;
+--delete from BodyRegions;
+insert into BodyRegions values(N'腹部','FB',NULL);
+insert into BodyRegions values(N'胃肠道', 'WCD', NULL);
+
+select * from InspectItems;
+delete from InspectItems;
+insert into InspectItems values(N'B超常规检查（腹部）','BCCGJCFB', NULL, 20.8000, N'次',2);
+insert into InspectItems values(N'B超常规检查（胃肠道、泌尿系）','BCCGJCWCDMNX', NULL, 20.8000, N'次', 3);
+
+
+
