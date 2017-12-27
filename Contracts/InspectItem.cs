@@ -27,7 +27,7 @@ namespace CommContracts
         public string Unit { get; set; }                        // 单位
         [DataMember]
         public int BodyRegionID { get; set; }                   // 检查部位 
-        //[DataMember]
-        //public virtual BodyRegion BodyRegion { get; set; }
+        [DataMember]
+        public virtual BodyRegion BodyRegion { get; set; }      
     }
 }

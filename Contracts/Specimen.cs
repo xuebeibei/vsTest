@@ -22,5 +22,10 @@ namespace CommContracts
         public string AbbrPY { get; set; }
         [DataMember]
         public string AbbrWB { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
