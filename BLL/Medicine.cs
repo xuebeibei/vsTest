@@ -30,6 +30,31 @@ namespace BLL
             }
             return list;
         }
-        
+
+        public CommContracts.Medicine GetMedicine(int id)
+        {
+            CommContracts.Medicine medicine = new CommContracts.Medicine();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from m in ctx.Medicines
+                            where m.ID == id 
+                            select m;
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.Medicine, CommContracts.Medicine>();
+                });
+                var mapper = config.CreateMapper();
+
+                foreach (DAL.Medicine tem in query)
+                {
+                    medicine = mapper.Map<CommContracts.Medicine>(tem);
+                    break;
+                }
+            }
+
+            return medicine;
+        }
+
+
     }
 }

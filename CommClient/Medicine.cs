@@ -25,5 +25,10 @@ namespace CommClient
             return client.getAllMedicine();
         }
 
+        public CommContracts.Medicine GetMedicine(int id)
+        {
+            return client.GetMedicine(id);
+        }
+
     }
 }

@@ -98,6 +98,12 @@ namespace CommServer
             return temp.getAllMedicine();
         }
 
+        public CommContracts.Medicine GetMedicine(int id)
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.GetMedicine(id);
+        }
+
         public bool SaveTriage(int nDoctorID, int nRegistrationID)
         {
             BLL.Triage temp = new BLL.Triage();

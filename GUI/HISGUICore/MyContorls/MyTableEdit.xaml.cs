@@ -385,6 +385,16 @@ namespace HISGUICore.MyContorls
             return list;
         }
 
+        public void SetAllDetails(List<MyDetail> list)
+        {
+            ClearAllDetails();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                m_items.Add(list.ElementAt(i));
+            }
+        }
+
         private void SelectTempletBtn_Click(object sender, RoutedEventArgs e)
         {
 

@@ -51,6 +51,9 @@ namespace CommContracts
         List<CommContracts.Medicine> getAllMedicine();
 
         [OperationContract]
+        CommContracts.Medicine GetMedicine(int id);
+
+        [OperationContract]
         bool SaveTriage(int nDoctorID, int nRegistrationID);
 
         [OperationContract]
