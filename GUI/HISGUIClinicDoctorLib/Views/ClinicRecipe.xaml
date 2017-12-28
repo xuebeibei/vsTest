@@ -35,7 +35,6 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-                            
                             <WrapPanel Orientation="Horizontal">
                                 <TextBlock x:Name="XiChengRecipeMsg" Margin="5"></TextBlock>
                             </WrapPanel>
@@ -62,7 +61,6 @@
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
-            
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

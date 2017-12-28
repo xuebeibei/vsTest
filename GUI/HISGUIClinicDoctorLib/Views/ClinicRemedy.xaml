@@ -27,7 +27,6 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-
                         <WrapPanel Orientation="Horizontal">
                             <TextBlock x:Name="TherapyMsg" Margin="5"></TextBlock>
                         </WrapPanel>
