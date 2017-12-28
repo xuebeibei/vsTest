@@ -30,5 +30,10 @@ namespace CommClient
         {
             return client.SaveAssay(assay);
         }
+
+        public List<CommContracts.Assay> getAllAssay(int RegistrationID)
+        {
+            return client.getAllAssay(RegistrationID);
+        }
     }
 }

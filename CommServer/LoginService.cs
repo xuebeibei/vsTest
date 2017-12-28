@@ -170,6 +170,12 @@ namespace CommServer
             return temp.GetAssay(Id);
         }
 
+        public List<CommContracts.Assay> getAllAssay(int RegistrationID)
+        {
+            BLL.Assay temp = new BLL.Assay();
+            return temp.getAllAssay(RegistrationID);
+        }
+
         public bool SaveAssay(CommContracts.Assay assay)
         {
             BLL.Assay temp = new BLL.Assay();

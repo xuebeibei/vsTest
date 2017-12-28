@@ -87,6 +87,9 @@ namespace CommContracts
         CommContracts.Assay GetAssay(int Id);
 
         [OperationContract]
+        List<CommContracts.Assay> getAllAssay(int RegistrationID);
+
+        [OperationContract]
         bool SaveAssay(CommContracts.Assay assay);
 
         [OperationContract]
