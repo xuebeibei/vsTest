@@ -66,7 +66,7 @@ namespace CommContracts
         [DataMember]
         public int WriteUserID { get; set; }                      // 开具医生
         [DataMember]
-        public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
+        public virtual List<RecipeDetail> RecipeDetails { get; set; }
 
         public string ToTipString()
         {

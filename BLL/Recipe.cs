@@ -21,62 +21,31 @@ namespace BLL
                 var recipe = context.Recipes.Find(3);
             }
         }
-        
+
         public bool SaveRecipe(CommContracts.Recipe recipe)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                //var config = new MapperConfiguration(cfg =>
-                //{
-                //    cfg.CreateMap<CommContracts.Recipe, DAL.Recipe>();
-                //});
-                //var mapper = config.CreateMapper();
-
-                //DAL.Recipe temp = mapper.Map<DAL.Recipe>(recipe);// 提示失败
-
-                //ctx.Recipes.Add(temp);
-
-                //try
-                //{
-                //    ctx.SaveChanges();
-                //}
-                //catch (Exception ex)
-                //{
-                //    return false;
-                //}
-
-                var myRecipe = new DAL.Recipe();
-                myRecipe.No = recipe.No;
-                myRecipe.RecipeTypeEnum = (DAL.RecipeTypeEnum)recipe.RecipeTypeEnum;
-                myRecipe.RecipeContentEnum = (DAL.RecipeContentEnum)recipe.RecipeContentEnum;
-                myRecipe.MedicalInstitution = recipe.MedicalInstitution;
-                myRecipe.ChargeTypeEnum = recipe.ChargeTypeEnum;
-                myRecipe.RegistrationID = recipe.RegistrationID;
-                myRecipe.ClinicalDiagnosis = recipe.ClinicalDiagnosis;
-                myRecipe.SumOfMoney = recipe.SumOfMoney;
-                myRecipe.WriteTime = recipe.WriteTime;
-                myRecipe.WriteUserID = recipe.WriteUserID;
-
-
-                List<DAL.RecipeDetail> list = new List<DAL.RecipeDetail>();
-                foreach (var tem in recipe.RecipeDetails)
+                var config = new MapperConfiguration(cfg =>
                 {
-                    DAL.RecipeDetail recipeDetail = new DAL.RecipeDetail();
-                    recipeDetail.GroupNum = tem.GroupNum;
-                    recipeDetail.MedicineID = tem.MedicineID;
-                    recipeDetail.SingleDose = tem.SingleDose;
-                    recipeDetail.Usage = (DAL.UsageEnum)tem.Usage;
-                    recipeDetail.DDDS = (DAL.DDDSEnum)tem.DDDS;
-                    recipeDetail.DaysNum = tem.DaysNum;
-                    recipeDetail.IntegralDose = tem.IntegralDose;
-                    recipeDetail.Illustration = tem.Illustration;
+                    cfg.CreateMap<CommContracts.Recipe, DAL.Recipe>().ForMember(x => x.RecipeDetails, opt => opt.Ignore());
+                });
+                var mapper = config.CreateMapper();
 
-                    list.Add(recipeDetail);
-                }
+                DAL.Recipe temp = new DAL.Recipe();
+                temp = mapper.Map<DAL.Recipe>(recipe);
 
-                myRecipe.RecipeDetails = list;
+                var configDetail = new MapperConfiguration(ctr =>
+                {
+                    ctr.CreateMap<CommContracts.RecipeDetail, DAL.RecipeDetail>().ForMember(x => x.Recipe, opt => opt.Ignore());
+                });
+                var mapperDetail = configDetail.CreateMapper();
 
-                ctx.Recipes.Add(myRecipe);
+                List<CommContracts.RecipeDetail> list1 = recipe.RecipeDetails;
+                List<DAL.RecipeDetail> res = mapperDetail.Map<List<DAL.RecipeDetail>>(list1); ;
+
+                temp.RecipeDetails = res;
+                ctx.Recipes.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -105,9 +74,9 @@ namespace BLL
             using (DAL.HisContext context = new DAL.HisContext())
             {
                 var query = from r in context.Recipes
-                            where r.RegistrationID == RegistrationID && 
-                            r.InpatientID == InpatientID && 
-                            r.RecipeContentEnum == recipeContentEnum 
+                            where r.RegistrationID == RegistrationID &&
+                            r.InpatientID == InpatientID &&
+                            r.RecipeContentEnum == recipeContentEnum
                             select r;
 
                 var config = new MapperConfiguration(cfg =>
@@ -128,7 +97,7 @@ namespace BLL
             return list;
         }
 
-       
+
         public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
         {
             return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.XiChengYao);
