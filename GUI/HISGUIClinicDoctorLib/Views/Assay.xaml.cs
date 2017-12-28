@@ -104,11 +104,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
         {
-            //CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
-            //ShowDetails(assay);
 
-            //this.SaveBtn.IsEnabled = false;
-            //this.DeleteBtn.IsEnabled = true;
         }
 
         private void ShowDetails(CommContracts.Assay assay)
