@@ -14,12 +14,12 @@
                     <TextBlock Width="200">faadsfdf</TextBlock>
                 </Border>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="NewBtn" Margin="5" Click="NewBtn_Click">新建</Button>
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
                 <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存为模板</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
-                <Button x:Name="DeleteBtn" Margin="5" Click="PrintBtn_Click">作废</Button>
+                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">作废</Button>
             </StackPanel>
             <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
                 <TabItem Header="西/成药处方">

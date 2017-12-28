@@ -151,9 +151,9 @@ namespace HISGUIClinicDoctorLib.Views
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             this.XiChengRecipeMsg.Text = vm?.newRecipe();
             this.myXiChengTableEdit.ClearAllDetails();
-            this.myXiChengTableEdit.IsEnabled = true;
+            
             this.AllXiChengList.SelectedItems.Clear();
-
+            this.myXiChengTableEdit.IsEnabled = true;
             this.SaveBtn.IsEnabled = true;
             this.DeleteBtn.IsEnabled = false;
         }
@@ -256,6 +256,11 @@ namespace HISGUIClinicDoctorLib.Views
                 myZhongTableEdit.SetAllDetails(list);
                 myZhongTableEdit.IsEnabled = false;
             }
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
