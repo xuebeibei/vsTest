@@ -472,9 +472,8 @@ namespace DAL
         public string No { get; set; }                           // 住院号
         public int PatientID { get; set; }                       // 患者ID
         public DateTime InHospitalTime { get; set; }             // 入院时间
-        public int DoctorID { get; set; }                        // 接诊医生
 
-        public virtual Patient Patient { get; set; }           // 报错，会形成循环或者树状引用
+        public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
     }
 
     // 检验项目
