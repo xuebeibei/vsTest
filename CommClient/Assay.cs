@@ -35,5 +35,10 @@ namespace CommClient
         {
             return client.getAllAssay(RegistrationID);
         }
+
+        public List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID)
+        {
+            return client.getAllInHospitalAssay(InpatientID);
+        }
     }
 }

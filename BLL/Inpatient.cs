@@ -26,5 +26,29 @@ namespace BLL
 
             return dictionary;
         }
+
+        public string getInPatientBMIMsg(int InpatientID)
+        {
+            string strMsg = "";
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from i in ctx.Inpatients
+                            where i.ID == InpatientID
+                            select i;
+                foreach(var tem in query)
+                {
+                    if (tem == null)
+                        continue;
+
+                    int PatientID = tem.PatientID;
+                    var patient = ctx.Patients.Find(PatientID);
+                    strMsg = patient.ToBMIMsg();
+
+                    break;
+                }
+            }
+
+            return strMsg;
+        }
     }
 }

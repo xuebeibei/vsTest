@@ -62,7 +62,7 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.Inspect> getAllnspect(int RegistrationID)
+        public List<CommContracts.Inspect> getAllInspect(int RegistrationID)
         {
             List<CommContracts.Inspect> list = new List<CommContracts.Inspect>();
 
@@ -70,6 +70,30 @@ namespace BLL
             {
                 var query = from i in ctx.Inspects
                             where i.RegistrationID == RegistrationID
+                            select i;
+                foreach (DAL.Inspect ins in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Inspect, CommContracts.Inspect>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Inspect temp = mapper.Map<CommContracts.Inspect>(ins);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
+        public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)
+        {
+            List<CommContracts.Inspect> list = new List<CommContracts.Inspect>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from i in ctx.Inspects
+                            where i.InpatientID == InpatientID
                             select i;
                 foreach (DAL.Inspect ins in query)
                 {

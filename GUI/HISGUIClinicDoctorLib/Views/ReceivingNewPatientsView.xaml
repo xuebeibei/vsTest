@@ -30,13 +30,14 @@
         <local:PatientBMIMsg Grid.Row="1" Grid.Column="0"></local:PatientBMIMsg>
 
         <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"   Grid.Row="1" Grid.Column="1">
-            <TabItem Header="病历">
+            <TabItem x:Name="Page1" Header="门诊病历">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Border BorderBrush="Black">
                         <local:PatientMedicalRecord></local:PatientMedicalRecord>
                     </Border>
                 </ScrollViewer>
             </TabItem>
+            <TabItem x:Name="Page2" Header="住院病历"/>
             <TabItem Header="处方">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 

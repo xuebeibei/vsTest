@@ -90,7 +90,7 @@ namespace CommContracts
         List<CommContracts.Assay> getAllAssay(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.Inspect> getAllnspect(int RegistrationID);
+        List<CommContracts.Inspect> getAllInspect(int RegistrationID);
 
         [OperationContract]
         List<CommContracts.Therapy> getAllTherapy(int RegistrationID);
@@ -112,5 +112,23 @@ namespace CommContracts
 
         [OperationContract]
         Dictionary<int, string> GetAllInPatient();
+
+        [OperationContract]
+        string getInPatientBMIMsg(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
     }
 }

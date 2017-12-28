@@ -64,32 +64,72 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
         public List<CommContracts.Recipe> getAllXiCheng()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
-            return recipe.getAllXiCheng(RegistrationID);
+            if (IsClinicOrInHospital)
+            {
+                CommClient.Recipe recipe = new CommClient.Recipe();
+                return recipe.getAllXiCheng(RegistrationID);
+            }
+            else
+            {
+                CommClient.Recipe recipe = new CommClient.Recipe();
+                return recipe.getAllInHospitalXiCheng(InpatientID);
+            }
         }
 
         public List<CommContracts.Recipe> getAllZhong()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
-            return recipe.getAllZhong(RegistrationID);
+            if (IsClinicOrInHospital)
+            {
+                CommClient.Recipe recipe = new CommClient.Recipe();
+                return recipe.getAllZhong(RegistrationID);
+            }
+            else
+            {
+                CommClient.Recipe recipe = new CommClient.Recipe();
+                return recipe.getAllInHospitalZhong(InpatientID);
+            }
         }
 
         public List<CommContracts.Assay> getAllAssay()
         {
-            CommClient.Assay assay = new CommClient.Assay();
-            return assay.getAllAssay(RegistrationID);
+            if (IsClinicOrInHospital)
+            {
+                CommClient.Assay assay = new CommClient.Assay();
+                return assay.getAllAssay(RegistrationID);
+            }
+            else
+            {
+                CommClient.Assay assay = new CommClient.Assay();
+                return assay.getAllInHospitalAssay(InpatientID);
+            }
         }
 
         public List<CommContracts.Therapy> getAllTherapy()
         {
-            CommClient.Therapy therapy = new CommClient.Therapy();
-            return therapy.getAllTherapy(RegistrationID);
+            if (IsClinicOrInHospital)
+            {
+                CommClient.Therapy therapy = new CommClient.Therapy();
+                return therapy.getAllTherapy(RegistrationID);
+            }
+            else
+            {
+                CommClient.Therapy therapy = new CommClient.Therapy();
+                return therapy.getAllInHospitalTherapy(InpatientID);
+            }
         }
 
-        public List<CommContracts.Inspect> getAllnspect()
+        public List<CommContracts.Inspect> getAllInspect()
         {
-            CommClient.Inspect therapy = new CommClient.Inspect();
-            return therapy.getAllnspect(RegistrationID);
+            if (IsClinicOrInHospital)
+            {
+                CommClient.Inspect therapy = new CommClient.Inspect();
+                return therapy.getAllInspect(RegistrationID);
+            }
+            else
+            {
+                CommClient.Inspect therapy = new CommClient.Inspect();
+                return therapy.getAllInHospitalInspect(InpatientID);
+            }
         }
 
         public string newRecipe()
@@ -203,8 +243,16 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
         public string getPatientBMIMsg()
         {
-            CommClient.Registration myd = new CommClient.Registration();
-            return myd.getPatientBMIMsg(RegistrationID);
+            if(IsClinicOrInHospital)
+            {
+                CommClient.Registration myd = new CommClient.Registration();
+                return myd.getPatientBMIMsg(RegistrationID);
+            }
+            else
+            {
+                CommClient.Inpatient inpatient = new CommClient.Inpatient();
+                return inpatient.getInPatientBMIMsg(InpatientID);
+            }
         }
 
 
@@ -245,6 +293,33 @@ namespace HISGUIClinicDoctorLib.ViewModels
         }
 
         #endregion
+
+        // 当前医生看诊的住院号ID
+        #region InpatientID
+        public static readonly DependencyProperty InPatientIDProperty = DependencyProperty.Register(
+            "InpatientID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public int InpatientID
+        {
+            get { return (int)GetValue(InPatientIDProperty); }
+            set { SetValue(InPatientIDProperty, value); }
+        }
+
+        #endregion
+
+        // 当前医生看诊的住院号ID
+        #region IsClinicOrInHospital
+        public static readonly DependencyProperty IsClinicOrInHospitalProperty = DependencyProperty.Register(
+            "IsClinicOrInHospital", typeof(bool), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public bool IsClinicOrInHospital
+        {
+            get { return (bool)GetValue(IsClinicOrInHospitalProperty); }
+            set { SetValue(IsClinicOrInHospitalProperty, value); }
+        }
+
+        #endregion
+
 
         // 当前处方单
         #region ClinicRecipe

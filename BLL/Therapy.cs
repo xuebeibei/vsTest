@@ -90,5 +90,29 @@ namespace BLL
             }
             return list;
         }
+
+        public List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID)
+        {
+            List<CommContracts.Therapy> list = new List<CommContracts.Therapy>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from t in ctx.Therapies
+                            where t.InpatientID == InpatientID
+                            select t;
+                foreach (DAL.Therapy th in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Therapy, CommContracts.Therapy>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Therapy temp = mapper.Map<CommContracts.Therapy>(th);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
     }
 }

@@ -41,7 +41,22 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void ReceivingNewPatients_Loaded(object sender, RoutedEventArgs e)
         {
-           
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+
+            // 使用blend设计之后状态切换，效果很不好，所以弃用
+            //var isClinicOrHospitalState = vm.IsClinicOrInHospital ? "VisualState" : "VisualState1";
+            //VisualStateManager.GoToState(this, isClinicOrHospitalState, false);
+
+            if(vm.IsClinicOrInHospital)
+            {
+                Page1.Visibility = Visibility.Visible;
+                Page2.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                Page1.Visibility = Visibility.Collapsed;
+                Page2.Visibility = Visibility.Visible;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

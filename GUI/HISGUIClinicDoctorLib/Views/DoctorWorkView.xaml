@@ -65,9 +65,10 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
                             <StackPanel Orientation="Horizontal" Margin="5">
-                                <Button Click="Button_Click_1">治疗</Button>
+                                <Button Click="Button_Click_1" Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top">查看详情</Button>
                                 <RadioButton Margin="5" IsChecked="True">在院中</RadioButton>
                                 <RadioButton Margin="5">已出院</RadioButton>
+                                <CheckBox Margin="5">查看全科室患者</CheckBox>
                             </StackPanel>
                             <Controls:FindDateContorl></Controls:FindDateContorl>
                         </StackPanel>

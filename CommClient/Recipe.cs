@@ -39,5 +39,15 @@ namespace CommClient
         {
             return client.getAllZhong(RegistrationID);
         }
+
+        public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
+        {
+            return client.getAllInHospitalXiCheng(InpatientID);
+        }
+
+        public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
+        {
+            return client.getAllInHospitalZhong(InpatientID);
+        }
     }
 }

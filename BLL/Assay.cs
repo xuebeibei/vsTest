@@ -85,6 +85,30 @@ namespace BLL
             }
             return list;
         }
+
+        public List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID)
+        {
+            List<CommContracts.Assay> list = new List<CommContracts.Assay>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Assays
+                            where a.InpatientID == InpatientID
+                            select a;
+                foreach (DAL.Assay ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Assay, CommContracts.Assay>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Assay temp = mapper.Map<CommContracts.Assay>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
     }
 }
 

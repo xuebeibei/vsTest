@@ -52,7 +52,7 @@ namespace HISGUIClinicDoctorLib.Views
         private void getAllInspectList()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            this.InspectList.ItemsSource = vm?.getAllnspect();
+            this.InspectList.ItemsSource = vm?.getAllInspect();
         }
 
         private void newInspect()

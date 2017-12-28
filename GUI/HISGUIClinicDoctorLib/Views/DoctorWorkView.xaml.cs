@@ -90,13 +90,18 @@ namespace HISGUIClinicDoctorLib.Views
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
+            vm.IsClinicOrInHospital = true;
             vm.RegistrationID = thePatient.ID;
             vm?.ReceivingNewPatientsManage();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var thePatient = this.AllInPatientList.SelectedItem as PatientMsgBox;
+            vm.IsClinicOrInHospital = false;
+            vm.InpatientID = thePatient.ID;
+            vm?.ReceivingNewPatientsManage();
         }
     }
 }

@@ -206,10 +206,10 @@ namespace CommServer
             return temp.GetAllInspectItems(strName);
         }
 
-        public List<CommContracts.Inspect> getAllnspect(int RegistrationID)
+        public List<CommContracts.Inspect> getAllInspect(int RegistrationID)
         {
             BLL.Inspect temp = new BLL.Inspect();
-            return temp.getAllnspect(RegistrationID);
+            return temp.getAllInspect(RegistrationID);
         }
 
         public List<CommContracts.Therapy> getAllTherapy(int RegistrationID)
@@ -222,6 +222,42 @@ namespace CommServer
         {
             BLL.Inpatient temp = new BLL.Inpatient();
             return temp.GetAllInPatient();
+        }
+
+        public string getInPatientBMIMsg(int InpatientID)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.getInPatientBMIMsg(InpatientID);
+        }
+
+        public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)
+        {
+            BLL.Inspect temp = new BLL.Inspect();
+            return temp.getAllInHospitalInspect(InpatientID);
+        }
+
+        public List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID)
+        {
+            BLL.Therapy temp = new BLL.Therapy();
+            return temp.getAllInHospitalTherapy(InpatientID);
+        }
+
+        public List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID)
+        {
+            BLL.Assay temp = new BLL.Assay();
+            return temp.getAllInHospitalAssay(InpatientID);
+        }
+        
+        public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.getAllInHospitalXiCheng(InpatientID);
+        }
+
+        public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.getAllInHospitalZhong(InpatientID);
         }
     }
 }

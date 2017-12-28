@@ -25,5 +25,10 @@ namespace CommClient
         {
             return client.GetAllInPatient();
         }
+
+        public string getInPatientBMIMsg(int InpatientID)
+        {
+            return client.getInPatientBMIMsg(InpatientID);
+        }
     }
 }

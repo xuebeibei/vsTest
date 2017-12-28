@@ -91,21 +91,22 @@ namespace BLL
 
         public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
         {
-            return getAllRecipes(RegistrationID, DAL.RecipeContentEnum.XiChengYao);
+            return getAllRecipes(RegistrationID, 0, DAL.RecipeContentEnum.XiChengYao);
         }
 
         public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
         {
-            return getAllRecipes(RegistrationID, DAL.RecipeContentEnum.ZhongYao);
+            return getAllRecipes(RegistrationID, 0, DAL.RecipeContentEnum.ZhongYao);
         }
 
-        private List<CommContracts.Recipe> getAllRecipes(int RegistrationID, DAL.RecipeContentEnum recipeContentEnum)
+        private List<CommContracts.Recipe> getAllRecipes(int RegistrationID, int InpatientID, DAL.RecipeContentEnum recipeContentEnum)
         {
             List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
             using (DAL.HisContext context = new DAL.HisContext())
             {
                 var query = from r in context.Recipes
                             where r.RegistrationID == RegistrationID && 
+                            r.InpatientID == InpatientID && 
                             r.RecipeContentEnum == recipeContentEnum 
                             select r;
 
@@ -126,5 +127,17 @@ namespace BLL
             }
             return list;
         }
+
+       
+        public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
+        {
+            return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.XiChengYao);
+        }
+
+        public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
+        {
+            return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.ZhongYao);
+        }
+
     }
 }
