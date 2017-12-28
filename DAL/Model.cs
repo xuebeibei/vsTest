@@ -216,6 +216,7 @@ namespace DAL
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
             Registrations = new List<Registration>();
+            Inpatients = new List<Inpatient>();
         }
 
         public string ToBMIMsg()
@@ -244,6 +245,7 @@ namespace DAL
         public VolkEnum Volk { get; set; }       // 民族
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
+        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
     }
 
     public class Employee
@@ -471,11 +473,8 @@ namespace DAL
         public int PatientID { get; set; }                       // 患者ID
         public DateTime InHospitalTime { get; set; }             // 入院时间
         public int DoctorID { get; set; }                        // 接诊医生
-        public int DepertmentID { get; set; }                    // 接诊科室
 
-        //public virtual Patient Patient { get; set; }           // 报错，会形成循环或者树状引用
-        //public Department Department { get; set; }
-        //public Employee Doctor { get; set; }      
+        public virtual Patient Patient { get; set; }           // 报错，会形成循环或者树状引用
     }
 
     // 检验项目
