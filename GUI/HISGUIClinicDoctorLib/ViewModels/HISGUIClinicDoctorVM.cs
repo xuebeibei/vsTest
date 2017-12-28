@@ -166,7 +166,10 @@ namespace HISGUIClinicDoctorLib.ViewModels
             ClinicRecipe.MedicalInstitution = "北京市积水潭总院";
             ClinicRecipe.RecipeContentEnum = recipeContentEnum;
             ClinicRecipe.ChargeTypeEnum = 1;
-            ClinicRecipe.RegistrationID = RegistrationID;
+            if (IsClinicOrInHospital)
+                ClinicRecipe.RegistrationID = RegistrationID;
+            else
+                ClinicRecipe.InpatientID = InpatientID;
             ClinicRecipe.ClinicalDiagnosis = "感冒";
             ClinicRecipe.SumOfMoney = 500.00;
             ClinicRecipe.WriteTime = DateTime.Now;
@@ -185,7 +188,10 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             CommClient.Therapy therapy = new CommClient.Therapy();
             ClinicTherapy.NO = "001";
-            ClinicTherapy.RegistrationID = RegistrationID;
+            if (IsClinicOrInHospital)
+                ClinicTherapy.RegistrationID = RegistrationID;
+            else
+                ClinicTherapy.InpatientID = InpatientID;
             ClinicTherapy.SumOfMoney = 300;
             ClinicTherapy.WriteTime = DateTime.Now;
             ClinicTherapy.WriteUserID = 1;
@@ -205,7 +211,10 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             CommClient.Assay therapy = new CommClient.Assay();
             ClinicAssay.NO = "001";
-            ClinicAssay.RegistrationID = RegistrationID;
+            if (IsClinicOrInHospital)
+                ClinicAssay.RegistrationID = RegistrationID;
+            else
+                ClinicAssay.InpatientID = InpatientID;
             ClinicAssay.SumOfMoney = 300;
             ClinicAssay.WriteTime = DateTime.Now;
             ClinicAssay.WriteUserID = 1;
@@ -225,7 +234,10 @@ namespace HISGUIClinicDoctorLib.ViewModels
         {
             CommClient.Inspect therapy = new CommClient.Inspect();
             ClinicInspect.NO = "001";
-            ClinicInspect.RegistrationID = RegistrationID;
+            if (IsClinicOrInHospital)
+                ClinicInspect.RegistrationID = RegistrationID;
+            else
+                ClinicInspect.InpatientID = InpatientID;
             ClinicInspect.SumOfMoney = 300;
             ClinicInspect.WriteTime = DateTime.Now;
             ClinicInspect.WriteUserID = 1;
