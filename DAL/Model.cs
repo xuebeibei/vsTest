@@ -81,6 +81,7 @@ namespace DAL
         public DbSet<AssayDetail> AssayDetails { get; set; }
         public DbSet<Inspect> Inspects { get; set; }
         public DbSet<InspectDetail> InspectDetails { get; set; }
+        public DbSet<Responsibility> Responsibilities { get; set; }
     }
 
     public class User
@@ -256,6 +257,7 @@ namespace DAL
         {
             Name = "";
             Users = new List<User>();
+            Responsibilities = new List<Responsibility>();
         }
 
         public int ID { get; set; }
@@ -269,6 +271,7 @@ namespace DAL
         public virtual ICollection<User> Users { get; set; }
         public virtual Job Job { get; set; }
         public virtual Department Department { get; set; }
+        public virtual ICollection<Responsibility> Responsibilities { get; set; }
     }
 
     public class Job
@@ -420,7 +423,6 @@ namespace DAL
         ZhongChengYao            // 中成药  
     }
 
-
     // 药品剂型
     public class DosageForm
     {
@@ -478,7 +480,17 @@ namespace DAL
 
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
         public virtual User InPatientUser { get; set; }
+    }
 
+    // 住院患者接诊表
+    public class Responsibility
+    {
+        public int ID { get; set; }
+        public int InpatientID { get; set; }
+        public int EmployeeID { get; set; }
+        public DateTime StartTime { get; set; }
+
+        public virtual Employee Employee { get; set; }
     }
 
     // 检验项目
