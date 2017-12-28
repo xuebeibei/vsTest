@@ -48,6 +48,8 @@ namespace BLL
             {
                 var query = ctx.Registrations.Find(RegistrationID); 
                 var temp = query as DAL.Registration;
+                if (temp == null)
+                    return strBMIMsg;
 
                 int PatientID = temp.PatientID;
                 var patient = ctx.Patients.Find(PatientID);
