@@ -43,15 +43,24 @@ namespace BLL
             DAL.Therapy temp = new DAL.Therapy();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Therapy, DAL.Therapy> ();
+                    cfg.CreateMap<CommContracts.Therapy, DAL.Therapy>().ForMember(x => x.TherapyDetails, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
                 temp = mapper.Map<DAL.Therapy>(therapy);
 
+                var configDetail = new MapperConfiguration(ctr =>
+                {
+                    ctr.CreateMap<CommContracts.TherapyDetail, DAL.TherapyDetail>().ForMember(x => x.Therapy, opt => opt.Ignore());
+                });
+                var mapperDetail = configDetail.CreateMapper();
+
+                List<CommContracts.TherapyDetail> list1 = therapy.TherapyDetails;
+                List<DAL.TherapyDetail> res = mapperDetail.Map<List<DAL.TherapyDetail>>(therapy.TherapyDetails); ;
+
+                temp.TherapyDetails = res;
                 ctx.Therapies.Add(temp);
 
                 try

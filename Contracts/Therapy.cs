@@ -32,7 +32,7 @@ namespace CommContracts
         [DataMember]
         public LoginUser WriteUser { get; set; }               // 开具医生
         [DataMember]
-        public ICollection<TherapyDetail> TherapyDetails { get; set; }
+        public List<TherapyDetail> TherapyDetails { get; set; }
 
         public string ToTipString()
         {
