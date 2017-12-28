@@ -21,7 +21,8 @@
         <StackPanel Grid.Column="1" Margin="5">
             <Label x:Name="ReportNameLabel" HorizontalAlignment="Center">报告名称</Label>
             <Separator/>
-            <TextBox></TextBox>
+            <!--<TextBox></TextBox>-->
+            <WebBrowser x:Name="samlogin" Source="http://www.baidu.com"/>
         </StackPanel>
         
     </Grid>
