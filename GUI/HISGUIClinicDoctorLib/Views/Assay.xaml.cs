@@ -45,8 +45,27 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+            getAllAssayList();
+            newAssay();
+        }
+
+        private void getAllAssayList()
+        {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            string str = vm?.newAssay();
+            this.AssayList.ItemsSource = vm?.getAllAssay();
+        }
+
+        private void newAssay()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.AssayMsg.Text = vm?.newAssay();
+
+            this.myTableEdit.ClearAllDetails();
+
+            this.AssayList.SelectedItems.Clear();
+            this.myTableEdit.IsEnabled = true;
+            this.SaveBtn.IsEnabled = true;
+            this.DeleteBtn.IsEnabled = false;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -73,7 +92,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                //vm?.newRegistrationBill();
+                newAssay();
+                getAllAssayList();
             }
             else
             {
@@ -84,10 +104,53 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void SaveTempletBtn_Click(object sender, RoutedEventArgs e)
         {
+            //CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
+            //ShowDetails(assay);
 
+            //this.SaveBtn.IsEnabled = false;
+            //this.DeleteBtn.IsEnabled = true;
+        }
+
+        private void ShowDetails(CommContracts.Assay assay)
+        {
+            if (assay == null)
+                return;
+            List<MyDetail> list = new List<MyDetail>();
+            foreach (var tem in assay.AssayDetails)
+            {
+                MyDetail recipeDetail = new MyDetail(); 
+                recipeDetail.ID = tem.AssayID;
+                recipeDetail.Name = tem.AssayItem.Name;
+                recipeDetail.SingleDose = tem.Num;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
+
+            this.AssayMsg.Text = assay.ToTipString();
+            this.myTableEdit.SetAllDetails(list);
+            this.myTableEdit.IsEnabled = false;
         }
 
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AssayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
+            ShowDetails(assay);
+
+            this.SaveBtn.IsEnabled = false;
+            this.DeleteBtn.IsEnabled = true;
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

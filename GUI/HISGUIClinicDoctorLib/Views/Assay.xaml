@@ -9,45 +9,28 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button Margin="5">选择模板</Button>
+                <Button x:Name="NewBtn" Margin="5" Click="NewBtn_Click">新建</Button>
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存模板</Button>
+                <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存为模板</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
+                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">作废</Button>
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="AssayPanel">
-                        <!--<DataGrid x:Name="dgMeasurements"
-                          HorizontalAlignment="Left"
-                          Margin="5"
-                          ItemsSource="{Binding}"
-                          AutoGenerateColumns="False">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="序号"
-                                            Width="40"
-                                            Binding="{Binding Name}" />
-                                <DataGridTextColumn Header="名称"
-                                            Width="90"
-                                            Binding="{Binding Unit}" />
-                                <DataGridTextColumn Header="次数"
-                                            Width="80"
-                                            Binding="{Binding Value}" />
-                                <DataGridTextColumn Header="说明"
-                                            Width="80"
-                                            Binding="{Binding UpperLimit}" />
-                            </DataGrid.Columns>
-                        </DataGrid>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                            <Button Margin="5" Width="20">+</Button>
-                            <Button Margin="5" Width="20">-</Button>
-                            <Button Margin="5">保存</Button>
-                            <Button Margin="5">保存模板</Button>
-                            <Button Margin="5">打印申请单</Button>
-                        </StackPanel>-->
-
-                        
+                        <ListView Name="AssayList" Margin="5" SelectionChanged="AssayList_SelectionChanged">
+                            <ListView.View>
+                                <GridView x:Name="gridView1">
+                                    <GridViewColumn Header="检验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                    <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
+                                    <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <WrapPanel Orientation="Horizontal">
+                            <TextBlock x:Name="AssayMsg" Margin="5"></TextBlock>
+                        </WrapPanel>
                     </StackPanel>
-
                 </ScrollViewer>
             </StackPanel>
         </StackPanel>    
