@@ -95,6 +95,7 @@ namespace DAL
             Therapys = new List<Therapy>();
             Assays = new List<Assay>();
             Inspects = new List<Inspect>();
+            Inpatients = new List<Inpatient>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -111,6 +112,7 @@ namespace DAL
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
         public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的检验申请单
         public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
+        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记  
     }
     
 
@@ -472,8 +474,11 @@ namespace DAL
         public string No { get; set; }                           // 住院号
         public int PatientID { get; set; }                       // 患者ID
         public DateTime InHospitalTime { get; set; }             // 入院时间
+        public int InPatientUserID { get; set; }                 // 经办人账户ID 
 
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
+        public virtual User InPatientUser { get; set; }
+
     }
 
     // 检验项目
