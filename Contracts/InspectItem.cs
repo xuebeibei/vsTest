@@ -28,6 +28,6 @@ namespace CommContracts
         [DataMember]
         public int BodyRegionID { get; set; }                   // 检查部位 
         [DataMember]
-        public virtual BodyRegion BodyRegion { get; set; }      
+        public BodyRegion BodyRegion { get; set; }      
     }
 }

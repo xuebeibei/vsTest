@@ -30,9 +30,9 @@ namespace CommContracts
         [DataMember]
         public int WriteUserID { get; set; }                           // 开具医生
         [DataMember]
-        public virtual LoginUser WriteUser { get; set; }               // 开具医生
+        public LoginUser WriteUser { get; set; }               // 开具医生
         [DataMember]
-        public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
+        public ICollection<TherapyDetail> TherapyDetails { get; set; }
 
         public string ToTipString()
         {

@@ -90,6 +90,12 @@ namespace CommContracts
         List<CommContracts.Assay> getAllAssay(int RegistrationID);
 
         [OperationContract]
+        List<CommContracts.Inspect> getAllnspect(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.Therapy> getAllTherapy(int RegistrationID);
+
+        [OperationContract]
         bool SaveAssay(CommContracts.Assay assay);
 
         [OperationContract]

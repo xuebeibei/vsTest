@@ -61,16 +61,28 @@ namespace HISGUIClinicDoctorLib.ViewModels
             return recipe.getAllXiCheng(RegistrationID);
         }
 
+        public List<CommContracts.Recipe> getAllZhong()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();
+            return recipe.getAllZhong(RegistrationID);
+        }
+
         public List<CommContracts.Assay> getAllAssay()
         {
             CommClient.Assay assay = new CommClient.Assay();
             return assay.getAllAssay(RegistrationID);
         }
 
-        public List<CommContracts.Recipe> getAllZhong()
+        public List<CommContracts.Therapy> getAllTherapy()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
-            return recipe.getAllZhong(RegistrationID);
+            CommClient.Therapy therapy = new CommClient.Therapy();
+            return therapy.getAllTherapy(RegistrationID);
+        }
+
+        public List<CommContracts.Inspect> getAllnspect()
+        {
+            CommClient.Inspect therapy = new CommClient.Inspect();
+            return therapy.getAllnspect(RegistrationID);
         }
 
         public string newRecipe()

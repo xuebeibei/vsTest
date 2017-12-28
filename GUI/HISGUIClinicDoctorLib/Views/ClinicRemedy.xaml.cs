@@ -31,6 +31,7 @@ namespace HISGUIClinicDoctorLib.Views
         public ClinicRemedy()
         {
             InitializeComponent();
+
             myTableEdit = new MyTableEdit(MyTableEditEnum.zhiliao);
             RemedyPanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
@@ -44,20 +45,27 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
-            string str = vm?.newTherapy();
+            getAllTherapyList();
+            newTherapy();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void getAllTherapyList()
         {
-            var window = new Window();//Windows窗体
-            TempletList jks = new TempletList();  //UserControl写的界面   
-            window.Title = "治疗模板";
-            window.Height = 500;
-            window.Width = 300;
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.TherapyList.ItemsSource = vm?.getAllTherapy();
+        }
 
-            window.Content = jks;
-            window.ShowDialog();
+        private void newTherapy()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            string str = vm?.newTherapy();
+
+            this.myTableEdit.ClearAllDetails();
+
+            this.TherapyList.SelectedItems.Clear();
+            this.myTableEdit.IsEnabled = true;
+            this.SaveBtn.IsEnabled = true;
+            this.DeleteBtn.IsEnabled = false;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -84,7 +92,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                //vm?.newRegistrationBill();
+                newTherapy();
+                getAllTherapyList();
             }
             else
             {
@@ -98,7 +107,46 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
+        private void ShowDetails(CommContracts.Therapy therapy)
+        {
+            if (therapy == null)
+                return;
+            List<MyDetail> list = new List<MyDetail>();
+            foreach (var tem in therapy.TherapyDetails)
+            {
+                MyDetail recipeDetail = new MyDetail();
+                recipeDetail.ID = tem.TherapyID;
+                recipeDetail.Name = tem.TherapyItem.Name;
+                recipeDetail.SingleDose = tem.Num;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
+
+            this.TherapyMsg.Text = therapy.ToTipString();
+            this.myTableEdit.SetAllDetails(list);
+            this.myTableEdit.IsEnabled = false;
+        }
+
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemedyList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CommContracts.Therapy therapy = TherapyList.SelectedItem as CommContracts.Therapy;
+            ShowDetails(therapy);
+
+            this.SaveBtn.IsEnabled = false;
+            this.DeleteBtn.IsEnabled = true;
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

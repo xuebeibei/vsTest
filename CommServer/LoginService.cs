@@ -194,14 +194,11 @@ namespace CommServer
             return temp.SaveInspect(inspect);
         }
 
-
         public List<CommContracts.AssayItem> GetAllAssayItems(string strName)
         {
             BLL.AssayItem temp = new BLL.AssayItem();
             return temp.GetAllAssayItems(strName);
         }
-
-
 
         public List<CommContracts.InspectItem> GetAllInspectItems(string strName)
         {
@@ -209,5 +206,16 @@ namespace CommServer
             return temp.GetAllInspectItems(strName);
         }
 
+        public List<CommContracts.Inspect> getAllnspect(int RegistrationID)
+        {
+            BLL.Inspect temp = new BLL.Inspect();
+            return temp.getAllnspect(RegistrationID);
+        }
+
+        public List<CommContracts.Therapy> getAllTherapy(int RegistrationID)
+        {
+            BLL.Therapy temp = new BLL.Therapy();
+            return temp.getAllTherapy(RegistrationID);
+        }
     }
 }

@@ -30,5 +30,10 @@ namespace CommClient
         {
             return client.SaveInspect(inspect);
         }
+
+        public List<CommContracts.Inspect> getAllnspect(int RegistrationID)
+        {
+            return client.getAllnspect(RegistrationID);
+        }
     }
 }

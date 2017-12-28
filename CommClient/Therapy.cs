@@ -30,5 +30,10 @@ namespace CommClient
         {
             return client.SaveTherapy(therapy);
         }
+
+        public List<CommContracts.Therapy> getAllTherapy(int RegistrationID)
+        {
+            return client.getAllTherapy(RegistrationID);
+        }
     }
 }

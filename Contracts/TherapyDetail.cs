@@ -21,8 +21,6 @@ namespace CommContracts
         [DataMember]
         public int TherapyID { get; set; }                         // 所属治疗单ID
         [DataMember]
-        public virtual Therapy Therapy { get; set; }
-        [DataMember]
-        public virtual TherapyItem TherapyItem { get; set; }
+        public TherapyItem TherapyItem { get; set; }
     }
 }

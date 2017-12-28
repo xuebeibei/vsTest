@@ -25,9 +25,7 @@ namespace CommContracts
         [DataMember]
         public int InspectID { get; set; }                          // 所属检验申请单ID
         [DataMember]
-        public virtual Inspect Inspect { get; set; }
-        [DataMember]
-        public virtual InspectItem InspectItem { get; set; }
+        public InspectItem InspectItem { get; set; }
         
     }
 }

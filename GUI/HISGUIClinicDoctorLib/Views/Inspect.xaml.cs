@@ -31,7 +31,7 @@ namespace HISGUIClinicDoctorLib.Views
         public Inspect()
         {
             InitializeComponent();
-            
+
             myTableEdit = new MyTableEdit(MyTableEditEnum.jiancha);
             InspectPanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
@@ -45,8 +45,27 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+            getAllInspectList();
+            newInspect();
+        }
+
+        private void getAllInspectList()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            this.InspectList.ItemsSource = vm?.getAllnspect();
+        }
+
+        private void newInspect()
+        {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             string str = vm?.newInspect();
+
+            this.myTableEdit.ClearAllDetails();
+
+            this.InspectList.SelectedItems.Clear();
+            this.myTableEdit.IsEnabled = true;
+            this.SaveBtn.IsEnabled = true;
+            this.DeleteBtn.IsEnabled = false;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -73,7 +92,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                //vm?.newRegistrationBill();
+                newInspect();
+                getAllInspectList();
             }
             else
             {
@@ -87,7 +107,46 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
+        private void ShowDetails(CommContracts.Inspect inspect)
+        {
+            if (inspect == null)
+                return;
+            List<MyDetail> list = new List<MyDetail>();
+            foreach (var tem in inspect.InspectDetails)
+            {
+                MyDetail recipeDetail = new MyDetail();
+                recipeDetail.ID = tem.InspectID;
+                recipeDetail.Name = tem.InspectItem.Name;
+                recipeDetail.SingleDose = tem.Num;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
+            }
+
+            this.InspectMsg.Text = inspect.ToTipString();
+            this.myTableEdit.SetAllDetails(list);
+            this.myTableEdit.IsEnabled = false;
+        }
+
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void InspectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CommContracts.Inspect inspect = InspectList.SelectedItem as CommContracts.Inspect;
+            ShowDetails(inspect);
+
+            this.SaveBtn.IsEnabled = false;
+            this.DeleteBtn.IsEnabled = true;
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
