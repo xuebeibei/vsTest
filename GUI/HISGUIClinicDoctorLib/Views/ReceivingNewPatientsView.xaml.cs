@@ -51,11 +51,14 @@ namespace HISGUIClinicDoctorLib.Views
             {
                 Page1.Visibility = Visibility.Visible;
                 Page2.Visibility = Visibility.Collapsed;
+                this.tabControl.SelectedIndex = 0;  // 设置默认选中的选项卡，否则会出现界面乱切换的现象
             }
             else
             {
                 Page1.Visibility = Visibility.Collapsed;
                 Page2.Visibility = Visibility.Visible;
+                this.tabControl.SelectedIndex = 1;
+
             }
         }
 
