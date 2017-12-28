@@ -87,3 +87,67 @@ namespace BLL
         }
     }
 }
+
+
+// automapper测试
+
+
+// 1  简单实体的映射
+
+//DAL.MaterialItem dto = new DAL.MaterialItem
+//{
+//    ID = 1
+//};
+
+//Mapper.Initialize(m => m.CreateMap<DAL.MaterialItem, CommContracts.MaterialItem>());
+
+//CommContracts.MaterialItem materialItem = Mapper.Map<DAL.MaterialItem, CommContracts.MaterialItem>(dto);
+
+// 2  不同名称属性的映射,将ID映射到Name中去
+//DAL.MaterialItem dto = new DAL.MaterialItem
+
+//{
+
+//    ID = 1,
+//    Name = "dt"
+//};
+
+//Mapper.Initialize(m => m.CreateMap<DAL.MaterialItem, CommContracts.MaterialItem>().ForMember(x => x.Name, opt => opt.MapFrom(o => o.ID)));
+
+//CommContracts.MaterialItem address = Mapper.Map<DAL.MaterialItem, CommContracts.MaterialItem>(dto);
+
+// 3  集合转换
+//DAL.MaterialItem address = new DAL.MaterialItem {
+//    ID = 1,
+//    Name = "dt"
+//};
+
+//DAL.MaterialItem address2 = new DAL.MaterialItem()
+//{
+//    ID = 2,
+//    Name = "dt1"
+//};
+
+//List<DAL.MaterialItem> addressList = new List<DAL.MaterialItem>() { address2, address };
+
+//Mapper.Initialize(m => m.CreateMap<DAL.MaterialItem, CommContracts.MaterialItem>());//这里仅需配置实体间的转换，而不是实体集合的转换
+
+//List<CommContracts.MaterialItem> res = Mapper.Map<List<DAL.MaterialItem>, List<CommContracts.MaterialItem>>(addressList);
+
+//}
+
+// 4  忽略映射
+
+//DAL.MaterialItem author = new DAL.MaterialItem() {
+//    ID = 1,
+//    Name = "dt"
+//};
+
+//Mapper.Initialize(m => { m.CreateMap<DAL.MaterialItem, CommContracts.MaterialItem>().ForMember(x => x.Name, opt => opt.Ignore()); });
+
+//CommContracts.MaterialItem dto = Mapper.Map<DAL.MaterialItem, CommContracts.MaterialItem>(author);
+
+
+////这里的Ignore代表配置ContractInfo该属性的操作  为 忽略Ignore,映射时将忽略该属性   由于List<TContactInfo>()和List<VM_ContactInfo>() 是不同类型，所以需要配置忽略或者是特殊映射，特殊映射例子看下方
+
+// 5  实体包含不同类型属性转换
