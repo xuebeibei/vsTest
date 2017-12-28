@@ -109,5 +109,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.InspectItem> GetAllInspectItems(string strName);
+
+        [OperationContract]
+        Dictionary<int, string> GetAllInPatient();
     }
 }

@@ -217,5 +217,11 @@ namespace CommServer
             BLL.Therapy temp = new BLL.Therapy();
             return temp.getAllTherapy(RegistrationID);
         }
+
+        public Dictionary<int, string> GetAllInPatient()
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.GetAllInPatient();
+        }
     }
 }
