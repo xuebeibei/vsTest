@@ -67,7 +67,7 @@ namespace HISGUIClinicDoctorLib.Views
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
 
-            string strXML = vm?.RaveClinicMedicalRecord();
+            string strXML = vm?.GetClinicMedicalRecord();
 
             if (!string.IsNullOrEmpty(strXML))
             {

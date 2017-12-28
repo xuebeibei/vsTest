@@ -271,7 +271,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
             return myd.SaveMedicalRecord(medicalRecord);
         }
 
-        public string RaveClinicMedicalRecord()
+        public string GetClinicMedicalRecord()
         {
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
 
