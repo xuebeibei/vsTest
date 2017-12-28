@@ -21,8 +21,6 @@ namespace CommContracts
         [DataMember]
         public int AssayID { get; set; }                          // 所属检验申请单ID
         [DataMember]
-        public virtual Assay Assay { get; set; }
-        [DataMember]
-        public virtual AssayItem AssayItem { get; set; }
+        public AssayItem AssayItem { get; set; }
     }
 }

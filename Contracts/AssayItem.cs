@@ -28,7 +28,7 @@ namespace CommContracts
         [DataMember]
         public string Unit { get; set; }                        // 单位
         [DataMember]
-        public virtual Specimen Specimen { get; set; }
+        public Specimen Specimen { get; set; }
 
     }
 }
