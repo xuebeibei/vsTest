@@ -42,6 +42,7 @@ namespace HISGUIClinicDoctorLib.Views
         private void DoctorWork_Loaded(object sender, RoutedEventArgs e)
         {
             ShowAllRegistration();
+            ShowAllInPatient();
         }
 
         private void ShowAllRegistration()
@@ -64,12 +65,38 @@ namespace HISGUIClinicDoctorLib.Views
             }
         }
 
+        private void ShowAllInPatient()
+        {
+            var vm = this.DataContext as HISGUIClinicDoctorVM;
+
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            dictionary = vm?.GetAllInPatient();
+
+            List<PatientMsgBox> list = new List<PatientMsgBox>();
+            if (dictionary != null)
+            {
+                for (int i = 0; i < dictionary.Count; i++)
+                {
+                    // 实例化一个控件
+                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
+                }
+
+                this.AllInPatientList.ItemsSource = list;
+            }
+
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
             vm.RegistrationID = thePatient.ID;
             vm?.ReceivingNewPatientsManage();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

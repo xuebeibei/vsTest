@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Label>Logo</Label>
-                <Label>门诊医生</Label>
+                <Label>医生工作站</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label>2017-11-27周一</Label>
@@ -28,7 +28,7 @@
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
-            <TabItem Header="接诊">
+            <TabItem Header="门诊接诊">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -38,8 +38,8 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
                             <StackPanel Orientation="Horizontal" Margin="5">
-                                <Button Margin="5" Click="Button_Click">接诊</Button>
-                                <RadioButton Margin="5">未接诊</RadioButton>
+                                <Button Click="Button_Click">接诊</Button>
+                                <RadioButton Margin="5" IsChecked="True">未接诊</RadioButton>
                                 <RadioButton Margin="5">已接诊</RadioButton>
                             </StackPanel>
                             <Controls:FindDateContorl></Controls:FindDateContorl>
@@ -55,7 +55,38 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="设置">
+            <TabItem Header="住院治疗">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
+                            <StackPanel Orientation="Horizontal" Margin="5">
+                                <Button Click="Button_Click_1">治疗</Button>
+                                <RadioButton Margin="5" IsChecked="True">在院中</RadioButton>
+                                <RadioButton Margin="5">已出院</RadioButton>
+                            </StackPanel>
+                            <Controls:FindDateContorl></Controls:FindDateContorl>
+                        </StackPanel>
+                        <ListBox x:Name="AllInPatientList" Grid.Row="1">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="4"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                        <Controls:PageFind Grid.Row="2"></Controls:PageFind>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="数据分析">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="系统设置">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                 </ScrollViewer>
             </TabItem>
