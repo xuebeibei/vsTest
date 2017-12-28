@@ -31,7 +31,7 @@ namespace CommContracts
         [DataMember]
         public LoginUser WriteUser { get; set; }               // 开具医生
         [DataMember]
-        public ICollection<InspectDetail> InspectDetails { get; set; }
+        public List<InspectDetail> InspectDetails { get; set; }
 
         public string ToTipString()
         {

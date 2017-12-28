@@ -35,27 +35,34 @@ namespace BLL
 
         public bool SaveInspect(CommContracts.Inspect inspect)
         {
-            DAL.Inspect temp = new DAL.Inspect();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Inspect, DAL.Inspect>();
+                    cfg.CreateMap<CommContracts.Inspect, DAL.Inspect>().ForMember(x => x.InspectDetails, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
+                DAL.Inspect temp = new DAL.Inspect();
                 temp = mapper.Map<DAL.Inspect>(inspect);
 
-                ctx.Inspects.Add(temp);
+                var configDetail = new MapperConfiguration(ctr =>
+                {
+                    ctr.CreateMap<CommContracts.InspectDetail, DAL.InspectDetail>().ForMember(x => x.Inspect, opt => opt.Ignore());
+                });
+                var mapperDetail = configDetail.CreateMapper();
 
+                List<CommContracts.InspectDetail> list1 = inspect.InspectDetails;
+                List<DAL.InspectDetail> res = mapperDetail.Map<List<DAL.InspectDetail>>(list1); ;
+
+                temp.InspectDetails = res;
+                ctx.Inspects.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    return false;
                 }
 
             }

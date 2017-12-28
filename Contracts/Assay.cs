@@ -31,7 +31,7 @@ namespace CommContracts
         [DataMember]
         public virtual LoginUser WriteUser { get; set; }          // 开具医生 
         [DataMember]
-        public ICollection<AssayDetail> AssayDetails { get; set; }
+        public List<AssayDetail> AssayDetails { get; set; }
 
         public string ToTipString()
         {

@@ -35,29 +35,35 @@ namespace BLL
 
         public bool SaveAssay(CommContracts.Assay assay)
         {
-            DAL.Assay temp = new DAL.Assay();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Assay, DAL.Assay>();
+                    cfg.CreateMap<CommContracts.Assay, DAL.Assay>().ForMember(x => x.AssayDetails, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
+                DAL.Assay temp = new DAL.Assay();
                 temp = mapper.Map<DAL.Assay>(assay);
 
-                ctx.Assays.Add(temp);
+                var configDetail = new MapperConfiguration(ctr =>
+                {
+                    ctr.CreateMap<CommContracts.AssayDetail, DAL.AssayDetail>().ForMember(x => x.Assay, opt => opt.Ignore());
+                });
+                var mapperDetail = configDetail.CreateMapper();
 
+                List<CommContracts.AssayDetail> list1 = assay.AssayDetails;
+                List<DAL.AssayDetail> res = mapperDetail.Map<List<DAL.AssayDetail>>(list1); ;
+
+                temp.AssayDetails = res;
+                ctx.Assays.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
                 }
                 catch (Exception ex)
                 {
-                    return false;
                 }
-
             }
             return true;
         }
