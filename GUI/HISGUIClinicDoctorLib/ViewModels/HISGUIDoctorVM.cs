@@ -31,7 +31,7 @@ namespace HISGUIDoctorLib.ViewModels
             RecevingOverCommand = new DelegateCommand(RecevintOver);
         }
 
-        //显示分诊界面
+        //显示工作界面
         public void DoctorWorkManage()
         {
             this.RegionManager.RequestNavigate("DownRegion", "DoctorWorkView");
