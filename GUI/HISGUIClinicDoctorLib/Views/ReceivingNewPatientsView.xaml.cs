@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("ReceivingNewPatientsView", typeof(ReceivingNewPatientsView))]
@@ -34,14 +34,14 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
 
         private void ReceivingNewPatients_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
 
             // 使用blend设计之后状态切换，效果很不好，所以弃用
             //var isClinicOrHospitalState = vm.IsClinicOrInHospital ? "VisualState" : "VisualState1";

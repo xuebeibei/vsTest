@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     /// <summary>
     /// CostPreview.xaml 的交互逻辑

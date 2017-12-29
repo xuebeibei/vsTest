@@ -18,11 +18,11 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("OtherService", typeof(OtherService))]
@@ -38,7 +38,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -51,13 +51,13 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void getAllOtherServiceList()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.OtherServiceList.ItemsSource = vm?.getAllOtherService();
         }
 
         private void newOtherService()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.OtherServiceMsg.Text = vm?.newOtherService();
 
             this.myTableEdit.ClearAllDetails();
@@ -86,7 +86,7 @@ namespace HISGUIClinicDoctorLib.Views
                 list.Add(otherServiceDetail);
             }
 
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             bool? saveResult = vm?.SaveOtherService(list);
 
             if (!saveResult.HasValue)

@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HISGUIWorkstationLib", "GUI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HISGUITriageLib", "GUI\HISGUITriageLib\HISGUITriageLib.csproj", "{BF7BDBE0-1BDC-4654-9E24-8593CA8D77B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HISGUIClinicDoctorLib", "GUI\HISGUIClinicDoctorLib\HISGUIClinicDoctorLib.csproj", "{00A42740-A68B-42A1-93F4-CEFA93F38CEE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HISGUIDoctorLib", "GUI\HISGUIClinicDoctorLib\HISGUIDoctorLib.csproj", "{00A42740-A68B-42A1-93F4-CEFA93F38CEE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

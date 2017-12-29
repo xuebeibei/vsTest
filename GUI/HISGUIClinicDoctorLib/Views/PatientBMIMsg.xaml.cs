@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("PatientBMIMsg", typeof(PatientBMIMsg))]
@@ -34,14 +34,14 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
 
         private void PatientBMIMsg_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             string str = vm?.getPatientBMIMsg();
             this.BMILabel.Content = str;
         }

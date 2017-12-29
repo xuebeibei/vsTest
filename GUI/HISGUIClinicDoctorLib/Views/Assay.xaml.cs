@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("Assay", typeof(Assay))]
@@ -38,7 +38,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -51,13 +51,13 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void getAllAssayList()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.AssayList.ItemsSource = vm?.getAllAssay();
         }
 
         private void newAssay()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.AssayMsg.Text = vm?.newAssay();
 
             this.myTableEdit.ClearAllDetails();
@@ -81,7 +81,7 @@ namespace HISGUIClinicDoctorLib.Views
                 list.Add(recipeDetail);
             }
 
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             bool? saveResult = vm?.SaveAssay(list);
 
             if (!saveResult.HasValue)

@@ -17,30 +17,30 @@ using System.Windows.Shapes;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("HISGUITriageView", typeof(HISGUIClinicDoctorView))]
-    public partial class HISGUIClinicDoctorView : HISGUIViewBase
+    [Export("HISGUITriageView", typeof(HISGUIDoctorView))]
+    public partial class HISGUIDoctorView : HISGUIViewBase
     {
-        public HISGUIClinicDoctorView()
+        public HISGUIDoctorView()
         {
             InitializeComponent();
-            this.Loaded += ClinicDoctor_Loaded;
+            this.Loaded += View_Loaded;
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
 
-        private void ClinicDoctor_Loaded(object sender, RoutedEventArgs e)
+        private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             vm?.DoctorWorkManage();
         }
     }

@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("DoctorWorkView", typeof(DoctorWorkView))]
@@ -34,7 +34,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -47,7 +47,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void ShowAllRegistration()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             dictionary = vm?.GetPatients();
@@ -67,7 +67,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void ShowAllInPatient()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             dictionary = vm?.GetAllInPatient();
@@ -88,7 +88,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
             vm.IsClinicOrInHospital = true;
             vm.CurrentRegistrationID = thePatient.ID;
@@ -97,7 +97,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             var thePatient = this.AllInPatientList.SelectedItem as PatientMsgBox;
             vm.IsClinicOrInHospital = false;
             vm.CurrentInpatientID = thePatient.ID;

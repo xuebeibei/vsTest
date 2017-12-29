@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{00A42740-A68B-42A1-93F4-CEFA93F38CEE}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HISGUIClinicDoctorLib</RootNamespace>
-    <AssemblyName>HISGUIClinicDoctorLib</AssemblyName>
+    <RootNamespace>HISGUIDoctorLib</RootNamespace>
+    <AssemblyName>HISGUIDoctorLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -72,7 +72,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HISGUIClinicDoctorModule.cs" />
+    <Compile Include="HISGUIDoctorModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -86,7 +86,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\HISGUIClinicDoctorVM.cs" />
+    <Compile Include="ViewModels\HISGUIDoctorVM.cs" />
     <Compile Include="Views\Assay.xaml.cs">
       <DependentUpon>Assay.xaml</DependentUpon>
     </Compile>
@@ -105,8 +105,8 @@
     <Compile Include="Views\DoctorWorkView.xaml.cs">
       <DependentUpon>DoctorWorkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HISGUIClinicDoctorView.xaml.cs">
-      <DependentUpon>HISGUIClinicDoctorView.xaml</DependentUpon>
+    <Compile Include="Views\HISGUIDoctorView.xaml.cs">
+      <DependentUpon>HISGUIDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inspect.xaml.cs">
       <DependentUpon>Inspect.xaml</DependentUpon>
@@ -183,7 +183,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HISGUIClinicDoctorView.xaml">
+    <Page Include="Views\HISGUIDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

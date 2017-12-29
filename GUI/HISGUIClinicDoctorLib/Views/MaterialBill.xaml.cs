@@ -18,11 +18,11 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("MaterialBill", typeof(MaterialBill))]
@@ -38,7 +38,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -51,13 +51,13 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void getAllMaterialBillList()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.MaterialBillList.ItemsSource = vm?.getAllMaterialBill();
         }
 
         private void newMaterialBill()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.MaterialBillMsg.Text = vm?.newMaterialBill();
 
             this.myTableEdit.ClearAllDetails();
@@ -86,7 +86,7 @@ namespace HISGUIClinicDoctorLib.Views
                 list.Add(materialBillDetail);
             }
 
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             bool? saveResult = vm?.SaveMaterialBill(list);
 
             if (!saveResult.HasValue)

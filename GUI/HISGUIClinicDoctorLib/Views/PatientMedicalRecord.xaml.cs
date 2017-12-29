@@ -18,12 +18,12 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 using System.IO;
 using System.Xml;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("PatientMedicalRecord", typeof(PatientMedicalRecord))]
@@ -40,7 +40,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -65,7 +65,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
 
             string strXML = vm?.GetClinicMedicalRecord();
 
@@ -178,7 +178,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
 
             string strXML = "<?xml version=\"1.0\" encoding=\"ISO - 8859 - 1\"?><note>";
             foreach(var tem in myTextList)

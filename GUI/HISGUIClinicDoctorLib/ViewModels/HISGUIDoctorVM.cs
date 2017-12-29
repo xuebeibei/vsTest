@@ -11,17 +11,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml;
-using HISGUIClinicDoctorLib;
+using HISGUIDoctorLib;
 using HISGUICore;
 using System.Data;
 using System.Windows.Input;
 using Prism.Commands;
 
-namespace HISGUIClinicDoctorLib.ViewModels
+namespace HISGUIDoctorLib.ViewModels
 {
     [Export]
-    [Export("HISGUIClinicDoctorVM", typeof(HISGUIVMBase))]
-    class HISGUIClinicDoctorVM : HISGUIVMBase
+    [Export("HISGUIDoctorVM", typeof(HISGUIVMBase))]
+    class HISGUIDoctorVM : HISGUIVMBase
     {
         public ICommand RecevingOverCommand { get; set; }
 
@@ -379,7 +379,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前医生看诊的挂号单ID
         #region CurrentRegistrationID
         public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
-            "CurrentRegistrationID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentRegistrationID", typeof(int), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public int CurrentRegistrationID
         {
@@ -392,7 +392,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前医生看诊的住院号ID
         #region CurrentInpatientID
         public static readonly DependencyProperty CurrentInPatientIDProperty = DependencyProperty.Register(
-            "CurrentInpatientID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentInpatientID", typeof(int), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public int CurrentInpatientID
         {
@@ -405,7 +405,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前医生看诊的住院号ID
         #region IsClinicOrInHospital
         public static readonly DependencyProperty IsClinicOrInHospitalProperty = DependencyProperty.Register(
-            "IsClinicOrInHospital", typeof(bool), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "IsClinicOrInHospital", typeof(bool), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public bool IsClinicOrInHospital
         {
@@ -419,7 +419,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前处方单
         #region CurrentRecipe
         public static readonly DependencyProperty CurrentRecipeProperty = DependencyProperty.Register(
-            "CurrentRecipe", typeof(CommContracts.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentRecipe", typeof(CommContracts.Recipe), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.Recipe CurrentRecipe
         {
@@ -432,7 +432,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前治疗单
         #region CurrentTherapy
         public static readonly DependencyProperty CurrentTherapyProperty = DependencyProperty.Register(
-            "CurrentTherapy", typeof(CommContracts.Therapy), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentTherapy", typeof(CommContracts.Therapy), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.Therapy CurrentTherapy
         {
@@ -444,7 +444,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前治疗单
         #region CurrentAssay
         public static readonly DependencyProperty CurrentAssayProperty = DependencyProperty.Register(
-            "CurrentAssay", typeof(CommContracts.Assay), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentAssay", typeof(CommContracts.Assay), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.Assay CurrentAssay
         {
@@ -457,7 +457,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前治疗单
         #region CurrentInspect
         public static readonly DependencyProperty CurrentInspectProperty = DependencyProperty.Register(
-            "CurrentInspect", typeof(CommContracts.Inspect), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentInspect", typeof(CommContracts.Inspect), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.Inspect CurrentInspect
         {
@@ -469,7 +469,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前材料单
         #region CurrentMaterialBill
         public static readonly DependencyProperty CurrentMaterialBillProperty = DependencyProperty.Register(
-            "CurrentMaterialBill", typeof(CommContracts.MaterialBill), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentMaterialBill", typeof(CommContracts.MaterialBill), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.MaterialBill CurrentMaterialBill
         {
@@ -481,7 +481,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
         // 当前其他服务单
         #region CurrentOtherService
         public static readonly DependencyProperty CurrentOtherServiceProperty = DependencyProperty.Register(
-            "CurrentOtherService", typeof(CommContracts.OtherService), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentOtherService", typeof(CommContracts.OtherService), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
         public CommContracts.OtherService CurrentOtherService
         {

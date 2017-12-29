@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUIClinicDoctorLib.ViewModels;
+using HISGUIDoctorLib.ViewModels;
 using System.Data;
 
-namespace HISGUIClinicDoctorLib.Views
+namespace HISGUIDoctorLib.Views
 {
     [Export]
     [Export("ClinicRecipe", typeof(ClinicRecipe))]
@@ -41,7 +41,7 @@ namespace HISGUIClinicDoctorLib.Views
         }
 
         [Import]
-        private HISGUIClinicDoctorVM ImportVM
+        private HISGUIDoctorVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -92,7 +92,7 @@ namespace HISGUIClinicDoctorLib.Views
                 list.Add(recipeDetail);
             }
 
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             bool? saveResult = vm?.SaveRecipe(recipeContentEnum, list);
 
             if (!saveResult.HasValue)
@@ -148,7 +148,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void newXiChengYao()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.XiChengRecipeMsg.Text = vm?.newRecipe();
             this.myXiChengTableEdit.ClearAllDetails();
             
@@ -160,7 +160,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void newZhongYao()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.ZhongRecipeMsg.Text = vm?.newRecipe();
             this.myZhongTableEdit.ClearAllDetails();
             this.myZhongTableEdit.IsEnabled = true;
@@ -190,13 +190,13 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void getAllXiCheng()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.AllXiChengList.ItemsSource = vm?.getAllXiCheng();
 
         }
         private void getAllZhong()
         {
-            var vm = this.DataContext as HISGUIClinicDoctorVM;
+            var vm = this.DataContext as HISGUIDoctorVM;
             this.AllZhongList.ItemsSource = vm?.getAllZhong();
         }
 
