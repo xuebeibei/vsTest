@@ -75,11 +75,14 @@ namespace HISGUICore.MyContorls
 
     public enum MyTableEditEnum
     {
-        xichengyao,            // 西/成药处方
-        zhongyao,              // 中药处方
-        zhiliao,               // 治疗
-        jianyan,               // 检验
-        jiancha                // 检查
+        xichengyao,              // 西/成药处方
+        zhongyao,                // 中药处方
+        zhiliao,                 // 治疗
+        jianyan,                 // 检验
+        jiancha,                 // 检查
+        cailiao,                 // 材料
+        qita                     // 其他
+
     }
 
     public partial class MyTableEdit : UserControl
@@ -143,7 +146,9 @@ namespace HISGUICore.MyContorls
             }
             else if (editEnum == MyTableEditEnum.zhiliao ||
                 editEnum == MyTableEditEnum.jianyan ||
-                editEnum == MyTableEditEnum.jiancha)
+                editEnum == MyTableEditEnum.jiancha || 
+                editEnum == MyTableEditEnum.cailiao || 
+                editEnum == MyTableEditEnum.qita)
             {
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -287,6 +292,14 @@ namespace HISGUICore.MyContorls
                     {
                         InsertIntoInspectItem(list.CurrentInspectItem);
                     }
+                    else if(editEnum == MyTableEditEnum.cailiao)
+                    {
+                        InsertIntoMaterialItem(list.CurrentMaterialItem);
+                    }
+                    else if(editEnum == MyTableEditEnum.qita)
+                    {
+                        InsertIntoOtherServiceItem(list.CurrentOtherServiceItem);
+                    }
 
                 }
             }
@@ -364,6 +377,43 @@ namespace HISGUICore.MyContorls
                 GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
             }
         }
+
+        private void InsertIntoMaterialItem(CommContracts.MaterialItem materialItem)
+        {
+            if (materialItem == null)
+                return;
+
+            dynamic item = new MyDetail();
+            item.ID = materialItem.ID;
+            item.Name = materialItem.Name;
+            item.SingleDoseUnit = materialItem.Unit;
+
+            m_items.Add(item);
+            // 跳转到单次剂量
+            if (m_skipList.Count > 0)
+            {
+                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+            }
+        }
+
+        private void InsertIntoOtherServiceItem(CommContracts.OtherServiceItem otherServiceItem)
+        {
+            if (otherServiceItem == null)
+                return;
+
+            dynamic item = new MyDetail();
+            item.ID = otherServiceItem.ID;
+            item.Name = otherServiceItem.Name;
+            item.SingleDoseUnit = otherServiceItem.Unit;
+
+            m_items.Add(item);
+            // 跳转到单次剂量
+            if (m_skipList.Count > 0)
+            {
+                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+            }
+        }
+
         private void GridSkipTo(int row, int column)
         {
             var Dg = this.MyDataGrid;

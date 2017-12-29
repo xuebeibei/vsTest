@@ -56,9 +56,14 @@
     <Compile Include="Job.cs" />
     <Compile Include="LoginUser.cs" />
     <Compile Include="ILoginService.cs" />
+    <Compile Include="MaterialBill.cs" />
+    <Compile Include="MaterialBillDetail.cs" />
     <Compile Include="MaterialItem.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
+    <Compile Include="OtherService.cs" />
+    <Compile Include="OtherServiceDetail.cs" />
+    <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />

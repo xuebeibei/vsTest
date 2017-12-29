@@ -21,19 +21,19 @@ using HISGUICore.MyContorls;
 using HISGUIClinicDoctorLib.ViewModels;
 using System.Data;
 
+
 namespace HISGUIClinicDoctorLib.Views
 {
     [Export]
-    [Export("Assay", typeof(Assay))]
-    public partial class Assay : HISGUIViewBase
+    [Export("MaterialBill", typeof(MaterialBill))]
+    public partial class MaterialBill : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public Assay()
+        public MaterialBill()
         {
             InitializeComponent();
-
-            myTableEdit = new MyTableEdit(MyTableEditEnum.jianyan);
-            AssayPanel.Children.Add(myTableEdit);
+            myTableEdit = new MyTableEdit(MyTableEditEnum.cailiao);
+            MaterialBillPanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -45,44 +45,49 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            getAllAssayList();
-            newAssay();
+            getAllMaterialBillList();
+            newMaterialBill();
         }
 
-        private void getAllAssayList()
+        private void getAllMaterialBillList()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            this.AssayList.ItemsSource = vm?.getAllAssay();
+            this.MaterialBillList.ItemsSource = vm?.getAllMaterialBill();
         }
 
-        private void newAssay()
+        private void newMaterialBill()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            this.AssayMsg.Text = vm?.newAssay();
+            this.MaterialBillMsg.Text = vm?.newMaterialBill();
 
             this.myTableEdit.ClearAllDetails();
 
-            this.AssayList.SelectedItems.Clear();
+            this.MaterialBillList.SelectedItems.Clear();
             this.myTableEdit.IsEnabled = true;
             this.SaveBtn.IsEnabled = true;
             this.DeleteBtn.IsEnabled = false;
         }
 
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            newMaterialBill();
+        }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.AssayDetail> list = new List<CommContracts.AssayDetail>();
+            List<CommContracts.MaterialBillDetail> list = new List<CommContracts.MaterialBillDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.AssayDetail recipeDetail = new CommContracts.AssayDetail();
-                recipeDetail.AssayItemID = tem.ID;
-                recipeDetail.Num = tem.SingleDose;
-                recipeDetail.Illustration = tem.Illustration;
-                list.Add(recipeDetail);
+                CommContracts.MaterialBillDetail materialBillDetail = new CommContracts.MaterialBillDetail();
+                materialBillDetail.MaterialItemID = tem.ID;
+                materialBillDetail.Num = tem.SingleDose;
+                materialBillDetail.Illustration = tem.Illustration;
+                list.Add(materialBillDetail);
             }
 
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            bool? saveResult = vm?.SaveAssay(list);
+            bool? saveResult = vm?.SaveMaterialBill(list);
 
             if (!saveResult.HasValue)
             {
@@ -92,8 +97,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                newAssay();
-                getAllAssayList();
+                newMaterialBill();
+                getAllMaterialBillList();
             }
             else
             {
@@ -107,22 +112,22 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.Assay assay)
+        private void ShowDetails(CommContracts.MaterialBill materialBill)
         {
-            if (assay == null)
+            if (materialBill == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in assay.AssayDetails)
+            foreach (var tem in materialBill.MaterialBillDetails)
             {
-                MyDetail assayDetail = new MyDetail(); 
-                assayDetail.ID = tem.AssayID;
-                assayDetail.Name = tem.AssayItem.Name;
-                assayDetail.SingleDose = tem.Num;
-                assayDetail.Illustration = tem.Illustration;
-                list.Add(assayDetail);
+                MyDetail recipeDetail = new MyDetail();
+                recipeDetail.ID = tem.MaterialBillID;
+                recipeDetail.Name = tem.MaterialItem.Name;
+                recipeDetail.SingleDose = tem.Num;
+                recipeDetail.Illustration = tem.Illustration;
+                list.Add(recipeDetail);
             }
 
-            this.AssayMsg.Text = assay.ToTipString();
+            this.MaterialBillMsg.Text = materialBill.ToTipString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -132,23 +137,18 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
-        private void AssayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
-            ShowDetails(assay);
-
-            this.SaveBtn.IsEnabled = false;
-            this.DeleteBtn.IsEnabled = true;
-        }
-
-        private void NewBtn_Click(object sender, RoutedEventArgs e)
-        {
-            newAssay();
-        }
-
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void MaterialBillList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CommContracts.MaterialBill materialBill = MaterialBillList.SelectedItem as CommContracts.MaterialBill;
+            ShowDetails(materialBill);
+
+            this.SaveBtn.IsEnabled = false;
+            this.DeleteBtn.IsEnabled = true;
         }
     }
 }

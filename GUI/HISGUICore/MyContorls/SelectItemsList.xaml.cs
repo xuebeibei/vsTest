@@ -21,6 +21,8 @@ namespace HISGUICore.MyContorls
         public CommContracts.TherapyItem CurrentTherapyItem { get; set; }  // 治疗
         public CommContracts.AssayItem CurrentAssayItem { get; set; }      // 检验
         public CommContracts.InspectItem CurrentInspectItem { get; set; }  // 检查
+        public CommContracts.MaterialItem CurrentMaterialItem { get; set; }// 材料
+        public CommContracts.OtherServiceItem CurrentOtherServiceItem { get; set; } // 其他服务
 
         private MyTableEditEnum editEnum;
         public SelectItemsList(MyTableEditEnum itemEnum)
@@ -70,6 +72,22 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
+            else if(editEnum == MyTableEditEnum.cailiao)
+            {
+                CommClient.MaterialItem therapyItem = new CommClient.MaterialItem();
+                List<CommContracts.MaterialItem> list = therapyItem.GetAllMaterialItems(strFindName);
+
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
+            else if(editEnum == MyTableEditEnum.qita)
+            {
+                CommClient.OtherServiceItem otherServiceItem = new CommClient.OtherServiceItem();
+                List<CommContracts.OtherServiceItem> list = otherServiceItem.GetAllOtherServiceItems(strFindName);
+
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
         }
 
 
@@ -106,6 +124,23 @@ namespace HISGUICore.MyContorls
                     CommContracts.InspectItem therapyItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.InspectItem);
 
                     CurrentInspectItem = therapyItem;
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+                }
+                else if(editEnum == MyTableEditEnum.cailiao)
+                {
+                    CommContracts.MaterialItem materialItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.MaterialItem);
+
+                    CurrentMaterialItem = materialItem;
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+
+                }
+                else if(editEnum == MyTableEditEnum.qita)
+                {
+                    CommContracts.OtherServiceItem otherServiceItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.OtherServiceItem);
+
+                    CurrentOtherServiceItem = otherServiceItem;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }

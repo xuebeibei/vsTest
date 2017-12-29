@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 
-namespace Contracts
+namespace CommContracts
 {
     [DataContract]
     public class Inpatient

@@ -91,7 +91,7 @@ namespace HISGUIClinicDoctorLib.Views
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
             vm.IsClinicOrInHospital = true;
-            vm.RegistrationID = thePatient.ID;
+            vm.CurrentRegistrationID = thePatient.ID;
             vm?.ReceivingNewPatientsManage();
         }
 
@@ -100,7 +100,7 @@ namespace HISGUIClinicDoctorLib.Views
             var vm = this.DataContext as HISGUIClinicDoctorVM;
             var thePatient = this.AllInPatientList.SelectedItem as PatientMsgBox;
             vm.IsClinicOrInHospital = false;
-            vm.InpatientID = thePatient.ID;
+            vm.CurrentInpatientID = thePatient.ID;
             vm?.ReceivingNewPatientsManage();
         }
     }

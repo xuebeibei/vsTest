@@ -230,3 +230,19 @@ insert into InspectItems values(N'B超常规检查（胃肠道、泌尿系）','
 select * from Inspects;
 select * from InspectDetails;
 
+select * from Patients;
+select * from Inpatients;
+
+insert into Inpatients values('001',1,GETDATE(), 1);
+insert into Inpatients values('002',2,GETDATE(), 1);
+insert into Inpatients values('003',3,GETDATE(), 1);
+
+select * from Employees;
+select * from Responsibilities;
+insert into Responsibilities values(1,4, GETDATE());
+insert into Responsibilities values(2,4, GETDATE());
+insert into Responsibilities values(3,4, GETDATE());
+
+select * from MaterialBills;
+
+select * from OtherServices;

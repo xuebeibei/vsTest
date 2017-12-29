@@ -67,10 +67,12 @@
             </TabItem>
             <TabItem Header="材料">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:MaterialBill></local:MaterialBill>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="其他">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:OtherService></local:OtherService>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="报告">

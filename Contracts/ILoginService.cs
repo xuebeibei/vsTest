@@ -66,9 +66,6 @@ namespace CommContracts
         List<CommContracts.Recipe> getAllZhong(int RegistrationID);
 
         [OperationContract]
-        bool SaveRecipeDetail();
-
-        [OperationContract]
         CommContracts.MedicalRecord GetMedicalRecord(int id);
 
         [OperationContract]
@@ -130,5 +127,35 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
+
+        [OperationContract]
+        CommContracts.MaterialBill GetMaterialBill(int Id);
+
+        [OperationContract]
+        bool SaveMaterialBill(CommContracts.MaterialBill materialBill);
+
+        [OperationContract]
+        List<CommContracts.MaterialBill> getAllMaterialBill(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.MaterialBill> getAllInHospitalMaterialBill(int InpatientID);
+
+        [OperationContract]
+        CommContracts.OtherService GetOtherService(int Id);
+
+        [OperationContract]
+        bool SaveOtherService(CommContracts.OtherService otherService);
+
+        [OperationContract]
+        List<CommContracts.OtherService> getAllOtherService(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName);
+
+        [OperationContract]
+        List<CommContracts.MaterialItem> GetAllMaterialItems(string strName);
     }
 }

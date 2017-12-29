@@ -21,19 +21,19 @@ using HISGUICore.MyContorls;
 using HISGUIClinicDoctorLib.ViewModels;
 using System.Data;
 
+
 namespace HISGUIClinicDoctorLib.Views
 {
     [Export]
-    [Export("Assay", typeof(Assay))]
-    public partial class Assay : HISGUIViewBase
+    [Export("OtherService", typeof(OtherService))]
+    public partial class OtherService : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public Assay()
+        public OtherService()
         {
             InitializeComponent();
-
-            myTableEdit = new MyTableEdit(MyTableEditEnum.jianyan);
-            AssayPanel.Children.Add(myTableEdit);
+            myTableEdit = new MyTableEdit(MyTableEditEnum.qita);
+            OtherServicePanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -45,44 +45,49 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            getAllAssayList();
-            newAssay();
+            getAllOtherServiceList();
+            newOtherService();
         }
 
-        private void getAllAssayList()
+        private void getAllOtherServiceList()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            this.AssayList.ItemsSource = vm?.getAllAssay();
+            this.OtherServiceList.ItemsSource = vm?.getAllOtherService();
         }
 
-        private void newAssay()
+        private void newOtherService()
         {
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            this.AssayMsg.Text = vm?.newAssay();
+            this.OtherServiceMsg.Text = vm?.newOtherService();
 
             this.myTableEdit.ClearAllDetails();
 
-            this.AssayList.SelectedItems.Clear();
+            this.OtherServiceList.SelectedItems.Clear();
             this.myTableEdit.IsEnabled = true;
             this.SaveBtn.IsEnabled = true;
             this.DeleteBtn.IsEnabled = false;
         }
 
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            newOtherService();
+        }
+
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.AssayDetail> list = new List<CommContracts.AssayDetail>();
+            List<CommContracts.OtherServiceDetail> list = new List<CommContracts.OtherServiceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.AssayDetail recipeDetail = new CommContracts.AssayDetail();
-                recipeDetail.AssayItemID = tem.ID;
-                recipeDetail.Num = tem.SingleDose;
-                recipeDetail.Illustration = tem.Illustration;
-                list.Add(recipeDetail);
+                CommContracts.OtherServiceDetail otherServiceDetail = new CommContracts.OtherServiceDetail();
+                otherServiceDetail.OtherServiceItemID = tem.ID;
+                otherServiceDetail.Num = tem.SingleDose;
+                otherServiceDetail.Illustration = tem.Illustration;
+                list.Add(otherServiceDetail);
             }
 
             var vm = this.DataContext as HISGUIClinicDoctorVM;
-            bool? saveResult = vm?.SaveAssay(list);
+            bool? saveResult = vm?.SaveOtherService(list);
 
             if (!saveResult.HasValue)
             {
@@ -92,8 +97,8 @@ namespace HISGUIClinicDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                newAssay();
-                getAllAssayList();
+                newOtherService();
+                getAllOtherServiceList();
             }
             else
             {
@@ -107,22 +112,22 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.Assay assay)
+        private void ShowDetails(CommContracts.OtherService otherService)
         {
-            if (assay == null)
+            if (otherService == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in assay.AssayDetails)
+            foreach (var tem in otherService.OtherServiceDetails)
             {
-                MyDetail assayDetail = new MyDetail(); 
-                assayDetail.ID = tem.AssayID;
-                assayDetail.Name = tem.AssayItem.Name;
+                MyDetail assayDetail = new MyDetail();
+                assayDetail.ID = tem.OtherServiceID;
+                assayDetail.Name = tem.OtherServiceItem.Name;
                 assayDetail.SingleDose = tem.Num;
                 assayDetail.Illustration = tem.Illustration;
                 list.Add(assayDetail);
             }
 
-            this.AssayMsg.Text = assay.ToTipString();
+            this.OtherServiceMsg.Text = otherService.ToTipString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -132,22 +137,18 @@ namespace HISGUIClinicDoctorLib.Views
 
         }
 
-        private void AssayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
-            ShowDetails(assay);
+
+        }
+
+        private void OtherServiceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            CommContracts.OtherService otherService = OtherServiceList.SelectedItem as CommContracts.OtherService;
+            ShowDetails(otherService);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
-        }
-
-        private void NewBtn_Click(object sender, RoutedEventArgs e)
-        {
-            newAssay();
-        }
-
-        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-        {
 
         }
     }

@@ -115,7 +115,7 @@ namespace CommServer
             BLL.Recipe temp = new BLL.Recipe();
             return temp.SaveRecipe(recipe);
         }
-        
+
         public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
         {
             BLL.Recipe temp = new BLL.Recipe();
@@ -126,12 +126,6 @@ namespace CommServer
         {
             BLL.Recipe temp = new BLL.Recipe();
             return temp.getAllZhong(RegistrationID);
-        }
-
-        public bool SaveRecipeDetail()
-        {
-            BLL.RecipeDetail temp = new BLL.RecipeDetail();
-            return temp.SaveRecipeDetail();
         }
 
         public CommContracts.MedicalRecord GetMedicalRecord(int id)
@@ -247,7 +241,7 @@ namespace CommServer
             BLL.Assay temp = new BLL.Assay();
             return temp.getAllInHospitalAssay(InpatientID);
         }
-        
+
         public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
         {
             BLL.Recipe temp = new BLL.Recipe();
@@ -258,6 +252,66 @@ namespace CommServer
         {
             BLL.Recipe temp = new BLL.Recipe();
             return temp.getAllInHospitalZhong(InpatientID);
+        }
+
+        public CommContracts.MaterialBill GetMaterialBill(int Id)
+        {
+            BLL.MaterialBill temp = new BLL.MaterialBill();
+            return temp.GetMaterialBill(Id);
+        }
+
+        public bool SaveMaterialBill(CommContracts.MaterialBill materialBill)
+        {
+            BLL.MaterialBill temp = new BLL.MaterialBill();
+            return temp.SaveMaterialBill(materialBill);
+        }
+
+        public List<CommContracts.MaterialBill> getAllMaterialBill(int RegistrationID)
+        {
+            BLL.MaterialBill temp = new BLL.MaterialBill();
+            return temp.getAllMaterialBill(RegistrationID);
+        }
+
+        public List<CommContracts.MaterialBill> getAllInHospitalMaterialBill(int InpatientID)
+        {
+            BLL.MaterialBill temp = new BLL.MaterialBill();
+            return temp.getAllInHospitalMaterialBill(InpatientID);
+        }
+
+        public CommContracts.OtherService GetOtherService(int Id)
+        {
+            BLL.OtherService temp = new BLL.OtherService();
+            return temp.GetOtherService(Id);
+        }
+
+        public bool SaveOtherService(CommContracts.OtherService otherService)
+        {
+            BLL.OtherService temp = new BLL.OtherService();
+            return temp.SaveOtherService(otherService);
+        }
+
+        public List<CommContracts.OtherService> getAllOtherService(int RegistrationID)
+        {
+            BLL.OtherService temp = new BLL.OtherService();
+            return temp.getAllOtherService(RegistrationID);
+        }
+
+        public List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID)
+        {
+            BLL.OtherService temp = new BLL.OtherService();
+            return temp.getAllInHospitalOtherService(InpatientID);
+        }
+
+        public List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName)
+        {
+            BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
+            return temp.GetAllOtherServiceItems(strName);
+        }
+
+        public List<CommContracts.MaterialItem> GetAllMaterialItems(string strName)
+        {
+            BLL.MaterialItem temp = new BLL.MaterialItem();
+            return temp.GetAllMaterialItems(strName);
         }
     }
 }

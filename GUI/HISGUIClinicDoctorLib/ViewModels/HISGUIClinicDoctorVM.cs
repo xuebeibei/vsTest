@@ -64,119 +64,156 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
         public List<CommContracts.Recipe> getAllXiCheng()
         {
+            CommClient.Recipe recipe = new CommClient.Recipe();
             if (IsClinicOrInHospital)
             {
-                CommClient.Recipe recipe = new CommClient.Recipe();
-                return recipe.getAllXiCheng(RegistrationID);
+                return recipe.getAllXiCheng(CurrentRegistrationID);
             }
             else
             {
-                CommClient.Recipe recipe = new CommClient.Recipe();
-                return recipe.getAllInHospitalXiCheng(InpatientID);
+                return recipe.getAllInHospitalXiCheng(CurrentInpatientID);
             }
         }
 
         public List<CommContracts.Recipe> getAllZhong()
         {
+            CommClient.Recipe recipe = new CommClient.Recipe();
             if (IsClinicOrInHospital)
             {
-                CommClient.Recipe recipe = new CommClient.Recipe();
-                return recipe.getAllZhong(RegistrationID);
+                return recipe.getAllZhong(CurrentRegistrationID);
             }
             else
             {
-                CommClient.Recipe recipe = new CommClient.Recipe();
-                return recipe.getAllInHospitalZhong(InpatientID);
+                return recipe.getAllInHospitalZhong(CurrentInpatientID);
             }
         }
 
         public List<CommContracts.Assay> getAllAssay()
         {
+            CommClient.Assay assay = new CommClient.Assay();
             if (IsClinicOrInHospital)
             {
-                CommClient.Assay assay = new CommClient.Assay();
-                return assay.getAllAssay(RegistrationID);
+                return assay.getAllAssay(CurrentRegistrationID);
             }
             else
             {
-                CommClient.Assay assay = new CommClient.Assay();
-                return assay.getAllInHospitalAssay(InpatientID);
+                return assay.getAllInHospitalAssay(CurrentInpatientID);
             }
         }
 
         public List<CommContracts.Therapy> getAllTherapy()
         {
+            CommClient.Therapy therapy = new CommClient.Therapy();
             if (IsClinicOrInHospital)
             {
-                CommClient.Therapy therapy = new CommClient.Therapy();
-                return therapy.getAllTherapy(RegistrationID);
+                return therapy.getAllTherapy(CurrentRegistrationID);
             }
             else
             {
-                CommClient.Therapy therapy = new CommClient.Therapy();
-                return therapy.getAllInHospitalTherapy(InpatientID);
+                return therapy.getAllInHospitalTherapy(CurrentInpatientID);
             }
         }
 
         public List<CommContracts.Inspect> getAllInspect()
         {
+            CommClient.Inspect inspect = new CommClient.Inspect();
             if (IsClinicOrInHospital)
             {
-                CommClient.Inspect therapy = new CommClient.Inspect();
-                return therapy.getAllInspect(RegistrationID);
+                return inspect.getAllInspect(CurrentRegistrationID);
             }
             else
             {
-                CommClient.Inspect therapy = new CommClient.Inspect();
-                return therapy.getAllInHospitalInspect(InpatientID);
+                return inspect.getAllInHospitalInspect(CurrentInpatientID);
             }
         }
+
+        public List<CommContracts.MaterialBill> getAllMaterialBill()
+        {
+            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();
+            if (IsClinicOrInHospital)
+            {
+                return materialBill.getAllMaterialBill(CurrentRegistrationID);
+            }
+            else
+            {
+                return materialBill.getAllInHospitalMaterialBill(CurrentInpatientID);
+            }
+        }
+
+        public List<CommContracts.OtherService> getAllOtherService()
+        {
+            CommClient.OtherService otherService = new CommClient.OtherService();
+            if (IsClinicOrInHospital)
+            {
+                return otherService.getAllOtherService(CurrentRegistrationID);
+            }
+            else
+            {
+                return otherService.getAllInHospitalOtherService(CurrentInpatientID);
+            }
+        }
+
+
 
         public string newRecipe()
         {
             CommContracts.Recipe recipe = new CommContracts.Recipe();
-            ClinicRecipe = recipe;
-            return ClinicRecipe.ToTipString();
+            CurrentRecipe = recipe;
+            return CurrentRecipe.ToTipString();
         }
 
         public string newTherapy()
         {
             CommContracts.Therapy therapy = new CommContracts.Therapy();
-            ClinicTherapy = therapy;
-            return ClinicTherapy.ToTipString();
+            CurrentTherapy = therapy;
+            return CurrentTherapy.ToTipString();
         }
 
         public string newAssay()
         {
             CommContracts.Assay assay = new CommContracts.Assay();
-            ClinicAssay = assay;
-            return ClinicAssay.ToTipString();
+            CurrentAssay = assay;
+            return CurrentAssay.ToTipString();
         }
 
         public string newInspect()
         {
             CommContracts.Inspect inspect = new CommContracts.Inspect();
-            ClinicInspect = inspect;
-            return ClinicInspect.ToTipString();
+            CurrentInspect = inspect;
+            return CurrentInspect.ToTipString();
+        }
+
+        public string newMaterialBill()
+        {
+            CommContracts.MaterialBill materialBill = new CommContracts.MaterialBill();
+            CurrentMaterialBill = materialBill;
+            return CurrentMaterialBill.ToTipString();
+        }
+
+        public string newOtherService()
+        {
+            CommContracts.OtherService otherService = new CommContracts.OtherService();
+            CurrentOtherService = otherService;
+            return CurrentOtherService.ToTipString();
         }
 
         public bool SaveRecipe(CommContracts.RecipeContentEnum recipeContentEnum, List<CommContracts.RecipeDetail> list)
         {
             CommClient.Recipe myd = new CommClient.Recipe();
-            ClinicRecipe.MedicalInstitution = "北京市积水潭总院";
-            ClinicRecipe.RecipeContentEnum = recipeContentEnum;
-            ClinicRecipe.ChargeTypeEnum = 1;
+            CurrentRecipe.MedicalInstitution = "北京市积水潭总院";
+            CurrentRecipe.RecipeContentEnum = recipeContentEnum;
+            CurrentRecipe.ChargeTypeEnum = 1;
             if (IsClinicOrInHospital)
-                ClinicRecipe.RegistrationID = RegistrationID;
+                CurrentRecipe.RegistrationID = CurrentRegistrationID;
             else
-                ClinicRecipe.InpatientID = InpatientID;
-            ClinicRecipe.ClinicalDiagnosis = "感冒";
-            ClinicRecipe.SumOfMoney = 500.00;
-            ClinicRecipe.WriteTime = DateTime.Now;
-            ClinicRecipe.WriteUserID = 1;
+                CurrentRecipe.InpatientID = CurrentInpatientID;
+            CurrentRecipe.ClinicalDiagnosis = "感冒";
+            CurrentRecipe.SumOfMoney = 500.00;
+            CurrentRecipe.WriteTime = DateTime.Now;
+            CurrentRecipe.WriteUserID = 1;
 
-            ClinicRecipe.RecipeDetails = list;
-            myd.MyRecipe = ClinicRecipe;
+            CurrentRecipe.RecipeDetails = list;
+            myd.MyRecipe = CurrentRecipe;
 
             if (myd.SaveRecipe())
                 return true;
@@ -187,17 +224,17 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public bool SaveTherapy(List<CommContracts.TherapyDetail> list)
         {
             CommClient.Therapy therapy = new CommClient.Therapy();
-            ClinicTherapy.NO = "001";
+            CurrentTherapy.NO = "001";
             if (IsClinicOrInHospital)
-                ClinicTherapy.RegistrationID = RegistrationID;
+                CurrentTherapy.RegistrationID = CurrentRegistrationID;
             else
-                ClinicTherapy.InpatientID = InpatientID;
-            ClinicTherapy.SumOfMoney = 300;
-            ClinicTherapy.WriteTime = DateTime.Now;
-            ClinicTherapy.WriteUserID = 1;
+                CurrentTherapy.InpatientID = CurrentInpatientID;
+            CurrentTherapy.SumOfMoney = 300;
+            CurrentTherapy.WriteTime = DateTime.Now;
+            CurrentTherapy.WriteUserID = 1;
 
-            ClinicTherapy.TherapyDetails = list;
-            if (therapy.SaveTherapy(ClinicTherapy))
+            CurrentTherapy.TherapyDetails = list;
+            if (therapy.SaveTherapy(CurrentTherapy))
             {
                 return true;
             }
@@ -210,17 +247,17 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public bool SaveAssay(List<CommContracts.AssayDetail> list)
         {
             CommClient.Assay therapy = new CommClient.Assay();
-            ClinicAssay.NO = "001";
+            CurrentAssay.NO = "001";
             if (IsClinicOrInHospital)
-                ClinicAssay.RegistrationID = RegistrationID;
+                CurrentAssay.RegistrationID = CurrentRegistrationID;
             else
-                ClinicAssay.InpatientID = InpatientID;
-            ClinicAssay.SumOfMoney = 300;
-            ClinicAssay.WriteTime = DateTime.Now;
-            ClinicAssay.WriteUserID = 1;
+                CurrentAssay.InpatientID = CurrentInpatientID;
+            CurrentAssay.SumOfMoney = 300;
+            CurrentAssay.WriteTime = DateTime.Now;
+            CurrentAssay.WriteUserID = 1;
 
-            ClinicAssay.AssayDetails = list;
-            if (therapy.SaveAssay(ClinicAssay))
+            CurrentAssay.AssayDetails = list;
+            if (therapy.SaveAssay(CurrentAssay))
             {
                 return true;
             }
@@ -233,17 +270,63 @@ namespace HISGUIClinicDoctorLib.ViewModels
         public bool SaveInspect(List<CommContracts.InspectDetail> list)
         {
             CommClient.Inspect therapy = new CommClient.Inspect();
-            ClinicInspect.NO = "001";
+            CurrentInspect.NO = "001";
             if (IsClinicOrInHospital)
-                ClinicInspect.RegistrationID = RegistrationID;
+                CurrentInspect.RegistrationID = CurrentRegistrationID;
             else
-                ClinicInspect.InpatientID = InpatientID;
-            ClinicInspect.SumOfMoney = 300;
-            ClinicInspect.WriteTime = DateTime.Now;
-            ClinicInspect.WriteUserID = 1;
+                CurrentInspect.InpatientID = CurrentInpatientID;
+            CurrentInspect.SumOfMoney = 300;
+            CurrentInspect.WriteTime = DateTime.Now;
+            CurrentInspect.WriteUserID = 1;
 
-            ClinicInspect.InspectDetails = list;
-            if (therapy.SaveInspect(ClinicInspect))
+            CurrentInspect.InspectDetails = list;
+            if (therapy.SaveInspect(CurrentInspect))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool SaveMaterialBill(List<CommContracts.MaterialBillDetail> list)
+        {
+            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();
+            CurrentMaterialBill.NO = "001";
+            if (IsClinicOrInHospital)
+                CurrentMaterialBill.RegistrationID = CurrentRegistrationID;
+            else
+                CurrentMaterialBill.InpatientID = CurrentInpatientID;
+            CurrentMaterialBill.SumOfMoney = 300;
+            CurrentMaterialBill.WriteTime = DateTime.Now;
+            CurrentMaterialBill.WriteUserID = 1;
+
+            CurrentMaterialBill.MaterialBillDetails = list;
+            if (materialBill.SaveMaterialBill(CurrentMaterialBill))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool SaveOtherService(List<CommContracts.OtherServiceDetail> list)
+        {
+            CommClient.OtherService otherService = new CommClient.OtherService();
+            CurrentOtherService.NO = "001";
+            if (IsClinicOrInHospital)
+                CurrentOtherService.RegistrationID = CurrentRegistrationID;
+            else
+                CurrentOtherService.InpatientID = CurrentInpatientID;
+            CurrentOtherService.SumOfMoney = 300;
+            CurrentOtherService.WriteTime = DateTime.Now;
+            CurrentOtherService.WriteUserID = 1;
+
+            CurrentOtherService.OtherServiceDetails = list;
+            if (otherService.SaveOtherService(CurrentOtherService))
             {
                 return true;
             }
@@ -258,12 +341,12 @@ namespace HISGUIClinicDoctorLib.ViewModels
             if(IsClinicOrInHospital)
             {
                 CommClient.Registration myd = new CommClient.Registration();
-                return myd.getPatientBMIMsg(RegistrationID);
+                return myd.getPatientBMIMsg(CurrentRegistrationID);
             }
             else
             {
                 CommClient.Inpatient inpatient = new CommClient.Inpatient();
-                return inpatient.getInPatientBMIMsg(InpatientID);
+                return inpatient.getInPatientBMIMsg(CurrentInpatientID);
             }
         }
 
@@ -273,7 +356,7 @@ namespace HISGUIClinicDoctorLib.ViewModels
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
 
             CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
-            medicalRecord.RegistrationID = RegistrationID;
+            medicalRecord.RegistrationID = CurrentRegistrationID;
             medicalRecord.NO = "001";
             medicalRecord.MedicalRecordEnum = CommContracts.MedicalRecordEnum.MenZhen;
             medicalRecord.WriteUserID = 1;
@@ -288,33 +371,33 @@ namespace HISGUIClinicDoctorLib.ViewModels
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
 
             CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
-            medicalRecord = myd.GetMedicalRecord(RegistrationID);
+            medicalRecord = myd.GetMedicalRecord(CurrentRegistrationID);
 
             return medicalRecord.ContentXml;
         }
 
         // 当前医生看诊的挂号单ID
-        #region RegistrationID
-        public static readonly DependencyProperty RegistrationIDProperty = DependencyProperty.Register(
-            "RegistrationID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentRegistrationID
+        public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
+            "CurrentRegistrationID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public int RegistrationID
+        public int CurrentRegistrationID
         {
-            get { return (int)GetValue(RegistrationIDProperty); }
-            set { SetValue(RegistrationIDProperty, value); }
+            get { return (int)GetValue(CurrentRegistrationIDProperty); }
+            set { SetValue(CurrentRegistrationIDProperty, value); }
         }
 
         #endregion
 
         // 当前医生看诊的住院号ID
-        #region InpatientID
-        public static readonly DependencyProperty InPatientIDProperty = DependencyProperty.Register(
-            "InpatientID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentInpatientID
+        public static readonly DependencyProperty CurrentInPatientIDProperty = DependencyProperty.Register(
+            "CurrentInpatientID", typeof(int), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public int InpatientID
+        public int CurrentInpatientID
         {
-            get { return (int)GetValue(InPatientIDProperty); }
-            set { SetValue(InPatientIDProperty, value); }
+            get { return (int)GetValue(CurrentInPatientIDProperty); }
+            set { SetValue(CurrentInPatientIDProperty, value); }
         }
 
         #endregion
@@ -334,52 +417,76 @@ namespace HISGUIClinicDoctorLib.ViewModels
 
 
         // 当前处方单
-        #region ClinicRecipe
-        public static readonly DependencyProperty ClinicRecipeProperty = DependencyProperty.Register(
-            "ClinicRecipe", typeof(CommContracts.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentRecipe
+        public static readonly DependencyProperty CurrentRecipeProperty = DependencyProperty.Register(
+            "CurrentRecipe", typeof(CommContracts.Recipe), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Recipe ClinicRecipe
+        public CommContracts.Recipe CurrentRecipe
         {
-            get { return (CommContracts.Recipe)GetValue(ClinicRecipeProperty); }
-            set { SetValue(ClinicRecipeProperty, value); }
+            get { return (CommContracts.Recipe)GetValue(CurrentRecipeProperty); }
+            set { SetValue(CurrentRecipeProperty, value); }
         }
 
         #endregion
 
         // 当前治疗单
-        #region ClinicTherapy
-        public static readonly DependencyProperty ClinicTherapyProperty = DependencyProperty.Register(
-            "ClinicTherapy", typeof(CommContracts.Therapy), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentTherapy
+        public static readonly DependencyProperty CurrentTherapyProperty = DependencyProperty.Register(
+            "CurrentTherapy", typeof(CommContracts.Therapy), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Therapy ClinicTherapy
+        public CommContracts.Therapy CurrentTherapy
         {
-            get { return (CommContracts.Therapy)GetValue(ClinicTherapyProperty); }
-            set { SetValue(ClinicTherapyProperty, value); }
+            get { return (CommContracts.Therapy)GetValue(CurrentTherapyProperty); }
+            set { SetValue(CurrentTherapyProperty, value); }
         }
         #endregion
 
         // 当前治疗单
-        #region ClinicAssay
-        public static readonly DependencyProperty ClinicAssayProperty = DependencyProperty.Register(
-            "ClinicAssay", typeof(CommContracts.Assay), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentAssay
+        public static readonly DependencyProperty CurrentAssayProperty = DependencyProperty.Register(
+            "CurrentAssay", typeof(CommContracts.Assay), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Assay ClinicAssay
+        public CommContracts.Assay CurrentAssay
         {
-            get { return (CommContracts.Assay)GetValue(ClinicAssayProperty); }
-            set { SetValue(ClinicAssayProperty, value); }
+            get { return (CommContracts.Assay)GetValue(CurrentAssayProperty); }
+            set { SetValue(CurrentAssayProperty, value); }
         }
         #endregion
 
 
         // 当前治疗单
-        #region ClinicInspect
-        public static readonly DependencyProperty ClinicInspectProperty = DependencyProperty.Register(
-            "ClinicInspect", typeof(CommContracts.Inspect), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentInspect
+        public static readonly DependencyProperty CurrentInspectProperty = DependencyProperty.Register(
+            "CurrentInspect", typeof(CommContracts.Inspect), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Inspect ClinicInspect
+        public CommContracts.Inspect CurrentInspect
         {
-            get { return (CommContracts.Inspect)GetValue(ClinicInspectProperty); }
-            set { SetValue(ClinicInspectProperty, value); }
+            get { return (CommContracts.Inspect)GetValue(CurrentInspectProperty); }
+            set { SetValue(CurrentInspectProperty, value); }
+        }
+        #endregion
+
+        // 当前材料单
+        #region CurrentMaterialBill
+        public static readonly DependencyProperty CurrentMaterialBillProperty = DependencyProperty.Register(
+            "CurrentMaterialBill", typeof(CommContracts.MaterialBill), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.MaterialBill CurrentMaterialBill
+        {
+            get { return (CommContracts.MaterialBill)GetValue(CurrentMaterialBillProperty); }
+            set { SetValue(CurrentMaterialBillProperty, value); }
+        }
+        #endregion
+
+        // 当前其他服务单
+        #region CurrentOtherService
+        public static readonly DependencyProperty CurrentOtherServiceProperty = DependencyProperty.Register(
+            "CurrentOtherService", typeof(CommContracts.OtherService), typeof(HISGUIClinicDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.OtherService CurrentOtherService
+        {
+            get { return (CommContracts.OtherService)GetValue(CurrentOtherServiceProperty); }
+            set { SetValue(CurrentOtherServiceProperty, value); }
         }
         #endregion
     }
