@@ -143,7 +143,7 @@ namespace HISGUIClinicDoctorLib.Views
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            newTherapy();
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
