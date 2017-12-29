@@ -82,6 +82,11 @@ namespace DAL
         public DbSet<Inspect> Inspects { get; set; }
         public DbSet<InspectDetail> InspectDetails { get; set; }
         public DbSet<Responsibility> Responsibilities { get; set; }
+        public DbSet<MaterialBill> MaterialBills { get; set; }
+        public DbSet<MaterialBillDetail> MaterialBillDetail { get; set; }
+        public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
+        public DbSet<OtherService> OtherServices { get; set; }
+        public DbSet<OtherServiceDetail> OtherServiceDetails { get; set; }
     }
 
     public class User
@@ -97,6 +102,8 @@ namespace DAL
             Assays = new List<Assay>();
             Inspects = new List<Inspect>();
             Inpatients = new List<Inpatient>();
+            MaterialBills = new List<MaterialBill>();
+            OtherServices = new List<OtherService>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -113,9 +120,10 @@ namespace DAL
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
         public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的检验申请单
         public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
-        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记  
+        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
+        public virtual ICollection<MaterialBill> MaterialBills { get; set; } // 所有材料单
+        public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
     }
-    
 
     public class Department
     {
@@ -305,6 +313,7 @@ namespace DAL
         ZhongYao
     }
 
+    // 处方单
     public class Recipe
     {
         
@@ -335,6 +344,7 @@ namespace DAL
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
     }
 
+    // 处方单明细
     public class RecipeDetail
     {
         public RecipeDetail()
@@ -595,13 +605,12 @@ namespace DAL
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }
 
-
     // 物资项目
     public class MaterialItem
     {
         public MaterialItem()
         {
-
+            MaterialBillDetails = new List<MaterialBillDetail>();
         }
 
         public int ID { get; set; }
@@ -617,8 +626,8 @@ namespace DAL
         public int MaxNum { get; set; }                         // 最大库存量
         public int MinNum { get; set; }                         // 最小库存量
 
+        public virtual ICollection<MaterialBillDetail> MaterialBillDetails { get; set; }
     }
-
 
     // 治疗单
     public class Therapy
@@ -738,5 +747,102 @@ namespace DAL
         public virtual Inspect Inspect { get; set; }
 
         public virtual InspectItem InspectItem { get; set; }
+    }
+
+    // 材料单
+    public class MaterialBill
+    {
+        public MaterialBill()
+        {
+            MaterialBillDetails = new List<MaterialBillDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public int RegistrationID { get; set; }                   // 门诊ID
+        public int InpatientID { get; set; }                      // 住院ID
+
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+        public virtual User WriteUser { get; set; }               // 开具医生
+
+        public virtual ICollection<MaterialBillDetail> MaterialBillDetails { get; set; }
+    }
+    // 材料单明细
+    public class MaterialBillDetail
+    {
+        public MaterialBillDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                               // ID
+        public int MaterialItemID { get; set; }                   // 材料ID
+        public int Num { get; set; }                              // 次数
+        public string Illustration { get; set; }                  // 说明
+
+        public int MaterialBillID { get; set; }                          // 所属材料单ID
+        public virtual MaterialBill MaterialBill { get; set; }
+
+        public virtual MaterialItem MaterialItem { get; set; }
+    }
+
+    // 其他服务字典
+    public class OtherServiceItem
+    {
+        public OtherServiceItem()
+        {
+            OtherServiceDetails = new List<OtherServiceDetail>();
+        }
+
+        public int ID { get; set; }                                 // ID
+        public string Name { get; set; }                            // 名称
+        public string AbbrPY { get; set; }                          // 拼音简称
+        public string AbbrWB { get; set; }                          // 五笔简称
+        public double Price { get; set; }                           // 价格
+        public string Unit { get; set; }                            // 单位
+
+        public virtual ICollection<OtherServiceDetail> OtherServiceDetails { get; set; }
+    }
+
+    // 其他服务单
+    public class OtherService 
+    {
+        public OtherService()
+        {
+            OtherServiceDetails = new List<OtherServiceDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public int RegistrationID { get; set; }                   // 门诊ID
+        public int InpatientID { get; set; }                      // 住院ID
+    
+        public double SumOfMoney { get; set; }                    // 金额
+        public DateTime WriteTime { get; set; }                   // 开具时间
+        public int WriteUserID { get; set; }                      // 开具医生
+        public virtual User WriteUser { get; set; }               // 开具医生
+
+        public virtual ICollection<OtherServiceDetail> OtherServiceDetails { get; set; }
+    }
+
+    // 其他服务单明细
+    public class OtherServiceDetail
+    {
+        public OtherServiceDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                                      // ID
+        public int OtherServiceItemID { get; set; }                      // 其他服务ID
+        public int Num { get; set; }                                     // 次数
+        public string Illustration { get; set; }                         // 说明
+
+        public int OtherServiceID { get; set; }                          // 所属其他服务单ID
+        public virtual OtherService OtherService { get; set; }
+
+        public virtual OtherServiceItem OtherServiceItem { get; set; }
     }
 }
