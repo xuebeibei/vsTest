@@ -7,7 +7,7 @@
     <ProjectGuid>{EA1940A3-A5D4-4B0F-8A6F-6E75867F15AF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Contracts</RootNamespace>
+    <RootNamespace>CommContracts</RootNamespace>
     <AssemblyName>Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
