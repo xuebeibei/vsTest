@@ -9,26 +9,27 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="SaveBtn" Margin="5">保存</Button>
-                <Button x:Name="SaveAndCheckBtn" Margin="5">保存并审核</Button>
-                <Button x:Name="CancelBtn" Margin="5">取消</Button>
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="SaveAndCheckBtn" Margin="5" Click="SaveAndCheckBtn_Click">保存并审核</Button>
+                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Margin="5">发货日期：</Label>
-                <DatePicker Margin="5"></DatePicker>
+                <Label Margin="5">入库单号：</Label>
+                <TextBlock x:Name="InStockID" Margin="5"></TextBlock>
                 <Label Margin="5">入库日期：</Label>
-                <DatePicker Margin="5"></DatePicker>
+                <DatePicker x:Name="InStockDate" Margin="5"></DatePicker>
+                <Label Margin="5">合计：</Label>
+                <TextBlock  Width="50"></TextBlock>
                 <Label Margin="5">入库方式：</Label>
-                <ComboBox Margin="5" Width="100">
-                    <ComboBoxItem>采购入库</ComboBoxItem>
+                <ComboBox x:Name="InStockWay" Margin="5" Width="100">
+                    <ComboBoxItem IsSelected="True">采购入库</ComboBoxItem>
                     <ComboBoxItem>其他入库</ComboBoxItem>
                 </ComboBox>
                 <Label Margin="5">供应商：</Label>
                 <ComboBox Margin="5" Width="100">
                 </ComboBox>
 
-                <Label Margin="5">合计：</Label>
-                <TextBlock  Width="50"></TextBlock>
+               
                 <Label Margin="5">备注：</Label>
                 <TextBox Margin="5" Width="120"></TextBox>
             </StackPanel>

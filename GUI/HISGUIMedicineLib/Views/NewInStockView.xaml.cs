@@ -44,8 +44,25 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+            this.InStockDate.SelectedDate = DateTime.Now;
             //var vm = this.DataContext as HISGUIMedicineVM;
             
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveAndCheckBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm?.MedicineWorkManage();
         }
     }
 }

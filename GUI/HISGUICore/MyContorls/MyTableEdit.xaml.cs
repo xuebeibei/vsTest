@@ -355,6 +355,8 @@ namespace HISGUICore.MyContorls
             item.Usage = CommContracts.UsageEnum.口服;
             item.Specifications = medicine.Specifications;
             item.Manufacturer = medicine.Manufacturer;
+            item.SingleDoseUnit = medicine.Unit;
+
             m_items.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
