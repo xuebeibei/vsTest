@@ -87,11 +87,23 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUIMedicineVM.cs" />
+    <Compile Include="Views\CheckView.xaml.cs">
+      <DependentUpon>CheckView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HISGUIMedicineView.xaml.cs">
       <DependentUpon>HISGUIMedicineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InStockView.xaml.cs">
+      <DependentUpon>InStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemsNumView.xaml.cs">
+      <DependentUpon>ItemsNumView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MedicineWorkView.xaml.cs">
       <DependentUpon>MedicineWorkView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutStockView.xaml.cs">
+      <DependentUpon>OutStockView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -118,11 +130,27 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\CheckView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HISGUIMedicineView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\InStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ItemsNumView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MedicineWorkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

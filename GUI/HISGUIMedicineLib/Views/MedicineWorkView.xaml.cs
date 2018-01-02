@@ -43,5 +43,15 @@ namespace HISGUIMedicineLib.Views
             //var vm = this.DataContext as HISGUIMedicineVM;
             
         }
+
+        private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
