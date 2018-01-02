@@ -157,5 +157,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.MaterialItem> GetAllMaterialItems(string strName);
+
+        [OperationContract]
+        bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore);
     }
 }

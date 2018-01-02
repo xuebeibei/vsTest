@@ -313,5 +313,11 @@ namespace CommServer
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.GetAllMaterialItems(strName);
         }
+
+        public bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore)
+        {
+            BLL.MedicineInStore temp = new BLL.MedicineInStore();
+            return temp.SaveMedicineInStock(medicineInStore);
+        }
     }
 }

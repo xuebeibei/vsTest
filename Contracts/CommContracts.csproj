@@ -61,6 +61,9 @@
     <Compile Include="MaterialItem.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
+    <Compile Include="MedicineBatch.cs" />
+    <Compile Include="MedicineInStore.cs" />
+    <Compile Include="MedicineInStoreDetail.cs" />
     <Compile Include="OtherService.cs" />
     <Compile Include="OtherServiceDetail.cs" />
     <Compile Include="OtherServiceItem.cs" />
@@ -71,6 +74,8 @@
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
     <Compile Include="Specimen.cs" />
+    <Compile Include="StoreRoom.cs" />
+    <Compile Include="StoreRoomMedicineNum.cs" />
     <Compile Include="Therapy.cs" />
     <Compile Include="TherapyDetail.cs" />
     <Compile Include="TherapyItem.cs" />

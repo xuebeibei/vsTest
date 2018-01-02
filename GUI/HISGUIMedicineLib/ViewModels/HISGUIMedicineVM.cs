@@ -34,5 +34,25 @@ namespace HISGUIMedicineLib.ViewModels
         {
             this.RegionManager.RequestNavigate("DownRegion", "NewInStockView");
         }
+
+        public bool SaveMedicineInStock(List<CommContracts.MedicineInStoreDetail> list, bool bIsAutoCheck = false)
+        {
+            CommClient.MedicineInStore recipe = new CommClient.MedicineInStore();
+            CommContracts.MedicineInStore medicineInStore = new CommContracts.MedicineInStore();
+            medicineInStore.NO = "001";
+            medicineInStore.OperateTime = DateTime.Now;
+            medicineInStore.OperateUserID = 1;
+            medicineInStore.SumOfMoney = 100;
+            medicineInStore.FromSupplierID = 1;
+            medicineInStore.ToStoreID = 1;
+            medicineInStore.ReCheckUserID = 1;
+
+            medicineInStore.MedicineInStoreDetails = list;
+
+            if (recipe.SaveMedicineInStock(medicineInStore))
+                return true;
+
+            return false;
+        }
     }
 }

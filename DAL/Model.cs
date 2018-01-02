@@ -821,7 +821,7 @@ namespace DAL
     {
         public MedicineInStore()
         {
-
+            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
         }
 
         public int ID { get; set; }                  // ID
@@ -835,6 +835,8 @@ namespace DAL
 
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
+
+        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
 
     // 药品入库明细
@@ -850,6 +852,10 @@ namespace DAL
         public int Num { get; set; }             // 入库数量
         public decimal StorePrice { get; set; }  // 成本价
         public decimal SellPrice { get; set; }   // 零售价
+        public int MedicineInStoreID { get; set; }  // 入库单ID
+
+        public virtual MedicineInStore MedicineInStore { get; set; }   // 入库单外键
+        public virtual MedicineBatch MedicineBatch { get; set; }       // 入库批次外键
     }
 
     public enum OutStoreEnum
@@ -866,7 +872,7 @@ namespace DAL
     {
         public MedicineOutStore()
         {
-
+            MedicineOutStoreDetails = new List<MedicineOutStoreDetail>();
         }
 
         public int ID { get; set; }                      // ID
@@ -882,6 +888,8 @@ namespace DAL
 
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
+
+        public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
     }
 
     // 药品出库明细
@@ -898,6 +906,10 @@ namespace DAL
         public int Num { get; set; }                     // 出库数量
         public decimal StorePrice { get; set; }          // 出库前成本价
         public decimal SellPrice { get; set; }           // 出库前零售价
+
+        public int MedicineOutStoreID { get; set; }  // 出库单ID
+
+        public virtual MedicineOutStore MedicineOutStore { get; set; }   // 出库单外键
     }
 
     // 药品盘存表
@@ -905,8 +917,8 @@ namespace DAL
     {
         public MedicineCheckStore()
         {
-
-        }
+            MedicineCheckStoreDetails = new List<MedicineCheckStoreDetail>();
+    }
 
         public int ID { get; set; }                  // ID
         public string NO { get; set; }               // 单号
@@ -917,6 +929,8 @@ namespace DAL
 
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
+
+        public virtual ICollection<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
     }
 
     // 药品盘存明细
@@ -933,6 +947,10 @@ namespace DAL
         public int Num { get; set; }                     // 出库数量
         public decimal StorePrice { get; set; }          // 出库前成本价
         public decimal SellPrice { get; set; }           // 出库前零售价
+
+        public int MedicineCheckStoreID { get; set; }  // 盘存单ID
+
+        public virtual MedicineCheckStore MedicineCheckStore { get; set; }   // 盘存单外键
     }
 
     // 药品批次信息
@@ -941,6 +959,7 @@ namespace DAL
         public MedicineBatch()
         {
             StoreRoomMedicineBatchs = new List<StoreRoomMedicineNum>();
+            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
         }
 
         public int ID { get; set; }                  // ID
@@ -951,6 +970,7 @@ namespace DAL
         public decimal SellPrice { get; set; }       // 零售价
 
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
+        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
 
     public enum StoreRoomEnum
