@@ -158,6 +158,10 @@
     <Compile Include="Migrations\201801020352345_PaperTest26.Designer.cs">
       <DependentUpon>201801020352345_PaperTest26.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801020736390_PaperTest27.cs" />
+    <Compile Include="Migrations\201801020736390_PaperTest27.Designer.cs">
+      <DependentUpon>201801020736390_PaperTest27.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801020352345_PaperTest26.resx">
       <DependentUpon>201801020352345_PaperTest26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801020736390_PaperTest27.resx">
+      <DependentUpon>201801020736390_PaperTest27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

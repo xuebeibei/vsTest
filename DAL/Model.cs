@@ -84,6 +84,16 @@ namespace DAL
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
         public DbSet<OtherService> OtherServices { get; set; }
         public DbSet<OtherServiceDetail> OtherServiceDetails { get; set; }
+
+        public DbSet<MedicineInStore> MedicineInStores { get; set; }
+        public DbSet<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
+        public DbSet<MedicineOutStore> MedicineOutStores { get; set; }
+        public DbSet<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
+        public DbSet<MedicineCheckStore> MedicineCheckStores { get; set; }
+        public DbSet<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
+        public DbSet<MedicineBatch> MedicineBatchs { get; set; }
+        public DbSet<StoreRoom> StoreRooms { get; set; }
+        public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
     }
 
     public class User
@@ -371,6 +381,7 @@ namespace DAL
         水剂
     }
 
+    // 药品字典
     public class Medicine
     {
         public Medicine()
@@ -797,4 +808,187 @@ namespace DAL
 
         public virtual OtherServiceItem OtherServiceItem { get; set; }
     }
+
+    public enum InStoreEnum
+    {
+        采购入库,
+        赠与入库,
+        其他入库
+    }
+
+    // 药品入库表
+    public class MedicineInStore
+    {
+        public MedicineInStore()
+        {
+
+        }
+
+        public int ID { get; set; }                  // ID
+        public string NO { get; set; }               // 单号 
+        public decimal SumOfMoney { get; set; }      // 总金额，成本价
+        public DateTime OperateTime { get; set; }    // 操作时间
+        public InStoreEnum InStoreEnum { get; set; }
+        public int FromSupplierID { get; set; }      // 供应商
+        public int ToStoreID { get; set; }           // 入库库房
+        public string Remarks { get; set; }          // 备注
+
+        public int OperateUserID { get; set; }       // 操作用户
+        public int ReCheckUserID { get; set; }       // 复检用户
+    }
+
+    // 药品入库明细
+    public class MedicineInStoreDetail
+    {
+        public MedicineInStoreDetail()
+        {
+
+        }
+
+        public int ID { get; set; }       // ID
+        public int MedicineBatchID { get; set; } // 批次ID
+        public int Num { get; set; }             // 入库数量
+        public decimal StorePrice { get; set; }  // 成本价
+        public decimal SellPrice { get; set; }   // 零售价
+    }
+
+    public enum OutStoreEnum
+    {
+        科室出库,
+        报损出库,
+        分销出库,
+        退货出库,
+        其他出库
+    }
+
+    // 药品出库表
+    public class MedicineOutStore
+    {
+        public MedicineOutStore()
+        {
+
+        }
+
+        public int ID { get; set; }                      // ID
+        public string NO { get; set; }                   // 单号
+        public decimal SumOfMoney { get; set; }          // 总金额，成本价
+        public DateTime OperateTime { get; set; }        // 操作时间
+        public OutStoreEnum OutStoreEnum { get; set; }   // 出库类型
+        public int FromStoreID { get; set; }
+        public int ToStoreID { get; set; }
+        public int ToOtherHospitalID { get; set; }
+        public int ToSupplierID { get; set; }        // 供货商退货 
+        public string Remarks { get; set; }          // 备注
+
+        public int OperateUserID { get; set; }       // 操作用户
+        public int ReCheckUserID { get; set; }       // 复检用户
+    }
+
+    // 药品出库明细
+    public class MedicineOutStoreDetail
+    {
+        public MedicineOutStoreDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                      // ID
+        public int StoreRoomMedicineNumID { get; set; }  // 库存ID
+        public int NumBeforeOut { get; set; }            // 出库前数量 
+        public int Num { get; set; }                     // 出库数量
+        public decimal StorePrice { get; set; }          // 出库前成本价
+        public decimal SellPrice { get; set; }           // 出库前零售价
+    }
+
+    // 药品盘存表
+    public class MedicineCheckStore
+    {
+        public MedicineCheckStore()
+        {
+
+        }
+
+        public int ID { get; set; }                  // ID
+        public string NO { get; set; }               // 单号
+        public decimal SumOfMoney { get; set; }      // 总损益，成本价
+        public DateTime OperateTime { get; set; }    // 操作时间
+        public int CheckStoreID { get; set; }        // 盘存库房
+        public string Remarks { get; set; }          // 备注
+
+        public int OperateUserID { get; set; }       // 操作用户
+        public int ReCheckUserID { get; set; }       // 复检用户
+    }
+
+    // 药品盘存明细
+    public class MedicineCheckStoreDetail
+    {
+        public MedicineCheckStoreDetail()
+        {
+
+        }
+
+        public int ID { get; set; }                      // ID
+        public int StoreRoomMedicineNumID { get; set; }  // 库存ID
+        public int NumBeforeCheck { get; set; }          // 出库前数量 
+        public int Num { get; set; }                     // 出库数量
+        public decimal StorePrice { get; set; }          // 出库前成本价
+        public decimal SellPrice { get; set; }           // 出库前零售价
+    }
+
+    // 药品批次信息
+    public class MedicineBatch
+    {
+        public MedicineBatch()
+        {
+            StoreRoomMedicineBatchs = new List<StoreRoomMedicineNum>();
+        }
+
+        public int ID { get; set; }                  // ID
+        public int MedicineID { get; set; }          // 对应药品字典
+        public string Batch { get; set; }            // 批次
+        public DateTime ExpirationDate { get; set; } // 有效期
+        public decimal StorePrice { get; set; }      // 成本价
+        public decimal SellPrice { get; set; }       // 零售价
+
+        public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
+    }
+
+    public enum StoreRoomEnum
+    {
+        一级库,
+        二级库,
+        三级库
+    }
+
+    // 库房
+    public class StoreRoom
+    {
+        public StoreRoom()
+        {
+            StoreRoomMedicineBatchs = new List<StoreRoomMedicineNum>();
+        }
+
+        public int ID { get; set; }          // ID
+        public string Name { get; set; }     // 库房名称
+        public string Address { get; set; }  // 库房地址
+        public string Contents { get; set; } // 库房联系人
+        public string Tel { get; set; }      // 库房联系方式
+        public StoreRoomEnum StoreRoomEnum { get; set; }  // 库房的等级
+
+        public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
+    }
+
+    // 库房库存
+    public class StoreRoomMedicineNum
+    {
+        public int ID { get; set; }   // ID
+        public int StoreRoomID { get; set; }  // 库房ID
+        public int MedicineBatchID { get; set; } // 批次ID
+        
+        public int Num { get; set; }             // 库存
+
+        public virtual StoreRoom StoreRoom { get; set; }
+        public virtual MedicineBatch MedicineBatch { get; set; }
+    }
+
 }
