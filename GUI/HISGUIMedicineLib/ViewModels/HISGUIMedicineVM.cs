@@ -23,10 +23,16 @@ namespace HISGUIMedicineLib.ViewModels
     [Export("HISGUIMedicineVM", typeof(HISGUIVMBase))]
     class HISGUIMedicineVM : HISGUIVMBase
     {
-        //显示分诊界面
+        //显示药品管理主界面
         public void MedicineWorkManage()
         {
             this.RegionManager.RequestNavigate("DownRegion", "MedicineWorkView");
+        }
+
+        // 显示新建入库界面
+        public void NewStock()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "NewInStockView");
         }
     }
 }

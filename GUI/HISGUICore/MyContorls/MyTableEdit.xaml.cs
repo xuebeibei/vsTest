@@ -36,6 +36,13 @@ namespace HISGUICore.MyContorls
         public string MedicinePacking { get; set; }
         public string Specifications { get; set; }
 
+        public string Manufacturer { get; set; }
+        public decimal SellPrice { get; set; }
+        public decimal StockPrice { get; set; }
+        public decimal Total { get; set; }
+        public string BatchID { get; set; }
+        public DateTime ExpirationDate { get; set; }
+
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
         private void Changed(string PropertyName)
@@ -81,8 +88,11 @@ namespace HISGUICore.MyContorls
         jianyan,                 // 检验
         jiancha,                 // 检查
         cailiao,                 // 材料
-        qita                     // 其他
-
+        qita,                    // 其他
+        medicineInStock,         // 药品入库
+        medicineOutStock,        // 药品出库  
+        materialInStock,         // 物资入库
+        materialOutStock         // 物资出库
     }
 
     public partial class MyTableEdit : UserControl
@@ -146,8 +156,8 @@ namespace HISGUICore.MyContorls
             }
             else if (editEnum == MyTableEditEnum.zhiliao ||
                 editEnum == MyTableEditEnum.jianyan ||
-                editEnum == MyTableEditEnum.jiancha || 
-                editEnum == MyTableEditEnum.cailiao || 
+                editEnum == MyTableEditEnum.jiancha ||
+                editEnum == MyTableEditEnum.cailiao ||
                 editEnum == MyTableEditEnum.qita)
             {
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
@@ -165,6 +175,27 @@ namespace HISGUICore.MyContorls
                 m_skipList.Add(m_nIllustrationIndex);
 
             }
+            else if (editEnum == MyTableEditEnum.medicineInStock)
+            {
+                list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("名称", "Name", 150));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("生产厂商", "Manufacturer", 150));
+                list.Add(new MyTableTittle("数量*", "SingleDose", 80, false));
+                list.Add(new MyTableTittle("零售价(¥)*", "SellPrice", 80, false));
+                list.Add(new MyTableTittle("成本价(¥)*", "StockPrice", 80, false));
+                list.Add(new MyTableTittle("合计成本(¥)", "Total", 80));
+                list.Add(new MyTableTittle("批号*", "BatchID", 80, false));
+                list.Add(new MyTableTittle("有效期*", "ExpirationDate", 80, false));
+
+                m_nIDIndex = 0;
+                m_skipList.Add(4);
+                m_skipList.Add(5);
+                m_skipList.Add(6);
+
+                m_skipList.Add(8);
+                m_skipList.Add(9);
+            }
             m_skipList.Sort();
             return list;
         }
@@ -176,36 +207,40 @@ namespace HISGUICore.MyContorls
             for (int i = 0; i < list.Count(); i++)
             {
 
-                if (i == m_nDDDSIndex) // 频率
+                if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
                 {
-                    this.MyDataGrid.Columns.Add(new DataGridComboBoxColumn()
+                    if (i == m_nDDDSIndex) // 频率
                     {
-                        Header = list.ElementAt(i).TittleName,
-                        SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
-                        ItemsSource = Enum.GetValues(typeof(CommContracts.DDDSEnum))
-                    });
+                        this.MyDataGrid.Columns.Add(new DataGridComboBoxColumn()
+                        {
+                            Header = list.ElementAt(i).TittleName,
+                            SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
+                            ItemsSource = Enum.GetValues(typeof(CommContracts.DDDSEnum))
+                        });
+                        continue;
+                    }
+                    else if (i == m_nUsageIndex) // 用法
+                    {
+                        this.MyDataGrid.Columns.Add(new DataGridComboBoxColumn()
+                        {
+                            Header = list.ElementAt(i).TittleName,
+                            SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
+                            ItemsSource = Enum.GetValues(typeof(CommContracts.UsageEnum))
+                        });
+                        continue;
+                    }
                 }
-                else if (i == m_nUsageIndex) // 用法
-                {
-                    this.MyDataGrid.Columns.Add(new DataGridComboBoxColumn()
-                    {
-                        Header = list.ElementAt(i).TittleName,
-                        SelectedItemBinding = new Binding(list.ElementAt(i).TittleBinding),
-                        ItemsSource = Enum.GetValues(typeof(CommContracts.UsageEnum))
-                    });
-                }
-                else
-                {
-                    this.MyDataGrid.Columns.Add(new DataGridTextColumn()
-                    {
-                        Header = list.ElementAt(i).TittleName,
-                        Binding = new Binding(list.ElementAt(i).TittleBinding),
-                        Width = list.ElementAt(i).TittleWidth,
-                        IsReadOnly = list.ElementAt(i).IsReadOnly,
-                        Visibility = list.ElementAt(i).Visibility
 
-                    });
-                }
+                this.MyDataGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = list.ElementAt(i).TittleName,
+                    Binding = new Binding(list.ElementAt(i).TittleBinding),
+                    Width = list.ElementAt(i).TittleWidth,
+                    IsReadOnly = list.ElementAt(i).IsReadOnly,
+                    Visibility = list.ElementAt(i).Visibility
+
+                });
+
             }
 
             MyDataGrid.ItemsSource = m_items;
@@ -283,7 +318,7 @@ namespace HISGUICore.MyContorls
                     else if (editEnum == MyTableEditEnum.zhiliao)
                     {
                         InsertIntoTherapyItem(list.CurrentTherapyItem);
-                    }   
+                    }
                     else if (editEnum == MyTableEditEnum.jianyan)
                     {
                         InsertIntoAssayItem(list.CurrentAssayItem);
@@ -292,13 +327,17 @@ namespace HISGUICore.MyContorls
                     {
                         InsertIntoInspectItem(list.CurrentInspectItem);
                     }
-                    else if(editEnum == MyTableEditEnum.cailiao)
+                    else if (editEnum == MyTableEditEnum.cailiao)
                     {
                         InsertIntoMaterialItem(list.CurrentMaterialItem);
                     }
-                    else if(editEnum == MyTableEditEnum.qita)
+                    else if (editEnum == MyTableEditEnum.qita)
                     {
                         InsertIntoOtherServiceItem(list.CurrentOtherServiceItem);
+                    }
+                    else if (editEnum == MyTableEditEnum.medicineInStock)
+                    {
+                        InsertIntoMedicine(list.CurrentMedicine);
                     }
 
                 }
@@ -315,7 +354,7 @@ namespace HISGUICore.MyContorls
             item.Name = medicine.Name;
             item.Usage = CommContracts.UsageEnum.口服;
             item.Specifications = medicine.Specifications;
-
+            item.Manufacturer = medicine.Manufacturer;
             m_items.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)

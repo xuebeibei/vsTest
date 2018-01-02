@@ -102,6 +102,9 @@
     <Compile Include="Views\MedicineWorkView.xaml.cs">
       <DependentUpon>MedicineWorkView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewInStockView.xaml.cs">
+      <DependentUpon>NewInStockView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutStockView.xaml.cs">
       <DependentUpon>OutStockView.xaml</DependentUpon>
     </Compile>
@@ -147,6 +150,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MedicineWorkView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewInStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -40,7 +40,7 @@ namespace HISGUICore.MyContorls
         private void getAllData()
         {
             string strFindName = ""; // 暂时先搜索空
-            if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
+            if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
             {
                 CommClient.Medicine myd = new CommClient.Medicine();
                 List<CommContracts.Medicine> list = myd.getAllMedicine();
@@ -95,7 +95,7 @@ namespace HISGUICore.MyContorls
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
-                if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao)
+                if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
                 {
                     CommContracts.Medicine medicine = ((sender as DataGrid).CurrentCell.Item as CommContracts.Medicine);
 

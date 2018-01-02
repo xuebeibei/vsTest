@@ -17,18 +17,22 @@ using System.Windows.Shapes;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
+using HISGUICore.MyContorls;
 using HISGUIMedicineLib.ViewModels;
 using System.Data;
 
 namespace HISGUIMedicineLib.Views
 {
     [Export]
-    [Export("InStockView", typeof(InStockView))]
-    public partial class InStockView : HISGUIViewBase
+    [Export("NewInStockView", typeof(NewInStockView))]
+    public partial class NewInStockView : HISGUIViewBase
     {
-        public InStockView()
+        private MyTableEdit myTableEdit;
+        public NewInStockView()
         {
             InitializeComponent();
+            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
+            InStockPanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -41,17 +45,7 @@ namespace HISGUIMedicineLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             //var vm = this.DataContext as HISGUIMedicineVM;
-
-        }
-        private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            vm?.NewStock();
-        }
-
-        private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
+            
         }
     }
 }
