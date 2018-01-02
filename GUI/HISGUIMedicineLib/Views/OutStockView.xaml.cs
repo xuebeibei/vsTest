@@ -34,5 +34,10 @@ namespace HISGUIMedicineLib.Views
         {
 
         }
+
+        private void AddNewOutStockBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
