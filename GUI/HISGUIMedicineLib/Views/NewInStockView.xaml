@@ -26,10 +26,8 @@
                     <ComboBoxItem>其他入库</ComboBoxItem>
                 </ComboBox>
                 <Label Margin="5">供应商：</Label>
-                <ComboBox Margin="5" Width="100">
-                </ComboBox>
-
-               
+                <TextBox Margin="5" Width="100">
+                </TextBox>
                 <Label Margin="5">备注：</Label>
                 <TextBox Margin="5" Width="120"></TextBox>
             </StackPanel>
