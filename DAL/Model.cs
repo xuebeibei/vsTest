@@ -64,9 +64,6 @@ namespace DAL
         public DbSet<Recipe> Recipes { get; set; }
         public DbSet<RecipeDetail> RecipeDetails { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
-        public DbSet<MedicineAlias> MedicineAliases { get; set; }
-        public DbSet<MedicinePacking> MedicinePackings { get; set; }
-        public DbSet<DosageForm> DosageForms { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Inpatient> Inpatients { get; set; }
         public DbSet<AssayItem> AssayItems { get; set; }
@@ -367,19 +364,28 @@ namespace DAL
         public virtual Medicine Medicine { get; set; }
     }
 
+    public enum DosageFormEnum
+    {
+        片剂,
+        颗粒,
+        水剂
+    }
+
     public class Medicine
     {
         public Medicine()
         {
-            MedicineAlias = new List<MedicineAlias>();
-            MedicinePacking = new List<MedicinePacking>();
             RecipeDetails = new List<RecipeDetail>();
         }
 
         public int ID { get; set; }                                 // ID
         public MedicineTypeEnum MedicineTypeEnum { get; set; }      // 药品类型
         public string Name { get; set; }                            // 药品品名
-        public int DosageFormID { get; set; }                       // 药品剂型ID       
+        public string Abbr1 { get; set; }                           // 别名1
+        public string Abbr2 { get; set; }                           // 别名2
+        public string Abbr3 { get; set; }                           // 别名3
+        public DosageFormEnum DosageFormEnum { get; set; }          // 药品剂型   
+        public string Unit { get; set; }                            // 单位
         public string AdministrationRoute { get; set; }             // 给药方式
         public string Specifications { get; set; }                  // 规格
         public string Manufacturer { get; set; }                    // 生产厂家
@@ -390,61 +396,7 @@ namespace DAL
         public int MaxNum { get; set; }                             // 最大库存量
         public int MinNum { get; set; }                             // 最小库存量
 
-        public virtual ICollection<MedicineAlias> MedicineAlias { get; set; }
-        public virtual ICollection<MedicinePacking> MedicinePacking { get; set; }
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
-
-        public virtual DosageForm DosageForm { get; set; }
-    }
-
-    // 药品名称表
-    public class MedicineAlias
-    {
-        public MedicineAlias()
-        {
-        }
-
-        public int ID { get; set; }
-        public string Alias { get; set; }
-
-        public int MedicineID { get; set; }
-        public virtual Medicine Medicine { get; set; }
-    }
-
-    // 药品包装表
-    public class MedicinePacking
-    {
-        public MedicinePacking()
-        {
-        }
-
-        public int ID { get; set; }
-        public string BigUnit { get; set; }   // 包装
-        public int Num { get; set; }          // 换算量，最小包装为0
-        public int SmallID { get; set; }      // 小包装ID,最小包装为0
-
-        public int MedicineID { get; set; }
-        public virtual Medicine Medicine { get; set; }
-    }
-
-    public enum DosageFormEnum   // 剂型分类
-    {
-        Xiyao,                   // 西药
-        ZhongChengYao            // 中成药  
-    }
-
-    // 药品剂型
-    public class DosageForm
-    {
-        public DosageForm()
-        {
-            Medicines = new List<Medicine>();
-        }
-        public int ID { get; set; }
-        public string Name { get; set; }
-        public DosageFormEnum DosageFormEnum { get; set; }
-
-        public virtual ICollection<Medicine> Medicines { get; set; }
     }
 
     public enum MedicalRecordEnum

@@ -20,6 +20,13 @@ namespace CommContracts
         feijiafeiyi
     }
 
+    public enum DosageFormEnum
+    {
+        片剂,
+        颗粒,
+        水剂
+    }
+
     [DataContract]
     public class Medicine
     {
@@ -35,7 +42,15 @@ namespace CommContracts
         [DataMember]
         public string Name { get; set; }                            // 药品品名
         [DataMember]
-        public int DosageFormID { get; set; }                       // 药品剂型ID       
+        public string Abbr1 { get; set; }                           // 别名1
+        [DataMember]
+        public string Abbr2 { get; set; }                           // 别名2
+        [DataMember]
+        public string Abbr3 { get; set; }                           // 别名3
+        [DataMember]
+        public DosageFormEnum DosageFormEnum { get; set; }          // 药品剂型ID       
+        [DataMember]
+        public string Unit { get; set; }                            // 单位
         [DataMember]
         public string AdministrationRoute { get; set; }             // 给药方式
         [DataMember]
@@ -54,6 +69,5 @@ namespace CommContracts
         public int MaxNum { get; set; }                             // 最大库存量
         [DataMember]
         public int MinNum { get; set; }                             // 最小库存量
-
     }
 }
