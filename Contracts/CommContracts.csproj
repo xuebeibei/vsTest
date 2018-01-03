@@ -76,6 +76,7 @@
     <Compile Include="Specimen.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />
+    <Compile Include="Supplier.cs" />
     <Compile Include="Therapy.cs" />
     <Compile Include="TherapyDetail.cs" />
     <Compile Include="TherapyItem.cs" />

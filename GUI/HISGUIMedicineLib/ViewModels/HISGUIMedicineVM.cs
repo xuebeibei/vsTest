@@ -65,5 +65,12 @@ namespace HISGUIMedicineLib.ViewModels
             CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
             return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime);
         }
+
+        // 得到所有供货商
+        public List<CommContracts.Supplier> getAllSupplier()
+        {
+            CommClient.Supplier myd = new CommClient.Supplier();
+            return myd.GetAllSuppliers("");
+        }
     }
 }

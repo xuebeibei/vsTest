@@ -43,6 +43,8 @@ namespace CommContracts
         [DataMember]
         public int ReCheckUserID { get; set; }       // 复检用户
         [DataMember]
+        public Supplier FromSupplier { get; set; }
+        [DataMember]
         public List<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
 }

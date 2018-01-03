@@ -248,7 +248,13 @@ select * from MaterialBills;
 select * from OtherServices;
 
 select * from medicineInStores;
+delete from medicineInStores;
 
 select * from MedicineInStoreDetails;
 
 select * from MedicineBatches;
+
+select * from Suppliers;
+
+insert into Suppliers values(N'中国制药','ZGZY',NULL, NULL, NULL,NULL,NULL);
+

@@ -45,6 +45,10 @@ namespace HISGUIMedicineLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             this.InStockDate.SelectedDate = DateTime.Now;
+
+            var vm = this.DataContext as HISGUIMedicineVM;
+
+            this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
         }
 
         private List<CommContracts.MedicineInStoreDetail> GetDetails()

@@ -166,5 +166,8 @@ namespace CommContracts
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
             DateTime EndInStoreTime);
+
+        [OperationContract]
+        List<CommContracts.Supplier> GetAllSuppliers(string strFindName);
     }
 }

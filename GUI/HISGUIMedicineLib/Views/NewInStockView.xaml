@@ -25,11 +25,11 @@
                     <ComboBoxItem IsSelected="True">采购入库</ComboBoxItem>
                     <ComboBoxItem>其他入库</ComboBoxItem>
                 </ComboBox>
-                <Label Margin="5">供应商：</Label>
-                <TextBox Margin="5" Width="100">
-                </TextBox>
+                <Label x:Name="SupplierLabel" Margin="5">供应商：</Label>
+                <ComboBox x:Name="SupplierEdit" Margin="5" Width="100">
+                </ComboBox>
                 <Label Margin="5">备注：</Label>
-                <TextBox Margin="5" Width="120"></TextBox>
+                <TextBox x:Name="RemarkEdit" Margin="5" Width="120"></TextBox>
             </StackPanel>
             <StackPanel x:Name="InStockPanel" >
             </StackPanel>

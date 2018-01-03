@@ -73,6 +73,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SignalSource.cs" />
+    <Compile Include="Supplier.cs" />
     <Compile Include="Therapy.cs" />
     <Compile Include="TherapyItem.cs" />
     <Compile Include="Triage.cs" />
