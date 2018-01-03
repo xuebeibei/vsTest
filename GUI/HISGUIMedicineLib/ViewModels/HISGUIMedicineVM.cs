@@ -72,5 +72,18 @@ namespace HISGUIMedicineLib.ViewModels
             CommClient.Supplier myd = new CommClient.Supplier();
             return myd.GetAllSuppliers("");
         }
+
+        // 当前药品入库单
+        #region CurrentMedicineInStore
+        public static readonly DependencyProperty CurrentMedicineInStoreProperty = DependencyProperty.Register(
+            "CurrentMedicineInStore", typeof(CommContracts.MedicineInStore), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.MedicineInStore CurrentMedicineInStore
+        {
+            get { return (CommContracts.MedicineInStore)GetValue(CurrentMedicineInStoreProperty); }
+            set { SetValue(CurrentMedicineInStoreProperty, value); }
+        }
+
+        #endregion
     }
 }
