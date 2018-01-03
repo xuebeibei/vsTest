@@ -94,6 +94,8 @@ namespace DAL
         public DbSet<MedicineBatch> MedicineBatchs { get; set; }
         public DbSet<StoreRoom> StoreRooms { get; set; }
         public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 
     public class User
@@ -990,6 +992,9 @@ namespace DAL
 
         public int ID { get; set; }          // ID
         public string Name { get; set; }     // 库房名称
+        public string Abbr1 { get; set; }
+        public string Abbr2 { get; set; }
+        public string Abbr3 { get; set; }
         public string Address { get; set; }  // 库房地址
         public string Contents { get; set; } // 库房联系人
         public string Tel { get; set; }      // 库房联系方式
@@ -1011,4 +1016,21 @@ namespace DAL
         public virtual MedicineBatch MedicineBatch { get; set; }
     }
 
+
+    // 供应商
+    public class Supplier
+    {
+        public Supplier()
+        {
+        }
+
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Abbr1 { get; set; }
+        public string Abbr2 { get; set; }
+        public string Abbr3 { get; set; }
+        public string Address { get; set; }  // 供应商地址
+        public string Contents { get; set; } // 供应商联系人
+        public string Tel { get; set; }      // 供应商联系方式
+    }
 }
