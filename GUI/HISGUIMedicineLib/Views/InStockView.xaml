@@ -36,11 +36,11 @@
         <ListView x:Name="AllStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllStockList_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="gridView2">
-                    <GridViewColumn Header="入库单号" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="入库日期" DisplayMemberBinding="{Binding Path=StockTime}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="入库方式" DisplayMemberBinding="{Binding Path=StockType}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=Supplier}" Width="200"></GridViewColumn>
-                    <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
+                    <GridViewColumn Header="入库单号" DisplayMemberBinding="{Binding Path=NO}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="入库日期" DisplayMemberBinding="{Binding Path=OperateTime}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="入库方式" DisplayMemberBinding="{Binding Path=InStoreEnum}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=FromSupplierID}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=OperateUserID}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=BillStatus}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="操作" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
                 </GridView>
