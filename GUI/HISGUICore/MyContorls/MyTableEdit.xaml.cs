@@ -115,6 +115,13 @@ namespace HISGUICore.MyContorls
         {
             InitializeComponent();
             this.editEnum = editEnum;
+            if(this.editEnum == MyTableEditEnum.materialInStock || 
+                this.editEnum == MyTableEditEnum.materialOutStock || 
+                this.editEnum == MyTableEditEnum.medicineInStock ||
+                this.editEnum == MyTableEditEnum.medicineOutStock )
+            {
+                SelectTempletBtn.Visibility = Visibility.Collapsed;
+            }
             initTable();
         }
 
