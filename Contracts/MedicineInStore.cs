@@ -14,6 +14,12 @@ namespace CommContracts
         其他入库
     }
 
+    public enum ReCheckStatusEnum
+    {
+        待审核,
+        已审核
+    }
+
     [DataContract]
     public class MedicineInStore
     {
@@ -40,6 +46,8 @@ namespace CommContracts
         public string Remarks { get; set; }          // 备注
         [DataMember]
         public int OperateUserID { get; set; }       // 操作用户
+        [DataMember]
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }      // 审核状态
         [DataMember]
         public int ReCheckUserID { get; set; }       // 复检用户
         [DataMember]

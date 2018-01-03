@@ -820,6 +820,12 @@ namespace DAL
         其他入库
     }
 
+    public enum ReCheckStatusEnum
+    {
+        待审核,
+        已审核
+    }
+
     // 药品入库表
     public class MedicineInStore
     {
@@ -836,9 +842,9 @@ namespace DAL
         public int FromSupplierID { get; set; }      // 供应商
         public int ToStoreID { get; set; }           // 入库库房
         public string Remarks { get; set; }          // 备注
-
         public int OperateUserID { get; set; }       // 操作用户
-        public int ReCheckUserID { get; set; }       // 复检用户
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }      // 审核状态
+        public int ReCheckUserID { get; set; }       // 复检用户 
 
         public virtual User OperateUser { get; set; }     // 制单用户
         public virtual Supplier FromSupplier { get; set; }
