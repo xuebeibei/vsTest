@@ -57,18 +57,14 @@ namespace HISGUIMedicineLib.Views
             List<CommContracts.MedicineInStoreDetail> Details = new List<CommContracts.MedicineInStoreDetail>();
             foreach (var tem in list)
             {
-                CommContracts.MedicineBatch batch = new CommContracts.MedicineBatch();
-                batch.MedicineID = tem.ID;
-                batch.Batch = tem.BatchID;
-                batch.ExpirationDate = tem.ExpirationDate;
-                batch.SellPrice = tem.SellPrice;
-                batch.StorePrice = tem.StockPrice;
-
                 CommContracts.MedicineInStoreDetail detail = new CommContracts.MedicineInStoreDetail();
                 detail.Num = tem.SingleDose;
                 detail.SellPrice = tem.SellPrice;
                 detail.StorePrice = tem.StockPrice;
-                detail.MedicineBatch = batch;
+                detail.Batch = tem.BatchID;
+                detail.ExpirationDate = tem.ExpirationDate;
+                detail.SellPrice = tem.SellPrice;
+                detail.StorePrice = tem.StockPrice;
 
                 Details.Add(detail);
             }
