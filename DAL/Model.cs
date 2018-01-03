@@ -838,6 +838,7 @@ namespace DAL
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
 
+        public virtual Supplier FromSupplier { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
 
@@ -1022,6 +1023,7 @@ namespace DAL
     {
         public Supplier()
         {
+            MedicineInStores = new List<MedicineInStore>();
         }
 
         public int ID { get; set; }
@@ -1032,5 +1034,7 @@ namespace DAL
         public string Address { get; set; }  // 供应商地址
         public string Contents { get; set; } // 供应商联系人
         public string Tel { get; set; }      // 供应商联系方式
+
+        public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
     }
 }
