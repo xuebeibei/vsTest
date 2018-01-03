@@ -8,18 +8,12 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-                <Button x:Name="SaveAndCheckBtn" Margin="5" Click="SaveAndCheckBtn_Click">保存并审核</Button>
-                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
-            </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
                 <Label Margin="5">入库单号：</Label>
                 <TextBlock x:Name="InStockID" Margin="5"></TextBlock>
                 <Label Margin="5">入库日期：</Label>
                 <DatePicker x:Name="InStockDate" Margin="5"></DatePicker>
-                <Label Margin="5">合计：</Label>
-                <TextBlock  Width="50"></TextBlock>
                 <Label Margin="5">入库方式：</Label>
                 <ComboBox x:Name="InStockWay" Margin="5" Width="100">
                     <ComboBoxItem IsSelected="True">采购入库</ComboBoxItem>
@@ -33,7 +27,15 @@
             </StackPanel>
             <StackPanel x:Name="InStockPanel" >
             </StackPanel>
-            
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5">合计：</Label>
+                <TextBlock  Width="50"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="SaveAndCheckBtn" Margin="5" Click="SaveAndCheckBtn_Click">保存并审核</Button>
+                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
