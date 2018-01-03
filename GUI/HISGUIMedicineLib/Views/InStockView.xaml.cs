@@ -41,8 +41,8 @@ namespace HISGUIMedicineLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            List<CommContracts.MedicineInStore> list =  vm?.getAllMedicineInStore(1, CommContracts.InStoreEnum.采购入库,
-                new DateTime(2017,10,1), new DateTime(2018, 10, 1));
+            List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore(1, CommContracts.InStoreEnum.采购入库,
+                new DateTime(2017, 10, 1), new DateTime(2018, 10, 1));
 
             this.AllStockList.ItemsSource = list;
 
