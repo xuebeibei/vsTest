@@ -246,3 +246,9 @@ insert into Responsibilities values(3,4, GETDATE());
 select * from MaterialBills;
 
 select * from OtherServices;
+
+select * from medicineInStores;
+
+select * from MedicineInStoreDetails;
+
+select * from MedicineBatches;

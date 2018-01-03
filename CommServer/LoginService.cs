@@ -319,5 +319,14 @@ namespace CommServer
             BLL.MedicineInStore temp = new BLL.MedicineInStore();
             return temp.SaveMedicineInStock(medicineInStore);
         }
+        
+        public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
+            InStoreEnum inStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime)
+        {
+            BLL.MedicineInStore temp = new BLL.MedicineInStore();
+            return temp.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime);
+        }
     }
 }

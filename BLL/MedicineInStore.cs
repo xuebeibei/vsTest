@@ -29,7 +29,7 @@ namespace BLL
                 var mapperDetail = configDetail.CreateMapper();
 
                 List<CommContracts.MedicineInStoreDetail> list1 = medicineInStore.MedicineInStoreDetails;
-                List<DAL.MedicineInStoreDetail> res = mapperDetail.Map<List<DAL.MedicineInStoreDetail>>(list1); ;
+                List<DAL.MedicineInStoreDetail> res = mapperDetail.Map<List<DAL.MedicineInStoreDetail>>(list1);
 
                 temp.MedicineInStoreDetails = res;
                 ctx.MedicineInStores.Add(temp);
@@ -66,6 +66,36 @@ namespace BLL
                 }
             }
             return assay;
+        }
+
+        public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
+            InStoreEnum inStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime)
+        {
+            List<CommContracts.MedicineInStore> list = new List<CommContracts.MedicineInStore>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.MedicineInStores
+                            where a.ToStoreID == StoreID &&
+                            a.InStoreEnum == (DAL.InStoreEnum)inStoreEnum &&
+                            a.OperateTime > StartInStoreTime &&
+                            a.OperateTime < EndInStoreTime
+                            select a;
+                foreach (DAL.MedicineInStore ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.MedicineInStore, CommContracts.MedicineInStore>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.MedicineInStore temp = mapper.Map<CommContracts.MedicineInStore>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
         }
     }
 }

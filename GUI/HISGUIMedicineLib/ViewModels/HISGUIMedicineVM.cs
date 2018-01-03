@@ -35,9 +35,10 @@ namespace HISGUIMedicineLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "NewInStockView");
         }
 
+        // 保存药品入库单
         public bool SaveMedicineInStock(List<CommContracts.MedicineInStoreDetail> list, bool bIsAutoCheck = false)
         {
-            CommClient.MedicineInStore recipe = new CommClient.MedicineInStore();
+            CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
             CommContracts.MedicineInStore medicineInStore = new CommContracts.MedicineInStore();
             medicineInStore.NO = "001";
             medicineInStore.OperateTime = DateTime.Now;
@@ -49,10 +50,20 @@ namespace HISGUIMedicineLib.ViewModels
 
             medicineInStore.MedicineInStoreDetails = list;
 
-            if (recipe.SaveMedicineInStock(medicineInStore))
+            if (myd.SaveMedicineInStock(medicineInStore))
                 return true;
 
             return false;
+        }
+
+        // 得到所有的入库单
+        public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
+            InStoreEnum inStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime)
+        {
+            CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
+            return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime);
         }
     }
 }

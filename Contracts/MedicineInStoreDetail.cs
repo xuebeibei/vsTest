@@ -25,8 +25,6 @@ namespace CommContracts
         [DataMember]
         public decimal SellPrice { get; set; }   // 零售价
         [DataMember]
-        public MedicineInStore MedicineInStore { get; set; }   // 入库单外键
-        [DataMember]
         public MedicineBatch MedicineBatch { get; set; }       // 入库批次外键
     }
 }
