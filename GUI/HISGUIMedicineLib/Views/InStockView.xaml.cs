@@ -50,7 +50,7 @@ namespace HISGUIMedicineLib.Views
         private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            vm?.NewStock();
+            vm?.NewInStore();
         }
 
         private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)

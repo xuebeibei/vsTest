@@ -30,7 +30,7 @@ namespace HISGUIMedicineLib.ViewModels
         }
 
         // 显示新建入库界面
-        public void NewStock()
+        public void NewInStore()
         {
             this.RegionManager.RequestNavigate("DownRegion", "NewInStockView");
         }
