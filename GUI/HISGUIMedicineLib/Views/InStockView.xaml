@@ -39,7 +39,7 @@
                     <GridViewColumn Header="入库单号" DisplayMemberBinding="{Binding Path=NO}" Width="100"></GridViewColumn>
                     <GridViewColumn Header="入库日期" DisplayMemberBinding="{Binding Path=OperateTime}" Width="120"></GridViewColumn>
                     <GridViewColumn Header="入库方式" DisplayMemberBinding="{Binding Path=InStoreEnum}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=FromSupplierID}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=FromSupplier.Name}" Width="200"></GridViewColumn>
                     <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=OperateUserID}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=BillStatus}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="操作" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
