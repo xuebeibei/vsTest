@@ -30,5 +30,7 @@ namespace CommContracts
         public int Num { get; set; }             // 入库数量
         [DataMember]
         public int MedicineInStoreID { get; set; }  // 入库单ID
+        [DataMember]
+        public virtual Medicine Medicine { get; set; }    // 药品字典外键
     }
 }

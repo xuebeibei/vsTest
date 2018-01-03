@@ -391,6 +391,7 @@ namespace DAL
         public Medicine()
         {
             RecipeDetails = new List<RecipeDetail>();
+            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -412,6 +413,7 @@ namespace DAL
         public int MinNum { get; set; }                             // 最小库存量
 
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
+        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
 
     public enum MedicalRecordEnum
@@ -868,6 +870,7 @@ namespace DAL
         public int Num { get; set; }             // 入库数量
 
         public int MedicineInStoreID { get; set; }  // 入库单ID
+        public virtual Medicine Medicine { get; set; }    // 药品字典外键
         public virtual MedicineInStore MedicineInStore { get; set; }   // 入库单外键
     }
 

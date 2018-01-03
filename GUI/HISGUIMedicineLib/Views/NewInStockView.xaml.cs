@@ -65,6 +65,7 @@ namespace HISGUIMedicineLib.Views
                 detail.ExpirationDate = tem.ExpirationDate;
                 detail.SellPrice = tem.SellPrice;
                 detail.StorePrice = tem.StockPrice;
+                detail.MedicineID = tem.ID;
 
                 Details.Add(detail);
             }
