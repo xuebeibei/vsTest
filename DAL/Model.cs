@@ -112,6 +112,7 @@ namespace DAL
             Inpatients = new List<Inpatient>();
             MaterialBills = new List<MaterialBill>();
             OtherServices = new List<OtherService>();
+            MedicineInStores = new List<MedicineInStore>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -131,6 +132,8 @@ namespace DAL
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
         public virtual ICollection<MaterialBill> MaterialBills { get; set; } // 所有材料单
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
+
+        public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
     }
 
     public class Department
@@ -837,6 +840,7 @@ namespace DAL
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
 
+        public virtual User OperateUser { get; set; }     // 制单用户
         public virtual Supplier FromSupplier { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }
