@@ -53,9 +53,11 @@ namespace HISGUIMedicineLib.Views
             vm?.NewInStore();
         }
 
-        private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void AllStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            //var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm?.NewInStore();
         }
     }
 }
