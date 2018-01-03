@@ -20,7 +20,5 @@ namespace CommContracts
         public int Num { get; set; }             // 库存
         [DataMember]
         public StoreRoom StoreRoom { get; set; }
-        [DataMember]
-        public MedicineBatch MedicineBatch { get; set; }
     }
 }

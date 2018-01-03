@@ -61,7 +61,6 @@
     <Compile Include="MaterialItem.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
-    <Compile Include="MedicineBatch.cs" />
     <Compile Include="MedicineInStore.cs" />
     <Compile Include="MedicineInStoreDetail.cs" />
     <Compile Include="OtherService.cs" />

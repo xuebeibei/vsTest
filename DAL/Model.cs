@@ -91,7 +91,6 @@ namespace DAL
         public DbSet<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
         public DbSet<MedicineCheckStore> MedicineCheckStores { get; set; }
         public DbSet<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
-        public DbSet<MedicineBatch> MedicineBatchs { get; set; }
         public DbSet<StoreRoom> StoreRooms { get; set; }
         public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
 
@@ -851,14 +850,15 @@ namespace DAL
         }
 
         public int ID { get; set; }       // ID
-        public int MedicineBatchID { get; set; } // 批次ID
+        public int MedicineID { get; set; }          // 对应药品字典
+        public string Batch { get; set; }            // 批次
+        public DateTime ExpirationDate { get; set; } // 有效期
+        public decimal StorePrice { get; set; }      // 成本价
+        public decimal SellPrice { get; set; }       // 零售价
         public int Num { get; set; }             // 入库数量
-        public decimal StorePrice { get; set; }  // 成本价
-        public decimal SellPrice { get; set; }   // 零售价
-        public int MedicineInStoreID { get; set; }  // 入库单ID
 
+        public int MedicineInStoreID { get; set; }  // 入库单ID
         public virtual MedicineInStore MedicineInStore { get; set; }   // 入库单外键
-        public virtual MedicineBatch MedicineBatch { get; set; }       // 入库批次外键
     }
 
     public enum OutStoreEnum
@@ -956,26 +956,6 @@ namespace DAL
         public virtual MedicineCheckStore MedicineCheckStore { get; set; }   // 盘存单外键
     }
 
-    // 药品批次信息
-    public class MedicineBatch
-    {
-        public MedicineBatch()
-        {
-            StoreRoomMedicineBatchs = new List<StoreRoomMedicineNum>();
-            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
-        }
-
-        public int ID { get; set; }                  // ID
-        public int MedicineID { get; set; }          // 对应药品字典
-        public string Batch { get; set; }            // 批次
-        public DateTime ExpirationDate { get; set; } // 有效期
-        public decimal StorePrice { get; set; }      // 成本价
-        public decimal SellPrice { get; set; }       // 零售价
-
-        public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
-        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
-    }
-
     public enum StoreRoomEnum
     {
         一级库,
@@ -1008,13 +988,15 @@ namespace DAL
     public class StoreRoomMedicineNum
     {
         public int ID { get; set; }   // ID
-        public int StoreRoomID { get; set; }  // 库房ID
-        public int MedicineBatchID { get; set; } // 批次ID
-        
-        public int Num { get; set; }             // 库存
+        public int StoreRoomID { get; set; }         // 库房ID
+        public int MedicineID { get; set; }          // 对应药品字典
+        public string Batch { get; set; }            // 批次
+        public DateTime ExpirationDate { get; set; } // 有效期
+        public decimal StorePrice { get; set; }      // 成本价
+        public decimal SellPrice { get; set; }       // 零售价
+        public int Num { get; set; }                 // 库存
 
         public virtual StoreRoom StoreRoom { get; set; }
-        public virtual MedicineBatch MedicineBatch { get; set; }
     }
 
 
