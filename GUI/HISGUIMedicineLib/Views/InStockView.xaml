@@ -33,7 +33,7 @@
             <TextBox x:Name="FindStockIDEdit" Margin="5" Width="100"></TextBox>
             <Button x:Name="FindStockBtn" Margin="5">查找</Button>
         </StackPanel>
-        <ListView x:Name="AllStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllStockList_SelectionChanged">
+        <ListView x:Name="AllStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="Single" MouseDoubleClick="AllStockList_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridView2">
                     <GridViewColumn Header="入库单号" DisplayMemberBinding="{Binding Path=NO}" Width="100"></GridViewColumn>
