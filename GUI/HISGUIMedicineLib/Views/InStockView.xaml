@@ -24,14 +24,10 @@
             <Label Margin="5">—</Label>
             <DatePicker x:Name="EndStockDate" Margin="5" Width="100"></DatePicker>
             <Label Margin="5">入库类型：</Label>
-            <ComboBox Margin="5" Width="100">
-                <ComboBoxItem IsSelected="True">全部</ComboBoxItem>
-                <ComboBoxItem>采购入库</ComboBoxItem>
-                <ComboBoxItem>其他入库</ComboBoxItem>
-                <ComboBoxItem>导入入库</ComboBoxItem>
+            <ComboBox x:Name="StockWay" Margin="5" Width="100">
             </ComboBox>
             <TextBox x:Name="FindStockIDEdit" Margin="5" Width="100"></TextBox>
-            <Button x:Name="FindStockBtn" Margin="5">查找</Button>
+            <Button x:Name="FindStockBtn" Margin="5" Click="FindStockBtn_Click">查找</Button>
         </StackPanel>
         <ListView x:Name="AllStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionMode="Single" MouseDoubleClick="AllStockList_MouseDoubleClick">
             <ListView.View>

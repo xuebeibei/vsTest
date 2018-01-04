@@ -40,11 +40,11 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore(1, CommContracts.InStoreEnum.采购入库,
-                new DateTime(2017, 10, 1), new DateTime(2018, 10, 1));
-
-            this.AllStockList.ItemsSource = list;
+            this.StartStockDate.SelectedDate = DateTime.Now.AddDays(-1);
+            this.EndStockDate.SelectedDate = DateTime.Now;
+            this.StockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
+            this.StockWay.SelectedItem = CommContracts.InStoreEnum.采购入库;
+            getAllMedicineInStore();
 
         }
         private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
@@ -58,11 +58,25 @@ namespace HISGUIMedicineLib.Views
         private void AllStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
-            
+
             var vm = this.DataContext as HISGUIMedicineVM;
 
             vm.CurrentMedicineInStore = currentInStore;
             vm?.NewInStore();
+        }
+
+        private void getAllMedicineInStore()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore(1, (CommContracts.InStoreEnum)this.StockWay.SelectedItem,
+                this.StartStockDate.SelectedDate.Value, this.EndStockDate.SelectedDate.Value);
+
+            this.AllStockList.ItemsSource = list;
+        }
+
+        private void FindStockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            getAllMedicineInStore();
         }
     }
 }
