@@ -15,7 +15,8 @@ namespace BLL
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.MedicineInStore, DAL.MedicineInStore>().ForMember(x => x.MedicineInStoreDetails, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.MedicineInStore, DAL.MedicineInStore>().ForMember(x => x.MedicineInStoreDetails, opt => opt.Ignore())
+                    .ForMember(x => x.FromSupplier, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 

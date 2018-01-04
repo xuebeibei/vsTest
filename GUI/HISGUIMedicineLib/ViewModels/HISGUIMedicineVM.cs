@@ -39,18 +39,11 @@ namespace HISGUIMedicineLib.ViewModels
         public bool SaveMedicineInStock(List<CommContracts.MedicineInStoreDetail> list, bool bIsAutoCheck = false)
         {
             CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
-            CommContracts.MedicineInStore medicineInStore = new CommContracts.MedicineInStore();
-            medicineInStore.NO = "001";
-            medicineInStore.OperateTime = DateTime.Now;
-            medicineInStore.OperateUserID = 1;
-            medicineInStore.SumOfMoney = 100;
-            medicineInStore.FromSupplierID = 1;
-            medicineInStore.ToStoreID = 1;
-            medicineInStore.ReCheckUserID = 1;
+            CurrentMedicineInStore.OperateUserID = 1;
+            CurrentMedicineInStore.ToStoreID = 1;
+            CurrentMedicineInStore.MedicineInStoreDetails = list;
 
-            medicineInStore.MedicineInStoreDetails = list;
-
-            if (myd.SaveMedicineInStock(medicineInStore))
+            if (myd.SaveMedicineInStock(CurrentMedicineInStore))
                 return true;
 
             return false;

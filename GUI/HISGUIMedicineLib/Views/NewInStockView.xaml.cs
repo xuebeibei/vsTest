@@ -46,6 +46,7 @@ namespace HISGUIMedicineLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
+            
             this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
             this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
             if (vm.CurrentMedicineInStore != null)
@@ -141,6 +142,15 @@ namespace HISGUIMedicineLib.Views
         {
             var vm = this.DataContext as HISGUIMedicineVM;
             vm?.MedicineWorkManage();
+        }
+
+        private void SupplierEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
+            if (tem == null)
+                return;
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
         }
     }
 }

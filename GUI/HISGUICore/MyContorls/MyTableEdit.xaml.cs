@@ -315,7 +315,7 @@ namespace HISGUICore.MyContorls
                     Width = list.ElementAt(i).TittleWidth,
                     IsReadOnly = list.ElementAt(i).IsReadOnly,
                     Visibility = list.ElementAt(i).Visibility,
-                    
+
 
                 });
             }
@@ -356,14 +356,29 @@ namespace HISGUICore.MyContorls
                             this.MyDataGrid.SelectedCells.Clear();
                             this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                                 (Action)(() => { Keyboard.Focus(FindNameEdit); }));
+                            UpdateSumTable();
                         }
                         else                                                                     // 如果不是最后一列，则跳转到下一列
                         {
                             GridSkipTo(rowIdnex, m_skipList.ElementAt(nIndex + 1));
                         }
+
+                        //if (IsColumnCalculate(columnIndex))                                      // 如果是计算列，则计算更新， 必须放置跳转之后，否则取不到值
+                        //    UpdateSumTable();
                     }
                 }
             }
+        }
+
+        private bool IsColumnCalculate(int columnIndex)
+        {
+            if(editEnum == MyTableEditEnum.medicineInStock)
+            {
+                if(columnIndex == 6)
+                    return true;
+            }
+
+            return false;
         }
 
         private void FindNameEdit_KeyDown(object sender, KeyEventArgs e)
@@ -565,6 +580,7 @@ namespace HISGUICore.MyContorls
                 decimal sum = 0.0m;
                 foreach (var tem in m_contentItems)
                 {
+                    tem.Total = tem.SingleDose * tem.StockPrice;
                     sum += tem.Total;
                 }
 
