@@ -75,12 +75,9 @@ namespace HISGUIMedicineLib.Views
                         myDetail.Total = tem.Num * tem.StorePrice;
                         list.Add(myDetail);
                     }
-
                     this.myTableEdit.SetAllDetails(list);
                 }
-                
             }
-                
         }
 
         private List<CommContracts.MedicineInStoreDetail> GetDetails()

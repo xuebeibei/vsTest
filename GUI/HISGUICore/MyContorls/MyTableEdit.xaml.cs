@@ -133,10 +133,10 @@ namespace HISGUICore.MyContorls
         {
             InitializeComponent();
             this.editEnum = editEnum;
-            if(this.editEnum == MyTableEditEnum.materialInStock || 
-                this.editEnum == MyTableEditEnum.materialOutStock || 
+            if (this.editEnum == MyTableEditEnum.materialInStock ||
+                this.editEnum == MyTableEditEnum.materialOutStock ||
                 this.editEnum == MyTableEditEnum.medicineInStock ||
-                this.editEnum == MyTableEditEnum.medicineOutStock )
+                this.editEnum == MyTableEditEnum.medicineOutStock)
             {
                 SelectTempletBtn.Visibility = Visibility.Collapsed;
             }
@@ -234,7 +234,7 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("合计", "Name", 590));
                 list.Add(new MyTableTittle("名称", "SumMoney", 80));
             }
-            
+
             return list;
         }
 
@@ -298,7 +298,7 @@ namespace HISGUICore.MyContorls
 
                 });
             }
-            
+
 
             dynamic item = new MySum();
             item.Name = "合计";
@@ -539,6 +539,23 @@ namespace HISGUICore.MyContorls
             for (int i = 0; i < list.Count; i++)
             {
                 m_contentItems.Add(list.ElementAt(i));
+            }
+
+            UpdateSumTable();
+        }
+
+        private void UpdateSumTable()
+        {
+            if (editEnum == MyTableEditEnum.medicineInStock)
+            {
+                decimal sum = 0.0m;
+                foreach (var tem in m_contentItems)
+                {
+                    sum += tem.Total;
+                }
+
+                if (m_sumItems.Count > 0)
+                    m_sumItems.ElementAt(0).SumMoney = sum;
             }
         }
 
