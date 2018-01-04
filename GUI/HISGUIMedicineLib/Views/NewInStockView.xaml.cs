@@ -31,8 +31,6 @@ namespace HISGUIMedicineLib.Views
         public NewInStockView()
         {
             InitializeComponent();
-            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
-            InStockPanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -44,17 +42,15 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            this.InStockDate.SelectedDate = DateTime.Now;
+            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
+            InStockPanel.Children.Add(myTableEdit);
 
             var vm = this.DataContext as HISGUIMedicineVM;
             this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
+            this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
             if(vm.CurrentMedicineInStore != null)
             {
-                this.InStockID.Text = vm.CurrentMedicineInStore.NO;
-                this.InStockDate.SelectedDate = vm.CurrentMedicineInStore.OperateTime;
-                this.InStockWay.Text = vm.CurrentMedicineInStore.InStoreEnum.ToString();
-                this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;
-                this.RemarkEdit.Text = vm.CurrentMedicineInStore.Remarks;
+                this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
 
                 if(vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
                 {

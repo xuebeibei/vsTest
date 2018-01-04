@@ -11,19 +11,15 @@
             
             <StackPanel Orientation="Horizontal">
                 <Label Margin="5">入库单号：</Label>
-                <TextBox x:Name="InStockID" Margin="5" Width="100" IsReadOnly="True" VerticalContentAlignment="Center" ></TextBox>
+                <TextBox x:Name="InStockID" Margin="5" Width="100" IsReadOnly="True" VerticalContentAlignment="Center" Text="{Binding CurrentMedicineInStore.NO}"></TextBox>
                 <Label Margin="5">入库日期：</Label>
-                <DatePicker x:Name="InStockDate" Margin="5" Width="150"></DatePicker>
+                <DatePicker x:Name="InStockDate" Margin="5" Width="150" VerticalContentAlignment="Center" SelectedDate="{Binding CurrentMedicineInStore.OperateTime, StringFormat='dd/MM/yyyy HH:mm:ss'}"></DatePicker>
                 <Label Margin="5">入库方式：</Label>
-                <ComboBox x:Name="InStockWay" Margin="5" Width="100">
-                    <ComboBoxItem IsSelected="True">采购入库</ComboBoxItem>
-                    <ComboBoxItem>其他入库</ComboBoxItem>
-                </ComboBox>
-                <Label x:Name="SupplierLabel" Margin="5">供应商：</Label>
-                <ComboBox x:Name="SupplierEdit" Margin="5" Width="100">
-                </ComboBox>
+                <ComboBox x:Name="InStockWay" Margin="5" Width="100" VerticalContentAlignment="Center" SelectedItem="{Binding CurrentMedicineInStore.InStoreEnum}"/>
+                <Label x:Name="SupplierLabel" Margin="5" VerticalContentAlignment="Center">供应商：</Label>
+                <ComboBox x:Name="SupplierEdit" Margin="5" Width="100"/> <!--SelectedItem="{Binding CurrentMedicineInStore.FromSupplier}"-->
                 <Label Margin="5">备注：</Label>
-                <TextBox x:Name="RemarkEdit" Margin="5" Width="120"></TextBox>
+                <TextBox x:Name="RemarkEdit" Margin="5" Width="120" VerticalContentAlignment="Center" Text="{Binding CurrentMedicineInStore.Remarks}"></TextBox>
             </StackPanel>
             <Separator Margin="0,10,0,10"></Separator>
             <StackPanel x:Name="InStockPanel" >
