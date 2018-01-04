@@ -22,26 +22,36 @@ namespace HISGUICore.MyContorls
     //编辑内容控件数据类
     public class MyDetail : INotifyPropertyChanged
     {
-        public int ID { get; set; }
-        public string GroupNum { set; get; }
-        public string Name { set; get; }
-        public int SingleDose { get; set; }
-        public string SingleDoseUnit { get; set; }
-        public CommContracts.UsageEnum Usage { get; set; }
-        public CommContracts.DDDSEnum DDDS { get; set; }
-        public int DaysNum { get; set; }
-        public int IntegralDose { get; set; }
-        public string IntegralDoseUnit { get; set; }
-        public string Illustration { get; set; }
-        public string MedicinePacking { get; set; }
-        public string Specifications { get; set; }
+        public int ID { get; set; }                                    // 药品等编码
+        public string GroupNum { set; get; }                           // 组别
+        public string Name { set; get; }                               // 名称
+        public int SingleDose { get; set; }                            // 数量  
+        public string SingleDoseUnit { get; set; }                     // 单位 
+        public CommContracts.UsageEnum Usage { get; set; }             // 用法 
+        public CommContracts.DDDSEnum DDDS { get; set; }               // 频次
+        public int DaysNum { get; set; }                               // 天数
+        public int IntegralDose { get; set; }                          // 总量
+        public string IntegralDoseUnit { get; set; }                   // 总量单位
+        public string Illustration { get; set; }                       // 解释说明
+        public string MedicinePacking { get; set; }                    // 药品包装
+        public string Specifications { get; set; }                     // 规格
 
-        public string Manufacturer { get; set; }
-        public decimal SellPrice { get; set; }
-        public decimal StockPrice { get; set; }
-        public decimal Total { get; set; }
-        public string BatchID { get; set; }
-        public DateTime ExpirationDate { get; set; }
+        public string Manufacturer { get; set; }                       // 厂家
+        public decimal SellPrice { get; set; }                         // 售价
+        public decimal StockPrice { get; set; }                        // 成本价
+        private decimal TotalValue;                                    // 单项成本合计
+        public decimal Total
+        {
+            get { return TotalValue; }
+            set
+            {
+                TotalValue = value;
+                // Call NotifyPropertyChanged when the property is updated
+                Changed("Total");
+            }
+        }
+        public string BatchID { get; set; }                            // 批次 
+        public DateTime ExpirationDate { get; set; }                   // 有效日期   
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
