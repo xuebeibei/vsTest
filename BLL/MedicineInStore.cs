@@ -84,6 +84,7 @@ namespace BLL
                             a.InStoreEnum == (DAL.InStoreEnum)inStoreEnum &&
                             a.OperateTime > StartInStoreTime &&
                             a.OperateTime < EndInStoreTime
+                            orderby a.OperateTime descending 
                             select a;
                 foreach (DAL.MedicineInStore ass in query)
                 {
