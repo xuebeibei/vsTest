@@ -47,8 +47,44 @@ namespace HISGUIMedicineLib.Views
             this.InStockDate.SelectedDate = DateTime.Now;
 
             var vm = this.DataContext as HISGUIMedicineVM;
-
             this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
+            if(vm.CurrentMedicineInStore != null)
+            {
+                this.InStockID.Text = vm.CurrentMedicineInStore.NO;
+                this.InStockDate.SelectedDate = vm.CurrentMedicineInStore.OperateTime;
+                this.InStockWay.Text = vm.CurrentMedicineInStore.InStoreEnum.ToString();
+                this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;
+                this.RemarkEdit.Text = vm.CurrentMedicineInStore.Remarks;
+
+                if(vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
+                {
+                    List<MyDetail> list = new List<MyDetail>();
+                    foreach (var tem in vm.CurrentMedicineInStore.MedicineInStoreDetails)
+                    {
+                        MyDetail myDetail = new MyDetail();
+                        myDetail.ID = tem.MedicineID;
+                        myDetail.ExpirationDate = tem.ExpirationDate;
+                        myDetail.BatchID = tem.Batch;
+                        myDetail.SingleDose = tem.Num;
+                        if(tem.Medicine != null)
+                        {
+                            myDetail.SingleDoseUnit = tem.Medicine.Unit;
+                            myDetail.Name = tem.Medicine.Name;
+                            myDetail.Manufacturer = tem.Medicine.Manufacturer;
+                            myDetail.Specifications = tem.Medicine.Specifications;
+                        }
+                        
+                        myDetail.SellPrice = tem.SellPrice;
+                        myDetail.StockPrice = tem.StorePrice;
+                        myDetail.Total = tem.Num * tem.StorePrice;
+                        list.Add(myDetail);
+                    }
+
+                    this.myTableEdit.SetAllDetails(list);
+                }
+                
+            }
+                
         }
 
         private List<CommContracts.MedicineInStoreDetail> GetDetails()

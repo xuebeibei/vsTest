@@ -55,8 +55,11 @@ namespace HISGUIMedicineLib.Views
 
         private void AllStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
+            var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
+            
             var vm = this.DataContext as HISGUIMedicineVM;
+
+            vm.CurrentMedicineInStore = currentInStore;
             vm?.NewInStore();
         }
     }
