@@ -25,7 +25,11 @@ namespace CommContracts
     {
         public MedicineInStore()
         {
-
+            this.NO = "002";
+            this.OperateTime = DateTime.Now;
+            this.FromSupplier = new Supplier();
+            this.InStoreEnum = InStoreEnum.采购入库;
+            this.ReCheckStatusEnum = ReCheckStatusEnum.待审核;
         }
 
         [DataMember]

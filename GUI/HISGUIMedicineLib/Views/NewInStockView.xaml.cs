@@ -31,6 +31,9 @@ namespace HISGUIMedicineLib.Views
         public NewInStockView()
         {
             InitializeComponent();
+            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
+            InStockPanel.Children.Add(myTableEdit);
+
             this.Loaded += View_Loaded;
         }
 
@@ -42,17 +45,17 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
-            InStockPanel.Children.Add(myTableEdit);
-
             var vm = this.DataContext as HISGUIMedicineVM;
             this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
             this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
-            if(vm.CurrentMedicineInStore != null)
+            if (vm.CurrentMedicineInStore != null)
             {
-                this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
+                this.myTableEdit.ClearAllDetails();
 
-                if(vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
+                if (vm.CurrentMedicineInStore.FromSupplier != null)
+                    this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
+
+                if (vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
                 {
                     List<MyDetail> list = new List<MyDetail>();
                     foreach (var tem in vm.CurrentMedicineInStore.MedicineInStoreDetails)
@@ -62,14 +65,14 @@ namespace HISGUIMedicineLib.Views
                         myDetail.ExpirationDate = tem.ExpirationDate;
                         myDetail.BatchID = tem.Batch;
                         myDetail.SingleDose = tem.Num;
-                        if(tem.Medicine != null)
+                        if (tem.Medicine != null)
                         {
                             myDetail.SingleDoseUnit = tem.Medicine.Unit;
                             myDetail.Name = tem.Medicine.Name;
                             myDetail.Manufacturer = tem.Medicine.Manufacturer;
                             myDetail.Specifications = tem.Medicine.Specifications;
                         }
-                        
+
                         myDetail.SellPrice = tem.SellPrice;
                         myDetail.StockPrice = tem.StorePrice;
                         myDetail.Total = tem.Num * tem.StorePrice;
@@ -103,12 +106,12 @@ namespace HISGUIMedicineLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-           
+
             var vm = this.DataContext as HISGUIMedicineVM;
             bool? result = vm?.SaveMedicineInStock(GetDetails());
-            if(result.HasValue)
+            if (result.HasValue)
             {
-                if(result.Value)
+                if (result.Value)
                 {
                     MessageBox.Show("保存成功!");
                     vm?.MedicineWorkManage();

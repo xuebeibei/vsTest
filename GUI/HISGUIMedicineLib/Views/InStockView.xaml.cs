@@ -50,6 +50,8 @@ namespace HISGUIMedicineLib.Views
         private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
+            var currentInStore = new CommContracts.MedicineInStore();
+            vm.CurrentMedicineInStore = currentInStore;
             vm?.NewInStore();
         }
 

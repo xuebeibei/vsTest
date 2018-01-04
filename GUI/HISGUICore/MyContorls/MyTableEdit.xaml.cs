@@ -58,7 +58,17 @@ namespace HISGUICore.MyContorls
     {
         public string Name { set; get; }
         public int SumNum { get; set; }
-        public decimal SumMoney { get; set; }
+        private decimal SumMoneyValue;
+        public decimal SumMoney
+        {
+            get { return SumMoneyValue; }
+            set
+            {
+                SumMoneyValue = value;
+                // Call NotifyPropertyChanged when the property is updated
+                Changed("SumMoney");
+            }
+        }
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
@@ -294,16 +304,11 @@ namespace HISGUICore.MyContorls
                     Binding = new Binding(list.ElementAt(i).TittleBinding),
                     Width = list.ElementAt(i).TittleWidth,
                     IsReadOnly = list.ElementAt(i).IsReadOnly,
-                    Visibility = list.ElementAt(i).Visibility
+                    Visibility = list.ElementAt(i).Visibility,
+                    
 
                 });
             }
-
-
-            dynamic item = new MySum();
-            item.Name = "合计";
-            item.SumMoney = 0.00m;
-            m_sumItems.Add(item);
 
             SumNumGrid.ItemsSource = m_sumItems;
         }
@@ -395,7 +400,6 @@ namespace HISGUICore.MyContorls
                     {
                         InsertIntoMedicine(list.CurrentMedicine);
                     }
-
                 }
             }
         }
@@ -556,6 +560,13 @@ namespace HISGUICore.MyContorls
 
                 if (m_sumItems.Count > 0)
                     m_sumItems.ElementAt(0).SumMoney = sum;
+                else
+                {
+                    dynamic item = new MySum();
+                    item.Name = "合计";
+                    item.SumMoney = sum;
+                    m_sumItems.Add(item);
+                }
             }
         }
 
@@ -567,6 +578,7 @@ namespace HISGUICore.MyContorls
         public void ClearAllDetails()
         {
             m_contentItems.Clear();
+            UpdateSumTable();
         }
     }
 }
