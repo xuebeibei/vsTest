@@ -528,10 +528,10 @@ namespace HISGUICore.MyContorls
         private void GridSkipTo(int row, int column)
         {
             var Dg = this.MyDataGrid;
-            Dg.SelectedCells.Clear();
-            Dg.Focus();
-            Dg.CurrentCell = new DataGridCellInfo(Dg.Items[row], Dg.Columns[column]);
-            Dg.SelectedCells.Add(Dg.CurrentCell);
+            Dg.SelectedCells.Clear();                                                  // 清除所有选择的单元格
+            Dg.Focus();                                                                // 选中表格
+            Dg.CurrentCell = new DataGridCellInfo(Dg.Items[row], Dg.Columns[column]);  // 得到需要选中的单元格
+            Dg.SelectedCells.Add(Dg.CurrentCell);                                      // 将其添加到选中队列中去
         }
 
         public List<MyDetail> GetAllDetails()
