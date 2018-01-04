@@ -6,35 +6,30 @@
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
         <StackPanel>
-            
-            <DataGrid x:Name="MyDataGrid" Margin="5" AutoGenerateColumns="False"
-                      LoadingRow="MyDataGrid_LoadingRow" 
+            <DataGrid x:Name="MyDataGrid" Margin="5" 
+                      AutoGenerateColumns="False"
                       SelectionUnit="CellOrRowHeader"
                       CanUserAddRows="False"
-                      PreviewKeyDown="MyDataGrid_PreviewKeyDown" 
-                      >
-                <!--<DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Style.Triggers>
-                            <Trigger Property="ItemsControl.AlternationIndex"
-                         Value="0">
-                                <Setter Property="Background" Value="AliceBlue" />
-                            </Trigger>
-                            <Trigger Property="ItemsControl.AlternationIndex"
-                         Value="1">
-                                <Setter Property="Background" Value="White" />
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>-->
-                <!--隔行变色 AlternationCount="2"-->
+                      CanUserResizeColumns="False" 
+                      PreviewKeyDown="MyDataGrid_PreviewKeyDown">
             </DataGrid>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <TextBox x:Name="FindNameEdit" Margin="5" Width="100" KeyDown="FindNameEdit_KeyDown"></TextBox>
-                <Button x:Name="SelectTempletBtn" Margin="5" Click="SelectTempletBtn_Click">选择模板</Button>
-                <!--<Button x:Name="CopyRecipeBtn" Margin="5" Click="CopyRecipeBtn_Click">复制处方</Button>-->
-                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">删除</Button>
-            </StackPanel>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="FindNameEdit" Grid.Column="0" Margin="5" MinWidth="100" Height="25" KeyDown="FindNameEdit_KeyDown"></TextBox>
+                <Button x:Name="SelectTempletBtn" Grid.Column="1"  Margin="5" Click="SelectTempletBtn_Click">选择模板</Button>
+                <Button x:Name="DeleteBtn" Grid.Column="2" Margin="5" Click="DeleteBtn_Click">删除</Button>
+            </Grid>
+            <DataGrid x:Name="SumNumGrid" Margin="5" 
+                      AutoGenerateColumns="False" 
+                      CanUserAddRows="False" 
+                      IsReadOnly="True"
+                      CanUserResizeColumns="False" 
+                      HeadersVisibility="Row">
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -19,7 +19,7 @@ using System.Windows.Threading;
 
 namespace HISGUICore.MyContorls
 {
-    //数据类
+    //编辑内容控件数据类
     public class MyDetail : INotifyPropertyChanged
     {
         public int ID { get; set; }
@@ -42,6 +42,23 @@ namespace HISGUICore.MyContorls
         public decimal Total { get; set; }
         public string BatchID { get; set; }
         public DateTime ExpirationDate { get; set; }
+
+        #region 属性更改通知
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void Changed(string PropertyName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(PropertyName));
+        }
+        #endregion
+    }
+
+    //编辑内容控件数据类
+    public class MySum : INotifyPropertyChanged
+    {
+        public string Name { set; get; }
+        public int SumNum { get; set; }
+        public decimal SumMoney { get; set; }
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
@@ -97,7 +114,8 @@ namespace HISGUICore.MyContorls
 
     public partial class MyTableEdit : UserControl
     {
-        private ObservableCollection<dynamic> m_items = new ObservableCollection<dynamic>();
+        private ObservableCollection<dynamic> m_contentItems = new ObservableCollection<dynamic>();
+        private ObservableCollection<dynamic> m_sumItems = new ObservableCollection<dynamic>();
 
         private MyTableEditEnum editEnum { get; set; }
 
@@ -122,10 +140,11 @@ namespace HISGUICore.MyContorls
             {
                 SelectTempletBtn.Visibility = Visibility.Collapsed;
             }
-            initTable();
+            InitContentTable();
+            InitSumTable();
         }
 
-        private List<MyTableTittle> GetList()
+        private List<MyTableTittle> GetContentList()
         {
             List<MyTableTittle> list = new List<MyTableTittle>();
             m_skipList.Clear();
@@ -207,9 +226,21 @@ namespace HISGUICore.MyContorls
             return list;
         }
 
-        public void initTable()
+        private List<MyTableTittle> GetSumList()
         {
-            List<MyTableTittle> list = GetList();
+            List<MyTableTittle> list = new List<MyTableTittle>();
+            if (editEnum == MyTableEditEnum.medicineInStock)
+            {
+                list.Add(new MyTableTittle("合计", "Name", 590));
+                list.Add(new MyTableTittle("名称", "SumMoney", 80));
+            }
+            
+            return list;
+        }
+
+        public void InitContentTable()
+        {
+            List<MyTableTittle> list = GetContentList();
 
             for (int i = 0; i < list.Count(); i++)
             {
@@ -247,25 +278,43 @@ namespace HISGUICore.MyContorls
                     Visibility = list.ElementAt(i).Visibility
 
                 });
-
             }
 
-            MyDataGrid.ItemsSource = m_items;
+            MyDataGrid.ItemsSource = m_contentItems;
+        }
+
+        private void InitSumTable()
+        {
+            List<MyTableTittle> list = GetSumList();
+            for (int i = 0; i < list.Count(); i++)
+            {
+                this.SumNumGrid.Columns.Add(new DataGridTextColumn()
+                {
+                    Header = list.ElementAt(i).TittleName,
+                    Binding = new Binding(list.ElementAt(i).TittleBinding),
+                    Width = list.ElementAt(i).TittleWidth,
+                    IsReadOnly = list.ElementAt(i).IsReadOnly,
+                    Visibility = list.ElementAt(i).Visibility
+
+                });
+            }
+            
+
+            dynamic item = new MySum();
+            item.Name = "合计";
+            item.SumMoney = 0.00m;
+            m_sumItems.Add(item);
+
+            SumNumGrid.ItemsSource = m_sumItems;
         }
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var temp = this.MyDataGrid.SelectedIndex;
-            if (temp < m_items.Count && temp >= 0)
+            if (temp < m_contentItems.Count && temp >= 0)
             {
-                m_items.RemoveAt(temp);
+                m_contentItems.RemoveAt(temp);
             }
-        }
-
-        private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
-        {
-            // 添加行号, 不智能，删除时候行号会乱
-            //e.Row.Header = e.Row.GetIndex() + 1; 
         }
 
         private void MyDataGrid_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -364,11 +413,11 @@ namespace HISGUICore.MyContorls
             item.Manufacturer = medicine.Manufacturer;
             item.SingleDoseUnit = medicine.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -382,11 +431,11 @@ namespace HISGUICore.MyContorls
             item.Name = therapyItem.Name;
             item.SingleDoseUnit = therapyItem.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -400,11 +449,11 @@ namespace HISGUICore.MyContorls
             item.Name = assayItem.Name;
             item.SingleDoseUnit = assayItem.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -418,11 +467,11 @@ namespace HISGUICore.MyContorls
             item.Name = inspectItem.Name;
             item.SingleDoseUnit = inspectItem.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -436,11 +485,11 @@ namespace HISGUICore.MyContorls
             item.Name = materialItem.Name;
             item.SingleDoseUnit = materialItem.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -454,11 +503,11 @@ namespace HISGUICore.MyContorls
             item.Name = otherServiceItem.Name;
             item.SingleDoseUnit = otherServiceItem.Unit;
 
-            m_items.Add(item);
+            m_contentItems.Add(item);
             // 跳转到单次剂量
             if (m_skipList.Count > 0)
             {
-                GridSkipTo(m_items.Count - 1, m_skipList.ElementAt(0));
+                GridSkipTo(m_contentItems.Count - 1, m_skipList.ElementAt(0));
             }
         }
 
@@ -475,9 +524,9 @@ namespace HISGUICore.MyContorls
         {
             List<MyDetail> list = new List<MyDetail>();
 
-            for (int i = 0; i < m_items.Count; i++)
+            for (int i = 0; i < m_contentItems.Count; i++)
             {
-                var tem = m_items.ElementAt(i) as MyDetail;
+                var tem = m_contentItems.ElementAt(i) as MyDetail;
                 list.Add(tem);
             }
             return list;
@@ -489,7 +538,7 @@ namespace HISGUICore.MyContorls
 
             for (int i = 0; i < list.Count; i++)
             {
-                m_items.Add(list.ElementAt(i));
+                m_contentItems.Add(list.ElementAt(i));
             }
         }
 
@@ -500,7 +549,7 @@ namespace HISGUICore.MyContorls
 
         public void ClearAllDetails()
         {
-            m_items.Clear();
+            m_contentItems.Clear();
         }
     }
 }
