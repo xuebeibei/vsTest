@@ -343,21 +343,21 @@ namespace HISGUICore.MyContorls
                 }
 
 
-                int columnIndex = dg.SelectedCells[0].Column.DisplayIndex;  // 列坐标
-                int rowIdnex = int.Parse(dg.Items.IndexOf(dg.SelectedCells[0].Item).ToString()); // 行坐标
+                int columnIndex = dg.SelectedCells[0].Column.DisplayIndex;                       // 得到当前选中单元格列坐标
+                int rowIdnex = int.Parse(dg.Items.IndexOf(dg.SelectedCells[0].Item).ToString()); // 得到当前选中单元格行坐标
 
-                if (m_skipList.Count > 0)
+                if (m_skipList.Count > 0)                                                        // 如果当前表格有需要待跳转的列 
                 {
-                    int nIndex = m_skipList.IndexOf(columnIndex);
-                    if (nIndex >= 0 && nIndex < m_skipList.Count)
+                    int nIndex = m_skipList.IndexOf(columnIndex);                                // 得到当前单元格在跳转队列中的顺序 
+                    if (nIndex >= 0 && nIndex < m_skipList.Count)                                // 如果未超出了跳转队列范围
                     {
-                        if (nIndex == m_skipList.Count - 1)
+                        if (nIndex == m_skipList.Count - 1)                                      // 如果是最后一列，则跳转到搜索内容框 
                         {
                             this.MyDataGrid.SelectedCells.Clear();
                             this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                                 (Action)(() => { Keyboard.Focus(FindNameEdit); }));
                         }
-                        else
+                        else                                                                     // 如果不是最后一列，则跳转到下一列
                         {
                             GridSkipTo(rowIdnex, m_skipList.ElementAt(nIndex + 1));
                         }
