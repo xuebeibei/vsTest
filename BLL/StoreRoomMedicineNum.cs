@@ -80,13 +80,12 @@ namespace BLL
             {
                 var query = from x in ctx.StoreRoomMedicineNums
                             where x.StoreRoomID == StoreID &&
-                            x.Medicine.Name.StartsWith(ItemName) //&& 
-
-                            //x.SupplierID == SupplierID &&
-                            //x.Medicine.MedicineTypeEnum == (DAL.MedicineTypeEnum)ItemType &&
-                            //x.Num > 0 && 
-                            //x.ExpirationDate > DateTime.Now && 
-                            //x.Num < x.Medicine.MinNum 
+                            x.Medicine.Name.StartsWith(ItemName) &&
+                            (SupplierID == 0 || x.SupplierID == SupplierID) &&
+                            (ItemType == -1 || x.Medicine.MedicineTypeEnum == (DAL.MedicineTypeEnum)ItemType) &&
+                            (IsHasNum || x.Num <= 0) &&
+                            (!IsOverDate || x.ExpirationDate < DateTime.Now) &&
+                            (!IsNoEnough || x.Num < x.Medicine.MinNum)
                             orderby x.Medicine.Name
                             select x;
 

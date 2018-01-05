@@ -41,16 +41,39 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            getAllMedicineItemNum();
+            var vm = this.DataContext as HISGUIMedicineVM;
+            this.SupplierNameBox.ItemsSource = vm?.getAllSupplier();
+            //getAllMedicineItemNum();
         }
 
         private void getAllMedicineItemNum()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(1, 
+
+            int nSupplierID = 0;
+            var supplier = this.SupplierNameBox.SelectedItem as CommContracts.Supplier;
+            if (supplier != null)
+                nSupplierID = supplier.ID;
+
+            int nCurrentItemType = -1;
+            string str = this.ItemTypeCombo.Text;
+            if (str == "西药")
+            {
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.xiyao;
+            }
+            else if (str == "中成药")
+            {
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.zhongchengyao;
+            }
+            else if (str == "中药")
+            {
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.zhongyao;
+            }
+
+            List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(1,
                 FindItemNameBox.Text,
-                1,
-                0,
+                nSupplierID,
+                nCurrentItemType,
                 IsStatusOkCheck.IsChecked.Value,
                 IsHasNumCheck.IsChecked.Value,
                 IsOverDateCheck.IsChecked.Value,
@@ -62,6 +85,11 @@ namespace HISGUIMedicineLib.Views
         private void AllItemsNumList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void FindItemBtn_Click(object sender, RoutedEventArgs e)
+        {
+            getAllMedicineItemNum();
         }
     }
 }
