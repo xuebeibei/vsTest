@@ -118,10 +118,17 @@ namespace HISGUIMedicineLib.Views
             {
                 this.SaveBtn.Visibility = Visibility.Collapsed;
                 this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
-                this.EditBtn.Visibility = Visibility.Visible;
-                this.ReCheckBtn.Visibility = Visibility.Visible;
+                if (vm.CurrentMedicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                {
+                    this.EditBtn.Visibility = Visibility.Collapsed;
+                    this.ReCheckBtn.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.EditBtn.Visibility = Visibility.Visible;
+                    this.ReCheckBtn.Visibility = Visibility.Visible;
+                }
             }
-            
         }
 
         private List<CommContracts.MedicineInStoreDetail> GetDetails()

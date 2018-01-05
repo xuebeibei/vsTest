@@ -33,7 +33,7 @@
                 <Button x:Name="SaveAndCheckBtn" Margin="5" Click="SaveAndCheckBtn_Click">保存并审核</Button>
                 <Button x:Name="EditBtn" Margin="5" Click="EditBtn_Click">编辑</Button>
                 <Button x:Name="ReCheckBtn" Margin="5" Click="ReCheckBtn_Click">审核</Button>
-                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button> 
+                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">返回</Button> 
             </StackPanel>
         </StackPanel>
     </Grid>
