@@ -14,11 +14,11 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
-            <TextBox x:Name="FindItemNameBox" Width="100" Margin="5,5,0,5"></TextBox>
+            <TextBox x:Name="FindItemNameBox" Width="100" Margin="5,5,0,5" VerticalContentAlignment="Center"></TextBox>
             <Button x:Name="FindItemBtn" Margin="0,5,5,5">查找</Button>
-            <TextBox  x:Name="SupplierNameBox" Margin="5" Width="100">供应商</TextBox>
+            <TextBox  x:Name="SupplierNameBox" Margin="5" Width="100" VerticalContentAlignment="Center"></TextBox>
             <Label Margin="5">类型：</Label>
-            <ComboBox x:Name="ItemTypeCombo" Margin="5">
+            <ComboBox x:Name="ItemTypeCombo" Margin="5" VerticalContentAlignment="Center">
                 <ComboBoxItem IsSelected="True">全部</ComboBoxItem>
                 <ComboBoxItem>西/成药</ComboBoxItem>
                 <ComboBoxItem>中药</ComboBoxItem>
@@ -27,10 +27,10 @@
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Margin="5">筛选：</Label>
-            <CheckBox Margin="5,10,5,5">药品状态正常</CheckBox>
-            <CheckBox Margin="5,10,5,5" IsChecked="True">数量大于0</CheckBox>
-            <CheckBox Margin="5,10,5,5">逾期报警</CheckBox>
-            <CheckBox Margin="5,10,5,5">库存报警</CheckBox>
+            <CheckBox Margin="5" VerticalContentAlignment="Center">药品状态正常</CheckBox>
+            <CheckBox Margin="5" VerticalContentAlignment="Center" IsChecked="True">数量大于0</CheckBox>
+            <CheckBox Margin="5" VerticalContentAlignment="Center">逾期报警</CheckBox>
+            <CheckBox Margin="5" VerticalContentAlignment="Center">库存报警</CheckBox>
             <Button Margin="5">生成表格</Button>
         </StackPanel>
 
