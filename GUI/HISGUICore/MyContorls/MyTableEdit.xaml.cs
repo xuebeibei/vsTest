@@ -228,7 +228,7 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
                 list.Add(new MyTableTittle("生产厂商", "Manufacturer", 150));
                 list.Add(new MyTableTittle("数量*", "SingleDose", 80, false));
-                list.Add(new MyTableTittle("零售价(¥)*", "SellPrice", 80, false));
+                list.Add(new MyTableTittle("零售价(¥)", "SellPrice", 80));
                 list.Add(new MyTableTittle("成本价(¥)*", "StockPrice", 80, false));
                 list.Add(new MyTableTittle("合计成本(¥)", "Total", 80));
                 list.Add(new MyTableTittle("批号*", "BatchID", 80, false));
@@ -236,7 +236,6 @@ namespace HISGUICore.MyContorls
 
                 m_nIDIndex = 0;
                 m_skipList.Add(4);
-                m_skipList.Add(5);
                 m_skipList.Add(6);
 
                 m_skipList.Add(8);
@@ -441,6 +440,7 @@ namespace HISGUICore.MyContorls
             item.Specifications = medicine.Specifications;
             item.Manufacturer = medicine.Manufacturer;
             item.SingleDoseUnit = medicine.Unit;
+            item.SellPrice = medicine.SellPrice;
 
             m_contentItems.Add(item);
             // 跳转到单次剂量
