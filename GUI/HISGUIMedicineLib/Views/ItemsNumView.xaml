@@ -43,10 +43,10 @@
                     <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Supplier}" Width="200"></GridViewColumn>
                     <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=BillStatus}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="批号" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
-                    <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
-                    <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
+                    <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="80"></GridViewColumn>
+                    <GridViewColumn Header="批号" DisplayMemberBinding="{Binding Path=Batch}" Width="120"></GridViewColumn>
+                    <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="120"></GridViewColumn>
+                    <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=Num}" Width="120"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
