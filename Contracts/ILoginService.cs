@@ -170,5 +170,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Supplier> GetAllSuppliers(string strFindName);
+
+        [OperationContract]
+        bool ReCheckMedicineInStore(CommContracts.MedicineInStore medicineInStore);
     }
 }

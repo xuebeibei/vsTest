@@ -49,6 +49,17 @@ namespace HISGUIMedicineLib.ViewModels
             return false;
         }
 
+        // 药品入库单的审核入库
+        public bool ReCheckMedicineInStore()
+        {
+            CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
+
+            if (myd.ReCheckMedicineInStore(CurrentMedicineInStore))
+                return true;
+
+            return false;
+        }
+
         // 得到所有的入库单
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,

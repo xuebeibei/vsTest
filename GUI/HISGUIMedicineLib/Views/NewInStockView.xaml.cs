@@ -203,7 +203,18 @@ namespace HISGUIMedicineLib.Views
 
         private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
         {
-            
+            var vm = this.DataContext as HISGUIMedicineVM;
+            bool? result = vm?.ReCheckMedicineInStore();
+            if (result.HasValue)
+            {
+                if (result.Value)
+                {
+                    MessageBox.Show("审核成功!");
+                    vm?.MedicineWorkManage();
+                    return;
+                }
+            }
+            MessageBox.Show("审核失败!");
         }
     }
 }

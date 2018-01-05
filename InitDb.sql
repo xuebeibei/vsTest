@@ -258,3 +258,9 @@ select * from Suppliers;
 
 insert into Suppliers values(N'中国制药','ZGZY',NULL, NULL, NULL,NULL,NULL);
 
+select * from StoreRooms;
+
+insert into StoreRooms values(N'总药库',NULL,NULL,NULL,0,NULL,NULL,NULL);
+
+select * from StoreRoomMedicineNums;
+

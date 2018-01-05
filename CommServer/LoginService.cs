@@ -335,5 +335,11 @@ namespace CommServer
             BLL.Supplier temp = new BLL.Supplier();
             return temp.GetAllSuppliers(strFindName);
         }
+
+        public bool ReCheckMedicineInStore(CommContracts.MedicineInStore medicineInStore)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.ReCheckMedicineInStore(medicineInStore);
+        }
     }
 }
