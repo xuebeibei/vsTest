@@ -53,10 +53,11 @@ namespace HISGUIMedicineLib.ViewModels
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
-            DateTime EndInStoreTime)
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
         {
             CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
-            return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime);
+            return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
 
         // 得到所有供货商

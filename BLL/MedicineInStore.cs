@@ -73,19 +73,22 @@ namespace BLL
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
-            DateTime EndInStoreTime)
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
         {
             List<CommContracts.MedicineInStore> list = new List<CommContracts.MedicineInStore>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.MedicineInStores
-                            where a.ToStoreID == StoreID &&
-                            a.InStoreEnum == (DAL.InStoreEnum)inStoreEnum &&
-                            a.OperateTime > StartInStoreTime &&
-                            a.OperateTime < EndInStoreTime
-                            orderby a.OperateTime descending 
-                            select a;
+                                where a.ToStoreID == StoreID &&
+                                a.InStoreEnum == (DAL.InStoreEnum)inStoreEnum &&
+                                a.OperateTime > StartInStoreTime &&
+                                a.OperateTime < EndInStoreTime &&
+                                a.NO.StartsWith(InStoreNo) 
+                                orderby a.OperateTime descending
+                                select a;
+                
                 foreach (DAL.MedicineInStore ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>

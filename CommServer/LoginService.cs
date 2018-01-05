@@ -323,10 +323,11 @@ namespace CommServer
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
-            DateTime EndInStoreTime)
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
         {
             BLL.MedicineInStore temp = new BLL.MedicineInStore();
-            return temp.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime);
+            return temp.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
 
         public List<CommContracts.Supplier> GetAllSuppliers(string strFindName)

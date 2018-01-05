@@ -165,7 +165,8 @@ namespace CommContracts
         List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
-            DateTime EndInStoreTime);
+            DateTime EndInStoreTime,
+            string InStoreNo = "");
 
         [OperationContract]
         List<CommContracts.Supplier> GetAllSuppliers(string strFindName);

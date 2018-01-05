@@ -29,9 +29,10 @@ namespace CommClient
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,
-            DateTime EndInStoreTime)
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
         {
-            return client.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime);
+            return client.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
     }
 }

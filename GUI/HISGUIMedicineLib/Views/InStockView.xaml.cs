@@ -68,8 +68,13 @@ namespace HISGUIMedicineLib.Views
         private void getAllMedicineInStore()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
+            DateTime startDateTime = this.StartStockDate.SelectedDate.Value.Date;
+            DateTime endDateTime = this.EndStockDate.SelectedDate.Value.Date;
+            endDateTime = endDateTime.AddDays(1);
+            endDateTime = endDateTime.AddSeconds(-1);
+
             List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore(1, (CommContracts.InStoreEnum)this.StockWay.SelectedItem,
-                this.StartStockDate.SelectedDate.Value, this.EndStockDate.SelectedDate.Value);
+                startDateTime, endDateTime, FindStockIDEdit.Text);
 
             this.AllStockList.ItemsSource = list;
         }
