@@ -1003,6 +1003,7 @@ namespace DAL
     {
         public int ID { get; set; }   // ID
         public int StoreRoomID { get; set; }         // 库房ID
+        public int SupplierID { get; set; }          // 供应商ID
         public int MedicineID { get; set; }          // 对应药品字典
         public string Batch { get; set; }            // 批次
         public DateTime ExpirationDate { get; set; } // 有效期

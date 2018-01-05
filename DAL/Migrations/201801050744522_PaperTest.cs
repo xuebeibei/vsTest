@@ -3,16 +3,16 @@ namespace DAL.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class PaperTest3 : DbMigration
+    public partial class PaperTest : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Jobs", "JobEnum", c => c.Int(nullable: false));
+            AddColumn("dbo.StoreRoomMedicineNums", "SupplierID", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Jobs", "JobEnum");
+            DropColumn("dbo.StoreRoomMedicineNums", "SupplierID");
         }
     }
 }
