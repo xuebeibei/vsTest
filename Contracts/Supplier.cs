@@ -29,6 +29,11 @@ namespace CommContracts
         public string Contents { get; set; } // 供应商联系人
         [DataMember]
         public string Tel { get; set; }      // 供应商联系方式
+        //[DataMember]
+        //public List<MedicineInStore> MedicineInStores { get; set; }
+        //[DataMember]
+        //public List<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+
 
         public override string ToString()
         {

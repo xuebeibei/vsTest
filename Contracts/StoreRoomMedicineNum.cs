@@ -24,5 +24,9 @@ namespace CommContracts
         public decimal StorePrice { get; set; }      // 成本价
         [DataMember]
         public int Num { get; set; }                 // 库存
+        [DataMember]
+        public StoreRoom StoreRoom { get; set; }
+        [DataMember]
+        public Supplier Supplier { get; set; }
     }
 }

@@ -29,6 +29,7 @@ namespace BLL
                                 s.MedicineID == tempDetail.MedicineID &&
                                 s.StoreRoomID == medicineInStore.ToStoreID &&
                                 s.StorePrice == tempDetail.StorePrice &&
+                                s.SupplierID == medicineInStore.FromSupplierID && 
                                 s.ExpirationDate == tempDetail.ExpirationDate
                                 select s;
 
@@ -37,6 +38,7 @@ namespace BLL
                     {
                         DAL.StoreRoomMedicineNum storeRoomMedicineNum = new DAL.StoreRoomMedicineNum();
                         storeRoomMedicineNum.Batch = tempDetail.Batch;
+                        storeRoomMedicineNum.SupplierID = medicineInStore.FromSupplierID;
                         storeRoomMedicineNum.MedicineID = tempDetail.MedicineID;
                         storeRoomMedicineNum.StoreRoomID = medicineInStore.ToStoreID;
                         storeRoomMedicineNum.Num = tempDetail.Num;

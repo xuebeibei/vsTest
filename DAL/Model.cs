@@ -1011,6 +1011,7 @@ namespace DAL
         public int Num { get; set; }                 // 库存
 
         public virtual StoreRoom StoreRoom { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 
 
@@ -1020,6 +1021,7 @@ namespace DAL
         public Supplier()
         {
             MedicineInStores = new List<MedicineInStore>();
+            StoreRoomMedicineNums = new List<StoreRoomMedicineNum>();
         }
 
         public int ID { get; set; }
@@ -1032,5 +1034,6 @@ namespace DAL
         public string Tel { get; set; }      // 供应商联系方式
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
+        public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
     }
 }
