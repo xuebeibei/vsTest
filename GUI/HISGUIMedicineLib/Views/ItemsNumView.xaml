@@ -37,16 +37,36 @@
         <ListView x:Name="AllItemsNumList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllItemsNumList_SelectionChanged">
             <ListView.View>
                 <GridView x:Name="gridViewItemsNum">
-                    <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=StockTime}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=StockType}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Supplier}" Width="200"></GridViewColumn>
-                    <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="批号" DisplayMemberBinding="{Binding Path=Batch}" Width="120"></GridViewColumn>
-                    <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="120"></GridViewColumn>
-                    <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=Num}" Width="120"></GridViewColumn>
+                    <GridViewColumn Header="名称" 
+                                    DisplayMemberBinding="{Binding Path=Medicine.Name}" 
+                                    Width="100"></GridViewColumn>
+                    <GridViewColumn Header="规格" 
+                                    DisplayMemberBinding="{Binding Path=Medicine.Specifications}" 
+                                    Width="100"></GridViewColumn>
+                    <GridViewColumn Header="单位" 
+                                    DisplayMemberBinding="{Binding Path=Medicine.Unit}" 
+                                    Width="100"></GridViewColumn>
+                    <GridViewColumn Header="生产厂家" 
+                                    DisplayMemberBinding="{Binding Path=Medicine.Manufacturer}" 
+                                    Width="200"></GridViewColumn>
+                    <GridViewColumn Header="供应商" 
+                                    DisplayMemberBinding="{Binding Path=Supplier.Name}" 
+                                    Width="80"></GridViewColumn>
+                    <GridViewColumn Header="零售价" 
+                                    DisplayMemberBinding="{Binding Path=Medicine.SellPrice}" 
+                                    Width="80"></GridViewColumn>
+                    <GridViewColumn Header="成本价" 
+                                    DisplayMemberBinding="{Binding Path=StorePrice}" 
+                                    Width="80"></GridViewColumn>
+                    <GridViewColumn Header="批号" 
+                                    DisplayMemberBinding="{Binding Path=Batch}" 
+                                    Width="120"></GridViewColumn>
+                    <GridViewColumn Header="有效期" 
+                                    DisplayMemberBinding="{Binding Path=ExpirationDate}" 
+                                    Width="120"></GridViewColumn>
+                    <GridViewColumn Header="数量" 
+                                    DisplayMemberBinding="{Binding Path=Num}" 
+                                    Width="120"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
