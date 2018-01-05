@@ -152,5 +152,15 @@ namespace HISGUIMedicineLib.Views
             var vm = this.DataContext as HISGUIMedicineVM;
             vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
         }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
