@@ -28,5 +28,7 @@ namespace CommContracts
         public StoreRoom StoreRoom { get; set; }
         [DataMember]
         public Supplier Supplier { get; set; }
+        [DataMember]
+        public Medicine Medicine { get; set; }
     }
 }

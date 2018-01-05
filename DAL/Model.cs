@@ -392,6 +392,7 @@ namespace DAL
         {
             RecipeDetails = new List<RecipeDetail>();
             MedicineInStoreDetails = new List<MedicineInStoreDetail>();
+            StoreRoomMedicineNums = new List<StoreRoomMedicineNum>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -415,6 +416,7 @@ namespace DAL
 
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
+        public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
     }
 
     public enum MedicalRecordEnum
@@ -1012,6 +1014,7 @@ namespace DAL
 
         public virtual StoreRoom StoreRoom { get; set; }
         public virtual Supplier Supplier { get; set; }
+        public virtual Medicine Medicine { get; set; }
     }
 
 
