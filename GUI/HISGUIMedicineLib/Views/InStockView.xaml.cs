@@ -52,7 +52,7 @@ namespace HISGUIMedicineLib.Views
             var vm = this.DataContext as HISGUIMedicineVM;
             var currentInStore = new CommContracts.MedicineInStore();
             vm.CurrentMedicineInStore = currentInStore;
-            vm?.NewInStore();
+            vm?.ShowInStoreDetail();
         }
 
         private void AllStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -62,7 +62,7 @@ namespace HISGUIMedicineLib.Views
             var vm = this.DataContext as HISGUIMedicineVM;
 
             vm.CurrentMedicineInStore = currentInStore;
-            vm?.NewInStore();
+            vm?.ShowInStoreDetail();
         }
 
         private void getAllMedicineInStore()
