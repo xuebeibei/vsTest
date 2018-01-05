@@ -45,10 +45,24 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+
+            initBinding();
+            initDate();
+            initEnable();
+            initVisible();
+        }
+
+        private void initBinding()
+        {
             var vm = this.DataContext as HISGUIMedicineVM;
-            
             this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
             this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
+        }
+
+        private void initDate()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+
             if (vm.CurrentMedicineInStore != null)
             {
                 this.myTableEdit.ClearAllDetails();
@@ -82,6 +96,32 @@ namespace HISGUIMedicineLib.Views
                     this.myTableEdit.SetAllDetails(list);
                 }
             }
+        }
+
+        private void initEnable()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            this.myTableEdit.IsEnabled = vm.IsInitViewEdit;
+        }
+
+        private void initVisible()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            if(vm.IsInitViewEdit)
+            {
+                this.SaveBtn.Visibility = Visibility.Visible;
+                this.SaveAndCheckBtn.Visibility = Visibility.Visible;
+                this.EditBtn.Visibility = Visibility.Collapsed;
+                this.ReCheckBtn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.SaveBtn.Visibility = Visibility.Collapsed;
+                this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
+                this.EditBtn.Visibility = Visibility.Visible;
+                this.ReCheckBtn.Visibility = Visibility.Visible;
+            }
+            
         }
 
         private List<CommContracts.MedicineInStoreDetail> GetDetails()

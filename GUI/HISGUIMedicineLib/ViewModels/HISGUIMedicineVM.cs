@@ -81,14 +81,14 @@ namespace HISGUIMedicineLib.ViewModels
         #endregion
 
         // 当前界面编辑状态
-        #region IsEdit
-        public static readonly DependencyProperty IsEditProperty = DependencyProperty.Register(
-            "IsEdit", typeof(bool), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
+        #region IsInitViewEdit
+        public static readonly DependencyProperty IsInitViewEditProperty = DependencyProperty.Register(
+            "IsInitViewEdit", typeof(bool), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
 
-        public bool IsEdit
+        public bool IsInitViewEdit
         {
-            get { return (bool)GetValue(IsEditProperty); }
-            set { SetValue(IsEditProperty, value); }
+            get { return (bool)GetValue(IsInitViewEditProperty); }
+            set { SetValue(IsInitViewEditProperty, value); }
         }
 
         #endregion
