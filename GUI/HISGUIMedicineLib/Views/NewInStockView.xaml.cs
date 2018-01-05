@@ -195,12 +195,15 @@ namespace HISGUIMedicineLib.Views
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm.IsInitViewEdit = true;
+            initEnable();
+            initVisible();
         }
 
         private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }
