@@ -263,4 +263,4 @@ select * from StoreRooms;
 insert into StoreRooms values(N'总药库',NULL,NULL,NULL,0,NULL,NULL,NULL);
 
 select * from StoreRoomMedicineNums;
-
+update StoreRoomMedicineNums set SupplierID = 1;
