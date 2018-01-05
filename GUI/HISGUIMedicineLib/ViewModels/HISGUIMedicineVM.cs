@@ -55,7 +55,14 @@ namespace HISGUIMedicineLib.ViewModels
             CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
 
             if (myd.ReCheckMedicineInStore(CurrentMedicineInStore))
-                return true;
+            {
+                CommClient.MedicineInStore mInStore = new CommClient.MedicineInStore();
+                CurrentMedicineInStore.ReCheckUserID = 1;
+                CurrentMedicineInStore.ReCheckStatusEnum = CommContracts.ReCheckStatusEnum.已审核;
+
+                if (mInStore.RecheckMedicineInStock(CurrentMedicineInStore))
+                    return true;
+            }
 
             return false;
         }

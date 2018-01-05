@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,31 @@ namespace BLL
                     return false;
                 }
             }
+            return true;
+        }
+
+        public bool RecheckMedicineInStock(CommContracts.MedicineInStore medicineInStore)
+        {
+            using (DAL.HisContext db = new DAL.HisContext())
+            {  
+                var tem = new DAL.MedicineInStore
+                {
+                    ID = medicineInStore.ID,
+                    ReCheckUserID = medicineInStore.ReCheckUserID,
+                    ReCheckStatusEnum = (DAL.ReCheckStatusEnum)medicineInStore.ReCheckStatusEnum
+                };
+                //将实体附加到对象管理器中
+                db.MedicineInStores.Attach(tem);
+
+                //获取到user的状态实体，可以修改其状态
+                var setEntry = ((IObjectContextAdapter)db).ObjectContext.ObjectStateManager.GetObjectStateEntry(tem);
+                //只修改实体的ReCheckUserID属性和ReCheckStatusEnum属性
+                setEntry.SetModifiedProperty("ReCheckUserID");
+                setEntry.SetModifiedProperty("ReCheckStatusEnum");
+
+                db.SaveChanges();
+            }
+
             return true;
         }
 

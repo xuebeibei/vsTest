@@ -319,7 +319,13 @@ namespace CommServer
             BLL.MedicineInStore temp = new BLL.MedicineInStore();
             return temp.SaveMedicineInStock(medicineInStore);
         }
-        
+
+        public bool RecheckMedicineInStock(CommContracts.MedicineInStore medicineInStore)
+        {
+            BLL.MedicineInStore temp = new BLL.MedicineInStore();
+            return temp.RecheckMedicineInStock(medicineInStore);
+        }
+
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,

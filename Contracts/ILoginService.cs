@@ -162,6 +162,9 @@ namespace CommContracts
         bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore);
 
         [OperationContract]
+        bool RecheckMedicineInStock(CommContracts.MedicineInStore medicineInStore);
+
+        [OperationContract]
         List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,

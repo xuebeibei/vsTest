@@ -26,6 +26,11 @@ namespace CommClient
             return client.SaveMedicineInStock(medicineInStore);
         }
 
+        public bool RecheckMedicineInStock(CommContracts.MedicineInStore medicineInStore)
+        {
+            return client.RecheckMedicineInStock(medicineInStore);
+        }
+
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,
             DateTime StartInStoreTime,

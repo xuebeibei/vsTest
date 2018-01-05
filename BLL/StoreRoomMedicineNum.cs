@@ -12,8 +12,12 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
+                if (medicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                    return false;
+
                 if (medicineInStore.MedicineInStoreDetails == null)
                     return false;
+                
                 foreach(var tempDetail in medicineInStore.MedicineInStoreDetails)
                 {
                     if (tempDetail == null)
