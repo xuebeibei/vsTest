@@ -411,6 +411,7 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                    // 医保甲乙类
         public int MaxNum { get; set; }                             // 最大库存量
         public int MinNum { get; set; }                             // 最小库存量
+        public decimal SellPrice { get; set; }                      // 零售价
 
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
@@ -1006,7 +1007,6 @@ namespace DAL
         public string Batch { get; set; }            // 批次
         public DateTime ExpirationDate { get; set; } // 有效期
         public decimal StorePrice { get; set; }      // 成本价
-        public decimal SellPrice { get; set; }       // 零售价
         public int Num { get; set; }                 // 库存
 
         public virtual StoreRoom StoreRoom { get; set; }

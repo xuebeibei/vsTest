@@ -69,5 +69,7 @@ namespace CommContracts
         public int MaxNum { get; set; }                             // 最大库存量
         [DataMember]
         public int MinNum { get; set; }                             // 最小库存量
+        [DataMember]
+        public decimal SellPrice { get; set; }                      // 零售价
     }
 }

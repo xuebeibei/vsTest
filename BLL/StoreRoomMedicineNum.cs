@@ -40,7 +40,6 @@ namespace BLL
                         storeRoomMedicineNum.MedicineID = tempDetail.MedicineID;
                         storeRoomMedicineNum.StoreRoomID = medicineInStore.ToStoreID;
                         storeRoomMedicineNum.Num = tempDetail.Num;
-                        storeRoomMedicineNum.SellPrice = tempDetail.SellPrice;
                         storeRoomMedicineNum.StorePrice = tempDetail.StorePrice;
                         storeRoomMedicineNum.ExpirationDate = tempDetail.ExpirationDate;
                         ctx.StoreRoomMedicineNums.Add(storeRoomMedicineNum);
