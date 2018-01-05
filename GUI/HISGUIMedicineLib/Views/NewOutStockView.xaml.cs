@@ -21,15 +21,20 @@ using HISGUICore.MyContorls;
 using HISGUIMedicineLib.ViewModels;
 using System.Data;
 
+
 namespace HISGUIMedicineLib.Views
 {
     [Export]
-    [Export("OutStockView", typeof(OutStockView))]
-    public partial class OutStockView : HISGUIViewBase
+    [Export("NewOutStockView", typeof(NewOutStockView))]
+    public partial class NewOutStockView : HISGUIViewBase
     {
-        public OutStockView()
+        private MyTableEdit myTableEdit;
+        public NewOutStockView()
         {
             InitializeComponent();
+            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
+            OnStockPanel.Children.Add(myTableEdit);
+
             this.Loaded += View_Loaded;
         }
 
@@ -44,23 +49,30 @@ namespace HISGUIMedicineLib.Views
 
         }
 
-        private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void AllOutStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void SaveAndCheckBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void AddNewOutStockBtn_Click(object sender, RoutedEventArgs e)
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            var currentOutStore = new CommContracts.MedicineOutStore();
-            vm.CurrentMedicineOutStore = currentOutStore;
-            vm.IsInitViewEdit = true;
-            vm?.ShowOutStoreDetail();
+
+        }
+
+        private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

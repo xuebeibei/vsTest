@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="HISGUIMedicineLib.Views.OutStockView"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIMedicineLib.Views.OutStockView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUIMedicineLib.Views">
+             xmlns:local="clr-namespace:HISGUIMedicineLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -47,4 +49,4 @@
             </ListView.View>
         </ListView>
     </Grid>
-</UserControl>
+</HISGUICore:HISGUIViewBase>

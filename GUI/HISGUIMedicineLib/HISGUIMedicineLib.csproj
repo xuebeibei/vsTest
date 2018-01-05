@@ -58,6 +58,8 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -104,6 +106,9 @@
     </Compile>
     <Compile Include="Views\NewInStockView.xaml.cs">
       <DependentUpon>NewInStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewOutStockView.xaml.cs">
+      <DependentUpon>NewOutStockView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutStockView.xaml.cs">
       <DependentUpon>OutStockView.xaml</DependentUpon>
@@ -154,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NewInStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewOutStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

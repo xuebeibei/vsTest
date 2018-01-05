@@ -35,6 +35,12 @@ namespace HISGUIMedicineLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "NewInStockView");
         }
 
+        // 显示新建出库界面
+        public void ShowOutStoreDetail()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "NewOutStockView");
+        }
+
         // 保存药品入库单
         public bool SaveMedicineInStock(List<CommContracts.MedicineInStoreDetail> list, bool bIsAutoCheck = false)
         {
@@ -108,6 +114,19 @@ namespace HISGUIMedicineLib.ViewModels
         {
             get { return (CommContracts.MedicineInStore)GetValue(CurrentMedicineInStoreProperty); }
             set { SetValue(CurrentMedicineInStoreProperty, value); }
+        }
+
+        #endregion
+
+        // 当前药品出库单
+        #region CurrentMedicineOutStore
+        public static readonly DependencyProperty CurrentMedicineOutStoreProperty = DependencyProperty.Register(
+            "CurrentMedicineOutStore", typeof(CommContracts.MedicineOutStore), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.MedicineOutStore CurrentMedicineOutStore
+        {
+            get { return (CommContracts.MedicineOutStore)GetValue(CurrentMedicineOutStoreProperty); }
+            set { SetValue(CurrentMedicineOutStoreProperty, value); }
         }
 
         #endregion

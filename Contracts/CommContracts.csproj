@@ -63,6 +63,8 @@
     <Compile Include="Medicine.cs" />
     <Compile Include="MedicineInStore.cs" />
     <Compile Include="MedicineInStoreDetail.cs" />
+    <Compile Include="MedicineOutStore.cs" />
+    <Compile Include="MedicineOutStoreDetail.cs" />
     <Compile Include="OtherService.cs" />
     <Compile Include="OtherServiceDetail.cs" />
     <Compile Include="OtherServiceItem.cs" />
