@@ -28,15 +28,6 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" >
-            <StackPanel Orientation="Horizontal">
-                <Label Margin="5">药库名称：</Label>
-                <ComboBox Margin="5" Width="100" IsEnabled="False">
-                    <ComboBoxItem IsSelected="True">总药库</ComboBoxItem>
-                    <ComboBoxItem>门诊药房</ComboBoxItem>
-                    <ComboBoxItem>住院药房</ComboBoxItem>
-                    <ComboBoxItem>科室药房</ComboBoxItem>
-                </ComboBox>
-            </StackPanel>
             <TabControl x:Name="tabControl" Margin="5" >
                 <TabItem Header="入库管理">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
