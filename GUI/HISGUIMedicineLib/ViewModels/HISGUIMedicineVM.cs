@@ -85,6 +85,20 @@ namespace HISGUIMedicineLib.ViewModels
             return myd.GetAllSuppliers("");
         }
 
+        // 得到所有库存
+        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID, 
+            string ItemName,
+            int SupplierID, 
+            int ItemType, 
+            bool IsStatusOk, 
+            bool IsHasNum, 
+            bool IsOverDate, 
+            bool IsNoEnough)
+        {
+            CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
+            return myd.getAllMedicineItemNum( StoreID,ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
+        }
+
         // 当前药品入库单
         #region CurrentMedicineInStore
         public static readonly DependencyProperty CurrentMedicineInStoreProperty = DependencyProperty.Register(

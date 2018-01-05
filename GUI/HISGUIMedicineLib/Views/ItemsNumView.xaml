@@ -1,9 +1,11 @@
-﻿<UserControl x:Class="HISGUIMedicineLib.Views.ItemsNumView"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIMedicineLib.Views.ItemsNumView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUIMedicineLib.Views">
+             xmlns:local="clr-namespace:HISGUIMedicineLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -16,7 +18,7 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
             <TextBox x:Name="FindItemNameBox" Width="100" Margin="5,5,0,5" VerticalContentAlignment="Center"></TextBox>
             <Button x:Name="FindItemBtn" Margin="0,5,5,5">查找</Button>
-            <TextBox  x:Name="SupplierNameBox" Margin="5" Width="100" VerticalContentAlignment="Center"></TextBox>
+            <ComboBox  x:Name="SupplierNameBox" Margin="5" Width="100" VerticalContentAlignment="Center"></ComboBox>
             <Label Margin="5">类型：</Label>
             <ComboBox x:Name="ItemTypeCombo" Margin="5" VerticalContentAlignment="Center">
                 <ComboBoxItem IsSelected="True">全部</ComboBoxItem>
@@ -27,10 +29,10 @@
 
         <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
             <Label Margin="5">筛选：</Label>
-            <CheckBox Margin="5" VerticalContentAlignment="Center">药品状态正常</CheckBox>
-            <CheckBox Margin="5" VerticalContentAlignment="Center" IsChecked="True">数量大于0</CheckBox>
-            <CheckBox Margin="5" VerticalContentAlignment="Center">逾期报警</CheckBox>
-            <CheckBox Margin="5" VerticalContentAlignment="Center">库存报警</CheckBox>
+            <CheckBox x:Name="IsStatusOkCheck" Margin="5" VerticalContentAlignment="Center">药品状态正常</CheckBox>
+            <CheckBox x:Name="IsHasNumCheck" Margin="5" VerticalContentAlignment="Center" IsChecked="True">数量大于0</CheckBox>
+            <CheckBox x:Name="IsOverDateCheck" Margin="5" VerticalContentAlignment="Center">逾期报警</CheckBox>
+            <CheckBox x:Name="IsNumNoEnoughCheck" Margin="5" VerticalContentAlignment="Center">库存报警</CheckBox>
             <Button Margin="5">生成表格</Button>
         </StackPanel>
 
@@ -71,4 +73,4 @@
             </ListView.View>
         </ListView>
     </Grid>
-</UserControl>
+</HISGUICore:HISGUIViewBase>

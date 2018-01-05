@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition.Primitives;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +14,49 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Practices.ServiceLocation;
+using Prism.Regions;
+using HISGUICore;
+using HISGUIMedicineLib.ViewModels;
+using System.Data;
+
 
 namespace HISGUIMedicineLib.Views
 {
-    /// <summary>
-    /// ItemsNumView.xaml 的交互逻辑
-    /// </summary>
-    public partial class ItemsNumView : UserControl
+    [Export]
+    [Export("ItemsNumView", typeof(ItemsNumView))]
+    public partial class ItemsNumView : HISGUIViewBase
     {
         public ItemsNumView()
         {
             InitializeComponent();
+            this.Loaded += View_Loaded;
+        }
+
+        [Import]
+        private HISGUIMedicineVM ImportVM
+        {
+            set { this.VM = value; }
+        }
+
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
+            getAllMedicineItemNum();
+        }
+
+        private void getAllMedicineItemNum()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(1, 
+                FindItemNameBox.Text,
+                1,
+                0,
+                IsStatusOkCheck.IsChecked.Value,
+                IsHasNumCheck.IsChecked.Value,
+                IsOverDateCheck.IsChecked.Value,
+                IsNumNoEnoughCheck.IsChecked.Value);
+
+            this.AllItemsNumList.ItemsSource = list;
         }
 
         private void AllItemsNumList_SelectionChanged(object sender, SelectionChangedEventArgs e)

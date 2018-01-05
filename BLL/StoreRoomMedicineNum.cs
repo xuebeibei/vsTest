@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace BLL
 
                 if (medicineInStore.MedicineInStoreDetails == null)
                     return false;
-                
-                foreach(var tempDetail in medicineInStore.MedicineInStoreDetails)
+
+                foreach (var tempDetail in medicineInStore.MedicineInStoreDetails)
                 {
                     if (tempDetail == null)
                         continue;
@@ -29,11 +30,11 @@ namespace BLL
                                 s.MedicineID == tempDetail.MedicineID &&
                                 s.StoreRoomID == medicineInStore.ToStoreID &&
                                 s.StorePrice == tempDetail.StorePrice &&
-                                s.SupplierID == medicineInStore.FromSupplierID && 
+                                s.SupplierID == medicineInStore.FromSupplierID &&
                                 s.ExpirationDate == tempDetail.ExpirationDate
                                 select s;
 
-                    
+
                     if (query.Count() == 0)
                     {
                         DAL.StoreRoomMedicineNum storeRoomMedicineNum = new DAL.StoreRoomMedicineNum();
@@ -63,6 +64,47 @@ namespace BLL
                 }
             }
             return true;
+        }
+
+        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough)
+        {
+            List<CommContracts.StoreRoomMedicineNum> list = new List<CommContracts.StoreRoomMedicineNum>();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from x in ctx.StoreRoomMedicineNums
+                            where x.StoreRoomID == StoreID &&
+                            x.Medicine.Name.StartsWith(ItemName) //&& 
+
+                            //x.SupplierID == SupplierID &&
+                            //x.Medicine.MedicineTypeEnum == (DAL.MedicineTypeEnum)ItemType &&
+                            //x.Num > 0 && 
+                            //x.ExpirationDate > DateTime.Now && 
+                            //x.Num < x.Medicine.MinNum 
+                            orderby x.Medicine.Name
+                            select x;
+
+
+                foreach (DAL.StoreRoomMedicineNum ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.StoreRoomMedicineNum, CommContracts.StoreRoomMedicineNum>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.StoreRoomMedicineNum temp = mapper.Map<CommContracts.StoreRoomMedicineNum>(ass);
+                    list.Add(temp);
+                }
+
+            }
+            return list;
         }
     }
 }

@@ -347,5 +347,18 @@ namespace CommServer
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.ReCheckMedicineInStore(medicineInStore);
         }
+
+        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.getAllMedicineItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
+        }
     }
 }

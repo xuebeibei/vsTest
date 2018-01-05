@@ -176,5 +176,15 @@ namespace CommContracts
 
         [OperationContract]
         bool ReCheckMedicineInStore(CommContracts.MedicineInStore medicineInStore);
+
+        [OperationContract]
+        List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough);
     }
 }

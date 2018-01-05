@@ -26,5 +26,16 @@ namespace CommClient
             return client.ReCheckMedicineInStore(medicineInStore);
         }
 
+        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough)
+        {
+            return client.getAllMedicineItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
+        }
     }
 }
