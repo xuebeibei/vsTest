@@ -21,6 +21,10 @@ namespace CommContracts
     {
         public MedicineOutStore()
         {
+            this.NO = "002";
+            this.OperateTime = DateTime.Now;
+
+            this.OutStoreEnum = OutStoreEnum.科室出库;
         }
 
         [DataMember]

@@ -21,7 +21,6 @@ using HISGUICore.MyContorls;
 using HISGUIMedicineLib.ViewModels;
 using System.Data;
 
-
 namespace HISGUIMedicineLib.Views
 {
     [Export]
@@ -46,10 +45,63 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-
+            initBinding();
+            initDate();
+            initEnable();
+            initVisible();
         }
 
+        private void initBinding()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            //this.DepartmentCombo.ItemsSource = vm?.getAllDepartment();
+            this.OutStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.OutStoreEnum));
+        }
+
+        private void initDate()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+
+            if(vm.CurrentMedicineOutStore != null)
+            {
+                this.myTableEdit.ClearAllDetails();
+
+            }
+        }
+
+        private void initEnable()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            this.myTableEdit.IsEnabled = vm.IsInitViewEdit;
+        }
         
+        private void initVisible()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            if (vm.IsInitViewEdit)
+            {
+                this.SaveBtn.Visibility = Visibility.Visible;
+                this.SaveAndCheckBtn.Visibility = Visibility.Visible;
+                this.EditBtn.Visibility = Visibility.Collapsed;
+                this.ReCheckBtn.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                this.SaveBtn.Visibility = Visibility.Collapsed;
+                this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
+                if (vm.CurrentMedicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                {
+                    this.EditBtn.Visibility = Visibility.Collapsed;
+                    this.ReCheckBtn.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.EditBtn.Visibility = Visibility.Visible;
+                    this.ReCheckBtn.Visibility = Visibility.Visible;
+                }
+            }
+
+        }
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -71,6 +123,17 @@ namespace HISGUIMedicineLib.Views
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm?.MedicineWorkManage();
+        }
+
+        private void DepartmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void EmployeeCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

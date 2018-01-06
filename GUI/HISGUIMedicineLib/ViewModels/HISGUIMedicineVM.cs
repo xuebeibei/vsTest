@@ -84,6 +84,17 @@ namespace HISGUIMedicineLib.ViewModels
             return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
 
+        // 得到所有的出库单
+        public List<CommContracts.MedicineOutStore> getAllMedicineOutStore(int StoreID, CommContracts.
+            OutStoreEnum outStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
+        {
+            CommClient.MedicineOutStore myd = new CommClient.MedicineOutStore();
+            return myd.getAllMedicineOutStore(StoreID, outStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
+        }
+
         // 得到所有供货商
         public List<CommContracts.Supplier> getAllSupplier()
         {

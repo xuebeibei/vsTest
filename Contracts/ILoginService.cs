@@ -186,5 +186,12 @@ namespace CommContracts
             bool IsHasNum,
             bool IsOverDate,
             bool IsNoEnough);
+
+        [OperationContract]
+        List<CommContracts.MedicineOutStore> getAllMedicineOutStore(int StoreID, CommContracts.
+            OutStoreEnum outStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string OutStoreNo = "");
     }
 }

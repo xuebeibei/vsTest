@@ -360,5 +360,15 @@ namespace CommServer
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.getAllMedicineItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
         }
+
+        public List<CommContracts.MedicineOutStore> getAllMedicineOutStore(int StoreID, CommContracts.
+            OutStoreEnum outStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string OutStoreNo = "")
+        {
+            BLL.MedicineOutStore temp = new BLL.MedicineOutStore();
+            return temp.getAllMedicineOutStore(StoreID, outStoreEnum, StartInStoreTime, EndInStoreTime, OutStoreNo);
+        }
     }
 }

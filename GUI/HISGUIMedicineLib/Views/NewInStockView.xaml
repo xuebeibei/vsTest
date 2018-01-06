@@ -15,7 +15,7 @@
                          Text="{Binding CurrentMedicineInStore.NO}"/>
                 <Label Margin="5">入库日期：</Label>
                 <DatePicker x:Name="InStockDate" Margin="5" Width="150" VerticalContentAlignment="Center" 
-                            SelectedDate="{Binding CurrentMedicineInStore.OperateTime, StringFormat='dd/MM/yyyy HH:mm:ss'}"/>
+                            SelectedDate="{Binding CurrentMedicineInStore.OperateTime}"/>
                 <Label Margin="5">入库方式：</Label>
                 <ComboBox x:Name="InStockWay" Margin="5" Width="100" VerticalContentAlignment="Center" SelectedItem="{Binding CurrentMedicineInStore.InStoreEnum}"/>
                 <Label x:Name="SupplierLabel" Margin="5" VerticalContentAlignment="Center">供应商：</Label>

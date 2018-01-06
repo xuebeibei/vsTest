@@ -24,12 +24,7 @@
             <Label Margin="5">—</Label>
             <DatePicker x:Name="EndOutStockDate" Margin="5" Width="100"></DatePicker>
             <Label Margin="5">出库类型：</Label>
-            <ComboBox Margin="5" Width="100">
-                <ComboBoxItem IsSelected="True">全部</ComboBoxItem>
-                <ComboBoxItem>科室出库</ComboBoxItem>
-                <ComboBoxItem>报损出库</ComboBoxItem>
-                <ComboBoxItem>退货出库</ComboBoxItem>
-                <ComboBoxItem>其他出库</ComboBoxItem>
+            <ComboBox x:Name="OutStoreEnum" Margin="5" Width="100">
             </ComboBox>
             <TextBox x:Name="FindOutStockIDEdit" Margin="5" Width="100"></TextBox>
             <Button x:Name="FindOutStockBtn" Margin="5">查找</Button>

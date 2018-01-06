@@ -9,16 +9,20 @@
     <Grid>
         <StackPanel>
             <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsInitViewEdit}">
+                <Label Margin="5">出库单号：</Label>
+                <TextBox x:Name="OutStockNO" Margin="5" Width="100" IsReadOnly="True" 
+                         VerticalContentAlignment="Center" Text="{Binding CurrentMedicineOutStore.NO}"></TextBox>
                 <Label Margin="5">出库日期*：</Label>
-                <DatePicker x:Name="OutStockTime" Margin="5"></DatePicker>
+                <DatePicker x:Name="OutStockTime" Margin="5" Width="100" VerticalContentAlignment="Center"
+                            SelectedDate="{Binding CurrentMedicineOutStore.OperateTime}"></DatePicker>
                 <Label Margin="5">出库方式：</Label>
-                <ComboBox x:Name="OutStockWay" Margin="5" Width="100"></ComboBox>
+                <ComboBox x:Name="OutStockWay" Margin="5" Width="100" VerticalContentAlignment="Center" SelectedItem="{Binding CurrentMedicineOutStore.OutStoreEnum}"/>
                 <Label Margin="5">领用科室：</Label>
-                <ComboBox x:Name="DepartmentCombo" Margin="5" Width="100"></ComboBox>
-                <Label>领用人员：</Label>
-                <ComboBox x:Name="EmployeeCombo" Margin="5" Width="100"></ComboBox>
+                <ComboBox x:Name="DepartmentCombo" Margin="5" Width="100" SelectionChanged="DepartmentCombo_SelectionChanged"/>
+                <Label Margin="5">领用人员：</Label>
+                <ComboBox x:Name="EmployeeCombo" Margin="5" Width="100" SelectionChanged="EmployeeCombo_SelectionChanged"/>
                 <Label Margin="5">备注：</Label>
-                <TextBox x:Name="RemarksBox" Margin="5" Width="150"></TextBox>
+                <TextBox x:Name="RemarksBox" Margin="5" Width="150" Text="{Binding CurrentMedicineOutStore.Remarks}"></TextBox>
             </StackPanel>
             <StackPanel x:Name="OnStockPanel">
 
