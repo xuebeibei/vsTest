@@ -23,7 +23,7 @@ namespace CommContracts
         {
             this.NO = "002";
             this.OperateTime = DateTime.Now;
-
+            this.ReCheckStatusEnum = ReCheckStatusEnum.待审核;
             this.OutStoreEnum = OutStoreEnum.科室出库;
         }
 
@@ -51,6 +51,8 @@ namespace CommContracts
         public int OperateUserID { get; set; }       // 操作用户
         [DataMember]
         public int ReCheckUserID { get; set; }       // 复检用户
+        [DataMember]
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }
         [DataMember]
         public List<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
 

@@ -63,22 +63,22 @@ namespace HISGUIMedicineLib.Views
             this.AllOutStockList.ItemsSource = list;
         }
 
-        private void AllStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void AllOutStockList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void AddNewOutStockBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
             var currentOutStore = new CommContracts.MedicineOutStore();
             vm.CurrentMedicineOutStore = currentOutStore;
             vm.IsInitViewEdit = true;
+            vm?.ShowOutStoreDetail();
+        }
+
+        private void AllOutStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var currentOutStore = this.AllOutStockList.SelectedItem as CommContracts.MedicineOutStore;
+
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm.IsInitViewEdit = false;
+            vm.CurrentMedicineOutStore = currentOutStore;
             vm?.ShowOutStoreDetail();
         }
     }

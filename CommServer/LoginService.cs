@@ -370,5 +370,23 @@ namespace CommServer
             BLL.MedicineOutStore temp = new BLL.MedicineOutStore();
             return temp.getAllMedicineOutStore(StoreID, outStoreEnum, StartInStoreTime, EndInStoreTime, OutStoreNo);
         }
+
+        public bool SaveMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            BLL.MedicineOutStore temp = new BLL.MedicineOutStore();
+            return temp.SaveMedicineOutStock(medicineOutStore);
+        }
+
+        public bool RecheckMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            BLL.MedicineOutStore temp = new BLL.MedicineOutStore();
+            return temp.RecheckMedicineOutStock(medicineOutStore);
+        }
+
+        public bool RecheckMedicineOutStore(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.RecheckMedicineOutStore(medicineOutStore);
+        }
     }
 }

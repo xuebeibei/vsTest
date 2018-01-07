@@ -73,6 +73,38 @@ namespace HISGUIMedicineLib.ViewModels
             return false;
         }
 
+        // 保存药品出库单
+        public bool SaveMedicineOutStock(List<CommContracts.MedicineOutStoreDetail> list, bool bIsAutoCheck = false)
+        {
+            CommClient.MedicineOutStore myd = new CommClient.MedicineOutStore();
+            CurrentMedicineOutStore.OperateUserID = 1;
+            CurrentMedicineOutStore.ToStoreID = 1;
+            CurrentMedicineOutStore.MedicineOutStoreDetails = list;
+
+            if (myd.SaveMedicineOutStock(CurrentMedicineOutStore))
+                return true;
+
+            return false;
+        }
+
+        // 药品出库单的审核出库
+        public bool ReCheckMedicineOutStore()
+        {
+            CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
+
+            if (myd.RecheckMedicineOutStore(CurrentMedicineOutStore))
+            {
+                CommClient.MedicineOutStore mInStore = new CommClient.MedicineOutStore();
+                CurrentMedicineOutStore.ReCheckUserID = 1;
+                CurrentMedicineOutStore.ReCheckStatusEnum = CommContracts.ReCheckStatusEnum.已审核;
+
+                if (mInStore.RecheckMedicineOutStock(CurrentMedicineOutStore))
+                    return true;
+            }
+
+            return false;
+        }
+
         // 得到所有的入库单
         public List<CommContracts.MedicineInStore> getAllMedicineInStore(int StoreID, CommContracts.
             InStoreEnum inStoreEnum,

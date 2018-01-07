@@ -907,6 +907,7 @@ namespace DAL
 
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }
 
         public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
     }
@@ -927,7 +928,7 @@ namespace DAL
         public decimal SellPrice { get; set; }           // 出库前零售价
 
         public int MedicineOutStoreID { get; set; }  // 出库单ID
-
+        public virtual StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
         public virtual MedicineOutStore MedicineOutStore { get; set; }   // 出库单外键
     }
 
@@ -1003,6 +1004,11 @@ namespace DAL
     // 库房库存
     public class StoreRoomMedicineNum
     {
+        public StoreRoomMedicineNum()
+        {
+            MedicineOutStoreDetails = new List<MedicineOutStoreDetail>();
+        }
+
         public int ID { get; set; }   // ID
         public int StoreRoomID { get; set; }         // 库房ID
         public int SupplierID { get; set; }          // 供应商ID
@@ -1015,6 +1021,8 @@ namespace DAL
         public virtual StoreRoom StoreRoom { get; set; }
         public virtual Supplier Supplier { get; set; }
         public virtual Medicine Medicine { get; set; }
+
+        public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
     }
 
 

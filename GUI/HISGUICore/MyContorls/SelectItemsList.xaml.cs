@@ -23,6 +23,7 @@ namespace HISGUICore.MyContorls
         public CommContracts.InspectItem CurrentInspectItem { get; set; }  // 检查
         public CommContracts.MaterialItem CurrentMaterialItem { get; set; }// 材料
         public CommContracts.OtherServiceItem CurrentOtherServiceItem { get; set; } // 其他服务
+        public CommContracts.StoreRoomMedicineNum CurrentStoreRoomMedicineNum { get; set; }  // 库存
 
         private MyTableEditEnum editEnum;
         public SelectItemsList(MyTableEditEnum itemEnum)
@@ -88,6 +89,14 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
+            else if (editEnum == MyTableEditEnum.medicineOutStock)
+            {
+                CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+                List<CommContracts.StoreRoomMedicineNum> list = storeRoomMedicineNum.getAllMedicineItemNum(1,"",0,-1,true,true,false,false);
+
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
         }
 
 
@@ -141,6 +150,14 @@ namespace HISGUICore.MyContorls
                     CommContracts.OtherServiceItem otherServiceItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.OtherServiceItem);
 
                     CurrentOtherServiceItem = otherServiceItem;
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+                }
+                else if (editEnum == MyTableEditEnum.medicineOutStock)
+                {
+                    CommContracts.StoreRoomMedicineNum storeRoomMedicineNum = ((sender as DataGrid).CurrentCell.Item as CommContracts.StoreRoomMedicineNum);
+
+                    CurrentStoreRoomMedicineNum = storeRoomMedicineNum;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }

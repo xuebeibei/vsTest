@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -41,6 +42,68 @@ namespace BLL
                 }
             }
             return list;
+        }
+
+        public bool SaveMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.MedicineOutStore, DAL.MedicineOutStore>().ForMember(x => x.MedicineOutStoreDetails, opt => opt.Ignore());
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.MedicineOutStore temp = new DAL.MedicineOutStore();
+                temp = mapper.Map<DAL.MedicineOutStore>(medicineOutStore);
+
+                var configDetail = new MapperConfiguration(ctr =>
+                {
+                    ctr.CreateMap<CommContracts.MedicineOutStoreDetail, DAL.MedicineOutStoreDetail>().ForMember(x => x.MedicineOutStore, opt => opt.Ignore());
+                });
+                var mapperDetail = configDetail.CreateMapper();
+
+                List<CommContracts.MedicineOutStoreDetail> list1 = medicineOutStore.MedicineOutStoreDetails;
+                List<DAL.MedicineOutStoreDetail> res = mapperDetail.Map<List<DAL.MedicineOutStoreDetail>>(list1);
+
+                temp.MedicineOutStoreDetails = res;
+                ctx.MedicineOutStores.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool RecheckMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            using (DAL.HisContext db = new DAL.HisContext())
+            {
+                var tem = new DAL.MedicineOutStore
+                {
+                    ID = medicineOutStore.ID,
+                    ReCheckUserID = medicineOutStore.ReCheckUserID,
+                    ReCheckStatusEnum = (DAL.ReCheckStatusEnum)medicineOutStore.ReCheckStatusEnum
+                };
+                //将实体附加到对象管理器中
+                db.MedicineOutStores.Attach(tem);
+
+                //获取到user的状态实体，可以修改其状态
+                var setEntry = ((IObjectContextAdapter)db).ObjectContext.ObjectStateManager.GetObjectStateEntry(tem);
+                //只修改实体的ReCheckUserID属性和ReCheckStatusEnum属性
+                setEntry.SetModifiedProperty("ReCheckUserID");
+                setEntry.SetModifiedProperty("ReCheckStatusEnum");
+
+                db.SaveChanges();
+            }
+
+            return true;
+
         }
     }
 }

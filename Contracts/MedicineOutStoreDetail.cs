@@ -28,5 +28,7 @@ namespace CommContracts
         public decimal SellPrice { get; set; }           // 出库前零售价
         [DataMember]
         public int MedicineOutStoreID { get; set; }  // 出库单ID
+        [DataMember]
+        public StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
     }
 }

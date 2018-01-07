@@ -66,6 +66,52 @@ namespace BLL
             return true;
         }
 
+        public bool RecheckMedicineOutStore(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                if (medicineOutStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                    return false;
+
+                if (medicineOutStore.MedicineOutStoreDetails == null)
+                    return false;
+
+                foreach (var tempDetail in medicineOutStore.MedicineOutStoreDetails)
+                {
+                    if (tempDetail == null)
+                        continue;
+
+                    var query = from s in ctx.StoreRoomMedicineNums
+                                where s.ID == tempDetail.StoreRoomMedicineNumID &&
+                                s.StoreRoomID == medicineOutStore.ToStoreID &&
+                                s.StorePrice == tempDetail.StorePrice 
+                                select s;
+
+
+                    if (query.Count() == 1)
+                    {
+                        var temp = query.First();
+                        if (temp.Num >= tempDetail.Num)
+                            temp.Num -= tempDetail.Num;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
             string ItemName,
             int SupplierID,

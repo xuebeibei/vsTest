@@ -21,6 +21,16 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
+        public bool SaveMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            return client.SaveMedicineOutStock(medicineOutStore);
+        }
+
+        public bool RecheckMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore)
+        {
+            return client.RecheckMedicineOutStock(medicineOutStore);
+        }
+
         public List<CommContracts.MedicineOutStore> getAllMedicineOutStore(int StoreID, CommContracts.
             OutStoreEnum outStoreEnum,
             DateTime StartInStoreTime,

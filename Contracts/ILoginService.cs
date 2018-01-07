@@ -193,5 +193,14 @@ namespace CommContracts
             DateTime StartInStoreTime,
             DateTime EndInStoreTime,
             string OutStoreNo = "");
+
+        [OperationContract]
+        bool SaveMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore);
+
+        [OperationContract]
+        bool RecheckMedicineOutStock(CommContracts.MedicineOutStore medicineOutStore);
+
+        [OperationContract]
+        bool RecheckMedicineOutStore(CommContracts.MedicineOutStore medicineOutStore);
     }
 }

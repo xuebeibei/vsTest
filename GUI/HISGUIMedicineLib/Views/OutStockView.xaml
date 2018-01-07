@@ -29,17 +29,16 @@
             <TextBox x:Name="FindOutStockIDEdit" Margin="5" Width="100"></TextBox>
             <Button x:Name="FindOutStockBtn" Margin="5">查找</Button>
         </StackPanel>
-        <ListView x:Name="AllOutStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllOutStockList_SelectionChanged">
+        <ListView x:Name="AllOutStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" MouseDoubleClick="AllOutStockList_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridView3">
-                    <GridViewColumn Header="出库单号" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="出库日期" DisplayMemberBinding="{Binding Path=StockTime}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="出库方式" DisplayMemberBinding="{Binding Path=StockType}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="领用单位" DisplayMemberBinding="{Binding Path=Supplier}" Width="200"></GridViewColumn>
+                    <GridViewColumn Header="出库单号" DisplayMemberBinding="{Binding Path=NO}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="出库日期" DisplayMemberBinding="{Binding Path=OperateTime}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="出库方式" DisplayMemberBinding="{Binding Path=OutStoreEnum}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="领用单位" DisplayMemberBinding="{Binding Path=ToStoreID}" Width="200"></GridViewColumn>
                     <GridViewColumn Header="领用人" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="出库人" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=BillStatus}" Width="80"></GridViewColumn>
-                    <GridViewColumn Header="操作" DisplayMemberBinding="{Binding Path=Operater}" Width="120"></GridViewColumn>
+                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=ReCheckStatusEnum}" Width="80"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
