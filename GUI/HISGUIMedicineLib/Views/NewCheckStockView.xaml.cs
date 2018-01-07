@@ -24,15 +24,15 @@ using System.Data;
 namespace HISGUIMedicineLib.Views
 {
     [Export]
-    [Export("NewInStockView", typeof(NewInStockView))]
-    public partial class NewInStockView : HISGUIViewBase
+    [Export("NewCheckStockView", typeof(NewCheckStockView))]
+    public partial class NewCheckStockView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public NewInStockView()
+        public NewCheckStockView()
         {
             InitializeComponent();
-            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
-            InStockPanel.Children.Add(myTableEdit);
+            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineCheckStock);
+            CheckPanel.Children.Add(myTableEdit);
 
             this.Loaded += View_Loaded;
         }
@@ -53,39 +53,34 @@ namespace HISGUIMedicineLib.Views
 
         private void initBinding()
         {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
-            this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
+            //var vm = this.DataContext as HISGUIMedicineVM;
         }
 
         private void initDate()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
 
-            if (vm.CurrentMedicineInStore != null)
+            if (vm.CurrentMedicineCheckStore != null)
             {
                 this.myTableEdit.ClearAllDetails();
-
-                if (vm.CurrentMedicineInStore.FromSupplier != null)
-                    this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
-
-                if (vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
+                
+                if (vm.CurrentMedicineCheckStore.MedicineCheckStoreDetails != null)
                 {
                     List<MyDetail> list = new List<MyDetail>();
-                    foreach (var tem in vm.CurrentMedicineInStore.MedicineInStoreDetails)
+                    foreach (var tem in vm.CurrentMedicineCheckStore.MedicineCheckStoreDetails)
                     {
                         MyDetail myDetail = new MyDetail();
-                        myDetail.ID = tem.MedicineID;
-                        myDetail.ExpirationDate = tem.ExpirationDate;
-                        myDetail.BatchID = tem.Batch;
+                        myDetail.ID = tem.StoreRoomMedicineNumID;
+                        //myDetail.ExpirationDate = tem.ExpirationDate;
+                        //myDetail.BatchID = tem.Batch;
                         myDetail.SingleDose = tem.Num;
-                        if (tem.Medicine != null)
-                        {
-                            myDetail.SingleDoseUnit = tem.Medicine.Unit;
-                            myDetail.Name = tem.Medicine.Name;
-                            myDetail.Manufacturer = tem.Medicine.Manufacturer;
-                            myDetail.Specifications = tem.Medicine.Specifications;
-                        }
+                        //if (tem.Medicine != null)
+                        //{
+                        //    myDetail.SingleDoseUnit = tem.Medicine.Unit;
+                        //    myDetail.Name = tem.Medicine.Name;
+                        //    myDetail.Manufacturer = tem.Medicine.Manufacturer;
+                        //    myDetail.Specifications = tem.Medicine.Specifications;
+                        //}
 
                         myDetail.SellPrice = tem.SellPrice;
                         myDetail.StockPrice = tem.StorePrice;
@@ -106,7 +101,7 @@ namespace HISGUIMedicineLib.Views
         private void initVisible()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            if(vm.IsInitViewEdit)
+            if (vm.IsInitViewEdit)
             {
                 this.SaveBtn.Visibility = Visibility.Visible;
                 this.SaveAndCheckBtn.Visibility = Visibility.Visible;
@@ -117,7 +112,7 @@ namespace HISGUIMedicineLib.Views
             {
                 this.SaveBtn.Visibility = Visibility.Collapsed;
                 this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
-                if (vm.CurrentMedicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                if (vm.CurrentMedicineCheckStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
                 {
                     this.EditBtn.Visibility = Visibility.Collapsed;
                     this.ReCheckBtn.Visibility = Visibility.Collapsed;
@@ -130,21 +125,22 @@ namespace HISGUIMedicineLib.Views
             }
         }
 
-        private List<CommContracts.MedicineInStoreDetail> GetDetails()
+        private List<CommContracts.MedicineCheckStoreDetail> GetDetails()
         {
             List<MyDetail> list = myTableEdit.GetAllDetails();
-            List<CommContracts.MedicineInStoreDetail> Details = new List<CommContracts.MedicineInStoreDetail>();
+            List<CommContracts.MedicineCheckStoreDetail> Details = new List<CommContracts.MedicineCheckStoreDetail>();
             foreach (var tem in list)
             {
-                CommContracts.MedicineInStoreDetail detail = new CommContracts.MedicineInStoreDetail();
+                CommContracts.MedicineCheckStoreDetail detail = new CommContracts.MedicineCheckStoreDetail();
                 detail.Num = tem.SingleDose;
                 detail.SellPrice = tem.SellPrice;
                 detail.StorePrice = tem.StockPrice;
-                detail.Batch = tem.BatchID;
-                detail.ExpirationDate = tem.ExpirationDate;
+                //detail.Batch = tem.BatchID;
+                //detail.ExpirationDate = tem.ExpirationDate;
                 detail.SellPrice = tem.SellPrice;
                 detail.StorePrice = tem.StockPrice;
-                detail.MedicineID = tem.ID;
+                //detail.MedicineID = tem.ID;
+                detail.StoreRoomMedicineNumID = tem.ID;
 
                 Details.Add(detail);
             }
@@ -154,7 +150,7 @@ namespace HISGUIMedicineLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineInStock(GetDetails());
+            bool? result = vm?.SaveMedicineCheckStock(GetDetails());
             if (result.HasValue)
             {
                 if (result.Value)
@@ -170,7 +166,7 @@ namespace HISGUIMedicineLib.Views
         private void SaveAndCheckBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineInStock(GetDetails(), true);
+            bool? result = vm?.SaveMedicineCheckStock(GetDetails(), true);
             if (result.HasValue)
             {
                 if (result.Value)
@@ -181,21 +177,6 @@ namespace HISGUIMedicineLib.Views
                 }
             }
             MessageBox.Show("保存并审核失败!");
-        }
-
-        private void CancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            vm?.MedicineWorkManage();
-        }
-
-        private void SupplierEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
-            if (tem == null)
-                return;
-            var vm = this.DataContext as HISGUIMedicineVM;
-            vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -209,7 +190,7 @@ namespace HISGUIMedicineLib.Views
         private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.ReCheckMedicineInStore();
+            bool? result = vm?.ReCheckMedicineCheckStore();
             if (result.HasValue)
             {
                 if (result.Value)
@@ -220,6 +201,17 @@ namespace HISGUIMedicineLib.Views
                 }
             }
             MessageBox.Show("审核失败!");
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm?.MedicineWorkManage();
+        }
+
+        private void FindBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

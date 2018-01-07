@@ -151,7 +151,7 @@ namespace DAL
         public string Abbr { get; set; }
         public DepartmentEnum DepartmentEnum { get; set; }
         public int ParentID { get; set; }    // 父类科室
-        
+
         public virtual ICollection<Employee> Employees { get; set; }
     }
 
@@ -199,7 +199,7 @@ namespace DAL
             return str;
         }
 
-        
+
         public int ID { get; set; }                               // 挂号单ID
         public int PatientID { get; set; }                        // 患者ID
         public int SignalSourceID { get; set; }                   // 号源ID
@@ -284,7 +284,7 @@ namespace DAL
         public string Abbr { get; set; }
         public int DepartmentID { get; set; }
         public int JobID { get; set; }
-        
+
         public GenderEnum Gender { get; set; }   // 性别
 
         public virtual ICollection<User> Users { get; set; }
@@ -327,7 +327,7 @@ namespace DAL
     // 处方单
     public class Recipe
     {
-        
+
         public Recipe()
         {
             this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
@@ -373,8 +373,8 @@ namespace DAL
         public string Illustration { get; set; }                  // 说明
 
         public int RecipeID { get; set; }                         // 所属处方ID
-        public virtual Recipe Recipe { get; set; }  
-        
+        public virtual Recipe Recipe { get; set; }
+
         public virtual Medicine Medicine { get; set; }
     }
 
@@ -443,7 +443,7 @@ namespace DAL
         public DateTime WriteTime { get; set; }                   // 编辑时间
         public int WriteUserID { get; set; }                      // 编写人的用户ID
         public string ContentXml { get; set; }                    // 内容xml
-        
+
         public virtual Registration Registration { get; set; }
     }
 
@@ -627,7 +627,7 @@ namespace DAL
     {
         public TherapyDetail()
         {
-            
+
         }
 
         public int ID { get; set; }                               // ID
@@ -779,7 +779,7 @@ namespace DAL
     }
 
     // 其他服务单
-    public class OtherService 
+    public class OtherService
     {
         public OtherService()
         {
@@ -790,7 +790,7 @@ namespace DAL
         public string NO { get; set; }
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
-    
+
         public double SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
@@ -938,7 +938,7 @@ namespace DAL
         public MedicineCheckStore()
         {
             MedicineCheckStoreDetails = new List<MedicineCheckStoreDetail>();
-    }
+        }
 
         public int ID { get; set; }                  // ID
         public string NO { get; set; }               // 单号
@@ -949,6 +949,7 @@ namespace DAL
 
         public int OperateUserID { get; set; }       // 操作用户
         public int ReCheckUserID { get; set; }       // 复检用户
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }
 
         public virtual ICollection<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
     }

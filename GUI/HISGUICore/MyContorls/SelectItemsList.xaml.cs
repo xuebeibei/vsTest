@@ -97,6 +97,10 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
+            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+
+            }
         }
 
 
@@ -160,6 +164,10 @@ namespace HISGUICore.MyContorls
                     CurrentStoreRoomMedicineNum = storeRoomMedicineNum;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
+                }
+                else if(editEnum == MyTableEditEnum.medicineCheckStock)
+                {
+
                 }
             }
         }

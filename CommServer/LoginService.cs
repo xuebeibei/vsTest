@@ -388,5 +388,26 @@ namespace CommServer
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.RecheckMedicineOutStore(medicineOutStore);
         }
+
+        public bool SaveMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore)
+        {
+            BLL.MedicineCheckStore temp = new BLL.MedicineCheckStore();
+            return temp.SaveMedicineCheckStock(medicineCheckStore);
+        }
+
+        public bool RecheckMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore)
+        {
+            BLL.MedicineCheckStore temp = new BLL.MedicineCheckStore();
+            return temp.RecheckMedicineCheckStock(medicineCheckStore);
+        }
+
+        public List<CommContracts.MedicineCheckStore> getAllMedicineCheckStore(int StoreID,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
+        {
+            BLL.MedicineCheckStore temp = new BLL.MedicineCheckStore();
+            return temp.getAllMedicineCheckStore(StoreID, StartInStoreTime, EndInStoreTime, InStoreNo);
+        }
     }
 }

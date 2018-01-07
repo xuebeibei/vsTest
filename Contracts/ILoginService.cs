@@ -202,5 +202,17 @@ namespace CommContracts
 
         [OperationContract]
         bool RecheckMedicineOutStore(CommContracts.MedicineOutStore medicineOutStore);
+
+        [OperationContract]
+        bool SaveMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore);
+        
+        [OperationContract]
+        bool RecheckMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore);
+        
+        [OperationContract]
+        List<CommContracts.MedicineCheckStore> getAllMedicineCheckStore(int StoreID,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "");
     }
 }

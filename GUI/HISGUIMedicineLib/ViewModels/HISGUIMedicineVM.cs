@@ -41,6 +41,12 @@ namespace HISGUIMedicineLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "NewOutStockView");
         }
 
+        // 显示新建盘存单界面
+        public void ShowCheckStoreDetail()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "NewCheckStockView");
+        }
+
         // 保存药品入库单
         public bool SaveMedicineInStock(List<CommContracts.MedicineInStoreDetail> list, bool bIsAutoCheck = false)
         {
@@ -101,7 +107,38 @@ namespace HISGUIMedicineLib.ViewModels
                 if (mInStore.RecheckMedicineOutStock(CurrentMedicineOutStore))
                     return true;
             }
+            return false;
+        }
 
+        // 保存盘存单
+        public bool SaveMedicineCheckStock(List<CommContracts.MedicineCheckStoreDetail> list, bool bIsAutoCheck = false)
+        {
+            CommClient.MedicineCheckStore myd = new CommClient.MedicineCheckStore();
+            CurrentMedicineCheckStore.OperateUserID = 1;
+            CurrentMedicineCheckStore.CheckStoreID = 1;
+            CurrentMedicineCheckStore.MedicineCheckStoreDetails = list;
+
+            if (myd.SaveMedicineCheckStock(CurrentMedicineCheckStore))
+                return true;
+
+            return false;
+        }
+
+        // 保存盘存单的审核
+
+        public bool ReCheckMedicineCheckStore()
+        {
+            CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
+
+            if (myd.RecheckMedicineOutStore(CurrentMedicineOutStore))
+            {
+                CommClient.MedicineCheckStore mInStore = new CommClient.MedicineCheckStore();
+                CurrentMedicineCheckStore.ReCheckUserID = 1;
+                CurrentMedicineCheckStore.ReCheckStatusEnum = CommContracts.ReCheckStatusEnum.已审核;
+
+                if (mInStore.RecheckMedicineCheckStock(CurrentMedicineCheckStore))
+                    return true;
+            }
             return false;
         }
 
@@ -113,7 +150,7 @@ namespace HISGUIMedicineLib.ViewModels
             string InStoreNo = "")
         {
             CommClient.MedicineInStore myd = new CommClient.MedicineInStore();
-            return myd.getAllMedicineInStore(StoreID,inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
+            return myd.getAllMedicineInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
 
         // 得到所有的出库单
@@ -127,6 +164,15 @@ namespace HISGUIMedicineLib.ViewModels
             return myd.getAllMedicineOutStore(StoreID, outStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
 
+        // 得到所有盘存单
+        public List<CommContracts.MedicineCheckStore> getAllMedicineCheckStore(int StoreID,
+        DateTime StartInStoreTime,
+        DateTime EndInStoreTime)
+        {
+            CommClient.MedicineCheckStore myd = new CommClient.MedicineCheckStore();
+            return myd.getAllMedicineCheckStore(StoreID, StartInStoreTime, EndInStoreTime);
+        }
+
         // 得到所有供货商
         public List<CommContracts.Supplier> getAllSupplier()
         {
@@ -135,17 +181,17 @@ namespace HISGUIMedicineLib.ViewModels
         }
 
         // 得到所有库存
-        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID, 
+        public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
             string ItemName,
-            int SupplierID, 
-            int ItemType, 
-            bool IsStatusOk, 
-            bool IsHasNum, 
-            bool IsOverDate, 
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
             bool IsNoEnough)
         {
             CommClient.StoreRoomMedicineNum myd = new CommClient.StoreRoomMedicineNum();
-            return myd.getAllMedicineItemNum( StoreID,ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
+            return myd.getAllMedicineItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
         }
 
         // 当前药品入库单
@@ -170,6 +216,20 @@ namespace HISGUIMedicineLib.ViewModels
         {
             get { return (CommContracts.MedicineOutStore)GetValue(CurrentMedicineOutStoreProperty); }
             set { SetValue(CurrentMedicineOutStoreProperty, value); }
+        }
+
+        #endregion
+
+
+        // 当前药品盘存单
+        #region CurrentMedicineCheckStore
+        public static readonly DependencyProperty CurrentMedicineCheckStoreProperty = DependencyProperty.Register(
+            "CurrentMedicineCheckStore", typeof(CommContracts.MedicineCheckStore), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.MedicineCheckStore CurrentMedicineCheckStore
+        {
+            get { return (CommContracts.MedicineCheckStore)GetValue(CurrentMedicineCheckStoreProperty); }
+            set { SetValue(CurrentMedicineCheckStoreProperty, value); }
         }
 
         #endregion

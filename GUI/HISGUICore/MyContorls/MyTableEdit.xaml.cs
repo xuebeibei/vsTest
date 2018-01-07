@@ -55,6 +55,7 @@ namespace HISGUICore.MyContorls
 
         public int StoreRoomMedicineNumID { get; set; }                // 库存ID
         public int BeforeOutNum { get; set; }                          // 出库前库存
+        public string Supplier { get; set; }                           // 供应商
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
@@ -131,8 +132,10 @@ namespace HISGUICore.MyContorls
         qita,                    // 其他
         medicineInStock,         // 药品入库
         medicineOutStock,        // 药品出库  
+        medicineCheckStock,      // 药品盘库
         materialInStock,         // 物资入库
-        materialOutStock         // 物资出库
+        materialOutStock,        // 物资出库
+        materialCheckStock       // 物资盘库
     }
 
     public partial class MyTableEdit : UserControl
@@ -156,6 +159,11 @@ namespace HISGUICore.MyContorls
         {
             InitializeComponent();
             this.editEnum = editEnum;
+            this.Loaded += View_Loaded;
+        }
+
+        private void View_Loaded(object sender, RoutedEventArgs e)
+        {
             if (this.editEnum == MyTableEditEnum.materialInStock ||
                 this.editEnum == MyTableEditEnum.materialOutStock ||
                 this.editEnum == MyTableEditEnum.medicineInStock ||
@@ -163,8 +171,28 @@ namespace HISGUICore.MyContorls
             {
                 SelectTempletBtn.Visibility = Visibility.Collapsed;
             }
+
+            if (this.editEnum == MyTableEditEnum.medicineCheckStock ||
+                this.editEnum == MyTableEditEnum.materialCheckStock)
+            {
+                FindNameEdit.Visibility = Visibility.Collapsed;
+                SelectTempletBtn.Visibility = Visibility.Collapsed;
+                DeleteBtn.Visibility = Visibility.Collapsed;
+            }
             InitContentTable();
             InitSumTable();
+
+            ShowAllDetails();
+        }
+
+        private void ShowAllDetails()
+        {
+            CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+            List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
+            foreach(var sto in temp)
+            {
+                InsertIntoStoreRoomMedicineNum(sto);
+            }
         }
 
         private List<MyTableTittle> GetContentList()
@@ -260,6 +288,22 @@ namespace HISGUICore.MyContorls
                 
                 m_skipList.Add(9);
             }
+            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+                list.Add(new MyTableTittle("StoreRoomMedicineNumID", "StoreRoomMedicineNumID", 40, true, Visibility.Hidden));
+                list.Add(new MyTableTittle("名称", "Name", 150));
+                list.Add(new MyTableTittle("规格", "Specifications"));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("生产厂商", "Manufacturer", 150));
+                list.Add(new MyTableTittle("供应商", "Supplier"));
+                list.Add(new MyTableTittle("批号", "BatchID", 80, false));
+                list.Add(new MyTableTittle("有效期*", "ExpirationDate", 80, false));
+                list.Add(new MyTableTittle("账面数量", "BeforeOutNum", 80, false));
+                list.Add(new MyTableTittle("实际数量*", "SingleDose", 80, false));
+                list.Add(new MyTableTittle("盘存盈亏(¥)", "Total", 80));
+
+                m_skipList.Add(9);
+            }
             m_skipList.Sort();
             return list;
         }
@@ -277,7 +321,11 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("合计", "Name", 590));
                 list.Add(new MyTableTittle("名称", "SumMoney", 80));
             }
-
+            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+                list.Add(new MyTableTittle("合计", "Name", 590));
+                list.Add(new MyTableTittle("名称", "SumMoney", 80));
+            }
             return list;
         }
 
@@ -402,9 +450,13 @@ namespace HISGUICore.MyContorls
             }
             else if(editEnum == MyTableEditEnum.medicineOutStock)
             {
-                if (columnIndex == 10)
+                if (columnIndex == 9)
                     return true;
-                        
+            }
+            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+                if (columnIndex == 9)
+                    return true;
             }
 
             return false;
@@ -584,6 +636,8 @@ namespace HISGUICore.MyContorls
             item.StoreRoomMedicineNumID = storeRoomMedicineNum.ID;
             item.Name = storeRoomMedicineNum.Medicine.Name;
             item.SingleDoseUnit = storeRoomMedicineNum.Medicine.Unit;
+            item.Specifications = storeRoomMedicineNum.Medicine.Specifications;
+            item.Supplier = storeRoomMedicineNum.Supplier.Name;
             item.Manufacturer = storeRoomMedicineNum.Medicine.Manufacturer;
             item.SellPrice = storeRoomMedicineNum.Medicine.SellPrice;
             item.StockPrice = storeRoomMedicineNum.StorePrice;
@@ -655,6 +709,10 @@ namespace HISGUICore.MyContorls
                 }
             }
             else if (editEnum == MyTableEditEnum.medicineOutStock)
+            {
+
+            }
+            else if(editEnum == MyTableEditEnum.medicineCheckStock)
             {
 
             }
