@@ -39,5 +39,17 @@ namespace CommContracts
         {
             return Name;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null)
+                return false;
+            var aaa = obj as Supplier;
+            if (aaa == null)
+                return false;
+            if (this.ID == aaa.ID)
+                return true;
+            return false;
+        }
     }
 }

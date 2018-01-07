@@ -66,8 +66,8 @@ namespace HISGUIMedicineLib.Views
             {
                 this.myTableEdit.ClearAllDetails();
 
-                if (vm.CurrentMedicineInStore.FromSupplier != null)
-                    this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
+                //if (vm.CurrentMedicineInStore.FromSupplier != null)
+                //    this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
 
                 if (vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
                 {
@@ -117,15 +117,18 @@ namespace HISGUIMedicineLib.Views
             {
                 this.SaveBtn.Visibility = Visibility.Collapsed;
                 this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
-                if (vm.CurrentMedicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                if(vm.CurrentMedicineInStore != null)
                 {
-                    this.EditBtn.Visibility = Visibility.Collapsed;
-                    this.ReCheckBtn.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    this.EditBtn.Visibility = Visibility.Visible;
-                    this.ReCheckBtn.Visibility = Visibility.Visible;
+                    if (vm.CurrentMedicineInStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                    {
+                        this.EditBtn.Visibility = Visibility.Collapsed;
+                        this.ReCheckBtn.Visibility = Visibility.Collapsed;
+                    }
+                    else
+                    {
+                        this.EditBtn.Visibility = Visibility.Visible;
+                        this.ReCheckBtn.Visibility = Visibility.Visible;
+                    }
                 }
             }
         }
@@ -191,11 +194,11 @@ namespace HISGUIMedicineLib.Views
 
         private void SupplierEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
-            if (tem == null)
-                return;
-            var vm = this.DataContext as HISGUIMedicineVM;
-            vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
+            //var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
+            //if (tem == null)
+            //    return;
+            //var vm = this.DataContext as HISGUIMedicineVM;
+            //vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
