@@ -12,7 +12,9 @@ namespace CommContracts
     {
         public MedicineCheckStore()
         {
-
+            this.NO = "002";
+            this.OperateTime = DateTime.Now;
+            this.ReCheckStatusEnum = ReCheckStatusEnum.待审核;
         }
         [DataMember]
         public int ID { get; set; }                  // ID

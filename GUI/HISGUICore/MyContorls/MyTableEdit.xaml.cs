@@ -179,19 +179,24 @@ namespace HISGUICore.MyContorls
                 SelectTempletBtn.Visibility = Visibility.Collapsed;
                 DeleteBtn.Visibility = Visibility.Collapsed;
             }
+            m_contentItems.Clear();
+            m_sumItems.Clear();
             InitContentTable();
             InitSumTable();
-
+            
             ShowAllDetails();
         }
 
         private void ShowAllDetails()
         {
-            CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
-            List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
-            foreach(var sto in temp)
+            if(this.editEnum == MyTableEditEnum.medicineCheckStock)
             {
-                InsertIntoStoreRoomMedicineNum(sto);
+                CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+                List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
+                foreach (var sto in temp)
+                {
+                    InsertIntoStoreRoomMedicineNum(sto);
+                }
             }
         }
 
