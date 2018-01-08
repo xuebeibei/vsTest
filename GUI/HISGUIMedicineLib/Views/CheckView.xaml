@@ -23,11 +23,10 @@
         <ListView x:Name="AllCheckList" Margin="5" Grid.Row="1" MouseDoubleClick="AllCheckList_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridViewCheck">
-                    <GridViewColumn Header="盘点单号" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="盘点日期" DisplayMemberBinding="{Binding Path=StockTime}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=StockType}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=Supplier}" Width="200"></GridViewColumn>
-                    <GridViewColumn Header="操作" DisplayMemberBinding="{Binding Path=MakerUser}" Width="80"></GridViewColumn>
+                    <GridViewColumn Header="盘点单号" DisplayMemberBinding="{Binding Path=NO}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="盘点日期" DisplayMemberBinding="{Binding Path=OperateTime}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=OperateUserID}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=ReCheckStatusEnum}" Width="200"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
