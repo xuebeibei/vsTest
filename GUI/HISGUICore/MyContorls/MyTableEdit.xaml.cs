@@ -159,6 +159,8 @@ namespace HISGUICore.MyContorls
         {
             InitializeComponent();
             this.editEnum = editEnum;
+            InitContentTable();
+            InitSumTable();
             this.Loaded += View_Loaded;
         }
 
@@ -179,25 +181,25 @@ namespace HISGUICore.MyContorls
                 SelectTempletBtn.Visibility = Visibility.Collapsed;
                 DeleteBtn.Visibility = Visibility.Collapsed;
             }
-            m_contentItems.Clear();
-            m_sumItems.Clear();
-            InitContentTable();
-            InitSumTable();
+
+            
             
             ShowAllDetails();
         }
 
         private void ShowAllDetails()
         {
-            if(this.editEnum == MyTableEditEnum.medicineCheckStock)
-            {
-                CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
-                List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
-                foreach (var sto in temp)
-                {
-                    InsertIntoStoreRoomMedicineNum(sto);
-                }
-            }
+            //if(this.editEnum == MyTableEditEnum.medicineCheckStock)
+            //{
+            //    m_contentItems.Clear();
+            //    m_sumItems.Clear();
+            //    CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+            //    List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
+            //    foreach (var sto in temp)
+            //    {
+            //        InsertIntoStoreRoomMedicineNum(sto);
+            //    }
+            //}
         }
 
         private List<MyTableTittle> GetContentList()
@@ -731,6 +733,7 @@ namespace HISGUICore.MyContorls
         public void ClearAllDetails()
         {
             m_contentItems.Clear();
+            m_sumItems.Clear();
             UpdateSumTable();
         }
     }

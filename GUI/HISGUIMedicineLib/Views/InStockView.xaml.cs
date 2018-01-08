@@ -29,6 +29,11 @@ namespace HISGUIMedicineLib.Views
         public InStockView()
         {
             InitializeComponent();
+
+            this.StartStockDate.SelectedDate = DateTime.Now.AddDays(-1);
+            this.EndStockDate.SelectedDate = DateTime.Now;
+            this.StockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
+            this.StockWay.SelectedItem = CommContracts.InStoreEnum.采购入库;
             this.Loaded += View_Loaded;
         }
 
@@ -40,12 +45,7 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            this.StartStockDate.SelectedDate = DateTime.Now.AddDays(-1);
-            this.EndStockDate.SelectedDate = DateTime.Now;
-            this.StockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
-            this.StockWay.SelectedItem = CommContracts.InStoreEnum.采购入库;
             getAllMedicineInStore();
-
         }
         private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
         {
