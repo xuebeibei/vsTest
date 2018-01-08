@@ -29,12 +29,7 @@ namespace CommContracts
         public string Contents { get; set; } // 供应商联系人
         [DataMember]
         public string Tel { get; set; }      // 供应商联系方式
-        //[DataMember]
-        //public List<MedicineInStore> MedicineInStores { get; set; }
-        //[DataMember]
-        //public List<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
-
-
+        
         public override string ToString()
         {
             return Name;
@@ -42,8 +37,6 @@ namespace CommContracts
 
         public override bool Equals(object obj)
         {
-            if (obj == null)
-                return false;
             var aaa = obj as Supplier;
             if (aaa == null)
                 return false;

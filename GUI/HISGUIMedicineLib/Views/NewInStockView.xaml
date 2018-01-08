@@ -8,7 +8,7 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsInitViewEdit}">
+            <StackPanel Orientation="Horizontal" ><!--IsEnabled="{Binding IsInitViewEdit}"-->
                 <Label Margin="5">入库单号：</Label>
                 <TextBox x:Name="InStockID" Margin="5" Width="100" IsReadOnly="True" VerticalContentAlignment="Center" 
                          Text="{Binding CurrentMedicineInStore.NO}"/>
@@ -18,7 +18,7 @@
                 <Label Margin="5">入库方式：</Label>
                 <ComboBox x:Name="InStockWay" Margin="5" Width="100" VerticalContentAlignment="Center" SelectedItem="{Binding CurrentMedicineInStore.InStoreEnum}"/>
                 <Label x:Name="SupplierLabel" Margin="5" VerticalContentAlignment="Center">供应商：</Label>
-                <ComboBox x:Name="SupplierEdit" Margin="5" Width="100" SelectionChanged="SupplierEdit_SelectionChanged"
+                <ComboBox x:Name="SupplierEdit" Margin="5" Width="100"
                          SelectedItem="{Binding CurrentMedicineInStore.FromSupplier}"/> <!--SelectedItem="{Binding CurrentMedicineInStore.FromSupplier}"-->
                 <Label Margin="5">备注：</Label>
                 <TextBox x:Name="RemarkEdit" Margin="5" Width="120" VerticalContentAlignment="Center" 

@@ -28,11 +28,16 @@ namespace HISGUIMedicineLib.Views
     public partial class NewInStockView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
+        private List<CommContracts.Supplier> supplierList;
         public NewInStockView()
         {
             InitializeComponent();
             myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
             InStockPanel.Children.Add(myTableEdit);
+            CommClient.Supplier supplier = new CommClient.Supplier();
+            supplierList = supplier.GetAllSuppliers("");
+            this.SupplierEdit.ItemsSource = supplierList;
+            this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
 
             this.Loaded += View_Loaded;
         }
@@ -45,17 +50,9 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            initBinding();
             initDate();
             initEnable();
             initVisible();
-        }
-
-        private void initBinding()
-        {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            this.SupplierEdit.ItemsSource = vm?.getAllSupplier();
-            this.InStockWay.ItemsSource = Enum.GetValues(typeof(CommContracts.InStoreEnum));
         }
 
         private void initDate()
@@ -65,10 +62,7 @@ namespace HISGUIMedicineLib.Views
             if (vm.CurrentMedicineInStore != null)
             {
                 this.myTableEdit.ClearAllDetails();
-
-                //if (vm.CurrentMedicineInStore.FromSupplier != null)
-                //    this.SupplierEdit.Text = vm.CurrentMedicineInStore.FromSupplier.Name;   // 界面上的没起作用
-
+                
                 if (vm.CurrentMedicineInStore.MedicineInStoreDetails != null)
                 {
                     List<MyDetail> list = new List<MyDetail>();
@@ -191,16 +185,7 @@ namespace HISGUIMedicineLib.Views
             var vm = this.DataContext as HISGUIMedicineVM;
             vm?.MedicineWorkManage();
         }
-
-        private void SupplierEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
-            //if (tem == null)
-            //    return;
-            //var vm = this.DataContext as HISGUIMedicineVM;
-            //vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
-        }
-
+        
         private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
