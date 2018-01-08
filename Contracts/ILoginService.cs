@@ -42,6 +42,9 @@ namespace CommContracts
         Dictionary<int, string> getAllRegistration();
 
         [OperationContract]
+        Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
+
+        [OperationContract]
         string getPatientBMIMsg(int RegistrationID);
 
         [OperationContract]
@@ -112,6 +115,9 @@ namespace CommContracts
 
         [OperationContract]
         string getInPatientBMIMsg(int InpatientID);
+
+        [OperationContract]
+        Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
 
         [OperationContract]
         List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID);

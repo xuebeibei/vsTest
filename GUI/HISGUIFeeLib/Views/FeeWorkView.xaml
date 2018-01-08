@@ -42,7 +42,6 @@
                                 <RadioButton x:Name="ClinicPatient" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="ClinicPatient_Click">门诊患者</RadioButton>
                                 <RadioButton x:Name="InHospitalPatient" Margin="5" VerticalContentAlignment="Center" Click="InHospitalPatient_Click">住院患者</RadioButton>
                             </StackPanel>
-                            <CheckBox x:Name="AutoReadChargeCheck" Margin="5" VerticalContentAlignment="Center" Click="AutoReadChargeCheck_Click">自动生成收费单</CheckBox>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton x:Name="NotPay" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="NotPay_Click">未收费</RadioButton>
                                 <RadioButton x:Name="HavePay" Margin="5" VerticalContentAlignment="Center" Click="HavePay_Click">已收费</RadioButton>

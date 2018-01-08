@@ -30,6 +30,9 @@ namespace HISGUIFeeLib.Views
         public FeeWorkView()
         {
             InitializeComponent();
+            this.StartChargeDate.SelectedDate = DateTime.Now;
+            this.EndChargeDate.SelectedDate = DateTime.Now;
+            this.FindChargeTextEdti.Text = "";
             this.Loaded += View_Loaded;
         }
 
@@ -41,7 +44,6 @@ namespace HISGUIFeeLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            initVisibility();
             ShowList();
         }
 
@@ -73,7 +75,10 @@ namespace HISGUIFeeLib.Views
             var vm = this.DataContext as HISGUIFeeVM;
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetClinicChargePatients();
+            dictionary = vm?.GetAllClinicPatients(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
+                this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now, 
+                this.FindChargeTextEdti.Text, 
+                this.HavePay.IsChecked.HasValue? this.HavePay.IsChecked.Value : false);
 
             List<PatientMsgBox> list = new List<PatientMsgBox>();
             if (dictionary != null)
@@ -93,7 +98,10 @@ namespace HISGUIFeeLib.Views
             var vm = this.DataContext as HISGUIFeeVM;
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetAllInHospitalChargePatient();
+            dictionary = vm?.GetAllInHospitalChargePatient(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
+                this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now,
+                this.FindChargeTextEdti.Text,
+                this.HavePay.IsChecked.HasValue ? this.HavePay.IsChecked.Value : false);
 
             List<PatientMsgBox> list = new List<PatientMsgBox>();
             if (dictionary != null)
@@ -131,26 +139,6 @@ namespace HISGUIFeeLib.Views
         private void HavePay_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void AutoReadChargeCheck_Click(object sender, RoutedEventArgs e)
-        {
-            initVisibility();
-        }
-
-        private void initVisibility()
-        {
-            if (this.AutoReadChargeCheck.IsChecked.HasValue)
-            {
-                if (this.AutoReadChargeCheck.IsChecked.Value)
-                {
-                    this.NotPay.Visibility = Visibility.Visible;
-                    this.HavePay.Visibility = Visibility.Visible;
-                    return;
-                }
-            }
-            this.NotPay.Visibility = Visibility.Collapsed;
-            this.HavePay.Visibility = Visibility.Collapsed;
         }
     }
 }

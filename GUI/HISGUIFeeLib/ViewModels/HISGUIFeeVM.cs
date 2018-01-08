@@ -30,17 +30,17 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到所有需要收费的门诊患者
-        public Dictionary<int, string> GetClinicChargePatients()
+        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.Registration myd = new CommClient.Registration();
-            return myd.getAllRegistration();
+            return myd.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
         }
 
         // 得到所有需要收费的门诊患者
-        public Dictionary<int, string> GetAllInHospitalChargePatient()
+        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.GetAllInPatient();
+            return myd.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
         }
     }
 }

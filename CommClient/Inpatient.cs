@@ -30,5 +30,10 @@ namespace CommClient
         {
             return client.getInPatientBMIMsg(InpatientID);
         }
+
+        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        {
+            return client.GetAllInHospitalChargePatient(startDate, endDate, strFindName , HavePay);
+        }
     }
 }

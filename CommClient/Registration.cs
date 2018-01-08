@@ -30,6 +30,11 @@ namespace CommClient
             return client.getAllRegistration();
         }
 
+        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        {
+            return client.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
+        }
+
         public string getPatientBMIMsg(int RegistrationID)
         {
             return client.getPatientBMIMsg(RegistrationID);

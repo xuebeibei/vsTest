@@ -80,6 +80,12 @@ namespace CommServer
             return temp.getAllRegistration();
         }
 
+        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
+        }
+
         public string getPatientBMIMsg(int RegistrationID)
         {
             BLL.Registration temp = new BLL.Registration();
@@ -222,6 +228,12 @@ namespace CommServer
         {
             BLL.Inpatient temp = new BLL.Inpatient();
             return temp.getInPatientBMIMsg(InpatientID);
+        }
+
+        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
         }
 
         public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)

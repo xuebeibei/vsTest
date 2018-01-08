@@ -41,6 +41,25 @@ namespace BLL
             return dictionary;
         }
 
+        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        {
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from r in ctx.Registrations
+                            select r;
+
+                foreach (DAL.Registration tem in query)
+                {
+                    string str = tem.ToString();
+                    dictionary.Add(tem.ID, str);
+                }
+            }
+
+            return dictionary;
+        }
+
         public string getPatientBMIMsg(int RegistrationID)
         {
             string strBMIMsg = "";
