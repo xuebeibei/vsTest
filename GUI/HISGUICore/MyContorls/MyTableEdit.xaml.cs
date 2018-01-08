@@ -182,24 +182,22 @@ namespace HISGUICore.MyContorls
                 DeleteBtn.Visibility = Visibility.Collapsed;
             }
 
-            
-            
             ShowAllDetails();
         }
 
         private void ShowAllDetails()
         {
-            //if(this.editEnum == MyTableEditEnum.medicineCheckStock)
-            //{
-            //    m_contentItems.Clear();
-            //    m_sumItems.Clear();
-            //    CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
-            //    List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
-            //    foreach (var sto in temp)
-            //    {
-            //        InsertIntoStoreRoomMedicineNum(sto);
-            //    }
-            //}
+            if (this.editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+                m_contentItems.Clear();
+                m_sumItems.Clear();
+                CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+                List<CommContracts.StoreRoomMedicineNum> temp = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
+                foreach (var sto in temp)
+                {
+                    InsertIntoStoreRoomMedicineNum(sto);
+                }
+            }
         }
 
         private List<MyTableTittle> GetContentList()
