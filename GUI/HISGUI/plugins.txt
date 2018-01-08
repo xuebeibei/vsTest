@@ -5,3 +5,4 @@ Plugins\HISGUIWorkstationLib.dll
 Plugins\HISGUITriageLib.dll
 Plugins\HISGUIDoctorLib.dll
 Plugins\HISGUIMedicineLib.dll
+Plugins\HISGUIFeeLib.dll

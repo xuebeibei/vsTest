@@ -17,31 +17,31 @@ using System.Windows.Shapes;
 using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
-using HISGUIDoctorLib.ViewModels;
+using HISGUIFeeLib.ViewModels;
 using System.Data;
 
-namespace HISGUIDoctorLib.Views
+namespace HISGUIFeeLib.Views
 {
     [Export]
-    [Export("HISGUIDoctorView", typeof(HISGUIDoctorView))]
-    public partial class HISGUIDoctorView : HISGUIViewBase
+    [Export("HISGUIFeeView", typeof(HISGUIFeeView))]
+    public partial class HISGUIFeeView : HISGUIViewBase
     {
-        public HISGUIDoctorView()
+        public HISGUIFeeView()
         {
             InitializeComponent();
             this.Loaded += View_Loaded;
         }
 
         [Import]
-        private HISGUIDoctorVM ImportVM
+        private HISGUIFeeVM ImportVM
         {
             set { this.VM = value; }
         }
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIDoctorVM;
-            vm?.DoctorWorkManage();
+            var vm = this.DataContext as HISGUIFeeVM;
+            vm?.FeeWorkManage();
         }
     }
 }

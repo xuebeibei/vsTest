@@ -1,0 +1,81 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIFeeLib.Views.FeeWorkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIFeeLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Column="0">
+                <Label>Logo</Label>
+                <Label>收费站</Label>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                <Label>2017-11-27周一</Label>
+                <Label>李主任</Label>
+                <Button>退出</Button>
+            </StackPanel>
+        </Grid>
+        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
+            <TabItem Header="收费">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
+                            <Button x:Name="PayFeeBtn" Click="PayFeeBtn_Click" Margin="5">收费</Button>
+                            <Button x:Name="ReturnFeeBtn" Click="ReturnFeeBtn_Click" Margin="5">退费</Button>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton x:Name="ClinicPatient" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="ClinicPatient_Click">门诊患者</RadioButton>
+                                <RadioButton x:Name="InHospitalPatient" Margin="5" VerticalContentAlignment="Center" Click="InHospitalPatient_Click">住院患者</RadioButton>
+                            </StackPanel>
+                            <CheckBox x:Name="AutoReadChargeCheck" Margin="5" VerticalContentAlignment="Center" Click="AutoReadChargeCheck_Click">自动生成收费单</CheckBox>
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton x:Name="NotPay" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="NotPay_Click">未收费</RadioButton>
+                                <RadioButton x:Name="HavePay" Margin="5" VerticalContentAlignment="Center" Click="HavePay_Click">已收费</RadioButton>
+                            </StackPanel>
+                            <DatePicker x:Name="StartChargeDate" Margin="5"></DatePicker>
+                            <Label Margin="5">-</Label>
+                            <DatePicker x:Name="EndChargeDate" Margin="5"></DatePicker>
+                            <TextBox x:Name="FindChargeTextEdti" Width="100" Margin="5"></TextBox>
+                            <Button x:Name="FindChargeBtn" Margin="5" Click="FindChargeBtn_Click">查找</Button>
+                        </StackPanel>
+                        <ListBox x:Name="AllChargeBillList" Grid.Row="1"  Margin="5">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="4"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                        <Controls:PageFind Grid.Row="2"  Margin="5"></Controls:PageFind>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="日结">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Header="内部交款">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</HISGUICore:HISGUIViewBase>
