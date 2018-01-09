@@ -36,8 +36,6 @@
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
-                            <Button x:Name="PayFeeBtn" Click="PayFeeBtn_Click" Margin="5">收费</Button>
-                            <Button x:Name="ReturnFeeBtn" Click="ReturnFeeBtn_Click" Margin="5">退费</Button>
                             <StackPanel Orientation="Horizontal">
                                 <RadioButton x:Name="ClinicPatient" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="ClinicPatient_Click">门诊患者</RadioButton>
                                 <RadioButton x:Name="InHospitalPatient" Margin="5" VerticalContentAlignment="Center" Click="InHospitalPatient_Click">住院患者</RadioButton>
@@ -52,7 +50,7 @@
                             <TextBox x:Name="FindChargeTextEdti" Width="100" Margin="5"></TextBox>
                             <Button x:Name="FindChargeBtn" Margin="5" Click="FindChargeBtn_Click">查找</Button>
                         </StackPanel>
-                        <ListBox x:Name="AllChargeBillList" Grid.Row="1"  Margin="5">
+                        <ListBox x:Name="AllChargeBillList" Grid.Row="1"  Margin="5" MouseDoubleClick="AllChargeBillList_MouseDoubleClick">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <UniformGrid Columns="4"/>

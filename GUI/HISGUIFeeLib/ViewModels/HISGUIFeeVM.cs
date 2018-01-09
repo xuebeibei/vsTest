@@ -42,5 +42,44 @@ namespace HISGUIFeeLib.ViewModels
             CommClient.Inpatient myd = new CommClient.Inpatient();
             return myd.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
         }
+
+        // 当前住院患者的住院号ID
+        #region CurrentInHospitalID
+        public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(
+            "CurrentInHospitalID", typeof(int), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public int CurrentInHospitalID
+        {
+            get { return (int)GetValue(CurrentInHospitalIDProperty); }
+            set { SetValue(CurrentInHospitalIDProperty, value); }
+        }
+
+        #endregion
+
+        // 当前医生收费的挂号单ID
+        #region CurrentRegistrationID
+        public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
+            "CurrentRegistrationID", typeof(int), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public int CurrentRegistrationID
+        {
+            get { return (int)GetValue(CurrentRegistrationIDProperty); }
+            set { SetValue(CurrentRegistrationIDProperty, value); }
+        }
+
+        #endregion
+
+        // 当前是门诊还是住院收费
+        #region IsClinicOrInHospital
+        public static readonly DependencyProperty IsClinicOrInHospitalProperty = DependencyProperty.Register(
+            "IsClinicOrInHospital", typeof(bool), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public bool IsClinicOrInHospital
+        {
+            get { return (bool)GetValue(IsClinicOrInHospitalProperty); }
+            set { SetValue(IsClinicOrInHospitalProperty, value); }
+        }
+
+        #endregion
     }
 }

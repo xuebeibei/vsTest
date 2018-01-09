@@ -60,16 +60,6 @@ namespace HISGUIFeeLib.Views
 
         }
 
-        private void PayFeeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ReturnFeeBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ShowAllRegistration()
         {
             var vm = this.DataContext as HISGUIFeeVM;
@@ -139,6 +129,24 @@ namespace HISGUIFeeLib.Views
         private void HavePay_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AllChargeBillList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIFeeVM;
+            var thePatient = this.AllChargeBillList.SelectedItem as PatientMsgBox;
+            if (this.ClinicPatient.IsChecked.Value)
+            {
+                vm.IsClinicOrInHospital = true;
+                vm.CurrentRegistrationID = thePatient.ID;
+            }
+            else if(this.InHospitalPatient.IsChecked.Value)
+            {
+                vm.IsClinicOrInHospital = false;
+                vm.CurrentInHospitalID = thePatient.ID;
+            }
+
+            MessageBox.Show(vm.IsClinicOrInHospital.ToString() +"|"+ vm.CurrentInHospitalID+"|" + vm.CurrentRegistrationID);
         }
     }
 }
