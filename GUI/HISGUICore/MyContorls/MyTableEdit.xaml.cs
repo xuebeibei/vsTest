@@ -135,7 +135,8 @@ namespace HISGUICore.MyContorls
         medicineCheckStock,      // 药品盘库
         materialInStock,         // 物资入库
         materialOutStock,        // 物资出库
-        materialCheckStock       // 物资盘库
+        materialCheckStock,       // 物资盘库
+        chargeDetails             // 收费项明细
     }
 
     public partial class MyTableEdit : UserControl

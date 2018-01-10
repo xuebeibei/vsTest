@@ -146,7 +146,8 @@ namespace HISGUIFeeLib.Views
                 vm.CurrentInHospitalID = thePatient.ID;
             }
 
-            MessageBox.Show(vm.IsClinicOrInHospital.ToString() +"|"+ vm.CurrentInHospitalID+"|" + vm.CurrentRegistrationID);
+            //MessageBox.Show(vm.IsClinicOrInHospital.ToString() +"|"+ vm.CurrentInHospitalID+"|" + vm.CurrentRegistrationID);
+            vm?.ShowCharge();
         }
     }
 }

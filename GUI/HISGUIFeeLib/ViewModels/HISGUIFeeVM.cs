@@ -29,6 +29,12 @@ namespace HISGUIFeeLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "FeeWorkView");
         }
 
+        // 显示患者的收费单
+        public void ShowCharge()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "PatientChargesView");
+        }
+
         // 得到所有需要收费的门诊患者
         public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
@@ -41,6 +47,123 @@ namespace HISGUIFeeLib.ViewModels
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
             return myd.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
+        }
+
+        // 得到当前门诊患者的所有西成药处方
+        public List<CommContracts.Recipe> GetAllXiCheng()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();     // 处方
+            List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
+            if (IsClinicOrInHospital)
+            {
+                list = recipe.getAllXiCheng(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = recipe.getAllInHospitalXiCheng(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所有中药处方
+        public List<CommContracts.Recipe> GetAllZhong()
+        {
+            CommClient.Recipe recipe = new CommClient.Recipe();     // 处方
+            List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
+            if (IsClinicOrInHospital)
+            {
+                list = recipe.getAllZhong(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = recipe.getAllInHospitalZhong(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所有治疗单
+        public List<CommContracts.Therapy> GetAllZhiLiao()
+        {
+            CommClient.Therapy therapy = new CommClient.Therapy();  // 治疗
+
+            List<CommContracts.Therapy> list = new List<CommContracts.Therapy>();
+            if (IsClinicOrInHospital)
+            {
+                list = therapy.getAllTherapy(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = therapy.getAllInHospitalTherapy(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所有检验申请单
+        public List<CommContracts.Assay> GetAllJianYan()
+        {
+            CommClient.Assay assay = new CommClient.Assay();        // 化验申请
+
+            List<CommContracts.Assay> list = new List<CommContracts.Assay>();
+            if (IsClinicOrInHospital)
+            {
+                list = assay.getAllAssay(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = assay.getAllInHospitalAssay(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所有检查申请单
+        public List<CommContracts.Inspect> GetAllJianCha()
+        {
+            CommClient.Inspect inspect = new CommClient.Inspect();  // 检查申请
+            
+            List<CommContracts.Inspect> list = new List<CommContracts.Inspect>();
+            if (IsClinicOrInHospital)
+            {
+                list = inspect.getAllInspect(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = inspect.getAllInHospitalInspect(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所有材料单
+        public List<CommContracts.MaterialBill> GetAllCaiLiao()
+        {
+            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();   // 材料
+            
+            List<CommContracts.MaterialBill> list = new List<CommContracts.MaterialBill>();
+            if (IsClinicOrInHospital)
+            {
+                list = materialBill.getAllMaterialBill(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = materialBill.getAllInHospitalMaterialBill(this.CurrentInHospitalID);
+            }
+            return list;
+        }
+
+        // 得到当前门诊患者的所其他服务单
+        public List<CommContracts.OtherService> GetAllQiTa()
+        {
+            CommClient.OtherService otherService = new CommClient.OtherService();   // 其他
+
+            List<CommContracts.OtherService> list = new List<CommContracts.OtherService>();
+            if (IsClinicOrInHospital)
+            {
+                list = otherService.getAllOtherService(this.CurrentRegistrationID);
+            }
+            else
+            {
+                list = otherService.getAllInHospitalOtherService(this.CurrentInHospitalID);
+            }
+            return list;
         }
 
         // 当前住院患者的住院号ID

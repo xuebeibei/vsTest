@@ -93,6 +93,9 @@
     <Compile Include="Views\HISGUIFeeView.xaml.cs">
       <DependentUpon>HISGUIFeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PatientChargesView.xaml.cs">
+      <DependentUpon>PatientChargesView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HISGUIFeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientChargesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
