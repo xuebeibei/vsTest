@@ -27,12 +27,10 @@ namespace HISGUIFeeLib.Views
     [Export("PatientChargesView", typeof(PatientChargesView))]
     public partial class PatientChargesView : HISGUIViewBase
     {
-        private MyTableEdit MyTableEdit;
+        private MyTableEditEnum editEnum;
         public PatientChargesView()
         {
             InitializeComponent();
-            MyTableEdit = new MyTableEdit(MyTableEditEnum.chargeDetails);
-            ChargeDetailsPanel.Children.Add(MyTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -181,8 +179,142 @@ namespace HISGUIFeeLib.Views
             vm?.FeeWorkManage();
         }
 
-        private void AllYiZhuList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void AllXiChengList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            //this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.xichengyao;
+        }
+
+        private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            //this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.zhongyao;
+        }
+
+        private void AllZhiLiaoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            //this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.zhiliao;
+        }
+
+        private void AllJianChaList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            //this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.jiancha;
+        }
+
+        private void AllQiTaList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            //this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.qita;
+        }
+
+        private void AllJianYanList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            //this.AllJianYanList.SelectedItem = null;
+            this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.jianyan;
+        }
+
+        private void AllCaiLiaoList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.AllXiChengList.SelectedItem = null;
+            this.AllZhongList.SelectedItem = null;
+            this.AllZhiLiaoList.SelectedItem = null;
+            this.AllJianChaList.SelectedItem = null;
+            this.AllQiTaList.SelectedItem = null;
+            this.AllJianYanList.SelectedItem = null;
+            //this.AllCaiLiaoList.SelectedItem = null;
+
+            editEnum = MyTableEditEnum.cailiao;
+        }
+
+        private void AllXiChengList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllXiChengList.SelectedItem as CommContracts.Recipe;
+
+            var window = new Window();
+
+            PatientChargeDetailsView list = new PatientChargeDetailsView(MyTableEditEnum.xichengyao);
+            window.Content = list;
+            list.CurrentRecipe = temp;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
+            {
+
+            }
+        }
+
+        private void AllZhongList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllZhongList.SelectedItem as CommContracts.Recipe;
+        }
+
+        private void AllZhiLiaoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllZhiLiaoList.SelectedItem as CommContracts.Therapy;
+        }
+
+        private void AllJianChaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllJianChaList.SelectedItem as CommContracts.Inspect;
+        }
+
+        private void AllJianYanList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllJianYanList.SelectedItem as CommContracts.Assay;
+        }
+
+        private void AllCaiLiaoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllCaiLiaoList.SelectedItem as CommContracts.MaterialBill;
+        }
+
+        private void AllQiTaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var temp = this.AllQiTaList.SelectedItem as CommContracts.OtherService;
 
         }
     }

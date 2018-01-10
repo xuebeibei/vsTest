@@ -93,6 +93,9 @@
     <Compile Include="Views\HISGUIFeeView.xaml.cs">
       <DependentUpon>HISGUIFeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PatientChargeDetailsView.xaml.cs">
+      <DependentUpon>PatientChargeDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PatientChargesView.xaml.cs">
       <DependentUpon>PatientChargesView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HISGUIFeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientChargeDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

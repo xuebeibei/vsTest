@@ -20,95 +20,88 @@
             </StackPanel>
         </StackPanel>
         <StackPanel Grid.Column="1">
-            <Label Margin="5">医嘱列表</Label>
-
-            <ListView Name="AllXiChengList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewXiCheng">
-                        <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
-                        <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=RecipeContentEnum}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                        <GridViewColumn Header="用法" DisplayMemberBinding="{Binding Path=WriteUserID}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllZhiLiaoList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewZhiLiao">
-                        <GridViewColumn Header="治疗单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllJianChaList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewJianCha">
-                        <GridViewColumn Header="检查申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllQiTaList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewQiTa">
-                        <GridViewColumn Header="材料单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllZhongList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewZhongYao">
-                        <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
-                        <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=RecipeContentEnum}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                        <GridViewColumn Header="用法" DisplayMemberBinding="{Binding Path=WriteUserID}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllJianYanList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewJianYan">
-                        <GridViewColumn Header="检验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <ListView Name="AllCaiLiaoList" Margin="5" MouseDoubleClick="AllYiZhuList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewCaiLiao">
-                        <GridViewColumn Header="材料单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
-                        <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
-                        <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label Margin="5">收费单列表</Label>
-            <ListView Name="AllChargeList" Margin="5">
-                <ListView.View>
-                    <GridView x:Name="gridViewCharge">
-                        <GridViewColumn Header="收费单号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
-                        <GridViewColumn Header="收费时间" DisplayMemberBinding="{Binding Path=RecipeTypeEnum}"></GridViewColumn>
-                        <GridViewColumn Header="收费人员" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
-                        <GridViewColumn Header="费用总计" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
-                        <GridViewColumn Header="执行状态" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-            <Label Margin="5">收费单内容</Label>
-            <StackPanel x:Name="ChargeDetailsPanel">
-            </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Button x:Name="PayBtn" Margin="5">收费</Button>
-                <Button x:Name="ReturnBtn" Margin="5">退费</Button>
+                <Label>*双击列表进行操作</Label>
                 <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">返回</Button>
             </StackPanel>
+            <ScrollViewer Name="scrollViewer1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <StackPanel>
+                    <ListView Name="AllXiChengList" Margin="5" SelectionChanged="AllXiChengList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllXiChengList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewXiCheng">
+                                <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
+                                <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=RecipeContentEnum}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                                <GridViewColumn Header="用法" DisplayMemberBinding="{Binding Path=WriteUserID}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllZhongList" Margin="5" SelectionChanged="AllZhongList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllZhongList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewZhongYao">
+                                <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
+                                <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=RecipeContentEnum}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                                <GridViewColumn Header="用法" DisplayMemberBinding="{Binding Path=WriteUserID}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllZhiLiaoList" Margin="5" SelectionChanged="AllZhiLiaoList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllZhiLiaoList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewZhiLiao">
+                                <GridViewColumn Header="治疗单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllJianChaList" Margin="5" SelectionChanged="AllJianChaList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllJianChaList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewJianCha">
+                                <GridViewColumn Header="检查申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllJianYanList" Margin="5" SelectionChanged="AllJianYanList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllJianYanList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewJianYan">
+                                <GridViewColumn Header="检验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllCaiLiaoList" Margin="5" SelectionChanged="AllCaiLiaoList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllCaiLiaoList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewCaiLiao">
+                                <GridViewColumn Header="材料单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <ListView Name="AllQiTaList" Margin="5" SelectionChanged="AllQiTaList_SelectionChanged" 
+                              SelectionMode="Single" MouseDoubleClick="AllQiTaList_MouseDoubleClick">
+                        <ListView.View>
+                            <GridView x:Name="gridViewQiTa">
+                                <GridViewColumn Header="材料单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
+                                <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </ScrollViewer>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

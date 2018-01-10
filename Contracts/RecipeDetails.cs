@@ -48,5 +48,7 @@ namespace CommContracts
         public string Illustration { get; set; }                  // 说明
         [DataMember]
         public int RecipeID { get; set; }                         // 所属处方ID
+        [DataMember]
+        public Medicine Medicine { get; set; }
     }
 }

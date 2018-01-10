@@ -84,7 +84,7 @@ namespace BLL
                     var query = from s in ctx.StoreRoomMedicineNums
                                 where s.ID == tempDetail.StoreRoomMedicineNumID &&
                                 s.StoreRoomID == medicineOutStore.ToStoreID &&
-                                s.StorePrice == tempDetail.StorePrice 
+                                s.StorePrice == tempDetail.StorePrice
                                 select s;
 
 
@@ -129,7 +129,7 @@ namespace BLL
                             (x.Medicine.Name.StartsWith(ItemName) ||
                             x.Medicine.Abbr1.StartsWith(ItemName) ||
                             x.Medicine.Abbr2.StartsWith(ItemName) ||
-                            x.Medicine.Abbr3.StartsWith(ItemName) 
+                            x.Medicine.Abbr3.StartsWith(ItemName)
                             ) &&
                             (SupplierID == 0 || x.SupplierID == SupplierID) &&
                             (ItemType == -1 || x.Medicine.MedicineTypeEnum == (DAL.MedicineTypeEnum)ItemType) &&
@@ -149,6 +149,45 @@ namespace BLL
                     var mapper = config.CreateMapper();
 
                     CommContracts.StoreRoomMedicineNum temp = mapper.Map<CommContracts.StoreRoomMedicineNum>(ass);
+                    list.Add(temp);
+                }
+
+            }
+            return list;
+        }
+
+
+        // 得到当前药品的合理库存
+        public List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum)
+        {
+            List<CommContracts.StoreRoomMedicineNum> list = new List<CommContracts.StoreRoomMedicineNum>();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from x in ctx.StoreRoomMedicineNums
+                            where
+                             x.MedicineID == nMedicineID &&
+                             x.ExpirationDate > DateTime.Now &&
+                             x.StoreRoom.StoreRoomEnum == DAL.StoreRoomEnum.三级库 &&
+                             x.Num > 0
+                            orderby x.ExpirationDate, x.Num
+                            select x;
+
+                int nSum = nNum;
+
+                foreach (DAL.StoreRoomMedicineNum ass in query)
+                {
+                    if (nSum <= 0)
+                        break;
+
+                    var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.StoreRoomMedicineNum, CommContracts.StoreRoomMedicineNum>();
+                });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.StoreRoomMedicineNum temp = mapper.Map<CommContracts.StoreRoomMedicineNum>(ass);
+                    nSum -= temp.Num;
+
                     list.Add(temp);
                 }
 

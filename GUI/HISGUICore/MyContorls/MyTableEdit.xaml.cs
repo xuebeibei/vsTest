@@ -136,7 +136,7 @@ namespace HISGUICore.MyContorls
         materialInStock,         // 物资入库
         materialOutStock,        // 物资出库
         materialCheckStock,       // 物资盘库
-        chargeDetails             // 收费项明细
+        chargeDetail
     }
 
     public partial class MyTableEdit : UserControl
@@ -304,11 +304,24 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("供应商", "Supplier"));
                 list.Add(new MyTableTittle("批号", "BatchID", 80, false));
                 list.Add(new MyTableTittle("有效期*", "ExpirationDate", 80, false));
-                list.Add(new MyTableTittle("账面数量", "BeforeOutNum", 80, false));
+                list.Add(new MyTableTittle("库存数量", "BeforeOutNum", 80, false));
                 list.Add(new MyTableTittle("实际数量*", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("盘存盈亏(¥)", "Total", 80));
 
                 m_skipList.Add(9);
+            }
+            else if(editEnum == MyTableEditEnum.chargeDetail)
+            {
+                list.Add(new MyTableTittle("StoreRoomMedicineNumID", "StoreRoomMedicineNumID", 40, true, Visibility.Hidden)); // 库存ID
+                list.Add(new MyTableTittle("名称", "Name", 150));
+                list.Add(new MyTableTittle("规格", "Specifications", 80));
+                list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
+                list.Add(new MyTableTittle("批号", "BatchID", 80, false));
+                list.Add(new MyTableTittle("库存数量", "BeforeOutNum", 80, false));
+                list.Add(new MyTableTittle("数量*", "SingleDose", 80, false));
+                list.Add(new MyTableTittle("零售价(¥)", "SellPrice", 80));
+                list.Add(new MyTableTittle("合计(¥)", "Total", 80));
+                list.Add(new MyTableTittle("备注", "Illustration", 120, true));
             }
             m_skipList.Sort();
             return list;

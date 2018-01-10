@@ -220,5 +220,9 @@ namespace CommContracts
             DateTime StartInStoreTime,
             DateTime EndInStoreTime,
             string InStoreNo = "");
+
+        [OperationContract]
+        // 得到当前药品的合理库存
+        List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum);
     }
 }

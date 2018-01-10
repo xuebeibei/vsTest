@@ -421,5 +421,12 @@ namespace CommServer
             BLL.MedicineCheckStore temp = new BLL.MedicineCheckStore();
             return temp.getAllMedicineCheckStore(StoreID, StartInStoreTime, EndInStoreTime, InStoreNo);
         }
+
+        // 得到当前药品的合理库存
+        public List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.GetStoreFromMedicine(nMedicineID, nNum);
+        }
     }
 }

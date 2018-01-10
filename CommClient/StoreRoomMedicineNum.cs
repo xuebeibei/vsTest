@@ -42,5 +42,11 @@ namespace CommClient
         {
             return client.getAllMedicineItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
         }
+
+        // 得到当前药品的合理库存
+        public List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum)
+        {
+            return client.GetStoreFromMedicine(nMedicineID, nNum);
+        }
     }
 }

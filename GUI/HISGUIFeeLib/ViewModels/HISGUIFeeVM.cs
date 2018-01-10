@@ -166,6 +166,13 @@ namespace HISGUIFeeLib.ViewModels
             return list;
         }
 
+        // 得到当前药品的合理库存
+        public List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum)
+        {
+            CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+            return storeRoomMedicineNum.GetStoreFromMedicine(nMedicineID, nNum);
+        }
+
         // 当前住院患者的住院号ID
         #region CurrentInHospitalID
         public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(
