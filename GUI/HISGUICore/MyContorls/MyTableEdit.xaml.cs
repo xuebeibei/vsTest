@@ -526,15 +526,30 @@ namespace HISGUICore.MyContorls
             }
         }
 
-        // 查找带插入内容与已有内容是否重复
-        private bool CheckMedicineRepeat(CommContracts.Medicine medicine)
+        // 查找带插入药品等项目与已有内容是否重复
+        private bool CheckRepeat(int ID)
         {
             if (m_contentItems == null)
                 return false;
 
             foreach(var tem in m_contentItems)
             {
-                if (tem.ID == medicine.ID)
+                if (tem.ID == ID)
+                    return true;
+            }
+
+            return false;
+        }
+
+        // 查找带插入库存目与已有内容是否重复
+        private bool CheckStoreRoomMedicineNumRepeat(int ID)
+        {
+            if (m_contentItems == null)
+                return false;
+
+            foreach (var tem in m_contentItems)
+            {
+                if (tem.StoreRoomMedicineNumID == ID)
                     return true;
             }
 
@@ -545,7 +560,7 @@ namespace HISGUICore.MyContorls
         {
             if (medicine == null)
                 return;
-            if (CheckMedicineRepeat(medicine))
+            if (CheckRepeat(medicine.ID))
             {
                 MessageBox.Show(medicine.Name + "已经存在！");
                 return;
@@ -572,6 +587,11 @@ namespace HISGUICore.MyContorls
         {
             if (therapyItem == null)
                 return;
+            if (CheckRepeat(therapyItem.ID))
+            {
+                MessageBox.Show(therapyItem.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = therapyItem.ID;
@@ -590,6 +610,11 @@ namespace HISGUICore.MyContorls
         {
             if (assayItem == null)
                 return;
+            if (CheckRepeat(assayItem.ID))
+            {
+                MessageBox.Show(assayItem.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = assayItem.ID;
@@ -608,6 +633,11 @@ namespace HISGUICore.MyContorls
         {
             if (inspectItem == null)
                 return;
+            if (CheckRepeat(inspectItem.ID))
+            {
+                MessageBox.Show(inspectItem.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = inspectItem.ID;
@@ -626,6 +656,11 @@ namespace HISGUICore.MyContorls
         {
             if (materialItem == null)
                 return;
+            if (CheckRepeat(materialItem.ID))
+            {
+                MessageBox.Show(materialItem.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = materialItem.ID;
@@ -644,6 +679,11 @@ namespace HISGUICore.MyContorls
         {
             if (otherServiceItem == null)
                 return;
+            if (CheckRepeat(otherServiceItem.ID))
+            {
+                MessageBox.Show(otherServiceItem.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = otherServiceItem.ID;
@@ -662,6 +702,11 @@ namespace HISGUICore.MyContorls
         {
             if (storeRoomMedicineNum == null)
                 return;
+            if (CheckStoreRoomMedicineNumRepeat(storeRoomMedicineNum.ID))
+            {
+                MessageBox.Show(storeRoomMedicineNum.Medicine.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
 
