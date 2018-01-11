@@ -91,6 +91,7 @@ namespace HISGUIFeeLib.Views
                         myDetail.SingleDose = tem.SingleDose;
                         myDetail.SellPrice = tem.Medicine.SellPrice;
                         myDetail.SingleDose = tem.SingleDose;
+                        myDetail.Total = Math.Round( myDetail.SellPrice * myDetail.SingleDose, 2);
                         myDetail.Illustration = tem.Illustration;
                         list.Add(myDetail);
                     }
@@ -118,6 +119,7 @@ namespace HISGUIFeeLib.Views
                                 }
 
                                 myDetail.SellPrice = tem.Medicine.SellPrice;
+                                myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
                                 myDetail.Illustration = tem.Illustration;
 
                                 list.Add(myDetail);
