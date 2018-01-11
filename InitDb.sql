@@ -275,3 +275,7 @@ update Medicines set Abbr2 = 'banlangenchongji' where Name = N'板蓝根冲剂';
 select * from RecipeChargeBills;
 
 select * from RecipeChargeDetails;
+
+delete from RecipeChargeBills;
+
+delete from RecipeChargeDetails;

@@ -48,5 +48,11 @@ namespace CommClient
         {
             return client.GetStoreFromMedicine(nMedicineID, nNum);
         }
+
+        // 根据收费单更新库存
+        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        {
+            return client.SubdStoreNum(recipeChargeBill);
+        }
     }
 }

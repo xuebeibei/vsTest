@@ -12,11 +12,13 @@
                 
             </StackPanel>
             <StackPanel Orientation="Horizontal">
-                <Label Margin="5">支付方式：</Label>
-                <RadioButton Margin="5" VerticalContentAlignment="Center" IsChecked="True">医院账户支付</RadioButton>
-                <RadioButton Margin="5" VerticalContentAlignment="Center">支付宝支付</RadioButton>
-                <RadioButton Margin="5" VerticalContentAlignment="Center">微信支付</RadioButton>
-                <RadioButton Margin="5" VerticalContentAlignment="Center">现金支付</RadioButton>
+                <StackPanel Orientation="Horizontal">
+                    <Label Margin="5">支付方式：</Label>
+                    <RadioButton x:Name="HospitalCardPay" Margin="5" VerticalContentAlignment="Center" IsChecked="True">医院账户支付</RadioButton>
+                    <RadioButton x:Name="Alipay" Margin="5" VerticalContentAlignment="Center">支付宝支付</RadioButton>
+                    <RadioButton x:Name="WeChatPay" Margin="5" VerticalContentAlignment="Center">微信支付</RadioButton>
+                    <RadioButton x:Name="CashPay" Margin="5" VerticalContentAlignment="Center">现金支付</RadioButton>
+                </StackPanel>
                 <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click">付费</Button>
                 <Button x:Name="ReturnBtn" Margin="5" Click="ReturnBtn_Click">退费</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>

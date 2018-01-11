@@ -283,7 +283,7 @@ namespace HISGUIFeeLib.Views
 
             if (bResult.Value)
             {
-
+                GetAllXiCheng();
             }
         }
 

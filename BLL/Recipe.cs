@@ -108,5 +108,26 @@ namespace BLL
             return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.ZhongYao);
         }
 
+        public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            using (DAL.HisContext context = new DAL.HisContext())
+            {
+                var tem = context.Recipes.Find(RecipeID);
+                if (tem == null)
+                    return false;
+
+                tem.ChargeStatusEnum = (DAL.ChargeStatusEnum)chargeStatusEnum;
+                try
+                {
+                    context.SaveChanges();   
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

@@ -266,6 +266,12 @@ namespace CommServer
             return temp.getAllInHospitalZhong(InpatientID);
         }
 
+        public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.Recipe temp = new BLL.Recipe();
+            return temp.UpdateChargeStatus(RecipeID, chargeStatusEnum);
+        }
+
         public CommContracts.MaterialBill GetMaterialBill(int Id)
         {
             BLL.MaterialBill temp = new BLL.MaterialBill();
@@ -427,6 +433,13 @@ namespace CommServer
         {
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.GetStoreFromMedicine(nMedicineID, nNum);
+        }
+
+        // 根据收费单更新库存
+        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.SubdStoreNum(recipeChargeBill);
         }
 
         public bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill)

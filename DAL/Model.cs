@@ -404,6 +404,13 @@ namespace DAL
         ZhongYao
     }
 
+    public enum ChargeStatusEnum
+    {
+        未收费,
+        部分收费,
+        全部收费
+    }
+
     // 处方单
     public class Recipe
     {
@@ -411,13 +418,14 @@ namespace DAL
         public Recipe()
         {
             this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
+            this.ChargeStatusEnum = ChargeStatusEnum.未收费;
             RecipeDetails = new List<RecipeDetail>();
         }
 
         public int ID { get; set; }                               // 处方ID
         public string No { get; set; }                            // 处方编号
         public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
-        public RecipeContentEnum RecipeContentEnum { get; set; }    // 处方内容类别：西/ 成药、中药
+        public RecipeContentEnum RecipeContentEnum { get; set; }  // 处方内容类别：西/ 成药、中药
         public string MedicalInstitution { get; set; }            // 医疗机构名称
         public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
         public int RegistrationID { get; set; }                   // 门诊ID
@@ -430,8 +438,9 @@ namespace DAL
         public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
-        public virtual User WriteUser { get; set; }               // 开具医生
+        public ChargeStatusEnum ChargeStatusEnum { get; set; }
 
+        public virtual User WriteUser { get; set; }               // 开具医生
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
     }
 

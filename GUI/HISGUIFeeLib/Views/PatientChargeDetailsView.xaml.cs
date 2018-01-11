@@ -68,6 +68,28 @@ namespace HISGUIFeeLib.Views
                     return;
                 }
 
+                if(this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.全部收费)
+                {
+                    this.MyTableEdit.IsEnabled = false;
+                    this.HospitalCardPay.IsEnabled = false;
+                    this.Alipay.IsEnabled = false;
+                    this.WeChatPay.IsEnabled = false;
+                    this.CashPay.IsEnabled = false;
+                    this.PayBtn.Visibility = Visibility.Collapsed;
+                    this.ReturnBtn.Visibility = Visibility.Visible;
+                }
+                else if(this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.未收费)
+                {
+                    this.MyTableEdit.IsEnabled = true;
+                    this.HospitalCardPay.IsEnabled = true;
+                    this.Alipay.IsEnabled = true;
+                    this.WeChatPay.IsEnabled = true;
+                    this.CashPay.IsEnabled = true;
+
+                    this.PayBtn.Visibility = Visibility.Visible;
+                    this.ReturnBtn.Visibility = Visibility.Collapsed;
+                }
+
                 List<MyDetail> list = new List<MyDetail>();
                 foreach (var tem in this.CurrentRecipe.RecipeDetails)
                 {
@@ -134,8 +156,36 @@ namespace HISGUIFeeLib.Views
             }
         }
 
+        private bool Check()
+        {
+            List<MyDetail> list = MyTableEdit.GetAllDetails();
+            if (list == null)
+            {
+                MessageBox.Show("无明细，收费失败！");
+                return false;
+            }
+
+            foreach (var detail in list)
+            {
+                if (detail.SingleDose > detail.BeforeOutNum)
+                {
+                    MessageBox.Show(detail.Name + "库存不足！");
+                    return false;
+                }
+                else if (detail.SingleDose < 1)
+                {
+                    MessageBox.Show(detail.Name + "数量不能少于1！");
+                    return false;
+                }
+            }
+            return true;
+        }
+
         private void PayBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (!Check())
+                return;
+
             CommClient.RecipeChargeBill myd = new CommClient.RecipeChargeBill();
 
             CommContracts.RecipeChargeBill recipeCharge = new CommContracts.RecipeChargeBill();
@@ -164,9 +214,24 @@ namespace HISGUIFeeLib.Views
                 detailList.Add(recipeChargeDetail);
             }
             recipeCharge.RecipeChargeDetails = detailList;
-            if(myd.SaveRecipeChargeBill(recipeCharge))
+            if (myd.SaveRecipeChargeBill(recipeCharge))
             {
+                CommClient.StoreRoomMedicineNum myd2 = new CommClient.StoreRoomMedicineNum();
+                if(!myd2.SubdStoreNum(recipeCharge))
+                {
+                    return;
+                }
+
+                CommClient.Recipe myd1 = new CommClient.Recipe();
+                if (!myd1.UpdateChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
+                {
+                    return;
+                }
+
                 MessageBox.Show("收费成功！");
+
+                (this.Parent as Window).DialogResult = true;
+                (this.Parent as Window).Close();
                 return;
             }
             else

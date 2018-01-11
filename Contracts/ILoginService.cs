@@ -135,6 +135,9 @@ namespace CommContracts
         List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
 
         [OperationContract]
+        bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+
+        [OperationContract]
         CommContracts.MaterialBill GetMaterialBill(int Id);
 
         [OperationContract]
@@ -224,6 +227,10 @@ namespace CommContracts
         [OperationContract]
         // 得到当前药品的合理库存
         List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum);
+
+        [OperationContract]
+        // 根据收费单更新库存
+        bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
 
         [OperationContract]
         bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);

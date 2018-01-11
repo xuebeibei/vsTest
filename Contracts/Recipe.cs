@@ -22,6 +22,13 @@ namespace CommContracts
         ZhongYao
     }
 
+    public enum ChargeStatusEnum
+    {
+        未收费,
+        部分收费,
+        全部收费
+    }
+
     [DataContract]
     public class Recipe
     {
@@ -65,6 +72,8 @@ namespace CommContracts
         public DateTime WriteTime { get; set; }                   // 开具时间
         [DataMember]
         public int WriteUserID { get; set; }                      // 开具医生
+        [DataMember]
+        public ChargeStatusEnum ChargeStatusEnum { get; set; }
         [DataMember]
         public virtual List<RecipeDetail> RecipeDetails { get; set; }
 

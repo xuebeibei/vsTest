@@ -194,5 +194,54 @@ namespace BLL
             }
             return list;
         }
+
+        // 根据收费单更新库存
+        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                if (recipeChargeBill == null)
+                    return false;
+
+                // 如果已执行，则不能操作
+                //if (recipeChargeBill.zhixingstatus == CommContracts.ReCheckStatusEnum.已审核)
+                //    return false;
+
+                if (recipeChargeBill.RecipeChargeDetails == null)
+                    return false;
+
+                foreach (var tempDetail in recipeChargeBill.RecipeChargeDetails)
+                {
+                    if (tempDetail == null)
+                        continue;
+
+                    var query = from s in ctx.StoreRoomMedicineNums
+                                where s.ID == tempDetail.StoreRoomMedicineNumID 
+                                select s;
+
+
+                    if (query.Count() == 1)
+                    {
+                        var temp = query.First();
+                        if (temp.Num >= tempDetail.Num)
+                            temp.Num -= tempDetail.Num;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
