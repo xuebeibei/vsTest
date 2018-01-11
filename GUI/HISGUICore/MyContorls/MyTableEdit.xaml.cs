@@ -526,10 +526,30 @@ namespace HISGUICore.MyContorls
             }
         }
 
+        // 查找带插入内容与已有内容是否重复
+        private bool CheckMedicineRepeat(CommContracts.Medicine medicine)
+        {
+            if (m_contentItems == null)
+                return false;
+
+            foreach(var tem in m_contentItems)
+            {
+                if (tem.ID == medicine.ID)
+                    return true;
+            }
+
+            return false;
+        }
+
         private void InsertIntoMedicine(CommContracts.Medicine medicine)
         {
             if (medicine == null)
                 return;
+            if (CheckMedicineRepeat(medicine))
+            {
+                MessageBox.Show(medicine.Name + "已经存在！");
+                return;
+            }
 
             dynamic item = new MyDetail();
             item.ID = medicine.ID;
