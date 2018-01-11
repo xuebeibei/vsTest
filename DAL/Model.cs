@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.ModelConfiguration.Configuration;
 
 namespace DAL
 {
@@ -51,6 +53,74 @@ namespace DAL
         一日3次
     }
 
+    /// <summary>
+    /// <para>自定义Decimal类型的精度属性</para>
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
+    public sealed class DecimalPrecisionAttribute : Attribute
+    {
+
+        #region Field
+        private byte _precision = 18;
+        public byte _scale = 4;
+        #endregion
+
+        #region Construct
+        /// <summary>
+        /// <para>自定义Decimal类型的精确度属性</para>
+        /// </summary>
+        /// <param name="precision">precision
+        /// <para>精度（默认18）</para></param>
+        /// <param name="scale">scale
+        /// <para>小数位数（默认4）</para></param>
+        public DecimalPrecisionAttribute(byte precision = 18, byte scale = 4)
+        {
+            Precision = precision;
+            Scale = scale;
+        }
+        #endregion
+
+        #region Property
+        /// <summary>
+        /// 精确度（默认18）
+        /// </summary>
+        public byte Precision
+        {
+            get { return this._precision; }
+            set { this._precision = value; }
+        }
+
+        /// <summary>
+        /// 保留位数（默认4）
+        /// </summary>
+        public byte Scale
+        {
+            get { return this._scale; }
+            set { this._scale = value; }
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// 用于modelBuilder全局设置自定义精度属性
+    /// </summary>
+    public class DecimalPrecisionAttributeConvention
+        : PrimitivePropertyAttributeConfigurationConvention<DecimalPrecisionAttribute>
+    {
+        public override void Apply(ConventionPrimitivePropertyConfiguration configuration, DecimalPrecisionAttribute attribute)
+        {
+            if (attribute.Precision < 1 || attribute.Precision > 38)
+            {
+                throw new InvalidOperationException("Precision must be between 1 and 38.");
+            }
+            if (attribute.Scale > attribute.Precision)
+            {
+                throw new InvalidOperationException("Scale must be between 0 and the Precision value.");
+            }
+            configuration.HasPrecision(attribute.Precision, attribute.Scale);
+        }
+    }
+
     public class HisContext : DbContext
     {
         public DbSet<User> Users { get; set; }
@@ -95,6 +165,12 @@ namespace DAL
         public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
 
         public DbSet<Supplier> Suppliers { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
+            base.OnModelCreating(modelBuilder);
+        }
     }
 
     public class User
@@ -412,6 +488,7 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                    // 医保甲乙类
         public int MaxNum { get; set; }                             // 最大库存量
         public int MinNum { get; set; }                             // 最小库存量
+        [DecimalPrecision(18, 4)]
         public decimal SellPrice { get; set; }                      // 零售价
 
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
