@@ -66,7 +66,7 @@ namespace HISGUIRegistrationLib.ViewModels
             int hasUsedNum,
             string specialist,
             string explan,
-            double price)
+            decimal price)
         {
             this.SignalID = id;
             this.DepartmentID = departmentID;
@@ -89,7 +89,7 @@ namespace HISGUIRegistrationLib.ViewModels
             this.AddMaxNum = 0;
             this.HasUsedNum = 0;
             this.Specialist = "";
-            this.Price = 0.00;
+            this.Price = 0.00m;
             this.Explain = "";
         }
         public int SignalID { get; set; }      // 编号
@@ -101,7 +101,7 @@ namespace HISGUIRegistrationLib.ViewModels
         public int AddMaxNum { get; set; }     // 临时加号号源
         public int HasUsedNum { get; set; }    // 已挂号源
         public string Specialist { get; set; }    // 专家
-        public double Price { get; set; }      // 费用
+        public decimal Price { get; set; }      // 费用
         public string Explain { get; set; }    // 说明
 
     }
