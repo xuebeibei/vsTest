@@ -11,8 +11,10 @@
                       SelectionUnit="CellOrRowHeader"
                       CanUserAddRows="False"
                       CanUserResizeColumns="False" 
-                      HeadersVisibility ="Column"
-                      PreviewKeyDown="MyDataGrid_PreviewKeyDown">
+                      PreviewKeyDown="MyDataGrid_PreviewKeyDown" 
+                      RowHeaderWidth="30"
+                      LoadingRow="MyDataGrid_LoadingRow"
+                      UnloadingRow="MyDataGrid_UnloadingRow">
             </DataGrid>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -28,8 +30,7 @@
                       AutoGenerateColumns="False" 
                       CanUserAddRows="False" 
                       IsReadOnly="True"
-                      CanUserResizeColumns="False" 
-                      HeadersVisibility="None">
+                      HeadersVisibility="Row" RowHeaderWidth="30">
             </DataGrid>
         </StackPanel>
     </Grid>

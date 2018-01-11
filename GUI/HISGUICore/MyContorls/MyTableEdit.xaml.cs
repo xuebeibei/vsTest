@@ -748,5 +748,30 @@ namespace HISGUICore.MyContorls
             m_sumItems.Clear();
             UpdateSumTable();
         }
+
+        private void MyDataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            e.Row.Header = e.Row.GetIndex() + 1;
+        }
+
+        private void MyDataGrid_UnloadingRow(object sender, DataGridRowEventArgs e)
+        {
+            MyDataGrid_LoadingRow(sender, e);
+            if (MyDataGrid.Items != null)
+            {
+                for (int i = 0; i < MyDataGrid.Items.Count; i++)
+                {
+                    try
+                    {
+                        DataGridRow row = MyDataGrid.ItemContainerGenerator.ContainerFromIndex(i) as DataGridRow;
+                        if (row != null)
+                        {
+                            row.Header = (i + 1).ToString();
+                        }
+                    }
+                    catch { }
+                }
+            }
+        }
     }
 }
