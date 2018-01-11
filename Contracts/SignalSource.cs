@@ -13,7 +13,7 @@ namespace CommContracts
         [DataMember]
         public int ID { get; set; }              // 号源ID
         [DataMember]
-        public double Price { get; set; }        // 号源单价
+        public decimal Price { get; set; }        // 号源单价
         [DataMember]
         public DateTime VistTime { get; set; }    // 看诊日期
         [DataMember]

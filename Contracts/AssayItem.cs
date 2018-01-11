@@ -22,7 +22,7 @@ namespace CommContracts
         [DataMember]
         public string AbbrWB { get; set; }                      // 五笔简称
         [DataMember]
-        public double Price { get; set; }                       // 价格
+        public decimal Price { get; set; }                       // 价格
         [DataMember]
         public int SpecimenID { get; set; }                     // 检验标本
         [DataMember]
