@@ -428,5 +428,11 @@ namespace CommServer
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.GetStoreFromMedicine(nMedicineID, nNum);
         }
+
+        public bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill)
+        {
+            BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
+            return temp.SaveRecipeChargeBill(recipeChargeBill);
+        }
     }
 }

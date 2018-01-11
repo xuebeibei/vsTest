@@ -166,6 +166,9 @@ namespace DAL
 
         public DbSet<Supplier> Suppliers { get; set; }
 
+        public DbSet<RecipeChargeBill> RecipeChargeBills { get; set; }
+        public DbSet<RecipeChargeDetail> RecipeChargeDetails { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -258,7 +261,7 @@ namespace DAL
     {
         public Registration()
         {
-            this.RegisterFee = 0.0;
+            this.RegisterFee = 0.0m;
             this.RegisterTime = DateTime.Now;
             this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
             this.TriageStatus = TriageStatusEnum.no;
@@ -281,7 +284,7 @@ namespace DAL
         public int PatientID { get; set; }                        // 患者ID
         public int SignalSourceID { get; set; }                   // 号源ID
         public int RegisterUserID { get; set; }                   // 经办人ID
-        public double RegisterFee { get; set; }                   // 挂号费用
+        public decimal RegisterFee { get; set; }                   // 挂号费用
         public DateTime RegisterTime { get; set; }                // 经办时间
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
@@ -424,7 +427,7 @@ namespace DAL
         public string ProxyIDCardNum { get; set; }                // 代办人身份证  -- 麻醉和精一处方
         public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -696,7 +699,7 @@ namespace DAL
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -736,7 +739,7 @@ namespace DAL
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -776,7 +779,7 @@ namespace DAL
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -816,7 +819,7 @@ namespace DAL
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -874,7 +877,7 @@ namespace DAL
         public int RegistrationID { get; set; }                   // 门诊ID
         public int InpatientID { get; set; }                      // 住院ID
 
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         public DateTime WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
@@ -1137,5 +1140,35 @@ namespace DAL
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+    }
+
+    // 用药处方收费单
+    public class RecipeChargeBill
+    {
+        public RecipeChargeBill()
+        {
+            RecipeChargeDetails = new List<RecipeChargeDetail>();
+        }
+
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public decimal SumOfMoney { get; set; }
+        public DateTime ChargeTime { get; set; }
+        public int RecipeID { get; set; }
+        public bool Block { get; set; }
+
+        public virtual ICollection<RecipeChargeDetail> RecipeChargeDetails { get; set; }
+    }
+
+    // 用药处方收费单明细
+    public class RecipeChargeDetail
+    {
+        public int ID { get; set; }
+        public int StoreRoomMedicineNumID { get; set; }
+        [DecimalPrecision(18, 4)]
+        public decimal SellPrice { get; set; }
+        public int Num { get; set; }
+        public int Rebate { get; set; }
+        public virtual RecipeChargeBill RecipeChargeBill { get; set; }
     }
 }

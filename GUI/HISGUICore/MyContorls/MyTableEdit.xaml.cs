@@ -56,6 +56,7 @@ namespace HISGUICore.MyContorls
         public int StoreRoomMedicineNumID { get; set; }                // 库存ID
         public int BeforeOutNum { get; set; }                          // 出库前库存
         public string Supplier { get; set; }                           // 供应商
+        public int Rebate { get; set; }                                // 折扣  
 
         #region 属性更改通知
         public event PropertyChangedEventHandler PropertyChanged;
@@ -278,7 +279,7 @@ namespace HISGUICore.MyContorls
                 m_skipList.Add(8);
                 m_skipList.Add(9);
             }
-            else if(editEnum == MyTableEditEnum.medicineOutStock)
+            else if (editEnum == MyTableEditEnum.medicineOutStock)
             {
                 list.Add(new MyTableTittle("StoreRoomMedicineNumID", "StoreRoomMedicineNumID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -291,10 +292,10 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("库存数量", "BeforeOutNum", 80, false));
                 list.Add(new MyTableTittle("出库数量*", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("合计成本(¥)", "Total", 80));
-                
+
                 m_skipList.Add(9);
             }
-            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            else if (editEnum == MyTableEditEnum.medicineCheckStock)
             {
                 list.Add(new MyTableTittle("StoreRoomMedicineNumID", "StoreRoomMedicineNumID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -310,7 +311,7 @@ namespace HISGUICore.MyContorls
 
                 m_skipList.Add(9);
             }
-            else if(editEnum == MyTableEditEnum.chargeDetail)
+            else if (editEnum == MyTableEditEnum.chargeDetail)
             {
                 list.Add(new MyTableTittle("StoreRoomMedicineNumID", "StoreRoomMedicineNumID", 40, true, Visibility.Hidden)); // 库存ID
                 list.Add(new MyTableTittle("名称", "Name", 150));
@@ -320,8 +321,11 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("库存数量", "BeforeOutNum", 80, false));
                 list.Add(new MyTableTittle("数量*", "SingleDose", 80, false));
                 list.Add(new MyTableTittle("零售价(¥)", "SellPrice", 80));
+                list.Add(new MyTableTittle("折扣%", "Rebate", 80));
                 list.Add(new MyTableTittle("合计(¥)", "Total", 80));
                 list.Add(new MyTableTittle("备注", "Illustration", 120, true));
+
+                m_skipList.Add(6);
             }
             m_skipList.Sort();
             return list;
@@ -330,21 +334,9 @@ namespace HISGUICore.MyContorls
         private List<MyTableTittle> GetSumList()
         {
             List<MyTableTittle> list = new List<MyTableTittle>();
-            if (editEnum == MyTableEditEnum.medicineInStock)
-            {
-                list.Add(new MyTableTittle("合计", "Name", 590));
-                list.Add(new MyTableTittle("名称", "SumMoney", 80));
-            }
-            else if(editEnum == MyTableEditEnum.medicineOutStock)
-            {
-                list.Add(new MyTableTittle("合计", "Name", 590));
-                list.Add(new MyTableTittle("名称", "SumMoney", 80));
-            }
-            else if(editEnum == MyTableEditEnum.medicineCheckStock)
-            {
-                list.Add(new MyTableTittle("合计", "Name", 590));
-                list.Add(new MyTableTittle("名称", "SumMoney", 80));
-            }
+
+            list.Add(new MyTableTittle("合计", "Name", 590));
+            list.Add(new MyTableTittle("名称", "SumMoney", 80));
             return list;
         }
 
@@ -405,8 +397,6 @@ namespace HISGUICore.MyContorls
                     Width = list.ElementAt(i).TittleWidth,
                     IsReadOnly = list.ElementAt(i).IsReadOnly,
                     Visibility = list.ElementAt(i).Visibility,
-
-
                 });
             }
 
@@ -431,8 +421,6 @@ namespace HISGUICore.MyContorls
                 {
                     return;
                 }
-
-
                 int columnIndex = dg.SelectedCells[0].Column.DisplayIndex;                       // 得到当前选中单元格列坐标
                 int rowIdnex = int.Parse(dg.Items.IndexOf(dg.SelectedCells[0].Item).ToString()); // 得到当前选中单元格行坐标
 
@@ -443,18 +431,23 @@ namespace HISGUICore.MyContorls
                     {
                         if (nIndex == m_skipList.Count - 1)                                      // 如果是最后一列，则跳转到搜索内容框 
                         {
-                            this.MyDataGrid.SelectedCells.Clear();
-                            this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
-                                (Action)(() => { Keyboard.Focus(FindNameEdit); }));
+                            if(this.editEnum == MyTableEditEnum.chargeDetail)
+                            {
+                                GridSkipTo(rowIdnex+1, columnIndex);
+                            }
+                            else
+                            {
+                                this.MyDataGrid.SelectedCells.Clear();
+                                this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
+                                    (Action)(() => { Keyboard.Focus(FindNameEdit); }));
+                            }
+                            
                             UpdateSumTable();
                         }
                         else                                                                     // 如果不是最后一列，则跳转到下一列
                         {
                             GridSkipTo(rowIdnex, m_skipList.ElementAt(nIndex + 1));
                         }
-
-                        //if (IsColumnCalculate(columnIndex))                                      // 如果是计算列，则计算更新， 必须放置跳转之后，否则取不到值
-                        //    UpdateSumTable();
                     }
                 }
             }
@@ -462,17 +455,17 @@ namespace HISGUICore.MyContorls
 
         private bool IsColumnCalculate(int columnIndex)
         {
-            if(editEnum == MyTableEditEnum.medicineInStock)
+            if (editEnum == MyTableEditEnum.medicineInStock)
             {
-                if(columnIndex == 6)
+                if (columnIndex == 6)
                     return true;
             }
-            else if(editEnum == MyTableEditEnum.medicineOutStock)
+            else if (editEnum == MyTableEditEnum.medicineOutStock)
             {
                 if (columnIndex == 9)
                     return true;
             }
-            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            else if (editEnum == MyTableEditEnum.medicineCheckStock)
             {
                 if (columnIndex == 9)
                     return true;
@@ -525,7 +518,7 @@ namespace HISGUICore.MyContorls
                     {
                         InsertIntoMedicine(list.CurrentMedicine);
                     }
-                    else if(editEnum == MyTableEditEnum.medicineOutStock)
+                    else if (editEnum == MyTableEditEnum.medicineOutStock)
                     {
                         InsertIntoStoreRoomMedicineNum(list.CurrentStoreRoomMedicineNum);
                     }
@@ -663,7 +656,7 @@ namespace HISGUICore.MyContorls
             item.BatchID = storeRoomMedicineNum.Batch;
             item.ExpirationDate = storeRoomMedicineNum.ExpirationDate;
             item.BeforeOutNum = storeRoomMedicineNum.Num;
-            
+
 
             m_contentItems.Add(item);
             // 跳转到单次剂量
@@ -731,9 +724,28 @@ namespace HISGUICore.MyContorls
             {
 
             }
-            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            else if (editEnum == MyTableEditEnum.medicineCheckStock)
             {
 
+            }
+            if (editEnum == MyTableEditEnum.chargeDetail)
+            {
+                decimal sum = 0.0m;
+                foreach (var tem in m_contentItems)
+                {
+                    tem.Total = tem.SingleDose * tem.SellPrice;
+                    sum += tem.Total;
+                }
+
+                if (m_sumItems.Count > 0)
+                    m_sumItems.ElementAt(0).SumMoney = sum;
+                else
+                {
+                    dynamic item = new MySum();
+                    item.Name = "合计";
+                    item.SumMoney = sum;
+                    m_sumItems.Add(item);
+                }
             }
         }
 

@@ -167,7 +167,7 @@ namespace BLL
                             where
                              x.MedicineID == nMedicineID &&
                              x.ExpirationDate > DateTime.Now &&
-                             x.StoreRoom.StoreRoomEnum == DAL.StoreRoomEnum.三级库 &&
+                             //x.StoreRoom.StoreRoomEnum == DAL.StoreRoomEnum.三级库 &&
                              x.Num > 0
                             orderby x.ExpirationDate, x.Num
                             select x;

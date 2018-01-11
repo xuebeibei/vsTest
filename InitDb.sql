@@ -63,7 +63,9 @@ insert into Medicines values(0,N'板蓝根冲剂', N'口服',N'1.33g/包',N'新�
 
 insert into Medicines values(1,N'牛黄清心丸',N'口服',N'3g/丸',N'北京同仁堂',0,0,1,0,300,100,6);
 
+update Medicines set SellPrice = 21.2654 ;
 
+update Medicines set Unit = N'盒' ;
 
 
 select * from MedicineAlias;
@@ -269,3 +271,7 @@ select * from Medicines;
 
 update Medicines set Abbr1 = 'blgcj' where Name = N'板蓝根冲剂';
 update Medicines set Abbr2 = 'banlangenchongji' where Name = N'板蓝根冲剂';
+
+select * from RecipeChargeBills;
+
+select * from RecipeChargeDetails;

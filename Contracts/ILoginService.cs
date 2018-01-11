@@ -224,5 +224,8 @@ namespace CommContracts
         [OperationContract]
         // 得到当前药品的合理库存
         List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum);
+
+        [OperationContract]
+        bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
     }
 }

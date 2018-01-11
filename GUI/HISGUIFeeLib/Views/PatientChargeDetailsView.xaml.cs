@@ -53,8 +53,6 @@ namespace HISGUIFeeLib.Views
 
         private void ShowRecipe()
         {
-            var vm = this.DataContext as HISGUIFeeVM;
-
             if (this.sourceEditEnum == MyTableEditEnum.xichengyao ||
                 this.sourceEditEnum == MyTableEditEnum.zhongyao)
             {
@@ -76,8 +74,8 @@ namespace HISGUIFeeLib.Views
                     if (tem == null)
                         continue;
                     MyDetail myDetail = new MyDetail();
-                    CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
 
+                    CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
                     List<CommContracts.StoreRoomMedicineNum> storeList = storeRoomMedicineNum.GetStoreFromMedicine(tem.MedicineID, tem.SingleDose);
 
                     if (storeList == null || storeList.Count <= 0)
@@ -91,7 +89,8 @@ namespace HISGUIFeeLib.Views
                         myDetail.SingleDose = tem.SingleDose;
                         myDetail.SellPrice = tem.Medicine.SellPrice;
                         myDetail.SingleDose = tem.SingleDose;
-                        myDetail.Total = Math.Round( myDetail.SellPrice * myDetail.SingleDose, 2);
+                        myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
+                        myDetail.Rebate = 100;
                         myDetail.Illustration = tem.Illustration;
                         list.Add(myDetail);
                     }
@@ -120,6 +119,7 @@ namespace HISGUIFeeLib.Views
 
                                 myDetail.SellPrice = tem.Medicine.SellPrice;
                                 myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
+                                myDetail.Rebate = 100;
                                 myDetail.Illustration = tem.Illustration;
 
                                 list.Add(myDetail);
@@ -132,6 +132,58 @@ namespace HISGUIFeeLib.Views
                 }
                 this.MyTableEdit.SetAllDetails(list);
             }
+        }
+
+        private void PayBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CommClient.RecipeChargeBill myd = new CommClient.RecipeChargeBill();
+
+            CommContracts.RecipeChargeBill recipeCharge = new CommContracts.RecipeChargeBill();
+            recipeCharge.NO = "001";
+            recipeCharge.RecipeID = CurrentRecipe.ID;
+            recipeCharge.SumOfMoney = 220;
+            recipeCharge.ChargeTime = DateTime.Now;
+            recipeCharge.Block = false;
+
+            List<MyDetail> list = MyTableEdit.GetAllDetails();
+            if (list == null)
+            {
+                MessageBox.Show("无明细，收费失败！");
+                return;
+            }
+
+            List<CommContracts.RecipeChargeDetail> detailList = new List<CommContracts.RecipeChargeDetail>();
+            foreach (var detail in list)
+            {
+                CommContracts.RecipeChargeDetail recipeChargeDetail = new CommContracts.RecipeChargeDetail();
+                recipeChargeDetail.StoreRoomMedicineNumID = detail.StoreRoomMedicineNumID;
+                recipeChargeDetail.Num = detail.SingleDose;
+                recipeChargeDetail.SellPrice = detail.SellPrice;
+                recipeChargeDetail.Rebate = detail.Rebate;
+
+                detailList.Add(recipeChargeDetail);
+            }
+            recipeCharge.RecipeChargeDetails = detailList;
+            if(myd.SaveRecipeChargeBill(recipeCharge))
+            {
+                MessageBox.Show("收费成功！");
+                return;
+            }
+            else
+            {
+                MessageBox.Show("收费失败！");
+                return;
+            }
+        }
+
+        private void ReturnBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
