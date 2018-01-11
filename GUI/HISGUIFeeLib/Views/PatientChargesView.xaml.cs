@@ -275,9 +275,9 @@ namespace HISGUIFeeLib.Views
             var temp = this.AllXiChengList.SelectedItem as CommContracts.Recipe;
 
             var window = new Window();
-
             PatientChargeDetailsView list = new PatientChargeDetailsView(MyTableEditEnum.xichengyao);
             window.Content = list;
+            window.Width = 860;
             list.CurrentRecipe = temp;
             bool? bResult = window.ShowDialog();
 
