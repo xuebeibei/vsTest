@@ -237,8 +237,9 @@ namespace DAL
         {
             Registrations = new List<Registration>();
         }
-        public int ID { get; set; }              // 号源ID
-        public double Price { get; set; }        // 号源单价
+        public int ID { get; set; }               // 号源ID
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }        // 号源单价
 
         public DateTime VistTime { get; set; }    // 看诊日期
         public int TimeIntival { get; set; }      // 看诊时段ID
@@ -575,7 +576,8 @@ namespace DAL
         public string Name { get; set; }                        // 名称
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
-        public double Price { get; set; }                       // 价格
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }                       // 价格
         public int SpecimenID { get; set; }                     // 检验标本
         public string Unit { get; set; }                        // 单位
 
@@ -612,7 +614,8 @@ namespace DAL
         public string Name { get; set; }                        // 名称
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
-        public double Price { get; set; }                       // 价格
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }                       // 价格
         public string Unit { get; set; }                        // 单位
         public int BodyRegionID { get; set; }                   // 检查部位 
 
@@ -648,7 +651,8 @@ namespace DAL
         public string Name { get; set; }                            // 名称
         public string AbbrPY { get; set; }                          // 拼音简称
         public string AbbrWB { get; set; }                          // 五笔简称
-        public double Price { get; set; }                           // 价格
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }                           // 价格
         public string Unit { get; set; }                            // 单位
 
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
@@ -666,7 +670,8 @@ namespace DAL
         public string Name { get; set; }                        // 名称
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
-        public double StockPrice { get; set; }                  // 入库价格
+        [DecimalPrecision(18, 4)]
+        public decimal StockPrice { get; set; }                  // 入库价格
         public string Unit { get; set; }                        // 单位
         public string Specifications { get; set; }              // 规格
         public string Manufacturer { get; set; }                // 生产厂家
@@ -849,7 +854,8 @@ namespace DAL
         public string Name { get; set; }                            // 名称
         public string AbbrPY { get; set; }                          // 拼音简称
         public string AbbrWB { get; set; }                          // 五笔简称
-        public double Price { get; set; }                           // 价格
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }                           // 价格
         public string Unit { get; set; }                            // 单位
 
         public virtual ICollection<OtherServiceDetail> OtherServiceDetails { get; set; }
@@ -945,7 +951,9 @@ namespace DAL
         public int MedicineID { get; set; }          // 对应药品字典
         public string Batch { get; set; }            // 批次
         public DateTime ExpirationDate { get; set; } // 有效期
+        [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }      // 成本价
+        [DecimalPrecision(18, 4)]
         public decimal SellPrice { get; set; }       // 零售价
         public int Num { get; set; }             // 入库数量
 
@@ -1001,7 +1009,9 @@ namespace DAL
         public int StoreRoomMedicineNumID { get; set; }  // 库存ID
         public int NumBeforeOut { get; set; }            // 出库前数量 
         public int Num { get; set; }                     // 出库数量
+        [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }          // 出库前成本价
+        [DecimalPrecision(18, 4)]
         public decimal SellPrice { get; set; }           // 出库前零售价
 
         public int MedicineOutStoreID { get; set; }  // 出库单ID
@@ -1043,7 +1053,9 @@ namespace DAL
         public int StoreRoomMedicineNumID { get; set; }  // 库存ID
         public int NumBeforeCheck { get; set; }          // 出库前数量 
         public int Num { get; set; }                     // 出库数量
+        [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }          // 出库前成本价
+        [DecimalPrecision(18, 4)]
         public decimal SellPrice { get; set; }           // 出库前零售价
 
         public int MedicineCheckStoreID { get; set; }  // 盘存单ID
@@ -1093,6 +1105,7 @@ namespace DAL
         public int MedicineID { get; set; }          // 对应药品字典
         public string Batch { get; set; }            // 批次
         public DateTime ExpirationDate { get; set; } // 有效期
+        [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }      // 成本价
         public int Num { get; set; }                 // 库存
 
