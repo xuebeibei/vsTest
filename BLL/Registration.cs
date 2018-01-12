@@ -82,36 +82,16 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var aa = ctx.Registrations.FirstOrDefault();
-                if (aa == null)
+                var config = new MapperConfiguration(cfg =>
                 {
-                    aa = new DAL.Registration();
-                }
-                var dd = ctx.Departments.FirstOrDefault();
+                    cfg.CreateMap<CommContracts.Registration, DAL.Registration>();
+                });
+                var mapper = config.CreateMapper();
 
-                var ss = ctx.SignalSources.FirstOrDefault();
+                DAL.Registration temp = new DAL.Registration();
+                temp = mapper.Map<DAL.Registration>(registration);
 
-                var pp = ctx.Patients.FirstOrDefault();
-
-                var uu = ctx.Users.FirstOrDefault();
-                if (uu == null)
-                {
-                    uu = new DAL.User();
-                    uu.Username = "uu";
-                    uu.Password = "uu";
-                    uu.Status = DAL.User.LoginStatus.login;
-                    uu.LastLogin = DateTime.Now;
-                    ctx.Users.Add(uu);
-                    ctx.SaveChanges();
-                }
-
-                aa.SignalSource = ss;
-                aa.Patient = pp;
-
-                aa.RegisterFee = 20;
-                aa.RegisterUser = uu;
-                aa.RegisterTime = DateTime.Now;
-                ctx.Registrations.Add(aa);
+                ctx.Registrations.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -119,9 +99,8 @@ namespace BLL
                 catch (Exception ex)
                 {
                 }
-
-                return true;
             }
+            return true;
         }
 
     }

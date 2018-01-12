@@ -144,12 +144,12 @@ namespace BLL
                 {
                     foreach (DAL.SignalSource tem in queryResultList)
                     {
-                        if (tem.SignalType == 1)
+                        if (tem.SignalType == 0)
                         {
                             PuTong += tem.MaxNum;
                             PuTongShengYu += (tem.MaxNum - tem.HasUsedNum);
                         }
-                        else if (tem.SignalType == 2)
+                        else if (tem.SignalType == 1)
                         {
                             ZhuanJia += tem.MaxNum;
                             ZhuanJiaShengYu += (tem.MaxNum - tem.HasUsedNum);
@@ -171,6 +171,27 @@ namespace BLL
 
                 return temp;
             }
+        }
+
+        public bool UpdateSignalSource(int nSignalSourceID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.SignalSources.Find(nSignalSourceID);
+                if (temp == null)
+                    return false;
+
+                temp.HasUsedNum = temp.HasUsedNum + 1;
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -47,21 +47,20 @@ namespace CommClient
 
         public DateTime GetDateTime ()
         {
-            return registration.GetDateTime;
+            return registration.RegisterTime;
         }
 
         public string getPatientMsg()
         {
-            return registration.GetPatient.Name + " " + 
-                registration.GetPatient.Gender + " " + 
-                registration.GetPatient.Age;
+            return registration.Patient.Name + " " +
+                registration.Patient.Gender + " ";
         }
 
         public string getDepartment()
         {
             try
             {
-                return registration.GetSignalSource.GetDepartment.Name;
+                return registration.SignalSource.GetDepartment.Name;
             }
             catch(Exception ex)
             {
@@ -72,16 +71,16 @@ namespace CommClient
 
         public string getDoctor()
         {
-            if(registration.GetSignalSource.SignalType == 1)
+            if(registration.SignalSource.SignalType == 1)
             {
                 return "";
             }
-            return registration.GetSignalSource.Specialist.ToString();
+            return registration.SignalSource.Specialist.ToString();
         }
 
         public DateTime getVisitingTime()
         {
-            return registration.GetSignalSource.VistTime;
+            return registration.SignalSource.VistTime;
         }
 
         public bool SaveRegistration()

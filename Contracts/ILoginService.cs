@@ -36,6 +36,9 @@ namespace CommContracts
         string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival);
 
         [OperationContract]
+        bool UpdateSignalSource(int nSignalSourceID);
+
+        [OperationContract]
         bool SaveRegistration(Registration registration);
 
         [OperationContract]

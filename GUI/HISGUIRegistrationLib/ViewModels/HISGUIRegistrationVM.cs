@@ -223,7 +223,7 @@ namespace HISGUIRegistrationLib.ViewModels
 
         public void getPatient()
         {
-            var tempPatient = new PatientMsg("张飞", "男", "1453939922", "北京市海淀区", "1001", "自费", "410993199802013245");
+            var tempPatient = new PatientMsg("张三", "男", "1453939922", "北京市海淀区", "1001", "自费", "410993199802013245");
             PatientMsgTest = tempPatient;
             RegistrationBillTest.Patient = tempPatient;
 
@@ -267,7 +267,7 @@ namespace HISGUIRegistrationLib.ViewModels
             {
                 for (int column = 0; column < nDateNum; column++)
                 {
-                    string sss = myd.getSignalSourceTip(3, aa.ElementAt(column), TimeList.ElementAt(row));
+                    string sss = myd.getSignalSourceTip(DepartmentID, aa.ElementAt(column), TimeList.ElementAt(row));
 
 
                     data.Rows[row][column + 1] = sss;
@@ -311,14 +311,19 @@ namespace HISGUIRegistrationLib.ViewModels
             CommClient.Registration myd = new CommClient.Registration();
 
             CommContracts.Registration registration = new CommContracts.Registration();
-            registration.Fee = 20.0;
-            registration.GetDateTime = DateTime.Now;
-            
+            registration.RegisterFee = 20.0m;
+            registration.RegisterTime = DateTime.Now;
+            registration.SignalSourceID = SignalSourceTest.SignalID;
+            registration.RegisterUserID = 1;
+            registration.PatientID = 1;
+
+
             myd.SetRegistration(registration);
-            myd.SaveRegistration();
-
-
-
+            if(myd.SaveRegistration())
+            {
+                CommClient.SignalSource myd1 = new CommClient.SignalSource();
+                myd1.UpdateSignalSource(SignalSourceTest.SignalID);
+            }
             return true;
         }
 

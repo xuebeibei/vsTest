@@ -41,5 +41,9 @@ namespace CommClient
             return client.getSignalSourceTip(DepartmentID, dateTime, TimeIntival);
         }
 
+        public bool UpdateSignalSource(int nSignalSourceID)
+        {
+            return client.UpdateSignalSource(nSignalSourceID);
+        }
     }
 }
