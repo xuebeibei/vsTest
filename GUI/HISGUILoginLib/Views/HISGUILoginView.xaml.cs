@@ -35,8 +35,8 @@ namespace HISGUILoginLib.Views
         {
             var vm = this.DataContext as HISGUILoginVM;
             vm.LogName = "登录";
-            vm.UserName = "admin";
-            vm.PassWord = "admin";
+            vm.UserName = "";
+            vm.PassWord = "";
         }
 
         [Import]
@@ -48,7 +48,7 @@ namespace HISGUILoginLib.Views
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUILoginVM;
-
+            vm.PassWord = this.passbox.Password;
             bool? loginResult = vm?.Login();
             if (!loginResult.HasValue)
             {
@@ -56,7 +56,7 @@ namespace HISGUILoginLib.Views
             }
             if ((bool)loginResult)
             {
-                vm?.RegionManager.RequestNavigate("MainRegion", "HISGUIWorkstationView");
+                vm?.RegionManager.RequestNavigate("MainRegion", "MedicineWorkView");
             }
         }
 

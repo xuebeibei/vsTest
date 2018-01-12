@@ -37,10 +37,15 @@ namespace BLL
                 //         u.Password == user.Password && 
                 //         u.Status != DAL.User.LoginStatus.invalid);
 
+                //var queryResult = from u in ctx.Users
+                //                  where u.Username == user.Username &&
+                //                        u.Password == user.Password &&
+                //                        u.Status != DAL.User.LoginStatus.invalid
+                //                  select u;
+
                 var queryResult = from u in ctx.Users
                                   where u.Username == user.Username &&
-                                        u.Password == user.Password &&
-                                        u.Status != DAL.User.LoginStatus.invalid
+                                        u.Password == user.Password 
                                   select u;
 
                 Trace.WriteLine("Query database finished, record number: "
