@@ -333,10 +333,14 @@ namespace HISGUICore.MyContorls
 
         private List<MyTableTittle> GetSumList()
         {
-            List<MyTableTittle> list = new List<MyTableTittle>();
+            int nNameWidth = 590;
+            int nSumWidth = 80;
 
-            list.Add(new MyTableTittle("合计", "Name", 590));
-            list.Add(new MyTableTittle("名称", "SumMoney", 80));
+            List<MyTableTittle> list = new List<MyTableTittle>();
+            if (editEnum == MyTableEditEnum.chargeDetail)
+                nNameWidth = 680;
+            list.Add(new MyTableTittle("合计", "Name", nNameWidth));
+            list.Add(new MyTableTittle("名称", "SumMoney", nSumWidth));
             return list;
         }
 
@@ -431,9 +435,9 @@ namespace HISGUICore.MyContorls
                     {
                         if (nIndex == m_skipList.Count - 1)                                      // 如果是最后一列，则跳转到搜索内容框 
                         {
-                            if(this.editEnum == MyTableEditEnum.chargeDetail)
+                            if (this.editEnum == MyTableEditEnum.chargeDetail)
                             {
-                                GridSkipTo(rowIdnex+1, columnIndex);
+                                GridSkipTo(rowIdnex + 1, columnIndex);
                             }
                             else
                             {
@@ -441,7 +445,7 @@ namespace HISGUICore.MyContorls
                                 this.Dispatcher.BeginInvoke(DispatcherPriority.Background,
                                     (Action)(() => { Keyboard.Focus(FindNameEdit); }));
                             }
-                            
+
                             UpdateSumTable();
                         }
                         else                                                                     // 如果不是最后一列，则跳转到下一列
@@ -532,7 +536,7 @@ namespace HISGUICore.MyContorls
             if (m_contentItems == null)
                 return false;
 
-            foreach(var tem in m_contentItems)
+            foreach (var tem in m_contentItems)
             {
                 if (tem.ID == ID)
                     return true;
@@ -849,6 +853,18 @@ namespace HISGUICore.MyContorls
                     catch { }
                 }
             }
+        }
+
+        public decimal GetSumMoney()
+        {
+            decimal temp = 0.0m;
+            if (m_sumItems == null || m_sumItems.Count <= 0)
+                return temp;
+            else
+            {
+                temp = m_sumItems.ElementAt(0).SumMoney;
+            }
+            return temp;
         }
     }
 }

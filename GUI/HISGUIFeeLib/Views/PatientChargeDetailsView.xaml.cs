@@ -195,7 +195,7 @@ namespace HISGUIFeeLib.Views
             CommContracts.RecipeChargeBill recipeCharge = new CommContracts.RecipeChargeBill();
             recipeCharge.NO = "001";
             recipeCharge.RecipeID = CurrentRecipe.ID;
-            recipeCharge.SumOfMoney = 220;
+            recipeCharge.SumOfMoney = this.MyTableEdit.GetSumMoney();
             recipeCharge.ChargeTime = DateTime.Now;
             recipeCharge.Block = false;
 
