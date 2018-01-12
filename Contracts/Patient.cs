@@ -25,31 +25,35 @@ namespace CommContracts
         [DataMember]
         public VolkEnum Volk { get; set; }
 
-        [DataMember]
-        public string Age
-        {
-            get
-            {
-                DateTime dt1 = BirthDay;
-                DateTime dt2 = DateTime.Now;
+        //[DataMember]
+        //public string Age
+        //{
+        //    get
+        //    {
+        //        DateTime dt1 = BirthDay;
+        //        DateTime dt2 = DateTime.Now;
 
-                string str = "";
-                int Year = dt2.Year - dt1.Year;
-                str = Year.ToString() + "岁";
+        //        string str = "";
+        //        int Year = dt2.Year - dt1.Year;
+        //        str = Year.ToString() + "岁";
 
-                if (Year<3)
-                {
-                    int Month = dt2.Month - dt1.Month;
-                    if(Month != 0)
-                    {
-                        str += Month.ToString() + "月";
-                    }
+        //        if (Year<3)
+        //        {
+        //            int Month = dt2.Month - dt1.Month;
+        //            if(Month != 0)
+        //            {
+        //                str += Month.ToString() + "月";
+        //            }
                     
-                }
-                // 求时间差
-                return str;
-            }
-        }
+        //        }
+        //        // 求时间差
+        //        return str;
+        //    }
+        //    set
+        //    {
+        //        return;
+        //    }
+        //}
 
     }
 }
