@@ -211,29 +211,29 @@ namespace HISGUICore.MyContorls
                 list.Add(new MyTableTittle("ID", "ID", 40, true, Visibility.Hidden));
                 list.Add(new MyTableTittle("名称", "Name", 150));
                 list.Add(new MyTableTittle("规格", "Specifications", 80));
-                list.Add(new MyTableTittle("包装", "MedicinePacking", 80));
-                list.Add(new MyTableTittle("单次剂量*", "SingleDose", 80, false));
+                //list.Add(new MyTableTittle("包装", "MedicinePacking", 80));
+                list.Add(new MyTableTittle("数量*", "SingleDose", 80, false));// 单次剂量
                 list.Add(new MyTableTittle("单位", "SingleDoseUnit"));
-                list.Add(new MyTableTittle("频次*", "DDDS", 80, false));
-                list.Add(new MyTableTittle("天数*", "DaysNum", 80, false));
-                list.Add(new MyTableTittle("总量", "IntegralDose"));
-                list.Add(new MyTableTittle("单位", "IntegralDoseUnit"));
-                list.Add(new MyTableTittle("关联", "GroupNum", 50, false));
+                //list.Add(new MyTableTittle("频次*", "DDDS", 80, false));
+                //list.Add(new MyTableTittle("天数*", "DaysNum", 80, false));
+                //list.Add(new MyTableTittle("总量", "IntegralDose"));
+                //list.Add(new MyTableTittle("单位", "IntegralDoseUnit"));
+                //list.Add(new MyTableTittle("关联", "GroupNum", 50, false));
                 list.Add(new MyTableTittle("用法*", "Usage", 80, false));
                 list.Add(new MyTableTittle("备注", "Illustration", 120, true));
 
                 m_nIDIndex = 0;
-                m_nSingleDoseIndex = 4;
-                m_nDDDSIndex = 6;
-                m_nDayNumIndex = 7;
-                m_nGroupNumIndex = 10;
-                m_nUsageIndex = 11;
-                m_nIllustrationIndex = 12;
+                m_nSingleDoseIndex = 3;
+                //m_nDDDSIndex = 6;
+                //m_nDayNumIndex = 7;
+                //m_nGroupNumIndex = 10;
+                m_nUsageIndex = 5;
+                m_nIllustrationIndex = 6;
 
                 m_skipList.Add(m_nSingleDoseIndex);
-                m_skipList.Add(m_nDDDSIndex);
-                m_skipList.Add(m_nDayNumIndex);
-                m_skipList.Add(m_nGroupNumIndex);
+                //m_skipList.Add(m_nDDDSIndex);
+                //m_skipList.Add(m_nDayNumIndex);
+                //m_skipList.Add(m_nGroupNumIndex);
                 m_skipList.Add(m_nUsageIndex);
                 m_skipList.Add(m_nIllustrationIndex);
 
@@ -737,6 +737,8 @@ namespace HISGUICore.MyContorls
 
         private void GridSkipTo(int row, int column)
         {
+            if (column < 0)
+                return;
             var Dg = this.MyDataGrid;
             Dg.SelectedCells.Clear();                                                  // 清除所有选择的单元格
             Dg.Focus();                                                                // 选中表格
