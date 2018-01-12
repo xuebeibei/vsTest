@@ -18,7 +18,7 @@ namespace HISGUIRegistrationLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIRegistrationView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIRegistrationView));
 
         }
     }
