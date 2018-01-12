@@ -24,7 +24,7 @@
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label>2017-11-27周一</Label>
                 <Label>王库管</Label>
-                <Button>退出</Button>
+                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click">退出</Button>
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" >
