@@ -134,6 +134,7 @@ namespace BLL
                             (SupplierID == 0 || x.SupplierID == SupplierID) &&
                             (ItemType == -1 || x.Medicine.MedicineTypeEnum == (DAL.MedicineTypeEnum)ItemType) &&
                             (IsHasNum || x.Num <= 0) &&
+                            (!IsHasNum || x.Num > 0) &&
                             (!IsOverDate || x.ExpirationDate < DateTime.Now) &&
                             (!IsNoEnough || x.Num < x.Medicine.MinNum)
                             orderby x.Medicine.Name
