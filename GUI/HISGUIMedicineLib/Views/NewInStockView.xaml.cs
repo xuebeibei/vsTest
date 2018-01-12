@@ -209,5 +209,15 @@ namespace HISGUIMedicineLib.Views
             }
             MessageBox.Show("审核失败!");
         }
+
+        private void SupplierEdit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var tem = SupplierEdit.SelectedItem as CommContracts.Supplier;
+            if (tem == null)
+                return;
+
+            var vm = this.DataContext as HISGUIMedicineVM;
+            vm.CurrentMedicineInStore.FromSupplierID = tem.ID;
+        }
     }
 }
