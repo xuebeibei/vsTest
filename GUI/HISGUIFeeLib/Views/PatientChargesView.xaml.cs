@@ -315,7 +315,6 @@ namespace HISGUIFeeLib.Views
         private void AllQiTaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var temp = this.AllQiTaList.SelectedItem as CommContracts.OtherService;
-
         }
     }
 }

@@ -20,5 +20,7 @@ namespace CommContracts
         public int Num { get; set; }
         [DataMember]
         public int Rebate { get; set; }
+        [DataMember]
+        public StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
     }
 }

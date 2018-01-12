@@ -68,7 +68,7 @@ namespace HISGUIFeeLib.Views
                     return;
                 }
 
-                if(this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.全部收费)
+                if (this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.全部收费)
                 {
                     this.MyTableEdit.IsEnabled = false;
                     this.HospitalCardPay.IsEnabled = false;
@@ -77,8 +77,12 @@ namespace HISGUIFeeLib.Views
                     this.CashPay.IsEnabled = false;
                     this.PayBtn.Visibility = Visibility.Collapsed;
                     this.ReturnBtn.Visibility = Visibility.Visible;
+
+                    CommClient.RecipeChargeBill myd1 = new CommClient.RecipeChargeBill();
+                    List<CommContracts.RecipeChargeBill> list = myd1.GetAllChargeFromRecipe(this.CurrentRecipe.ID);
+                    this.AllChargeList.ItemsSource = list;
                 }
-                else if(this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.未收费)
+                else if (this.CurrentRecipe.ChargeStatusEnum == CommContracts.ChargeStatusEnum.未收费)
                 {
                     this.MyTableEdit.IsEnabled = true;
                     this.HospitalCardPay.IsEnabled = true;
@@ -88,71 +92,71 @@ namespace HISGUIFeeLib.Views
 
                     this.PayBtn.Visibility = Visibility.Visible;
                     this.ReturnBtn.Visibility = Visibility.Collapsed;
-                }
 
-                List<MyDetail> list = new List<MyDetail>();
-                foreach (var tem in this.CurrentRecipe.RecipeDetails)
-                {
-                    if (tem == null)
-                        continue;
-                    MyDetail myDetail = new MyDetail();
 
-                    CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
-                    List<CommContracts.StoreRoomMedicineNum> storeList = storeRoomMedicineNum.GetStoreFromMedicine(tem.MedicineID, tem.SingleDose);
-
-                    if (storeList == null || storeList.Count <= 0)
+                    List<MyDetail> list = new List<MyDetail>();
+                    foreach (var tem in this.CurrentRecipe.RecipeDetails)
                     {
-                        myDetail.StoreRoomMedicineNumID = 0;
-                        myDetail.Name = tem.Medicine.Name;
-                        myDetail.Specifications = tem.Medicine.Specifications;
-                        myDetail.SingleDoseUnit = tem.Medicine.Unit;
-                        myDetail.BatchID = "";
-                        myDetail.BeforeOutNum = 0;
-                        myDetail.SingleDose = tem.SingleDose;
-                        myDetail.SellPrice = tem.Medicine.SellPrice;
-                        myDetail.SingleDose = tem.SingleDose;
-                        myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
-                        myDetail.Rebate = 100;
-                        myDetail.Illustration = tem.Illustration;
-                        list.Add(myDetail);
-                    }
-                    else
-                    {
-                        if (storeList.Count > 0)
+                        if (tem == null)
+                            continue;
+                        MyDetail myDetail = new MyDetail();
+
+                        CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
+                        List<CommContracts.StoreRoomMedicineNum> storeList = storeRoomMedicineNum.GetStoreFromMedicine(tem.MedicineID, tem.SingleDose);
+
+                        if (storeList == null || storeList.Count <= 0)
                         {
-                            int nIndex = storeList.Count - 1;  // 取最后一个索引
-                            int nLastNum = tem.SingleDose;
-                            foreach (var store in storeList)
+                            myDetail.StoreRoomMedicineNumID = 0;
+                            myDetail.Name = tem.Medicine.Name;
+                            myDetail.Specifications = tem.Medicine.Specifications;
+                            myDetail.SingleDoseUnit = tem.Medicine.Unit;
+                            myDetail.BatchID = "";
+                            myDetail.BeforeOutNum = 0;
+                            myDetail.SingleDose = tem.SingleDose;
+                            myDetail.SellPrice = tem.Medicine.SellPrice;
+                            myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
+                            myDetail.Rebate = 100;
+                            myDetail.Illustration = tem.Illustration;
+                            list.Add(myDetail);
+                        }
+                        else
+                        {
+                            if (storeList.Count > 0)
                             {
-                                myDetail.StoreRoomMedicineNumID = store.ID;
-                                myDetail.Name = tem.Medicine.Name;
-                                myDetail.Specifications = tem.Medicine.Specifications;
-                                myDetail.SingleDoseUnit = tem.Medicine.Unit;
-                                myDetail.BatchID = store.Batch;
-                                myDetail.BeforeOutNum = store.Num;
-                                if (nIndex > 0)
+                                int nIndex = storeList.Count - 1;  // 取最后一个索引
+                                int nLastNum = tem.SingleDose;
+                                foreach (var store in storeList)
                                 {
-                                    myDetail.SingleDose = store.Num;
+                                    myDetail.StoreRoomMedicineNumID = store.ID;
+                                    myDetail.Name = tem.Medicine.Name;
+                                    myDetail.Specifications = tem.Medicine.Specifications;
+                                    myDetail.SingleDoseUnit = tem.Medicine.Unit;
+                                    myDetail.BatchID = store.Batch;
+                                    myDetail.BeforeOutNum = store.Num;
+                                    if (nIndex > 0)
+                                    {
+                                        myDetail.SingleDose = store.Num;
+                                    }
+                                    else if (nIndex == 0)
+                                    {
+                                        myDetail.SingleDose = nLastNum;
+                                    }
+
+                                    myDetail.SellPrice = tem.Medicine.SellPrice;
+                                    myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
+                                    myDetail.Rebate = 100;
+                                    myDetail.Illustration = tem.Illustration;
+
+                                    list.Add(myDetail);
+
+                                    nIndex--;
+                                    nLastNum -= myDetail.SingleDose;
                                 }
-                                else if (nIndex == 0)
-                                {
-                                    myDetail.SingleDose = nLastNum;
-                                }
-
-                                myDetail.SellPrice = tem.Medicine.SellPrice;
-                                myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
-                                myDetail.Rebate = 100;
-                                myDetail.Illustration = tem.Illustration;
-
-                                list.Add(myDetail);
-
-                                nIndex--;
-                                nLastNum -= myDetail.SingleDose;
                             }
                         }
                     }
+                    this.MyTableEdit.SetAllDetails(list);
                 }
-                this.MyTableEdit.SetAllDetails(list);
             }
         }
 
@@ -217,7 +221,7 @@ namespace HISGUIFeeLib.Views
             if (myd.SaveRecipeChargeBill(recipeCharge))
             {
                 CommClient.StoreRoomMedicineNum myd2 = new CommClient.StoreRoomMedicineNum();
-                if(!myd2.SubdStoreNum(recipeCharge))
+                if (!myd2.SubdStoreNum(recipeCharge))
                 {
                     return;
                 }
@@ -249,6 +253,44 @@ namespace HISGUIFeeLib.Views
         private void PrintBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void AllChargeList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var temp = this.AllChargeList.SelectedItem as CommContracts.RecipeChargeBill;
+            if (temp == null)
+                return;
+            if (temp.RecipeChargeDetails == null)
+                return;
+
+            List<MyDetail> list = new List<MyDetail>();
+            foreach (var detail in temp.RecipeChargeDetails)
+            {
+                if (detail == null)
+                    continue;
+                MyDetail myDetail = new MyDetail();
+
+                myDetail.StoreRoomMedicineNumID = detail.StoreRoomMedicineNumID;
+                myDetail.Name = detail.StoreRoomMedicineNum.Medicine.Name;
+                if (detail.StoreRoomMedicineNum != null)
+                {
+                    if(detail.StoreRoomMedicineNum.Medicine != null)
+                    {
+                        myDetail.Specifications = detail.StoreRoomMedicineNum.Medicine.Specifications;
+                        myDetail.SingleDoseUnit = detail.StoreRoomMedicineNum.Medicine.Unit;
+                    }
+                    myDetail.BatchID = detail.StoreRoomMedicineNum.Batch;
+                    myDetail.BeforeOutNum = detail.StoreRoomMedicineNum.Num;
+                }
+                
+                myDetail.SingleDose = detail.Num;
+                myDetail.SellPrice = detail.SellPrice;
+                myDetail.Total = Math.Round(myDetail.SellPrice * myDetail.SingleDose, 2);
+                myDetail.Rebate = detail.Rebate;
+                myDetail.Illustration = "";
+                list.Add(myDetail);
+            }
+            this.MyTableEdit.SetAllDetails(list);
         }
     }
 }

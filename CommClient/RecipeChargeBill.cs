@@ -25,5 +25,10 @@ namespace CommClient
         {
             return client.SaveRecipeChargeBill(recipeChargeBill);
         }
+
+        public List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID)
+        {
+            return client.GetAllChargeFromRecipe(RecipeID);
+        }
     }
 }

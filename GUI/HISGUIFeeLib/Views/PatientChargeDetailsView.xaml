@@ -8,8 +8,17 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
+            <ListView Name="AllChargeList" Margin="5" SelectionMode="Single" SelectionChanged="AllChargeList_SelectionChanged">
+                <ListView.View>
+                    <GridView x:Name="gridViewCharge">
+                        <GridViewColumn Header="收费单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                        <GridViewColumn Header="合计金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
+                        <GridViewColumn Header="收费时间" DisplayMemberBinding="{Binding Path=ChargeTime}"></GridViewColumn>
+                        <GridViewColumn Header="锁定状态" DisplayMemberBinding="{Binding Path=Block}"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
             <StackPanel x:Name="DetailsPanel">
-                
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <StackPanel Orientation="Horizontal">
@@ -23,7 +32,7 @@
                 <Button x:Name="ReturnBtn" Margin="5" Click="ReturnBtn_Click">退费</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
             </StackPanel>
-            
+
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

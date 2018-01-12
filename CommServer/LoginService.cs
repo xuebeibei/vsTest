@@ -447,5 +447,11 @@ namespace CommServer
             BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
             return temp.SaveRecipeChargeBill(recipeChargeBill);
         }
+
+        public List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID)
+        {
+            BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
+            return temp.GetAllChargeFromRecipe(RecipeID);
+        }
     }
 }

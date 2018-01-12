@@ -43,5 +43,29 @@ namespace BLL
             }
             return true;
         }
+
+        public List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID)
+        {
+            List<CommContracts.RecipeChargeBill> list = new List<CommContracts.RecipeChargeBill>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.RecipeChargeBills
+                            where a.RecipeID == RecipeID
+                            select a;
+                foreach (DAL.RecipeChargeBill ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.RecipeChargeBill, CommContracts.RecipeChargeBill>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.RecipeChargeBill temp = mapper.Map<CommContracts.RecipeChargeBill>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
     }
 }

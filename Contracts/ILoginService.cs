@@ -234,5 +234,8 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
+
+        [OperationContract]
+        List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
     }
 }

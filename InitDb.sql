@@ -276,6 +276,16 @@ select * from RecipeChargeBills;
 
 select * from RecipeChargeDetails;
 
-delete from RecipeChargeBills;
+delete from RecipeChargeBills where RecipeID = 30;
 
 delete from RecipeChargeDetails;
+
+select * from Recipes;
+
+update Recipes set ChargeStatusEnum = 0;
+
+select * from RecipeChargeBills where RecipeID = 30;
+
+select * from RecipeChargeBills;
+
+select * from RecipeChargeDetails;

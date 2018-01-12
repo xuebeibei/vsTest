@@ -1109,6 +1109,7 @@ namespace DAL
         public StoreRoomMedicineNum()
         {
             MedicineOutStoreDetails = new List<MedicineOutStoreDetail>();
+            RecipeChargeDetails = new List<RecipeChargeDetail>();
         }
 
         public int ID { get; set; }   // ID
@@ -1126,6 +1127,7 @@ namespace DAL
         public virtual Medicine Medicine { get; set; }
 
         public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
+        public virtual ICollection<RecipeChargeDetail> RecipeChargeDetails { get; set; }
     }
 
 
@@ -1179,5 +1181,6 @@ namespace DAL
         public int Num { get; set; }
         public int Rebate { get; set; }
         public virtual RecipeChargeBill RecipeChargeBill { get; set; }
+        public virtual StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
     }
 }
