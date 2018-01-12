@@ -31,7 +31,8 @@
                                         <GridViewColumn Header="处方号" DisplayMemberBinding="{Binding Path=No}"></GridViewColumn>
                                         <GridViewColumn Header="处方类别" DisplayMemberBinding="{Binding Path=RecipeTypeEnum}"></GridViewColumn>
                                         <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
-                                        <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
+                                        <!--<GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>-->
+                                        <GridViewColumn Header="收费状态" DisplayMemberBinding="{Binding Path=ChargeStatusEnum}"></GridViewColumn>
                                     </GridView>
                                 </ListView.View>
                             </ListView>
