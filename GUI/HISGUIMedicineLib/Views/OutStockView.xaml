@@ -27,7 +27,7 @@
             <ComboBox x:Name="OutStoreEnum" Margin="5" Width="100">
             </ComboBox>
             <TextBox x:Name="FindOutStockIDEdit" Margin="5" Width="100"></TextBox>
-            <Button x:Name="FindOutStockBtn" Margin="5">查找</Button>
+            <Button x:Name="FindOutStockBtn" Margin="5" Click="FindOutStockBtn_Click">查找</Button>
         </StackPanel>
         <ListView x:Name="AllOutStockList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" MouseDoubleClick="AllOutStockList_MouseDoubleClick">
             <ListView.View>

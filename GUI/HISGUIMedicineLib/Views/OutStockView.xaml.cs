@@ -30,6 +30,10 @@ namespace HISGUIMedicineLib.Views
         public OutStockView()
         {
             InitializeComponent();
+            this.StartOutStockDate.SelectedDate = DateTime.Now.AddDays(-1);
+            this.EndOutStockDate.SelectedDate = DateTime.Now;
+            this.OutStoreEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.OutStoreEnum));
+            this.OutStoreEnum.SelectedItem = CommContracts.OutStoreEnum.科室出库;
             this.Loaded += View_Loaded;
         }
 
@@ -41,11 +45,6 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            this.StartOutStockDate.SelectedDate = DateTime.Now.AddDays(-1);
-            this.EndOutStockDate.SelectedDate = DateTime.Now;
-            this.OutStoreEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.OutStoreEnum));
-            this.OutStoreEnum.SelectedItem = CommContracts.OutStoreEnum.科室出库;
-
             getAllMedicineOutStore();
         }
 
@@ -80,6 +79,11 @@ namespace HISGUIMedicineLib.Views
             vm.IsInitViewEdit = false;
             vm.CurrentMedicineOutStore = currentOutStore;
             vm?.ShowOutStoreDetail();
+        }
+
+        private void FindOutStockBtn_Click(object sender, RoutedEventArgs e)
+        {
+            getAllMedicineOutStore();
         }
     }
 }
