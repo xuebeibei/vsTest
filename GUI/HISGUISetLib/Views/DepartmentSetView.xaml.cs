@@ -114,7 +114,7 @@ namespace HISGUISetLib.Views
 
         private void ExportItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            ExportToExecl();
+            //ExportToExecl();
         }
 
         private void ImportItemBtn_Click(object sender, RoutedEventArgs e)

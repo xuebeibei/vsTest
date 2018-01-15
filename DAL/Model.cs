@@ -22,9 +22,9 @@ namespace DAL
     }
     public enum DepartmentEnum
     {
-        Other,     // 其他科室
-        LinChuang, // 临床科室
-        YiJi       // 医技科室  
+        其他科室,     // 其他科室
+        临床科室, // 临床科室
+        医技科室       // 医技科室  
     }
 
     public enum MedicineTypeEnum
@@ -221,7 +221,7 @@ namespace DAL
         {
             this.Name = "";
             this.Abbr = "";
-            this.DepartmentEnum = DepartmentEnum.Other;
+            this.DepartmentEnum = DepartmentEnum.其他科室;
             this.ParentID = 0;
             Employees = new List<Employee>();
         }
