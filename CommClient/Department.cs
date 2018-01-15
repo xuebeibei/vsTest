@@ -36,6 +36,11 @@ namespace CommClient
             return client.SaveDepartment(department);
         }
 
+        public bool UpdateDepartment(CommContracts.Department department)
+        {
+            return client.UpdateDepartment(department);
+        }
+
         public bool DeleteDepartment(int departmentID)
         {
             return client.DeleteDepartment(departmentID);

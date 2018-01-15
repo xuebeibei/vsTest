@@ -90,7 +90,24 @@ namespace HISGUISetLib.Views
 
         private void EditItemBtn_Click(object sender, RoutedEventArgs e)
         {
+            var temp = this.AllDepartmentList.SelectedItem as CommContracts.Department;
+            if (temp == null)
+                return;
 
+            // 新增科室
+            var window = new Window();
+
+            EditDepartmentView eidtDepartment = new EditDepartmentView(temp);
+            window.Content = eidtDepartment;
+            window.Width = 400;
+            window.Height = 300;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
+            {
+                MessageBox.Show("科室新建完成！");
+                UpdateAllDate();
+            }
         }
 
         private void ExportItemBtn_Click(object sender, RoutedEventArgs e)

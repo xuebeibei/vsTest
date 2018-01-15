@@ -20,11 +20,23 @@ namespace HISGUISetLib.Views
     /// </summary>
     public partial class EditDepartmentView : UserControl
     {
-        public EditDepartmentView()
+        private bool bIsEdit;
+        private CommContracts.Department Department;
+        public EditDepartmentView(CommContracts.Department department = null)
         {
             InitializeComponent();
+
             DepartmentCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.DepartmentEnum));
             DepartmentCombo.SelectedItem = CommContracts.DepartmentEnum.其他科室;
+            bIsEdit = false;
+            if (department != null)
+            {
+                this.Department = department;
+                this.NameEdit.Text = department.Name;
+                this.AbbrEdit.Text = department.Abbr;
+                this.DepartmentCombo.SelectedItem = department.DepartmentEnum;
+                bIsEdit = true;
+            }
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
@@ -38,16 +50,31 @@ namespace HISGUISetLib.Views
             {
                 return;
             }
-
-            CommContracts.Department department = new CommContracts.Department();
-            department.Name = this.NameEdit.Text.Trim();
-
-            CommClient.Department myd = new CommClient.Department();
-            if(myd.SaveDepartment(department))
+            if(bIsEdit)
             {
-                (this.Parent as Window).DialogResult = true;
-                (this.Parent as Window).Close();
+                Department.Name = this.NameEdit.Text.Trim();
+                Department.Abbr = this.AbbrEdit.Text.Trim();
+
+                CommClient.Department myd = new CommClient.Department();
+                if (myd.UpdateDepartment(Department))
+                {
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+                }
             }
+            else
+            {
+                CommContracts.Department department = new CommContracts.Department();
+                department.Name = this.NameEdit.Text.Trim();
+
+                CommClient.Department myd = new CommClient.Department();
+                if (myd.SaveDepartment(department))
+                {
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
+                }
+            }
+            
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

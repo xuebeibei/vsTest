@@ -49,6 +49,12 @@ namespace CommServer
             return temp.SaveDepartment(department);
         }
 
+        public bool UpdateDepartment(CommContracts.Department department)
+        {
+            BLL.Department temp = new BLL.Department();
+            return temp.UpdateDepartment(department);
+        }
+
         public bool DeleteDepartment(int departmentID)
         {
             BLL.Department temp = new BLL.Department();

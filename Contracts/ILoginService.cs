@@ -27,6 +27,9 @@ namespace CommContracts
         bool SaveDepartment(CommContracts.Department department);
 
         [OperationContract]
+        bool UpdateDepartment(CommContracts.Department department);
+
+        [OperationContract]
         bool DeleteDepartment(int departmentID);
 
         [OperationContract]

@@ -97,5 +97,42 @@ namespace BLL
             }
             return true;
         }
+
+        public bool UpdateDepartment(CommContracts.Department department)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Departments.FirstOrDefault(m => m.ID == department.ID);
+                if (temp != null)
+                {
+                    //var config = new MapperConfiguration(cfg =>
+                    //{
+                    //    cfg.CreateMap<CommContracts.Department, DAL.Department>().ForMember(x=>x.ID, opt => opt.Ignore()) ;
+                    //});
+                    //var mapper = config.CreateMapper();
+
+                    //temp = mapper.Map<DAL.Department>(department);
+                    // 这里使用mapper来更新数据之后保存不上，不知为何
+                    temp.Name = department.Name;
+                    temp.Abbr = department.Abbr;
+                    temp.DepartmentEnum = (DAL.DepartmentEnum)department.DepartmentEnum;
+                    temp.ParentID = department.ParentDepartmentID;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
