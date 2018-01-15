@@ -24,6 +24,9 @@ namespace CommContracts
         List<CommContracts.Department> getALLDepartment();
 
         [OperationContract]
+        bool SaveDepartment(CommContracts.Department department);
+
+        [OperationContract]
         List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval);
 
         [OperationContract]

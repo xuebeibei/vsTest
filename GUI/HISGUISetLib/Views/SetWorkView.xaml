@@ -1,0 +1,47 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUISetLib.Views.SetWorkView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUISetLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TreeView x:Name="AllSetTreeView" Margin="5" Grid.Column="0">
+            <TreeViewItem Header="个人信息" ><!--Visibility="Collapsed"-->
+                <TreeViewItem Header="个人信息设置" Selected="UserInfoSet"/>
+                <TreeViewItem Header="密码管理" Selected="PasswordSet"/>
+                <TreeViewItem Header="意见反馈" Selected="OpinionSet"/>
+            </TreeViewItem>
+            <TreeViewItem Header="医院结构" >
+                <TreeViewItem Header="医院信息管理" Selected="HospitalInfoSet"/>
+                <TreeViewItem Header="科室管理" Selected="DepartmentSet"/>
+                <TreeViewItem Header="职位管理" Selected="JobSet"/>
+                <TreeViewItem Header="库房管理" Selected="StorehouseSet"/>
+                <TreeViewItem Header="供应商管理" Selected="SupplierSet"/>
+                <TreeViewItem Header="病房管理" Selected="SickRoomSet"/>
+            </TreeViewItem>
+            <TreeViewItem Header="用户档案" >
+                <TreeViewItem Header="人员管理" Selected="EmployeeSet"/>
+                <TreeViewItem Header="用户管理" Selected="UserSet"/>
+                <TreeViewItem Header="权限管理" Selected="PowerSet"/>
+            </TreeViewItem>
+            <TreeViewItem Header="字典" >
+                <TreeViewItem Header="药品字典管理" Selected="MedicineSet"/>
+                <TreeViewItem Header="物资字典管理" Selected="MaterialSet"/>
+                <TreeViewItem Header="检查项目字典管理" Selected="InspectSet"/>
+                <TreeViewItem Header="化验项目字典管理" Selected="AssaySet"/>
+                <TreeViewItem Header="其他服务字典管理" Selected="OtherServiceSet"/>
+                <TreeViewItem Header="诊断字典管理" Selected="DiagnosisSet"/>
+            </TreeViewItem>
+        </TreeView>
+        <StackPanel Grid.Column="1">
+            <local:HospitalInfoSetView x:Name="HospitalSetView" Visibility="Collapsed"></local:HospitalInfoSetView>
+            <local:DepartmentSetView x:Name="DepartmentView" Visibility="Collapsed"></local:DepartmentSetView>
+        </StackPanel>
+    </Grid>
+</HISGUICore:HISGUIViewBase>

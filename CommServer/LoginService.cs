@@ -43,6 +43,11 @@ namespace CommServer
             BLL.Department tempDepart = new BLL.Department();
             return tempDepart.getALLDepartment();
         }
+        public bool SaveDepartment(CommContracts.Department department)
+        {
+            BLL.Department temp = new BLL.Department();
+            return temp.SaveDepartment(department);
+        }
 
         public List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval)
         {

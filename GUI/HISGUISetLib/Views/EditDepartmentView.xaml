@@ -1,0 +1,22 @@
+﻿<UserControl x:Class="HISGUISetLib.Views.EditDepartmentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUISetLib.Views">
+    <Grid>
+        <StackPanel>
+            <Label Margin="5">名称*：</Label>
+            <TextBox x:Name="NameEdit" Margin="5"></TextBox>
+            <Label Margin="5">简称：</Label>
+            <TextBox x:Name="AbbrEdit" Margin="5"></TextBox>
+            <Label Margin="5">类型：</Label>
+            <ComboBox x:Name="DepartmentCombo" Margin="5">
+            </ComboBox>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

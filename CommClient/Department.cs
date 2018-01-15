@@ -31,5 +31,9 @@ namespace CommClient
             return client.getALLDepartment();
         }
 
+        public bool SaveDepartment(CommContracts.Department department)
+        {
+            return client.SaveDepartment(department);
+        }
     }
 }

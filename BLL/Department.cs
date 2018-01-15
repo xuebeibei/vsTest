@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data;
 using System.Globalization;
 using System.Collections;
+using AutoMapper;
 
 namespace BLL
 {
@@ -47,6 +48,32 @@ namespace BLL
                 }
                 return myList;
             }
+        }
+
+        public bool SaveDepartment(CommContracts.Department department)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Department, DAL.Department>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.Department temp = new DAL.Department();
+                temp = mapper.Map<DAL.Department>(department);
+                
+                ctx.Departments.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
