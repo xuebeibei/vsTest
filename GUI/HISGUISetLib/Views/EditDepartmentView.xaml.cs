@@ -45,13 +45,15 @@ namespace HISGUISetLib.Views
             CommClient.Department myd = new CommClient.Department();
             if(myd.SaveDepartment(department))
             {
-                MessageBox.Show("保存成功");
+                (this.Parent as Window).DialogResult = true;
+                (this.Parent as Window).Close();
             }
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            (this.Parent as Window).DialogResult = false;
+            (this.Parent as Window).Close();
         }
     }
 }

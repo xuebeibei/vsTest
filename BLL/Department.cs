@@ -75,5 +75,27 @@ namespace BLL
             }
             return true;
         }
+
+        public bool DeleteDepartment(int departmentID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Departments.FirstOrDefault(m => m.ID == departmentID);
+                if(temp != null)
+                {
+                    ctx.Departments.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

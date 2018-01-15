@@ -27,6 +27,9 @@ namespace CommContracts
         bool SaveDepartment(CommContracts.Department department);
 
         [OperationContract]
+        bool DeleteDepartment(int departmentID);
+
+        [OperationContract]
         List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval);
 
         [OperationContract]

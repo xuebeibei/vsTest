@@ -35,8 +35,7 @@ namespace HISGUISetLib.Views
 
         private void DepartmentSetView_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUISetVM;
-            this.AllDepartmentList.ItemsSource = vm?.GetFindAllDepartment();
+            UpdateAllDate();
         }
 
         [Import]
@@ -58,18 +57,35 @@ namespace HISGUISetLib.Views
 
             if (bResult.Value)
             {
-
+                MessageBox.Show("科室新建完成！");
+                UpdateAllDate();
             }
         }
 
         private void FindItemBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateAllDate();
         }
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
+            var currentDapertment = this.AllDepartmentList.SelectedItem as CommContracts.Department;
+            if (currentDapertment == null)
+                return;
 
+            if(MessageBox.Show("确认删除该科室？","删除",MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                var vm = this.DataContext as HISGUISetVM;
+                bool? bIsOK = vm?.DeleteDepartment(currentDapertment.ID);
+                if (bIsOK.HasValue)
+                {
+                    if(bIsOK.Value)
+                    {
+                        MessageBox.Show("科室删除完成！");
+                        UpdateAllDate();
+                    }
+                }
+            }
         }
 
         private void EditItemBtn_Click(object sender, RoutedEventArgs e)
@@ -90,6 +106,12 @@ namespace HISGUISetLib.Views
         private void AllDepartmentList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void UpdateAllDate()
+        {
+            var vm = this.DataContext as HISGUISetVM;
+            this.AllDepartmentList.ItemsSource = vm?.GetFindAllDepartment();
         }
     }
 }

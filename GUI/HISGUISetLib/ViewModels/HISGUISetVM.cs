@@ -39,5 +39,17 @@ namespace HISGUISetLib.ViewModels
             list = myd.getALLDepartment();
             return list;
         }
+
+        // 删除科室
+        public bool DeleteDepartment(int departmentID)
+        {
+            CommClient.Department myd = new CommClient.Department();
+            if(myd.DeleteDepartment(departmentID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
