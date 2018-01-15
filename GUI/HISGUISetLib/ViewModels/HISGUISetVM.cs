@@ -51,5 +51,15 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的职位
+        public List<CommContracts.Job> GetAllJob(string strName = "")
+        {
+            CommClient.Job myd = new CommClient.Job();
+
+            List<CommContracts.Job> list = new List<CommContracts.Job>();
+            list = myd.GetAllJob(strName);
+            return list;
+        }
     }
 }

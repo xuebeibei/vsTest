@@ -249,5 +249,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
+
+        [OperationContract]
+        List<CommContracts.Job> GetAllJob(string strName = "");
     }
 }

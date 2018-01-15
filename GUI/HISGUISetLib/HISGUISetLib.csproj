@@ -99,6 +99,9 @@
     <Compile Include="Views\HospitalInfoSetView.xaml.cs">
       <DependentUpon>HospitalInfoSetView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\JobSetView.xaml.cs">
+      <DependentUpon>JobSetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetWorkView.xaml.cs">
       <DependentUpon>SetWorkView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +146,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HospitalInfoSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\JobSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -42,6 +42,7 @@
         <StackPanel Grid.Column="1">
             <local:HospitalInfoSetView x:Name="HospitalSetView" Visibility="Collapsed"></local:HospitalInfoSetView>
             <local:DepartmentSetView x:Name="DepartmentView" Visibility="Collapsed"></local:DepartmentSetView>
+            <local:JobSetView x:Name="JobView" Visibility="Collapsed"></local:JobSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

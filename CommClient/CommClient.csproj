@@ -49,6 +49,7 @@
     <Compile Include="Inpatient.cs" />
     <Compile Include="Inspect.cs" />
     <Compile Include="InspectItem.cs" />
+    <Compile Include="Job.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="MaterialBill.cs" />
     <Compile Include="MaterialItem.cs" />

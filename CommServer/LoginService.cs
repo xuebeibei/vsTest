@@ -476,5 +476,12 @@ namespace CommServer
             BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
             return temp.GetAllChargeFromRecipe(RecipeID);
         }
+
+        public List<CommContracts.Job> GetAllJob(string strName = "")
+        {
+            BLL.Job temp = new BLL.Job();
+            return temp.GetAllJob(strName);
+        }
+
     }
 }
