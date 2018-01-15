@@ -50,58 +50,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201801050744522_PaperTest.cs" />
-    <Compile Include="Migrations\201801050744522_PaperTest.Designer.cs">
-      <DependentUpon>201801050744522_PaperTest.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801050749310_PaperTest1.cs" />
-    <Compile Include="Migrations\201801050749310_PaperTest1.Designer.cs">
-      <DependentUpon>201801050749310_PaperTest1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801050801478_PaperTest2.cs" />
-    <Compile Include="Migrations\201801050801478_PaperTest2.Designer.cs">
-      <DependentUpon>201801050801478_PaperTest2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801061338547_PaperTest3.cs" />
-    <Compile Include="Migrations\201801061338547_PaperTest3.Designer.cs">
-      <DependentUpon>201801061338547_PaperTest3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801070342111_PaperTest4.cs" />
-    <Compile Include="Migrations\201801070342111_PaperTest4.Designer.cs">
-      <DependentUpon>201801070342111_PaperTest4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801070755315_PaperTest5.cs" />
-    <Compile Include="Migrations\201801070755315_PaperTest5.Designer.cs">
-      <DependentUpon>201801070755315_PaperTest5.cs</DependentUpon>
+    <Compile Include="Migrations\201801150513414_PaperTest.cs" />
+    <Compile Include="Migrations\201801150513414_PaperTest.Designer.cs">
+      <DependentUpon>201801150513414_PaperTest.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801050744522_PaperTest.resx">
-      <DependentUpon>201801050744522_PaperTest.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801050749310_PaperTest1.resx">
-      <DependentUpon>201801050749310_PaperTest1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801050801478_PaperTest2.resx">
-      <DependentUpon>201801050801478_PaperTest2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801061338547_PaperTest3.resx">
-      <DependentUpon>201801061338547_PaperTest3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801070342111_PaperTest4.resx">
-      <DependentUpon>201801070342111_PaperTest4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801070755315_PaperTest5.resx">
-      <DependentUpon>201801070755315_PaperTest5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801150513414_PaperTest.resx">
+      <DependentUpon>201801150513414_PaperTest.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
