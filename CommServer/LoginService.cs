@@ -38,10 +38,27 @@ namespace CommServer
             return tempDepart.getAllDepartmentNum();
         }
 
-        public List<CommContracts.Department> getALLDepartment()
+        public List<CommContracts.Department> getALLDepartment(string strName = "")
         {
             BLL.Department tempDepart = new BLL.Department();
-            return tempDepart.getALLDepartment();
+            return tempDepart.getALLDepartment(strName);
+        }
+        public bool SaveDepartment(CommContracts.Department department)
+        {
+            BLL.Department temp = new BLL.Department();
+            return temp.SaveDepartment(department);
+        }
+
+        public bool UpdateDepartment(CommContracts.Department department)
+        {
+            BLL.Department temp = new BLL.Department();
+            return temp.UpdateDepartment(department);
+        }
+
+        public bool DeleteDepartment(int departmentID)
+        {
+            BLL.Department temp = new BLL.Department();
+            return temp.DeleteDepartment(departmentID);
         }
 
         public List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval)

@@ -8,6 +8,7 @@ using System.Data.Entity;
 using System.Data;
 using System.Globalization;
 using System.Collections;
+using AutoMapper;
 
 namespace BLL
 {
@@ -24,12 +25,14 @@ namespace BLL
             }
         }
 
-        public List<CommContracts.Department> getALLDepartment()
+        public List<CommContracts.Department> getALLDepartment(string strName = "")
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
 
                 IEnumerable<DAL.Department> queryResultList = from u in ctx.Departments
+                                                              where u.Name.StartsWith(strName) || 
+                                                              u.Abbr.StartsWith(strName)
                                                                         select u;
                 List<CommContracts.Department> myList = new List<CommContracts.Department>();
 
@@ -47,6 +50,91 @@ namespace BLL
                 }
                 return myList;
             }
+        }
+
+        public bool SaveDepartment(CommContracts.Department department)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Department, DAL.Department>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.Department temp = new DAL.Department();
+                temp = mapper.Map<DAL.Department>(department);
+                
+                ctx.Departments.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteDepartment(int departmentID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Departments.FirstOrDefault(m => m.ID == departmentID);
+                if(temp != null)
+                {
+                    ctx.Departments.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch(Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateDepartment(CommContracts.Department department)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Departments.FirstOrDefault(m => m.ID == department.ID);
+                if (temp != null)
+                {
+                    //var config = new MapperConfiguration(cfg =>
+                    //{
+                    //    cfg.CreateMap<CommContracts.Department, DAL.Department>().ForMember(x=>x.ID, opt => opt.Ignore()) ;
+                    //});
+                    //var mapper = config.CreateMapper();
+
+                    //temp = mapper.Map<DAL.Department>(department);
+                    // 这里使用mapper来更新数据之后保存不上，不知为何
+                    temp.Name = department.Name;
+                    temp.Abbr = department.Abbr;
+                    temp.DepartmentEnum = (DAL.DepartmentEnum)department.DepartmentEnum;
+                    temp.ParentID = department.ParentDepartmentID;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

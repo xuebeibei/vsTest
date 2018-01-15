@@ -21,7 +21,16 @@ namespace CommContracts
         int getAllDepartmentNum();
 
         [OperationContract]
-        List<CommContracts.Department> getALLDepartment();
+        List<CommContracts.Department> getALLDepartment(string strName = "");
+
+        [OperationContract]
+        bool SaveDepartment(CommContracts.Department department);
+
+        [OperationContract]
+        bool UpdateDepartment(CommContracts.Department department);
+
+        [OperationContract]
+        bool DeleteDepartment(int departmentID);
 
         [OperationContract]
         List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval);
