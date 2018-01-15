@@ -54,6 +54,7 @@ namespace HISGUISetLib.Views
             {
                 Department.Name = this.NameEdit.Text.Trim();
                 Department.Abbr = this.AbbrEdit.Text.Trim();
+                Department.DepartmentEnum = (CommContracts.DepartmentEnum)this.DepartmentCombo.SelectedItem;
 
                 CommClient.Department myd = new CommClient.Department();
                 if (myd.UpdateDepartment(Department))
@@ -66,6 +67,8 @@ namespace HISGUISetLib.Views
             {
                 CommContracts.Department department = new CommContracts.Department();
                 department.Name = this.NameEdit.Text.Trim();
+                department.Abbr = this.AbbrEdit.Text.Trim();
+                department.DepartmentEnum = (CommContracts.DepartmentEnum)this.DepartmentCombo.SelectedItem;
 
                 CommClient.Department myd = new CommClient.Department();
                 if (myd.SaveDepartment(department))

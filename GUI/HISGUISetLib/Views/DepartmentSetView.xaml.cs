@@ -133,6 +133,5 @@ namespace HISGUISetLib.Views
             this.AllDepartmentList.ItemsSource = vm?.GetFindAllDepartment(strName);
         }
 
-       
     }
 }
