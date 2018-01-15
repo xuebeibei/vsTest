@@ -31,12 +31,12 @@ namespace HISGUISetLib.ViewModels
 
 
         // 得到所有的部门
-        public List<CommContracts.Department> GetFindAllDepartment()
+        public List<CommContracts.Department> GetFindAllDepartment(string strName = "")
         {
             CommClient.Department myd = new CommClient.Department();
 
             List<CommContracts.Department> list = new List<CommContracts.Department>();
-            list = myd.getALLDepartment();
+            list = myd.getALLDepartment(strName);
             return list;
         }
 

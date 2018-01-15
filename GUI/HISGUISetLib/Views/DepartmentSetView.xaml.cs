@@ -20,6 +20,7 @@ using HISGUICore;
 using HISGUISetLib.ViewModels;
 using System.Data;
 using HISGUICore.MyContorls;
+using Microsoft.Win32;
 
 namespace HISGUISetLib.Views
 {
@@ -64,7 +65,8 @@ namespace HISGUISetLib.Views
 
         private void FindItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            UpdateAllDate();
+            string strName = this.FindItemNameBox.Text.Trim();
+            UpdateAllDate(strName);
         }
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
@@ -112,7 +114,7 @@ namespace HISGUISetLib.Views
 
         private void ExportItemBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            ExportToExecl();
         }
 
         private void ImportItemBtn_Click(object sender, RoutedEventArgs e)
@@ -125,10 +127,12 @@ namespace HISGUISetLib.Views
 
         }
 
-        private void UpdateAllDate()
+        private void UpdateAllDate(string strName = "")
         {
             var vm = this.DataContext as HISGUISetVM;
-            this.AllDepartmentList.ItemsSource = vm?.GetFindAllDepartment();
+            this.AllDepartmentList.ItemsSource = vm?.GetFindAllDepartment(strName);
         }
+
+       
     }
 }

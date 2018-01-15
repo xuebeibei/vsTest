@@ -21,7 +21,7 @@ namespace CommContracts
         int getAllDepartmentNum();
 
         [OperationContract]
-        List<CommContracts.Department> getALLDepartment();
+        List<CommContracts.Department> getALLDepartment(string strName = "");
 
         [OperationContract]
         bool SaveDepartment(CommContracts.Department department);

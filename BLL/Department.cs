@@ -25,12 +25,14 @@ namespace BLL
             }
         }
 
-        public List<CommContracts.Department> getALLDepartment()
+        public List<CommContracts.Department> getALLDepartment(string strName = "")
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
 
                 IEnumerable<DAL.Department> queryResultList = from u in ctx.Departments
+                                                              where u.Name.StartsWith(strName) || 
+                                                              u.Abbr.StartsWith(strName)
                                                                         select u;
                 List<CommContracts.Department> myList = new List<CommContracts.Department>();
 
