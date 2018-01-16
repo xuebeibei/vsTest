@@ -45,6 +45,7 @@
             <local:JobSetView x:Name="JobView"></local:JobSetView>
             <local:StorehouseSetView x:Name="StorehourseView"></local:StorehouseSetView>
             <local:SupplierSetView x:Name="SupplierView"></local:SupplierSetView>
+            <local:SickRoomSetView x:Name="SickRoomView"></local:SickRoomSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

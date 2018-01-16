@@ -40,5 +40,21 @@ namespace CommContracts
         public int ParentDepartmentID { get; set; }
         [DataMember]
         public DepartmentEnum DepartmentEnum { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var de = obj as Department;
+            if (de == null)
+                return false;
+            if (de.ID == this.ID)
+                return true;
+            else
+                return false;
+        }
     }
 }

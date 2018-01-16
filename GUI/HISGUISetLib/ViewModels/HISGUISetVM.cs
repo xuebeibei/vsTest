@@ -117,5 +117,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的病床
+        public List<CommContracts.SickRoom> GetAllSickRoom(string strName = "")
+        {
+            CommClient.SickRoom myd = new CommClient.SickRoom();
+
+            List<CommContracts.SickRoom> list = new List<CommContracts.SickRoom>();
+            list = myd.GetAllSickRoom(strName);
+            return list;
+        }
+
+        // 删除供病床
+        public bool DeleteSickRoom(int sickRoomID)
+        {
+            CommClient.SickRoom myd = new CommClient.SickRoom();
+            if (myd.DeleteSickRoom(sickRoomID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

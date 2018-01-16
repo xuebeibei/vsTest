@@ -169,6 +169,8 @@ namespace DAL
         public DbSet<RecipeChargeBill> RecipeChargeBills { get; set; }
         public DbSet<RecipeChargeDetail> RecipeChargeDetails { get; set; }
 
+        public DbSet<SickRoom> SickRooms { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -224,6 +226,7 @@ namespace DAL
             this.DepartmentEnum = DepartmentEnum.其他科室;
             this.ParentID = 0;
             Employees = new List<Employee>();
+            SickRooms = new List<SickRoom>();
         }
         public int ID { get; set; }
         public string Name { get; set; }
@@ -232,6 +235,7 @@ namespace DAL
         public int ParentID { get; set; }    // 父类科室
 
         public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<SickRoom> SickRooms { get; set; }
     }
 
     public class SignalSource
@@ -1182,5 +1186,25 @@ namespace DAL
         public int Rebate { get; set; }
         public virtual RecipeChargeBill RecipeChargeBill { get; set; }
         public virtual StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
+    }
+
+    public enum SickRoomEnum
+    {
+        普通病房,
+        重症病房
+    }
+
+    public class SickRoom
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        
+        public SickRoomEnum SickRoomEnum { get; set; }
+
+        public int DepartmentID { get; set; }
+
+        public string Address { get; set; }
+
+        public virtual Department Department { get; set; }
     }
 }

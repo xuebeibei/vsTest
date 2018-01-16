@@ -282,5 +282,17 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveStoreRoom(CommContracts.StoreRoom storeRoom);
+
+        [OperationContract]
+        List<CommContracts.SickRoom> GetAllSickRoom(string strName = "");
+
+        [OperationContract]
+        bool UpdateSickRoom(CommContracts.SickRoom sickRoom);
+
+        [OperationContract]
+        bool SaveSickRoom(CommContracts.SickRoom sickRoom);
+
+        [OperationContract]
+        bool DeleteSickRoom(int sickRoomID);
     }
 }

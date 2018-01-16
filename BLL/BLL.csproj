@@ -76,6 +76,7 @@
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeChargeBill.cs" />
     <Compile Include="Registration.cs" />
+    <Compile Include="SickRoom.cs" />
     <Compile Include="SignalSource.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />

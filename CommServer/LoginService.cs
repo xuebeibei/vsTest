@@ -544,6 +544,28 @@ namespace CommServer
             return temp.SaveStoreRoom(storeRoom);
         }
 
+        public List<CommContracts.SickRoom> GetAllSickRoom(string strName = "")
+        {
+            BLL.SickRoom temp = new BLL.SickRoom();
+            return temp.GetAllSickRoom(strName);
+        }
 
+        public bool UpdateSickRoom(CommContracts.SickRoom sickRoom)
+        {
+            BLL.SickRoom temp = new BLL.SickRoom();
+            return temp.UpdateSickRoom(sickRoom);
+        }
+
+        public bool SaveSickRoom(CommContracts.SickRoom sickRoom)
+        {
+            BLL.SickRoom temp = new BLL.SickRoom();
+            return temp.SaveSickRoom(sickRoom);
+        }
+
+        public bool DeleteSickRoom(int sickRoomID)
+        {
+            BLL.SickRoom temp = new BLL.SickRoom();
+            return temp.DeleteSickRoom(sickRoomID);
+        }
     }
 }
