@@ -7,52 +7,46 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class SickRoom
+    public class SickBed
     {
-        public List<CommContracts.SickRoom> GetAllSickRoom(string strName = "")
+        public List<CommContracts.SickBed> GetAllSickBed(string strName = "")
         {
-            List<CommContracts.SickRoom> list = new List<CommContracts.SickRoom>();
+            List<CommContracts.SickBed> list = new List<CommContracts.SickBed>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.SickRooms
+                var query = from a in ctx.SickBeds
                             where a.Name.StartsWith(strName)
                             select a;
-                foreach (DAL.SickRoom ass in query)
+                foreach (DAL.SickBed ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.SickRoom, CommContracts.SickRoom>();
+                        cfg.CreateMap<DAL.SickBed, CommContracts.SickBed>();
                     });
                     var mapper = config.CreateMapper();
-                    //CommContracts.Department department = new CommContracts.Department();
-                    //department.ID = ass.Department.ID;
-                    //department.Name = ass.Department.Name;
-                    //department.ParentID = ass.Department.ParentID;
-                    //department.IsDoctorDepartment = (ass.Department.DepartmentEnum == DAL.DepartmentEnum.临床科室);
 
-                    CommContracts.SickRoom temp = mapper.Map<CommContracts.SickRoom>(ass);
-                    //temp.Department = department;
+                    CommContracts.SickBed temp = mapper.Map<CommContracts.SickBed>(ass);
                     list.Add(temp);
                 }
             }
             return list;
         }
 
-        public bool SaveSickRoom(CommContracts.SickRoom sickRoom)
+        public bool SaveSickBed(CommContracts.SickBed sickBed)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.SickRoom, DAL.SickRoom>();
+                    cfg.CreateMap<CommContracts.SickBed, DAL.SickBed>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.SickRoom temp = new DAL.SickRoom();
-                temp = mapper.Map<DAL.SickRoom>(sickRoom);
+                DAL.SickBed temp = new DAL.SickBed();
+                temp = mapper.Map<DAL.SickBed>(sickBed);
 
-                ctx.SickRooms.Add(temp);
+                ctx.SickBeds.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -65,14 +59,14 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteSickRoom(int sickRoomID)
+        public bool DeleteSickBed(int sickBedID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SickRooms.FirstOrDefault(m => m.ID == sickRoomID);
+                var temp = ctx.SickBeds.FirstOrDefault(m => m.ID == sickBedID);
                 if (temp != null)
                 {
-                    ctx.SickRooms.Remove(temp);
+                    ctx.SickBeds.Remove(temp);
                 }
 
                 try
@@ -87,17 +81,18 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateSickRoom(CommContracts.SickRoom sickRoom)
+        public bool UpdateSickBed(CommContracts.SickBed sickBed)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SickRooms.FirstOrDefault(m => m.ID == sickRoom.ID);
+                var temp = ctx.SickBeds.FirstOrDefault(m => m.ID == sickBed.ID);
                 if (temp != null)
                 {
-                    temp.Name = sickRoom.Name;
-                    temp.SickRoomEnum = (DAL.SickRoomEnum)sickRoom.SickRoomEnum;
-                    temp.DepartmentID = sickRoom.DepartmentID;
-                    temp.Address = sickRoom.Address;
+                    temp.Name = sickBed.Name;
+                    temp.Price = sickBed.Price;
+                    temp.Unit = sickBed.Unit;
+                    temp.SickRoomID = sickBed.SickRoomID;
+                    temp.Remarks = sickBed.Remarks;
                 }
                 else
                 {

@@ -43,9 +43,8 @@ namespace BLL
                     temp1.ID = tem.ID;
                     temp1.Name = tem.Name;
                     temp1.Abbr = tem.Abbr;
-                    temp1.IsDoctorDepartment = (tem.DepartmentEnum == DAL.DepartmentEnum.临床科室);
                     temp1.DepartmentEnum = (CommContracts.DepartmentEnum)tem.DepartmentEnum;
-                    temp1.ParentDepartmentID = tem.ParentID;
+                    temp1.ParentID = tem.ParentID;
 
                     myList.Add(temp1);
                 }
@@ -119,7 +118,7 @@ namespace BLL
                     temp.Name = department.Name;
                     temp.Abbr = department.Abbr;
                     temp.DepartmentEnum = (DAL.DepartmentEnum)department.DepartmentEnum;
-                    temp.ParentID = department.ParentDepartmentID;
+                    temp.ParentID = department.ParentID;
                 }
                 else
                 {

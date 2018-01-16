@@ -24,6 +24,7 @@
                 <TreeViewItem Header="库房管理" Selected="StorehouseSet"/>
                 <TreeViewItem Header="供应商管理" Selected="SupplierSet"/>
                 <TreeViewItem Header="病房管理" Selected="SickRoomSet"/>
+                <TreeViewItem Header="病床管理" Selected="SickBedSet"/>
             </TreeViewItem>
             <TreeViewItem Header="用户档案" >
                 <TreeViewItem Header="人员管理" Selected="EmployeeSet"/>
@@ -46,6 +47,7 @@
             <local:StorehouseSetView x:Name="StorehourseView"></local:StorehouseSetView>
             <local:SupplierSetView x:Name="SupplierView"></local:SupplierSetView>
             <local:SickRoomSetView x:Name="SickRoomView"></local:SickRoomSetView>
+            <local:SickBedSetView x:Name="SickBedView"></local:SickBedSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

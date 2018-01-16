@@ -151,12 +151,12 @@ namespace HISGUIRegistrationLib.ViewModels
 
         public List<CommContracts.Department> getTrees(int parentid, List<CommContracts.Department> nodes)
         {
-            List<CommContracts.Department> mainNodes = nodes.Where(x => x.ParentDepartmentID == parentid).ToList<CommContracts.Department>();
-            List<CommContracts.Department> otherNodes = nodes.Where(x => x.ParentDepartmentID != parentid).ToList<CommContracts.Department>();
-            foreach (CommContracts.Department dpt in mainNodes)
-            {
-                dpt.Nodes = getTrees(dpt.ID, otherNodes);
-            }
+            List<CommContracts.Department> mainNodes = nodes.Where(x => x.ParentID == parentid).ToList<CommContracts.Department>();
+            List<CommContracts.Department> otherNodes = nodes.Where(x => x.ParentID != parentid).ToList<CommContracts.Department>();
+            //foreach (CommContracts.Department dpt in mainNodes)
+            //{
+            //    dpt.Nodes = getTrees(dpt.ID, otherNodes);
+            //}
             return mainNodes;
         }
 

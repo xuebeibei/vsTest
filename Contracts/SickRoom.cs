@@ -28,5 +28,22 @@ namespace CommContracts
         public string Address { get; set; }
         [DataMember]
         public Department Department { get; set; }
+        //[DataMember]
+        //public List<SickBed> SickBeds { get; set; }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var ro = obj as SickRoom;
+            if (ro == null)
+                return false;
+            if (ro.ID != this.ID)
+                return false;
+            return true;
+        }
     }
 }

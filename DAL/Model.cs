@@ -170,6 +170,7 @@ namespace DAL
         public DbSet<RecipeChargeDetail> RecipeChargeDetails { get; set; }
 
         public DbSet<SickRoom> SickRooms { get; set; }
+        public DbSet<SickBed> SickBeds { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -1196,9 +1197,13 @@ namespace DAL
 
     public class SickRoom
     {
+        public SickRoom()
+        {
+            SickBeds = new List<SickBed>();
+        }
         public int ID { get; set; }
         public string Name { get; set; }
-        
+
         public SickRoomEnum SickRoomEnum { get; set; }
 
         public int DepartmentID { get; set; }
@@ -1206,5 +1211,19 @@ namespace DAL
         public string Address { get; set; }
 
         public virtual Department Department { get; set; }
+        public virtual ICollection<SickBed> SickBeds { get; set; }
+    }
+
+    public class SickBed
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        [DecimalPrecision(18, 4)]
+        public decimal Price { get; set; }
+        public string Unit { get; set; }
+        public int SickRoomID { get; set; }
+        public string Remarks { get; set; }
+
+        public virtual SickRoom SickRoom { get; set; }
     }
 }

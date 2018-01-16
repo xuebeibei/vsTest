@@ -567,5 +567,29 @@ namespace CommServer
             BLL.SickRoom temp = new BLL.SickRoom();
             return temp.DeleteSickRoom(sickRoomID);
         }
+
+        public List<CommContracts.SickBed> GetAllSickBed(string strName = "")
+        {
+            BLL.SickBed temp = new BLL.SickBed();
+            return temp.GetAllSickBed(strName);
+        }
+
+        public bool UpdateSickBed(CommContracts.SickBed sickBed)
+        {
+            BLL.SickBed temp = new BLL.SickBed();
+            return temp.UpdateSickBed(sickBed);
+        }
+
+        public bool DeleteSickBed(int jobID)
+        {
+            BLL.SickBed temp = new BLL.SickBed();
+            return temp.DeleteSickBed(jobID);
+        }
+
+        public bool SaveSickBed(CommContracts.SickBed sickBed)
+        {
+            BLL.SickBed temp = new BLL.SickBed();
+            return temp.SaveSickBed(sickBed);
+        }
     }
 }

@@ -294,5 +294,18 @@ namespace CommContracts
 
         [OperationContract]
         bool DeleteSickRoom(int sickRoomID);
+
+
+        [OperationContract]
+        List<CommContracts.SickBed> GetAllSickBed(string strName = "");
+
+        [OperationContract]
+        bool UpdateSickBed(CommContracts.SickBed sickBed);
+
+        [OperationContract]
+        bool DeleteSickBed(int jobID);
+
+        [OperationContract]
+        bool SaveSickBed(CommContracts.SickBed sickBed);
     }
 }
