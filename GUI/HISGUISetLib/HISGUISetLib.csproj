@@ -99,6 +99,9 @@
     <Compile Include="Views\EditStorehouseView.xaml.cs">
       <DependentUpon>EditStorehouseView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditSupplierView.xaml.cs">
+      <DependentUpon>EditSupplierView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HISGUISetView.xaml.cs">
       <DependentUpon>HISGUISetView.xaml</DependentUpon>
     </Compile>
@@ -113,6 +116,9 @@
     </Compile>
     <Compile Include="Views\StorehouseSetView.xaml.cs">
       <DependentUpon>StorehouseSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupplierSetView.xaml.cs">
+      <DependentUpon>SupplierSetView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -158,6 +164,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditSupplierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HISGUISetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -175,6 +185,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\StorehouseSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupplierSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

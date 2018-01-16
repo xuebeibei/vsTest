@@ -26,5 +26,20 @@ namespace CommClient
             return client.GetAllSuppliers(strFindName);
         }
 
+        public bool UpdateSupplier(CommContracts.Supplier supplier)
+        {
+            return client.UpdateSupplier(supplier);
+        }
+
+        public bool SaveSupplier(CommContracts.Supplier supplier)
+        {
+            return client.SaveSupplier(supplier);
+        }
+
+        public bool DeleteSupplier(int supplierID)
+        {
+            return client.DeleteSupplier(supplierID);
+        }
+
     }
 }

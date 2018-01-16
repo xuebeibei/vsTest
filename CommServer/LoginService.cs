@@ -383,6 +383,24 @@ namespace CommServer
             return temp.GetAllSuppliers(strFindName);
         }
 
+        public bool UpdateSupplier(CommContracts.Supplier supplier)
+        {
+            BLL.Supplier temp = new BLL.Supplier();
+            return temp.UpdateSupplier(supplier);
+        }
+
+        public bool SaveSupplier(CommContracts.Supplier supplier)
+        {
+            BLL.Supplier temp = new BLL.Supplier();
+            return temp.SaveSupplier(supplier);
+        }
+
+        public bool DeleteSupplier(int supplierID)
+        {
+            BLL.Supplier temp = new BLL.Supplier();
+            return temp.DeleteSupplier(supplierID);
+        }
+
         public bool ReCheckMedicineInStore(CommContracts.MedicineInStore medicineInStore)
         {
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();

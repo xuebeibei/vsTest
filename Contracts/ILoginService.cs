@@ -196,6 +196,15 @@ namespace CommContracts
         List<CommContracts.Supplier> GetAllSuppliers(string strFindName);
 
         [OperationContract]
+        bool UpdateSupplier(CommContracts.Supplier supplier);
+
+        [OperationContract]
+        bool SaveSupplier(CommContracts.Supplier supplier);
+
+        [OperationContract]
+        bool DeleteSupplier(int supplierID);
+
+        [OperationContract]
         bool ReCheckMedicineInStore(CommContracts.MedicineInStore medicineInStore);
 
         [OperationContract]

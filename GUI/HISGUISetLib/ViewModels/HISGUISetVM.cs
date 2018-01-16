@@ -95,5 +95,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的供应商
+        public List<CommContracts.Supplier> GetAllSupplier(string strName = "")
+        {
+            CommClient.Supplier myd = new CommClient.Supplier();
+
+            List<CommContracts.Supplier> list = new List<CommContracts.Supplier>();
+            list = myd.GetAllSuppliers(strName);
+            return list;
+        }
+
+        // 删除供应商
+        public bool DeleteSupplier(int supplierID)
+        {
+            CommClient.Supplier myd = new CommClient.Supplier();
+            if (myd.DeleteSupplier(supplierID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

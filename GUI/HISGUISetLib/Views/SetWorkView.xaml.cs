@@ -50,6 +50,7 @@ namespace HISGUISetLib.Views
             DepartmentView.Visibility = Visibility.Collapsed;
             JobView.Visibility = Visibility.Collapsed;
             StorehourseView.Visibility = Visibility.Collapsed;
+            SupplierView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -94,6 +95,7 @@ namespace HISGUISetLib.Views
         private void SupplierSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            SupplierView.Visibility = Visibility.Visible;
         }
 
         private void SickRoomSet(object sender, RoutedEventArgs e)

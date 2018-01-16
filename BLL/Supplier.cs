@@ -36,5 +36,82 @@ namespace BLL
             }
             return list;
         }
+
+        public bool SaveSupplier(CommContracts.Supplier supplier)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Supplier, DAL.Supplier>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.Supplier temp = new DAL.Supplier();
+                temp = mapper.Map<DAL.Supplier>(supplier);
+
+                ctx.Suppliers.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteSupplier(int supplierID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Suppliers.FirstOrDefault(m => m.ID == supplierID);
+                if (temp != null)
+                {
+                    ctx.Suppliers.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateSupplier(CommContracts.Supplier supplier)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Suppliers.FirstOrDefault(m => m.ID == supplier.ID);
+                if (temp != null)
+                {
+                    temp.Name = supplier.Name;
+                    temp.Contents = supplier.Contents;
+                    temp.Tel = supplier.Tel;
+                    temp.Address = supplier.Address;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
