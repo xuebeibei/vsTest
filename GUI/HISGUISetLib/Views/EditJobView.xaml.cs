@@ -26,7 +26,7 @@ namespace HISGUISetLib.Views
         {
             InitializeComponent();
             JobCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.JobEnum));
-            JobCombo.SelectedItem = CommContracts.JobEnum.Initial;
+            JobCombo.SelectedItem = CommContracts.JobEnum.初级;
             bIsEdit = false;
             if (job != null)
             {

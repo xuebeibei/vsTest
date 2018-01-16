@@ -16,9 +16,9 @@ namespace DAL
     public enum TriageStatusEnum { no, yes };
     public enum JobEnum
     {
-        Initial,        // 初级
-        Middle,         // 中级
-        Senior          // 高级
+        初级,        // 初级
+        中级,         // 中级
+        高级          // 高级
     }
     public enum DepartmentEnum
     {
@@ -379,7 +379,7 @@ namespace DAL
         {
             Name = "";
             Employees = new List<Employee>();
-            JobEnum = JobEnum.Initial;
+            JobEnum = JobEnum.初级;
         }
         public int ID { get; set; }
         public string Name { get; set; }

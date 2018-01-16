@@ -9,9 +9,9 @@ namespace CommContracts
 {
     public enum JobEnum
     {
-        Initial,        // 初级
-        Middle,         // 中级
-        Senior          // 高级
+        初级,        // 初级
+        中级,         // 中级
+        高级          // 高级
     }
     [DataContract]
     public class Job
