@@ -82,10 +82,17 @@ namespace CommContracts
         bool DeleteEmployee(int employeeID);
 
         [OperationContract]
-        List<CommContracts.Medicine> getAllMedicine();
+        CommContracts.Medicine GetMedicine(int id);
 
         [OperationContract]
-        CommContracts.Medicine GetMedicine(int id);
+        List<CommContracts.Medicine> GetAllMedicine(string strName = "");
+
+        [OperationContract]
+        bool UpdateMedicine(CommContracts.Medicine Medicine);
+        [OperationContract]
+        bool SaveMedicine(CommContracts.Medicine Medicine);
+        [OperationContract]
+        bool DeleteMedicine(int MedicineID);
 
         [OperationContract]
         bool SaveTriage(int nDoctorID, int nRegistrationID);

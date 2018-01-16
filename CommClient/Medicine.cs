@@ -20,14 +20,30 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
         
-        public List<CommContracts.Medicine> getAllMedicine()
-        {
-            return client.getAllMedicine();
-        }
 
         public CommContracts.Medicine GetMedicine(int id)
         {
             return client.GetMedicine(id);
+        }
+
+        public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
+        {
+            return client.GetAllMedicine(strName);
+        }
+
+        public bool UpdateMedicine(CommContracts.Medicine Medicine)
+        {
+            return client.UpdateMedicine(Medicine);
+        }
+
+        public bool SaveMedicine(CommContracts.Medicine Medicine)
+        {
+            return client.SaveMedicine(Medicine);
+        }
+
+        public bool DeleteMedicine(int MedicineID)
+        {
+            return client.DeleteMedicine(MedicineID);
         }
 
     }

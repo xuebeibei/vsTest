@@ -44,7 +44,7 @@ namespace HISGUICore.MyContorls
             if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
             {
                 CommClient.Medicine myd = new CommClient.Medicine();
-                List<CommContracts.Medicine> list = myd.getAllMedicine();
+                List<CommContracts.Medicine> list = myd.GetAllMedicine();
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();

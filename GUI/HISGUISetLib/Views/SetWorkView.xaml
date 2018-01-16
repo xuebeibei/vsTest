@@ -50,6 +50,7 @@
             <local:SickBedSetView x:Name="SickBedView" Visibility="Collapsed"></local:SickBedSetView>
             <local:EmployeeSetView x:Name="EmployeeView" Visibility="Collapsed"></local:EmployeeSetView>
             <local:UserSetView x:Name="UserView" Visibility="Collapsed"></local:UserSetView>
+            <local:MedicineSetView x:Name="MedicineView" Visibility="Collapsed"></local:MedicineSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

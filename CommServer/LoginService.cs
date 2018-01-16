@@ -170,16 +170,34 @@ namespace CommServer
             return temp.DeleteEmployee(employeeID);
         }
 
-        public List<CommContracts.Medicine> getAllMedicine()
-        {
-            BLL.Medicine temp = new BLL.Medicine();
-            return temp.getAllMedicine();
-        }
-
         public CommContracts.Medicine GetMedicine(int id)
         {
             BLL.Medicine temp = new BLL.Medicine();
             return temp.GetMedicine(id);
+        }
+
+        public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.GetAllMedicine(strName);
+        }
+
+        public bool UpdateMedicine(CommContracts.Medicine Medicine)
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.UpdateMedicine(Medicine);
+        }
+
+        public bool SaveMedicine(CommContracts.Medicine Medicine)
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.SaveMedicine(Medicine);
+        }
+
+        public bool DeleteMedicine(int MedicineID)
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.DeleteMedicine(MedicineID);
         }
 
         public bool SaveTriage(int nDoctorID, int nRegistrationID)

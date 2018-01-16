@@ -205,5 +205,28 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的用户
+        public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
+        {
+            CommClient.Medicine myd = new CommClient.Medicine();
+
+            List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
+            list = myd.GetAllMedicine(strName);
+            return list;
+            return list;
+        }
+
+        // 删除供用户
+        public bool DeleteMedicine(int userID)
+        {
+            CommClient.Medicine myd = new CommClient.Medicine();
+            if (myd.DeleteMedicine(userID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }
