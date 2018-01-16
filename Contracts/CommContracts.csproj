@@ -54,7 +54,7 @@
     <Compile Include="InspectDetail.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
-    <Compile Include="LoginUser.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="MaterialBill.cs" />
     <Compile Include="MaterialBillDetail.cs" />

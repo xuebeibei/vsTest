@@ -9,13 +9,20 @@ using System.ServiceModel;
 
 namespace CommClient
 {
-    public class Login
+    public class User
     {
         private ILoginService client;
         private string username;
         private string password;
 
-        public Login(string username, string password)
+        public User()
+        {
+            client = ChannelFactory<ILoginService>.CreateChannel(
+                new NetTcpBinding(),
+                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
+        }
+
+        public User(string username, string password)
         {
             this.username = username;
             this.password = password;
@@ -26,7 +33,7 @@ namespace CommClient
 
         public bool Authenticate()
         {
-            LoginUser login = new LoginUser();
+            CommContracts.User login = new CommContracts.User();
             login.Username = username;
             login.Password = password;
             return client.UserAuthenticate(login);
@@ -34,10 +41,30 @@ namespace CommClient
 
         public bool Logout()
         {
-            LoginUser login = new LoginUser();
+            CommContracts.User login = new CommContracts.User();
             login.Username = username;
             login.Password = password;
             return client.UserLogout(login);
+        }
+
+        public List<CommContracts.User> GetAllLoginUser(string strName = "")
+        {
+            return client.GetAllLoginUser(strName);
+        }
+
+        public bool UpdateLoginUser(CommContracts.User job)
+        {
+            return client.UpdateLoginUser(job);
+        }
+
+        public bool SaveLoginUser(CommContracts.User job)
+        {
+            return client.SaveLoginUser(job);
+        }
+
+        public bool DeleteLoginUser(int jobID)
+        {
+            return client.DeleteLoginUser(jobID);
         }
     }
 }

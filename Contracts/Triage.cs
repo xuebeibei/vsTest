@@ -23,7 +23,7 @@ namespace CommContracts
         [DataMember]
         public int DoctorID { get; set; }                      // 分诊医生ID 
         [DataMember]
-        public LoginUser User { get; set; }                    // 分诊经办人
+        public User User { get; set; }                    // 分诊经办人
         [DataMember]
         public DateTime DateTime { get; set; }                 // 分诊时间
     }

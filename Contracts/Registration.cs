@@ -37,7 +37,7 @@ namespace CommContracts
         [DataMember]
         public SignalSource SignalSource { get; set; }            // 号源
         [DataMember]
-        public LoginUser RegisterUser { get; set; }                    // 经办人
+        public User RegisterUser { get; set; }                    // 经办人
 
     }
 }

@@ -19,14 +19,38 @@ namespace CommServer
             this.hostApp = hostApp;
         }
 
-        public bool UserAuthenticate(LoginUser l)
+        public bool UserAuthenticate(User l)
         {
             // 这里调用BLL中的逻辑
             BLL.Login login = new BLL.Login(l.Username, l.Password);
             return login.Authenticate();
         }
 
-        public bool UserLogout(LoginUser l)
+        public List<CommContracts.User> GetAllLoginUser(string strName = "")
+        {
+            BLL.Login login = new BLL.Login();
+            return login.GetAllLoginUser(strName);
+        }
+
+        public bool UpdateLoginUser(CommContracts.User job)
+        {
+            BLL.Login login = new BLL.Login();
+            return login.UpdateLoginUser(job);
+        }
+
+        public bool SaveLoginUser(CommContracts.User job)
+        {
+            BLL.Login login = new BLL.Login();
+            return login.SaveLoginUser(job);
+        }
+
+        public bool DeleteLoginUser(int jobID)
+        {
+            BLL.Login login = new BLL.Login();
+            return login.DeleteLoginUser(jobID);
+        }
+
+        public bool UserLogout(User l)
         {
             BLL.Login login = new BLL.Login(l.Username, l.Password);
             return login.Logout();

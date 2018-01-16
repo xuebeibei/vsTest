@@ -201,7 +201,7 @@ namespace DAL
         public string Username { get; set; }
         public string Password { get; set; }
         public LoginStatus Status { get; set; }
-        public DateTime LastLogin { get; set; }
+        public DateTime? LastLogin { get; set; }
 
         public int EmployeeID { get; set; }
         public virtual Employee Employee { get; set; }

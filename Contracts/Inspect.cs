@@ -29,7 +29,7 @@ namespace CommContracts
         [DataMember]
         public int WriteUserID { get; set; }                      // 开具医生
         [DataMember]
-        public LoginUser WriteUser { get; set; }               // 开具医生
+        public User WriteUser { get; set; }               // 开具医生
         [DataMember]
         public List<InspectDetail> InspectDetails { get; set; }
 

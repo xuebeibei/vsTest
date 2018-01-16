@@ -25,16 +25,16 @@ using Microsoft.Win32;
 namespace HISGUISetLib.Views
 {
     [Export]
-    [Export("SickBedSetView", typeof(SickBedSetView))]
-    public partial class SickBedSetView : HISGUIViewBase
+    [Export("UserSetView", typeof(UserSetView))]
+    public partial class UserSetView : HISGUIViewBase
     {
-        public SickBedSetView()
+        public UserSetView()
         {
             InitializeComponent();
-            this.Loaded += SickBedSetView_Loaded;
+            this.Loaded += UserSetView_Loaded;
         }
 
-        private void SickBedSetView_Loaded(object sender, RoutedEventArgs e)
+        private void UserSetView_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateAllDate();
         }
@@ -45,7 +45,7 @@ namespace HISGUISetLib.Views
             set { this.VM = value; }
         }
 
-        private void AllSickBedList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void AllUserList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
         }
@@ -58,37 +58,37 @@ namespace HISGUISetLib.Views
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            // 新增病床
+            // 新增用户
             var window = new Window();
 
-            EditSickBedView eidtSickBed = new EditSickBedView();
-            window.Content = eidtSickBed;
+            EditUserView eidtUser = new EditUserView();
+            window.Content = eidtUser;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 500;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
             {
-                MessageBox.Show("病床新建完成！");
+                MessageBox.Show("用户新建完成！");
                 UpdateAllDate();
             }
         }
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            var currentSickBed = this.AllSickBedList.SelectedItem as CommContracts.SickBed;
-            if (currentSickBed == null)
+            var currentUser = this.AllUserList.SelectedItem as CommContracts.User;
+            if (currentUser == null)
                 return;
 
-            if (MessageBox.Show("确认删除该病床？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("确认删除该用户？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 var vm = this.DataContext as HISGUISetVM;
-                bool? bIsOK = vm?.DeleteSickBed(currentSickBed.ID);
+                bool? bIsOK = vm?.DeleteUser(currentUser.ID);
                 if (bIsOK.HasValue)
                 {
                     if (bIsOK.Value)
                     {
-                        MessageBox.Show("病床删除完成！");
+                        MessageBox.Show("用户删除完成！");
                         UpdateAllDate();
                     }
                 }
@@ -97,22 +97,22 @@ namespace HISGUISetLib.Views
 
         private void EditItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            var temp = this.AllSickBedList.SelectedItem as CommContracts.SickBed;
+            var temp = this.AllUserList.SelectedItem as CommContracts.User;
             if (temp == null)
                 return;
 
-            // 新增病床
+            // 新增用户
             var window = new Window();
 
-            EditSickBedView eidtSickBed = new EditSickBedView(temp);
-            window.Content = eidtSickBed;
+            EditUserView eidtUser = new EditUserView(temp);
+            window.Content = eidtUser;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 500;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
             {
-                MessageBox.Show("病床修改完成！");
+                MessageBox.Show("用户修改完成！");
                 UpdateAllDate();
             }
         }
@@ -130,8 +130,7 @@ namespace HISGUISetLib.Views
         private void UpdateAllDate(string strName = "")
         {
             var vm = this.DataContext as HISGUISetVM;
-            this.AllSickBedList.ItemsSource = vm?.GetAllSickBed(strName);
+            this.AllUserList.ItemsSource = vm?.GetAllUser(strName);
         }
-
     }
 }

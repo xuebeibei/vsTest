@@ -12,10 +12,18 @@ namespace CommContracts
     public interface ILoginService
     {
         [OperationContract]
-        bool UserAuthenticate(LoginUser login);
+        bool UserAuthenticate(User login);
+        [OperationContract]
+        List<CommContracts.User> GetAllLoginUser(string strName = "");
+        [OperationContract]
+        bool UpdateLoginUser(CommContracts.User job);
+        [OperationContract]
+        bool SaveLoginUser(CommContracts.User job);
+        [OperationContract]
+        bool DeleteLoginUser(int jobID);
 
         [OperationContract]
-        bool UserLogout(LoginUser login);
+        bool UserLogout(User login);
 
         [OperationContract]
         int getAllDepartmentNum();

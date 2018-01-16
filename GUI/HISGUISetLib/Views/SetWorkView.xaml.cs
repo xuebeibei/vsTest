@@ -54,6 +54,7 @@ namespace HISGUISetLib.Views
             SickRoomView.Visibility = Visibility.Collapsed;
             SickBedView.Visibility = Visibility.Collapsed;
             EmployeeView.Visibility = Visibility.Collapsed;
+            UserView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -116,6 +117,7 @@ namespace HISGUISetLib.Views
         private void UserSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            UserView.Visibility = Visibility.Visible;
         }
 
         private void PowerSet(object sender, RoutedEventArgs e)

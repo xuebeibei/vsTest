@@ -32,7 +32,21 @@ namespace CommContracts
         [DataMember]
         public Job Job { get; set; }
         [DataMember]
-        public virtual Department Department { get; set; }
+        public Department Department { get; set; }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var em = obj as Employee;
+            if (em == null)
+                return false;
+            if (em.ID == this.ID)
+                return false;
+            return true;
+        }
     }
 }

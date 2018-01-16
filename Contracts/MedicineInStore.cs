@@ -57,7 +57,7 @@ namespace CommContracts
         [DataMember]
         public Supplier FromSupplier { get; set; }
         [DataMember]
-        public LoginUser OperateUser { get; set; }
+        public User OperateUser { get; set; }
         [DataMember]
         public List<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }

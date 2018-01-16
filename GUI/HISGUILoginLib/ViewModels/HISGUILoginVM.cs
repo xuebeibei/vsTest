@@ -62,7 +62,7 @@ namespace HISGUILoginLib.ViewModels
 
         public bool Login()
         {
-            CommClient.Login login = new CommClient.Login(UserName, PassWord);
+            CommClient.User login = new CommClient.User(UserName, PassWord);
             if (login.Authenticate())
             {
                 return true;
