@@ -29,5 +29,21 @@ namespace CommContracts
 
         [DataMember]
         public JobEnum JobEnum { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var job = obj as Job;
+            if (job == null)
+                return false;
+            if (job.ID != this.ID)
+                return false;
+
+            return true;
+        }
     }
 }

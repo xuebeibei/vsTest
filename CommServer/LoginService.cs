@@ -121,6 +121,31 @@ namespace CommServer
             return temp.getAllDoctor();
         }
 
+
+        public List<CommContracts.Employee> GetAllEmployee(string strName = "")
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.GetAllEmployee(strName);
+        }
+
+        public bool UpdateEmployee(CommContracts.Employee employee)
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.UpdateEmployee(employee);
+        }
+
+        public bool SaveEmployee(CommContracts.Employee employee)
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.SaveEmployee(employee);
+        }
+
+        public bool DeleteEmployee(int employeeID)
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.DeleteEmployee(employeeID);
+        }
+
         public List<CommContracts.Medicine> getAllMedicine()
         {
             BLL.Medicine temp = new BLL.Medicine();

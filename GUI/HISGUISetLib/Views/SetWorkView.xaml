@@ -28,8 +28,8 @@
             </TreeViewItem>
             <TreeViewItem Header="用户档案" >
                 <TreeViewItem Header="人员管理" Selected="EmployeeSet"/>
-                <TreeViewItem Header="用户管理" Selected="UserSet"/>
                 <TreeViewItem Header="权限管理" Selected="PowerSet"/>
+                <TreeViewItem Header="用户管理" Selected="UserSet"/>
             </TreeViewItem>
             <TreeViewItem Header="字典" >
                 <TreeViewItem Header="药品字典管理" Selected="MedicineSet"/>
@@ -41,13 +41,14 @@
             </TreeViewItem>
         </TreeView>
         <StackPanel Grid.Column="1">
-            <local:HospitalInfoSetView x:Name="HospitalSetView"></local:HospitalInfoSetView>
-            <local:DepartmentSetView x:Name="DepartmentView"></local:DepartmentSetView>
-            <local:JobSetView x:Name="JobView"></local:JobSetView>
-            <local:StorehouseSetView x:Name="StorehourseView"></local:StorehouseSetView>
-            <local:SupplierSetView x:Name="SupplierView"></local:SupplierSetView>
-            <local:SickRoomSetView x:Name="SickRoomView"></local:SickRoomSetView>
-            <local:SickBedSetView x:Name="SickBedView"></local:SickBedSetView>
+            <local:HospitalInfoSetView x:Name="HospitalSetView" Visibility="Collapsed"></local:HospitalInfoSetView>
+            <local:DepartmentSetView x:Name="DepartmentView" Visibility="Collapsed"></local:DepartmentSetView>
+            <local:JobSetView x:Name="JobView" Visibility="Collapsed"></local:JobSetView>
+            <local:StorehouseSetView x:Name="StorehourseView" Visibility="Collapsed"></local:StorehouseSetView>
+            <local:SupplierSetView x:Name="SupplierView" Visibility="Collapsed"></local:SupplierSetView>
+            <local:SickRoomSetView x:Name="SickRoomView" Visibility="Collapsed"></local:SickRoomSetView>
+            <local:SickBedSetView x:Name="SickBedView" Visibility="Collapsed"></local:SickBedSetView>
+            <local:EmployeeSetView x:Name="EmployeeView" Visibility="Collapsed"></local:EmployeeSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

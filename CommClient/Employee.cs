@@ -24,5 +24,25 @@ namespace CommClient
         {
             return client.getAllDoctor();
         }
+
+        public List<CommContracts.Employee> GetAllEmployee(string strName = "")
+        {
+            return client.GetAllEmployee(strName);
+        }
+
+        public bool UpdateEmployee(CommContracts.Employee employee)
+        {
+            return client.UpdateEmployee(employee);
+        }
+
+        public bool SaveEmployee(CommContracts.Employee employee)
+        {
+            return client.SaveEmployee(employee);
+        }
+
+        public bool DeleteEmployee(int employeeID)
+        {
+            return client.DeleteEmployee(employeeID);
+        }
     }
 }

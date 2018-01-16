@@ -13,19 +13,26 @@ namespace CommContracts
         public Employee()
         {
             Name = "";
-            GetDepartment = new Department();
+            Department = new Department();
             Job = new Job();
         }
+ 
         [DataMember]
         public int ID { get; set; }
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public Department GetDepartment { get; set; }
+        public string Abbr { get; set; }
+        [DataMember]
+        public int DepartmentID { get; set; }
+        [DataMember]
+        public int JobID { get; set; }
+        [DataMember]
+        public GenderEnum Gender { get; set; }   // 性别
         [DataMember]
         public Job Job { get; set; }
         [DataMember]
-        public GenderEnum Gender { get; set; }   // 性别
+        public virtual Department Department { get; set; }
 
     }
 }

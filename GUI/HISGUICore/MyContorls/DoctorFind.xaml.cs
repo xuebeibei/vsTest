@@ -57,7 +57,7 @@ namespace HISGUICore.MyContorls
 
                 temp.DoctorId = sg.ID;
                 temp.DoctorName = sg.Name;
-                temp.DoctorDepartment = sg.GetDepartment.Name;
+                temp.DoctorDepartment = sg.Department.Name;
 
                 signalList.Add(temp);
 

@@ -63,6 +63,17 @@ namespace CommContracts
         List<CommContracts.Employee> getAllDoctor();
 
         [OperationContract]
+        List<CommContracts.Employee> GetAllEmployee(string strName = "");
+        [OperationContract]
+        bool UpdateEmployee(CommContracts.Employee employee);
+
+        [OperationContract]
+        bool SaveEmployee(CommContracts.Employee employee);
+
+        [OperationContract]
+        bool DeleteEmployee(int employeeID);
+
+        [OperationContract]
         List<CommContracts.Medicine> getAllMedicine();
 
         [OperationContract]

@@ -289,3 +289,6 @@ select * from RecipeChargeBills where RecipeID = 30;
 select * from RecipeChargeBills;
 
 select * from RecipeChargeDetails;
+
+
+SELECT * FROM dbo.SickBeds;

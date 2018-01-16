@@ -35,7 +35,7 @@ namespace HISGUISetLib.Views
 
         private void SetWorkView_Loaded(object sender, RoutedEventArgs e)
         {
-            InitVisable();
+            //InitVisable();
         }
 
         [Import]
@@ -53,6 +53,7 @@ namespace HISGUISetLib.Views
             SupplierView.Visibility = Visibility.Collapsed;
             SickRoomView.Visibility = Visibility.Collapsed;
             SickBedView.Visibility = Visibility.Collapsed;
+            EmployeeView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -109,6 +110,7 @@ namespace HISGUISetLib.Views
         private void EmployeeSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            EmployeeView.Visibility = Visibility.Visible;
         }
 
         private void UserSet(object sender, RoutedEventArgs e)

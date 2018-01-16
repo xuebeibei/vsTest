@@ -161,5 +161,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的人员
+        public List<CommContracts.Employee> GetAllEmployee(string strName = "")
+        {
+            CommClient.Employee myd = new CommClient.Employee();
+
+            List<CommContracts.Employee> list = new List<CommContracts.Employee>();
+            list = myd.GetAllEmployee(strName);
+            return list;
+        }
+
+        // 删除供人员
+        public bool DeleteEmployee(int employeeID)
+        {
+            CommClient.Employee myd = new CommClient.Employee();
+            if (myd.DeleteEmployee(employeeID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

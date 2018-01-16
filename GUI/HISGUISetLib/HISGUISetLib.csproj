@@ -93,6 +93,9 @@
     <Compile Include="Views\EditDepartmentView.xaml.cs">
       <DependentUpon>EditDepartmentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditEmployeeView.xaml.cs">
+      <DependentUpon>EditEmployeeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditJobView.xaml.cs">
       <DependentUpon>EditJobView.xaml</DependentUpon>
     </Compile>
@@ -107,6 +110,9 @@
     </Compile>
     <Compile Include="Views\EditSupplierView.xaml.cs">
       <DependentUpon>EditSupplierView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EmployeeSetView.xaml.cs">
+      <DependentUpon>EmployeeSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HISGUISetView.xaml.cs">
       <DependentUpon>HISGUISetView.xaml</DependentUpon>
@@ -168,6 +174,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditEmployeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -185,6 +195,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditSupplierView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EmployeeSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
