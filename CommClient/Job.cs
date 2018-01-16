@@ -24,5 +24,20 @@ namespace CommClient
         {
             return client.GetAllJob(strName);
         }
+
+        public bool UpdateJob(CommContracts.Job job)
+        {
+            return client.UpdateJob(job);
+        }
+
+        public bool SaveJob(CommContracts.Job job)
+        {
+            return client.SaveJob(job);
+        }
+
+        public bool DeleteJob(int jobID)
+        {
+            return client.DeleteJob(jobID);
+        }
     }
 }

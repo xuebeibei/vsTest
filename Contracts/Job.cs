@@ -7,6 +7,12 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
+    public enum JobEnum
+    {
+        Initial,        // 初级
+        Middle,         // 中级
+        Senior          // 高级
+    }
     [DataContract]
     public class Job
     {
@@ -20,5 +26,8 @@ namespace CommContracts
         public string Name { get; set; }
         [DataMember]
         public bool Default { get; set; }
+
+        [DataMember]
+        public JobEnum JobEnum { get; set; }
     }
 }

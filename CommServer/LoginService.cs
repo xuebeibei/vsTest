@@ -483,5 +483,22 @@ namespace CommServer
             return temp.GetAllJob(strName);
         }
 
+        public bool UpdateJob(CommContracts.Job job)
+        {
+            BLL.Job temp = new BLL.Job();
+            return temp.UpdateJob(job);
+        }
+
+        public bool DeleteJob(int jobID)
+        {
+            BLL.Job temp = new BLL.Job();
+            return temp.DeleteJob(jobID);
+        }
+
+        public bool SaveJob(CommContracts.Job job)
+        {
+            BLL.Job temp = new BLL.Job();
+            return temp.SaveJob(job);
+        }
     }
 }

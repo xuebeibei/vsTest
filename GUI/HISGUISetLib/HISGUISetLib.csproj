@@ -93,6 +93,9 @@
     <Compile Include="Views\EditDepartmentView.xaml.cs">
       <DependentUpon>EditDepartmentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditJobView.xaml.cs">
+      <DependentUpon>EditJobView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HISGUISetView.xaml.cs">
       <DependentUpon>HISGUISetView.xaml</DependentUpon>
     </Compile>
@@ -138,6 +141,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditDepartmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

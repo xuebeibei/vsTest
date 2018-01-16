@@ -252,5 +252,14 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Job> GetAllJob(string strName = "");
+
+        [OperationContract]
+        bool UpdateJob(CommContracts.Job job);
+
+        [OperationContract]
+        bool DeleteJob(int jobID);
+
+        [OperationContract]
+        bool SaveJob(CommContracts.Job job);
     }
 }

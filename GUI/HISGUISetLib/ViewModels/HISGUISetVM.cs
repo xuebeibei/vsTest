@@ -61,5 +61,17 @@ namespace HISGUISetLib.ViewModels
             list = myd.GetAllJob(strName);
             return list;
         }
+
+        // 删除职位
+        public bool DeleteJob(int jobID)
+        {
+            CommClient.Job myd = new CommClient.Job();
+            if (myd.DeleteJob(jobID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

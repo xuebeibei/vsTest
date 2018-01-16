@@ -58,17 +58,63 @@ namespace HISGUISetLib.Views
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
         {
+            // 新增职位
+            var window = new Window();
 
+            EditJobView eidtJob = new EditJobView();
+            window.Content = eidtJob;
+            window.Width = 400;
+            window.Height = 300;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
+            {
+                MessageBox.Show("职位新建完成！");
+                UpdateAllDate();
+            }
         }
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
+            var currentJob = this.AllJobList.SelectedItem as CommContracts.Job;
+            if (currentJob == null)
+                return;
 
+            if (MessageBox.Show("确认删除该职位？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            {
+                var vm = this.DataContext as HISGUISetVM;
+                bool? bIsOK = vm?.DeleteJob(currentJob.ID);
+                if (bIsOK.HasValue)
+                {
+                    if (bIsOK.Value)
+                    {
+                        MessageBox.Show("职位删除完成！");
+                        UpdateAllDate();
+                    }
+                }
+            }
         }
 
         private void EditItemBtn_Click(object sender, RoutedEventArgs e)
         {
+            var temp = this.AllJobList.SelectedItem as CommContracts.Job;
+            if (temp == null)
+                return;
 
+            // 新增职位
+            var window = new Window();
+
+            EditJobView eidtJob = new EditJobView(temp);
+            window.Content = eidtJob;
+            window.Width = 400;
+            window.Height = 300;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
+            {
+                MessageBox.Show("职位修改完成！");
+                UpdateAllDate();
+            }
         }
 
         private void ExportItemBtn_Click(object sender, RoutedEventArgs e)

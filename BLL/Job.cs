@@ -32,5 +32,80 @@ namespace BLL
             }
             return list;
         }
+
+        public bool SaveJob(CommContracts.Job job)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Job, DAL.Job>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.Job temp = new DAL.Job();
+                temp = mapper.Map<DAL.Job>(job);
+
+                ctx.Jobs.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteJob(int jobID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Jobs.FirstOrDefault(m => m.ID == jobID);
+                if (temp != null)
+                {
+                    ctx.Jobs.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateJob(CommContracts.Job job)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Jobs.FirstOrDefault(m => m.ID == job.ID);
+                if (temp != null)
+                {
+                    temp.Name = job.Name;
+                    temp.JobEnum = (DAL.JobEnum)job.JobEnum;                    
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }

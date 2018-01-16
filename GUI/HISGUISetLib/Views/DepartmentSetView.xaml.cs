@@ -107,7 +107,7 @@ namespace HISGUISetLib.Views
 
             if (bResult.Value)
             {
-                MessageBox.Show("科室新建完成！");
+                MessageBox.Show("科室修改完成！");
                 UpdateAllDate();
             }
         }
