@@ -73,5 +73,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的库房
+        public List<CommContracts.StoreRoom> GetAllStoreRoom(string strName = "")
+        {
+            CommClient.StoreRoom myd = new CommClient.StoreRoom();
+
+            List<CommContracts.StoreRoom> list = new List<CommContracts.StoreRoom>();
+            list = myd.GetAllStoreRoom(strName);
+            return list;
+        }
+
+        // 删除库房
+        public bool DeleteStoreRoom(int storeRoomID)
+        {
+            CommClient.StoreRoom myd = new CommClient.StoreRoom();
+            if (myd.DeleteStoreRoom(storeRoomID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

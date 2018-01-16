@@ -500,5 +500,32 @@ namespace CommServer
             BLL.Job temp = new BLL.Job();
             return temp.SaveJob(job);
         }
+
+
+        public List<CommContracts.StoreRoom> GetAllStoreRoom(string strName = "")
+        {
+            BLL.StoreRoom temp = new BLL.StoreRoom();
+            return temp.GetAllStoreRoom(strName);
+        }
+
+        public bool UpdateStoreRoom(CommContracts.StoreRoom storeRoom)
+        {
+            BLL.StoreRoom temp = new BLL.StoreRoom();
+            return temp.UpdateStoreRoom(storeRoom);
+        }
+
+        public bool DeleteStoreRoom(int storeRoomID)
+        {
+            BLL.StoreRoom temp = new BLL.StoreRoom();
+            return temp.DeleteStoreRoom(storeRoomID);
+        }
+
+        public bool SaveStoreRoom(CommContracts.StoreRoom storeRoom)
+        {
+            BLL.StoreRoom temp = new BLL.StoreRoom();
+            return temp.SaveStoreRoom(storeRoom);
+        }
+
+
     }
 }

@@ -261,5 +261,17 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveJob(CommContracts.Job job);
+
+        [OperationContract]
+        List<CommContracts.StoreRoom> GetAllStoreRoom(string strName = "");
+
+        [OperationContract]
+        bool UpdateStoreRoom(CommContracts.StoreRoom storeRoom);
+
+        [OperationContract]
+        bool DeleteStoreRoom(int storeRoomID);
+
+        [OperationContract]
+        bool SaveStoreRoom(CommContracts.StoreRoom storeRoom);
     }
 }

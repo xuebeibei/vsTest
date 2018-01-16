@@ -30,6 +30,12 @@ namespace HISGUISetLib.Views
         public SetWorkView()
         {
             InitializeComponent();
+            this.Loaded += SetWorkView_Loaded;
+        }
+
+        private void SetWorkView_Loaded(object sender, RoutedEventArgs e)
+        {
+            InitVisable();
         }
 
         [Import]
@@ -43,6 +49,7 @@ namespace HISGUISetLib.Views
             HospitalSetView.Visibility = Visibility.Collapsed;
             DepartmentView.Visibility = Visibility.Collapsed;
             JobView.Visibility = Visibility.Collapsed;
+            StorehourseView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -81,6 +88,7 @@ namespace HISGUISetLib.Views
         private void StorehouseSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            StorehourseView.Visibility = Visibility.Visible;
         }
 
         private void SupplierSet(object sender, RoutedEventArgs e)

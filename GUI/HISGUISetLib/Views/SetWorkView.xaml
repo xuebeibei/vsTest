@@ -40,9 +40,10 @@
             </TreeViewItem>
         </TreeView>
         <StackPanel Grid.Column="1">
-            <local:HospitalInfoSetView x:Name="HospitalSetView" Visibility="Collapsed"></local:HospitalInfoSetView>
-            <local:DepartmentSetView x:Name="DepartmentView" Visibility="Collapsed"></local:DepartmentSetView>
-            <local:JobSetView x:Name="JobView" Visibility="Collapsed"></local:JobSetView>
+            <local:HospitalInfoSetView x:Name="HospitalSetView"></local:HospitalInfoSetView>
+            <local:DepartmentSetView x:Name="DepartmentView"></local:DepartmentSetView>
+            <local:JobSetView x:Name="JobView"></local:JobSetView>
+            <local:StorehouseSetView x:Name="StorehourseView"></local:StorehouseSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

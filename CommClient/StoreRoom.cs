@@ -10,35 +10,35 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Job
+    public class StoreRoom
     {
         private ILoginService client;
 
-        public Job()
+        public StoreRoom()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.Job> GetAllJob(string strName = "")
+        public List<CommContracts.StoreRoom> GetAllStoreRoom(string strName = "")
         {
-            return client.GetAllJob(strName);
+            return client.GetAllStoreRoom(strName);
         }
 
-        public bool UpdateJob(CommContracts.Job job)
+        public bool UpdateStoreRoom(CommContracts.StoreRoom storeRoom)
         {
-            return client.UpdateJob(job);
+            return client.UpdateStoreRoom(storeRoom);
         }
 
-        public bool SaveJob(CommContracts.Job job)
+        public bool SaveStoreRoom(CommContracts.StoreRoom storeRoom)
         {
-            return client.SaveJob(job);
+            return client.SaveStoreRoom(storeRoom);
         }
 
-        public bool DeleteJob(int jobID)
+        public bool DeleteStoreRoom(int storeRoomID)
         {
-            return client.DeleteJob(jobID);
+            return client.DeleteStoreRoom(storeRoomID);
         }
     }
 }
