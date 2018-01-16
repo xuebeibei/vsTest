@@ -31,7 +31,7 @@ namespace DAL.Migrations
                         NO = c.String(),
                         RegistrationID = c.Int(nullable: false),
                         InpatientID = c.Int(nullable: false),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
                     })
@@ -143,7 +143,7 @@ namespace DAL.Migrations
                         PatientID = c.Int(nullable: false),
                         SignalSourceID = c.Int(nullable: false),
                         RegisterUserID = c.Int(nullable: false),
-                        RegisterFee = c.Double(nullable: false),
+                        RegisterFee = c.Decimal(nullable: false, precision: 18, scale: 2),
                         RegisterTime = c.DateTime(nullable: false),
                         SeeDoctorStatus = c.Int(nullable: false),
                         TriageStatus = c.Int(nullable: false),
@@ -177,7 +177,7 @@ namespace DAL.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 4),
                         VistTime = c.DateTime(nullable: false),
                         TimeIntival = c.Int(nullable: false),
                         DepartmentID = c.Int(nullable: false),
@@ -198,7 +198,7 @@ namespace DAL.Migrations
                         NO = c.String(),
                         RegistrationID = c.Int(nullable: false),
                         InpatientID = c.Int(nullable: false),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
                     })
@@ -230,7 +230,7 @@ namespace DAL.Migrations
                         Name = c.String(),
                         AbbrPY = c.String(),
                         AbbrWB = c.String(),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Unit = c.String(),
                         BodyRegionID = c.Int(nullable: false),
                     })
@@ -257,7 +257,7 @@ namespace DAL.Migrations
                         NO = c.String(),
                         RegistrationID = c.Int(nullable: false),
                         InpatientID = c.Int(nullable: false),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
                     })
@@ -289,7 +289,7 @@ namespace DAL.Migrations
                         Name = c.String(),
                         AbbrPY = c.String(),
                         AbbrWB = c.String(),
-                        StockPrice = c.Double(nullable: false),
+                        StockPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Unit = c.String(),
                         Specifications = c.String(),
                         Manufacturer = c.String(),
@@ -347,7 +347,7 @@ namespace DAL.Migrations
                         MedicineID = c.Int(nullable: false),
                         Batch = c.String(),
                         ExpirationDate = c.DateTime(nullable: false),
-                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Num = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -379,7 +379,7 @@ namespace DAL.Migrations
                         YiBaoEnum = c.Int(nullable: false),
                         MaxNum = c.Int(nullable: false),
                         MinNum = c.Int(nullable: false),
-                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                     })
                 .PrimaryKey(t => t.ID);
             
@@ -391,8 +391,8 @@ namespace DAL.Migrations
                         MedicineID = c.Int(nullable: false),
                         Batch = c.String(),
                         ExpirationDate = c.DateTime(nullable: false),
-                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 4),
+                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Num = c.Int(nullable: false),
                         MedicineInStoreID = c.Int(nullable: false),
                     })
@@ -439,9 +439,10 @@ namespace DAL.Migrations
                         PatientsIDCardNum = c.String(),
                         ProxyIDCardNum = c.String(),
                         ProxyName = c.String(),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
+                        ChargeStatusEnum = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
                 .ForeignKey("dbo.Users", t => t.WriteUserID, cascadeDelete: true)
@@ -455,8 +456,8 @@ namespace DAL.Migrations
                         StoreRoomMedicineNumID = c.Int(nullable: false),
                         NumBeforeOut = c.Int(nullable: false),
                         Num = c.Int(nullable: false),
-                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 4),
+                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                         MedicineOutStoreID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -486,6 +487,36 @@ namespace DAL.Migrations
                 .PrimaryKey(t => t.ID);
             
             CreateTable(
+                "dbo.RecipeChargeDetails",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        StoreRoomMedicineNumID = c.Int(nullable: false),
+                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
+                        Num = c.Int(nullable: false),
+                        Rebate = c.Int(nullable: false),
+                        RecipeChargeBill_ID = c.Int(),
+                    })
+                .PrimaryKey(t => t.ID)
+                .ForeignKey("dbo.RecipeChargeBills", t => t.RecipeChargeBill_ID)
+                .ForeignKey("dbo.StoreRoomMedicineNums", t => t.StoreRoomMedicineNumID, cascadeDelete: true)
+                .Index(t => t.StoreRoomMedicineNumID)
+                .Index(t => t.RecipeChargeBill_ID);
+            
+            CreateTable(
+                "dbo.RecipeChargeBills",
+                c => new
+                    {
+                        ID = c.Int(nullable: false, identity: true),
+                        NO = c.String(),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        ChargeTime = c.DateTime(nullable: false),
+                        RecipeID = c.Int(nullable: false),
+                        Block = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.ID);
+            
+            CreateTable(
                 "dbo.StoreRooms",
                 c => new
                     {
@@ -509,7 +540,7 @@ namespace DAL.Migrations
                         NO = c.String(),
                         RegistrationID = c.Int(nullable: false),
                         InpatientID = c.Int(nullable: false),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
                     })
@@ -541,7 +572,7 @@ namespace DAL.Migrations
                         Name = c.String(),
                         AbbrPY = c.String(),
                         AbbrWB = c.String(),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Unit = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
@@ -554,7 +585,7 @@ namespace DAL.Migrations
                         NO = c.String(),
                         RegistrationID = c.Int(nullable: false),
                         InpatientID = c.Int(nullable: false),
-                        SumOfMoney = c.Double(nullable: false),
+                        SumOfMoney = c.Decimal(nullable: false, precision: 18, scale: 2),
                         WriteTime = c.DateTime(nullable: false),
                         WriteUserID = c.Int(nullable: false),
                     })
@@ -586,7 +617,7 @@ namespace DAL.Migrations
                         Name = c.String(),
                         AbbrPY = c.String(),
                         AbbrWB = c.String(),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 4),
                         Unit = c.String(),
                     })
                 .PrimaryKey(t => t.ID);
@@ -599,7 +630,7 @@ namespace DAL.Migrations
                         Name = c.String(),
                         AbbrPY = c.String(),
                         AbbrWB = c.String(),
-                        Price = c.Double(nullable: false),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 4),
                         SpecimenID = c.Int(nullable: false),
                         Unit = c.String(),
                     })
@@ -626,8 +657,8 @@ namespace DAL.Migrations
                         StoreRoomMedicineNumID = c.Int(nullable: false),
                         NumBeforeCheck = c.Int(nullable: false),
                         Num = c.Int(nullable: false),
-                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        StorePrice = c.Decimal(nullable: false, precision: 18, scale: 4),
+                        SellPrice = c.Decimal(nullable: false, precision: 18, scale: 4),
                         MedicineCheckStoreID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
@@ -681,6 +712,8 @@ namespace DAL.Migrations
             DropForeignKey("dbo.MedicineInStores", "OperateUserID", "dbo.Users");
             DropForeignKey("dbo.StoreRoomMedicineNums", "SupplierID", "dbo.Suppliers");
             DropForeignKey("dbo.StoreRoomMedicineNums", "StoreRoomID", "dbo.StoreRooms");
+            DropForeignKey("dbo.RecipeChargeDetails", "StoreRoomMedicineNumID", "dbo.StoreRoomMedicineNums");
+            DropForeignKey("dbo.RecipeChargeDetails", "RecipeChargeBill_ID", "dbo.RecipeChargeBills");
             DropForeignKey("dbo.MedicineOutStoreDetails", "StoreRoomMedicineNumID", "dbo.StoreRoomMedicineNums");
             DropForeignKey("dbo.MedicineOutStoreDetails", "MedicineOutStoreID", "dbo.MedicineOutStores");
             DropForeignKey("dbo.StoreRoomMedicineNums", "MedicineID", "dbo.Medicines");
@@ -718,6 +751,8 @@ namespace DAL.Migrations
             DropIndex("dbo.OtherServiceDetails", new[] { "OtherServiceID" });
             DropIndex("dbo.OtherServiceDetails", new[] { "OtherServiceItemID" });
             DropIndex("dbo.OtherServices", new[] { "WriteUserID" });
+            DropIndex("dbo.RecipeChargeDetails", new[] { "RecipeChargeBill_ID" });
+            DropIndex("dbo.RecipeChargeDetails", new[] { "StoreRoomMedicineNumID" });
             DropIndex("dbo.MedicineOutStoreDetails", new[] { "MedicineOutStoreID" });
             DropIndex("dbo.MedicineOutStoreDetails", new[] { "StoreRoomMedicineNumID" });
             DropIndex("dbo.Recipes", new[] { "WriteUserID" });
@@ -762,6 +797,8 @@ namespace DAL.Migrations
             DropTable("dbo.OtherServiceDetails");
             DropTable("dbo.OtherServices");
             DropTable("dbo.StoreRooms");
+            DropTable("dbo.RecipeChargeBills");
+            DropTable("dbo.RecipeChargeDetails");
             DropTable("dbo.MedicineOutStores");
             DropTable("dbo.MedicineOutStoreDetails");
             DropTable("dbo.Recipes");
