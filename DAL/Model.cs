@@ -634,11 +634,8 @@ namespace DAL
         [DecimalPrecision(18, 4)]
         public decimal Price { get; set; }                       // 价格
         public string Unit { get; set; }                        // 单位
-        public int BodyRegionID { get; set; }                   // 检查部位
-        
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
-        public virtual BodyRegion BodyRegion { get; set; }
         public virtual ICollection<InspectDetail> InspectDetails { get; set; }
     }
 
@@ -647,15 +644,13 @@ namespace DAL
     {
         public BodyRegion()
         {
-            InspectItems = new List<InspectItem>();
+
         }
 
         public int ID { get; set; }
         public string Name { get; set; }
         public string AbbrPY { get; set; }
         public string AbbrWB { get; set; }
-
-        public virtual ICollection<InspectItem> InspectItems { get; set; }
     }
 
     // 治疗项目

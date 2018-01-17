@@ -33,8 +33,6 @@
 
                 <Label Margin="5" Grid.Row="3" Grid.Column="0">医保甲乙类：</Label>
                 <ComboBox x:Name="YiBaoEnum" Margin="5" Grid.Row="3" Grid.Column="1"/>
-                <Label Margin="5" Grid.Row="3" Grid.Column="2">检查部位：</Label>
-                <ComboBox x:Name="BodyRegion" Margin="5" Grid.Row="3" Grid.Column="3"/>
 
             </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

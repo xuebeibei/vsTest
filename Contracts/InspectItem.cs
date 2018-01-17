@@ -27,9 +27,5 @@ namespace CommContracts
         public string Unit { get; set; }                        // 单位
         [DataMember]
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
-        [DataMember]
-        public int BodyRegionID { get; set; }                   // 检查部位 
-        [DataMember]
-        public BodyRegion BodyRegion { get; set; }      
     }
 }
