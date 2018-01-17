@@ -302,10 +302,28 @@ namespace CommServer
             return temp.SaveInspect(inspect);
         }
 
-        public List<CommContracts.AssayItem> GetAllAssayItems(string strName)
+        public List<CommContracts.AssayItem> GetAllAssayItem(string strName)
         {
             BLL.AssayItem temp = new BLL.AssayItem();
-            return temp.GetAllAssayItems(strName);
+            return temp.GetAllAssayItem(strName);
+        }
+
+        public bool UpdateAssayItem(CommContracts.AssayItem AssayItem)
+        {
+            BLL.AssayItem temp = new BLL.AssayItem();
+            return temp.UpdateAssayItem(AssayItem);
+        }
+
+        public bool SaveAssayItem(CommContracts.AssayItem AssayItem)
+        {
+            BLL.AssayItem temp = new BLL.AssayItem();
+            return temp.SaveAssayItem(AssayItem);
+        }
+
+        public bool DeleteAssayItem(int AssayItemID)
+        {
+            BLL.AssayItem temp = new BLL.AssayItem();
+            return temp.DeleteAssayItem(AssayItemID);
         }
 
         public List<CommContracts.InspectItem> GetAllInspectItem(string strName = "")

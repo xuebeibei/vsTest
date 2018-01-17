@@ -88,7 +88,7 @@
                 <Label Grid.Row="0" Grid.Column="1"></Label>
                 <Label Grid.Row="0" Grid.Column="2">治疗：</Label>
                 <Label Grid.Row="0" Grid.Column="3"></Label>
-                <Label Grid.Row="0" Grid.Column="4">检验：</Label>
+                <Label Grid.Row="0" Grid.Column="4">化验：</Label>
                 <Label Grid.Row="0" Grid.Column="5"></Label>
 
                 <Label Grid.Row="1" Grid.Column="0">检查：</Label>

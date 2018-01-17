@@ -149,7 +149,16 @@ namespace CommContracts
         bool SaveInspect(CommContracts.Inspect inspect);
 
         [OperationContract]
-        List<CommContracts.AssayItem> GetAllAssayItems(string strName);
+        List<CommContracts.AssayItem> GetAllAssayItem(string strName);
+
+        [OperationContract]
+        bool UpdateAssayItem(CommContracts.AssayItem AssayItem);
+        [OperationContract]
+        bool SaveAssayItem(CommContracts.AssayItem AssayItem);
+
+        [OperationContract]
+        bool DeleteAssayItem(int AssayItemID);
+
 
         [OperationContract]
         List<CommContracts.InspectItem> GetAllInspectItem(string strName = "");

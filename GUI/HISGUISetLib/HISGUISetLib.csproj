@@ -87,8 +87,14 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUISetVM.cs" />
+    <Compile Include="Views\AssayItemSetView.xaml.cs">
+      <DependentUpon>AssayItemSetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DepartmentSetView.xaml.cs">
       <DependentUpon>DepartmentSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditAssayItemView.xaml.cs">
+      <DependentUpon>EditAssayItemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditDepartmentView.xaml.cs">
       <DependentUpon>EditDepartmentView.xaml</DependentUpon>
@@ -196,7 +202,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Views\AssayItemSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\DepartmentSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditAssayItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

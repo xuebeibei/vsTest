@@ -47,7 +47,7 @@ namespace HISGUIDoctorLib.Views
 
         public void initText()
         {
-            string str = "主诉;现病史;既往史;过敏史;个人史;家族史;疫苗接种史;检验检查;体格检查;初步诊断;治疗意见;备注";
+            string str = "主诉;现病史;既往史;过敏史;个人史;家族史;疫苗接种史;化验检查;体格检查;初步诊断;治疗意见;备注";
             string[] q = str.Split(';');
             if (q != null)
             {

@@ -9,7 +9,7 @@ namespace BLL
 {
     public class AssayItem
     {
-        public List<CommContracts.AssayItem> GetAllAssayItems(string strName)
+        public List<CommContracts.AssayItem> GetAllAssayItem(string strName)
         {
             List<CommContracts.AssayItem> list = new List<CommContracts.AssayItem>();
 
@@ -35,6 +35,86 @@ namespace BLL
             }
 
             return list;
+        }
+
+        public bool SaveAssayItem(CommContracts.AssayItem AssayItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.AssayItem, DAL.AssayItem>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.AssayItem temp = new DAL.AssayItem();
+                temp = mapper.Map<DAL.AssayItem>(AssayItem);
+
+                ctx.AssayItems.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteAssayItem(int AssayItemID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.AssayItems.FirstOrDefault(m => m.ID == AssayItemID);
+                if (temp != null)
+                {
+                    ctx.AssayItems.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateAssayItem(CommContracts.AssayItem AssayItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.AssayItems.FirstOrDefault(m => m.ID == AssayItem.ID);
+                if (temp != null)
+                {
+                    temp.Name = AssayItem.Name;
+                    temp.AbbrPY = AssayItem.AbbrPY;
+                    temp.AbbrWB = AssayItem.AbbrWB;
+                    temp.Unit = AssayItem.Unit;
+                    temp.YiBaoEnum = (DAL.YiBaoEnum)AssayItem.YiBaoEnum;
+
+                    temp.Price = AssayItem.Price;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

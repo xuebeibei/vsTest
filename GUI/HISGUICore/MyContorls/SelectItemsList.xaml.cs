@@ -19,7 +19,7 @@ namespace HISGUICore.MyContorls
     {
         public CommContracts.Medicine CurrentMedicine { get; set; }        // 药品
         public CommContracts.TherapyItem CurrentTherapyItem { get; set; }  // 治疗
-        public CommContracts.AssayItem CurrentAssayItem { get; set; }      // 检验
+        public CommContracts.AssayItem CurrentAssayItem { get; set; }      // 化验
         public CommContracts.InspectItem CurrentInspectItem { get; set; }  // 检查
         public CommContracts.MaterialItem CurrentMaterialItem { get; set; }// 材料
         public CommContracts.OtherServiceItem CurrentOtherServiceItem { get; set; } // 其他服务
@@ -60,7 +60,7 @@ namespace HISGUICore.MyContorls
             else if(editEnum == MyTableEditEnum.jianyan)
             {
                 CommClient.AssayItem therapyItem = new CommClient.AssayItem();
-                List<CommContracts.AssayItem> list = therapyItem.GetAllAssayItems(strFindName);
+                List<CommContracts.AssayItem> list = therapyItem.GetAllAssayItem(strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();

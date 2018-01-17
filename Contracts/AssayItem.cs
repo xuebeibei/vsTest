@@ -23,12 +23,12 @@ namespace CommContracts
         public string AbbrWB { get; set; }                      // 五笔简称
         [DataMember]
         public decimal Price { get; set; }                       // 价格
-        [DataMember]
-        public int SpecimenID { get; set; }                     // 检验标本
+
         [DataMember]
         public string Unit { get; set; }                        // 单位
+
         [DataMember]
-        public Specimen Specimen { get; set; }
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
     }
 }

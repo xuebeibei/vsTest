@@ -98,7 +98,7 @@ namespace HISGUIFeeLib.ViewModels
             return list;
         }
 
-        // 得到当前门诊患者的所有检验申请单
+        // 得到当前门诊患者的所有化验申请单
         public List<CommContracts.Assay> GetAllJianYan()
         {
             CommClient.Assay assay = new CommClient.Assay();        // 化验申请

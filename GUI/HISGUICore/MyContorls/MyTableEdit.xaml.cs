@@ -127,7 +127,7 @@ namespace HISGUICore.MyContorls
         xichengyao,              // 西/成药处方
         zhongyao,                // 中药处方
         zhiliao,                 // 治疗
-        jianyan,                 // 检验
+        jianyan,                 // 化验
         jiancha,                 // 检查
         cailiao,                 // 材料
         qita,                    // 其他

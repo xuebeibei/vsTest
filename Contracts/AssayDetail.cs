@@ -19,7 +19,7 @@ namespace CommContracts
         [DataMember]
         public string Illustration { get; set; }                  // 说明
         [DataMember]
-        public int AssayID { get; set; }                          // 所属检验申请单ID
+        public int AssayID { get; set; }                          // 所属化验申请单ID
         [DataMember]
         public AssayItem AssayItem { get; set; }
     }

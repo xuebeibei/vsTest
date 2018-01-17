@@ -21,7 +21,7 @@
                         <ListView Name="AssayList" Margin="5" SelectionChanged="AssayList_SelectionChanged">
                             <ListView.View>
                                 <GridView x:Name="gridView1">
-                                    <GridViewColumn Header="检验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                    <GridViewColumn Header="化验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
                                     <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
                                     <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
                                 </GridView>

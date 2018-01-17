@@ -75,7 +75,7 @@
                               SelectionMode="Single" MouseDoubleClick="AllJianYanList_MouseDoubleClick">
                         <ListView.View>
                             <GridView x:Name="gridViewJianYan">
-                                <GridViewColumn Header="检验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                <GridViewColumn Header="化验申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
                                 <GridViewColumn Header="开具时间" DisplayMemberBinding="{Binding Path=DateTime}"></GridViewColumn>
                                 <GridViewColumn Header="持续时间" DisplayMemberBinding="{Binding Path=DayNum}"></GridViewColumn>
                             </GridView>

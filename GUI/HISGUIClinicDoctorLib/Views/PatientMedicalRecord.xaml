@@ -36,7 +36,7 @@
                 <Button Margin="5" DataContext="4" Click="Button_Click_4">+个人史</Button>
                 <Button Margin="5" DataContext="5" Click="Button_Click_4">+家族史</Button>
                 <Button Margin="5" DataContext="6" Click="Button_Click_4">+疫苗接种史</Button>
-                <Button Margin="5" DataContext="7" Click="Button_Click_4">+检验检查</Button>
+                <Button Margin="5" DataContext="7" Click="Button_Click_4">+化验检查</Button>
             </StackPanel>
         </StackPanel>
         <Grid Grid.Row="2">

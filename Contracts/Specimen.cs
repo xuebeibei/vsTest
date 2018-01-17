@@ -10,7 +10,7 @@ namespace CommContracts
     [DataContract]
     public class Specimen
     {
-        // 检验标本
+        // 化验标本
         public Specimen()
         {
         }

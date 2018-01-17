@@ -59,6 +59,7 @@ namespace HISGUISetLib.Views
             MaterialView.Visibility = Visibility.Collapsed;
             InspectView.Visibility = Visibility.Collapsed;
             TherapyItemView.Visibility = Visibility.Collapsed;
+            AssayItemView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -139,24 +140,25 @@ namespace HISGUISetLib.Views
             InitVisable();
         }
 
-        private void AssaySet(object sender, RoutedEventArgs e)
+        private void AssayItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            AssayItemView.Visibility = Visibility.Visible;
         }
 
-        private void InspectSet(object sender, RoutedEventArgs e)
+        private void InspectItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             InspectView.Visibility = Visibility.Visible;
         }
 
-        private void MaterialSet(object sender, RoutedEventArgs e)
+        private void MaterialItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             MaterialView.Visibility = Visibility.Visible;
         }
 
-        private void MedicineSet(object sender, RoutedEventArgs e)
+        private void MedicineItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             MedicineView.Visibility = Visibility.Visible;

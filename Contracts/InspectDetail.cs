@@ -23,7 +23,7 @@ namespace CommContracts
         [DataMember]
         public string Illustration { get; set; }                  // 说明
         [DataMember]
-        public int InspectID { get; set; }                          // 所属检验申请单ID
+        public int InspectID { get; set; }                          // 所属化验申请单ID
         [DataMember]
         public InspectItem InspectItem { get; set; }
         

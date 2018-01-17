@@ -21,9 +21,24 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.AssayItem> GetAllAssayItems(string strName)
+        public List<CommContracts.AssayItem> GetAllAssayItem(string strName = "")
         {
-            return client.GetAllAssayItems(strName);
+            return client.GetAllAssayItem(strName);
+        }
+
+        public bool UpdateAssayItem(CommContracts.AssayItem AssayItem)
+        {
+            return client.UpdateAssayItem(AssayItem);
+        }
+
+        public bool SaveAssayItem(CommContracts.AssayItem material)
+        {
+            return client.SaveAssayItem(material);
+        }
+
+        public bool DeleteAssayItem(int AssayItemID)
+        {
+            return client.DeleteAssayItem(AssayItemID);
         }
     }
 }

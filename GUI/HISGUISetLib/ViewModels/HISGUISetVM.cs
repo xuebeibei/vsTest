@@ -293,5 +293,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的化验项目
+        public List<CommContracts.AssayItem> GetAllAssayItem(string strName = "")
+        {
+            CommClient.AssayItem myd = new CommClient.AssayItem();
+
+            List<CommContracts.AssayItem> list = new List<CommContracts.AssayItem>();
+            list = myd.GetAllAssayItem(strName);
+            return list;
+        }
+
+        // 删除供化验项目
+        public bool DeleteAssayItem(int AssayItemID)
+        {
+            CommClient.AssayItem myd = new CommClient.AssayItem();
+            if (myd.DeleteAssayItem(AssayItemID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

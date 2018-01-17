@@ -209,7 +209,7 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
-        public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的检验申请单
+        public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的化验申请单
         public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
         public virtual ICollection<MaterialBill> MaterialBills { get; set; } // 所有材料单
@@ -581,7 +581,7 @@ namespace DAL
         public virtual Employee Employee { get; set; }
     }
 
-    // 检验项目
+    // 化验项目
     public class AssayItem
     {
         public AssayItem()
@@ -594,21 +594,19 @@ namespace DAL
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
         [DecimalPrecision(18, 4)]
-        public decimal Price { get; set; }                       // 价格
-        public int SpecimenID { get; set; }                     // 检验标本
+        public decimal Price { get; set; }                      // 价格
         public string Unit { get; set; }                        // 单位
 
-        public virtual Specimen Specimen { get; set; }
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
         public virtual ICollection<AssayDetail> AssayDetails { get; set; }
     }
 
-    // 检验标本
+    // 化验标本
     public class Specimen
     {
         public Specimen()
         {
-            AssayItems = new List<AssayItem>();
         }
 
         public int ID { get; set; }
@@ -616,7 +614,6 @@ namespace DAL
         public string AbbrPY { get; set; }
         public string AbbrWB { get; set; }
 
-        public virtual ICollection<AssayItem> AssayItems { get; set; }     // 该标本可执行的所有检验项目
     }
 
     // 检查项目
@@ -738,7 +735,7 @@ namespace DAL
         public virtual TherapyItem TherapyItem { get; set; }
     }
 
-    // 检验申请单
+    // 化验申请单
     public class Assay
     {
         public Assay()
@@ -759,7 +756,7 @@ namespace DAL
         public virtual ICollection<AssayDetail> AssayDetails { get; set; }
     }
 
-    // 检验申请单明细
+    // 化验申请单明细
     public class AssayDetail
     {
         public AssayDetail()
@@ -772,7 +769,7 @@ namespace DAL
         public int Num { get; set; }                              // 次数
         public string Illustration { get; set; }                  // 说明
 
-        public int AssayID { get; set; }                          // 所属检验申请单ID
+        public int AssayID { get; set; }                          // 所属化验申请单ID
         public virtual Assay Assay { get; set; }
 
         public virtual AssayItem AssayItem { get; set; }
@@ -812,7 +809,7 @@ namespace DAL
         public int Num { get; set; }                              // 次数
         public string Illustration { get; set; }                  // 说明
 
-        public int InspectID { get; set; }                          // 所属检验申请单ID
+        public int InspectID { get; set; }                          // 所属化验申请单ID
         public virtual Inspect Inspect { get; set; }
 
         public virtual InspectItem InspectItem { get; set; }

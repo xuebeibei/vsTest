@@ -63,11 +63,11 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteTherapyItem(int MaterialID)
+        public bool DeleteTherapyItem(int TherapyItemID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.TherapyItems.FirstOrDefault(m => m.ID == MaterialID);
+                var temp = ctx.TherapyItems.FirstOrDefault(m => m.ID == TherapyItemID);
                 if (temp != null)
                 {
                     ctx.TherapyItems.Remove(temp);

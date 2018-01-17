@@ -31,9 +31,9 @@ namespace CommClient
             return client.UpdateTherapyItem(TherapyItem);
         }
 
-        public bool SaveTherapyItem(CommContracts.TherapyItem material)
+        public bool SaveTherapyItem(CommContracts.TherapyItem TherapyItem)
         {
-            return client.SaveTherapyItem(material);
+            return client.SaveTherapyItem(TherapyItem);
         }
 
         public bool DeleteTherapyItem(int TherapyItemID)
