@@ -9,7 +9,7 @@ namespace BLL
 {
     public class TherapyItem
     {
-        public List<CommContracts.TherapyItem> GetAllTherapyItems(string strName)
+        public List<CommContracts.TherapyItem> GetAllTherapyItem(string strName = "")
         {
             List<CommContracts.TherapyItem> list = new List<CommContracts.TherapyItem>();
 
@@ -35,6 +35,86 @@ namespace BLL
             }
 
             return list;
+        }
+
+        public bool SaveTherapyItem(CommContracts.TherapyItem TherapyItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.TherapyItem, DAL.TherapyItem>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.TherapyItem temp = new DAL.TherapyItem();
+                temp = mapper.Map<DAL.TherapyItem>(TherapyItem);
+
+                ctx.TherapyItems.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool DeleteTherapyItem(int MaterialID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.TherapyItems.FirstOrDefault(m => m.ID == MaterialID);
+                if (temp != null)
+                {
+                    ctx.TherapyItems.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateTherapyItem(CommContracts.TherapyItem TherapyItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.TherapyItems.FirstOrDefault(m => m.ID == TherapyItem.ID);
+                if (temp != null)
+                {
+                    temp.Name = TherapyItem.Name;
+                    temp.AbbrPY = TherapyItem.AbbrPY;
+                    temp.AbbrWB = TherapyItem.AbbrWB;
+                    temp.Unit = TherapyItem.Unit;
+                    temp.YiBaoEnum = (DAL.YiBaoEnum)TherapyItem.YiBaoEnum;
+
+                    temp.Price = TherapyItem.Price;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

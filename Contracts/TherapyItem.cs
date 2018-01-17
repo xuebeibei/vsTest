@@ -25,5 +25,7 @@ namespace CommContracts
         public decimal Price { get; set; }                       // 价格
         [DataMember]
         public string Unit { get; set; }                        // 单位
+        [DataMember]
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类
     }
 }

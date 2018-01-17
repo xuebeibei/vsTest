@@ -248,10 +248,28 @@ namespace CommServer
             return temp.SaveTherapy(therapy);
         }
 
-        public List<CommContracts.TherapyItem> GetAllTherapyItems(string strName)
+        public List<CommContracts.TherapyItem> GetAllTherapyItem(string strName)
         {
             BLL.TherapyItem temp = new BLL.TherapyItem();
-            return temp.GetAllTherapyItems(strName);
+            return temp.GetAllTherapyItem(strName);
+        }
+
+        public bool UpdateTherapyItem(CommContracts.TherapyItem TherapyItem)
+        {
+            BLL.TherapyItem temp = new BLL.TherapyItem();
+            return temp.UpdateTherapyItem(TherapyItem);
+        }
+
+        public bool SaveTherapyItem(CommContracts.TherapyItem material)
+        {
+            BLL.TherapyItem temp = new BLL.TherapyItem();
+            return temp.SaveTherapyItem(material);
+        }
+
+        public bool DeleteTherapyItem(int TherapyItemID)
+        {
+            BLL.TherapyItem temp = new BLL.TherapyItem();
+            return temp.DeleteTherapyItem(TherapyItemID);
         }
 
         public CommContracts.Assay GetAssay(int Id)
@@ -674,25 +692,25 @@ namespace CommServer
         public List<CommContracts.MaterialItem> GetAllMaterialItem(string strName = "")
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
-            return temp.GetAllMaterial(strName);
+            return temp.GetAllMaterialItem(strName);
         }
 
         public bool UpdateMaterialItem(CommContracts.MaterialItem Material)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
-            return temp.UpdateMaterial(Material);
+            return temp.UpdateMaterialItem(Material);
         }
 
         public bool SaveMaterialItem(CommContracts.MaterialItem Material)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
-            return temp.SaveMaterial(Material);
+            return temp.SaveMaterialItem(Material);
         }
 
         public bool DeleteMaterialItem(int MaterialID)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
-            return temp.DeleteMaterial(MaterialID);
+            return temp.DeleteMaterialItem(MaterialID);
         }
     }
 }

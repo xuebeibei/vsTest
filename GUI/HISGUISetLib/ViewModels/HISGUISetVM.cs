@@ -271,5 +271,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的治疗项目
+        public List<CommContracts.TherapyItem> GetAllTherapyItem(string strName = "")
+        {
+            CommClient.TherapyItem myd = new CommClient.TherapyItem();
+
+            List<CommContracts.TherapyItem> list = new List<CommContracts.TherapyItem>();
+            list = myd.GetAllTherapyItem(strName);
+            return list;
+        }
+
+        // 删除供治疗项目
+        public bool DeleteTherapyItem(int therapyItemID)
+        {
+            CommClient.TherapyItem myd = new CommClient.TherapyItem();
+            if (myd.DeleteTherapyItem(therapyItemID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

@@ -34,6 +34,7 @@
             <TreeViewItem Header="字典" >
                 <TreeViewItem Header="药品" Selected="MedicineSet"/>
                 <TreeViewItem Header="物资" Selected="MaterialSet"/>
+                <TreeViewItem Header="治疗项目" Selected="TherapyItemSet"/>
                 <TreeViewItem Header="检查项目" Selected="InspectSet"/>
                 <TreeViewItem Header="化验项目" Selected="AssaySet"/>
                 <TreeViewItem Header="其他服务" Selected="OtherServiceSet"/>
@@ -53,6 +54,7 @@
             <local:MedicineSetView x:Name="MedicineView" Visibility="Collapsed"></local:MedicineSetView>
             <local:MaterialSetView x:Name="MaterialView" Visibility="Collapsed"></local:MaterialSetView>
             <local:InspectSetView x:Name="InspectView" Visibility="Collapsed"></local:InspectSetView>
+            <local:TherapyItemSetView x:Name="TherapyItemView" Visibility="Collapsed"></local:TherapyItemSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

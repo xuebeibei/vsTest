@@ -666,8 +666,9 @@ namespace DAL
         public string AbbrPY { get; set; }                          // 拼音简称
         public string AbbrWB { get; set; }                          // 五笔简称
         [DecimalPrecision(18, 4)]
-        public decimal Price { get; set; }                           // 价格
+        public decimal Price { get; set; }                          // 价格
         public string Unit { get; set; }                            // 单位
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类
 
         public virtual ICollection<TherapyDetail> TherapyDetails { get; set; }
     }

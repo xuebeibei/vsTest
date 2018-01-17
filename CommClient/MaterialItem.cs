@@ -26,19 +26,19 @@ namespace CommClient
             return client.GetAllMaterialItem(strName);
         }
 
-        public bool UpdateMaterial(CommContracts.MaterialItem Material)
+        public bool UpdateMaterial(CommContracts.MaterialItem MaterialItem)
         {
-            return client.UpdateMaterialItem(Material);
+            return client.UpdateMaterialItem(MaterialItem);
         }
 
-        public bool SaveMaterial(CommContracts.MaterialItem material)
+        public bool SaveMaterial(CommContracts.MaterialItem MaterialItem)
         {
-            return client.SaveMaterialItem(material);
+            return client.SaveMaterialItem(MaterialItem);
         }
 
-        public bool DeleteMaterial(int MaterialID)
+        public bool DeleteMaterial(int MaterialItemID)
         {
-            return client.DeleteMaterialItem(MaterialID);
+            return client.DeleteMaterialItem(MaterialItemID);
         }
     }
 }

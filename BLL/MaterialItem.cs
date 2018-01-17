@@ -9,7 +9,7 @@ namespace BLL
 {
     public class MaterialItem
     {
-        public List<CommContracts.MaterialItem> GetAllMaterial(string strName = "")
+        public List<CommContracts.MaterialItem> GetAllMaterialItem(string strName = "")
         {
             List<CommContracts.MaterialItem> list = new List<CommContracts.MaterialItem>();
 
@@ -36,7 +36,7 @@ namespace BLL
             return list;
         }
 
-        public bool SaveMaterial(CommContracts.MaterialItem Material)
+        public bool SaveMaterialItem(CommContracts.MaterialItem MaterialItem)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -47,7 +47,7 @@ namespace BLL
                 var mapper = config.CreateMapper();
 
                 DAL.MaterialItem temp = new DAL.MaterialItem();
-                temp = mapper.Map<DAL.MaterialItem>(Material);
+                temp = mapper.Map<DAL.MaterialItem>(MaterialItem);
 
                 ctx.MaterialItems.Add(temp);
                 try
@@ -62,7 +62,7 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteMaterial(int MaterialID)
+        public bool DeleteMaterialItem(int MaterialID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -84,25 +84,25 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateMaterial(CommContracts.MaterialItem Material)
+        public bool UpdateMaterialItem(CommContracts.MaterialItem MaterialItem)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.MaterialItems.FirstOrDefault(m => m.ID == Material.ID);
+                var temp = ctx.MaterialItems.FirstOrDefault(m => m.ID == MaterialItem.ID);
                 if (temp != null)
                 {
-                    temp.Name = Material.Name;
-                    temp.AbbrPY = Material.AbbrPY;
-                    temp.AbbrWB = Material.AbbrWB;
-                    temp.Unit = Material.Unit;
-                    temp.Specifications = Material.Specifications;
-                    temp.Manufacturer = Material.Manufacturer;
-                    temp.Valuable = Material.Valuable;
-                    temp.YiBaoEnum = (DAL.YiBaoEnum)Material.YiBaoEnum;
-                    temp.MaxNum = Material.MaxNum;
-                    temp.MinNum = Material.MinNum;
+                    temp.Name = MaterialItem.Name;
+                    temp.AbbrPY = MaterialItem.AbbrPY;
+                    temp.AbbrWB = MaterialItem.AbbrWB;
+                    temp.Unit = MaterialItem.Unit;
+                    temp.Specifications = MaterialItem.Specifications;
+                    temp.Manufacturer = MaterialItem.Manufacturer;
+                    temp.Valuable = MaterialItem.Valuable;
+                    temp.YiBaoEnum = (DAL.YiBaoEnum)MaterialItem.YiBaoEnum;
+                    temp.MaxNum = MaterialItem.MaxNum;
+                    temp.MinNum = MaterialItem.MinNum;
 
-                    temp.SellPrice = Material.SellPrice;
+                    temp.SellPrice = MaterialItem.SellPrice;
                 }
                 else
                 {

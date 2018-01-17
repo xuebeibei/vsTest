@@ -119,7 +119,13 @@ namespace CommContracts
         bool SaveTherapy(CommContracts.Therapy therapy);
 
         [OperationContract]
-        List<CommContracts.TherapyItem> GetAllTherapyItems(string strName);
+        List<CommContracts.TherapyItem> GetAllTherapyItem(string strName);
+        [OperationContract]
+        bool UpdateTherapyItem(CommContracts.TherapyItem TherapyItem);
+        [OperationContract]
+        bool SaveTherapyItem(CommContracts.TherapyItem material);
+        [OperationContract]
+        bool DeleteTherapyItem(int TherapyItemID);
 
         [OperationContract]
         CommContracts.Assay GetAssay(int Id);

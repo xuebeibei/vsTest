@@ -21,27 +21,27 @@ namespace HISGUISetLib.Views
     public partial class EditMaterialView : UserControl
     {
         private bool bIsEdit;
-        private CommContracts.MaterialItem Material;
-        public EditMaterialView(CommContracts.MaterialItem material = null)
+        private CommContracts.MaterialItem MaterialItem;
+        public EditMaterialView(CommContracts.MaterialItem materialItem = null)
         {
             InitializeComponent();
             YiBaoEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.YiBaoEnum));
 
             bIsEdit = false;
-            if (material != null)
+            if (materialItem != null)
             {
-                this.Material = material;
-                this.NameEdit.Text = material.Name;
-                this.AbbrPY.Text = material.AbbrPY;
-                this.AbbrWB.Text = material.AbbrWB;
-                this.Unit.Text = material.Unit;
-                this.Specifications.Text = material.Specifications;
-                this.Manufacturer.Text = material.Manufacturer;
-                this.Valuable.IsChecked = material.Valuable;
-                this.YiBaoEnum.Text = material.YiBaoEnum.ToString();
-                this.MaxNum.Text = material.MaxNum.ToString();
-                this.MinNum.Text = material.MinNum.ToString();
-                this.SellPrice.Text = material.SellPrice.ToString();
+                this.MaterialItem = materialItem;
+                this.NameEdit.Text = materialItem.Name;
+                this.AbbrPY.Text = materialItem.AbbrPY;
+                this.AbbrWB.Text = materialItem.AbbrWB;
+                this.Unit.Text = materialItem.Unit;
+                this.Specifications.Text = materialItem.Specifications;
+                this.Manufacturer.Text = materialItem.Manufacturer;
+                this.Valuable.IsChecked = materialItem.Valuable;
+                this.YiBaoEnum.Text = materialItem.YiBaoEnum.ToString();
+                this.MaxNum.Text = materialItem.MaxNum.ToString();
+                this.MinNum.Text = materialItem.MinNum.ToString();
+                this.SellPrice.Text = materialItem.SellPrice.ToString();
 
                 bIsEdit = true;
             }
@@ -60,21 +60,21 @@ namespace HISGUISetLib.Views
             }
             if (bIsEdit)
             {
-                Material.Name = this.NameEdit.Text.Trim();
-                Material.AbbrPY = this.AbbrPY.Text;
-                Material.AbbrWB = this.AbbrWB.Text;
-                Material.Unit = this.Unit.Text;
-                Material.Specifications = this.Specifications.Text;
-                Material.Manufacturer = this.Manufacturer.Text;
-                Material.Valuable = this.Valuable.IsChecked.Value;
-                Material.YiBaoEnum = (CommContracts.YiBaoEnum)this.YiBaoEnum.SelectedItem;
-                Material.MaxNum = int.Parse(this.MaxNum.Text);
-                Material.MinNum = int.Parse(this.MinNum.Text);
-                Material.SellPrice = decimal.Parse(this.SellPrice.Text);
+                MaterialItem.Name = this.NameEdit.Text.Trim();
+                MaterialItem.AbbrPY = this.AbbrPY.Text;
+                MaterialItem.AbbrWB = this.AbbrWB.Text;
+                MaterialItem.Unit = this.Unit.Text;
+                MaterialItem.Specifications = this.Specifications.Text;
+                MaterialItem.Manufacturer = this.Manufacturer.Text;
+                MaterialItem.Valuable = this.Valuable.IsChecked.Value;
+                MaterialItem.YiBaoEnum = (CommContracts.YiBaoEnum)this.YiBaoEnum.SelectedItem;
+                MaterialItem.MaxNum = int.Parse(this.MaxNum.Text);
+                MaterialItem.MinNum = int.Parse(this.MinNum.Text);
+                MaterialItem.SellPrice = decimal.Parse(this.SellPrice.Text);
 
 
                 CommClient.MaterialItem myd = new CommClient.MaterialItem();
-                if (myd.UpdateMaterial(Material))
+                if (myd.UpdateMaterial(MaterialItem))
                 {
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
@@ -82,24 +82,24 @@ namespace HISGUISetLib.Views
             }
             else
             {
-                CommContracts.MaterialItem material = new CommContracts.MaterialItem();
-                material.Name = this.NameEdit.Text.Trim();
-                material.AbbrPY = this.AbbrPY.Text.Trim();
-                material.AbbrWB = this.AbbrWB.Text.Trim();
-                material.Unit = this.Unit.Text.Trim();
-                material.Specifications = this.Specifications.Text.Trim();
-                material.Manufacturer = this.Manufacturer.Text.Trim();
-                material.Valuable = this.Valuable.IsChecked.Value;
-                material.YiBaoEnum = (CommContracts.YiBaoEnum)this.YiBaoEnum.SelectedItem;
+                CommContracts.MaterialItem materialItem = new CommContracts.MaterialItem();
+                materialItem.Name = this.NameEdit.Text.Trim();
+                materialItem.AbbrPY = this.AbbrPY.Text.Trim();
+                materialItem.AbbrWB = this.AbbrWB.Text.Trim();
+                materialItem.Unit = this.Unit.Text.Trim();
+                materialItem.Specifications = this.Specifications.Text.Trim();
+                materialItem.Manufacturer = this.Manufacturer.Text.Trim();
+                materialItem.Valuable = this.Valuable.IsChecked.Value;
+                materialItem.YiBaoEnum = (CommContracts.YiBaoEnum)this.YiBaoEnum.SelectedItem;
                 if(!string.IsNullOrEmpty(this.MaxNum.Text))
-                    material.MaxNum = int.Parse(this.MaxNum.Text.Trim());
+                    materialItem.MaxNum = int.Parse(this.MaxNum.Text.Trim());
                 if (!string.IsNullOrEmpty(this.MinNum.Text))
-                    material.MinNum = int.Parse(this.SellPrice.Text.Trim());
-                if (!string.IsNullOrEmpty(this.MinNum.Text))
-                    material.SellPrice = decimal.Parse(this.SellPrice.Text.Trim());
+                    materialItem.MinNum = int.Parse(this.MinNum.Text.Trim());
+                if (!string.IsNullOrEmpty(this.SellPrice.Text))
+                    materialItem.SellPrice = decimal.Parse(this.SellPrice.Text.Trim());
 
                 CommClient.MaterialItem myd = new CommClient.MaterialItem();
-                if (myd.SaveMaterial(material))
+                if (myd.SaveMaterial(materialItem))
                 {
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();

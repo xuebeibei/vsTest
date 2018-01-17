@@ -52,7 +52,7 @@ namespace HISGUICore.MyContorls
             else if (editEnum == MyTableEditEnum.zhiliao)
             {
                 CommClient.TherapyItem therapyItem = new CommClient.TherapyItem();
-                List<CommContracts.TherapyItem> list = therapyItem.GetAllTherapyItems(strFindName);
+                List<CommContracts.TherapyItem> list = therapyItem.GetAllTherapyItem(strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();

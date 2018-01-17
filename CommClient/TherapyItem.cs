@@ -21,9 +21,24 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.TherapyItem> GetAllTherapyItems(string strName)
+        public List<CommContracts.TherapyItem> GetAllTherapyItem(string strName = "")
         {
-            return client.GetAllTherapyItems(strName);
+            return client.GetAllTherapyItem(strName);
+        }
+
+        public bool UpdateTherapyItem(CommContracts.TherapyItem TherapyItem)
+        {
+            return client.UpdateTherapyItem(TherapyItem);
+        }
+
+        public bool SaveTherapyItem(CommContracts.TherapyItem material)
+        {
+            return client.SaveTherapyItem(material);
+        }
+
+        public bool DeleteTherapyItem(int TherapyItemID)
+        {
+            return client.DeleteTherapyItem(TherapyItemID);
         }
     }
 }
