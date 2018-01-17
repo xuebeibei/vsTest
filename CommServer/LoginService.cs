@@ -464,10 +464,28 @@ namespace CommServer
             return temp.getAllInHospitalOtherService(InpatientID);
         }
 
-        public List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName)
+        public List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName)
         {
             BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
             return temp.GetAllOtherServiceItems(strName);
+        }
+
+        public bool UpdateOtherServiceItem(CommContracts.OtherServiceItem OtherServiceItem)
+        {
+            BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
+            return temp.UpdateOtherServiceItem(OtherServiceItem);
+        }
+
+        public bool SaveOtherServiceItem(CommContracts.OtherServiceItem material)
+        {
+            BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
+            return temp.SaveOtherServiceItem(material);
+        }
+
+        public bool DeleteOtherServiceItem(int OtherServiceItemID)
+        {
+            BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
+            return temp.DeleteOtherServiceItem(OtherServiceItemID);
         }
 
         public bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore)

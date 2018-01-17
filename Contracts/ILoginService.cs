@@ -221,7 +221,17 @@ namespace CommContracts
         List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID);
 
         [OperationContract]
-        List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName);
+        List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName);
+
+        [OperationContract]
+        bool UpdateOtherServiceItem(CommContracts.OtherServiceItem OtherServiceItem);
+
+        [OperationContract]
+        bool SaveOtherServiceItem(CommContracts.OtherServiceItem material);
+
+        [OperationContract]
+        bool DeleteOtherServiceItem(int OtherServiceItemID);
+
 
         [OperationContract]
         bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore);

@@ -56,6 +56,7 @@
             <local:InspectSetView x:Name="InspectView" Visibility="Collapsed"></local:InspectSetView>
             <local:TherapyItemSetView x:Name="TherapyItemView" Visibility="Collapsed"></local:TherapyItemSetView>
             <local:AssayItemSetView x:Name="AssayItemView" Visibility="Collapsed"></local:AssayItemSetView>
+            <local:OtherServiceItemSetView x:Name="OtherServiceItemView" Visibility="Collapsed"></local:OtherServiceItemSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

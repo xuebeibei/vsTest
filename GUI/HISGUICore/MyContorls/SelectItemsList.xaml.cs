@@ -84,7 +84,7 @@ namespace HISGUICore.MyContorls
             else if(editEnum == MyTableEditEnum.qita)
             {
                 CommClient.OtherServiceItem otherServiceItem = new CommClient.OtherServiceItem();
-                List<CommContracts.OtherServiceItem> list = otherServiceItem.GetAllOtherServiceItems(strFindName);
+                List<CommContracts.OtherServiceItem> list = otherServiceItem.GetAllOtherServiceItem(strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();

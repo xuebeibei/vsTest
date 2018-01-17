@@ -114,6 +114,9 @@
     <Compile Include="Views\EditMedicineView.xaml.cs">
       <DependentUpon>EditMedicineView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditOtherServiceItemView.xaml.cs">
+      <DependentUpon>EditOtherServiceItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditSickBedView.xaml.cs">
       <DependentUpon>EditSickBedView.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
     </Compile>
     <Compile Include="Views\MedicineSetView.xaml.cs">
       <DependentUpon>MedicineSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OtherServiceItemSetView.xaml.cs">
+      <DependentUpon>OtherServiceItemSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SetWorkView.xaml.cs">
       <DependentUpon>SetWorkView.xaml</DependentUpon>
@@ -238,6 +244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditOtherServiceItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditSickBedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -287,6 +297,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MedicineSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OtherServiceItemSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

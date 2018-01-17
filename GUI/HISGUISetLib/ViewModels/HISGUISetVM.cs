@@ -315,5 +315,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的其他服务项目
+        public List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName = "")
+        {
+            CommClient.OtherServiceItem myd = new CommClient.OtherServiceItem();
+
+            List<CommContracts.OtherServiceItem> list = new List<CommContracts.OtherServiceItem>();
+            list = myd.GetAllOtherServiceItem(strName);
+            return list;
+        }
+
+        // 删除供其他服务项目
+        public bool DeleteOtherServiceItem(int OtherServiceItemID)
+        {
+            CommClient.OtherServiceItem myd = new CommClient.OtherServiceItem();
+            if (myd.DeleteOtherServiceItem(OtherServiceItemID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

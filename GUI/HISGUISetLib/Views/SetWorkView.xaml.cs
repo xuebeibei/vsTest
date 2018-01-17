@@ -60,6 +60,7 @@ namespace HISGUISetLib.Views
             InspectView.Visibility = Visibility.Collapsed;
             TherapyItemView.Visibility = Visibility.Collapsed;
             AssayItemView.Visibility = Visibility.Collapsed;
+            OtherServiceItemView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -138,6 +139,7 @@ namespace HISGUISetLib.Views
         private void OtherServiceSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            OtherServiceItemView.Visibility = Visibility.Visible;
         }
 
         private void AssayItemSet(object sender, RoutedEventArgs e)
