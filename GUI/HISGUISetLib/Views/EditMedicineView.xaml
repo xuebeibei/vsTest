@@ -6,40 +6,67 @@
              xmlns:local="clr-namespace:HISGUISetLib.Views">
     <Grid>
         <StackPanel>
-            <UniformGrid Columns="4" Rows="8">
-                <Label Margin="5">名称*：</Label>
-                <TextBox x:Name="NameEdit" Margin="5"/>
-                <Label Margin="5">类型*：</Label>
-                <ComboBox x:Name="MedicineTypeEnumCombo" Margin="5"/>
-                <Label Margin="5">别名1：</Label>
-                <TextBox x:Name="Abbr1Edit" Margin="5"/>
-                <Label Margin="5">别名2：</Label>
-                <TextBox x:Name="Abbr2Edit" Margin="5"/>
-                <Label Margin="5">别名3：</Label>
-                <TextBox x:Name="Abbr3Edit" Margin="5"/>
-                <Label Margin="5">剂型*：</Label>
-                <ComboBox x:Name="DosageFormEnumCombo" Margin="5"/>
-                <Label Margin="5">单位：</Label>
-                <TextBox x:Name="Unit" Margin="5"/>
-                <Label Margin="5">给药方式：</Label>
-                <TextBox x:Name="AdministrationRoute" Margin="5"/>
-                <Label Margin="5">规格：</Label>
-                <TextBox x:Name="Specifications" Margin="5"/>
-                <Label Margin="5">生产厂家：</Label>
-                <TextBox x:Name="Manufacturer" Margin="5"/>
-                <CheckBox x:Name="PoisonousHemp" Margin="5">毒麻：</CheckBox>
-                <CheckBox x:Name="Valuable" Margin="5">贵重：</CheckBox>
-                <CheckBox x:Name="EssentialDrugs" Margin="5">基本药物：</CheckBox>
-                <Label Margin="5">医保甲乙类：</Label>
-                <ComboBox x:Name="YiBaoEnum" Margin="5"/>
-                <Label Margin="5">最大库存量：</Label>
-                <TextBox x:Name="MaxNum" Margin="5"/>
-                <Label Margin="5">最小库存量：</Label>
-                <TextBox x:Name="MinNum" Margin="5"/>
-                <Label Margin="5">零售价：</Label>
-                <TextBox x:Name="SellPrice" Margin="5"/>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="90"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5" Grid.Row="0" Grid.Column="0">名称*：</Label>
+                <TextBox x:Name="NameEdit" Margin="5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+                
+                <Label Margin="5" Grid.Row="1" Grid.Column="0">类型*：</Label>
+                <ComboBox x:Name="MedicineTypeEnumCombo" Margin="5" Grid.Row="1" Grid.Column="1"/>
+                <Label Margin="5" Grid.Row="1" Grid.Column="2">别名1：</Label>
+                <TextBox x:Name="Abbr1Edit" Margin="5" Grid.Row="1" Grid.Column="3"/>
+                
+                <Label Margin="5" Grid.Row="2" Grid.Column="0">别名2：</Label>
+                <TextBox x:Name="Abbr2Edit" Margin="5" Grid.Row="2" Grid.Column="1"/>
+                <Label Margin="5" Grid.Row="2" Grid.Column="2">别名3：</Label>
+                <TextBox x:Name="Abbr3Edit" Margin="5" Grid.Row="2" Grid.Column="3"/>
+                
+                <Label Margin="5" Grid.Row="3" Grid.Column="0">剂型*：</Label>
+                <ComboBox x:Name="DosageFormEnumCombo" Margin="5" Grid.Row="3" Grid.Column="1"/>
+                <Label Margin="5" Grid.Row="3" Grid.Column="2">单位：</Label>
+                <TextBox x:Name="Unit" Margin="5" Grid.Row="3" Grid.Column="3"/>
+                
+                <Label Margin="5" Grid.Row="4" Grid.Column="0">给药方式：</Label>
+                <TextBox x:Name="AdministrationRoute" Margin="5" Grid.Row="4" Grid.Column="1"/>
+                <Label Margin="5" Grid.Row="4" Grid.Column="2">规格：</Label>
+                <TextBox x:Name="Specifications" Margin="5" Grid.Row="4" Grid.Column="3"/>
+                
+                <Label Margin="5" Grid.Row="5" Grid.Column="2">医保甲乙类：</Label>
+                <ComboBox x:Name="YiBaoEnum" Margin="5" Grid.Row="5" Grid.Column="3"/>
+                <Label Margin="5" Grid.Row="5" Grid.Column="0">零售价：</Label>
+                <TextBox x:Name="SellPrice" Margin="5" Grid.Row="5" Grid.Column="1"/>
 
-            </UniformGrid>
+                <Label Margin="5" Grid.Row="7" Grid.Column="0">生产厂家：</Label>
+                <TextBox x:Name="Manufacturer" Margin="5" Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="3"/>
+                
+                <Label Margin="5" Grid.Row="8" Grid.Column="0">最大库存量：</Label>
+                <TextBox x:Name="MaxNum" Margin="5" Grid.Row="8" Grid.Column="1"/>
+                <Label Margin="5" Grid.Row="8" Grid.Column="2">最小库存量：</Label>
+                <TextBox x:Name="MinNum" Margin="5" Grid.Row="8" Grid.Column="3"/>
+
+                <CheckBox x:Name="PoisonousHemp" Margin="5,10,5,10" Grid.Row="9" Grid.Column="0" >毒麻</CheckBox>
+                <CheckBox x:Name="Valuable" Margin="5,10,5,10" Grid.Row="9" Grid.Column="1" >贵重</CheckBox>
+                <CheckBox x:Name="EssentialDrugs" Margin="5,10,5,10" Grid.Row="9" Grid.Column="2"  >基本药物</CheckBox>
+
+            </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
                 <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
