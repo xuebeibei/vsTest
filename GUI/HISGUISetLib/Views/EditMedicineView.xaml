@@ -27,12 +27,9 @@
                 <TextBox x:Name="Specifications" Margin="5"/>
                 <Label Margin="5">生产厂家：</Label>
                 <TextBox x:Name="Manufacturer" Margin="5"/>
-                <Label Margin="5">毒麻：</Label>
-                <TextBox x:Name="PoisonousHemp" Margin="5"/>
-                <Label Margin="5">贵重：</Label>
-                <TextBox x:Name="Valuable" Margin="5"/>
-                <Label Margin="5">基本药物：</Label>
-                <TextBox x:Name="EssentialDrugs" Margin="5"/>
+                <CheckBox x:Name="PoisonousHemp" Margin="5">毒麻：</CheckBox>
+                <CheckBox x:Name="Valuable" Margin="5">贵重：</CheckBox>
+                <CheckBox x:Name="EssentialDrugs" Margin="5">基本药物：</CheckBox>
                 <Label Margin="5">医保甲乙类：</Label>
                 <ComboBox x:Name="YiBaoEnum" Margin="5"/>
                 <Label Margin="5">最大库存量：</Label>
