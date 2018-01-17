@@ -203,7 +203,7 @@ namespace CommContracts
         List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName);
 
         [OperationContract]
-        List<CommContracts.MaterialItem> GetAllMaterialItems(string strName);
+        List<CommContracts.Material> GetAllMaterialItems(string strName);
 
         [OperationContract]
         bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore);
@@ -333,5 +333,14 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveSickBed(CommContracts.SickBed sickBed);
+
+        [OperationContract]
+        List<CommContracts.Material> GetAllMaterial(string strName = "");
+        [OperationContract]
+        bool UpdateMaterial(CommContracts.Material Material);
+        [OperationContract]
+        bool SaveMaterial(CommContracts.Material Material);
+        [OperationContract]
+        bool DeleteMaterial(int MaterialID);
     }
 }

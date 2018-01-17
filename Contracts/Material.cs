@@ -8,21 +8,22 @@ using System.Runtime.Serialization;
 namespace CommContracts
 {
     [DataContract]
-    public class MaterialItem
+    public class Material
     {
-        public MaterialItem()
+        public Material()
         {
             MaterialBillDetails = new List<MaterialBillDetail>();
         }
         [DataMember]
         public int ID { get; set; }
+        [DataMember]
         public string Name { get; set; }                        // 名称
         [DataMember]
         public string AbbrPY { get; set; }                      // 拼音简称
         [DataMember]
         public string AbbrWB { get; set; }                      // 五笔简称
         [DataMember]
-        public decimal StockPrice { get; set; }                  // 入库价格
+        public decimal SellPrice { get; set; }                  // 零售价格
         [DataMember]
         public string Unit { get; set; }                        // 单位
         [DataMember]

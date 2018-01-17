@@ -21,7 +21,7 @@ namespace HISGUICore.MyContorls
         public CommContracts.TherapyItem CurrentTherapyItem { get; set; }  // 治疗
         public CommContracts.AssayItem CurrentAssayItem { get; set; }      // 检验
         public CommContracts.InspectItem CurrentInspectItem { get; set; }  // 检查
-        public CommContracts.MaterialItem CurrentMaterialItem { get; set; }// 材料
+        public CommContracts.Material CurrentMaterialItem { get; set; }// 材料
         public CommContracts.OtherServiceItem CurrentOtherServiceItem { get; set; } // 其他服务
         public CommContracts.StoreRoomMedicineNum CurrentStoreRoomMedicineNum { get; set; }  // 库存
 
@@ -76,7 +76,7 @@ namespace HISGUICore.MyContorls
             else if(editEnum == MyTableEditEnum.cailiao)
             {
                 CommClient.MaterialItem therapyItem = new CommClient.MaterialItem();
-                List<CommContracts.MaterialItem> list = therapyItem.GetAllMaterialItems(strFindName);
+                List<CommContracts.Material> list = therapyItem.GetAllMaterialItems(strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
@@ -142,7 +142,7 @@ namespace HISGUICore.MyContorls
                 }
                 else if(editEnum == MyTableEditEnum.cailiao)
                 {
-                    CommContracts.MaterialItem materialItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.MaterialItem);
+                    CommContracts.Material materialItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.Material);
 
                     CurrentMaterialItem = materialItem;
                     (this.Parent as Window).DialogResult = true;

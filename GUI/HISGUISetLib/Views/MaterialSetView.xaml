@@ -1,0 +1,40 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUISetLib.Views.MaterialSetView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUISetLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBox x:Name="FindItemNameBox" Margin="5" Width="100"></TextBox>
+                <Button x:Name="FindItemBtn" Margin="5" Click="FindItemBtn_Click">查找</Button>
+                <Button x:Name="NewItemBtn" Margin="5" Click="NewItemBtn_Click">新增</Button>
+                <Button x:Name="DeleteItemBtn" Margin="5" Click="DeleteItemBtn_Click">删除</Button>
+                <Button x:Name="EditItemBtn" Margin="5" Click="EditItemBtn_Click">修改</Button>
+                <Button x:Name="ExportItemBtn" Margin="5" Click="ExportItemBtn_Click">导出</Button>
+                <Button x:Name="ImportItemBtn" Margin="5" Click="ImportItemBtn_Click">导入</Button>
+            </StackPanel>
+            <ListView Name="AllMaterialList" Margin="5"
+                              SelectionMode="Single" MouseDoubleClick="AllMaterialList_MouseDoubleClick">
+                <ListView.View>
+                    <GridView x:Name="gridViewMaterial">
+                        <GridViewColumn Header="物资名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="简拼" DisplayMemberBinding="{Binding Path=AbbrPY}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="五笔" DisplayMemberBinding="{Binding Path=AbbrWB}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=SellPrice}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Specifications}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Manufacturer}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="贵重" DisplayMemberBinding="{Binding Path=Valuable}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="医保甲乙类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="最大库存量" DisplayMemberBinding="{Binding Path=MaxNum}" Width="50"></GridViewColumn>
+                        <GridViewColumn Header="最小库存量" DisplayMemberBinding="{Binding Path=MinNum}" Width="50"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</HISGUICore:HISGUIViewBase>

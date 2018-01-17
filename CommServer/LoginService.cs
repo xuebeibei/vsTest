@@ -416,7 +416,7 @@ namespace CommServer
             return temp.GetAllOtherServiceItems(strName);
         }
 
-        public List<CommContracts.MaterialItem> GetAllMaterialItems(string strName)
+        public List<CommContracts.Material> GetAllMaterialItems(string strName)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.GetAllMaterialItems(strName);
@@ -657,6 +657,30 @@ namespace CommServer
         {
             BLL.SickBed temp = new BLL.SickBed();
             return temp.SaveSickBed(sickBed);
+        }
+
+        public List<CommContracts.Material> GetAllMaterial(string strName = "")
+        {
+            BLL.MaterialItem temp = new BLL.MaterialItem();
+            return temp.GetAllMaterial(strName);
+        }
+
+        public bool UpdateMaterial(CommContracts.Material Material)
+        {
+            BLL.MaterialItem temp = new BLL.MaterialItem();
+            return temp.UpdateMaterial(Material);
+        }
+
+        public bool SaveMaterial(CommContracts.Material Material)
+        {
+            BLL.MaterialItem temp = new BLL.MaterialItem();
+            return temp.SaveMaterial(Material);
+        }
+
+        public bool DeleteMaterial(int MaterialID)
+        {
+            BLL.MaterialItem temp = new BLL.MaterialItem();
+            return temp.DeleteMaterial(MaterialID);
         }
     }
 }

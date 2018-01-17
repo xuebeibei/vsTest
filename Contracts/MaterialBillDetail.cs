@@ -25,7 +25,7 @@ namespace CommContracts
         [DataMember]
         public int MaterialBillID { get; set; }                          // 所属材料单ID
         [DataMember]
-        public MaterialItem MaterialItem { get; set; }
+        public Material MaterialItem { get; set; }
 
     }
 }

@@ -688,7 +688,7 @@ namespace DAL
         public string AbbrPY { get; set; }                      // 拼音简称
         public string AbbrWB { get; set; }                      // 五笔简称
         [DecimalPrecision(18, 4)]
-        public decimal StockPrice { get; set; }                  // 入库价格
+        public decimal SellPrice { get; set; }                  // 零售价
         public string Unit { get; set; }                        // 单位
         public string Specifications { get; set; }              // 规格
         public string Manufacturer { get; set; }                // 生产厂家

@@ -13,31 +13,31 @@
         </Grid.ColumnDefinitions>
         <TreeView x:Name="AllSetTreeView" Margin="5" Grid.Column="0">
             <TreeViewItem Header="个人信息" ><!--Visibility="Collapsed"-->
-                <TreeViewItem Header="个人信息设置" Selected="UserInfoSet"/>
-                <TreeViewItem Header="密码管理" Selected="PasswordSet"/>
+                <TreeViewItem Header="个人信息" Selected="UserInfoSet"/>
+                <TreeViewItem Header="密码" Selected="PasswordSet"/>
                 <TreeViewItem Header="意见反馈" Selected="OpinionSet"/>
             </TreeViewItem>
             <TreeViewItem Header="医院结构" >
-                <TreeViewItem Header="医院信息管理" Selected="HospitalInfoSet"/>
-                <TreeViewItem Header="科室管理" Selected="DepartmentSet"/>
-                <TreeViewItem Header="职位管理" Selected="JobSet"/>
-                <TreeViewItem Header="库房管理" Selected="StorehouseSet"/>
-                <TreeViewItem Header="供应商管理" Selected="SupplierSet"/>
-                <TreeViewItem Header="病房管理" Selected="SickRoomSet"/>
-                <TreeViewItem Header="病床管理" Selected="SickBedSet"/>
+                <TreeViewItem Header="医院信息" Selected="HospitalInfoSet"/>
+                <TreeViewItem Header="科室" Selected="DepartmentSet"/>
+                <TreeViewItem Header="职位" Selected="JobSet"/>
+                <TreeViewItem Header="库房" Selected="StorehouseSet"/>
+                <TreeViewItem Header="供应商" Selected="SupplierSet"/>
+                <TreeViewItem Header="病房" Selected="SickRoomSet"/>
+                <TreeViewItem Header="病床" Selected="SickBedSet"/>
             </TreeViewItem>
             <TreeViewItem Header="用户档案" >
-                <TreeViewItem Header="人员管理" Selected="EmployeeSet"/>
-                <TreeViewItem Header="权限管理" Selected="PowerSet"/>
-                <TreeViewItem Header="用户管理" Selected="UserSet"/>
+                <TreeViewItem Header="人员" Selected="EmployeeSet"/>
+                <TreeViewItem Header="权限" Selected="PowerSet"/>
+                <TreeViewItem Header="用户" Selected="UserSet"/>
             </TreeViewItem>
             <TreeViewItem Header="字典" >
-                <TreeViewItem Header="药品字典管理" Selected="MedicineSet"/>
-                <TreeViewItem Header="物资字典管理" Selected="MaterialSet"/>
-                <TreeViewItem Header="检查项目字典管理" Selected="InspectSet"/>
-                <TreeViewItem Header="化验项目字典管理" Selected="AssaySet"/>
-                <TreeViewItem Header="其他服务字典管理" Selected="OtherServiceSet"/>
-                <TreeViewItem Header="诊断字典管理" Selected="DiagnosisSet"/>
+                <TreeViewItem Header="药品" Selected="MedicineSet"/>
+                <TreeViewItem Header="物资" Selected="MaterialSet"/>
+                <TreeViewItem Header="检查项目" Selected="InspectSet"/>
+                <TreeViewItem Header="化验项目" Selected="AssaySet"/>
+                <TreeViewItem Header="其他服务" Selected="OtherServiceSet"/>
+                <TreeViewItem Header="诊断" Selected="DiagnosisSet"/>
             </TreeViewItem>
         </TreeView>
         <StackPanel Grid.Column="1">
@@ -51,6 +51,7 @@
             <local:EmployeeSetView x:Name="EmployeeView" Visibility="Collapsed"></local:EmployeeSetView>
             <local:UserSetView x:Name="UserView" Visibility="Collapsed"></local:UserSetView>
             <local:MedicineSetView x:Name="MedicineView" Visibility="Collapsed"></local:MedicineSetView>
+            <local:MaterialSetView x:Name="MaterialView" Visibility="Collapsed"></local:MaterialSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

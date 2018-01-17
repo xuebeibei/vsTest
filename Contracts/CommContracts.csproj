@@ -58,7 +58,7 @@
     <Compile Include="ILoginService.cs" />
     <Compile Include="MaterialBill.cs" />
     <Compile Include="MaterialBillDetail.cs" />
-    <Compile Include="MaterialItem.cs" />
+    <Compile Include="Material.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
     <Compile Include="MedicineCheckStore.cs" />

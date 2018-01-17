@@ -206,7 +206,7 @@ namespace HISGUISetLib.ViewModels
             return false;
         }
 
-        // 得到所有的用户
+        // 得到所有的药品
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
         {
             CommClient.Medicine myd = new CommClient.Medicine();
@@ -214,14 +214,35 @@ namespace HISGUISetLib.ViewModels
             List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
             list = myd.GetAllMedicine(strName);
             return list;
-            return list;
         }
 
-        // 删除供用户
+        // 删除供药品
         public bool DeleteMedicine(int userID)
         {
             CommClient.Medicine myd = new CommClient.Medicine();
             if (myd.DeleteMedicine(userID))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // 得到所有的物资
+        public List<CommContracts.Material> GetAllMaterial(string strName = "")
+        {
+            CommClient.MaterialItem myd = new CommClient.MaterialItem();
+
+            List<CommContracts.Material> list = new List<CommContracts.Material>();
+            list = myd.GetAllMaterial(strName);
+            return list;
+        }
+
+        // 删除供物资
+        public bool DeleteMaterial(int userID)
+        {
+            CommClient.MaterialItem myd = new CommClient.MaterialItem();
+            if (myd.DeleteMaterial(userID))
             {
                 return true;
             }

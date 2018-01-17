@@ -21,9 +21,29 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.MaterialItem> GetAllMaterialItems(string strName)
+        public List<CommContracts.Material> GetAllMaterialItems(string strName)
         {
             return client.GetAllMaterialItems(strName);
+        }
+
+        public List<CommContracts.Material> GetAllMaterial(string strName = "")
+        {
+            return client.GetAllMaterial(strName);
+        }
+
+        public bool UpdateMaterial(CommContracts.Material Material)
+        {
+            return client.UpdateMaterial(Material);
+        }
+
+        public bool SaveMaterial(CommContracts.Material material)
+        {
+            return client.SaveMaterial(material);
+        }
+
+        public bool DeleteMaterial(int MaterialID)
+        {
+            return client.DeleteMaterial(MaterialID);
         }
     }
 }
