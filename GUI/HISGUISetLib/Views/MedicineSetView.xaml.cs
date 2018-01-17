@@ -64,7 +64,7 @@ namespace HISGUISetLib.Views
             EditMedicineView eidtMedicine = new EditMedicineView();
             window.Content = eidtMedicine;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 500;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -107,7 +107,8 @@ namespace HISGUISetLib.Views
             EditMedicineView eidtMedicine = new EditMedicineView(temp);
             window.Content = eidtMedicine;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 500;
+            window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
