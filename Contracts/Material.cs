@@ -8,9 +8,9 @@ using System.Runtime.Serialization;
 namespace CommContracts
 {
     [DataContract]
-    public class Material
+    public class MaterialItem
     {
-        public Material()
+        public MaterialItem()
         {
             MaterialBillDetails = new List<MaterialBillDetail>();
         }

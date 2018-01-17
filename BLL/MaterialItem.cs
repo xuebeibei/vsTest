@@ -9,9 +9,9 @@ namespace BLL
 {
     public class MaterialItem
     {
-        public List<CommContracts.Material> GetAllMaterialItems(string strName)
+        public List<CommContracts.MaterialItem> GetAllMaterial(string strName = "")
         {
-            List<CommContracts.Material> list = new List<CommContracts.Material>();
+            List<CommContracts.MaterialItem> list = new List<CommContracts.MaterialItem>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -21,53 +21,28 @@ namespace BLL
                             t.AbbrWB.StartsWith(strName)
                             select t;
 
-                var config = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<DAL.MaterialItem, CommContracts.Material>();
-                });
-                var mapper = config.CreateMapper();
-
-                foreach (DAL.MaterialItem tem in query)
-                {
-                    var dto = mapper.Map<CommContracts.Material>(tem);
-                    list.Add(dto);
-                }
-            }
-
-            return list;
-        }
-
-        public List<CommContracts.Material> GetAllMaterial(string strName = "")
-        {
-            List<CommContracts.Material> list = new List<CommContracts.Material>();
-
-            using (DAL.HisContext ctx = new DAL.HisContext())
-            {
-                var query = from a in ctx.MaterialItems
-                            where a.Name.StartsWith(strName)
-                            select a;
                 foreach (DAL.MaterialItem ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.MaterialItem, CommContracts.Material>();
+                        cfg.CreateMap<DAL.MaterialItem, CommContracts.MaterialItem>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.Material temp = mapper.Map<CommContracts.Material>(ass);
+                    CommContracts.MaterialItem temp = mapper.Map<CommContracts.MaterialItem>(ass);
                     list.Add(temp);
                 }
             }
             return list;
         }
 
-        public bool SaveMaterial(CommContracts.Material Material)
+        public bool SaveMaterial(CommContracts.MaterialItem Material)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Material, DAL.MaterialItem>();
+                    cfg.CreateMap<CommContracts.MaterialItem, DAL.MaterialItem>();
                 });
                 var mapper = config.CreateMapper();
 
@@ -109,7 +84,7 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateMaterial(CommContracts.Material Material)
+        public bool UpdateMaterial(CommContracts.MaterialItem Material)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {

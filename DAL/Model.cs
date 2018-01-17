@@ -634,7 +634,9 @@ namespace DAL
         [DecimalPrecision(18, 4)]
         public decimal Price { get; set; }                       // 价格
         public string Unit { get; set; }                        // 单位
-        public int BodyRegionID { get; set; }                   // 检查部位 
+        public int BodyRegionID { get; set; }                   // 检查部位
+        
+        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
         public virtual BodyRegion BodyRegion { get; set; }
         public virtual ICollection<InspectDetail> InspectDetails { get; set; }

@@ -656,7 +656,7 @@ namespace HISGUICore.MyContorls
             }
         }
 
-        private void InsertIntoMaterialItem(CommContracts.Material materialItem)
+        private void InsertIntoMaterialItem(CommContracts.MaterialItem materialItem)
         {
             if (materialItem == null)
                 return;

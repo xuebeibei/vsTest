@@ -22,20 +22,19 @@ using System.Data;
 using HISGUICore.MyContorls;
 using Microsoft.Win32;
 
-
 namespace HISGUISetLib.Views
 {
     [Export]
-    [Export("MaterialSetView", typeof(MaterialSetView))]
-    public partial class MaterialSetView : HISGUIViewBase
+    [Export("InspectSetView", typeof(InspectSetView))]
+    public partial class InspectSetView : HISGUIViewBase
     {
-        public MaterialSetView()
+        public InspectSetView()
         {
             InitializeComponent();
-            this.Loaded += MaterialSetView_Loaded;
+            this.Loaded += InspectSetView_Loaded;
         }
 
-        private void MaterialSetView_Loaded(object sender, RoutedEventArgs e)
+        private void InspectSetView_Loaded(object sender, RoutedEventArgs e)
         {
             UpdateAllDate();
         }
@@ -46,7 +45,7 @@ namespace HISGUISetLib.Views
             set { this.VM = value; }
         }
 
-        private void AllMaterialList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void AllInspectList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
         }
@@ -59,37 +58,37 @@ namespace HISGUISetLib.Views
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            // 新增物资
+            // 新增检查项目
             var window = new Window();
 
-            EditMaterialView eidtMaterial = new EditMaterialView();
-            window.Content = eidtMaterial;
+            EditInspectItemView eidtInspect = new EditInspectItemView();
+            window.Content = eidtInspect;
             window.Width = 400;
             window.Height = 500;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
             {
-                MessageBox.Show("物资新建完成！");
+                MessageBox.Show("检查项目新建完成！");
                 UpdateAllDate();
             }
         }
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            var currentMaterial = this.AllMaterialList.SelectedItem as CommContracts.MaterialItem;
-            if (currentMaterial == null)
+            var currentInspect = this.AllInspectList.SelectedItem as CommContracts.Inspect;
+            if (currentInspect == null)
                 return;
 
-            if (MessageBox.Show("确认删除该物资？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+            if (MessageBox.Show("确认删除该检查项目？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
                 var vm = this.DataContext as HISGUISetVM;
-                bool? bIsOK = vm?.DeleteMaterial(currentMaterial.ID);
+                bool? bIsOK = vm?.DeleteInspect(currentInspect.ID);
                 if (bIsOK.HasValue)
                 {
                     if (bIsOK.Value)
                     {
-                        MessageBox.Show("物资删除完成！");
+                        MessageBox.Show("检查项目删除完成！");
                         UpdateAllDate();
                     }
                 }
@@ -98,15 +97,15 @@ namespace HISGUISetLib.Views
 
         private void EditItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            var temp = this.AllMaterialList.SelectedItem as CommContracts.MaterialItem;
+            var temp = this.AllInspectList.SelectedItem as CommContracts.InspectItem;
             if (temp == null)
                 return;
 
-            // 新增物资
+            // 新增检查项目
             var window = new Window();
 
-            EditMaterialView eidtMaterial = new EditMaterialView(temp);
-            window.Content = eidtMaterial;
+            EditInspectItemView eidtInspect = new EditInspectItemView(temp);
+            window.Content = eidtInspect;
             window.Width = 400;
             window.Height = 500;
             window.ResizeMode = ResizeMode.NoResize;
@@ -114,7 +113,7 @@ namespace HISGUISetLib.Views
 
             if (bResult.Value)
             {
-                MessageBox.Show("物资修改完成！");
+                MessageBox.Show("检查项目修改完成！");
                 UpdateAllDate();
             }
         }
@@ -132,7 +131,7 @@ namespace HISGUISetLib.Views
         private void UpdateAllDate(string strName = "")
         {
             var vm = this.DataContext as HISGUISetVM;
-            this.AllMaterialList.ItemsSource = vm?.GetAllMaterial(strName);
+            this.AllInspectList.ItemsSource = vm?.GetAllInspect(strName);
         }
     }
 }

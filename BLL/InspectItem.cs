@@ -9,7 +9,7 @@ namespace BLL
 {
     public class InspectItem
     {
-        public List<CommContracts.InspectItem> GetAllInspectItems(string strName)
+        public List<CommContracts.InspectItem> GetAllInspectItem(string strName = "")
         {
             List<CommContracts.InspectItem> list = new List<CommContracts.InspectItem>();
 
@@ -21,20 +21,99 @@ namespace BLL
                             t.AbbrWB.StartsWith(strName)
                             select t;
 
+                foreach (DAL.InspectItem ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.InspectItem, CommContracts.InspectItem>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.InspectItem temp = mapper.Map<CommContracts.InspectItem>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
+        public bool SaveInspectItem(CommContracts.InspectItem inspectItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<DAL.AssayItem, CommContracts.AssayItem>();
+                    cfg.CreateMap<CommContracts.InspectItem, DAL.InspectItem>();
                 });
                 var mapper = config.CreateMapper();
 
-                foreach (DAL.InspectItem tem in query)
+                DAL.InspectItem temp = new DAL.InspectItem();
+                temp = mapper.Map<DAL.InspectItem>(inspectItem);
+
+                ctx.InspectItems.Add(temp);
+                try
                 {
-                    var dto = mapper.Map<CommContracts.InspectItem>(tem);
-                    list.Add(dto);
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
                 }
             }
+            return true;
+        }
 
-            return list;
+        public bool DeleteInspectItem(int MaterialID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.InspectItems.FirstOrDefault(m => m.ID == MaterialID);
+                if (temp != null)
+                {
+                    ctx.InspectItems.Remove(temp);
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool UpdateInspectItem(CommContracts.InspectItem inspectItem)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.InspectItems.FirstOrDefault(m => m.ID == inspectItem.ID);
+                if (temp != null)
+                {
+                    temp.Name = inspectItem.Name;
+                    temp.AbbrPY = inspectItem.AbbrPY;
+                    temp.AbbrWB = inspectItem.AbbrWB;
+                    temp.Unit = inspectItem.Unit;
+                    //temp.YiBaoEnum = (DAL.YiBaoEnum)inspectItem.YiBaoEnum;
+
+                    temp.Price = inspectItem.Price;
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

@@ -96,6 +96,9 @@
     <Compile Include="Views\EditEmployeeView.xaml.cs">
       <DependentUpon>EditEmployeeView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditInspectView.xaml.cs">
+      <DependentUpon>EditInspectView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditJobView.xaml.cs">
       <DependentUpon>EditJobView.xaml</DependentUpon>
     </Compile>
@@ -128,6 +131,9 @@
     </Compile>
     <Compile Include="Views\HospitalInfoSetView.xaml.cs">
       <DependentUpon>HospitalInfoSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InspectSetView.xaml.cs">
+      <DependentUpon>InspectSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\JobSetView.xaml.cs">
       <DependentUpon>JobSetView.xaml</DependentUpon>
@@ -196,6 +202,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditInspectView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditJobView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -237,6 +247,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HospitalInfoSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InspectSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -217,10 +217,10 @@ namespace HISGUISetLib.ViewModels
         }
 
         // 删除供药品
-        public bool DeleteMedicine(int userID)
+        public bool DeleteMedicine(int medicineID)
         {
             CommClient.Medicine myd = new CommClient.Medicine();
-            if (myd.DeleteMedicine(userID))
+            if (myd.DeleteMedicine(medicineID))
             {
                 return true;
             }
@@ -229,20 +229,42 @@ namespace HISGUISetLib.ViewModels
         }
 
         // 得到所有的物资
-        public List<CommContracts.Material> GetAllMaterial(string strName = "")
+        public List<CommContracts.MaterialItem> GetAllMaterial(string strName = "")
         {
             CommClient.MaterialItem myd = new CommClient.MaterialItem();
 
-            List<CommContracts.Material> list = new List<CommContracts.Material>();
-            list = myd.GetAllMaterial(strName);
+            List<CommContracts.MaterialItem> list = new List<CommContracts.MaterialItem>();
+            list = myd.GetAllMaterialItem(strName);
             return list;
         }
 
         // 删除供物资
-        public bool DeleteMaterial(int userID)
+        public bool DeleteMaterial(int materialID)
         {
             CommClient.MaterialItem myd = new CommClient.MaterialItem();
-            if (myd.DeleteMaterial(userID))
+            if (myd.DeleteMaterial(materialID))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // 得到所有的检查项目
+        public List<CommContracts.InspectItem> GetAllInspect(string strName = "")
+        {
+            CommClient.InspectItem myd = new CommClient.InspectItem();
+
+            List<CommContracts.InspectItem> list = new List<CommContracts.InspectItem>();
+            list = myd.GetAllInspectItem(strName);
+            return list;
+        }
+
+        // 删除供检查项目
+        public bool DeleteInspect(int inspectID)
+        {
+            CommClient.InspectItem myd = new CommClient.InspectItem();
+            if (myd.DeleteInspectItem(inspectID))
             {
                 return true;
             }

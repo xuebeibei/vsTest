@@ -57,6 +57,7 @@ namespace HISGUISetLib.Views
             UserView.Visibility = Visibility.Collapsed;
             MedicineView.Visibility = Visibility.Collapsed;
             MaterialView.Visibility = Visibility.Collapsed;
+            InspectView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -145,6 +146,7 @@ namespace HISGUISetLib.Views
         private void InspectSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
+            InspectView.Visibility = Visibility.Visible;
         }
 
         private void MaterialSet(object sender, RoutedEventArgs e)

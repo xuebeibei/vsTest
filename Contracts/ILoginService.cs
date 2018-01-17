@@ -146,7 +146,13 @@ namespace CommContracts
         List<CommContracts.AssayItem> GetAllAssayItems(string strName);
 
         [OperationContract]
-        List<CommContracts.InspectItem> GetAllInspectItems(string strName);
+        List<CommContracts.InspectItem> GetAllInspectItem(string strName = "");
+        [OperationContract]
+        bool UpdateInspectItem(CommContracts.InspectItem InspectItem);
+        [OperationContract]
+        bool SaveInspectItem(CommContracts.InspectItem material);
+        [OperationContract]
+        bool DeleteInspectItem(int InspectItemID);
 
         [OperationContract]
         Dictionary<int, string> GetAllInPatient();
@@ -201,9 +207,6 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.OtherServiceItem> GetAllOtherServiceItems(string strName);
-
-        [OperationContract]
-        List<CommContracts.Material> GetAllMaterialItems(string strName);
 
         [OperationContract]
         bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore);
@@ -335,12 +338,12 @@ namespace CommContracts
         bool SaveSickBed(CommContracts.SickBed sickBed);
 
         [OperationContract]
-        List<CommContracts.Material> GetAllMaterial(string strName = "");
+        List<CommContracts.MaterialItem> GetAllMaterialItem(string strName = "");
         [OperationContract]
-        bool UpdateMaterial(CommContracts.Material Material);
+        bool UpdateMaterialItem(CommContracts.MaterialItem Material);
         [OperationContract]
-        bool SaveMaterial(CommContracts.Material Material);
+        bool SaveMaterialItem(CommContracts.MaterialItem Material);
         [OperationContract]
-        bool DeleteMaterial(int MaterialID);
+        bool DeleteMaterialItem(int MaterialID);
     }
 }

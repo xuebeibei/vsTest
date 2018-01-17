@@ -52,6 +52,7 @@
             <local:UserSetView x:Name="UserView" Visibility="Collapsed"></local:UserSetView>
             <local:MedicineSetView x:Name="MedicineView" Visibility="Collapsed"></local:MedicineSetView>
             <local:MaterialSetView x:Name="MaterialView" Visibility="Collapsed"></local:MaterialSetView>
+            <local:InspectSetView x:Name="InspectView" Visibility="Collapsed"></local:InspectSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

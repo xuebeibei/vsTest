@@ -21,8 +21,8 @@ namespace HISGUISetLib.Views
     public partial class EditMaterialView : UserControl
     {
         private bool bIsEdit;
-        private CommContracts.Material Material;
-        public EditMaterialView(CommContracts.Material material = null)
+        private CommContracts.MaterialItem Material;
+        public EditMaterialView(CommContracts.MaterialItem material = null)
         {
             InitializeComponent();
             YiBaoEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.YiBaoEnum));
@@ -82,7 +82,7 @@ namespace HISGUISetLib.Views
             }
             else
             {
-                CommContracts.Material material = new CommContracts.Material();
+                CommContracts.MaterialItem material = new CommContracts.MaterialItem();
                 material.Name = this.NameEdit.Text.Trim();
                 material.AbbrPY = this.AbbrPY.Text.Trim();
                 material.AbbrWB = this.AbbrWB.Text.Trim();

@@ -290,10 +290,28 @@ namespace CommServer
             return temp.GetAllAssayItems(strName);
         }
 
-        public List<CommContracts.InspectItem> GetAllInspectItems(string strName)
+        public List<CommContracts.InspectItem> GetAllInspectItem(string strName = "")
         {
             BLL.InspectItem temp = new BLL.InspectItem();
-            return temp.GetAllInspectItems(strName);
+            return temp.GetAllInspectItem(strName);
+        }
+
+        public bool UpdateInspectItem(CommContracts.InspectItem InspectItem)
+        {
+            BLL.InspectItem temp = new BLL.InspectItem();
+            return temp.UpdateInspectItem(InspectItem);
+        }
+
+        public bool SaveInspectItem(CommContracts.InspectItem material)
+        {
+            BLL.InspectItem temp = new BLL.InspectItem();
+            return temp.SaveInspectItem(material);
+        }
+
+        public bool DeleteInspectItem(int InspectItemID)
+        {
+            BLL.InspectItem temp = new BLL.InspectItem();
+            return temp.DeleteInspectItem(InspectItemID);
         }
 
         public List<CommContracts.Inspect> getAllInspect(int RegistrationID)
@@ -414,12 +432,6 @@ namespace CommServer
         {
             BLL.OtherServiceItem temp = new BLL.OtherServiceItem();
             return temp.GetAllOtherServiceItems(strName);
-        }
-
-        public List<CommContracts.Material> GetAllMaterialItems(string strName)
-        {
-            BLL.MaterialItem temp = new BLL.MaterialItem();
-            return temp.GetAllMaterialItems(strName);
         }
 
         public bool SaveMedicineInStock(CommContracts.MedicineInStore medicineInStore)
@@ -659,25 +671,25 @@ namespace CommServer
             return temp.SaveSickBed(sickBed);
         }
 
-        public List<CommContracts.Material> GetAllMaterial(string strName = "")
+        public List<CommContracts.MaterialItem> GetAllMaterialItem(string strName = "")
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.GetAllMaterial(strName);
         }
 
-        public bool UpdateMaterial(CommContracts.Material Material)
+        public bool UpdateMaterialItem(CommContracts.MaterialItem Material)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.UpdateMaterial(Material);
         }
 
-        public bool SaveMaterial(CommContracts.Material Material)
+        public bool SaveMaterialItem(CommContracts.MaterialItem Material)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.SaveMaterial(Material);
         }
 
-        public bool DeleteMaterial(int MaterialID)
+        public bool DeleteMaterialItem(int MaterialID)
         {
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.DeleteMaterial(MaterialID);
