@@ -26,6 +26,11 @@ namespace CommClient
             return client.GetAllInPatient();
         }
 
+        public List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        {
+            return client.GetAllInPatient(inHospitalStatusEnum, strName);
+        }
+
         public string getInPatientBMIMsg(int InpatientID)
         {
             return client.getInPatientBMIMsg(InpatientID);

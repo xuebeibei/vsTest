@@ -368,6 +368,12 @@ namespace CommServer
             return temp.GetAllInPatient();
         }
 
+        public List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.GetAllInPatient(inHospitalStatusEnum, strName);
+        }
+
         public string getInPatientBMIMsg(int InpatientID)
         {
             BLL.Inpatient temp = new BLL.Inpatient();

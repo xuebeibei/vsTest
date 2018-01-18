@@ -203,11 +203,11 @@
                               SelectionMode="Single" MouseDoubleClick="AllWaitList_MouseDoubleClick">
                 <ListView.View>
                     <GridView x:Name="gridViewAllWait">
-                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Gender}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="病情" DisplayMemberBinding="{Binding Path=IllStatus}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Tel}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="病情" DisplayMemberBinding="{Binding Path=IllnesSstateEnum}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

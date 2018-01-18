@@ -40,9 +40,16 @@ namespace HISGUIFeeLib.Views
             Inpatient = new CommContracts.Inpatient();
 
             updateDateToView();
-
+            updateAllWait();
 
             this.Loaded += InpatientRegistrationView_Loaded;
+        }
+
+        private void updateAllWait()
+        {
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+
+            AllWaitList.ItemsSource = myd.GetAllInPatient();
         }
 
         private void InpatientRegistrationView_Loaded(object sender, RoutedEventArgs e)

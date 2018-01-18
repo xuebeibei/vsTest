@@ -27,6 +27,14 @@ namespace CommContracts
         急,
         一般
     }
+
+    public enum InHospitalStatusEnum
+    {
+        未入院,
+        在院中,
+        已出院
+    }
+
     [DataContract]
     public class Inpatient
     {
@@ -64,7 +72,9 @@ namespace CommContracts
         [DataMember]
         public IllnesSstateEnum IllnesSstateEnum { get; set; }   // 入院病情
         [DataMember]
-        public int InPatientUserID { get; set; }                 // 经办人账户ID 
+        public int InPatientUserID { get; set; }                 // 经办人账户ID
+        [DataMember]
+        public InHospitalStatusEnum InHospitalStatusEnum { get; set; } // 住院状态
         [DataMember]
         public Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
         [DataMember]

@@ -566,6 +566,13 @@ namespace DAL
         一般
     }
 
+    public enum InHospitalStatusEnum
+    {
+        未入院,
+        在院中,
+        已出院
+    }
+
     // 住院病人
     public class Inpatient
     {
@@ -599,6 +606,8 @@ namespace DAL
         public string InHospitalDiagnoses { get; set; }          // 入院诊断 
         public IllnesSstateEnum IllnesSstateEnum { get; set; }   // 入院病情
         public int InPatientUserID { get; set; }                 // 经办人账户ID 
+        public InHospitalStatusEnum InHospitalStatusEnum { get; set; } // 住院状态
+
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
         public virtual User InPatientUser { get; set; }
     }

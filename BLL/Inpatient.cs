@@ -28,6 +28,31 @@ namespace BLL
             return dictionary;
         }
 
+        public List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        {
+            List<CommContracts.Inpatient> list = new List<CommContracts.Inpatient>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Inpatients
+                            where a.InHospitalStatusEnum == (DAL.InHospitalStatusEnum)inHospitalStatusEnum && 
+                            a.Patient.Name.StartsWith(strName) 
+                            select a;
+                foreach (DAL.Inpatient ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Inpatient, CommContracts.Inpatient>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Inpatient temp = mapper.Map<CommContracts.Inpatient>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
         public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             Dictionary<int, string> dictionary = new Dictionary<int, string>();

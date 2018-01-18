@@ -173,6 +173,9 @@ namespace CommContracts
         Dictionary<int, string> GetAllInPatient();
 
         [OperationContract]
+        List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
+
+        [OperationContract]
         string getInPatientBMIMsg(int InpatientID);
 
         [OperationContract]
