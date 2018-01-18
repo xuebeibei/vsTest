@@ -18,7 +18,7 @@ namespace HISGUISetLib
         public override void RegisterEvents()
         {
             base.RegisterEvents();
-            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUISetView));
+            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUISetView));
         }
     }
 }
