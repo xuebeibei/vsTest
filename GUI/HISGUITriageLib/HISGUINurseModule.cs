@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Prism.Mef.Modularity;
 using Prism.Modularity;
 using HISGUICore;
-using HISGUITriageLib.Views;
+using HISGUINurseLib.Views;
 
-namespace HISGUITriageLib
+namespace HISGUINurseLib
 {
-    [ModuleExport(typeof(HISGUITriageModule))]
-    class HISGUITriageModule : HISGUIMoudleBase
+    [ModuleExport(typeof(HISGUINurseModule))]
+    class HISGUINurseModule : HISGUIMoudleBase
     {
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUITriageView));
+            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUINurseView));
         }
     }
 }

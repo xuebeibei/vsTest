@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUITriageLib.ViewModels;
+using HISGUINurseLib.ViewModels;
 using System.Data;
 
-namespace HISGUITriageLib.Views
+namespace HISGUINurseLib.Views
 {
     [Export]
     [Export("SelectDoctorView", typeof(SelectDoctorView))]
@@ -33,7 +33,7 @@ namespace HISGUITriageLib.Views
         }
 
         [Import]
-        private TriageVM ImportVM
+        private NurseVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -47,7 +47,7 @@ namespace HISGUITriageLib.Views
                 return;
             }
 
-            var vm = this.DataContext as TriageVM;
+            var vm = this.DataContext as NurseVM;
 
             bool? aa = vm?.SaveTriage(nDoctorID);
             if(aa.HasValue)

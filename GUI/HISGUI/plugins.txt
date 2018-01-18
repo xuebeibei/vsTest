@@ -2,7 +2,7 @@ Plugins\HISGUILoginLib.dll
 Plugins\HISGUIMenuLib.dll
 Plugins\HISGUIRegistrationLib.dll
 Plugins\HISGUIWorkstationLib.dll
-Plugins\HISGUITriageLib.dll
+Plugins\HISGUINurseLib.dll
 Plugins\HISGUIDoctorLib.dll
 Plugins\HISGUIMedicineLib.dll
 Plugins\HISGUIFeeLib.dll

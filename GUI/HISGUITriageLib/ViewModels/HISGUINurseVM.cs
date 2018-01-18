@@ -11,17 +11,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml;
-using HISGUITriageLib;
+using HISGUINurseLib;
 using HISGUICore;
 using System.Data;
 using System.Windows.Input;
 using Prism.Commands;
 
-namespace HISGUITriageLib.ViewModels
+namespace HISGUINurseLib.ViewModels
 {
     [Export]
-    [Export("HISGUITriageVM", typeof(HISGUIVMBase))]
-    class HISGUITriageVM : HISGUIVMBase
+    [Export("HISGUINurseVM", typeof(HISGUIVMBase))]
+    class HISGUINurseVM : HISGUIVMBase
     {
        // public ICommand TriageCommand { get; set; }
 
@@ -34,7 +34,7 @@ namespace HISGUITriageLib.ViewModels
         //显示分诊界面
         public void TriageManage()
         {
-            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+            this.RegionManager.RequestNavigate("DownRegion", "NurseWorkView");
         }
     }
 }

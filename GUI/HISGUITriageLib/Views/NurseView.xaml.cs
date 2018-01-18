@@ -18,23 +18,23 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUITriageLib.ViewModels;
+using HISGUINurseLib.ViewModels;
 using System.Data;
 
-namespace HISGUITriageLib.Views
+namespace HISGUINurseLib.Views
 {
     [Export]
-    [Export("TriageView", typeof(TriageView))]
-    public partial class TriageView : HISGUIViewBase
+    [Export("NurseWorkView", typeof(NurseWorkView))]
+    public partial class NurseWorkView : HISGUIViewBase
     {
-        public TriageView()
+        public NurseWorkView()
         {
             InitializeComponent();
             this.Loaded += Triage_Loaded;
         }
 
         [Import]
-        private TriageVM ImportVM
+        private NurseVM ImportVM
         {
             set { this.VM = value; }
         }
@@ -46,7 +46,7 @@ namespace HISGUITriageLib.Views
 
         private void ShowAllRegistration()
         {
-            var vm = this.DataContext as TriageVM;
+            var vm = this.DataContext as NurseVM;
 
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
             dictionary = vm?.GetAllUnTriagePatient();
@@ -72,7 +72,7 @@ namespace HISGUITriageLib.Views
                 return;
             }
 
-            var vm = this.DataContext as TriageVM;
+            var vm = this.DataContext as NurseVM;
             //if(vm?.CurrentPatientList == null)
             //{
 

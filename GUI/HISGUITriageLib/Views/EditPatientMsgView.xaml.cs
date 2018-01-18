@@ -18,10 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUITriageLib.ViewModels;
+using HISGUINurseLib.ViewModels;
 using System.Data;
 
-namespace HISGUITriageLib.Views
+namespace HISGUINurseLib.Views
 {
     [Export]
     [Export("EditPatientMsgView", typeof(EditPatientMsgView))]

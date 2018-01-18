@@ -18,31 +18,31 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUICore.MyContorls;
-using HISGUITriageLib.ViewModels;
+using HISGUINurseLib.ViewModels;
 using System.Data;
 
 
-namespace HISGUITriageLib.Views
+namespace HISGUINurseLib.Views
 {
     [Export]
-    [Export("HISGUITriageView", typeof(HISGUITriageView))]
-    public partial class HISGUITriageView : HISGUIViewBase
+    [Export("HISGUINurseView", typeof(HISGUINurseView))]
+    public partial class HISGUINurseView : HISGUIViewBase
     {
-        public HISGUITriageView()
+        public HISGUINurseView()
         {
             InitializeComponent();
             this.Loaded += Triage_Loaded;
         }
 
         [Import]
-        private HISGUITriageVM ImportVM
+        private HISGUINurseVM ImportVM
         {
             set { this.VM = value; }
         }
 
         private void Triage_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUITriageVM;
+            var vm = this.DataContext as HISGUINurseVM;
             vm?.TriageManage();
         }
 

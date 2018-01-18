@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BF7BDBE0-1BDC-4654-9E24-8593CA8D77B0}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>HISGUITriageLib</RootNamespace>
-    <AssemblyName>HISGUITriageLib</AssemblyName>
+    <RootNamespace>HISGUINurseLib</RootNamespace>
+    <AssemblyName>HISGUINurseLib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -70,7 +70,7 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HISGUITriageModule.cs" />
+    <Compile Include="HISGUINurseModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -85,19 +85,19 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\EditPatientMsgVM.cs" />
-    <Compile Include="ViewModels\HISGUITriageVM.cs" />
-    <Compile Include="ViewModels\TriageVM.cs" />
+    <Compile Include="ViewModels\HISGUINurseVM.cs" />
+    <Compile Include="ViewModels\NurseVM.cs" />
     <Compile Include="Views\EditPatientMsgView.xaml.cs">
       <DependentUpon>EditPatientMsgView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HISGUITriageView.xaml.cs">
-      <DependentUpon>HISGUITriageView.xaml</DependentUpon>
+    <Compile Include="Views\HISGUINurseView.xaml.cs">
+      <DependentUpon>HISGUINurseView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SelectDoctorView.xaml.cs">
       <DependentUpon>SelectDoctorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TriageView.xaml.cs">
-      <DependentUpon>TriageView.xaml</DependentUpon>
+    <Compile Include="Views\NurseView.xaml.cs">
+      <DependentUpon>NurseView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -113,7 +113,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HISGUITriageView.xaml">
+    <Page Include="Views\HISGUINurseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -121,7 +121,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TriageView.xaml">
+    <Page Include="Views\NurseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

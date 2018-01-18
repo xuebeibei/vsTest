@@ -11,17 +11,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Threading;
 using System.Xml;
-using HISGUITriageLib;
+using HISGUINurseLib;
 using HISGUICore;
 using System.Data;
 using System.Windows.Input;
 using Prism.Commands;
 
-namespace HISGUITriageLib.ViewModels
+namespace HISGUINurseLib.ViewModels
 {
     [Export]
     [Export("TriageVM", typeof(HISGUIVMBase))]
-    class TriageVM : HISGUIVMBase
+    class NurseVM : HISGUIVMBase
     {
         public ICommand SelectDoctorCommand { get; set; }
         public ICommand EditPatientMsgCommand { get; set; }
@@ -61,12 +61,12 @@ namespace HISGUITriageLib.ViewModels
 
         public void SelectDoctorOK()
         {
-            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+            this.RegionManager.RequestNavigate("DownRegion", "NurseWorkView");
         }
 
         public void SelectDoctorCancel()
         {
-            this.RegionManager.RequestNavigate("DownRegion", "TriageView");
+            this.RegionManager.RequestNavigate("DownRegion", "NurseWorkView");
         }
 
         public List<CommContracts.Employee> getAllDoctor()
