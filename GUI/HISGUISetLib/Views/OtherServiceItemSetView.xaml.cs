@@ -65,6 +65,7 @@ namespace HISGUISetLib.Views
             window.Content = eidtOtherServiceItem;
             window.Width = 400;
             window.Height = 500;
+            window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)

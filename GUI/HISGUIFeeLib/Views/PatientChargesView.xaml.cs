@@ -279,6 +279,7 @@ namespace HISGUIFeeLib.Views
             window.Content = list;
             window.Width = 860;
             list.CurrentRecipe = temp;
+            window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
