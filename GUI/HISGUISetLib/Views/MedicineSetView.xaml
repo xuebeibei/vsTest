@@ -22,18 +22,18 @@
                 <ListView.View>
                     <GridView x:Name="gridViewMedicine">
                         <GridViewColumn Header="药品名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="别名1" DisplayMemberBinding="{Binding Path=Abbr1}" Width="60"></GridViewColumn>
+                        <!--<GridViewColumn Header="别名1" DisplayMemberBinding="{Binding Path=Abbr1}" Width="60"></GridViewColumn>
                         <GridViewColumn Header="别名2" DisplayMemberBinding="{Binding Path=Abbr2}" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="别名3" DisplayMemberBinding="{Binding Path=Abbr3}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="别名3" DisplayMemberBinding="{Binding Path=Abbr3}" Width="60"></GridViewColumn>-->
                         <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=MedicineTypeEnum}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="药品剂型" DisplayMemberBinding="{Binding Path=DosageFormEnum}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="给药方式" DisplayMemberBinding="{Binding Path=AdministrationRoute}" Width="80"></GridViewColumn>
+                        <!--<GridViewColumn Header="给药方式" DisplayMemberBinding="{Binding Path=AdministrationRoute}" Width="80"></GridViewColumn>-->
                         <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Specifications}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Manufacturer}" Width="120"></GridViewColumn>
-                        <GridViewColumn Header="毒麻" DisplayMemberBinding="{Binding Path=PoisonousHemp}" Width="50"></GridViewColumn>
+                        <!--<GridViewColumn Header="毒麻" DisplayMemberBinding="{Binding Path=PoisonousHemp}" Width="50"></GridViewColumn>
                         <GridViewColumn Header="贵重" DisplayMemberBinding="{Binding Path=Valuable}" Width="50"></GridViewColumn>
-                        <GridViewColumn Header="基本药物" DisplayMemberBinding="{Binding Path=EssentialDrugs}" Width="50"></GridViewColumn>
+                        <GridViewColumn Header="基本药物" DisplayMemberBinding="{Binding Path=EssentialDrugs}" Width="50"></GridViewColumn>-->
                         <GridViewColumn Header="医保甲乙类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=SellPrice}" Width="50"></GridViewColumn>
                         <GridViewColumn Header="最大库存量" DisplayMemberBinding="{Binding Path=MaxNum}" Width="50"></GridViewColumn>

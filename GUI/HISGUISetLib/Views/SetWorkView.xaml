@@ -12,33 +12,33 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <TreeView x:Name="AllSetTreeView" Margin="5" Grid.Column="0">
-            <TreeViewItem Header="个人信息" ><!--Visibility="Collapsed"-->
-                <TreeViewItem Header="个人信息" Selected="UserInfoSet"/>
-                <TreeViewItem Header="密码" Selected="PasswordSet"/>
-                <TreeViewItem Header="意见反馈" Selected="OpinionSet"/>
+            <TreeViewItem Margin="0,5,10,5" Header="个人信息"><!--Visibility="Collapsed"-->
+                <TreeViewItem Margin="0,0,5,0" Header="个人信息" Selected="UserInfoSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="密码" Selected="PasswordSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="意见反馈" Selected="OpinionSet"/>
             </TreeViewItem>
-            <TreeViewItem Header="医院结构" >
-                <TreeViewItem Header="医院信息" Selected="HospitalInfoSet"/>
-                <TreeViewItem Header="科室" Selected="DepartmentSet"/>
-                <TreeViewItem Header="职位" Selected="JobSet"/>
-                <TreeViewItem Header="库房" Selected="StorehouseSet"/>
-                <TreeViewItem Header="供应商" Selected="SupplierSet"/>
-                <TreeViewItem Header="病房" Selected="SickRoomSet"/>
-                <TreeViewItem Header="病床" Selected="SickBedSet"/>
+            <TreeViewItem Margin="0,5,10,5" Header="医院结构" >
+                <TreeViewItem Margin="0,0,5,0" Header="医院信息" Selected="HospitalInfoSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="科室" Selected="DepartmentSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="职位" Selected="JobSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="库房" Selected="StorehouseSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="供应商" Selected="SupplierSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="病房" Selected="SickRoomSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="病床" Selected="SickBedSet"/>
             </TreeViewItem>
-            <TreeViewItem Header="用户档案" >
-                <TreeViewItem Header="人员" Selected="EmployeeSet"/>
-                <TreeViewItem Header="权限" Selected="PowerSet"/>
-                <TreeViewItem Header="用户" Selected="UserSet"/>
+            <TreeViewItem Margin="0,5,10,5" Header="用户档案" >
+                <TreeViewItem Margin="0,0,5,0" Header="人员" Selected="EmployeeSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="权限" Selected="PowerSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="用户" Selected="UserSet"/>
             </TreeViewItem>
-            <TreeViewItem Header="字典" >
-                <TreeViewItem Header="药品" Selected="MedicineItemSet"/>
-                <TreeViewItem Header="物资" Selected="MaterialItemSet"/>
-                <TreeViewItem Header="治疗项目" Selected="TherapyItemSet"/>
-                <TreeViewItem Header="检查项目" Selected="InspectItemSet"/>
-                <TreeViewItem Header="化验项目" Selected="AssayItemSet"/>
-                <TreeViewItem Header="其他服务" Selected="OtherServiceSet"/>
-                <TreeViewItem Header="诊断" Selected="DiagnosisSet"/>
+            <TreeViewItem Margin="0,5,10,5" Header="字典" >
+                <TreeViewItem Margin="0,0,5,0" Header="药品" Selected="MedicineItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="物资" Selected="MaterialItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="治疗项目" Selected="TherapyItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="检查项目" Selected="InspectItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="化验项目" Selected="AssayItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="其他服务" Selected="OtherServiceSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="诊断" Selected="DiagnosisSet"/>
             </TreeViewItem>
         </TreeView>
         <StackPanel Grid.Column="1">
