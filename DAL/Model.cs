@@ -349,7 +349,10 @@ namespace DAL
         public string Name { get; set; }         // 姓名
         public GenderEnum Gender { get; set; }   // 性别
         public DateTime BirthDay { get; set; }   // 出生日期
+        public string IDCardNo { get; set; }     // 身份证
         public VolkEnum Volk { get; set; }       // 民族
+        public string Tel { get; set; }                          // 电话，患者电话
+        public string JiGuan { get; set; }       // 籍贯
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
@@ -542,6 +545,27 @@ namespace DAL
         public virtual Registration Registration { get; set; }
     }
 
+    public enum PayTypeEnum
+    {
+        自费,
+        医保
+    }
+
+    public enum MarriageEnum
+    {
+        未婚,
+        已婚,
+        离异,
+        丧偶
+    }
+
+    public enum IllnesSstateEnum
+    {
+        危,
+        急,
+        一般
+    }
+
     // 住院病人
     public class Inpatient
     {
@@ -562,10 +586,19 @@ namespace DAL
 
         public int ID { get; set; }                              // ID
         public string No { get; set; }                           // 住院号
+        public PayTypeEnum PayTypeEnum { get; set; }             // 费用类别
+        public string YiBaoNo { get; set; }                      // 医保号
         public int PatientID { get; set; }                       // 患者ID
+        public MarriageEnum MarriageEnum { get; set; }           // 婚姻状况
+        public string Job { get; set; }                          // 职业
+        public string WorkAddress { get; set; }                  // 单位地址 
+        public string ContactsName { get; set; }                 // 联系人  
+        public string ContactsTel { get; set; }                  // 联系人电话  
+        public string ContactsAddress { get; set; }              // 联系人住址  
         public DateTime InHospitalTime { get; set; }             // 入院时间
+        public string InHospitalDiagnoses { get; set; }          // 入院诊断 
+        public IllnesSstateEnum IllnesSstateEnum { get; set; }   // 入院病情
         public int InPatientUserID { get; set; }                 // 经办人账户ID 
-
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
         public virtual User InPatientUser { get; set; }
     }

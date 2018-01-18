@@ -179,6 +179,9 @@ namespace CommContracts
         Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
 
         [OperationContract]
+        bool SaveInPatient(CommContracts.Inpatient inpatient);
+
+        [OperationContract]
         List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID);
 
         [OperationContract]

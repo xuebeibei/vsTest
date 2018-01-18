@@ -173,6 +173,14 @@ namespace HISGUIFeeLib.ViewModels
             return storeRoomMedicineNum.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
+        public bool SaveInPatient()
+        {
+            if (CurrentInpatient == null)
+                return false;
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.SaveInPatient(CurrentInpatient);
+        }
+
         // 当前住院患者的住院号ID
         #region CurrentInHospitalID
         public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(
@@ -208,6 +216,19 @@ namespace HISGUIFeeLib.ViewModels
         {
             get { return (bool)GetValue(IsClinicOrInHospitalProperty); }
             set { SetValue(IsClinicOrInHospitalProperty, value); }
+        }
+
+        #endregion
+
+        // 出入院管理
+        #region CurrentInpatient
+        public static readonly DependencyProperty CurrentInpatientProperty = DependencyProperty.Register(
+            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Inpatient CurrentInpatient
+        {
+            get { return (CommContracts.Inpatient)GetValue(CurrentInpatientProperty); }
+            set { SetValue(CurrentInpatientProperty, value); }
         }
 
         #endregion

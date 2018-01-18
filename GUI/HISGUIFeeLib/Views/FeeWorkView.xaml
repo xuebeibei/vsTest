@@ -61,10 +61,10 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="登记入院">
+            <TabItem Header="出入院登记">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
-                        <local:InpatientRegistrationView x:Name="InpatientRegistrationView"></local:InpatientRegistrationView>
+                        <local:InAndLeaveHospitalView x:Name="InAndLeaveHospitalView"></local:InAndLeaveHospitalView>
                     </Grid>
                 </ScrollViewer>
             </TabItem>

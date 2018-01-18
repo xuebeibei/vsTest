@@ -14,46 +14,25 @@ namespace CommContracts
     public class Patient
     {
         [DataMember]
-        public string Name { get; set; }
-
+        public int ID { get; set; }              // 患者ID
         [DataMember]
-        public GenderEnum Gender { get; set; }
-
+        public string Name { get; set; }         // 姓名
         [DataMember]
-        public DateTime BirthDay { get; set; }
-
+        public GenderEnum Gender { get; set; }   // 性别
         [DataMember]
-        public VolkEnum Volk { get; set; }
-
-        //[DataMember]
-        //public string Age
-        //{
-        //    get
-        //    {
-        //        DateTime dt1 = BirthDay;
-        //        DateTime dt2 = DateTime.Now;
-
-        //        string str = "";
-        //        int Year = dt2.Year - dt1.Year;
-        //        str = Year.ToString() + "岁";
-
-        //        if (Year<3)
-        //        {
-        //            int Month = dt2.Month - dt1.Month;
-        //            if(Month != 0)
-        //            {
-        //                str += Month.ToString() + "月";
-        //            }
-                    
-        //        }
-        //        // 求时间差
-        //        return str;
-        //    }
-        //    set
-        //    {
-        //        return;
-        //    }
-        //}
+        public DateTime BirthDay { get; set; }   // 出生日期
+        [DataMember]
+        public string IDCardNo { get; set; }     // 身份证
+        [DataMember]
+        public VolkEnum Volk { get; set; }       // 民族
+        [DataMember]
+        public string Tel { get; set; }                          // 电话，患者电话
+        [DataMember]
+        public string JiGuan { get; set; }       // 籍贯
+        [DataMember]
+        public List<Registration> Registrations { get; set; } // 所有门诊挂号
+        [DataMember]
+        public List<Inpatient> Inpatients { get; set; }
 
     }
 }

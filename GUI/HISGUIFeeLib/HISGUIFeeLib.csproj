@@ -93,8 +93,8 @@
     <Compile Include="Views\HISGUIFeeView.xaml.cs">
       <DependentUpon>HISGUIFeeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InpatientRegistrationView.xaml.cs">
-      <DependentUpon>InpatientRegistrationView.xaml</DependentUpon>
+    <Compile Include="Views\InAndLeaveHospitalView.xaml.cs">
+      <DependentUpon>InAndLeaveHospitalView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientChargeDetailsView.xaml.cs">
       <DependentUpon>PatientChargeDetailsView.xaml</DependentUpon>
@@ -137,7 +137,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InpatientRegistrationView.xaml">
+    <Page Include="Views\InAndLeaveHospitalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

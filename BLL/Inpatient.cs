@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,6 +69,32 @@ namespace BLL
             }
 
             return strMsg;
+        }
+
+        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Inpatient, DAL.Inpatient>();
+                });
+                var mapper = config.CreateMapper();
+
+                DAL.Inpatient temp = new DAL.Inpatient();
+                temp = mapper.Map<DAL.Inpatient>(inpatient);
+
+                ctx.Inpatients.Add(temp);
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

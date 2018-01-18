@@ -35,5 +35,10 @@ namespace CommClient
         {
             return client.GetAllInHospitalChargePatient(startDate, endDate, strFindName , HavePay);
         }
+
+        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        {
+            return client.SaveInPatient(inpatient);
+        }
     }
 }

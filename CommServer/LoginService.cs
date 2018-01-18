@@ -380,6 +380,12 @@ namespace CommServer
             return temp.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
         }
 
+        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.SaveInPatient(inpatient);
+        }
+
         public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)
         {
             BLL.Inspect temp = new BLL.Inspect();
