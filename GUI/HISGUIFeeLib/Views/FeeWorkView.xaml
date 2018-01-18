@@ -27,7 +27,7 @@
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
-            <TabItem Header="收费">
+            <TabItem Header="日常收费">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -61,15 +61,10 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="日结">
+            <TabItem Header="登记入院">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
-                    </Grid>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="内部交款">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
+                        <local:InpatientRegistrationView x:Name="InpatientRegistrationView"></local:InpatientRegistrationView>
                     </Grid>
                 </ScrollViewer>
             </TabItem>

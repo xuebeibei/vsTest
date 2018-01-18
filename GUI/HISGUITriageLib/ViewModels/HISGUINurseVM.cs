@@ -23,12 +23,10 @@ namespace HISGUINurseLib.ViewModels
     [Export("HISGUINurseVM", typeof(HISGUIVMBase))]
     class HISGUINurseVM : HISGUIVMBase
     {
-       // public ICommand TriageCommand { get; set; }
 
         public override void RegisterCommands()
         {
             base.RegisterCommands();
-           // TriageCommand = new DelegateCommand(TriageManage);
         }
 
         //显示分诊界面
