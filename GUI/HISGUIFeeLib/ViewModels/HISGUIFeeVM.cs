@@ -46,7 +46,7 @@ namespace HISGUIFeeLib.ViewModels
         public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
+            return myd.GetAllInPatientMsg();
         }
 
         // 得到当前门诊患者的所有西成药处方

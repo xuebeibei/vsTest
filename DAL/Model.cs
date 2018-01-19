@@ -581,17 +581,6 @@ namespace DAL
         {
         }
 
-        public override string ToString()
-        {
-            string str = Patient.Name + " " +
-                        (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
-                        "岁\r\n" +
-                        "科室：外科\r\n" +
-                        //"医生：" + SignalSource.Specialist.ToString() + "\r\n" +
-                        "入院时间：" + InHospitalTime.ToString() + "\r\n";
-            return str;
-        }
-
         public int ID { get; set; }                              // ID
         public string No { get; set; }                           // 住院号
         public string CaseNo { get; set; }                       // 病历号

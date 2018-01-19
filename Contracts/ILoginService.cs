@@ -170,16 +170,10 @@ namespace CommContracts
         bool DeleteInspectItem(int InspectItemID);
 
         [OperationContract]
-        Dictionary<int, string> GetAllInPatient();
-
-        [OperationContract]
         List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
 
         [OperationContract]
         string getInPatientBMIMsg(int InpatientID);
-
-        [OperationContract]
-        Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
 
         [OperationContract]
         bool SaveInPatient(CommContracts.Inpatient inpatient);

@@ -362,12 +362,6 @@ namespace CommServer
             return temp.getAllTherapy(RegistrationID);
         }
 
-        public Dictionary<int, string> GetAllInPatient()
-        {
-            BLL.Inpatient temp = new BLL.Inpatient();
-            return temp.GetAllInPatient();
-        }
-
         public List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
         {
             BLL.Inpatient temp = new BLL.Inpatient();
@@ -378,12 +372,6 @@ namespace CommServer
         {
             BLL.Inpatient temp = new BLL.Inpatient();
             return temp.getInPatientBMIMsg(InpatientID);
-        }
-
-        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
-        {
-            BLL.Inpatient temp = new BLL.Inpatient();
-            return temp.GetAllInHospitalChargePatient(startDate, endDate, strFindName, HavePay);
         }
 
         public bool SaveInPatient(CommContracts.Inpatient inpatient)

@@ -21,11 +21,6 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public Dictionary<int, string> GetAllInPatient()
-        {
-            return client.GetAllInPatient();
-        }
-
         public List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
         {
             return client.GetAllInPatientList(inHospitalStatusEnum, strName);
@@ -36,9 +31,26 @@ namespace CommClient
             return client.getInPatientBMIMsg(InpatientID);
         }
 
-        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public Dictionary<int, string> GetAllInPatientMsg()
         {
-            return client.GetAllInHospitalChargePatient(startDate, endDate, strFindName , HavePay);
+            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+
+            List<CommContracts.Inpatient> list = new List<CommContracts.Inpatient>();
+            list = client.GetAllInPatientList(CommContracts.InHospitalStatusEnum.在院中);
+            foreach (var tem in list)
+            {
+                if (tem != null)
+                {
+                    string str = tem.Patient.Name + " " +
+                                    tem.Patient.Gender +
+                                    "岁\r\n" +
+                                    "科室：\r\n" +
+                                    "医生：" + "\r\n" +
+                                    "入院时间：" + tem.InHospitalTime.ToString() + "\r\n";
+                    dictionary.Add(tem.ID, str);
+                }
+            }
+            return dictionary;
         }
 
         public bool SaveInPatient(CommContracts.Inpatient inpatient)

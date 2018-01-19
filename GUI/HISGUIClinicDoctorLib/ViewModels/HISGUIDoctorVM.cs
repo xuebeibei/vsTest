@@ -53,7 +53,7 @@ namespace HISGUIDoctorLib.ViewModels
         public Dictionary<int, string> GetAllInPatient()
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.GetAllInPatient();
+            return myd.GetAllInPatientMsg();
         }
 
         // 显示接诊界面
