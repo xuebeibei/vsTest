@@ -23,7 +23,7 @@ namespace CommContracts
         [DataMember]
         public decimal SumOfMoney { get; set; }      // 总损益，成本价
         [DataMember]
-        public DateTime OperateTime { get; set; }    // 操作时间
+        public DateTime? OperateTime { get; set; }    // 操作时间
         [DataMember]
         public int CheckStoreID { get; set; }        // 盘存库房
         [DataMember]

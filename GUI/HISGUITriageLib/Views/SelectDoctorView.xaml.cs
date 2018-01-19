@@ -40,7 +40,7 @@ namespace HISGUINurseLib.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int nDoctorID = this.DoctorFindList.SelectDoctorID;
+            int nDoctorID = this.DoctorFindList.SelectDoctor.ID;
             if (nDoctorID <= 0)
             {
                 MessageBox.Show("请选择医生!");

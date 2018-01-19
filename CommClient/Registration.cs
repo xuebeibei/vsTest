@@ -45,7 +45,7 @@ namespace CommClient
             this.registration = registration;
         }
 
-        public DateTime GetDateTime ()
+        public DateTime? GetDateTime ()
         {
             return registration.RegisterTime;
         }
@@ -78,7 +78,7 @@ namespace CommClient
             return registration.SignalSource.Specialist.ToString();
         }
 
-        public DateTime getVisitingTime()
+        public DateTime? getVisitingTime()
         {
             return registration.SignalSource.VistTime;
         }

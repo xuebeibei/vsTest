@@ -39,6 +39,11 @@ namespace HISGUIFeeLib.Views
             this.MarriageEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.MarriageEnum));
             this.IllnesSstateEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.IllnesSstateEnum));
 
+            this.PayTypeEnumCombo.SelectedItem = CommContracts.PayTypeEnum.自费;
+            this.GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
+            this.VolkEnumCombo.SelectedItem = CommContracts.VolkEnum.汉族;
+
+
             NewInPatient();
             updateAllWait();
 
@@ -48,15 +53,19 @@ namespace HISGUIFeeLib.Views
         private void updateAllWait()
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
-
-            AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.未入院);
+            if (this.InManageCheck.IsChecked.Value)
+                AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.未入院);
+            else if (this.LeaveManageCheck.IsChecked.Value)
+                AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.在院中);
+            else if (this.RecallManageCheck.IsChecked.Value)
+                AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.已出院);
         }
         private void NewInPatient()
         {
             Inpatient = new CommContracts.Inpatient();
             IsEdit = false;
 
-            updateDateToView();
+            updateInDateToView();
         }
 
         private void InpatientRegistrationView_Loaded(object sender, RoutedEventArgs e)
@@ -73,9 +82,10 @@ namespace HISGUIFeeLib.Views
         private void InHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            if (updateViewToDate())
+            if (updateViewToInDate())
             {
-                if(IsEdit)
+                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
+                if (IsEdit)
                 {
                     bool? bResult = vm?.UpdateInPatient(Inpatient);
                     if (bResult.HasValue)
@@ -97,12 +107,13 @@ namespace HISGUIFeeLib.Views
                         if (bResult.Value)
                         {
                             MessageBox.Show("入院成功！");
+                            NewInPatient();
+                            updateAllWait();
                             return;
                         }
                     }
                     MessageBox.Show("入院失败！");
                 }
-                
             }
         }
 
@@ -111,12 +122,12 @@ namespace HISGUIFeeLib.Views
 
         }
 
-        private void updateDateToView()
+        private void updateInDateToView()
         {
             if (Inpatient != null)
             {
                 this.InHospitalNo.Text = Inpatient.No;
-                this.CaseNo.Text = "_";
+                this.CaseNo.Text = Inpatient.CaseNo;
                 this.PayTypeEnumCombo.SelectedItem = Inpatient.PayTypeEnum;
                 this.YiBaoNo.Text = Inpatient.YiBaoNo;
                 if (Inpatient.Patient != null)
@@ -132,10 +143,10 @@ namespace HISGUIFeeLib.Views
                 else
                 {
                     this.Name.Text = "";
-                    this.GenderCombo.SelectedItem = null;
+                    this.GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
                     this.BirthDay.SelectedDate = null;
                     this.IDCardNo.Text = "";
-                    this.VolkEnumCombo.SelectedItem = null;
+                    this.VolkEnumCombo.SelectedItem = CommContracts.VolkEnum.汉族;
                     this.JiGuan.Text = "";
                     this.Tel.Text = "";
 
@@ -149,9 +160,11 @@ namespace HISGUIFeeLib.Views
                 this.InHospitalTime.SelectedDate = Inpatient.InHospitalTime;
                 this.IllnesSstateEnumCombo.SelectedItem = Inpatient.IllnesSstateEnum;
                 this.InHospitalDiagnosis.Text = Inpatient.InHospitalDiagnoses;
-                this.InDepartmentEdit.Text = "_";
-                this.InDoctorEdit.Text = "_";
+                this.InDepartmentEdit.Text = Inpatient.InHospitalDepartment;
+                this.InDoctorEdit.Text = Inpatient.InHospitalDoctorName;
                 this.InHospitalYaJin.Text = "_";
+
+                this.InHospitalStatus.Text = Inpatient.InHospitalStatusEnum.ToString();
                 if (Inpatient.InPatientUser != null)
                 {
                     this.InUserName.Text = Inpatient.InPatientUser.Username;
@@ -160,10 +173,13 @@ namespace HISGUIFeeLib.Views
                 {
                     this.InUserName.Text = "";
                 }
+
+                this.InHospitalTime.DisplayDateEnd = DateTime.Now;
+                this.BirthDay.DisplayDateEnd = DateTime.Now;
             }
         }
 
-        private bool updateViewToDate()
+        private bool updateViewToInDate()
         {
             if (this.GenderCombo.SelectedItem == null)
                 return false;
@@ -171,7 +187,7 @@ namespace HISGUIFeeLib.Views
             if (Inpatient != null)
             {
                 Inpatient.No = this.InHospitalNo.Text;
-                //"_" = this.CaseNo.Text;
+                Inpatient.CaseNo = this.CaseNo.Text;
                 Inpatient.PayTypeEnum = (CommContracts.PayTypeEnum)this.PayTypeEnumCombo.SelectedItem;
                 Inpatient.YiBaoNo = this.YiBaoNo.Text;
 
@@ -182,7 +198,8 @@ namespace HISGUIFeeLib.Views
                 }
                 patient.Name = this.Name.Text;
                 patient.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
-                patient.BirthDay = this.BirthDay.SelectedDate.Value;
+                if (this.BirthDay.SelectedDate.HasValue)
+                    patient.BirthDay = this.BirthDay.SelectedDate.Value;
                 patient.IDCardNo = this.IDCardNo.Text;
                 patient.Volk = (CommContracts.VolkEnum)this.VolkEnumCombo.SelectedItem;
                 patient.JiGuan = this.JiGuan.Text;
@@ -199,8 +216,8 @@ namespace HISGUIFeeLib.Views
                 Inpatient.InHospitalTime = this.InHospitalTime.SelectedDate.Value;
                 Inpatient.IllnesSstateEnum = (CommContracts.IllnesSstateEnum)this.IllnesSstateEnumCombo.SelectedItem;
                 Inpatient.InHospitalDiagnoses = this.InHospitalDiagnosis.Text;
-                //"_" = this.InDepartmentEdit.Text;
-                //"_" = this.InDoctorEdit.Text;
+                Inpatient.InHospitalDepartment = this.InDepartmentEdit.Text;
+                Inpatient.InHospitalDoctorName = this.InDoctorEdit.Text;
                 //"_" = this.InHospitalYaJin.Text;
 
                 Inpatient.InPatientUserID = 3;
@@ -209,32 +226,71 @@ namespace HISGUIFeeLib.Views
             return true;
         }
 
+        private void updateLeaveDateToView()
+        {
+            if (Inpatient != null)
+            {
+                if (Inpatient.InHospitalTime != null)
+                    this.LeaveHospitalTime.DisplayDateStart = Inpatient.InHospitalTime;
+                this.LeaveHospitalTime.DisplayDateEnd = DateTime.Now;
+
+                this.LeaveHospitalDepartment.Text = Inpatient.LeaveHospitalDepartment;
+                this.LeaveHospitalDoctor.Text = Inpatient.LeaveHospitalDoctorName;
+                this.LeaveHospitalDiagnosis.Text = Inpatient.LeaveHospitalDiagnoses;
+                this.LeaveHospitalTime.SelectedDate = Inpatient.LeaveHospitalTime;
+            }
+        }
+
+        public bool updateViewToLeaveDate()
+        {
+            if (LeaveHospitalTime.SelectedDate == null)
+                return false;
+            if (string.IsNullOrEmpty(LeaveHospitalDoctor.Text.Trim()))
+                return false;
+            if (string.IsNullOrEmpty(LeaveHospitalDepartment.Text.Trim()))
+                return false;
+            if (Inpatient == null)
+                return false;
+
+            Inpatient.LeaveHospitalDepartment = this.LeaveHospitalDepartment.Text;
+            Inpatient.LeaveHospitalDoctorName = this.LeaveHospitalDoctor.Text;
+            Inpatient.LeaveHospitalDiagnoses = this.LeaveHospitalDiagnosis.Text;
+            Inpatient.LeaveHospitalTime = this.LeaveHospitalTime.SelectedDate;
+
+            return true;
+        }
+
+        // 入院办理
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-            // 入院办理
-
             NewInPatient();
 
             LeaveHospitalGrid.Visibility = Visibility.Collapsed;
             Spe.Visibility = Visibility.Collapsed;
             setInHospitalGridEnable();
+            updateAllWait();
         }
 
+        // 出院办理
         private void RadioButton_Click_1(object sender, RoutedEventArgs e)
         {
-            // 出院办理
+            NewInPatient();
+
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
             setInHospitalGridEnable(false);
             LeaveHospitalBtn.Visibility = Visibility.Visible;
             RecallHospitalBtn.Visibility = Visibility.Collapsed;
             LeaveHospitalDiagnosisBtn.IsEnabled = true;
-            
+            LeaveHospitalDoctorBtn.IsEnabled = true;
+            LeaveHospitalTime.IsEnabled = true;
+            updateAllWait();
+
         }
 
+        // 召回办理
         private void RadioButton_Click_2(object sender, RoutedEventArgs e)
         {
-            // 召回办理
             NewInPatient();
 
             LeaveHospitalGrid.Visibility = Visibility.Visible;
@@ -243,6 +299,9 @@ namespace HISGUIFeeLib.Views
             LeaveHospitalBtn.Visibility = Visibility.Collapsed;
             RecallHospitalBtn.Visibility = Visibility.Visible;
             LeaveHospitalDiagnosisBtn.IsEnabled = false;
+            LeaveHospitalDoctorBtn.IsEnabled = false;
+            LeaveHospitalTime.IsEnabled = false;
+            updateAllWait();
         }
 
         private void setInHospitalGridEnable(bool bEnable = true)
@@ -265,17 +324,18 @@ namespace HISGUIFeeLib.Views
             this.ConnectsName.IsEnabled = bEnable;
             this.ConnectsTel.IsEnabled = bEnable;
             this.ConnectsAddress.IsEnabled = bEnable;
-            this.InHospitalTime.IsEnabled = false;
+            this.InHospitalTime.IsEnabled = bEnable;
             this.IllnesSstateEnumCombo.IsEnabled = bEnable;
             this.InHospitalDiagnosis.IsEnabled = bEnable;
             this.InDepartmentEdit.IsEnabled = false;
-            this.InDoctorEdit.IsEnabled = bEnable;
+            this.InDoctorEdit.IsEnabled = false;
+            this.InDoctorEditBtn.IsEnabled = bEnable;
             this.InHospitalYaJin.IsEnabled = bEnable;
 
             this.InUserName.IsEnabled = false;
             this.InHospitalDiagnosisBtn.IsEnabled = bEnable;
 
-            if(bEnable)
+            if (bEnable)
             {
                 this.InHospitalBtn.Visibility = Visibility.Visible;
                 this.EditMsgBtn.Visibility = Visibility.Collapsed;
@@ -283,8 +343,8 @@ namespace HISGUIFeeLib.Views
             }
             else
             {
-                this.InHospitalBtn.Visibility = Visibility.Collapsed; 
-                if(RecallManageCheck.IsChecked.Value)
+                this.InHospitalBtn.Visibility = Visibility.Collapsed;
+                if (RecallManageCheck.IsChecked.Value)
                 {
                     this.EditMsgBtn.Visibility = Visibility.Collapsed;
                     this.InHospitalCancelBtn.Visibility = Visibility.Collapsed;
@@ -294,39 +354,131 @@ namespace HISGUIFeeLib.Views
                     this.EditMsgBtn.Visibility = Visibility.Visible;
                     this.InHospitalCancelBtn.Visibility = Visibility.Visible;
                 }
-                
+
             }
         }
 
         private void AllWaitList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            var temp = this.AllWaitList.SelectedItem as CommContracts.Inpatient;
+            if (temp == null)
+                return;
 
+            Inpatient = temp;
+
+            updateInDateToView();
+            updateLeaveDateToView();
         }
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
             // 读卡
             var vm = this.DataContext as HISGUIFeeVM;
-            if(InManageCheck.IsChecked.Value)
+            if (InManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadNewInPatient(5);
+                Inpatient = vm?.ReadNewInPatient(7);
             }
-            else if(LeaveManageCheck.IsChecked.Value)
+            else if (LeaveManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadCurrentInPatient(5);
+                Inpatient = vm?.ReadCurrentInPatient(9);
             }
-            else if(RecallManageCheck.IsChecked.Value)
+            else if (RecallManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadLeavedPatient(5);
+                Inpatient = vm?.ReadLeavedPatient(9);
             }
 
-            updateDateToView();
+            updateInDateToView();
+            updateLeaveDateToView();
         }
 
         private void EditMsgBtn_Click(object sender, RoutedEventArgs e)
         {
             setInHospitalGridEnable();
             IsEdit = true;
+        }
+
+        private void InDoctorEditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var tempDoctor = getDoctor();
+            if (tempDoctor != null)
+            {
+                this.InDoctorEdit.Text = tempDoctor.Name;
+                this.InDepartmentEdit.Text = tempDoctor.Department.Name;
+            }
+        }
+
+        private void LeaveHospitalDoctorBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var tempDoctor = getDoctor();
+            if (tempDoctor != null)
+            {
+                this.LeaveHospitalDoctor.Text = tempDoctor.Name;
+                this.LeaveHospitalDepartment.Text = tempDoctor.Department.Name;
+            }
+        }
+
+        private CommContracts.Employee getDoctor()
+        {
+            var window = new Window();
+            DoctorFind tempview = new DoctorFind();
+            window.Content = tempview;
+            window.Width = 400;
+            window.Height = 300;
+            window.ResizeMode = ResizeMode.NoResize;
+            bool? bResult = window.ShowDialog();
+            if (bResult.Value)
+            {
+                return tempview.SelectDoctor;
+            }
+            return null;
+        }
+
+        private void LeaveHospitalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIFeeVM;
+            if (updateViewToLeaveDate())
+            {
+                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
+
+                bool? bResult = vm?.UpdateInPatient(Inpatient);
+                if (bResult.HasValue)
+                {
+                    if (bResult.Value)
+                    {
+                        MessageBox.Show("出院成功！");
+                        setInHospitalGridEnable(false);
+                        return;
+                    }
+                }
+                MessageBox.Show("出院失败！");
+            }
+        }
+
+        private void RecallHospitalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIFeeVM;
+            if (updateViewToLeaveDate())
+            {
+                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
+                Inpatient.LeaveHospitalTime = null;
+
+                bool? bResult = vm?.UpdateInPatient(Inpatient);
+                if (bResult.HasValue)
+                {
+                    if (bResult.Value)
+                    {
+                        MessageBox.Show("召回成功！");
+                        setInHospitalGridEnable(false);
+                        return;
+                    }
+                }
+                MessageBox.Show("召回失败！");
+            }
+        }
+
+        private void LeaveOrRecallCancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

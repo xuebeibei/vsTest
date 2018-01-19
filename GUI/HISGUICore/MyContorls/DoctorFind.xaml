@@ -14,12 +14,13 @@
             <TextBox Width="50" Margin="0,5,0,5"></TextBox>
             <Button Margin="0,5,5,5" Click="Button_Click">查找</Button>
         </StackPanel>
-        <ListView Name="listView1" Grid.Row="1" Margin="5" SelectionChanged="listView1_SelectionChanged">
+        <ListView Name="listView1" Grid.Row="1" Margin="5"
+                    MouseDoubleClick="listView1_MouseDoubleClick">
             <ListView.View>
                 <GridView x:Name="gridView1">
-                    <GridViewColumn Header="医生编号" DisplayMemberBinding="{Binding Path=DoctorId}"></GridViewColumn>
-                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=DoctorName}"></GridViewColumn>
-                    <GridViewColumn Header="科室" DisplayMemberBinding="{Binding Path=DoctorDepartment}"></GridViewColumn>
+                    <GridViewColumn Header="医生编号" DisplayMemberBinding="{Binding Path=ID}"></GridViewColumn>
+                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Name}"></GridViewColumn>
+                    <GridViewColumn Header="科室" DisplayMemberBinding="{Binding Path=Department.Name}"></GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

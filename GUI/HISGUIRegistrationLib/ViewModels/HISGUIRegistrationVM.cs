@@ -58,7 +58,7 @@ namespace HISGUIRegistrationLib.ViewModels
     {
         public SignalSource(int id,
             int departmentID,
-            DateTime datetime,
+            DateTime? datetime,
             string timeIntival,
             string type,
             int maxNum,
@@ -93,7 +93,7 @@ namespace HISGUIRegistrationLib.ViewModels
             this.Explain = "";
         }
         public int SignalID { get; set; }      // 编号
-        public DateTime VistTime { get; set; } // 看诊日期
+        public DateTime? VistTime { get; set; } // 看诊日期
         public string TimeIntival { get; set; }   // 看诊时段
         public int DepartmentID { get; set; }  // 科室
         public string SignalType { get; set; }    // 号别

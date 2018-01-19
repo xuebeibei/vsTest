@@ -34,7 +34,7 @@ namespace CommContracts
         [DataMember]
         public int RegistrationID { get; set; }                       // 门诊ID
         [DataMember]
-        public DateTime WriteTime { get; set; }                       // 编辑时间
+        public DateTime? WriteTime { get; set; }                       // 编辑时间
         [DataMember]
         public int WriteUserID { get; set; }                          // 编写人的用户ID
         [DataMember]

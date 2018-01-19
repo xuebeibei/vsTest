@@ -19,7 +19,7 @@ namespace CommContracts
         [DataMember]
         public string Batch { get; set; }            // 批次
         [DataMember]
-        public DateTime ExpirationDate { get; set; } // 有效期
+        public DateTime? ExpirationDate { get; set; } // 有效期
         [DataMember]
         public decimal StorePrice { get; set; }      // 成本价
         [DataMember]

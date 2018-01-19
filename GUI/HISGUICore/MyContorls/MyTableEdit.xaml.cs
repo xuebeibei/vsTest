@@ -51,7 +51,7 @@ namespace HISGUICore.MyContorls
             }
         }
         public string BatchID { get; set; }                            // 批次 
-        public DateTime ExpirationDate { get; set; }                   // 有效日期   
+        public DateTime? ExpirationDate { get; set; }                   // 有效日期   
 
         public int StoreRoomMedicineNumID { get; set; }                // 库存ID
         public int BeforeOutNum { get; set; }                          // 出库前库存

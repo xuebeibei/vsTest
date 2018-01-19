@@ -27,7 +27,7 @@ namespace CommContracts
         [DataMember]
         public decimal RegisterFee { get; set; }                   // 挂号费用
         [DataMember]
-        public DateTime RegisterTime { get; set; }                // 经办时间
+        public DateTime? RegisterTime { get; set; }                // 经办时间
         [DataMember]
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         [DataMember]

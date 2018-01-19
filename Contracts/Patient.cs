@@ -7,8 +7,8 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum GenderEnum { man, woman };
-    public enum VolkEnum { hanzu, other };
+    public enum GenderEnum { 男, 女 };
+    public enum VolkEnum { 汉族, 其他 };
 
     [DataContract]
     public class Patient
@@ -20,7 +20,7 @@ namespace CommContracts
         [DataMember]
         public GenderEnum Gender { get; set; }   // 性别
         [DataMember]
-        public DateTime BirthDay { get; set; }   // 出生日期
+        public DateTime? BirthDay { get; set; }   // 出生日期
         [DataMember]
         public string IDCardNo { get; set; }     // 身份证
         [DataMember]

@@ -29,7 +29,7 @@ namespace HISGUISetLib.Views
             CommClient.Job myd1 = new CommClient.Job();
 
             GenderCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
-            GenderCombo.SelectedItem = CommContracts.GenderEnum.man;
+            GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
             DeparmentCombo.ItemsSource = myd.getALLDepartment();
             JobCombo.ItemsSource = myd1.GetAllJob();
             bIsEdit = false;

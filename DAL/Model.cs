@@ -249,7 +249,7 @@ namespace DAL
         [DecimalPrecision(18, 4)]
         public decimal Price { get; set; }        // 号源单价
 
-        public DateTime VistTime { get; set; }    // 看诊日期
+        public DateTime? VistTime { get; set; }    // 看诊日期
         public int TimeIntival { get; set; }      // 看诊时段ID
         public int DepartmentID { get; set; }     // 科室
         public int SignalType { get; set; }       // 号别
@@ -277,7 +277,7 @@ namespace DAL
         {
             string str = Patient.Name + " " +
                         (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
-                        (DateTime.Now.Year - Patient.BirthDay.Year).ToString() + "岁\r\n" +
+                        "岁\r\n" +
                         "科室：外科\r\n" +
                         "医生：" + SignalSource.Specialist.ToString() + "\r\n" +
                         "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
@@ -290,7 +290,7 @@ namespace DAL
         public int SignalSourceID { get; set; }                   // 号源ID
         public int RegisterUserID { get; set; }                   // 经办人ID
         public decimal RegisterFee { get; set; }                   // 挂号费用
-        public DateTime RegisterTime { get; set; }                // 经办时间
+        public DateTime? RegisterTime { get; set; }                // 经办时间
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
 
@@ -312,7 +312,7 @@ namespace DAL
         public int RegistrationID { get; set; }                // 挂号单ID
         public int DoctorID { get; set; }                      // 分诊医生ID 
         public User User { get; set; }                         // 分诊经办人
-        public DateTime DateTime { get; set; }                 // 分诊时间
+        public DateTime? DateTime { get; set; }                 // 分诊时间
     }
 
     public class Patient
@@ -330,7 +330,7 @@ namespace DAL
         {
             string str = "姓名：" + this.Name + "\r\n" +
                         "性别：" + (this.Gender == DAL.GenderEnum.man ? "男" : "女") + "\r\n" +
-                        "年龄：" + (DateTime.Now.Year - this.BirthDay.Year).ToString() + "岁\r\n" +
+                        "岁\r\n" +
                         "身高：165CM\r\n" +
                         "体重：50KG" + "\r\n" +
                         "BIM指数：" + "\r\n" +
@@ -348,7 +348,7 @@ namespace DAL
         public int ID { get; set; }              // 患者ID
         public string Name { get; set; }         // 姓名
         public GenderEnum Gender { get; set; }   // 性别
-        public DateTime BirthDay { get; set; }   // 出生日期
+        public DateTime? BirthDay { get; set; }   // 出生日期
         public string IDCardNo { get; set; }     // 身份证
         public VolkEnum Volk { get; set; }       // 民族
         public string Tel { get; set; }                          // 电话，患者电话
@@ -444,7 +444,7 @@ namespace DAL
         public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public ChargeStatusEnum ChargeStatusEnum { get; set; }
 
@@ -538,7 +538,7 @@ namespace DAL
         public string NO { get; set; } // 病历号
         public MedicalRecordEnum MedicalRecordEnum { get; set; }  // 类别
         public int RegistrationID { get; set; }                   // 门诊ID
-        public DateTime WriteTime { get; set; }                   // 编辑时间
+        public DateTime? WriteTime { get; set; }                   // 编辑时间
         public int WriteUserID { get; set; }                      // 编写人的用户ID
         public string ContentXml { get; set; }                    // 内容xml
 
@@ -548,7 +548,8 @@ namespace DAL
     public enum PayTypeEnum
     {
         自费,
-        医保
+        城乡居民医保,
+        城镇职工医保
     }
 
     public enum MarriageEnum
@@ -584,7 +585,7 @@ namespace DAL
         {
             string str = Patient.Name + " " +
                         (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
-                        (DateTime.Now.Year - Patient.BirthDay.Year).ToString() + "岁\r\n" +
+                        "岁\r\n" +
                         "科室：外科\r\n" +
                         //"医生：" + SignalSource.Specialist.ToString() + "\r\n" +
                         "入院时间：" + InHospitalTime.ToString() + "\r\n";
@@ -593,6 +594,7 @@ namespace DAL
 
         public int ID { get; set; }                              // ID
         public string No { get; set; }                           // 住院号
+        public string CaseNo { get; set; }                       // 病历号
         public PayTypeEnum PayTypeEnum { get; set; }             // 费用类别
         public string YiBaoNo { get; set; }                      // 医保号
         public int PatientID { get; set; }                       // 患者ID
@@ -602,10 +604,18 @@ namespace DAL
         public string ContactsName { get; set; }                 // 联系人  
         public string ContactsTel { get; set; }                  // 联系人电话  
         public string ContactsAddress { get; set; }              // 联系人住址  
-        public DateTime InHospitalTime { get; set; }             // 入院时间
+        public DateTime? InHospitalTime { get; set; }            // 入院时间
         public string InHospitalDiagnoses { get; set; }          // 入院诊断 
         public IllnesSstateEnum IllnesSstateEnum { get; set; }   // 入院病情
-        public int InPatientUserID { get; set; }                 // 经办人账户ID 
+        public string InHospitalDoctorName { get; set; }         // 入院医生
+        public string InHospitalDepartment { get; set; }         // 入院科室
+        public int InPatientUserID { get; set; }                 // 入院经办人账户ID 
+
+        public DateTime? LeaveHospitalTime { get; set; }            // 出院时间
+        public string LeaveHospitalDiagnoses { get; set; }          // 出院诊断 
+        public string LeaveHospitalDoctorName { get; set; }         // 出院医生
+        public string LeaveHospitalDepartment { get; set; }         // 出院科室
+        public int LeaveHospitalUserID { get; set; }                 // 出院经办人账户ID 
         public InHospitalStatusEnum InHospitalStatusEnum { get; set; } // 住院状态
 
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
@@ -618,7 +628,7 @@ namespace DAL
         public int ID { get; set; }
         public int InpatientID { get; set; }
         public int EmployeeID { get; set; }
-        public DateTime StartTime { get; set; }
+        public DateTime? StartTime { get; set; }
 
         public virtual Employee Employee { get; set; }
     }
@@ -751,7 +761,7 @@ namespace DAL
         public int InpatientID { get; set; }                      // 住院ID
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
 
@@ -791,7 +801,7 @@ namespace DAL
         public int InpatientID { get; set; }                      // 住院ID
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
 
@@ -831,7 +841,7 @@ namespace DAL
         public int InpatientID { get; set; }                      // 住院ID
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
 
@@ -871,7 +881,7 @@ namespace DAL
         public int InpatientID { get; set; }                      // 住院ID
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
 
@@ -929,7 +939,7 @@ namespace DAL
         public int InpatientID { get; set; }                      // 住院ID
 
         public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         public int WriteUserID { get; set; }                      // 开具医生
         public virtual User WriteUser { get; set; }               // 开具医生
 
@@ -979,7 +989,7 @@ namespace DAL
         public int ID { get; set; }                  // ID
         public string NO { get; set; }               // 单号 
         public decimal SumOfMoney { get; set; }      // 总金额，成本价
-        public DateTime OperateTime { get; set; }    // 操作时间
+        public DateTime? OperateTime { get; set; }    // 操作时间
         public InStoreEnum InStoreEnum { get; set; }
         public int FromSupplierID { get; set; }      // 供应商
         public int ToStoreID { get; set; }           // 入库库房
@@ -1004,7 +1014,7 @@ namespace DAL
         public int ID { get; set; }       // ID
         public int MedicineID { get; set; }          // 对应药品字典
         public string Batch { get; set; }            // 批次
-        public DateTime ExpirationDate { get; set; } // 有效期
+        public DateTime? ExpirationDate { get; set; } // 有效期
         [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }      // 成本价
         [DecimalPrecision(18, 4)]
@@ -1036,7 +1046,7 @@ namespace DAL
         public int ID { get; set; }                      // ID
         public string NO { get; set; }                   // 单号
         public decimal SumOfMoney { get; set; }          // 总金额，成本价
-        public DateTime OperateTime { get; set; }        // 操作时间
+        public DateTime? OperateTime { get; set; }        // 操作时间
         public OutStoreEnum OutStoreEnum { get; set; }   // 出库类型
         public int FromStoreID { get; set; }
         public int ToStoreID { get; set; }
@@ -1084,7 +1094,7 @@ namespace DAL
         public int ID { get; set; }                  // ID
         public string NO { get; set; }               // 单号
         public decimal SumOfMoney { get; set; }      // 总损益，成本价
-        public DateTime OperateTime { get; set; }    // 操作时间
+        public DateTime? OperateTime { get; set; }    // 操作时间
         public int CheckStoreID { get; set; }        // 盘存库房
         public string Remarks { get; set; }          // 备注
 
@@ -1159,7 +1169,7 @@ namespace DAL
         public int SupplierID { get; set; }          // 供应商ID
         public int MedicineID { get; set; }          // 对应药品字典
         public string Batch { get; set; }            // 批次
-        public DateTime ExpirationDate { get; set; } // 有效期
+        public DateTime? ExpirationDate { get; set; } // 有效期
         [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }      // 成本价
         public int Num { get; set; }                 // 库存
@@ -1206,7 +1216,7 @@ namespace DAL
         public int ID { get; set; }
         public string NO { get; set; }
         public decimal SumOfMoney { get; set; }
-        public DateTime ChargeTime { get; set; }
+        public DateTime? ChargeTime { get; set; }
         public int RecipeID { get; set; }
         public bool Block { get; set; }
 

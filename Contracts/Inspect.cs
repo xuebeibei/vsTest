@@ -25,7 +25,7 @@ namespace CommContracts
         [DataMember]
         public double SumOfMoney { get; set; }                    // 金额
         [DataMember]
-        public DateTime WriteTime { get; set; }                   // 开具时间
+        public DateTime? WriteTime { get; set; }                   // 开具时间
         [DataMember]
         public int WriteUserID { get; set; }                      // 开具医生
         [DataMember]

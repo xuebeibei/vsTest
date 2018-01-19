@@ -20,7 +20,7 @@ namespace CommContracts
         [DataMember]
         public decimal SumOfMoney { get; set; }
         [DataMember]
-        public DateTime ChargeTime { get; set; }
+        public DateTime? ChargeTime { get; set; }
         [DataMember]
         public int RecipeID { get; set; }
         [DataMember]

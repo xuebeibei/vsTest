@@ -15,26 +15,9 @@ using System.Windows.Shapes;
 
 namespace HISGUICore.MyContorls
 {
-    public class Doctor
-    {
-        public Doctor()
-        {
-
-        }
-        public Doctor(int id, string name, string department)
-        {
-            DoctorId = id;
-            DoctorName = name;
-            DoctorDepartment = department;
-        }
-        public int DoctorId { get; set; }
-        public string DoctorName { get; set; }
-        public string DoctorDepartment { get; set; }
-    }
-
     public partial class DoctorFind : UserControl
     {
-        public int SelectDoctorID { get; set; }
+        public CommContracts.Employee SelectDoctor { get; set; }
         public DoctorFind()
         {
             InitializeComponent();
@@ -44,36 +27,20 @@ namespace HISGUICore.MyContorls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            List<Doctor> signalList = new List<Doctor>();
-
             CommClient.Employee myd = new CommClient.Employee();
-            // 得到所有当天科室坐诊医生
+            // 得到医生
             List<CommContracts.Employee> listOfSignalSource = myd.getAllDoctor();
 
-
-            foreach (CommContracts.Employee sg in listOfSignalSource)
-            {
-                Doctor temp = new Doctor();
-
-                temp.DoctorId = sg.ID;
-                temp.DoctorName = sg.Name;
-                temp.DoctorDepartment = sg.Department.Name;
-
-                signalList.Add(temp);
-
-            }
-
-            this.listView1.ItemsSource = signalList;
-            SelectDoctorID = 0;
+            this.listView1.ItemsSource = listOfSignalSource;
+            SelectDoctor = new CommContracts.Employee();
         }
 
-        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void listView1_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Doctor aa =  this.listView1.SelectedItem as Doctor;
-            if(aa != null)
-            {
-                SelectDoctorID = aa.DoctorId;
-            }
+            CommContracts.Employee aa = this.listView1.SelectedItem as CommContracts.Employee;
+            SelectDoctor = aa;
+            (this.Parent as Window).DialogResult = true;
+            (this.Parent as Window).Close();
         }
     }
 }

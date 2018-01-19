@@ -100,14 +100,28 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
+                var config1 = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<CommContracts.Patient, DAL.Patient>().
+                    ForMember(x => x.Registrations, opt => opt.Ignore()).
+                    ForMember(x => x.Inpatients, opt => opt.Ignore());
+                });
+                var mapper1 = config1.CreateMapper();
+
+                DAL.Patient patient = new DAL.Patient();
+                patient = mapper1.Map<DAL.Patient>(inpatient.Patient);
+
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Inpatient, DAL.Inpatient>();
+                    cfg.CreateMap<CommContracts.Inpatient, DAL.Inpatient>().ForMember(x => x.Patient, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
                 DAL.Inpatient temp = new DAL.Inpatient();
                 temp = mapper.Map<DAL.Inpatient>(inpatient);
+                temp.Patient = patient;
+
+
 
                 ctx.Inpatients.Add(temp);
                 try
@@ -148,6 +162,12 @@ namespace BLL
                 temp.IllnesSstateEnum = (DAL.IllnesSstateEnum)inpatient.IllnesSstateEnum;
                 temp.InPatientUserID = inpatient.InPatientUserID;
 
+                temp.LeaveHospitalDepartment = inpatient.LeaveHospitalDepartment;
+                temp.LeaveHospitalDiagnoses = inpatient.LeaveHospitalDiagnoses;
+                temp.LeaveHospitalDoctorName = inpatient.LeaveHospitalDoctorName;
+                temp.LeaveHospitalTime = inpatient.LeaveHospitalTime;
+                temp.LeaveHospitalUserID = inpatient.LeaveHospitalUserID;
+
                 temp.InHospitalStatusEnum = (DAL.InHospitalStatusEnum)inpatient.InHospitalStatusEnum;
 
                 try
@@ -165,10 +185,28 @@ namespace BLL
         // 读取未入院患者信息，并新建入院登记
         public CommContracts.Inpatient ReadNewInPatient(int PatientID)
         {
-            BLL.Inpatient temp = new BLL.Inpatient();
-            return temp.ReadNewInPatient(PatientID);
-        }
+            CommContracts.Inpatient temp = new CommContracts.Inpatient();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Patients
+                            where a.ID == PatientID
+                            select a;
+                foreach (DAL.Patient ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Patient, CommContracts.Patient>();
+                    });
+                    var mapper = config.CreateMapper();
 
+                    CommContracts.Patient patient = mapper.Map<CommContracts.Patient>(ass);
+                    temp.Patient = patient;
+
+                    break;
+                }
+            }
+            return temp;
+        }
         // 读取已入院患者信息
         public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
         {
@@ -178,7 +216,7 @@ namespace BLL
             {
                 var query = from a in ctx.Inpatients
                             where a.InHospitalStatusEnum == DAL.InHospitalStatusEnum.在院中 &&
-                            a.ID == InPatientID 
+                            a.ID == InPatientID
                             select a;
                 foreach (DAL.Inpatient ass in query)
                 {

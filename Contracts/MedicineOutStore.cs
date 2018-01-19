@@ -34,7 +34,7 @@ namespace CommContracts
         [DataMember]
         public decimal SumOfMoney { get; set; }          // 总金额，成本价
         [DataMember]
-        public DateTime OperateTime { get; set; }        // 操作时间
+        public DateTime? OperateTime { get; set; }        // 操作时间
         [DataMember]
         public OutStoreEnum OutStoreEnum { get; set; }   // 出库类型
         [DataMember]

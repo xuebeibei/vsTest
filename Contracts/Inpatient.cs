@@ -10,7 +10,8 @@ namespace CommContracts
     public enum PayTypeEnum
     {
         自费,
-        医保
+        城乡居民医保,
+        城镇职工医保
     }
 
     public enum MarriageEnum
@@ -42,11 +43,16 @@ namespace CommContracts
         {
             No = "021";
             InHospitalTime = DateTime.Now;
+            PayTypeEnum = PayTypeEnum.自费;
+            MarriageEnum = MarriageEnum.未婚;
+            IllnesSstateEnum = IllnesSstateEnum.一般;
         }
         [DataMember]
         public int ID { get; set; }                              // ID
         [DataMember]
         public string No { get; set; }                           // 住院号
+        [DataMember]
+        public string CaseNo { get; set; }                       // 病历号
         [DataMember]
         public PayTypeEnum PayTypeEnum { get; set; }             // 费用类别
         [DataMember]
@@ -66,13 +72,28 @@ namespace CommContracts
         [DataMember]
         public string ContactsAddress { get; set; }              // 联系人住址  
         [DataMember]
-        public DateTime InHospitalTime { get; set; }             // 入院时间
+        public DateTime? InHospitalTime { get; set; }             // 入院时间
         [DataMember]
         public string InHospitalDiagnoses { get; set; }          // 入院诊断 
         [DataMember]
         public IllnesSstateEnum IllnesSstateEnum { get; set; }   // 入院病情
         [DataMember]
+        public string InHospitalDoctorName { get; set; }         // 入院医生
+        [DataMember]
+        public string InHospitalDepartment { get; set; }         // 入院科室
+        [DataMember]
         public int InPatientUserID { get; set; }                 // 经办人账户ID
+        [DataMember]
+        public DateTime? LeaveHospitalTime { get; set; }            // 出院时间
+        [DataMember]
+        public string LeaveHospitalDiagnoses { get; set; }          // 出院诊断 
+        [DataMember]
+        public string LeaveHospitalDoctorName { get; set; }         // 出院医生
+        [DataMember]
+        public string LeaveHospitalDepartment { get; set; }         // 出院科室
+        [DataMember]
+        public int LeaveHospitalUserID { get; set; }                 // 出院经办人账户ID 
+
         [DataMember]
         public InHospitalStatusEnum InHospitalStatusEnum { get; set; } // 住院状态
         [DataMember]

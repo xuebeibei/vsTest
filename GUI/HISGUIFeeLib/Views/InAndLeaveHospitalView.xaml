@@ -109,8 +109,16 @@
                     </Grid>
 
                     <Label Margin="5" Grid.Row="6" Grid.Column="0">入院医生：</Label>
-                    <TextBox x:Name="InDoctorEdit" Margin="5" Grid.Row="6" Grid.Column="1"></TextBox>
-                    <Label Margin="5" Grid.Row="6" Grid.Column="2">入院科室：</Label>
+                    <Grid Grid.Row="6" Grid.Column="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="InDoctorEdit" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
+                        <Button x:Name="InDoctorEditBtn" Margin="5" Grid.Column="1" Click="InDoctorEditBtn_Click">选择</Button>
+                    </Grid>
+                    
+                    <Label x:Name="InDepartmentLabel" Margin="5" Grid.Row="6" Grid.Column="2">入院科室：</Label>
                     <TextBox x:Name="InDepartmentEdit" Margin="5" Grid.Row="6" Grid.Column="3" IsEnabled="False"></TextBox>
                     <Label Margin="5" Grid.Row="6" Grid.Column="4">入院押金：</Label>
                     <TextBox x:Name="InHospitalYaJin" Margin="5" Grid.Row="6" Grid.Column="5"></TextBox>
@@ -147,17 +155,23 @@
                     </Grid.ColumnDefinitions>
 
                     <Label Margin="5" Grid.Row="0" Grid.Column="0">住院状态*：</Label>
-                    <TextBox Margin="5" Grid.Row="0" Grid.Column="1" IsEnabled="False"></TextBox>
+                    <TextBox x:Name="InHospitalStatus" Margin="5" Grid.Row="0" Grid.Column="1" IsEnabled="False"></TextBox>
 
-                    <Label Margin="5" Grid.Row="0" Grid.Column="2">出院科室：</Label>
-                    <TextBox Margin="5" Grid.Row="0" Grid.Column="3" IsEnabled="False"></TextBox>
+                    <Label Margin="5" Grid.Row="0" Grid.Column="2">出院医生：</Label>
+                    <Grid Grid.Row="0" Grid.Column="3" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox x:Name="LeaveHospitalDoctor" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
+                        <Button x:Name="LeaveHospitalDoctorBtn" Margin="5" Grid.Column="1" Click="LeaveHospitalDoctorBtn_Click">选择</Button>
+                    </Grid>
 
-                    <Label Margin="5" Grid.Row="0" Grid.Column="4">出院医生：</Label>
-                    <ComboBox Margin="5" Grid.Row="0" Grid.Column="5" IsEnabled="False"></ComboBox>
+                    <Label Margin="5" Grid.Row="0" Grid.Column="4">出院科室：</Label>
+                    <TextBox x:Name="LeaveHospitalDepartment" Margin="5" Grid.Row="0" Grid.Column="5" IsEnabled="False"></TextBox>
 
                     <Label Margin="5" Grid.Row="0" Grid.Column="6">出院时间：</Label>
-                    <DatePicker Margin="5" Grid.Row="0" Grid.Column="7" IsEnabled="false"></DatePicker>
-
+                    <DatePicker x:Name="LeaveHospitalTime" Margin="5" Grid.Row="0" Grid.Column="7"></DatePicker>
 
                     <Label Margin="5" Grid.Row="1" Grid.Column="0">出院诊断*：</Label>
                     <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
@@ -165,7 +179,7 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="auto"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
+                        <TextBox x:Name="LeaveHospitalDiagnosis" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
                         <Button x:Name="LeaveHospitalDiagnosisBtn" Margin="5" Grid.Column="1">编辑</Button>
                     </Grid>
 
@@ -189,9 +203,9 @@
                     <TextBox Margin="5" Grid.Row="2" Grid.Column="7" IsEnabled="False"></TextBox>
 
                     <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                        <Button x:Name="LeaveHospitalBtn" Margin="5">出院</Button>
-                        <Button x:Name="RecallHospitalBtn" Margin="5">召回</Button>
-                        <Button x:Name="LeaveOrRecallCancelBtn" Margin="5">取消</Button>
+                        <Button x:Name="LeaveHospitalBtn" Margin="5" Click="LeaveHospitalBtn_Click">出院</Button>
+                        <Button x:Name="RecallHospitalBtn" Margin="5" Click="RecallHospitalBtn_Click">召回</Button>
+                        <Button x:Name="LeaveOrRecallCancelBtn" Margin="5" Click="LeaveOrRecallCancelBtn_Click">取消</Button>
                     </StackPanel>
                 </Grid>
             </Grid>

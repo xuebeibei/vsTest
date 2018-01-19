@@ -25,6 +25,6 @@ namespace CommContracts
         [DataMember]
         public User User { get; set; }                    // 分诊经办人
         [DataMember]
-        public DateTime DateTime { get; set; }                 // 分诊时间
+        public DateTime? DateTime { get; set; }                 // 分诊时间
     }
 }
