@@ -117,10 +117,6 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        private void InHospitalCancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void updateInDateToView()
         {
@@ -339,7 +335,6 @@ namespace HISGUIFeeLib.Views
             {
                 this.InHospitalBtn.Visibility = Visibility.Visible;
                 this.EditMsgBtn.Visibility = Visibility.Collapsed;
-                this.InHospitalCancelBtn.Visibility = Visibility.Visible;
             }
             else
             {
@@ -347,12 +342,10 @@ namespace HISGUIFeeLib.Views
                 if (RecallManageCheck.IsChecked.Value)
                 {
                     this.EditMsgBtn.Visibility = Visibility.Collapsed;
-                    this.InHospitalCancelBtn.Visibility = Visibility.Collapsed;
                 }
                 else
                 {
                     this.EditMsgBtn.Visibility = Visibility.Visible;
-                    this.InHospitalCancelBtn.Visibility = Visibility.Visible;
                 }
 
             }
@@ -447,6 +440,7 @@ namespace HISGUIFeeLib.Views
                     {
                         MessageBox.Show("出院成功！");
                         setInHospitalGridEnable(false);
+                        updateAllWait();
                         return;
                     }
                 }
@@ -469,6 +463,7 @@ namespace HISGUIFeeLib.Views
                     {
                         MessageBox.Show("召回成功！");
                         setInHospitalGridEnable(false);
+                        updateAllWait();
                         return;
                     }
                 }
@@ -476,9 +471,5 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        private void LeaveOrRecallCancelBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

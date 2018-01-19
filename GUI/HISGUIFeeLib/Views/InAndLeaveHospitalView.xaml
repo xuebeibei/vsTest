@@ -129,7 +129,6 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                         <Button x:Name="InHospitalBtn" Margin="5" Click="InHospitalBtn_Click">入院</Button>
                         <Button x:Name="EditMsgBtn" Margin="5" Click="EditMsgBtn_Click" Visibility="Collapsed">修改</Button>
-                        <Button x:Name="InHospitalCancelBtn" Margin="5" Click="InHospitalCancelBtn_Click">取消</Button>
                     </StackPanel>
                 </Grid>
             </Grid>
@@ -205,7 +204,6 @@
                     <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                         <Button x:Name="LeaveHospitalBtn" Margin="5" Click="LeaveHospitalBtn_Click">出院</Button>
                         <Button x:Name="RecallHospitalBtn" Margin="5" Click="RecallHospitalBtn_Click">召回</Button>
-                        <Button x:Name="LeaveOrRecallCancelBtn" Margin="5" Click="LeaveOrRecallCancelBtn_Click">取消</Button>
                     </StackPanel>
                 </Grid>
             </Grid>
