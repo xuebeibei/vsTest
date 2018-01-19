@@ -68,6 +68,15 @@ namespace HISGUIFeeLib.Views
             updateInDateToView();
         }
 
+        private void NoInPatient()
+        {
+            Inpatient = null;
+            IsEdit = false;
+
+            updateInDateToView();
+            updateLeaveDateToView();
+        }
+
         private void InpatientRegistrationView_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -81,6 +90,9 @@ namespace HISGUIFeeLib.Views
 
         private void InHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Inpatient == null)
+                return;
+
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToInDate())
             {
@@ -136,17 +148,7 @@ namespace HISGUIFeeLib.Views
                     this.JiGuan.Text = Inpatient.Patient.JiGuan;
                     this.Tel.Text = Inpatient.Patient.Tel;
                 }
-                else
-                {
-                    this.Name.Text = "";
-                    this.GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
-                    this.BirthDay.SelectedDate = null;
-                    this.IDCardNo.Text = "";
-                    this.VolkEnumCombo.SelectedItem = CommContracts.VolkEnum.汉族;
-                    this.JiGuan.Text = "";
-                    this.Tel.Text = "";
 
-                }
                 this.MarriageEnumCombo.SelectedItem = Inpatient.MarriageEnum;
                 this.Job.Text = Inpatient.Job;
                 this.WorkUnitAddress.Text = Inpatient.WorkAddress;
@@ -165,13 +167,37 @@ namespace HISGUIFeeLib.Views
                 {
                     this.InUserName.Text = Inpatient.InPatientUser.Username;
                 }
-                else
-                {
-                    this.InUserName.Text = "";
-                }
 
                 this.InHospitalTime.DisplayDateEnd = DateTime.Now;
                 this.BirthDay.DisplayDateEnd = DateTime.Now;
+            }
+            else
+            {
+                this.InHospitalNo.Text = "";
+                this.CaseNo.Text = "";
+                this.PayTypeEnumCombo.SelectedItem = "";
+                this.YiBaoNo.Text = "";
+
+                this.Name.Text = "";
+                this.GenderCombo.SelectedItem = null;
+                this.BirthDay.SelectedDate = null;
+                this.IDCardNo.Text = "";
+                this.VolkEnumCombo.SelectedItem = null;
+                this.JiGuan.Text = "";
+                this.Tel.Text = "";
+
+                this.MarriageEnumCombo.SelectedItem = "";
+                this.Job.Text = "";
+                this.WorkUnitAddress.Text = "";
+                this.ConnectsName.Text = "";
+                this.ConnectsTel.Text = "";
+                this.ConnectsAddress.Text = "";
+                this.InHospitalTime.SelectedDate = null;
+                this.IllnesSstateEnumCombo.SelectedItem = "";
+                this.InHospitalDiagnosis.Text = "";
+                this.InDepartmentEdit.Text = "";
+                this.InDoctorEdit.Text = "";
+                this.InHospitalYaJin.Text = "";
             }
         }
 
@@ -235,6 +261,13 @@ namespace HISGUIFeeLib.Views
                 this.LeaveHospitalDiagnosis.Text = Inpatient.LeaveHospitalDiagnoses;
                 this.LeaveHospitalTime.SelectedDate = Inpatient.LeaveHospitalTime;
             }
+            else
+            {
+                this.LeaveHospitalDepartment.Text = "";
+                this.LeaveHospitalDoctor.Text = "";
+                this.LeaveHospitalDiagnosis.Text = "";
+                this.LeaveHospitalTime.SelectedDate = null;
+            }
         }
 
         public bool updateViewToLeaveDate()
@@ -270,7 +303,7 @@ namespace HISGUIFeeLib.Views
         // 出院办理
         private void RadioButton_Click_1(object sender, RoutedEventArgs e)
         {
-            NewInPatient();
+            NoInPatient();
 
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
@@ -287,7 +320,7 @@ namespace HISGUIFeeLib.Views
         // 召回办理
         private void RadioButton_Click_2(object sender, RoutedEventArgs e)
         {
-            NewInPatient();
+            NoInPatient();
 
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
@@ -386,6 +419,8 @@ namespace HISGUIFeeLib.Views
 
         private void EditMsgBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Inpatient == null)
+                return;
             setInHospitalGridEnable();
             IsEdit = true;
         }
@@ -402,6 +437,9 @@ namespace HISGUIFeeLib.Views
 
         private void LeaveHospitalDoctorBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Inpatient == null)
+                return;
+
             var tempDoctor = getDoctor();
             if (tempDoctor != null)
             {
@@ -428,6 +466,9 @@ namespace HISGUIFeeLib.Views
 
         private void LeaveHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Inpatient == null)
+                return;
+
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {
@@ -450,6 +491,9 @@ namespace HISGUIFeeLib.Views
 
         private void RecallHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (Inpatient == null)
+                return;
+
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {

@@ -61,10 +61,18 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="出入院登记">
+            <TabItem Header="出入院管理">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Grid>
                         <local:InAndLeaveHospitalView x:Name="InAndLeaveHospitalView"></local:InAndLeaveHospitalView>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+
+            <TabItem Header="缴退费管理">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <Grid>
+                        <local:PrePaidView x:Name="prePaidView"></local:PrePaidView>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
