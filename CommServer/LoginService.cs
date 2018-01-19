@@ -368,10 +368,10 @@ namespace CommServer
             return temp.GetAllInPatient();
         }
 
-        public List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        public List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
         {
             BLL.Inpatient temp = new BLL.Inpatient();
-            return temp.GetAllInPatient(inHospitalStatusEnum, strName);
+            return temp.GetAllInPatientList(inHospitalStatusEnum, strName);
         }
 
         public string getInPatientBMIMsg(int InpatientID)
@@ -390,6 +390,33 @@ namespace CommServer
         {
             BLL.Inpatient temp = new BLL.Inpatient();
             return temp.SaveInPatient(inpatient);
+        }
+
+        public bool UpdateInPatient(CommContracts.Inpatient inpatient)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.UpdateInPatient(inpatient);
+        }
+
+        // 读取未入院患者信息，并新建入院登记
+        public CommContracts.Inpatient ReadNewInPatient(int PatientID)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.ReadNewInPatient(PatientID);
+        }
+
+        // 读取已入院患者信息
+        public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.ReadCurrentInPatient(InPatientID);
+        }
+
+        // 读取已出院患者信息
+        public CommContracts.Inpatient ReadLeavedPatient(int InPatientID)
+        {
+            BLL.Inpatient temp = new BLL.Inpatient();
+            return temp.ReadLeavedPatient(InPatientID);
         }
 
         public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)

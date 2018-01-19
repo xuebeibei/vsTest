@@ -9,10 +9,10 @@
     <Grid>
         <StackPanel Width="990">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <RadioButton Margin="5" IsChecked="True" Click="RadioButton_Click">入院办理</RadioButton>
-                <RadioButton Margin="5" Click="RadioButton_Click_1">出院办理</RadioButton>
-                <RadioButton Margin="5" Click="RadioButton_Click_2">召回办理</RadioButton>
-                <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="1">读卡</Button>
+                <RadioButton x:Name="InManageCheck" Margin="5" IsChecked="True" Click="RadioButton_Click">未入院</RadioButton>
+                <RadioButton x:Name="LeaveManageCheck" Margin="5" Click="RadioButton_Click_1">住院中</RadioButton>
+                <RadioButton x:Name="RecallManageCheck" Margin="5" Click="RadioButton_Click_2">已出院</RadioButton>
+                <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="1" Click="ReadCardBtn_Click">读卡</Button>
             </StackPanel>
             <Separator x:Name="Spe2" Margin="5"/>
             <Grid x:Name="InHospitalGrid">
@@ -120,6 +120,7 @@
 
                     <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                         <Button x:Name="InHospitalBtn" Margin="5" Click="InHospitalBtn_Click">入院</Button>
+                        <Button x:Name="EditMsgBtn" Margin="5" Click="EditMsgBtn_Click" Visibility="Collapsed">修改</Button>
                         <Button x:Name="InHospitalCancelBtn" Margin="5" Click="InHospitalCancelBtn_Click">取消</Button>
                     </StackPanel>
                 </Grid>
@@ -203,7 +204,7 @@
                               SelectionMode="Single" MouseDoubleClick="AllWaitList_MouseDoubleClick">
                 <ListView.View>
                     <GridView x:Name="gridViewAllWait">
-                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=No}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
                         <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
                         <GridViewColumn Header="病情" DisplayMemberBinding="{Binding Path=IllnesSstateEnum}" Width="80"></GridViewColumn>

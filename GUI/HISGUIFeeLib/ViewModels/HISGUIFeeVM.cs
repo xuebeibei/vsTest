@@ -173,12 +173,43 @@ namespace HISGUIFeeLib.ViewModels
             return storeRoomMedicineNum.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
-        public bool SaveInPatient()
+        // 保存入院登记
+        public bool SaveInPatient(CommContracts.Inpatient inpatient)
         {
-            if (CurrentInpatient == null)
+            if (inpatient == null)
                 return false;
             CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.SaveInPatient(CurrentInpatient);
+            return myd.SaveInPatient(inpatient);
+        }
+
+        // 修改入院登记
+        public bool UpdateInPatient(CommContracts.Inpatient inpatient)
+        {
+            if (inpatient == null)
+                return false;
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.UpdateInPatient(inpatient);
+        }
+
+        // 读取未入院患者信息，并新建入院登记
+        public CommContracts.Inpatient ReadNewInPatient(int PatientID)
+        {
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.ReadNewInPatient(PatientID);
+        }
+
+        // 读取已入院患者信息
+        public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
+        {
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.ReadCurrentInPatient(InPatientID);
+        }
+
+        // 读取已出院患者信息
+        public CommContracts.Inpatient ReadLeavedPatient(int InPatientID)
+        {
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.ReadLeavedPatient(InPatientID);
         }
 
         // 当前住院患者的住院号ID
@@ -216,19 +247,6 @@ namespace HISGUIFeeLib.ViewModels
         {
             get { return (bool)GetValue(IsClinicOrInHospitalProperty); }
             set { SetValue(IsClinicOrInHospitalProperty, value); }
-        }
-
-        #endregion
-
-        // 出入院管理
-        #region CurrentInpatient
-        public static readonly DependencyProperty CurrentInpatientProperty = DependencyProperty.Register(
-            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.Inpatient CurrentInpatient
-        {
-            get { return (CommContracts.Inpatient)GetValue(CurrentInpatientProperty); }
-            set { SetValue(CurrentInpatientProperty, value); }
         }
 
         #endregion

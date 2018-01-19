@@ -29,10 +29,10 @@ namespace CommContracts
         public string Tel { get; set; }                          // 电话，患者电话
         [DataMember]
         public string JiGuan { get; set; }       // 籍贯
-        [DataMember]
-        public List<Registration> Registrations { get; set; } // 所有门诊挂号
-        [DataMember]
-        public List<Inpatient> Inpatients { get; set; }
+        //[DataMember]
+        //public List<Registration> Registrations { get; set; } // 所有门诊挂号
+        //[DataMember]
+        //public List<Inpatient> Inpatients { get; set; }
 
     }
 }

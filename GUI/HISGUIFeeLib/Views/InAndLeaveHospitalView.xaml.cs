@@ -28,9 +28,11 @@ namespace HISGUIFeeLib.Views
     public partial class InAndLeaveHospitalView : HISGUIViewBase
     {
         private CommContracts.Inpatient Inpatient;
+        private bool IsEdit;
         public InAndLeaveHospitalView()
         {
             InitializeComponent();
+
             this.PayTypeEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayTypeEnum));
             this.GenderCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
             this.VolkEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.VolkEnum));
@@ -38,6 +40,7 @@ namespace HISGUIFeeLib.Views
             this.IllnesSstateEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.IllnesSstateEnum));
 
             Inpatient = new CommContracts.Inpatient();
+            IsEdit = false;
 
             updateDateToView();
             updateAllWait();
@@ -49,7 +52,7 @@ namespace HISGUIFeeLib.Views
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
 
-            AllWaitList.ItemsSource = myd.GetAllInPatient();
+            AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.未入院);
         }
 
         private void InpatientRegistrationView_Loaded(object sender, RoutedEventArgs e)
@@ -68,18 +71,34 @@ namespace HISGUIFeeLib.Views
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToDate())
             {
-                vm.CurrentInpatient = Inpatient;
-                bool? bResult = vm?.SaveInPatient();
-                if (bResult.HasValue)
+                if(IsEdit)
                 {
-                    if (bResult.Value)
+                    bool? bResult = vm?.UpdateInPatient(Inpatient);
+                    if (bResult.HasValue)
                     {
-                        MessageBox.Show("入院成功！");
+                        if (bResult.Value)
+                        {
+                            MessageBox.Show("修改成功！");
+                            return;
+                        }
                     }
+                    MessageBox.Show("修改失败！");
                 }
+                else
+                {
+                    bool? bResult = vm?.SaveInPatient(Inpatient);
+                    if (bResult.HasValue)
+                    {
+                        if (bResult.Value)
+                        {
+                            MessageBox.Show("入院成功！");
+                            return;
+                        }
+                    }
+                    MessageBox.Show("入院失败！");
+                }
+                
             }
-
-            MessageBox.Show("入院失败！");
         }
 
         private void InHospitalCancelBtn_Click(object sender, RoutedEventArgs e)
@@ -172,6 +191,7 @@ namespace HISGUIFeeLib.Views
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
+            // 入院办理
             LeaveHospitalGrid.Visibility = Visibility.Collapsed;
             Spe.Visibility = Visibility.Collapsed;
             setInHospitalGridEnable();
@@ -179,6 +199,7 @@ namespace HISGUIFeeLib.Views
 
         private void RadioButton_Click_1(object sender, RoutedEventArgs e)
         {
+            // 出院办理
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
             setInHospitalGridEnable(false);
@@ -189,6 +210,7 @@ namespace HISGUIFeeLib.Views
 
         private void RadioButton_Click_2(object sender, RoutedEventArgs e)
         {
+            // 召回办理
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
             setInHospitalGridEnable(false);
@@ -217,7 +239,7 @@ namespace HISGUIFeeLib.Views
             this.ConnectsName.IsEnabled = bEnable;
             this.ConnectsTel.IsEnabled = bEnable;
             this.ConnectsAddress.IsEnabled = bEnable;
-            this.InHospitalTime.IsEnabled = bEnable;
+            this.InHospitalTime.IsEnabled = false;
             this.IllnesSstateEnumCombo.IsEnabled = bEnable;
             this.InHospitalDiagnosis.IsEnabled = bEnable;
             this.InDepartmentEdit.IsEnabled = false;
@@ -230,18 +252,55 @@ namespace HISGUIFeeLib.Views
             if(bEnable)
             {
                 this.InHospitalBtn.Visibility = Visibility.Visible;
+                this.EditMsgBtn.Visibility = Visibility.Collapsed;
                 this.InHospitalCancelBtn.Visibility = Visibility.Visible;
             }
             else
             {
-                this.InHospitalBtn.Visibility = Visibility.Collapsed;
-                this.InHospitalCancelBtn.Visibility = Visibility.Collapsed;
+                this.InHospitalBtn.Visibility = Visibility.Collapsed; 
+                if(RecallManageCheck.IsChecked.Value)
+                {
+                    this.EditMsgBtn.Visibility = Visibility.Collapsed;
+                    this.InHospitalCancelBtn.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    this.EditMsgBtn.Visibility = Visibility.Visible;
+                    this.InHospitalCancelBtn.Visibility = Visibility.Visible;
+                }
+                
             }
         }
 
         private void AllWaitList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+            // 读卡
+            var vm = this.DataContext as HISGUIFeeVM;
+            if(InManageCheck.IsChecked.Value)
+            {
+                Inpatient = vm?.ReadNewInPatient(5);
+            }
+            else if(LeaveManageCheck.IsChecked.Value)
+            {
+                Inpatient = vm?.ReadCurrentInPatient(5);
+            }
+            else if(RecallManageCheck.IsChecked.Value)
+            {
+                Inpatient = vm?.ReadLeavedPatient(5);
+            }
+
+            updateDateToView();
+        }
+
+        private void EditMsgBtn_Click(object sender, RoutedEventArgs e)
+        {
+            setInHospitalGridEnable();
+            IsEdit = true;
         }
     }
 }

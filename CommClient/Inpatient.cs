@@ -26,9 +26,9 @@ namespace CommClient
             return client.GetAllInPatient();
         }
 
-        public List<CommContracts.Inpatient> GetAllInPatient(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        public List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
         {
-            return client.GetAllInPatient(inHospitalStatusEnum, strName);
+            return client.GetAllInPatientList(inHospitalStatusEnum, strName);
         }
 
         public string getInPatientBMIMsg(int InpatientID)
@@ -44,6 +44,29 @@ namespace CommClient
         public bool SaveInPatient(CommContracts.Inpatient inpatient)
         {
             return client.SaveInPatient(inpatient);
+        }
+
+        public bool UpdateInPatient(CommContracts.Inpatient inpatient)
+        {
+            return client.UpdateInPatient(inpatient);
+        }
+
+        // 读取未入院患者信息，并新建入院登记
+        public CommContracts.Inpatient ReadNewInPatient(int PatientID)
+        {
+            return client.ReadNewInPatient(PatientID);
+        }
+
+        // 读取已入院患者信息
+        public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
+        {
+            return client.ReadCurrentInPatient(InPatientID);
+        }
+
+        // 读取已出院患者信息
+        public CommContracts.Inpatient ReadLeavedPatient(int InPatientID)
+        {
+            return client.ReadLeavedPatient(InPatientID);
         }
     }
 }
