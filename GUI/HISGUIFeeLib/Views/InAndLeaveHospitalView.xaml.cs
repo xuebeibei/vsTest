@@ -39,10 +39,7 @@ namespace HISGUIFeeLib.Views
             this.MarriageEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.MarriageEnum));
             this.IllnesSstateEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.IllnesSstateEnum));
 
-            Inpatient = new CommContracts.Inpatient();
-            IsEdit = false;
-
-            updateDateToView();
+            NewInPatient();
             updateAllWait();
 
             this.Loaded += InpatientRegistrationView_Loaded;
@@ -53,6 +50,13 @@ namespace HISGUIFeeLib.Views
             CommClient.Inpatient myd = new CommClient.Inpatient();
 
             AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.未入院);
+        }
+        private void NewInPatient()
+        {
+            Inpatient = new CommContracts.Inpatient();
+            IsEdit = false;
+
+            updateDateToView();
         }
 
         private void InpatientRegistrationView_Loaded(object sender, RoutedEventArgs e)
@@ -79,6 +83,7 @@ namespace HISGUIFeeLib.Views
                         if (bResult.Value)
                         {
                             MessageBox.Show("修改成功！");
+                            setInHospitalGridEnable(false);
                             return;
                         }
                     }
@@ -124,6 +129,17 @@ namespace HISGUIFeeLib.Views
                     this.JiGuan.Text = Inpatient.Patient.JiGuan;
                     this.Tel.Text = Inpatient.Patient.Tel;
                 }
+                else
+                {
+                    this.Name.Text = "";
+                    this.GenderCombo.SelectedItem = null;
+                    this.BirthDay.SelectedDate = null;
+                    this.IDCardNo.Text = "";
+                    this.VolkEnumCombo.SelectedItem = null;
+                    this.JiGuan.Text = "";
+                    this.Tel.Text = "";
+
+                }
                 this.MarriageEnumCombo.SelectedItem = Inpatient.MarriageEnum;
                 this.Job.Text = Inpatient.Job;
                 this.WorkUnitAddress.Text = Inpatient.WorkAddress;
@@ -139,6 +155,10 @@ namespace HISGUIFeeLib.Views
                 if (Inpatient.InPatientUser != null)
                 {
                     this.InUserName.Text = Inpatient.InPatientUser.Username;
+                }
+                else
+                {
+                    this.InUserName.Text = "";
                 }
             }
         }
@@ -192,6 +212,9 @@ namespace HISGUIFeeLib.Views
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
             // 入院办理
+
+            NewInPatient();
+
             LeaveHospitalGrid.Visibility = Visibility.Collapsed;
             Spe.Visibility = Visibility.Collapsed;
             setInHospitalGridEnable();
@@ -206,11 +229,14 @@ namespace HISGUIFeeLib.Views
             LeaveHospitalBtn.Visibility = Visibility.Visible;
             RecallHospitalBtn.Visibility = Visibility.Collapsed;
             LeaveHospitalDiagnosisBtn.IsEnabled = true;
+            
         }
 
         private void RadioButton_Click_2(object sender, RoutedEventArgs e)
         {
             // 召回办理
+            NewInPatient();
+
             LeaveHospitalGrid.Visibility = Visibility.Visible;
             Spe.Visibility = Visibility.Visible;
             setInHospitalGridEnable(false);
