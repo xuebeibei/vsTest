@@ -512,6 +512,7 @@ namespace DAL
             RecipeDetails = new List<RecipeDetail>();
             MedicineInStoreDetails = new List<MedicineInStoreDetail>();
             StoreRoomMedicineNums = new List<StoreRoomMedicineNum>();
+            MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -537,6 +538,7 @@ namespace DAL
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+        public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
     }
 
     public enum MedicalRecordEnum
@@ -1342,6 +1344,7 @@ namespace DAL
         public int MedicineDoctorAdviceID { get; set; }
 
         public virtual MedicineDoctorAdvice MedicineDoctorAdvice { get; set; }
+        public virtual Medicine Medicine { get; set; }
     }
 
     // 用药处方医嘱
