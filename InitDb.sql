@@ -235,6 +235,10 @@ select * from InspectDetails;
 select * from Patients;
 select * from Inpatients;
 
+UPDATE dbo.Inpatients SET inhospitalstatusenum = 1 WHERE inhospitalstatusenum = 0;
+
+DELETE FROM dbo.Inpatients;
+
 insert into Inpatients values('001',1,GETDATE(), 1);
 insert into Inpatients values('002',2,GETDATE(), 1);
 insert into Inpatients values('003',3,GETDATE(), 1);
@@ -292,3 +296,11 @@ select * from RecipeChargeDetails;
 
 
 SELECT * FROM dbo.SickBeds;
+
+SELECT * FROM dbo.MaterialItems;
+
+DELETE FROM dbo.MaterialItems;
+
+UPDATE dbo.Inpatients SET InHospitalStatusEnum = 1 WHERE ID = 5;
+
+SELECT * FROM PrePays;

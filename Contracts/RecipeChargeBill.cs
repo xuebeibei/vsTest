@@ -26,6 +26,8 @@ namespace CommContracts
         [DataMember]
         public bool Block { get; set; }
         [DataMember]
+        public Recipe Recipe { get; set; }
+        [DataMember]
         public List<RecipeChargeDetail> RecipeChargeDetails { get; set; }
     }
 }

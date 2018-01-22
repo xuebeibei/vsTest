@@ -435,6 +435,7 @@ namespace DAL
             this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
             this.ChargeStatusEnum = ChargeStatusEnum.未收费;
             RecipeDetails = new List<RecipeDetail>();
+            RecipeChargeBills = new List<RecipeChargeBill>();
         }
 
         public int ID { get; set; }                               // 处方ID
@@ -455,8 +456,11 @@ namespace DAL
         public int WriteUserID { get; set; }                      // 开具医生
         public ChargeStatusEnum ChargeStatusEnum { get; set; }
 
+        public int PatientID { get; set; }                        // 患者ID
+
         public virtual User WriteUser { get; set; }               // 开具医生
         public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
+        public virtual ICollection<RecipeChargeBill> RecipeChargeBills { get; set; }
     }
 
     // 处方单明细
@@ -1216,6 +1220,7 @@ namespace DAL
         public int RecipeID { get; set; }
         public bool Block { get; set; }
 
+        public virtual Recipe Recipe { get; set; }
         public virtual ICollection<RecipeChargeDetail> RecipeChargeDetails { get; set; }
     }
 
