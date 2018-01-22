@@ -67,7 +67,7 @@ namespace CommContracts
         [DataMember]
         public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
         [DataMember]
-        public double SumOfMoney { get; set; }                    // 金额
+        public decimal SumOfMoney { get; set; }                    // 金额
         [DataMember]
         public DateTime? WriteTime { get; set; }                   // 开具时间
         [DataMember]

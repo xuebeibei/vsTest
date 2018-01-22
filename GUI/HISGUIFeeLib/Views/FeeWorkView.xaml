@@ -27,9 +27,9 @@
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
-            <TabItem Header="日常收费">
+            <TabItem Header="收费管理">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
+                    <!--<Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="auto"></RowDefinition>
                             <RowDefinition Height="auto"></RowDefinition>
@@ -58,7 +58,8 @@
                             </ListBox.ItemsPanel>
                         </ListBox>
                         <Controls:PageFind Grid.Row="2"  Margin="5"></Controls:PageFind>
-                    </Grid>
+                    </Grid>-->
+                    <local:ChargeView x:Name="MyChargeView"></local:ChargeView>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="出入院管理">

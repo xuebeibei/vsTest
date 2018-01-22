@@ -30,9 +30,9 @@ namespace HISGUIFeeLib.Views
         public FeeWorkView()
         {
             InitializeComponent();
-            this.StartChargeDate.SelectedDate = DateTime.Now;
-            this.EndChargeDate.SelectedDate = DateTime.Now;
-            this.FindChargeTextEdti.Text = "";
+            //this.StartChargeDate.SelectedDate = DateTime.Now;
+            //this.EndChargeDate.SelectedDate = DateTime.Now;
+            //this.FindChargeTextEdti.Text = "";
             this.Loaded += View_Loaded;
         }
 
@@ -49,10 +49,10 @@ namespace HISGUIFeeLib.Views
 
         private void ShowList()
         {
-            if (this.ClinicPatient.IsChecked.Value)
-                ShowAllRegistration();
-            else if (this.InHospitalPatient.IsChecked.Value)
-                ShowAllInPatient();
+            //if (this.ClinicPatient.IsChecked.Value)
+            //    ShowAllRegistration();
+            //else if (this.InHospitalPatient.IsChecked.Value)
+            //    ShowAllInPatient();
         }
 
         private void FindChargeBtn_Click(object sender, RoutedEventArgs e)
@@ -64,46 +64,46 @@ namespace HISGUIFeeLib.Views
         {
             var vm = this.DataContext as HISGUIFeeVM;
 
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetAllClinicPatients(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
-                this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now, 
-                this.FindChargeTextEdti.Text, 
-                this.HavePay.IsChecked.HasValue? this.HavePay.IsChecked.Value : false);
+            //Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            //dictionary = vm?.GetAllClinicPatients(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
+            //    this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now, 
+            //    this.FindChargeTextEdti.Text, 
+            //    this.HavePay.IsChecked.HasValue? this.HavePay.IsChecked.Value : false);
 
-            List<PatientMsgBox> list = new List<PatientMsgBox>();
-            if (dictionary != null)
-            {
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    // 实例化一个控件
-                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-                }
+            //List<PatientMsgBox> list = new List<PatientMsgBox>();
+            //if (dictionary != null)
+            //{
+            //    for (int i = 0; i < dictionary.Count; i++)
+            //    {
+            //        // 实例化一个控件
+            //        list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
+            //    }
 
-                this.AllChargeBillList.ItemsSource = list;
-            }
+            //    this.AllChargeBillList.ItemsSource = list;
+            //}
         }
 
         private void ShowAllInPatient()
         {
             var vm = this.DataContext as HISGUIFeeVM;
 
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetAllInHospitalChargePatient(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
-                this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now,
-                this.FindChargeTextEdti.Text,
-                this.HavePay.IsChecked.HasValue ? this.HavePay.IsChecked.Value : false);
+            //Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            //dictionary = vm?.GetAllInHospitalChargePatient(this.StartChargeDate.SelectedDate.HasValue ? this.StartChargeDate.SelectedDate.Value : DateTime.Now,
+            //    this.EndChargeDate.SelectedDate.HasValue ? this.EndChargeDate.SelectedDate.Value : DateTime.Now,
+            //    this.FindChargeTextEdti.Text,
+            //    this.HavePay.IsChecked.HasValue ? this.HavePay.IsChecked.Value : false);
 
-            List<PatientMsgBox> list = new List<PatientMsgBox>();
-            if (dictionary != null)
-            {
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    // 实例化一个控件
-                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-                }
+            //List<PatientMsgBox> list = new List<PatientMsgBox>();
+            //if (dictionary != null)
+            //{
+            //    for (int i = 0; i < dictionary.Count; i++)
+            //    {
+            //        // 实例化一个控件
+            //        list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
+            //    }
 
-                this.AllChargeBillList.ItemsSource = list;
-            }
+            //    this.AllChargeBillList.ItemsSource = list;
+            //}
         }
 
         private void PayFeeBtn_Click_1(object sender, RoutedEventArgs e)
@@ -133,21 +133,21 @@ namespace HISGUIFeeLib.Views
 
         private void AllChargeBillList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var vm = this.DataContext as HISGUIFeeVM;
-            var thePatient = this.AllChargeBillList.SelectedItem as PatientMsgBox;
-            if (this.ClinicPatient.IsChecked.Value)
-            {
-                vm.IsClinicOrInHospital = true;
-                vm.CurrentRegistrationID = thePatient.ID;
-            }
-            else if(this.InHospitalPatient.IsChecked.Value)
-            {
-                vm.IsClinicOrInHospital = false;
-                vm.CurrentInHospitalID = thePatient.ID;
-            }
+            //var vm = this.DataContext as HISGUIFeeVM;
+            //var thePatient = this.AllChargeBillList.SelectedItem as PatientMsgBox;
+            //if (this.ClinicPatient.IsChecked.Value)
+            //{
+            //    vm.IsClinicOrInHospital = true;
+            //    vm.CurrentRegistrationID = thePatient.ID;
+            //}
+            //else if(this.InHospitalPatient.IsChecked.Value)
+            //{
+            //    vm.IsClinicOrInHospital = false;
+            //    vm.CurrentInHospitalID = thePatient.ID;
+            //}
 
             //MessageBox.Show(vm.IsClinicOrInHospital.ToString() +"|"+ vm.CurrentInHospitalID+"|" + vm.CurrentRegistrationID);
-            vm?.ShowCharge();
+            //vm?.ShowCharge();
         }
     }
 }

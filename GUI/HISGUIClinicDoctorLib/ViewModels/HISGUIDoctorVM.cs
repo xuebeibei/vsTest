@@ -208,7 +208,7 @@ namespace HISGUIDoctorLib.ViewModels
             else
                 CurrentRecipe.InpatientID = CurrentInpatientID;
             CurrentRecipe.ClinicalDiagnosis = "感冒";
-            CurrentRecipe.SumOfMoney = 500.00;
+            CurrentRecipe.SumOfMoney = 500.00m;
             CurrentRecipe.WriteTime = DateTime.Now;
             CurrentRecipe.WriteUserID = 1;
 
