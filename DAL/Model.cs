@@ -175,6 +175,7 @@ namespace DAL
         public DbSet<PrePay> PrePays { get; set; }
 
         public DbSet<MedicineDoctorAdvice> MedicineDoctorAdvices { get; set; }
+        public DbSet<MaterialDoctorAdvice> MaterialDoctorAdvices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -186,6 +187,9 @@ namespace DAL
             modelBuilder.Entity<MedicineDoctorAdvice>().ToTable("tpt.MedicineDoctorAdvice");
             modelBuilder.Entity<DoctorAdviceDetailBase>().ToTable("tpt.DoctorAdviceDetailBase");
             modelBuilder.Entity<MedicineDoctorAdviceDetail>().ToTable("tpt.MedicineDoctorAdviceDetail");
+
+            modelBuilder.Entity<MaterialDoctorAdvice>().ToTable("tpt.MaterialDoctorAdvice");
+            modelBuilder.Entity<MaterialDoctorAdviceDetail>().ToTable("tpt.MaterialDoctorAdviceDetail");
         }
     }
 
@@ -228,7 +232,7 @@ namespace DAL
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
-        public virtual ICollection<PrePay> PrePays { get; set; }  
+        public virtual ICollection<PrePay> PrePays { get; set; }
 
         public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
     }
@@ -743,6 +747,7 @@ namespace DAL
         public MaterialItem()
         {
             MaterialBillDetails = new List<MaterialBillDetail>();
+            MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
         }
 
         public int ID { get; set; }
@@ -760,6 +765,7 @@ namespace DAL
         public int MinNum { get; set; }                         // 最小库存量
 
         public virtual ICollection<MaterialBillDetail> MaterialBillDetails { get; set; }
+        public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
     }
 
     // 治疗单
@@ -1344,7 +1350,7 @@ namespace DAL
     }
 
     // 用药处方医嘱明细
-    public class MedicineDoctorAdviceDetail:DoctorAdviceDetailBase
+    public class MedicineDoctorAdviceDetail : DoctorAdviceDetailBase
     {
         public int MedicineID { get; set; }               // 药品
         public int MedicineDoctorAdviceID { get; set; }
@@ -1354,7 +1360,7 @@ namespace DAL
     }
 
     // 用药处方医嘱
-    public class MedicineDoctorAdvice: DoctorAdviceBase
+    public class MedicineDoctorAdvice : DoctorAdviceBase
     {
         public MedicineDoctorAdvice()
         {
@@ -1363,4 +1369,26 @@ namespace DAL
         public DoctorAdviceContentEnum RecipeContentEnum { get; set; }
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
     }
+
+    // 材料物资医嘱明细
+    public class MaterialDoctorAdviceDetail : DoctorAdviceDetailBase
+    {
+        public int MaterialID { get; set; }               // 物资材料
+        public int MaterialDoctorAdviceID { get; set; }
+
+        public virtual MedicineDoctorAdvice MaterialDoctorAdvice { get; set; }
+        public virtual MaterialItem Material { get; set; }
+    }
+
+    // 材料物资医嘱
+    public class MaterialDoctorAdvice : DoctorAdviceBase
+    {
+        public MaterialDoctorAdvice()
+        {
+            MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
+        }
+        public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
+    }
+
+
 }
