@@ -110,7 +110,7 @@ namespace BLL
                     return false;
 
                 temp.No = inpatient.No;
-                temp.PayTypeEnum = (DAL.PayTypeEnum)inpatient.PayTypeEnum;
+                temp.BaoXianEnum = (DAL.BaoXianEnum)inpatient.BaoXianEnum;
                 temp.YiBaoNo = inpatient.YiBaoNo;
                 temp.PatientID = inpatient.PatientID;
                 temp.MarriageEnum = (DAL.MarriageEnum)inpatient.MarriageEnum;

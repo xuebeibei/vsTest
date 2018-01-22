@@ -33,13 +33,13 @@ namespace HISGUIFeeLib.Views
         {
             InitializeComponent();
 
-            this.PayTypeEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayTypeEnum));
+            this.PayTypeEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.BaoXianEnum));
             this.GenderCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
             this.VolkEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.VolkEnum));
             this.MarriageEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.MarriageEnum));
             this.IllnesSstateEnumCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.IllnesSstateEnum));
 
-            this.PayTypeEnumCombo.SelectedItem = CommContracts.PayTypeEnum.自费;
+            this.PayTypeEnumCombo.SelectedItem = CommContracts.BaoXianEnum.自费;
             this.GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
             this.VolkEnumCombo.SelectedItem = CommContracts.VolkEnum.汉族;
 
@@ -136,7 +136,7 @@ namespace HISGUIFeeLib.Views
             {
                 this.InHospitalNo.Text = Inpatient.No;
                 this.CaseNo.Text = Inpatient.CaseNo;
-                this.PayTypeEnumCombo.SelectedItem = Inpatient.PayTypeEnum;
+                this.PayTypeEnumCombo.SelectedItem = Inpatient.BaoXianEnum;
                 this.YiBaoNo.Text = Inpatient.YiBaoNo;
                 if (Inpatient.Patient != null)
                 {
@@ -210,7 +210,7 @@ namespace HISGUIFeeLib.Views
             {
                 Inpatient.No = this.InHospitalNo.Text;
                 Inpatient.CaseNo = this.CaseNo.Text;
-                Inpatient.PayTypeEnum = (CommContracts.PayTypeEnum)this.PayTypeEnumCombo.SelectedItem;
+                Inpatient.BaoXianEnum = (CommContracts.BaoXianEnum)this.PayTypeEnumCombo.SelectedItem;
                 Inpatient.YiBaoNo = this.YiBaoNo.Text;
 
                 CommContracts.Patient patient = new CommContracts.Patient();

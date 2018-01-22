@@ -10,25 +10,35 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Patient
+    public class PrePay
     {
         private ILoginService client;
 
-        public Patient()
+        public PrePay()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
-        public CommContracts.Patient ReadCurrentPatient(int PatientID)
+
+        public CommContracts.PrePay GetPrePay(int Id)
         {
-            return client.ReadCurrentPatient(PatientID);
+            return client.GetPrePay(Id);
         }
 
-        public decimal GetCurrentPatientBalance(int PatientID)
+        public bool SavePrePay(CommContracts.PrePay prePay)
         {
-            return client.GetCurrentPatientBalance(PatientID);
+            return client.SavePrePay(prePay);
         }
 
+        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        {
+            return client.GetAllPrePay(PatientID);
+        }
+
+        public bool DeletePrePay(int PrePayID)
+        {
+            return client.DeletePrePay(PrePayID);
+        }
     }
 }

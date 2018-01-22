@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum PayTypeEnum
+    public enum BaoXianEnum
     {
         自费,
         城乡居民医保,
@@ -43,7 +43,7 @@ namespace CommContracts
         {
             No = "021";
             InHospitalTime = DateTime.Now;
-            PayTypeEnum = PayTypeEnum.自费;
+            BaoXianEnum = BaoXianEnum.自费;
             MarriageEnum = MarriageEnum.未婚;
             IllnesSstateEnum = IllnesSstateEnum.一般;
         }
@@ -54,7 +54,7 @@ namespace CommContracts
         [DataMember]
         public string CaseNo { get; set; }                       // 病历号
         [DataMember]
-        public PayTypeEnum PayTypeEnum { get; set; }             // 费用类别
+        public BaoXianEnum BaoXianEnum { get; set; }             // 费用类别
         [DataMember]
         public string YiBaoNo { get; set; }                      // 医保号
         [DataMember]

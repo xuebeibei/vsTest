@@ -385,5 +385,19 @@ namespace CommContracts
         bool SaveMaterialItem(CommContracts.MaterialItem Material);
         [OperationContract]
         bool DeleteMaterialItem(int MaterialID);
+        [OperationContract]
+        CommContracts.PrePay GetPrePay(int Id);
+        [OperationContract]
+        bool SavePrePay(CommContracts.PrePay prePay);
+        [OperationContract]
+        List<CommContracts.PrePay> GetAllPrePay(int PatientID);
+
+        [OperationContract]
+        bool DeletePrePay(int PrePayID);
+
+        [OperationContract]
+        CommContracts.Patient ReadCurrentPatient(int PatientID);
+        [OperationContract]
+        decimal GetCurrentPatientBalance(int PatientID);
     }
 }

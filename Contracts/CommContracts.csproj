@@ -54,6 +54,7 @@
     <Compile Include="InspectDetail.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="PrePay.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="MaterialBill.cs" />

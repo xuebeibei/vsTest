@@ -198,6 +198,20 @@ namespace HISGUIFeeLib.ViewModels
             return myd.ReadNewInPatient(PatientID);
         }
 
+        // 读取当前患者信息
+        public CommContracts.Patient ReadCurrentPatient(int PatientID)
+        {
+            CommClient.Patient myd = new CommClient.Patient();
+            return myd.ReadCurrentPatient(PatientID);
+        }
+
+        // 读取当前患者的余额
+        public decimal GetCurrentPatientBalance(int PatientID)
+        {
+            CommClient.Patient myd = new CommClient.Patient();
+            return myd.GetCurrentPatientBalance(PatientID);
+        }
+
         // 读取已入院患者信息
         public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
         {
@@ -211,7 +225,32 @@ namespace HISGUIFeeLib.ViewModels
             CommClient.Inpatient myd = new CommClient.Inpatient();
             return myd.ReadLeavedPatient(InPatientID);
         }
+        // 得到所有的缴费单
+        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        {
+            CommClient.PrePay myd = new CommClient.PrePay();
+            return myd.GetAllPrePay(PatientID);
+        }
 
+        public bool SavePrePay(int PatientID, decimal money, int UserID)
+        {
+            CommClient.PrePay myd = new CommClient.PrePay();
+            CommContracts.PrePay prePay = new CommContracts.PrePay();
+            prePay.PatientID = PatientID;
+            prePay.PrePayMoney = money;
+            prePay.PayWayEnum = CommContracts.PayWayEnum.现金;
+            prePay.UserID = UserID;
+            prePay.PrePayTime = DateTime.Now;
+            return myd.SavePrePay(prePay);
+        }
+
+
+        // 删除缴费单
+        public bool DeletePrePay(int PrePayID)
+        {
+            CommClient.PrePay myd = new CommClient.PrePay();
+            return myd.DeletePrePay(PrePayID);
+        }
         // 当前住院患者的住院号ID
         #region CurrentInHospitalID
         public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(

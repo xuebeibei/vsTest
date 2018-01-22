@@ -775,5 +775,41 @@ namespace CommServer
             BLL.MaterialItem temp = new BLL.MaterialItem();
             return temp.DeleteMaterialItem(MaterialID);
         }
+
+        public CommContracts.PrePay GetPrePay(int Id)
+        {
+            BLL.PrePay temp = new BLL.PrePay();
+            return temp.GetPrePay(Id);
+        }
+
+        public bool SavePrePay(CommContracts.PrePay prePay)
+        {
+            BLL.PrePay temp = new BLL.PrePay();
+            return temp.SavePrePay(prePay);
+        }
+
+        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        {
+            BLL.PrePay temp = new BLL.PrePay();
+            return temp.GetAllPrePay(PatientID);
+        }
+
+        public bool DeletePrePay(int PrePayID)
+        {
+            BLL.PrePay temp = new BLL.PrePay();
+            return temp.DeletePrePay(PrePayID);
+        }
+
+        public CommContracts.Patient ReadCurrentPatient(int PatientID)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.ReadCurrentPatient(PatientID);
+        }
+
+        public decimal GetCurrentPatientBalance(int PatientID)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.GetCurrentPatientBalance(PatientID);
+        }
     }
 }

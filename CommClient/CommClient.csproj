@@ -61,6 +61,7 @@
     <Compile Include="OtherService.cs" />
     <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
+    <Compile Include="PrePay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeChargeBill.cs" />

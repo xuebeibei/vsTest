@@ -172,6 +172,8 @@ namespace DAL
         public DbSet<SickRoom> SickRooms { get; set; }
         public DbSet<SickBed> SickBeds { get; set; }
 
+        public DbSet<PrePay> PrePays { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -195,6 +197,7 @@ namespace DAL
             MaterialBills = new List<MaterialBill>();
             OtherServices = new List<OtherService>();
             MedicineInStores = new List<MedicineInStore>();
+            PrePays = new List<PrePay>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -216,6 +219,7 @@ namespace DAL
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
+        public virtual ICollection<PrePay> PrePays { get; set; }  
     }
 
     public class Department
@@ -324,6 +328,7 @@ namespace DAL
             this.Volk = VolkEnum.hanzu;
             Registrations = new List<Registration>();
             Inpatients = new List<Inpatient>();
+            PrePays = new List<PrePay>();
         }
 
         public string ToBMIMsg()
@@ -356,6 +361,8 @@ namespace DAL
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
+
+        public virtual ICollection<PrePay> PrePays { get; set; }
     }
 
     public class Employee
@@ -545,7 +552,7 @@ namespace DAL
         public virtual Registration Registration { get; set; }
     }
 
-    public enum PayTypeEnum
+    public enum BaoXianEnum
     {
         自费,
         城乡居民医保,
@@ -584,7 +591,7 @@ namespace DAL
         public int ID { get; set; }                              // ID
         public string No { get; set; }                           // 住院号
         public string CaseNo { get; set; }                       // 病历号
-        public PayTypeEnum PayTypeEnum { get; set; }             // 费用类别
+        public BaoXianEnum BaoXianEnum { get; set; }             // 费用类别
         public string YiBaoNo { get; set; }                      // 医保号
         public int PatientID { get; set; }                       // 患者ID
         public MarriageEnum MarriageEnum { get; set; }           // 婚姻状况
@@ -1231,6 +1238,7 @@ namespace DAL
         重症病房
     }
 
+    // 病房
     public class SickRoom
     {
         public SickRoom()
@@ -1250,6 +1258,7 @@ namespace DAL
         public virtual ICollection<SickBed> SickBeds { get; set; }
     }
 
+    // 病床
     public class SickBed
     {
         public int ID { get; set; }
@@ -1261,5 +1270,27 @@ namespace DAL
         public string Remarks { get; set; }
 
         public virtual SickRoom SickRoom { get; set; }
+    }
+
+    public enum PayWayEnum
+    {
+        现金,
+        支付宝,
+        微信
+    }
+
+    public class PrePay
+    {
+        public int ID { get; set; }
+        public string No { get; set; }
+        public DateTime? PrePayTime { get; set; }
+        public decimal PrePayMoney { get; set; }
+        public string PayerName { get; set; }
+        public PayWayEnum PayWayEnum { get; set; }
+        public int PatientID { get; set; }
+        public int UserID { get; set; }
+
+        public virtual Patient Patient { get; set; }
+        public virtual User User { get; set; }
     }
 }
