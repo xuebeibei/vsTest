@@ -206,23 +206,23 @@ namespace CommServer
             return temp.SaveTriage(nDoctorID, nRegistrationID);
         }
 
-        public bool SaveRecipe(CommContracts.Recipe recipe)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.SaveRecipe(recipe);
-        }
+        //public bool SaveRecipe(CommContracts.Recipe recipe)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.SaveRecipe(recipe);
+        //}
 
-        public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.getAllXiCheng(RegistrationID);
-        }
+        //public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.getAllXiCheng(RegistrationID);
+        //}
 
-        public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.getAllZhong(RegistrationID);
-        }
+        //public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.getAllZhong(RegistrationID);
+        //}
 
         public CommContracts.MedicalRecord GetMedicalRecord(int id)
         {
@@ -425,23 +425,23 @@ namespace CommServer
             return temp.getAllInHospitalAssay(InpatientID);
         }
 
-        public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.getAllInHospitalXiCheng(InpatientID);
-        }
+        //public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.getAllInHospitalXiCheng(InpatientID);
+        //}
 
-        public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.getAllInHospitalZhong(InpatientID);
-        }
+        //public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.getAllInHospitalZhong(InpatientID);
+        //}
 
-        public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.Recipe temp = new BLL.Recipe();
-            return temp.UpdateChargeStatus(RecipeID, chargeStatusEnum);
-        }
+        //public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        //{
+        //    BLL.Recipe temp = new BLL.Recipe();
+        //    return temp.UpdateChargeStatus(RecipeID, chargeStatusEnum);
+        //}
 
         public CommContracts.MaterialBill GetMaterialBill(int Id)
         {
@@ -810,6 +810,47 @@ namespace CommServer
         {
             BLL.Patient temp = new BLL.Patient();
             return temp.GetCurrentPatientBalance(PatientID);
+        }
+
+
+        public bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice MedicineDoctorAdvice)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.SaveMedicineDoctorAdvice(MedicineDoctorAdvice);
+        }
+
+        public List<CommContracts.MedicineDoctorAdvice> getAllXiCheng(int RegistrationID)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.getAllXiCheng(RegistrationID);
+        }
+
+
+        public List<CommContracts.MedicineDoctorAdvice> getAllZhong(int RegistrationID)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.getAllZhong(RegistrationID);
+        }
+
+
+        public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalXiCheng(int InpatientID)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.getAllInHospitalXiCheng(InpatientID);
+        }
+
+
+        public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.getAllInHospitalZhong(InpatientID);
+        }
+
+
+        public bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
+            return temp.UpdateChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
         }
     }
 }

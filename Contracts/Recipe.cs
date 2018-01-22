@@ -16,7 +16,7 @@ namespace CommContracts
         JingEr              // 精二  
     }
 
-    public enum RecipeContentEnum
+    public enum DoctorAdviceContentEnum
     {
         XiChengYao,
         ZhongYao
@@ -35,7 +35,7 @@ namespace CommContracts
         public Recipe()
         {
             this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
-            this.RecipeContentEnum = RecipeContentEnum.XiChengYao;
+            this.RecipeContentEnum = DoctorAdviceContentEnum.XiChengYao;
             RecipeDetails = new List<RecipeDetail>();
 
             this.No = DateTime.Now.ToString("yyMMddhhmmss");
@@ -49,7 +49,7 @@ namespace CommContracts
         [DataMember]
         public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
         [DataMember]
-        public RecipeContentEnum RecipeContentEnum { get; set; }   // 处方内容类别：西/ 成药、中药
+        public DoctorAdviceContentEnum RecipeContentEnum { get; set; }   // 处方内容类别：西/ 成药、中药
         [DataMember]
         public string MedicalInstitution { get; set; }            // 医疗机构名称
         [DataMember]

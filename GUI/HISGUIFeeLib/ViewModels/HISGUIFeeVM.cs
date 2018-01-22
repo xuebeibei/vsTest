@@ -50,10 +50,10 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有西成药处方
-        public List<CommContracts.Recipe> GetAllXiCheng()
+        public List<CommContracts.MedicineDoctorAdvice> GetAllXiCheng()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();     // 处方
-            List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
+            CommClient.MedicineDoctorAdvice recipe = new CommClient.MedicineDoctorAdvice();     // 处方
+            List<CommContracts.MedicineDoctorAdvice> list = new List<CommContracts.MedicineDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
                 list = recipe.getAllXiCheng(this.CurrentRegistrationID);
@@ -66,10 +66,10 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有中药处方
-        public List<CommContracts.Recipe> GetAllZhong()
+        public List<CommContracts.MedicineDoctorAdvice> GetAllZhong()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();     // 处方
-            List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
+            CommClient.MedicineDoctorAdvice recipe = new CommClient.MedicineDoctorAdvice();     // 处方
+            List<CommContracts.MedicineDoctorAdvice> list = new List<CommContracts.MedicineDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
                 list = recipe.getAllZhong(this.CurrentRegistrationID);

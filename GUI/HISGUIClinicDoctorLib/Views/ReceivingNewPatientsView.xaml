@@ -41,7 +41,7 @@
             <TabItem Header="处方">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <local:ClinicRecipe></local:ClinicRecipe>
+                    <local:MedicineDoctorAdviceView></local:MedicineDoctorAdviceView>
 
                 </ScrollViewer>
             </TabItem>

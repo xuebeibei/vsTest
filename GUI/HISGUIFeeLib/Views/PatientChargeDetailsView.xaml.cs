@@ -226,7 +226,7 @@ namespace HISGUIFeeLib.Views
                     return;
                 }
 
-                CommClient.Recipe myd1 = new CommClient.Recipe();
+                CommClient.MedicineDoctorAdvice myd1 = new CommClient.MedicineDoctorAdvice();
                 if (!myd1.UpdateChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;

@@ -174,6 +174,8 @@ namespace DAL
 
         public DbSet<PrePay> PrePays { get; set; }
 
+        public DbSet<MedicineDoctorAdvice> MedicineDoctorAdvices { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -424,7 +426,7 @@ namespace DAL
         JingEr              // 精二  
     }
 
-    public enum RecipeContentEnum
+    public enum DoctorAdviceContentEnum
     {
         XiChengYao,
         ZhongYao
@@ -452,7 +454,7 @@ namespace DAL
         public int ID { get; set; }                               // 处方ID
         public string No { get; set; }                            // 处方编号
         public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
-        public RecipeContentEnum RecipeContentEnum { get; set; }  // 处方内容类别：西/ 成药、中药
+        public DoctorAdviceContentEnum RecipeContentEnum { get; set; }  // 处方内容类别：西/ 成药、中药
         public string MedicalInstitution { get; set; }            // 医疗机构名称
         public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
         public int RegistrationID { get; set; }                   // 门诊ID
@@ -1333,6 +1335,10 @@ namespace DAL
         public DateTime? WriteTime { get; set; }                // 开具时间
         public int WriteDoctorUserID { get; set; }              // 开具医生
         public int PatientID { get; set; }                      // 所属患者
+        public ChargeStatusEnum ChargeStatusEnum { get; set; }  // 收费状态
+        public int RegistrationID { get; set; }                 // 门诊看诊标记
+        public int InpatientID { get; set; }                    // 住院看诊标记
+
         public virtual User WriteDoctorUser { get; set; }       // 开具医生
         public virtual Patient Patient { get; set; }
     }
@@ -1354,7 +1360,7 @@ namespace DAL
         {
             MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
         }
-        public RecipeContentEnum RecipeContentEnum { get; set; }
+        public DoctorAdviceContentEnum RecipeContentEnum { get; set; }
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
     }
 }

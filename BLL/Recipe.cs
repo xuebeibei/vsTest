@@ -60,15 +60,15 @@ namespace BLL
 
         public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
         {
-            return getAllRecipes(RegistrationID, 0, DAL.RecipeContentEnum.XiChengYao);
+            return getAllRecipes(RegistrationID, 0, DAL.DoctorAdviceContentEnum.XiChengYao);
         }
 
         public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
         {
-            return getAllRecipes(RegistrationID, 0, DAL.RecipeContentEnum.ZhongYao);
+            return getAllRecipes(RegistrationID, 0, DAL.DoctorAdviceContentEnum.ZhongYao);
         }
 
-        private List<CommContracts.Recipe> getAllRecipes(int RegistrationID, int InpatientID, DAL.RecipeContentEnum recipeContentEnum)
+        private List<CommContracts.Recipe> getAllRecipes(int RegistrationID, int InpatientID, DAL.DoctorAdviceContentEnum recipeContentEnum)
         {
             List<CommContracts.Recipe> list = new List<CommContracts.Recipe>();
             using (DAL.HisContext context = new DAL.HisContext())
@@ -100,12 +100,12 @@ namespace BLL
 
         public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
         {
-            return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.XiChengYao);
+            return getAllRecipes(0, InpatientID, DAL.DoctorAdviceContentEnum.XiChengYao);
         }
 
         public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
         {
-            return getAllRecipes(0, InpatientID, DAL.RecipeContentEnum.ZhongYao);
+            return getAllRecipes(0, InpatientID, DAL.DoctorAdviceContentEnum.ZhongYao);
         }
 
         public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)

@@ -54,7 +54,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllXiCheng()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.Recipe> list = vm?.GetAllXiCheng();
+            List<CommContracts.MedicineDoctorAdvice> list = vm?.GetAllXiCheng();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -72,7 +72,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllZhong()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.Recipe> list = vm?.GetAllZhong();
+            List<CommContracts.MedicineDoctorAdvice> list = vm?.GetAllZhong();
             if (list != null)
             {
                 if (list.Count > 0)

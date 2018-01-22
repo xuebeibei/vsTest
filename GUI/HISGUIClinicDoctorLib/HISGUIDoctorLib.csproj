@@ -93,8 +93,8 @@
     <Compile Include="Views\CaseHistory.xaml.cs">
       <DependentUpon>CaseHistory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClinicRecipe.xaml.cs">
-      <DependentUpon>ClinicRecipe.xaml</DependentUpon>
+    <Compile Include="Views\MedicineDoctorAdviceView.xaml.cs">
+      <DependentUpon>MedicineDoctorAdviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ClinicRemedy.xaml.cs">
       <DependentUpon>ClinicRemedy.xaml</DependentUpon>
@@ -167,7 +167,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\ClinicRecipe.xaml">
+    <Page Include="Views\MedicineDoctorAdviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -25,34 +25,34 @@ namespace CommClient
             MyRecipe = new CommContracts.Recipe();
         }
 
-        public bool SaveRecipe()
-        {
-            return client.SaveRecipe(MyRecipe); 
-        }
+        //public bool SaveRecipe()
+        //{
+        //    return client.SaveRecipe(MyRecipe); 
+        //}
 
-        public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
-        {
-            return client.getAllXiCheng(RegistrationID);
-        }
+        //public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
+        //{
+        //    return client.getAllXiCheng(RegistrationID);
+        //}
 
-        public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
-        {
-            return client.getAllZhong(RegistrationID);
-        }
+        //public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
+        //{
+        //    return client.getAllZhong(RegistrationID);
+        //}
 
-        public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
-        {
-            return client.getAllInHospitalXiCheng(InpatientID);
-        }
+        //public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
+        //{
+        //    return client.getAllInHospitalXiCheng(InpatientID);
+        //}
 
-        public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
-        {
-            return client.getAllInHospitalZhong(InpatientID);
-        }
+        //public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
+        //{
+        //    return client.getAllInHospitalZhong(InpatientID);
+        //}
 
-        public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            return client.UpdateChargeStatus(RecipeID, chargeStatusEnum);
-        }
+        //public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        //{
+        //    return client.UpdateChargeStatus(RecipeID, chargeStatusEnum);
+        //}
     }
 }

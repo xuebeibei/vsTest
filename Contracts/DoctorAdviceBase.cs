@@ -23,6 +23,12 @@ namespace CommContracts
         [DataMember]
         public int PatientID { get; set; }                      // 所属患者
         [DataMember]
+        public ChargeStatusEnum ChargeStatusEnum { get; set; }  // 收费状态
+        [DataMember]
+        public int RegistrationID { get; set; }                 // 门诊看诊标记
+        [DataMember]
+        public int InpatientID { get; set; }                    // 住院看诊标记
+        [DataMember]
         public User WriteDoctorUser { get; set; }       // 开具医生
         [DataMember]
         public Patient Patient { get; set; }

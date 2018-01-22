@@ -56,6 +56,7 @@
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
     <Compile Include="MedicineCheckStore.cs" />
+    <Compile Include="MedicineDoctorAdvice.cs" />
     <Compile Include="MedicineInStore.cs" />
     <Compile Include="MedicineOutStore.cs" />
     <Compile Include="OtherService.cs" />

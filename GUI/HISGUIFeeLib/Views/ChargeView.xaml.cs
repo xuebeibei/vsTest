@@ -118,13 +118,13 @@ namespace HISGUIFeeLib.Views
                 // 得到所有已开却未完成收费的单据
                 List<YiZhu> list = new List<YiZhu>();
                 var vm = this.DataContext as HISGUIFeeVM;
-                List<CommContracts.Recipe> listR =  vm?.GetAllXiCheng();
+                List<CommContracts.MedicineDoctorAdvice> listR =  vm?.GetAllXiCheng();
                 foreach(var tem in listR)
                 {
                     YiZhu yiZhu = new YiZhu();
                     yiZhu.YiZhuEnum = YiZhuEnum.处方;
                     yiZhu.ID = tem.ID;
-                    yiZhu.Doctor = tem.WriteUserID.ToString();
+                    yiZhu.Doctor = tem.WriteDoctorUser.Username;
                     yiZhu.WriteTime = tem.WriteTime;
                     yiZhu.SumOfMoney = tem.SumOfMoney;
                     list.Add(yiZhu);

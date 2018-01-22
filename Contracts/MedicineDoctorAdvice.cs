@@ -15,7 +15,7 @@ namespace CommContracts
         }
 
         [DataMember]
-        public RecipeContentEnum RecipeContentEnum { get; set; }
+        public DoctorAdviceContentEnum RecipeContentEnum { get; set; }
         [DataMember]
         public List<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
     }

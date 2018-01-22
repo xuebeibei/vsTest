@@ -24,13 +24,13 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("ClinicRecipe", typeof(ClinicRecipe))]
-    public partial class ClinicRecipe : HISGUIViewBase
+    [Export("MedicineDoctorAdviceView", typeof(MedicineDoctorAdviceView))]
+    public partial class MedicineDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myXiChengTableEdit;
         private MyTableEdit myZhongTableEdit;
 
-        public ClinicRecipe()
+        public MedicineDoctorAdviceView()
         {
             InitializeComponent();
             myXiChengTableEdit = new MyTableEdit(MyTableEditEnum.xichengyao);
@@ -65,30 +65,30 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = new List<MyDetail>();
-            CommContracts.RecipeContentEnum recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao;
+            CommContracts.DoctorAdviceContentEnum recipeContentEnum = CommContracts.DoctorAdviceContentEnum.XiChengYao;
             if (this.tabControl.SelectedIndex == 0)
             {
                 listDetail = myXiChengTableEdit.GetAllDetails();
-                recipeContentEnum = CommContracts.RecipeContentEnum.XiChengYao;
+                recipeContentEnum = CommContracts.DoctorAdviceContentEnum.XiChengYao;
             }
             else if (this.tabControl.SelectedIndex == 1)
             {
                 listDetail = myZhongTableEdit.GetAllDetails();
-                recipeContentEnum = CommContracts.RecipeContentEnum.ZhongYao;
+                recipeContentEnum = CommContracts.DoctorAdviceContentEnum.ZhongYao;
             }
 
-            List<CommContracts.RecipeDetail> list = new List<CommContracts.RecipeDetail>();
+            List<CommContracts.MedicineDoctorAdviceDetail> list = new List<CommContracts.MedicineDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.RecipeDetail recipeDetail = new CommContracts.RecipeDetail();
-                recipeDetail.GroupNum = tem.GroupNum;
+                CommContracts.MedicineDoctorAdviceDetail recipeDetail = new CommContracts.MedicineDoctorAdviceDetail();
+                //recipeDetail.GroupNum = tem.GroupNum;
                 recipeDetail.MedicineID = tem.ID;
-                recipeDetail.SingleDose = tem.SingleDose;
-                recipeDetail.Usage = tem.Usage;
-                recipeDetail.DDDS = tem.DDDS;
-                recipeDetail.DaysNum = tem.DaysNum;
-                recipeDetail.IntegralDose = tem.IntegralDose;
-                recipeDetail.Illustration = tem.Illustration;
+                recipeDetail.AllNum = tem.SingleDose;
+                //recipeDetail.Usage = tem.Usage;
+                //recipeDetail.DDDS = tem.DDDS;
+                //recipeDetail.DaysNum = tem.DaysNum;
+                //recipeDetail.IntegralDose = tem.IntegralDose;
+                recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
             }
 
@@ -203,7 +203,7 @@ namespace HISGUIDoctorLib.Views
         private void AllXiChengList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CommContracts.Recipe recipe = AllXiChengList.SelectedItem as CommContracts.Recipe;
-            ShowDetails(recipe, CommContracts.RecipeContentEnum.XiChengYao);
+            ShowDetails(recipe, CommContracts.DoctorAdviceContentEnum.XiChengYao);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
@@ -212,13 +212,13 @@ namespace HISGUIDoctorLib.Views
         private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CommContracts.Recipe recipe = AllZhongList.SelectedItem as CommContracts.Recipe;
-            ShowDetails(recipe, CommContracts.RecipeContentEnum.ZhongYao);
+            ShowDetails(recipe, CommContracts.DoctorAdviceContentEnum.ZhongYao);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
         }
 
-        private void ShowDetails(CommContracts.Recipe recipe , CommContracts.RecipeContentEnum recipeContentEnum)
+        private void ShowDetails(CommContracts.Recipe recipe , CommContracts.DoctorAdviceContentEnum recipeContentEnum)
         {
             if (recipe == null)
                 return;
@@ -244,13 +244,13 @@ namespace HISGUIDoctorLib.Views
                 list.Add(recipeDetail);
             }
 
-            if (recipeContentEnum == CommContracts.RecipeContentEnum.XiChengYao)
+            if (recipeContentEnum == CommContracts.DoctorAdviceContentEnum.XiChengYao)
             {
                 this.XiChengRecipeMsg.Text = recipe.ToTipString();
                 myXiChengTableEdit.SetAllDetails(list);
                 myXiChengTableEdit.IsEnabled = false;
             }
-            else if(recipeContentEnum == CommContracts.RecipeContentEnum.ZhongYao)
+            else if(recipeContentEnum == CommContracts.DoctorAdviceContentEnum.ZhongYao)
             {
                 this.ZhongRecipeMsg.Text = recipe.ToTipString();
                 myZhongTableEdit.SetAllDetails(list);

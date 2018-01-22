@@ -62,29 +62,55 @@ namespace HISGUIDoctorLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
 
-        public List<CommContracts.Recipe> getAllXiCheng()
+        //public List<CommContracts.Recipe> getAllXiCheng()
+        //{
+        //    CommClient.Recipe recipe = new CommClient.Recipe();
+        //    if (IsClinicOrInHospital)
+        //    {
+        //        return recipe.getAllXiCheng(CurrentRegistrationID);
+        //    }
+        //    else
+        //    {
+        //        return recipe.getAllInHospitalXiCheng(CurrentInpatientID);
+        //    }
+        //}
+
+        //public List<CommContracts.Recipe> getAllZhong()
+        //{
+        //    CommClient.Recipe recipe = new CommClient.Recipe();
+        //    if (IsClinicOrInHospital)
+        //    {
+        //        return recipe.getAllZhong(CurrentRegistrationID);
+        //    }
+        //    else
+        //    {
+        //        return recipe.getAllInHospitalZhong(CurrentInpatientID);
+        //    }
+        //}
+
+        public List<CommContracts.MedicineDoctorAdvice> getAllXiCheng()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
+            CommClient.MedicineDoctorAdvice MedicineDoctorAdvice = new CommClient.MedicineDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return recipe.getAllXiCheng(CurrentRegistrationID);
+                return MedicineDoctorAdvice.getAllXiCheng(CurrentRegistrationID);
             }
             else
             {
-                return recipe.getAllInHospitalXiCheng(CurrentInpatientID);
+                return MedicineDoctorAdvice.getAllInHospitalXiCheng(CurrentInpatientID);
             }
         }
 
-        public List<CommContracts.Recipe> getAllZhong()
+        public List<CommContracts.MedicineDoctorAdvice> getAllZhong()
         {
-            CommClient.Recipe recipe = new CommClient.Recipe();
+            CommClient.MedicineDoctorAdvice MedicineDoctorAdvice = new CommClient.MedicineDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return recipe.getAllZhong(CurrentRegistrationID);
+                return MedicineDoctorAdvice.getAllZhong(CurrentRegistrationID);
             }
             else
             {
-                return recipe.getAllInHospitalZhong(CurrentInpatientID);
+                return MedicineDoctorAdvice.getAllInHospitalZhong(CurrentInpatientID);
             }
         }
 
@@ -157,9 +183,9 @@ namespace HISGUIDoctorLib.ViewModels
 
         public string newRecipe()
         {
-            CommContracts.Recipe recipe = new CommContracts.Recipe();
-            CurrentRecipe = recipe;
-            return CurrentRecipe.ToTipString();
+            CommContracts.MedicineDoctorAdvice recipe = new CommContracts.MedicineDoctorAdvice();
+            CurrentMedicineDoctorAdvice = recipe;
+            return CurrentMedicineDoctorAdvice.ToString();
         }
 
         public string newTherapy()
@@ -197,25 +223,24 @@ namespace HISGUIDoctorLib.ViewModels
             return CurrentOtherService.ToTipString();
         }
 
-        public bool SaveRecipe(CommContracts.RecipeContentEnum recipeContentEnum, List<CommContracts.RecipeDetail> list)
+        public bool SaveRecipe(CommContracts.DoctorAdviceContentEnum recipeContentEnum, List<CommContracts.MedicineDoctorAdviceDetail> list)
         {
-            CommClient.Recipe myd = new CommClient.Recipe();
-            CurrentRecipe.MedicalInstitution = "北京市积水潭总院";
-            CurrentRecipe.RecipeContentEnum = recipeContentEnum;
-            CurrentRecipe.ChargeTypeEnum = 1;
+            CommClient.MedicineDoctorAdvice myd = new CommClient.MedicineDoctorAdvice();
+            CurrentMedicineDoctorAdvice.RecipeContentEnum = recipeContentEnum;
+            CurrentMedicineDoctorAdvice.ChargeStatusEnum = CommContracts.ChargeStatusEnum.未收费;
             if (IsClinicOrInHospital)
-                CurrentRecipe.RegistrationID = CurrentRegistrationID;
+                CurrentMedicineDoctorAdvice.RegistrationID = CurrentRegistrationID;
             else
-                CurrentRecipe.InpatientID = CurrentInpatientID;
-            CurrentRecipe.ClinicalDiagnosis = "感冒";
-            CurrentRecipe.SumOfMoney = 500.00m;
-            CurrentRecipe.WriteTime = DateTime.Now;
-            CurrentRecipe.WriteUserID = 1;
+                CurrentMedicineDoctorAdvice.InpatientID = CurrentInpatientID;
+            CurrentMedicineDoctorAdvice.SumOfMoney = 500.00m;
+            CurrentMedicineDoctorAdvice.WriteTime = DateTime.Now;
+            CurrentMedicineDoctorAdvice.WriteDoctorUserID = 3;
+            CurrentMedicineDoctorAdvice.PatientID = 9;
 
-            CurrentRecipe.RecipeDetails = list;
-            myd.MyRecipe = CurrentRecipe;
+            CurrentMedicineDoctorAdvice.MedicineDoctorAdviceDetails = list;
+            myd.MyMedicineDoctorAdvice = CurrentMedicineDoctorAdvice;
 
-            if (myd.SaveRecipe())
+            if (myd.SaveMedicineDoctorAdvice())
                 return true;
             else
                 return false;
@@ -417,13 +442,13 @@ namespace HISGUIDoctorLib.ViewModels
 
 
         // 当前处方单
-        #region CurrentRecipe
+        #region CurrentMedicineDoctorAdvice
         public static readonly DependencyProperty CurrentRecipeProperty = DependencyProperty.Register(
-            "CurrentRecipe", typeof(CommContracts.Recipe), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentMedicineDoctorAdvice", typeof(CommContracts.MedicineDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Recipe CurrentRecipe
+        public CommContracts.MedicineDoctorAdvice CurrentMedicineDoctorAdvice
         {
-            get { return (CommContracts.Recipe)GetValue(CurrentRecipeProperty); }
+            get { return (CommContracts.MedicineDoctorAdvice)GetValue(CurrentRecipeProperty); }
             set { SetValue(CurrentRecipeProperty, value); }
         }
 

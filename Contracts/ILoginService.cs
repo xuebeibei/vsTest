@@ -97,14 +97,62 @@ namespace CommContracts
         [OperationContract]
         bool SaveTriage(int nDoctorID, int nRegistrationID);
 
-        [OperationContract]
-        bool SaveRecipe(CommContracts.Recipe recipe);
+        //[OperationContract]
+        //bool SaveRecipe(CommContracts.Recipe recipe);
+
+        //[OperationContract]
+        //List<CommContracts.Recipe> getAllXiCheng(int RegistrationID);
+
+        //[OperationContract]
+        //List<CommContracts.Recipe> getAllZhong(int RegistrationID);
+
+        //[OperationContract]
+        //List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID);
+
+        //[OperationContract]
+        //List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
+
+        //[OperationContract]
+        //bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
-        List<CommContracts.Recipe> getAllXiCheng(int RegistrationID);
+        // 根据收费单更新库存
+        bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
 
         [OperationContract]
-        List<CommContracts.Recipe> getAllZhong(int RegistrationID);
+        bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
+
+        [OperationContract]
+        List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
+
+
+        [OperationContract]
+        bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice MedicineDoctorAdvice);
+
+        [OperationContract]
+        List<CommContracts.MedicineDoctorAdvice> getAllXiCheng(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.MedicineDoctorAdvice> getAllZhong(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.MedicineDoctorAdvice> getAllInHospitalXiCheng(int InpatientID);
+
+        [OperationContract]
+        List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID);
+
+        [OperationContract]
+        bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+
+        //[OperationContract]
+        //// 根据收费单更新库存
+        //bool SubdStoreNum(CommContracts.MedicineDoctorAdviceChargeBill MedicineDoctorAdviceChargeBill);
+
+        //[OperationContract]
+        //bool SaveMedicineDoctorAdviceChargeBill(CommContracts.MedicineDoctorAdviceChargeBill MedicineDoctorAdviceChargeBill);
+
+        //[OperationContract]
+        //List<CommContracts.MedicineDoctorAdviceChargeBill> GetAllChargeFromMedicineDoctorAdvice(int MedicineDoctorAdviceID);
 
         [OperationContract]
         CommContracts.MedicalRecord GetMedicalRecord(int id);
@@ -202,14 +250,7 @@ namespace CommContracts
         [OperationContract]
         List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID);
 
-        [OperationContract]
-        List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID);
-
-        [OperationContract]
-        List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
-
-        [OperationContract]
-        bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+        
 
         [OperationContract]
         CommContracts.MaterialBill GetMaterialBill(int Id);
@@ -318,15 +359,7 @@ namespace CommContracts
         // 得到当前药品的合理库存
         List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum);
 
-        [OperationContract]
-        // 根据收费单更新库存
-        bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
 
-        [OperationContract]
-        bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
-
-        [OperationContract]
-        List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
 
         [OperationContract]
         List<CommContracts.Job> GetAllJob(string strName = "");
