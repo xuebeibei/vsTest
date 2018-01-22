@@ -181,7 +181,7 @@ namespace HISGUIDoctorLib.ViewModels
 
 
 
-        public string newRecipe()
+        public string NewMedicineDoctorAdvice()
         {
             CommContracts.MedicineDoctorAdvice recipe = new CommContracts.MedicineDoctorAdvice();
             CurrentMedicineDoctorAdvice = recipe;
@@ -223,7 +223,7 @@ namespace HISGUIDoctorLib.ViewModels
             return CurrentOtherService.ToTipString();
         }
 
-        public bool SaveRecipe(CommContracts.DoctorAdviceContentEnum recipeContentEnum, List<CommContracts.MedicineDoctorAdviceDetail> list)
+        public bool SaveMedicineDoctorAdvice(CommContracts.DoctorAdviceContentEnum recipeContentEnum, List<CommContracts.MedicineDoctorAdviceDetail> list)
         {
             CommClient.MedicineDoctorAdvice myd = new CommClient.MedicineDoctorAdvice();
             CurrentMedicineDoctorAdvice.RecipeContentEnum = recipeContentEnum;
