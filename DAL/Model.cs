@@ -204,6 +204,7 @@ namespace DAL
             OtherServices = new List<OtherService>();
             MedicineInStores = new List<MedicineInStore>();
             PrePays = new List<PrePay>();
+            DoctorAdviceBases = new List<DoctorAdviceBase>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -226,6 +227,8 @@ namespace DAL
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
         public virtual ICollection<PrePay> PrePays { get; set; }  
+
+        public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
     }
 
     public class Department
@@ -335,6 +338,7 @@ namespace DAL
             Registrations = new List<Registration>();
             Inpatients = new List<Inpatient>();
             PrePays = new List<PrePay>();
+            DoctorAdviceBases = new List<DoctorAdviceBase>();
         }
 
         public string ToBMIMsg()
@@ -369,6 +373,7 @@ namespace DAL
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
 
         public virtual ICollection<PrePay> PrePays { get; set; }
+        public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
     }
 
     public class Employee
@@ -1326,8 +1331,8 @@ namespace DAL
         public DateTime? WriteTime { get; set; }                // 开具时间
         public int WriteDoctorUserID { get; set; }              // 开具医生
         public int PatientID { get; set; }                      // 所属患者
-        //public virtual User WriteDoctorUser { get; set; }       // 开具医生
-        //public virtual Patient Patient { get; set; }
+        public virtual User WriteDoctorUser { get; set; }       // 开具医生
+        public virtual Patient Patient { get; set; }
     }
 
     // 用药处方医嘱明细
