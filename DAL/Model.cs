@@ -178,6 +178,12 @@ namespace DAL
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
             base.OnModelCreating(modelBuilder);
+
+            // TPT mapping 
+            modelBuilder.Entity<DoctorAdviceBase>().ToTable("tpt.DoctorAdviceBase");
+            modelBuilder.Entity<MedicineDoctorAdvice>().ToTable("tpt.MedicineDoctorAdvice");
+            modelBuilder.Entity<DoctorAdviceDetailBase>().ToTable("tpt.DoctorAdviceDetailBase");
+            modelBuilder.Entity<MedicineDoctorAdviceDetail>().ToTable("tpt.MedicineDoctorAdviceDetail");
         }
     }
 
@@ -1297,5 +1303,50 @@ namespace DAL
 
         public virtual Patient Patient { get; set; }
         public virtual User User { get; set; }
+    }
+
+    // 医嘱明细基类
+    public class DoctorAdviceDetailBase
+    {
+        public int ID { get; set; }
+        public int AllNum { get; set; }
+        public decimal SellPrice { get; set; }           // 参考价格
+        public string Remarks { get; set; }
+    }
+
+    // 医嘱基类
+    public class DoctorAdviceBase
+    {
+        public DoctorAdviceBase()
+        {
+        }
+        public int ID { get; set; }
+        public string NO { get; set; }
+        public decimal SumOfMoney { get; set; }                 // 金额
+        public DateTime? WriteTime { get; set; }                // 开具时间
+        public int WriteDoctorUserID { get; set; }              // 开具医生
+        public int PatientID { get; set; }                      // 所属患者
+        //public virtual User WriteDoctorUser { get; set; }       // 开具医生
+        //public virtual Patient Patient { get; set; }
+    }
+
+    // 用药处方医嘱明细
+    public class MedicineDoctorAdviceDetail:DoctorAdviceDetailBase
+    {
+        public int MedicineID { get; set; }               // 药品
+        public int MedicineDoctorAdviceID { get; set; }
+
+        public virtual MedicineDoctorAdvice MedicineDoctorAdvice { get; set; }
+    }
+
+    // 用药处方医嘱
+    public class MedicineDoctorAdvice: DoctorAdviceBase
+    {
+        public MedicineDoctorAdvice()
+        {
+            MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
+        }
+        public RecipeContentEnum RecipeContentEnum { get; set; }
+        public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
     }
 }
