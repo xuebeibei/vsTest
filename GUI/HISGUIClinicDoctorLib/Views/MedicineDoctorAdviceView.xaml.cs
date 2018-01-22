@@ -202,7 +202,7 @@ namespace HISGUIDoctorLib.Views
 
         private void AllXiChengList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.Recipe recipe = AllXiChengList.SelectedItem as CommContracts.Recipe;
+            CommContracts.MedicineDoctorAdvice recipe = AllXiChengList.SelectedItem as CommContracts.MedicineDoctorAdvice;
             ShowDetails(recipe, CommContracts.DoctorAdviceContentEnum.XiChengYao);
 
             this.SaveBtn.IsEnabled = false;
@@ -211,14 +211,14 @@ namespace HISGUIDoctorLib.Views
 
         private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.Recipe recipe = AllZhongList.SelectedItem as CommContracts.Recipe;
+            CommContracts.MedicineDoctorAdvice recipe = AllZhongList.SelectedItem as CommContracts.MedicineDoctorAdvice;
             ShowDetails(recipe, CommContracts.DoctorAdviceContentEnum.ZhongYao);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
         }
 
-        private void ShowDetails(CommContracts.Recipe recipe , CommContracts.DoctorAdviceContentEnum recipeContentEnum)
+        private void ShowDetails(CommContracts.MedicineDoctorAdvice recipe , CommContracts.DoctorAdviceContentEnum recipeContentEnum)
         {
             if (recipe == null)
                 return;
@@ -226,33 +226,33 @@ namespace HISGUIDoctorLib.Views
             CommClient.Medicine myd = new CommClient.Medicine();
             CommContracts.Medicine medicine = new CommContracts.Medicine();
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in recipe.RecipeDetails)
+            foreach (var tem in recipe.MedicineDoctorAdviceDetails)
             {
                 MyDetail recipeDetail = new MyDetail();
 
-                recipeDetail.GroupNum = tem.GroupNum;
+                //recipeDetail.GroupNum = tem.GroupNum;
                 recipeDetail.ID = tem.MedicineID;
                 medicine = myd.GetMedicine(tem.MedicineID);
                 recipeDetail.Name = medicine.Name;
                 recipeDetail.Specifications = medicine.Specifications;
-                recipeDetail.SingleDose = tem.SingleDose;
-                recipeDetail.Usage = tem.Usage;
-                recipeDetail.DDDS = tem.DDDS;
-                recipeDetail.DaysNum = tem.DaysNum;
-                recipeDetail.IntegralDose = tem.IntegralDose;
-                recipeDetail.Illustration = tem.Illustration;
+                //recipeDetail.SingleDose = tem.SingleDose;
+                //recipeDetail.Usage = tem.Usage;
+                //recipeDetail.DDDS = tem.DDDS;
+                //recipeDetail.DaysNum = tem.DaysNum;
+                //recipeDetail.IntegralDose = tem.IntegralDose;
+                //recipeDetail.Illustration = tem.Illustration;
                 list.Add(recipeDetail);
             }
 
             if (recipeContentEnum == CommContracts.DoctorAdviceContentEnum.XiChengYao)
             {
-                this.XiChengRecipeMsg.Text = recipe.ToTipString();
+                this.XiChengRecipeMsg.Text = recipe.ToString();
                 myXiChengTableEdit.SetAllDetails(list);
                 myXiChengTableEdit.IsEnabled = false;
             }
             else if(recipeContentEnum == CommContracts.DoctorAdviceContentEnum.ZhongYao)
             {
-                this.ZhongRecipeMsg.Text = recipe.ToTipString();
+                this.ZhongRecipeMsg.Text = recipe.ToString();
                 myZhongTableEdit.SetAllDetails(list);
                 myZhongTableEdit.IsEnabled = false;
             }
