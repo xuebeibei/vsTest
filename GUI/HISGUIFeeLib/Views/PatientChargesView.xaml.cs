@@ -107,7 +107,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllJianYan()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.Assay> list = vm?.GetAllJianYan();
+            List<CommContracts.AssayDoctorAdvice> list = vm?.GetAllJianYan();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -305,7 +305,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllJianYanList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var temp = this.AllJianYanList.SelectedItem as CommContracts.Assay;
+            var temp = this.AllJianYanList.SelectedItem as CommContracts.AssayDoctorAdvice;
         }
 
         private void AllCaiLiaoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

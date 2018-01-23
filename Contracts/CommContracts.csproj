@@ -43,8 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assay.cs" />
-    <Compile Include="AssayDetail.cs" />
     <Compile Include="AssayDoctorAdvice.cs" />
     <Compile Include="AssayDoctorAdviceDetail.cs" />
     <Compile Include="AssayItem.cs" />

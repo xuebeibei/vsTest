@@ -114,9 +114,9 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public List<CommContracts.Assay> getAllAssay()
+        public List<CommContracts.AssayDoctorAdvice> getAllAssayDoctorAdvice()
         {
-            CommClient.Assay assay = new CommClient.Assay();
+            CommClient.AssayDoctorAdvice assay = new CommClient.AssayDoctorAdvice();
             if (IsClinicOrInHospital)
             {
                 return assay.getAllAssay(CurrentRegistrationID);
@@ -195,11 +195,11 @@ namespace HISGUIDoctorLib.ViewModels
             return CurrentTherapy.ToTipString();
         }
 
-        public string newAssay()
+        public string newAssayDoctorAdvice()
         {
-            CommContracts.Assay assay = new CommContracts.Assay();
-            CurrentAssay = assay;
-            return CurrentAssay.ToTipString();
+            CommContracts.AssayDoctorAdvice assay = new CommContracts.AssayDoctorAdvice();
+            CurrentAssayDoctorAdvice = assay;
+            return CurrentAssayDoctorAdvice.ToString();
         }
 
         public string newInspect()
@@ -269,20 +269,21 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public bool SaveAssay(List<CommContracts.AssayDetail> list)
+        public bool SaveAssayDoctorAdvice(List<CommContracts.AssayDoctorAdviceDetail> list)
         {
-            CommClient.Assay therapy = new CommClient.Assay();
-            CurrentAssay.NO = "001";// ?
+            CommClient.AssayDoctorAdvice therapy = new CommClient.AssayDoctorAdvice();
+            CurrentAssayDoctorAdvice.NO = "001";// ?
             if (IsClinicOrInHospital)
-                CurrentAssay.RegistrationID = CurrentRegistrationID;
+                CurrentAssayDoctorAdvice.RegistrationID = CurrentRegistrationID;
             else
-                CurrentAssay.InpatientID = CurrentInpatientID;
-            CurrentAssay.SumOfMoney = 300;// ?
-            CurrentAssay.WriteTime = DateTime.Now;
-            CurrentAssay.WriteUserID = 1;// ?
+                CurrentAssayDoctorAdvice.InpatientID = CurrentInpatientID;
+            CurrentAssayDoctorAdvice.SumOfMoney = 300;// ?
+            CurrentAssayDoctorAdvice.WriteTime = DateTime.Now;
+            CurrentAssayDoctorAdvice.WriteDoctorUserID = 3;// ?
+            CurrentAssayDoctorAdvice.PatientID = 9;
 
-            CurrentAssay.AssayDetails = list;
-            if (therapy.SaveAssay(CurrentAssay))
+            CurrentAssayDoctorAdvice.AssayDoctorAdviceDetails = list;
+            if (therapy.SaveAssay(CurrentAssayDoctorAdvice))
             {
                 return true;
             }
@@ -468,14 +469,14 @@ namespace HISGUIDoctorLib.ViewModels
         #endregion
 
         // 当前治疗单
-        #region CurrentAssay
-        public static readonly DependencyProperty CurrentAssayProperty = DependencyProperty.Register(
-            "CurrentAssay", typeof(CommContracts.Assay), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentAssayDoctorAdvice
+        public static readonly DependencyProperty CurrentAssayDoctorAdviceProperty = DependencyProperty.Register(
+            "CurrentAssayDoctorAdvice", typeof(CommContracts.AssayDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Assay CurrentAssay
+        public CommContracts.AssayDoctorAdvice CurrentAssayDoctorAdvice
         {
-            get { return (CommContracts.Assay)GetValue(CurrentAssayProperty); }
-            set { SetValue(CurrentAssayProperty, value); }
+            get { return (CommContracts.AssayDoctorAdvice)GetValue(CurrentAssayDoctorAdviceProperty); }
+            set { SetValue(CurrentAssayDoctorAdviceProperty, value); }
         }
         #endregion
 

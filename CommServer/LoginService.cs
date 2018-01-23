@@ -206,24 +206,6 @@ namespace CommServer
             return temp.SaveTriage(nDoctorID, nRegistrationID);
         }
 
-        //public bool SaveRecipe(CommContracts.Recipe recipe)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.SaveRecipe(recipe);
-        //}
-
-        //public List<CommContracts.Recipe> getAllXiCheng(int RegistrationID)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.getAllXiCheng(RegistrationID);
-        //}
-
-        //public List<CommContracts.Recipe> getAllZhong(int RegistrationID)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.getAllZhong(RegistrationID);
-        //}
-
         public CommContracts.MedicalRecord GetMedicalRecord(int id)
         {
             BLL.MedicalRecord temp = new BLL.MedicalRecord();
@@ -272,22 +254,22 @@ namespace CommServer
             return temp.DeleteTherapyItem(TherapyItemID);
         }
 
-        public CommContracts.Assay GetAssay(int Id)
+        public CommContracts.AssayDoctorAdvice GetAssayDoctorAdvice(int Id)
         {
-            BLL.Assay temp = new BLL.Assay();
-            return temp.GetAssay(Id);
+            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
+            return temp.GetAssayDoctorAdvice(Id);
         }
 
-        public List<CommContracts.Assay> getAllAssay(int RegistrationID)
+        public List<CommContracts.AssayDoctorAdvice> getAllAssayDoctorAdvice(int RegistrationID)
         {
-            BLL.Assay temp = new BLL.Assay();
-            return temp.getAllAssay(RegistrationID);
+            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
+            return temp.getAllAssayDoctorAdvice(RegistrationID);
         }
 
-        public bool SaveAssay(CommContracts.Assay assay)
+        public bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice assay)
         {
-            BLL.Assay temp = new BLL.Assay();
-            return temp.SaveAssay(assay);
+            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
+            return temp.SaveAssayDoctorAdvice(assay);
         }
 
         public CommContracts.Inspect GetInspect(int Id)
@@ -419,10 +401,10 @@ namespace CommServer
             return temp.getAllInHospitalTherapy(InpatientID);
         }
 
-        public List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID)
+        public List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID)
         {
-            BLL.Assay temp = new BLL.Assay();
-            return temp.getAllInHospitalAssay(InpatientID);
+            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
+            return temp.getAllInHospitalAssayDoctorAdvice(InpatientID);
         }
 
         //public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)

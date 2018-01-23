@@ -7,56 +7,56 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class Assay
+    public class AssayDoctorAdvice
     {
-        public CommContracts.Assay GetAssay(int Id)
+        public CommContracts.AssayDoctorAdvice GetAssayDoctorAdvice(int Id)
         {
-            CommContracts.Assay assay = new CommContracts.Assay();
+            CommContracts.AssayDoctorAdvice AssayDoctorAdvice = new CommContracts.AssayDoctorAdvice();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from t in ctx.Assays
+                var query = from t in ctx.AssayDoctorAdvices
                             where t.ID == Id
                             select t;
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<DAL.Assay, CommContracts.Assay>();
+                    cfg.CreateMap<DAL.AssayDoctorAdvice, CommContracts.AssayDoctorAdvice>();
                 });
                 var mapper = config.CreateMapper();
 
 
                 foreach (var tem in query)
                 {
-                    assay = mapper.Map<CommContracts.Assay>(tem);
+                    AssayDoctorAdvice = mapper.Map<CommContracts.AssayDoctorAdvice>(tem);
                     break;
                 }
             }
-            return assay;
+            return AssayDoctorAdvice;
         }
 
-        public bool SaveAssay(CommContracts.Assay assay)
+        public bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice AssayDoctorAdvice)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Assay, DAL.Assay>().ForMember(x => x.AssayDetails, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.AssayDoctorAdvice, DAL.AssayDoctorAdvice>().ForMember(x => x.AssayDoctorAdviceDetails, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.Assay temp = new DAL.Assay();
-                temp = mapper.Map<DAL.Assay>(assay);
+                DAL.AssayDoctorAdvice temp = new DAL.AssayDoctorAdvice();
+                temp = mapper.Map<DAL.AssayDoctorAdvice>(AssayDoctorAdvice);
 
                 var configDetail = new MapperConfiguration(ctr =>
                 {
-                    ctr.CreateMap<CommContracts.AssayDetail, DAL.AssayDetail>().ForMember(x => x.Assay, opt => opt.Ignore());
+                    ctr.CreateMap<CommContracts.AssayDoctorAdviceDetail, DAL.AssayDoctorAdviceDetail>().ForMember(x => x.AssayDoctorAdvice, opt => opt.Ignore());
                 });
                 var mapperDetail = configDetail.CreateMapper();
 
-                List<CommContracts.AssayDetail> list1 = assay.AssayDetails;
-                List<DAL.AssayDetail> res = mapperDetail.Map<List<DAL.AssayDetail>>(list1); ;
+                List<CommContracts.AssayDoctorAdviceDetail> list1 = AssayDoctorAdvice.AssayDoctorAdviceDetails;
+                List<DAL.AssayDoctorAdviceDetail> res = mapperDetail.Map<List<DAL.AssayDoctorAdviceDetail>>(list1); ;
 
-                temp.AssayDetails = res;
-                ctx.Assays.Add(temp);
+                temp.AssayDoctorAdviceDetails = res;
+                ctx.AssayDoctorAdvices.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -68,48 +68,48 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.Assay> getAllAssay(int RegistrationID)
+        public List<CommContracts.AssayDoctorAdvice> getAllAssayDoctorAdvice(int RegistrationID)
         {
-            List<CommContracts.Assay> list = new List<CommContracts.Assay>();
+            List<CommContracts.AssayDoctorAdvice> list = new List<CommContracts.AssayDoctorAdvice>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.Assays
+                var query = from a in ctx.AssayDoctorAdvices
                             where a.RegistrationID == RegistrationID
                             select a;
-                foreach (DAL.Assay ass in query)
+                foreach (DAL.AssayDoctorAdvice ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.Assay, CommContracts.Assay>();
+                        cfg.CreateMap<DAL.AssayDoctorAdvice, CommContracts.AssayDoctorAdvice>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.Assay temp = mapper.Map<CommContracts.Assay>(ass);
+                    CommContracts.AssayDoctorAdvice temp = mapper.Map<CommContracts.AssayDoctorAdvice>(ass);
                     list.Add(temp);
                 }
             }
             return list;
         }
 
-        public List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID)
+        public List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID)
         {
-            List<CommContracts.Assay> list = new List<CommContracts.Assay>();
+            List<CommContracts.AssayDoctorAdvice> list = new List<CommContracts.AssayDoctorAdvice>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.Assays
+                var query = from a in ctx.AssayDoctorAdvices
                             where a.InpatientID == InpatientID
                             select a;
-                foreach (DAL.Assay ass in query)
+                foreach (DAL.AssayDoctorAdvice ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.Assay, CommContracts.Assay>();
+                        cfg.CreateMap<DAL.AssayDoctorAdvice, CommContracts.AssayDoctorAdvice>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.Assay temp = mapper.Map<CommContracts.Assay>(ass);
+                    CommContracts.AssayDoctorAdvice temp = mapper.Map<CommContracts.AssayDoctorAdvice>(ass);
                     list.Add(temp);
                 }
             }
@@ -117,8 +117,6 @@ namespace BLL
         }
     }
 }
-
-
 // automapper测试
 
 

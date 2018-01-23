@@ -55,7 +55,7 @@
             <TabItem Header="化验">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <local:Assay></local:Assay>
+                    <local:AssayDoctorAdviceView></local:AssayDoctorAdviceView>
 
                 </ScrollViewer>
             </TabItem>

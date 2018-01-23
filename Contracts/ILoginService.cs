@@ -176,10 +176,10 @@ namespace CommContracts
         bool DeleteTherapyItem(int TherapyItemID);
 
         [OperationContract]
-        CommContracts.Assay GetAssay(int Id);
+        CommContracts.AssayDoctorAdvice GetAssayDoctorAdvice(int Id);
 
         [OperationContract]
-        List<CommContracts.Assay> getAllAssay(int RegistrationID);
+        List<CommContracts.AssayDoctorAdvice> getAllAssayDoctorAdvice(int RegistrationID);
 
         [OperationContract]
         List<CommContracts.Inspect> getAllInspect(int RegistrationID);
@@ -188,7 +188,7 @@ namespace CommContracts
         List<CommContracts.Therapy> getAllTherapy(int RegistrationID);
 
         [OperationContract]
-        bool SaveAssay(CommContracts.Assay assay);
+        bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice assay);
 
         [OperationContract]
         CommContracts.Inspect GetInspect(int Id);
@@ -198,12 +198,10 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.AssayItem> GetAllAssayItem(string strName);
-
         [OperationContract]
         bool UpdateAssayItem(CommContracts.AssayItem AssayItem);
         [OperationContract]
         bool SaveAssayItem(CommContracts.AssayItem AssayItem);
-
         [OperationContract]
         bool DeleteAssayItem(int AssayItemID);
 
@@ -248,7 +246,7 @@ namespace CommContracts
         List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID);
 
         [OperationContract]
-        List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID);
+        List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID);
 
         [OperationContract]
         CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id);

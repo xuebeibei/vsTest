@@ -24,11 +24,11 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("Assay", typeof(Assay))]
-    public partial class Assay : HISGUIViewBase
+    [Export("AssayDoctorAdviceView", typeof(AssayDoctorAdviceView))]
+    public partial class AssayDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public Assay()
+        public AssayDoctorAdviceView()
         {
             InitializeComponent();
 
@@ -52,13 +52,13 @@ namespace HISGUIDoctorLib.Views
         private void getAllAssayList()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.AssayList.ItemsSource = vm?.getAllAssay();
+            this.AssayList.ItemsSource = vm?.getAllAssayDoctorAdvice();
         }
 
         private void newAssay()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.AssayMsg.Text = vm?.newAssay();
+            this.AssayMsg.Text = vm?.newAssayDoctorAdvice();
 
             this.myTableEdit.ClearAllDetails();
 
@@ -71,18 +71,18 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.AssayDetail> list = new List<CommContracts.AssayDetail>();
+            List<CommContracts.AssayDoctorAdviceDetail> list = new List<CommContracts.AssayDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.AssayDetail recipeDetail = new CommContracts.AssayDetail();
-                recipeDetail.AssayItemID = tem.ID;
-                recipeDetail.Num = tem.SingleDose;
-                recipeDetail.Illustration = tem.Illustration;
+                CommContracts.AssayDoctorAdviceDetail recipeDetail = new CommContracts.AssayDoctorAdviceDetail();
+                recipeDetail.ID = tem.ID;
+                recipeDetail.AllNum = tem.SingleDose;
+                recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
             }
 
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveAssay(list);
+            bool? saveResult = vm?.SaveAssayDoctorAdvice(list);
 
             if (!saveResult.HasValue)
             {
@@ -107,22 +107,22 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.Assay assay)
+        private void ShowDetails(CommContracts.AssayDoctorAdvice assay)
         {
             if (assay == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in assay.AssayDetails)
+            foreach (var tem in assay.AssayDoctorAdviceDetails)
             {
                 MyDetail assayDetail = new MyDetail(); 
                 assayDetail.ID = tem.AssayID;
-                assayDetail.Name = tem.AssayItem.Name;
-                assayDetail.SingleDose = tem.Num;
-                assayDetail.Illustration = tem.Illustration;
+                assayDetail.Name = tem.Assay.Name;
+                assayDetail.SingleDose = tem.AllNum;
+                assayDetail.Illustration = tem.Remarks;
                 list.Add(assayDetail);
             }
 
-            this.AssayMsg.Text = assay.ToTipString();
+            this.AssayMsg.Text = assay.ToString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -134,8 +134,8 @@ namespace HISGUIDoctorLib.Views
 
         private void AssayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.Assay assay = AssayList.SelectedItem as CommContracts.Assay;
-            ShowDetails(assay);
+            CommContracts.AssayDoctorAdvice assayDoctorAdvice = AssayList.SelectedItem as CommContracts.AssayDoctorAdvice;
+            ShowDetails(assayDoctorAdvice);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;

@@ -99,11 +99,11 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有化验申请单
-        public List<CommContracts.Assay> GetAllJianYan()
+        public List<CommContracts.AssayDoctorAdvice> GetAllJianYan()
         {
-            CommClient.Assay assay = new CommClient.Assay();        // 化验申请
+            CommClient.AssayDoctorAdvice assay = new CommClient.AssayDoctorAdvice();        // 化验申请
 
-            List<CommContracts.Assay> list = new List<CommContracts.Assay>();
+            List<CommContracts.AssayDoctorAdvice> list = new List<CommContracts.AssayDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
                 list = assay.getAllAssay(this.CurrentRegistrationID);

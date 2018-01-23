@@ -87,8 +87,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\HISGUIDoctorVM.cs" />
-    <Compile Include="Views\Assay.xaml.cs">
-      <DependentUpon>Assay.xaml</DependentUpon>
+    <Compile Include="Views\AssayDoctorAdviceView.xaml.cs">
+      <DependentUpon>AssayDoctorAdviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CaseHistory.xaml.cs">
       <DependentUpon>CaseHistory.xaml</DependentUpon>
@@ -159,7 +159,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Views\Assay.xaml">
+    <Page Include="Views\AssayDoctorAdviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
