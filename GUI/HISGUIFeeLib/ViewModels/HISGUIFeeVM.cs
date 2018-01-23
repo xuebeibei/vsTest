@@ -133,18 +133,18 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有材料单
-        public List<CommContracts.MaterialBill> GetAllCaiLiao()
+        public List<CommContracts.MaterialDoctorAdvice> GetAllCaiLiao()
         {
-            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();   // 材料
+            CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();   // 材料
             
-            List<CommContracts.MaterialBill> list = new List<CommContracts.MaterialBill>();
+            List<CommContracts.MaterialDoctorAdvice> list = new List<CommContracts.MaterialDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = materialBill.getAllMaterialBill(this.CurrentRegistrationID);
+                list = materialBill.getAllMaterialDoctorAdvice(this.CurrentRegistrationID);
             }
             else
             {
-                list = materialBill.getAllInHospitalMaterialBill(this.CurrentInHospitalID);
+                list = materialBill.getAllInHospitalMaterialDoctorAdvice(this.CurrentInHospitalID);
             }
             return list;
         }

@@ -141,7 +141,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllCaiLiao()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.MaterialBill> list = vm?.GetAllCaiLiao();
+            List<CommContracts.MaterialDoctorAdvice> list = vm?.GetAllCaiLiao();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -310,7 +310,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllCaiLiaoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var temp = this.AllCaiLiaoList.SelectedItem as CommContracts.MaterialBill;
+            var temp = this.AllCaiLiaoList.SelectedItem as CommContracts.MaterialDoctorAdvice;
         }
 
         private void AllQiTaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

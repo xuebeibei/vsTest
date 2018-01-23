@@ -67,7 +67,7 @@
             </TabItem>
             <TabItem Header="材料">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:MaterialBill></local:MaterialBill>
+                    <local:MaterialDoctorAdviceView></local:MaterialDoctorAdviceView>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="其他">

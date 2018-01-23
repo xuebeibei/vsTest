@@ -146,6 +146,34 @@
     <Compile Include="Migrations\201801221023552_PaperTest23.Designer.cs">
       <DependentUpon>201801221023552_PaperTest23.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801230241411_PaperTest24.cs" />
+    <Compile Include="Migrations\201801230241411_PaperTest24.Designer.cs">
+      <DependentUpon>201801230241411_PaperTest24.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230244308_PaperTest25.cs" />
+    <Compile Include="Migrations\201801230244308_PaperTest25.Designer.cs">
+      <DependentUpon>201801230244308_PaperTest25.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230245097_PaperTest26.cs" />
+    <Compile Include="Migrations\201801230245097_PaperTest26.Designer.cs">
+      <DependentUpon>201801230245097_PaperTest26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230245478_PaperTest27.cs" />
+    <Compile Include="Migrations\201801230245478_PaperTest27.Designer.cs">
+      <DependentUpon>201801230245478_PaperTest27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230303487_PaperTest28.cs" />
+    <Compile Include="Migrations\201801230303487_PaperTest28.Designer.cs">
+      <DependentUpon>201801230303487_PaperTest28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230306182_PaperTest29.cs" />
+    <Compile Include="Migrations\201801230306182_PaperTest29.Designer.cs">
+      <DependentUpon>201801230306182_PaperTest29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801230310528_PaperTest30.cs" />
+    <Compile Include="Migrations\201801230310528_PaperTest30.Designer.cs">
+      <DependentUpon>201801230310528_PaperTest30.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,6 +265,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801221023552_PaperTest23.resx">
       <DependentUpon>201801221023552_PaperTest23.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230241411_PaperTest24.resx">
+      <DependentUpon>201801230241411_PaperTest24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230244308_PaperTest25.resx">
+      <DependentUpon>201801230244308_PaperTest25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230245097_PaperTest26.resx">
+      <DependentUpon>201801230245097_PaperTest26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230245478_PaperTest27.resx">
+      <DependentUpon>201801230245478_PaperTest27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230303487_PaperTest28.resx">
+      <DependentUpon>201801230303487_PaperTest28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230306182_PaperTest29.resx">
+      <DependentUpon>201801230306182_PaperTest29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801230310528_PaperTest30.resx">
+      <DependentUpon>201801230310528_PaperTest30.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

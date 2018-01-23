@@ -56,13 +56,13 @@
     <Compile Include="InspectDetail.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="MaterialDoctorAdvice.cs" />
+    <Compile Include="MaterialDoctorAdviceDetail.cs" />
     <Compile Include="MedicineDoctorAdvice.cs" />
     <Compile Include="MedicineDoctorAdviceDetail.cs" />
     <Compile Include="PrePay.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ILoginService.cs" />
-    <Compile Include="MaterialBill.cs" />
-    <Compile Include="MaterialBillDetail.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />

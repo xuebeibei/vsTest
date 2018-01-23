@@ -111,8 +111,8 @@
     <Compile Include="Views\Inspect.xaml.cs">
       <DependentUpon>Inspect.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MaterialBill.xaml.cs">
-      <DependentUpon>MaterialBill.xaml</DependentUpon>
+    <Compile Include="Views\MaterialDoctorAdviceView.xaml.cs">
+      <DependentUpon>MaterialDoctorAdviceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OtherService.xaml.cs">
       <DependentUpon>OtherService.xaml</DependentUpon>
@@ -191,7 +191,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MaterialBill.xaml">
+    <Page Include="Views\MaterialDoctorAdviceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

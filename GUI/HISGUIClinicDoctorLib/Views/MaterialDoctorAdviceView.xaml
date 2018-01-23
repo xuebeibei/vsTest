@@ -1,4 +1,4 @@
-﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIDoctorLib.Views.MaterialBill"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIDoctorLib.Views.MaterialDoctorAdviceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,8 +17,8 @@
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="MaterialBillPanel">
-                        <ListView Name="MaterialBillList" Margin="5" SelectionChanged="MaterialBillList_SelectionChanged">
+                    <StackPanel x:Name="MaterialDoctorAdvicePanel">
+                        <ListView Name="MaterialDoctorAdviceList" Margin="5" SelectionChanged="MaterialDoctorAdviceList_SelectionChanged">
                             <ListView.View>
                                 <GridView x:Name="gridView1">
                                     <GridViewColumn Header="材料单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
@@ -28,7 +28,7 @@
                             </ListView.View>
                         </ListView>
                         <WrapPanel Orientation="Horizontal">
-                            <TextBlock x:Name="MaterialBillMsg" Margin="5"></TextBlock>
+                            <TextBlock x:Name="MaterialDoctorAdviceMsg" Margin="5"></TextBlock>
                         </WrapPanel>
                     </StackPanel>
                 </ScrollViewer>

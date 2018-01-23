@@ -25,15 +25,15 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("MaterialBill", typeof(MaterialBill))]
-    public partial class MaterialBill : HISGUIViewBase
+    [Export("MaterialDoctorAdviceView", typeof(MaterialDoctorAdviceView))]
+    public partial class MaterialDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public MaterialBill()
+        public MaterialDoctorAdviceView()
         {
             InitializeComponent();
             myTableEdit = new MyTableEdit(MyTableEditEnum.cailiao);
-            MaterialBillPanel.Children.Add(myTableEdit);
+            MaterialDoctorAdvicePanel.Children.Add(myTableEdit);
             this.Loaded += View_Loaded;
         }
 
@@ -45,24 +45,24 @@ namespace HISGUIDoctorLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            getAllMaterialBillList();
-            newMaterialBill();
+            getAllMaterialDoctorAdviceList();
+            newMaterialDoctorAdvice();
         }
 
-        private void getAllMaterialBillList()
+        private void getAllMaterialDoctorAdviceList()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.MaterialBillList.ItemsSource = vm?.getAllMaterialBill();
+            this.MaterialDoctorAdviceList.ItemsSource = vm?.getAllMaterialDoctorAdvice();
         }
 
-        private void newMaterialBill()
+        private void newMaterialDoctorAdvice()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.MaterialBillMsg.Text = vm?.newMaterialBill();
+            this.MaterialDoctorAdviceMsg.Text = vm?.newMaterialDoctorAdvice();
 
             this.myTableEdit.ClearAllDetails();
 
-            this.MaterialBillList.SelectedItems.Clear();
+            this.MaterialDoctorAdviceList.SelectedItems.Clear();
             this.myTableEdit.IsEnabled = true;
             this.SaveBtn.IsEnabled = true;
             this.DeleteBtn.IsEnabled = false;
@@ -70,24 +70,24 @@ namespace HISGUIDoctorLib.Views
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-            newMaterialBill();
+            newMaterialDoctorAdvice();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.MaterialBillDetail> list = new List<CommContracts.MaterialBillDetail>();
+            List<CommContracts.MaterialDoctorAdviceDetail> list = new List<CommContracts.MaterialDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.MaterialBillDetail materialBillDetail = new CommContracts.MaterialBillDetail();
-                materialBillDetail.MaterialItemID = tem.ID;
-                materialBillDetail.Num = tem.SingleDose;
-                materialBillDetail.Illustration = tem.Illustration;
+                CommContracts.MaterialDoctorAdviceDetail materialBillDetail = new CommContracts.MaterialDoctorAdviceDetail();
+                materialBillDetail.MaterialID = tem.ID;
+                materialBillDetail.AllNum = tem.SingleDose;
+                materialBillDetail.Remarks = tem.Illustration;
                 list.Add(materialBillDetail);
             }
 
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveMaterialBill(list);
+            bool? saveResult = vm?.SaveMaterialDoctorAdvice(list);
 
             if (!saveResult.HasValue)
             {
@@ -97,8 +97,8 @@ namespace HISGUIDoctorLib.Views
             else if ((bool)saveResult.Value)
             {
                 MessageBox.Show("保存成功！");
-                newMaterialBill();
-                getAllMaterialBillList();
+                newMaterialDoctorAdvice();
+                getAllMaterialDoctorAdviceList();
             }
             else
             {
@@ -112,22 +112,22 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.MaterialBill materialBill)
+        private void ShowDetails(CommContracts.MaterialDoctorAdvice materialBill)
         {
             if (materialBill == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in materialBill.MaterialBillDetails)
+            foreach (var tem in materialBill.MaterialDoctorAdviceDetails)
             {
                 MyDetail recipeDetail = new MyDetail();
-                recipeDetail.ID = tem.MaterialBillID;
-                recipeDetail.Name = tem.MaterialItem.Name;
-                recipeDetail.SingleDose = tem.Num;
-                recipeDetail.Illustration = tem.Illustration;
+                recipeDetail.ID = tem.MaterialDoctorAdviceID;
+                recipeDetail.Name = tem.Material.Name;
+                recipeDetail.SingleDose = tem.AllNum;
+                recipeDetail.Illustration = tem.Remarks;
                 list.Add(recipeDetail);
             }
 
-            this.MaterialBillMsg.Text = materialBill.ToTipString();
+            MaterialDoctorAdviceMsg.Text = materialBill.ToString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -142,9 +142,9 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void MaterialBillList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void MaterialDoctorAdviceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.MaterialBill materialBill = MaterialBillList.SelectedItem as CommContracts.MaterialBill;
+            CommContracts.MaterialDoctorAdvice materialBill = MaterialDoctorAdviceList.SelectedItem as CommContracts.MaterialDoctorAdvice;
             ShowDetails(materialBill);
 
             this.SaveBtn.IsEnabled = false;

@@ -250,19 +250,18 @@ namespace CommContracts
         [OperationContract]
         List<CommContracts.Assay> getAllInHospitalAssay(int InpatientID);
 
-        
+        [OperationContract]
+        CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id);
 
         [OperationContract]
-        CommContracts.MaterialBill GetMaterialBill(int Id);
+        bool SaveMaterialDoctorAdvice(CommContracts.MaterialDoctorAdvice MaterialDoctorAdvice);
 
         [OperationContract]
-        bool SaveMaterialBill(CommContracts.MaterialBill materialBill);
+        List<CommContracts.MaterialDoctorAdvice> getAllMaterialDoctorAdvice(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.MaterialBill> getAllMaterialBill(int RegistrationID);
+        List<CommContracts.MaterialDoctorAdvice> getAllInHospitalMaterialDoctorAdvice(int InpatientID);
 
-        [OperationContract]
-        List<CommContracts.MaterialBill> getAllInHospitalMaterialBill(int InpatientID);
 
         [OperationContract]
         CommContracts.OtherService GetOtherService(int Id);

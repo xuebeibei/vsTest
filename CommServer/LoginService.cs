@@ -443,28 +443,29 @@ namespace CommServer
         //    return temp.UpdateChargeStatus(RecipeID, chargeStatusEnum);
         //}
 
-        public CommContracts.MaterialBill GetMaterialBill(int Id)
+
+        public CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id)
         {
-            BLL.MaterialBill temp = new BLL.MaterialBill();
-            return temp.GetMaterialBill(Id);
+            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
+            return temp.GetMaterialDoctorAdvice(Id);
         }
 
-        public bool SaveMaterialBill(CommContracts.MaterialBill materialBill)
+        public bool SaveMaterialDoctorAdvice(CommContracts.MaterialDoctorAdvice MaterialDoctorAdvice)
         {
-            BLL.MaterialBill temp = new BLL.MaterialBill();
-            return temp.SaveMaterialBill(materialBill);
+            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
+            return temp.SaveMaterialDoctorAdvice(MaterialDoctorAdvice);
         }
 
-        public List<CommContracts.MaterialBill> getAllMaterialBill(int RegistrationID)
+        public List<CommContracts.MaterialDoctorAdvice> getAllMaterialDoctorAdvice(int RegistrationID)
         {
-            BLL.MaterialBill temp = new BLL.MaterialBill();
-            return temp.getAllMaterialBill(RegistrationID);
+            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
+            return temp.getAllMaterialDoctorAdvice(RegistrationID);
         }
 
-        public List<CommContracts.MaterialBill> getAllInHospitalMaterialBill(int InpatientID)
+        public List<CommContracts.MaterialDoctorAdvice> getAllInHospitalMaterialDoctorAdvice(int InpatientID)
         {
-            BLL.MaterialBill temp = new BLL.MaterialBill();
-            return temp.getAllInHospitalMaterialBill(InpatientID);
+            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
+            return temp.getAllInHospitalMaterialDoctorAdvice(InpatientID);
         }
 
         public CommContracts.OtherService GetOtherService(int Id)

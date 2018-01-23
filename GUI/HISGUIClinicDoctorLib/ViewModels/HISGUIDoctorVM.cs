@@ -153,16 +153,16 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public List<CommContracts.MaterialBill> getAllMaterialBill()
+        public List<CommContracts.MaterialDoctorAdvice> getAllMaterialDoctorAdvice()
         {
-            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();
+            CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return materialBill.getAllMaterialBill(CurrentRegistrationID);
+                return materialBill.getAllMaterialDoctorAdvice(CurrentRegistrationID);
             }
             else
             {
-                return materialBill.getAllInHospitalMaterialBill(CurrentInpatientID);
+                return materialBill.getAllInHospitalMaterialDoctorAdvice(CurrentInpatientID);
             }
         }
 
@@ -209,11 +209,11 @@ namespace HISGUIDoctorLib.ViewModels
             return CurrentInspect.ToTipString();
         }
 
-        public string newMaterialBill()
+        public string newMaterialDoctorAdvice()
         {
-            CommContracts.MaterialBill materialBill = new CommContracts.MaterialBill();
-            CurrentMaterialBill = materialBill;
-            return CurrentMaterialBill.ToTipString();
+            CommContracts.MaterialDoctorAdvice materialBill = new CommContracts.MaterialDoctorAdvice();
+            CurrentMaterialDoctorAdvice = materialBill;
+            return CurrentMaterialDoctorAdvice.ToString();
         }
 
         public string newOtherService()
@@ -272,14 +272,14 @@ namespace HISGUIDoctorLib.ViewModels
         public bool SaveAssay(List<CommContracts.AssayDetail> list)
         {
             CommClient.Assay therapy = new CommClient.Assay();
-            CurrentAssay.NO = "001";
+            CurrentAssay.NO = "001";// ?
             if (IsClinicOrInHospital)
                 CurrentAssay.RegistrationID = CurrentRegistrationID;
             else
                 CurrentAssay.InpatientID = CurrentInpatientID;
-            CurrentAssay.SumOfMoney = 300;
+            CurrentAssay.SumOfMoney = 300;// ?
             CurrentAssay.WriteTime = DateTime.Now;
-            CurrentAssay.WriteUserID = 1;
+            CurrentAssay.WriteUserID = 1;// ?
 
             CurrentAssay.AssayDetails = list;
             if (therapy.SaveAssay(CurrentAssay))
@@ -295,14 +295,14 @@ namespace HISGUIDoctorLib.ViewModels
         public bool SaveInspect(List<CommContracts.InspectDetail> list)
         {
             CommClient.Inspect therapy = new CommClient.Inspect();
-            CurrentInspect.NO = "001";
+            CurrentInspect.NO = "001";// ?
             if (IsClinicOrInHospital)
                 CurrentInspect.RegistrationID = CurrentRegistrationID;
             else
                 CurrentInspect.InpatientID = CurrentInpatientID;
-            CurrentInspect.SumOfMoney = 300;
+            CurrentInspect.SumOfMoney = 300;// ?
             CurrentInspect.WriteTime = DateTime.Now;
-            CurrentInspect.WriteUserID = 1;
+            CurrentInspect.WriteUserID = 1;// ?
 
             CurrentInspect.InspectDetails = list;
             if (therapy.SaveInspect(CurrentInspect))
@@ -315,20 +315,21 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public bool SaveMaterialBill(List<CommContracts.MaterialBillDetail> list)
+        public bool SaveMaterialDoctorAdvice(List<CommContracts.MaterialDoctorAdviceDetail> list)
         {
-            CommClient.MaterialBill materialBill = new CommClient.MaterialBill();
-            CurrentMaterialBill.NO = "001";
+            CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();
+            CurrentMaterialDoctorAdvice.NO = "001";// ?
             if (IsClinicOrInHospital)
-                CurrentMaterialBill.RegistrationID = CurrentRegistrationID;
+                CurrentMaterialDoctorAdvice.RegistrationID = CurrentRegistrationID;
             else
-                CurrentMaterialBill.InpatientID = CurrentInpatientID;
-            CurrentMaterialBill.SumOfMoney = 300;
-            CurrentMaterialBill.WriteTime = DateTime.Now;
-            CurrentMaterialBill.WriteUserID = 1;
+                CurrentMaterialDoctorAdvice.InpatientID = CurrentInpatientID;
+            CurrentMaterialDoctorAdvice.SumOfMoney = 300;// ?
+            CurrentMaterialDoctorAdvice.WriteTime = DateTime.Now;
+            CurrentMaterialDoctorAdvice.WriteDoctorUserID = 3; // ?
+            CurrentMaterialDoctorAdvice.PatientID = 9;// ?
 
-            CurrentMaterialBill.MaterialBillDetails = list;
-            if (materialBill.SaveMaterialBill(CurrentMaterialBill))
+            CurrentMaterialDoctorAdvice.MaterialDoctorAdviceDetails = list;
+            if (materialBill.SaveMaterialDoctorAdvice(CurrentMaterialDoctorAdvice))
             {
                 return true;
             }
@@ -492,14 +493,14 @@ namespace HISGUIDoctorLib.ViewModels
         #endregion
 
         // 当前材料单
-        #region CurrentMaterialBill
-        public static readonly DependencyProperty CurrentMaterialBillProperty = DependencyProperty.Register(
-            "CurrentMaterialBill", typeof(CommContracts.MaterialBill), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentMaterialDoctorAdvice
+        public static readonly DependencyProperty CurrentMaterialDoctorAdviceProperty = DependencyProperty.Register(
+            "CurrentMaterialDoctorAdvice", typeof(CommContracts.MaterialDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.MaterialBill CurrentMaterialBill
+        public CommContracts.MaterialDoctorAdvice CurrentMaterialDoctorAdvice
         {
-            get { return (CommContracts.MaterialBill)GetValue(CurrentMaterialBillProperty); }
-            set { SetValue(CurrentMaterialBillProperty, value); }
+            get { return (CommContracts.MaterialDoctorAdvice)GetValue(CurrentMaterialDoctorAdviceProperty); }
+            set { SetValue(CurrentMaterialDoctorAdviceProperty, value); }
         }
         #endregion
 

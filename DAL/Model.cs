@@ -149,8 +149,6 @@ namespace DAL
         public DbSet<Inspect> Inspects { get; set; }
         public DbSet<InspectDetail> InspectDetails { get; set; }
         public DbSet<Responsibility> Responsibilities { get; set; }
-        public DbSet<MaterialBill> MaterialBills { get; set; }
-        public DbSet<MaterialBillDetail> MaterialBillDetail { get; set; }
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
         public DbSet<OtherService> OtherServices { get; set; }
         public DbSet<OtherServiceDetail> OtherServiceDetails { get; set; }
@@ -206,7 +204,6 @@ namespace DAL
             Assays = new List<Assay>();
             Inspects = new List<Inspect>();
             Inpatients = new List<Inpatient>();
-            MaterialBills = new List<MaterialBill>();
             OtherServices = new List<OtherService>();
             MedicineInStores = new List<MedicineInStore>();
             PrePays = new List<PrePay>();
@@ -228,7 +225,6 @@ namespace DAL
         public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的化验申请单
         public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
-        public virtual ICollection<MaterialBill> MaterialBills { get; set; } // 所有材料单
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
@@ -746,7 +742,6 @@ namespace DAL
     {
         public MaterialItem()
         {
-            MaterialBillDetails = new List<MaterialBillDetail>();
             MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
         }
 
@@ -764,7 +759,6 @@ namespace DAL
         public int MaxNum { get; set; }                         // 最大库存量
         public int MinNum { get; set; }                         // 最小库存量
 
-        public virtual ICollection<MaterialBillDetail> MaterialBillDetails { get; set; }
         public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
     }
 
@@ -886,45 +880,6 @@ namespace DAL
         public virtual Inspect Inspect { get; set; }
 
         public virtual InspectItem InspectItem { get; set; }
-    }
-
-    // 材料单
-    public class MaterialBill
-    {
-        public MaterialBill()
-        {
-            MaterialBillDetails = new List<MaterialBillDetail>();
-        }
-
-        public int ID { get; set; }
-        public string NO { get; set; }
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
-
-        public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime? WriteTime { get; set; }                   // 开具时间
-        public int WriteUserID { get; set; }                      // 开具医生
-        public virtual User WriteUser { get; set; }               // 开具医生
-
-        public virtual ICollection<MaterialBillDetail> MaterialBillDetails { get; set; }
-    }
-    // 材料单明细
-    public class MaterialBillDetail
-    {
-        public MaterialBillDetail()
-        {
-
-        }
-
-        public int ID { get; set; }                               // ID
-        public int MaterialItemID { get; set; }                   // 材料ID
-        public int Num { get; set; }                              // 次数
-        public string Illustration { get; set; }                  // 说明
-
-        public int MaterialBillID { get; set; }                          // 所属材料单ID
-        public virtual MaterialBill MaterialBill { get; set; }
-
-        public virtual MaterialItem MaterialItem { get; set; }
     }
 
     // 其他服务字典
@@ -1376,7 +1331,7 @@ namespace DAL
         public int MaterialID { get; set; }               // 物资材料
         public int MaterialDoctorAdviceID { get; set; }
 
-        public virtual MedicineDoctorAdvice MaterialDoctorAdvice { get; set; }
+        public virtual MaterialDoctorAdvice MaterialDoctorAdvice { get; set; }
         public virtual MaterialItem Material { get; set; }
     }
 
@@ -1387,6 +1342,7 @@ namespace DAL
         {
             MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
         }
+        public string ReCheckName { get; set; }
         public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
     }
 

@@ -12,7 +12,6 @@ namespace CommContracts
     {
         public MaterialItem()
         {
-            MaterialBillDetails = new List<MaterialBillDetail>();
         }
         [DataMember]
         public int ID { get; set; }
@@ -38,7 +37,5 @@ namespace CommContracts
         public int MaxNum { get; set; }                         // 最大库存量
         [DataMember]
         public int MinNum { get; set; }                         // 最小库存量
-        [DataMember]
-        public List<MaterialBillDetail> MaterialBillDetails { get; set; }
     }
 }
