@@ -127,16 +127,16 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public List<CommContracts.Therapy> getAllTherapy()
+        public List<CommContracts.TherapyDoctorAdvice> getAllTherapy()
         {
-            CommClient.Therapy therapy = new CommClient.Therapy();
+            CommClient.TherapyDoctorAdvice therapy = new CommClient.TherapyDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return therapy.getAllTherapy(CurrentRegistrationID);
+                return therapy.getAllTherapyDoctorAdvice(CurrentRegistrationID);
             }
             else
             {
-                return therapy.getAllInHospitalTherapy(CurrentInpatientID);
+                return therapy.getAllInHospitalTherapyDoctorAdvice(CurrentInpatientID);
             }
         }
 
@@ -190,9 +190,9 @@ namespace HISGUIDoctorLib.ViewModels
 
         public string newTherapy()
         {
-            CommContracts.Therapy therapy = new CommContracts.Therapy();
+            CommContracts.TherapyDoctorAdvice therapy = new CommContracts.TherapyDoctorAdvice();
             CurrentTherapy = therapy;
-            return CurrentTherapy.ToTipString();
+            return CurrentTherapy.ToString();
         }
 
         public string newAssayDoctorAdvice()
@@ -246,9 +246,9 @@ namespace HISGUIDoctorLib.ViewModels
                 return false;
         }
 
-        public bool SaveTherapy(List<CommContracts.TherapyDetail> list)
+        public bool SaveTherapy(List<CommContracts.TherapyDoctorAdviceDetail> list)
         {
-            CommClient.Therapy therapy = new CommClient.Therapy();
+            CommClient.TherapyDoctorAdvice therapy = new CommClient.TherapyDoctorAdvice();
             CurrentTherapy.NO = "001";
             if (IsClinicOrInHospital)
                 CurrentTherapy.RegistrationID = CurrentRegistrationID;
@@ -256,10 +256,10 @@ namespace HISGUIDoctorLib.ViewModels
                 CurrentTherapy.InpatientID = CurrentInpatientID;
             CurrentTherapy.SumOfMoney = 300;
             CurrentTherapy.WriteTime = DateTime.Now;
-            CurrentTherapy.WriteUserID = 1;
+            CurrentTherapy.WriteDoctorUserID = 1;
 
-            CurrentTherapy.TherapyDetails = list;
-            if (therapy.SaveTherapy(CurrentTherapy))
+            CurrentTherapy.TherapyDoctorAdviceDetails = list;
+            if (therapy.SaveTherapyDoctorAdvice(CurrentTherapy))
             {
                 return true;
             }
@@ -459,11 +459,11 @@ namespace HISGUIDoctorLib.ViewModels
         // 当前治疗单
         #region CurrentTherapy
         public static readonly DependencyProperty CurrentTherapyProperty = DependencyProperty.Register(
-            "CurrentTherapy", typeof(CommContracts.Therapy), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentTherapy", typeof(CommContracts.TherapyDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Therapy CurrentTherapy
+        public CommContracts.TherapyDoctorAdvice CurrentTherapy
         {
-            get { return (CommContracts.Therapy)GetValue(CurrentTherapyProperty); }
+            get { return (CommContracts.TherapyDoctorAdvice)GetValue(CurrentTherapyProperty); }
             set { SetValue(CurrentTherapyProperty, value); }
         }
         #endregion

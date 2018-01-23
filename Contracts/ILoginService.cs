@@ -161,10 +161,10 @@ namespace CommContracts
         bool SaveMedicalRecord(CommContracts.MedicalRecord medicalRecord);
 
         [OperationContract]
-        CommContracts.Therapy GetTherapy(int Id);
+        CommContracts.TherapyDoctorAdvice GetTherapyDoctorAdvice(int Id);
 
         [OperationContract]
-        bool SaveTherapy(CommContracts.Therapy therapy);
+        bool SaveTherapyDoctorAdvice(CommContracts.TherapyDoctorAdvice therapy);
 
         [OperationContract]
         List<CommContracts.TherapyItem> GetAllTherapyItem(string strName);
@@ -185,7 +185,7 @@ namespace CommContracts
         List<CommContracts.InspectDoctorAdvice> getAllInspectDoctorAdvice(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.Therapy> getAllTherapy(int RegistrationID);
+        List<CommContracts.TherapyDoctorAdvice> getAllTherapyDoctorAdvice(int RegistrationID);
 
         [OperationContract]
         bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice assay);
@@ -243,7 +243,7 @@ namespace CommContracts
         List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID);
 
         [OperationContract]
-        List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID);
+        List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID);
 
         [OperationContract]
         List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID);

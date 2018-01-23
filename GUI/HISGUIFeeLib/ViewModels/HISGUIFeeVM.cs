@@ -82,18 +82,18 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有治疗单
-        public List<CommContracts.Therapy> GetAllZhiLiao()
+        public List<CommContracts.TherapyDoctorAdvice> GetAllZhiLiao()
         {
-            CommClient.Therapy therapy = new CommClient.Therapy();  // 治疗
+            CommClient.TherapyDoctorAdvice therapy = new CommClient.TherapyDoctorAdvice();  // 治疗
 
-            List<CommContracts.Therapy> list = new List<CommContracts.Therapy>();
+            List<CommContracts.TherapyDoctorAdvice> list = new List<CommContracts.TherapyDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = therapy.getAllTherapy(this.CurrentRegistrationID);
+                list = therapy.getAllTherapyDoctorAdvice(this.CurrentRegistrationID);
             }
             else
             {
-                list = therapy.getAllInHospitalTherapy(this.CurrentInHospitalID);
+                list = therapy.getAllInHospitalTherapyDoctorAdvice(this.CurrentInHospitalID);
             }
             return list;
         }

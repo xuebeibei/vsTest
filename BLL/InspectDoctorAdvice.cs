@@ -14,7 +14,7 @@ namespace BLL
             CommContracts.InspectDoctorAdvice inspectDoctorAdvice = new CommContracts.InspectDoctorAdvice();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from t in ctx.Inspects
+                var query = from t in ctx.InspectDoctorAdvices
                             where t.ID == Id
                             select t;
                 var config = new MapperConfiguration(cfg =>

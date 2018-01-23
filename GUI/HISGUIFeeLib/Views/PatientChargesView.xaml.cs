@@ -89,7 +89,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllZhiLiao()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.Therapy> list = vm?.GetAllZhiLiao();
+            List<CommContracts.TherapyDoctorAdvice> list = vm?.GetAllZhiLiao();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -295,7 +295,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllZhiLiaoList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var temp = this.AllZhiLiaoList.SelectedItem as CommContracts.Therapy;
+            var temp = this.AllZhiLiaoList.SelectedItem as CommContracts.TherapyDoctorAdvice;
         }
 
         private void AllJianChaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

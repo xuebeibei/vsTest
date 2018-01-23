@@ -71,13 +71,13 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.TherapyDetail> list = new List<CommContracts.TherapyDetail>();
+            List<CommContracts.TherapyDoctorAdviceDetail> list = new List<CommContracts.TherapyDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.TherapyDetail recipeDetail = new CommContracts.TherapyDetail();
-                recipeDetail.TherapyItemID = tem.ID;
-                recipeDetail.Num = tem.SingleDose;
-                recipeDetail.Illustration = tem.Illustration;
+                CommContracts.TherapyDoctorAdviceDetail recipeDetail = new CommContracts.TherapyDoctorAdviceDetail();
+                recipeDetail.TherapyID = tem.ID;
+                recipeDetail.AllNum = tem.SingleDose;
+                recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
             }
 
@@ -107,22 +107,22 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.Therapy therapy)
+        private void ShowDetails(CommContracts.TherapyDoctorAdvice therapy)
         {
             if (therapy == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in therapy.TherapyDetails)
+            foreach (var tem in therapy.TherapyDoctorAdviceDetails)
             {
                 MyDetail recipeDetail = new MyDetail();
                 recipeDetail.ID = tem.TherapyID;
-                recipeDetail.Name = tem.TherapyItem.Name;
-                recipeDetail.SingleDose = tem.Num;
-                recipeDetail.Illustration = tem.Illustration;
+                recipeDetail.Name = tem.Therapy.Name;
+                recipeDetail.SingleDose = tem.AllNum;
+                recipeDetail.Illustration = tem.Remarks;
                 list.Add(recipeDetail);
             }
 
-            this.TherapyMsg.Text = therapy.ToTipString();
+            this.TherapyMsg.Text = therapy.ToString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -134,7 +134,7 @@ namespace HISGUIDoctorLib.Views
 
         private void RemedyList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.Therapy therapy = TherapyList.SelectedItem as CommContracts.Therapy;
+            CommContracts.TherapyDoctorAdvice therapy = TherapyList.SelectedItem as CommContracts.TherapyDoctorAdvice;
             ShowDetails(therapy);
 
             this.SaveBtn.IsEnabled = false;

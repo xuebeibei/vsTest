@@ -218,15 +218,15 @@ namespace CommServer
             return temp.SaveMedicalRecord(medicalRecord);
         }
 
-        public CommContracts.Therapy GetTherapy(int Id)
+        public CommContracts.TherapyDoctorAdvice GetTherapyDoctorAdvice(int Id)
         {
-            BLL.Therapy therapy = new BLL.Therapy();
+            BLL.TherapyDoctorAdvice therapy = new BLL.TherapyDoctorAdvice();
             return therapy.GetTherapy(Id);
         }
 
-        public bool SaveTherapy(CommContracts.Therapy therapy)
+        public bool SaveTherapyDoctorAdvice(CommContracts.TherapyDoctorAdvice therapy)
         {
-            BLL.Therapy temp = new BLL.Therapy();
+            BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
             return temp.SaveTherapy(therapy);
         }
 
@@ -338,9 +338,9 @@ namespace CommServer
             return temp.getAllInspectDoctorAdvice(RegistrationID);
         }
 
-        public List<CommContracts.Therapy> getAllTherapy(int RegistrationID)
+        public List<CommContracts.TherapyDoctorAdvice> getAllTherapyDoctorAdvice(int RegistrationID)
         {
-            BLL.Therapy temp = new BLL.Therapy();
+            BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
             return temp.getAllTherapy(RegistrationID);
         }
 
@@ -395,10 +395,10 @@ namespace CommServer
             return temp.getAllInHospitalInspectDoctorAdvice(InpatientID);
         }
 
-        public List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID)
+        public List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID)
         {
-            BLL.Therapy temp = new BLL.Therapy();
-            return temp.getAllInHospitalTherapy(InpatientID);
+            BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
+            return temp.getAllInHospitalTherapyDoctorAdvice(InpatientID);
         }
 
         public List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID)
