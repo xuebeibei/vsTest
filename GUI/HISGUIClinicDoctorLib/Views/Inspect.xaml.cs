@@ -71,13 +71,13 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.InspectDetail> list = new List<CommContracts.InspectDetail>();
+            List<CommContracts.InspectDoctorAdviceDetail> list = new List<CommContracts.InspectDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.InspectDetail recipeDetail = new CommContracts.InspectDetail();
-                recipeDetail.InspectItemID = tem.ID;
-                recipeDetail.Num = tem.SingleDose;
-                recipeDetail.Illustration = tem.Illustration;
+                CommContracts.InspectDoctorAdviceDetail recipeDetail = new CommContracts.InspectDoctorAdviceDetail();
+                recipeDetail.InspectID = tem.ID;
+                recipeDetail.AllNum = tem.SingleDose;
+                recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
             }
 
@@ -107,22 +107,22 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.Inspect inspect)
+        private void ShowDetails(CommContracts.InspectDoctorAdvice inspect)
         {
             if (inspect == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in inspect.InspectDetails)
+            foreach (var tem in inspect.InspectDoctorAdviceDetails)
             {
                 MyDetail recipeDetail = new MyDetail();
                 recipeDetail.ID = tem.InspectID;
-                recipeDetail.Name = tem.InspectItem.Name;
-                recipeDetail.SingleDose = tem.Num;
-                recipeDetail.Illustration = tem.Illustration;
+                recipeDetail.Name = tem.Inspect.Name;
+                recipeDetail.SingleDose = tem.AllNum;
+                recipeDetail.Illustration = tem.Remarks;
                 list.Add(recipeDetail);
             }
 
-            this.InspectMsg.Text = inspect.ToTipString();
+            this.InspectMsg.Text = inspect.ToString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -134,7 +134,7 @@ namespace HISGUIDoctorLib.Views
 
         private void InspectList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.Inspect inspect = InspectList.SelectedItem as CommContracts.Inspect;
+            CommContracts.InspectDoctorAdvice inspect = InspectList.SelectedItem as CommContracts.InspectDoctorAdvice;
             ShowDetails(inspect);
 
             this.SaveBtn.IsEnabled = false;

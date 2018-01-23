@@ -124,7 +124,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllJianCha()
         {   
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.Inspect> list = vm?.GetAllJianCha();
+            List<CommContracts.InspectDoctorAdvice> list = vm?.GetAllJianCha();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -300,7 +300,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllJianChaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var temp = this.AllJianChaList.SelectedItem as CommContracts.Inspect;
+            var temp = this.AllJianChaList.SelectedItem as CommContracts.InspectDoctorAdvice;
         }
 
         private void AllJianYanList_MouseDoubleClick(object sender, MouseButtonEventArgs e)

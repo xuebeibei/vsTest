@@ -182,7 +182,7 @@ namespace CommContracts
         List<CommContracts.AssayDoctorAdvice> getAllAssayDoctorAdvice(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.Inspect> getAllInspect(int RegistrationID);
+        List<CommContracts.InspectDoctorAdvice> getAllInspectDoctorAdvice(int RegistrationID);
 
         [OperationContract]
         List<CommContracts.Therapy> getAllTherapy(int RegistrationID);
@@ -191,10 +191,10 @@ namespace CommContracts
         bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice assay);
 
         [OperationContract]
-        CommContracts.Inspect GetInspect(int Id);
+        CommContracts.InspectDoctorAdvice GetInspectDoctorAdvice(int Id);
 
         [OperationContract]
-        bool SaveInspect(CommContracts.Inspect inspect);
+        bool SaveInspectDoctorAdvice(CommContracts.InspectDoctorAdvice inspect);
 
         [OperationContract]
         List<CommContracts.AssayItem> GetAllAssayItem(string strName);
@@ -240,7 +240,7 @@ namespace CommContracts
         CommContracts.Inpatient ReadLeavedPatient(int InPatientID);
 
         [OperationContract]
-        List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID);
+        List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID);
 
         [OperationContract]
         List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID);

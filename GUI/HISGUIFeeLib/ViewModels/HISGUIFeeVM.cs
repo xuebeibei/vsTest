@@ -116,14 +116,14 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所有检查申请单
-        public List<CommContracts.Inspect> GetAllJianCha()
+        public List<CommContracts.InspectDoctorAdvice> GetAllJianCha()
         {
-            CommClient.Inspect inspect = new CommClient.Inspect();  // 检查申请
+            CommClient.InspectDoctorAdvice inspect = new CommClient.InspectDoctorAdvice();  // 检查申请
             
-            List<CommContracts.Inspect> list = new List<CommContracts.Inspect>();
+            List<CommContracts.InspectDoctorAdvice> list = new List<CommContracts.InspectDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = inspect.getAllInspect(this.CurrentRegistrationID);
+                list = inspect.getAllInspectDoctorAdvice(this.CurrentRegistrationID);
             }
             else
             {

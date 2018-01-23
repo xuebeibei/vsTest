@@ -52,8 +52,8 @@
     <Compile Include="DoctorAdviceDetailBase.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Inpatient.cs" />
-    <Compile Include="Inspect.cs" />
-    <Compile Include="InspectDetail.cs" />
+    <Compile Include="InspectDoctorAdvice.cs" />
+    <Compile Include="InspectDoctorAdviceDetail.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="MaterialDoctorAdvice.cs" />

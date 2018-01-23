@@ -272,16 +272,16 @@ namespace CommServer
             return temp.SaveAssayDoctorAdvice(assay);
         }
 
-        public CommContracts.Inspect GetInspect(int Id)
+        public CommContracts.InspectDoctorAdvice GetInspectDoctorAdvice(int Id)
         {
-            BLL.Inspect temp = new BLL.Inspect();
-            return temp.GetInspect(Id);
+            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
+            return temp.GetInspectDoctorAdvice(Id);
         }
 
-        public bool SaveInspect(CommContracts.Inspect inspect)
+        public bool SaveInspectDoctorAdvice(CommContracts.InspectDoctorAdvice inspect)
         {
-            BLL.Inspect temp = new BLL.Inspect();
-            return temp.SaveInspect(inspect);
+            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
+            return temp.SaveInspectDoctorAdvice(inspect);
         }
 
         public List<CommContracts.AssayItem> GetAllAssayItem(string strName)
@@ -332,10 +332,10 @@ namespace CommServer
             return temp.DeleteInspectItem(InspectItemID);
         }
 
-        public List<CommContracts.Inspect> getAllInspect(int RegistrationID)
+        public List<CommContracts.InspectDoctorAdvice> getAllInspectDoctorAdvice(int RegistrationID)
         {
-            BLL.Inspect temp = new BLL.Inspect();
-            return temp.getAllInspect(RegistrationID);
+            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
+            return temp.getAllInspectDoctorAdvice(RegistrationID);
         }
 
         public List<CommContracts.Therapy> getAllTherapy(int RegistrationID)
@@ -389,10 +389,10 @@ namespace CommServer
             return temp.ReadLeavedPatient(InPatientID);
         }
 
-        public List<CommContracts.Inspect> getAllInHospitalInspect(int InpatientID)
+        public List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID)
         {
-            BLL.Inspect temp = new BLL.Inspect();
-            return temp.getAllInHospitalInspect(InpatientID);
+            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
+            return temp.getAllInHospitalInspectDoctorAdvice(InpatientID);
         }
 
         public List<CommContracts.Therapy> getAllInHospitalTherapy(int InpatientID)

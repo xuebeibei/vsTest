@@ -144,8 +144,6 @@ namespace DAL
         public DbSet<MaterialItem> MaterialItems { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<TherapyDetail> TherapyDetails { get; set; }
-        public DbSet<Inspect> Inspects { get; set; }
-        public DbSet<InspectDetail> InspectDetails { get; set; }
         public DbSet<Responsibility> Responsibilities { get; set; }
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
         public DbSet<OtherService> OtherServices { get; set; }
@@ -174,6 +172,7 @@ namespace DAL
         public DbSet<MaterialDoctorAdvice> MaterialDoctorAdvices { get; set; }
 
         public DbSet<AssayDoctorAdvice> AssayDoctorAdvices { get; set; }
+        public DbSet<InspectDoctorAdvice> InspectDoctorAdvices { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -190,6 +189,8 @@ namespace DAL
             modelBuilder.Entity<MaterialDoctorAdviceDetail>().ToTable("tpt.MaterialDoctorAdviceDetail");
             modelBuilder.Entity<AssayDoctorAdvice>().ToTable("tpt.AssayDoctorAdvice");
             modelBuilder.Entity<AssayDoctorAdviceDetail>().ToTable("tpt.AssayDoctorAdviceDetail");
+            modelBuilder.Entity<InspectDoctorAdvice>().ToTable("tpt.InspectDoctorAdvice");
+            modelBuilder.Entity<InspectDoctorAdviceDetail>().ToTable("tpt.InspectDoctorAdviceDetail");
         }
     }
 
@@ -203,7 +204,6 @@ namespace DAL
             Registrations = new List<Registration>();
             Recipes = new List<Recipe>();
             Therapys = new List<Therapy>();
-            Inspects = new List<Inspect>();
             Inpatients = new List<Inpatient>();
             OtherServices = new List<OtherService>();
             MedicineInStores = new List<MedicineInStore>();
@@ -223,7 +223,6 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
-        public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
 
@@ -688,7 +687,7 @@ namespace DAL
     {
         public InspectItem()
         {
-            InspectDetails = new List<InspectDetail>();
+            InspectDoctorAdviceDetail = new List<InspectDoctorAdviceDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -700,7 +699,7 @@ namespace DAL
         public string Unit { get; set; }                        // 单位
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
-        public virtual ICollection<InspectDetail> InspectDetails { get; set; }
+        public virtual ICollection<InspectDoctorAdviceDetail> InspectDoctorAdviceDetail { get; set; }
     }
 
     // 检查部位
@@ -800,46 +799,6 @@ namespace DAL
         public virtual Therapy Therapy { get; set; }
 
         public virtual TherapyItem TherapyItem { get; set; }
-    }
-
-    // 检查申请单
-    public class Inspect
-    {
-        public Inspect()
-        {
-            InspectDetails = new List<InspectDetail>();
-        }
-
-        public int ID { get; set; }
-        public string NO { get; set; }
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
-
-        public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime? WriteTime { get; set; }                   // 开具时间
-        public int WriteUserID { get; set; }                      // 开具医生
-        public virtual User WriteUser { get; set; }               // 开具医生
-
-        public virtual ICollection<InspectDetail> InspectDetails { get; set; }
-    }
-
-    // 检查申请单明细
-    public class InspectDetail
-    {
-        public InspectDetail()
-        {
-
-        }
-
-        public int ID { get; set; }                               // ID
-        public int InspectItemID { get; set; }                    // 治疗ID
-        public int Num { get; set; }                              // 次数
-        public string Illustration { get; set; }                  // 说明
-
-        public int InspectID { get; set; }                          // 所属化验申请单ID
-        public virtual Inspect Inspect { get; set; }
-
-        public virtual InspectItem InspectItem { get; set; }
     }
 
     // 其他服务字典
@@ -1324,5 +1283,26 @@ namespace DAL
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
         public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
+    }
+
+
+    // 检验医嘱明细
+    public class InspectDoctorAdviceDetail : DoctorAdviceDetailBase
+    {
+        public int InspectID { get; set; }               // 检验项目
+        public int InspectDoctorAdviceID { get; set; }
+
+        public virtual InspectDoctorAdvice InspectDoctorAdvice { get; set; }
+        public virtual InspectItem Inspect { get; set; }
+    }
+
+    // 检验医嘱
+    public class InspectDoctorAdvice : DoctorAdviceBase
+    {
+        public InspectDoctorAdvice()
+        {
+            InspectDoctorAdviceDetails = new List<InspectDoctorAdviceDetail>();
+        }
+        public virtual ICollection<InspectDoctorAdviceDetail> InspectDoctorAdviceDetails { get; set; }
     }
 }

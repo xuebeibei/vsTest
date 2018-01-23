@@ -140,12 +140,12 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public List<CommContracts.Inspect> getAllInspect()
+        public List<CommContracts.InspectDoctorAdvice> getAllInspect()
         {
-            CommClient.Inspect inspect = new CommClient.Inspect();
+            CommClient.InspectDoctorAdvice inspect = new CommClient.InspectDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return inspect.getAllInspect(CurrentRegistrationID);
+                return inspect.getAllInspectDoctorAdvice(CurrentRegistrationID);
             }
             else
             {
@@ -204,9 +204,9 @@ namespace HISGUIDoctorLib.ViewModels
 
         public string newInspect()
         {
-            CommContracts.Inspect inspect = new CommContracts.Inspect();
+            CommContracts.InspectDoctorAdvice inspect = new CommContracts.InspectDoctorAdvice();
             CurrentInspect = inspect;
-            return CurrentInspect.ToTipString();
+            return CurrentInspect.ToString();
         }
 
         public string newMaterialDoctorAdvice()
@@ -293,9 +293,9 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public bool SaveInspect(List<CommContracts.InspectDetail> list)
+        public bool SaveInspect(List<CommContracts.InspectDoctorAdviceDetail> list)
         {
-            CommClient.Inspect therapy = new CommClient.Inspect();
+            CommClient.InspectDoctorAdvice therapy = new CommClient.InspectDoctorAdvice();
             CurrentInspect.NO = "001";// ?
             if (IsClinicOrInHospital)
                 CurrentInspect.RegistrationID = CurrentRegistrationID;
@@ -303,10 +303,10 @@ namespace HISGUIDoctorLib.ViewModels
                 CurrentInspect.InpatientID = CurrentInpatientID;
             CurrentInspect.SumOfMoney = 300;// ?
             CurrentInspect.WriteTime = DateTime.Now;
-            CurrentInspect.WriteUserID = 1;// ?
+            CurrentInspect.WriteDoctorUserID = 1;// ?
 
-            CurrentInspect.InspectDetails = list;
-            if (therapy.SaveInspect(CurrentInspect))
+            CurrentInspect.InspectDoctorAdviceDetails = list;
+            if (therapy.SaveInspectDoctorAdvice(CurrentInspect))
             {
                 return true;
             }
@@ -484,11 +484,11 @@ namespace HISGUIDoctorLib.ViewModels
         // 当前治疗单
         #region CurrentInspect
         public static readonly DependencyProperty CurrentInspectProperty = DependencyProperty.Register(
-            "CurrentInspect", typeof(CommContracts.Inspect), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentInspect", typeof(CommContracts.InspectDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Inspect CurrentInspect
+        public CommContracts.InspectDoctorAdvice CurrentInspect
         {
-            get { return (CommContracts.Inspect)GetValue(CurrentInspectProperty); }
+            get { return (CommContracts.InspectDoctorAdvice)GetValue(CurrentInspectProperty); }
             set { SetValue(CurrentInspectProperty, value); }
         }
         #endregion
