@@ -86,7 +86,7 @@ namespace BLL
                 }
                 catch (Exception ex)
                 {
-
+                    return null;
                 }
                 return myList;
             }
@@ -160,7 +160,7 @@ namespace BLL
                 }
                 catch (Exception ex)
                 {
-
+                    return "";
                 }
 
                 if (nAll > 0)

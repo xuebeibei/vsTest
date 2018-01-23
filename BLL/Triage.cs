@@ -61,6 +61,7 @@ namespace BLL
                 }
                 catch (Exception ex)
                 {
+                    return false;
                 }
             }
 
