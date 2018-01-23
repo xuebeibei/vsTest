@@ -175,6 +175,8 @@ namespace DAL
         public DbSet<MedicineDoctorAdvice> MedicineDoctorAdvices { get; set; }
         public DbSet<MaterialDoctorAdvice> MaterialDoctorAdvices { get; set; }
 
+        public DbSet<AssayDoctorAdvice> AssayDoctorAdvices { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -188,6 +190,8 @@ namespace DAL
 
             modelBuilder.Entity<MaterialDoctorAdvice>().ToTable("tpt.MaterialDoctorAdvice");
             modelBuilder.Entity<MaterialDoctorAdviceDetail>().ToTable("tpt.MaterialDoctorAdviceDetail");
+            modelBuilder.Entity<AssayDoctorAdvice>().ToTable("tpt.AssayDoctorAdvice");
+            modelBuilder.Entity<AssayDoctorAdviceDetail>().ToTable("AssayDoctorAdviceDetail");
         }
     }
 
@@ -654,6 +658,7 @@ namespace DAL
         public AssayItem()
         {
             AssayDetails = new List<AssayDetail>();
+            AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -667,6 +672,7 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
         public virtual ICollection<AssayDetail> AssayDetails { get; set; }
+        public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
     }
 
     // 化验标本
@@ -1347,4 +1353,24 @@ namespace DAL
     }
 
 
+    // 化验医嘱明细
+    public class AssayDoctorAdviceDetail : DoctorAdviceDetailBase
+    {
+        public int AssayID { get; set; }               // 化验项目
+        public int AssayDoctorAdviceID { get; set; }
+
+        public virtual AssayDoctorAdvice AssayDoctorAdvice { get; set; }
+        public virtual AssayItem Assay { get; set; }
+    }
+
+    // 化验医嘱
+    public class AssayDoctorAdvice : DoctorAdviceBase
+    {
+        public AssayDoctorAdvice()
+        {
+            AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
+        }
+        public string ReCheckName { get; set; }
+        public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
+    }
 }
