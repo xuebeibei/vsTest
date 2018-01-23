@@ -144,8 +144,6 @@ namespace DAL
         public DbSet<MaterialItem> MaterialItems { get; set; }
         public DbSet<Therapy> Therapies { get; set; }
         public DbSet<TherapyDetail> TherapyDetails { get; set; }
-        public DbSet<Assay> Assays { get; set; }
-        public DbSet<AssayDetail> AssayDetails { get; set; }
         public DbSet<Inspect> Inspects { get; set; }
         public DbSet<InspectDetail> InspectDetails { get; set; }
         public DbSet<Responsibility> Responsibilities { get; set; }
@@ -191,7 +189,7 @@ namespace DAL
             modelBuilder.Entity<MaterialDoctorAdvice>().ToTable("tpt.MaterialDoctorAdvice");
             modelBuilder.Entity<MaterialDoctorAdviceDetail>().ToTable("tpt.MaterialDoctorAdviceDetail");
             modelBuilder.Entity<AssayDoctorAdvice>().ToTable("tpt.AssayDoctorAdvice");
-            modelBuilder.Entity<AssayDoctorAdviceDetail>().ToTable("AssayDoctorAdviceDetail");
+            modelBuilder.Entity<AssayDoctorAdviceDetail>().ToTable("tpt.AssayDoctorAdviceDetail");
         }
     }
 
@@ -205,7 +203,6 @@ namespace DAL
             Registrations = new List<Registration>();
             Recipes = new List<Recipe>();
             Therapys = new List<Therapy>();
-            Assays = new List<Assay>();
             Inspects = new List<Inspect>();
             Inpatients = new List<Inpatient>();
             OtherServices = new List<OtherService>();
@@ -226,7 +223,6 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Therapy> Therapys { get; set; }           // 所有开具的治疗单
-        public virtual ICollection<Assay> Assays { get; set; }               // 所有开具的化验申请单
         public virtual ICollection<Inspect> Inspects { get; set; }           // 所有开具的检查申请单 
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
         public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
@@ -657,7 +653,6 @@ namespace DAL
     {
         public AssayItem()
         {
-            AssayDetails = new List<AssayDetail>();
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
 
@@ -671,7 +666,6 @@ namespace DAL
 
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
-        public virtual ICollection<AssayDetail> AssayDetails { get; set; }
         public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
     }
 
@@ -806,46 +800,6 @@ namespace DAL
         public virtual Therapy Therapy { get; set; }
 
         public virtual TherapyItem TherapyItem { get; set; }
-    }
-
-    // 化验申请单
-    public class Assay
-    {
-        public Assay()
-        {
-            AssayDetails = new List<AssayDetail>();
-        }
-
-        public int ID { get; set; }
-        public string NO { get; set; }
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
-
-        public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime? WriteTime { get; set; }                   // 开具时间
-        public int WriteUserID { get; set; }                      // 开具医生
-        public virtual User WriteUser { get; set; }               // 开具医生
-
-        public virtual ICollection<AssayDetail> AssayDetails { get; set; }
-    }
-
-    // 化验申请单明细
-    public class AssayDetail
-    {
-        public AssayDetail()
-        {
-
-        }
-
-        public int ID { get; set; }                               // ID
-        public int AssayItemID { get; set; }                      // 治疗ID
-        public int Num { get; set; }                              // 次数
-        public string Illustration { get; set; }                  // 说明
-
-        public int AssayID { get; set; }                          // 所属化验申请单ID
-        public virtual Assay Assay { get; set; }
-
-        public virtual AssayItem AssayItem { get; set; }
     }
 
     // 检查申请单
