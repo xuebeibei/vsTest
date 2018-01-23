@@ -83,14 +83,6 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
-            <TabItem Header="数据分析">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="系统设置">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                </ScrollViewer>
-            </TabItem>
         </TabControl>
     </Grid>
 </HISGUICore:HISGUIViewBase>

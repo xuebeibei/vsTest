@@ -43,10 +43,10 @@ namespace BLL
                     balance += prePayBalance;
                 }
 
-                var temp1 = ctx.Recipes.Where(x => x.PatientID == PatientID).Count();
+                var temp1 = ctx.MedicineDoctorAdvices.Where(x => x.PatientID == PatientID).Count();
                 if(temp1 > 0)
                 {
-                    var recipeCharge = ctx.RecipeChargeBills.Where(s => (s.Recipe != null && s.Recipe.PatientID == PatientID)).Select(o => o.SumOfMoney).Sum();
+                    var recipeCharge = ctx.RecipeChargeBills.Where(s => (s.MedicineDoctorAdvice != null && s.MedicineDoctorAdvice.PatientID == PatientID)).Select(o => o.SumOfMoney).Sum();
                     balance -= recipeCharge;
                 }
                 

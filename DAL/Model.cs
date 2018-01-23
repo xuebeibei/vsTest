@@ -131,8 +131,6 @@ namespace DAL
         public DbSet<Job> Jobs { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Triage> Triages { get; set; }
-        public DbSet<Recipe> Recipes { get; set; }
-        public DbSet<RecipeDetail> RecipeDetails { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
         public DbSet<Inpatient> Inpatients { get; set; }
@@ -207,7 +205,6 @@ namespace DAL
             this.Password = "";
             this.Status = LoginStatus.unknow;
             Registrations = new List<Registration>();
-            Recipes = new List<Recipe>();
             Inpatients = new List<Inpatient>();
             MedicineInStores = new List<MedicineInStore>();
             PrePays = new List<PrePay>();
@@ -224,7 +221,6 @@ namespace DAL
         public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
-        public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
@@ -439,66 +435,6 @@ namespace DAL
         全部收费
     }
 
-    // 处方单
-    public class Recipe
-    {
-
-        public Recipe()
-        {
-            this.RecipeTypeEnum = RecipeTypeEnum.PuTong;
-            this.ChargeStatusEnum = ChargeStatusEnum.未收费;
-            RecipeDetails = new List<RecipeDetail>();
-            RecipeChargeBills = new List<RecipeChargeBill>();
-        }
-
-        public int ID { get; set; }                               // 处方ID
-        public string No { get; set; }                            // 处方编号
-        public RecipeTypeEnum RecipeTypeEnum { get; set; }        // 处方类型
-        public DoctorAdviceContentEnum RecipeContentEnum { get; set; }  // 处方内容类别：西/ 成药、中药
-        public string MedicalInstitution { get; set; }            // 医疗机构名称
-        public int ChargeTypeEnum { get; set; }                   // 费别,*是否存在在门诊和住院中，待定
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
-        public string ClinicalDiagnosis { get; set; }             // 临床诊断
-        public string PatientsIDCardNum { get; set; }             // 患者身份证    -- 麻醉和精一处方
-        public string ProxyIDCardNum { get; set; }                // 代办人身份证  -- 麻醉和精一处方
-        public string ProxyName { get; set; }                     // 代办人姓名    -- 麻醉和精一处方
-
-        public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime? WriteTime { get; set; }                   // 开具时间
-        public int WriteUserID { get; set; }                      // 开具医生
-        public ChargeStatusEnum ChargeStatusEnum { get; set; }
-
-        public int PatientID { get; set; }                        // 患者ID
-
-        public virtual User WriteUser { get; set; }               // 开具医生
-        public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
-        public virtual ICollection<RecipeChargeBill> RecipeChargeBills { get; set; }
-    }
-
-    // 处方单明细
-    public class RecipeDetail
-    {
-        public RecipeDetail()
-        {
-        }
-
-        public int ID { get; set; }                               // 处方正文ID
-        public string GroupNum { set; get; }                      // 组别
-        public int MedicineID { get; set; }                       // 药品ID
-        public int SingleDose { get; set; }                       // 单次剂量
-        public UsageEnum Usage { get; set; }                      // 用法
-        public DDDSEnum DDDS { get; set; }                        // 使用频率
-        public int DaysNum { get; set; }                          // 天数
-        public int IntegralDose { get; set; }                     // 总量
-        public string Illustration { get; set; }                  // 说明
-
-        public int RecipeID { get; set; }                         // 所属处方ID
-        public virtual Recipe Recipe { get; set; }
-
-        public virtual Medicine Medicine { get; set; }
-    }
-
     public enum DosageFormEnum
     {
         片剂,
@@ -511,7 +447,6 @@ namespace DAL
     {
         public Medicine()
         {
-            RecipeDetails = new List<RecipeDetail>();
             MedicineInStoreDetails = new List<MedicineInStoreDetail>();
             StoreRoomMedicineNums = new List<StoreRoomMedicineNum>();
             MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
@@ -537,7 +472,6 @@ namespace DAL
         [DecimalPrecision(18, 4)]
         public decimal SellPrice { get; set; }                      // 零售价
 
-        public virtual ICollection<RecipeDetail> RecipeDetails { get; set; }
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
@@ -1033,10 +967,10 @@ namespace DAL
         public string NO { get; set; }
         public decimal SumOfMoney { get; set; }
         public DateTime? ChargeTime { get; set; }
-        public int RecipeID { get; set; }
+        public int MedicineDoctorAdviceID { get; set; }
         public bool Block { get; set; }
 
-        public virtual Recipe Recipe { get; set; }
+        public virtual MedicineDoctorAdvice MedicineDoctorAdvice { get; set; }
         public virtual ICollection<RecipeChargeDetail> RecipeChargeDetails { get; set; }
     }
 

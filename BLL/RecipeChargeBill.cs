@@ -51,7 +51,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.RecipeChargeBills
-                            where a.RecipeID == RecipeID
+                            where a.MedicineDoctorAdviceID == RecipeID
                             select a;
                 foreach (DAL.RecipeChargeBill ass in query)
                 {
