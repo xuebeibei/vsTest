@@ -111,9 +111,12 @@ namespace HISGUISetLib.Views
                 medicine.Valuable = this.Valuable.IsChecked.Value;
                 medicine.EssentialDrugs = this.EssentialDrugs.IsChecked.Value;
                 medicine.YiBaoEnum = (CommContracts.YiBaoEnum)this.YiBaoEnum.SelectedItem;
-                medicine.MaxNum = int.Parse(this.MaxNum.Text);
-                medicine.MinNum = int.Parse(this.MinNum.Text);
-                medicine.SellPrice = decimal.Parse(this.SellPrice.Text);
+                if (!string.IsNullOrEmpty(this.MaxNum.Text.Trim()))
+                    medicine.MaxNum = int.Parse(this.MaxNum.Text);
+                if (!string.IsNullOrEmpty(this.MinNum.Text.Trim()))
+                    medicine.MinNum = int.Parse(this.MinNum.Text);
+                if (!string.IsNullOrEmpty(this.SellPrice.Text.Trim()))
+                    medicine.SellPrice = decimal.Parse(this.SellPrice.Text);
                 CommClient.Medicine myd = new CommClient.Medicine();
                 if (myd.SaveMedicine(medicine))
                 {
