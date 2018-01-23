@@ -144,9 +144,6 @@ namespace DAL
         public DbSet<MaterialItem> MaterialItems { get; set; }
         public DbSet<Responsibility> Responsibilities { get; set; }
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
-        public DbSet<OtherService> OtherServices { get; set; }
-        public DbSet<OtherServiceDetail> OtherServiceDetails { get; set; }
-
         public DbSet<MedicineInStore> MedicineInStores { get; set; }
         public DbSet<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
         public DbSet<MedicineOutStore> MedicineOutStores { get; set; }
@@ -174,6 +171,8 @@ namespace DAL
 
         public DbSet<TherapyDoctorAdvice> TherapyDoctorAdvices { get; set; }
 
+        public DbSet<OtherServiceDoctorAdvice> OtherServiceDoctorAdvices { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -194,6 +193,9 @@ namespace DAL
 
             modelBuilder.Entity<TherapyDoctorAdvice>().ToTable("tpt.TherapyDoctorAdvice");
             modelBuilder.Entity<TherapyDoctorAdviceDetail>().ToTable("tpt.TherapyDoctorAdviceDetail");
+
+            modelBuilder.Entity<OtherServiceDoctorAdvice>().ToTable("tpt.OtherServiceDoctorAdvice");
+            modelBuilder.Entity<OtherServiceDoctorAdviceDetail>().ToTable("tpt.OtherServiceDoctorAdviceDetail");
         }
     }
 
@@ -207,7 +209,6 @@ namespace DAL
             Registrations = new List<Registration>();
             Recipes = new List<Recipe>();
             Inpatients = new List<Inpatient>();
-            OtherServices = new List<OtherService>();
             MedicineInStores = new List<MedicineInStore>();
             PrePays = new List<PrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
@@ -225,7 +226,6 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Recipe> Recipes { get; set; }             // 所有开具的处方
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
-        public virtual ICollection<OtherService> OtherServices { get; set; } // 所有其他服务单
 
         public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
         public virtual ICollection<PrePay> PrePays { get; set; }
@@ -767,7 +767,7 @@ namespace DAL
     {
         public OtherServiceItem()
         {
-            OtherServiceDetails = new List<OtherServiceDetail>();
+            OtherServiceDoctorAdviceDetails = new List<OtherServiceDoctorAdviceDetail>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -778,47 +778,7 @@ namespace DAL
         public decimal Price { get; set; }                           // 价格
         public string Unit { get; set; }                            // 单位
 
-        public virtual ICollection<OtherServiceDetail> OtherServiceDetails { get; set; }
-    }
-
-    // 其他服务单
-    public class OtherService
-    {
-        public OtherService()
-        {
-            OtherServiceDetails = new List<OtherServiceDetail>();
-        }
-
-        public int ID { get; set; }
-        public string NO { get; set; }
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public int InpatientID { get; set; }                      // 住院ID
-
-        public decimal SumOfMoney { get; set; }                    // 金额
-        public DateTime? WriteTime { get; set; }                   // 开具时间
-        public int WriteUserID { get; set; }                      // 开具医生
-        public virtual User WriteUser { get; set; }               // 开具医生
-
-        public virtual ICollection<OtherServiceDetail> OtherServiceDetails { get; set; }
-    }
-
-    // 其他服务单明细
-    public class OtherServiceDetail
-    {
-        public OtherServiceDetail()
-        {
-
-        }
-
-        public int ID { get; set; }                                      // ID
-        public int OtherServiceItemID { get; set; }                      // 其他服务ID
-        public int Num { get; set; }                                     // 次数
-        public string Illustration { get; set; }                         // 说明
-
-        public int OtherServiceID { get; set; }                          // 所属其他服务单ID
-        public virtual OtherService OtherService { get; set; }
-
-        public virtual OtherServiceItem OtherServiceItem { get; set; }
+        public virtual ICollection<OtherServiceDoctorAdviceDetail> OtherServiceDoctorAdviceDetails { get; set; }
     }
 
     public enum InStoreEnum
@@ -1285,5 +1245,25 @@ namespace DAL
             TherapyDoctorAdviceDetails = new List<TherapyDoctorAdviceDetail>();
         }
         public virtual ICollection<TherapyDoctorAdviceDetail> TherapyDoctorAdviceDetails { get; set; }
+    }
+
+    // 其他医嘱明细
+    public class OtherServiceDoctorAdviceDetail : DoctorAdviceDetailBase
+    {
+        public int OtherServiceID { get; set; }               // 其他项目
+        public int OtherServiceDoctorAdviceID { get; set; }
+
+        public virtual OtherServiceDoctorAdvice OtherServiceDoctorAdvice { get; set; }
+        public virtual OtherServiceItem OtherService { get; set; }
+    }
+
+    // 其他医嘱
+    public class OtherServiceDoctorAdvice : DoctorAdviceBase
+    {
+        public OtherServiceDoctorAdvice()
+        {
+            OtherServiceDoctorAdviceDetails = new List<OtherServiceDoctorAdviceDetail>();
+        }
+        public virtual ICollection<OtherServiceDoctorAdviceDetail> OtherServiceDoctorAdviceDetails { get; set; }
     }
 }

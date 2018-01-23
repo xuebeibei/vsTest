@@ -10,33 +10,33 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class OtherService
+    public class OtherServiceDoctorAdvice
     {
         private ILoginService client;
 
-        public OtherService()
+        public OtherServiceDoctorAdvice()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public CommContracts.OtherService GetOtherService(int Id)
+        public CommContracts.OtherServiceDoctorAdvice GetOtherService(int Id)
         {
             return client.GetOtherService(Id);
         }
 
-        public bool SaveOtherService(CommContracts.OtherService otherService)
+        public bool SaveOtherService(CommContracts.OtherServiceDoctorAdvice otherService)
         {
             return client.SaveOtherService(otherService);
         }
 
-        public List<CommContracts.OtherService> getAllOtherService(int RegistrationID)
+        public List<CommContracts.OtherServiceDoctorAdvice> getAllOtherService(int RegistrationID)
         {
             return client.getAllOtherService(RegistrationID);
         }
 
-        public List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID)
+        public List<CommContracts.OtherServiceDoctorAdvice> getAllInHospitalOtherService(int InpatientID)
         {
             return client.getAllInHospitalOtherService(InpatientID);
         }

@@ -59,7 +59,7 @@
     <Compile Include="MedicineDoctorAdvice.cs" />
     <Compile Include="MedicineInStore.cs" />
     <Compile Include="MedicineOutStore.cs" />
-    <Compile Include="OtherService.cs" />
+    <Compile Include="OtherServiceDoctorAdvice.cs" />
     <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="PrePay.cs" />

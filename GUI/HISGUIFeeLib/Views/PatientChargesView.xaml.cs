@@ -158,7 +158,7 @@ namespace HISGUIFeeLib.Views
         private void GetAllQiTa()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            List<CommContracts.OtherService> list = vm?.GetAllQiTa();
+            List<CommContracts.OtherServiceDoctorAdvice> list = vm?.GetAllQiTa();
             if (list != null)
             {
                 if (list.Count > 0)
@@ -315,7 +315,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllQiTaList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var temp = this.AllQiTaList.SelectedItem as CommContracts.OtherService;
+            var temp = this.AllQiTaList.SelectedItem as CommContracts.OtherServiceDoctorAdvice;
         }
     }
 }

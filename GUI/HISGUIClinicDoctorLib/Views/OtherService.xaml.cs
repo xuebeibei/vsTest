@@ -76,13 +76,13 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
-            List<CommContracts.OtherServiceDetail> list = new List<CommContracts.OtherServiceDetail>();
+            List<CommContracts.OtherServiceDoctorAdviceDetail> list = new List<CommContracts.OtherServiceDoctorAdviceDetail>();
             foreach (var tem in listDetail)
             {
-                CommContracts.OtherServiceDetail otherServiceDetail = new CommContracts.OtherServiceDetail();
-                otherServiceDetail.OtherServiceItemID = tem.ID;
-                otherServiceDetail.Num = tem.SingleDose;
-                otherServiceDetail.Illustration = tem.Illustration;
+                CommContracts.OtherServiceDoctorAdviceDetail otherServiceDetail = new CommContracts.OtherServiceDoctorAdviceDetail();
+                otherServiceDetail.OtherServiceID = tem.ID;
+                otherServiceDetail.AllNum = tem.SingleDose;
+                otherServiceDetail.Remarks = tem.Illustration;
                 list.Add(otherServiceDetail);
             }
 
@@ -112,22 +112,22 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void ShowDetails(CommContracts.OtherService otherService)
+        private void ShowDetails(CommContracts.OtherServiceDoctorAdvice otherService)
         {
             if (otherService == null)
                 return;
             List<MyDetail> list = new List<MyDetail>();
-            foreach (var tem in otherService.OtherServiceDetails)
+            foreach (var tem in otherService.OtherServiceDoctorAdviceDetails)
             {
                 MyDetail assayDetail = new MyDetail();
                 assayDetail.ID = tem.OtherServiceID;
-                assayDetail.Name = tem.OtherServiceItem.Name;
-                assayDetail.SingleDose = tem.Num;
-                assayDetail.Illustration = tem.Illustration;
+                assayDetail.Name = tem.OtherService.Name;
+                assayDetail.SingleDose = tem.AllNum;
+                assayDetail.Illustration = tem.Remarks;
                 list.Add(assayDetail);
             }
 
-            this.OtherServiceMsg.Text = otherService.ToTipString();
+            this.OtherServiceMsg.Text = otherService.ToString();
             this.myTableEdit.SetAllDetails(list);
             this.myTableEdit.IsEnabled = false;
         }
@@ -144,7 +144,7 @@ namespace HISGUIDoctorLib.Views
 
         private void OtherServiceList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            CommContracts.OtherService otherService = OtherServiceList.SelectedItem as CommContracts.OtherService;
+            CommContracts.OtherServiceDoctorAdvice otherService = OtherServiceList.SelectedItem as CommContracts.OtherServiceDoctorAdvice;
             ShowDetails(otherService);
 
             this.SaveBtn.IsEnabled = false;

@@ -262,16 +262,16 @@ namespace CommContracts
 
 
         [OperationContract]
-        CommContracts.OtherService GetOtherService(int Id);
+        CommContracts.OtherServiceDoctorAdvice GetOtherService(int Id);
 
         [OperationContract]
-        bool SaveOtherService(CommContracts.OtherService otherService);
+        bool SaveOtherService(CommContracts.OtherServiceDoctorAdvice otherService);
 
         [OperationContract]
-        List<CommContracts.OtherService> getAllOtherService(int RegistrationID);
+        List<CommContracts.OtherServiceDoctorAdvice> getAllOtherService(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID);
+        List<CommContracts.OtherServiceDoctorAdvice> getAllInHospitalOtherService(int InpatientID);
 
         [OperationContract]
         List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName);

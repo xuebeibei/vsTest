@@ -72,8 +72,8 @@
     <Compile Include="MedicineInStoreDetail.cs" />
     <Compile Include="MedicineOutStore.cs" />
     <Compile Include="MedicineOutStoreDetail.cs" />
-    <Compile Include="OtherService.cs" />
-    <Compile Include="OtherServiceDetail.cs" />
+    <Compile Include="OtherServiceDoctorAdvice.cs" />
+    <Compile Include="OtherServiceDoctorAdviceDetail.cs" />
     <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

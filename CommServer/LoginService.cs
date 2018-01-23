@@ -450,27 +450,27 @@ namespace CommServer
             return temp.getAllInHospitalMaterialDoctorAdvice(InpatientID);
         }
 
-        public CommContracts.OtherService GetOtherService(int Id)
+        public CommContracts.OtherServiceDoctorAdvice GetOtherService(int Id)
         {
-            BLL.OtherService temp = new BLL.OtherService();
+            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.GetOtherService(Id);
         }
 
-        public bool SaveOtherService(CommContracts.OtherService otherService)
+        public bool SaveOtherService(CommContracts.OtherServiceDoctorAdvice otherService)
         {
-            BLL.OtherService temp = new BLL.OtherService();
+            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.SaveOtherService(otherService);
         }
 
-        public List<CommContracts.OtherService> getAllOtherService(int RegistrationID)
+        public List<CommContracts.OtherServiceDoctorAdvice> getAllOtherService(int RegistrationID)
         {
-            BLL.OtherService temp = new BLL.OtherService();
+            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.getAllOtherService(RegistrationID);
         }
 
-        public List<CommContracts.OtherService> getAllInHospitalOtherService(int InpatientID)
+        public List<CommContracts.OtherServiceDoctorAdvice> getAllInHospitalOtherService(int InpatientID)
         {
-            BLL.OtherService temp = new BLL.OtherService();
+            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.getAllInHospitalOtherService(InpatientID);
         }
 

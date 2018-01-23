@@ -150,11 +150,11 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到当前门诊患者的所其他服务单
-        public List<CommContracts.OtherService> GetAllQiTa()
+        public List<CommContracts.OtherServiceDoctorAdvice> GetAllQiTa()
         {
-            CommClient.OtherService otherService = new CommClient.OtherService();   // 其他
+            CommClient.OtherServiceDoctorAdvice otherService = new CommClient.OtherServiceDoctorAdvice();   // 其他
 
-            List<CommContracts.OtherService> list = new List<CommContracts.OtherService>();
+            List<CommContracts.OtherServiceDoctorAdvice> list = new List<CommContracts.OtherServiceDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
                 list = otherService.getAllOtherService(this.CurrentRegistrationID);

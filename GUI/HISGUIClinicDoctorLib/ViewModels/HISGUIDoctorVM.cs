@@ -166,9 +166,9 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public List<CommContracts.OtherService> getAllOtherService()
+        public List<CommContracts.OtherServiceDoctorAdvice> getAllOtherService()
         {
-            CommClient.OtherService otherService = new CommClient.OtherService();
+            CommClient.OtherServiceDoctorAdvice otherService = new CommClient.OtherServiceDoctorAdvice();
             if (IsClinicOrInHospital)
             {
                 return otherService.getAllOtherService(CurrentRegistrationID);
@@ -218,9 +218,9 @@ namespace HISGUIDoctorLib.ViewModels
 
         public string newOtherService()
         {
-            CommContracts.OtherService otherService = new CommContracts.OtherService();
+            CommContracts.OtherServiceDoctorAdvice otherService = new CommContracts.OtherServiceDoctorAdvice();
             CurrentOtherService = otherService;
-            return CurrentOtherService.ToTipString();
+            return CurrentOtherService.ToString();
         }
 
         public bool SaveMedicineDoctorAdvice(CommContracts.DoctorAdviceContentEnum recipeContentEnum, List<CommContracts.MedicineDoctorAdviceDetail> list)
@@ -340,9 +340,9 @@ namespace HISGUIDoctorLib.ViewModels
             }
         }
 
-        public bool SaveOtherService(List<CommContracts.OtherServiceDetail> list)
+        public bool SaveOtherService(List<CommContracts.OtherServiceDoctorAdviceDetail> list)
         {
-            CommClient.OtherService otherService = new CommClient.OtherService();
+            CommClient.OtherServiceDoctorAdvice otherService = new CommClient.OtherServiceDoctorAdvice();
             CurrentOtherService.NO = "001";
             if (IsClinicOrInHospital)
                 CurrentOtherService.RegistrationID = CurrentRegistrationID;
@@ -350,9 +350,9 @@ namespace HISGUIDoctorLib.ViewModels
                 CurrentOtherService.InpatientID = CurrentInpatientID;
             CurrentOtherService.SumOfMoney = 300;
             CurrentOtherService.WriteTime = DateTime.Now;
-            CurrentOtherService.WriteUserID = 1;
+            CurrentOtherService.WriteDoctorUserID = 1;
 
-            CurrentOtherService.OtherServiceDetails = list;
+            CurrentOtherService.OtherServiceDoctorAdviceDetails = list;
             if (otherService.SaveOtherService(CurrentOtherService))
             {
                 return true;
@@ -508,11 +508,11 @@ namespace HISGUIDoctorLib.ViewModels
         // 当前其他服务单
         #region CurrentOtherService
         public static readonly DependencyProperty CurrentOtherServiceProperty = DependencyProperty.Register(
-            "CurrentOtherService", typeof(CommContracts.OtherService), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentOtherService", typeof(CommContracts.OtherServiceDoctorAdvice), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.OtherService CurrentOtherService
+        public CommContracts.OtherServiceDoctorAdvice CurrentOtherService
         {
-            get { return (CommContracts.OtherService)GetValue(CurrentOtherServiceProperty); }
+            get { return (CommContracts.OtherServiceDoctorAdvice)GetValue(CurrentOtherServiceProperty); }
             set { SetValue(CurrentOtherServiceProperty, value); }
         }
         #endregion
