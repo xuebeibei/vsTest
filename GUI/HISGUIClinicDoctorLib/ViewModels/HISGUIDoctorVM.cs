@@ -62,32 +62,6 @@ namespace HISGUIDoctorLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "ReceivingNewPatientsView");
         }
 
-        //public List<CommContracts.Recipe> getAllXiCheng()
-        //{
-        //    CommClient.Recipe recipe = new CommClient.Recipe();
-        //    if (IsClinicOrInHospital)
-        //    {
-        //        return recipe.getAllXiCheng(CurrentRegistrationID);
-        //    }
-        //    else
-        //    {
-        //        return recipe.getAllInHospitalXiCheng(CurrentInpatientID);
-        //    }
-        //}
-
-        //public List<CommContracts.Recipe> getAllZhong()
-        //{
-        //    CommClient.Recipe recipe = new CommClient.Recipe();
-        //    if (IsClinicOrInHospital)
-        //    {
-        //        return recipe.getAllZhong(CurrentRegistrationID);
-        //    }
-        //    else
-        //    {
-        //        return recipe.getAllInHospitalZhong(CurrentInpatientID);
-        //    }
-        //}
-
         public List<CommContracts.MedicineDoctorAdvice> getAllXiCheng()
         {
             CommClient.MedicineDoctorAdvice MedicineDoctorAdvice = new CommClient.MedicineDoctorAdvice();
@@ -178,8 +152,6 @@ namespace HISGUIDoctorLib.ViewModels
                 return otherService.getAllInHospitalOtherService(CurrentInpatientID);
             }
         }
-
-
 
         public string NewMedicineDoctorAdvice()
         {
