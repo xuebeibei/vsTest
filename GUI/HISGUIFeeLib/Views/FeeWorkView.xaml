@@ -27,38 +27,14 @@
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
+
+            <TabItem Header="挂号管理">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:RegistrationView x:Name="MyRegistrationView"></local:RegistrationView>
+                </ScrollViewer>
+            </TabItem>
             <TabItem Header="收费管理">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <!--<Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton x:Name="ClinicPatient" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="ClinicPatient_Click">门诊患者</RadioButton>
-                                <RadioButton x:Name="InHospitalPatient" Margin="5" VerticalContentAlignment="Center" Click="InHospitalPatient_Click">住院患者</RadioButton>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal">
-                                <RadioButton x:Name="NotPay" Margin="5" IsChecked="True" VerticalContentAlignment="Center" Click="NotPay_Click">未收费</RadioButton>
-                                <RadioButton x:Name="HavePay" Margin="5" VerticalContentAlignment="Center" Click="HavePay_Click">已收费</RadioButton>
-                            </StackPanel>
-                            <DatePicker x:Name="StartChargeDate" Margin="5"></DatePicker>
-                            <Label Margin="5">-</Label>
-                            <DatePicker x:Name="EndChargeDate" Margin="5"></DatePicker>
-                            <TextBox x:Name="FindChargeTextEdti" Width="100" Margin="5"></TextBox>
-                            <Button x:Name="FindChargeBtn" Margin="5" Click="FindChargeBtn_Click">查找</Button>
-                        </StackPanel>
-                        <ListBox x:Name="AllChargeBillList" Grid.Row="1"  Margin="5" MouseDoubleClick="AllChargeBillList_MouseDoubleClick">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="4"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
-                        <Controls:PageFind Grid.Row="2"  Margin="5"></Controls:PageFind>
-                    </Grid>-->
                     <local:ChargeView x:Name="MyChargeView"></local:ChargeView>
                 </ScrollViewer>
             </TabItem>

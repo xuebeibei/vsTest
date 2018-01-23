@@ -30,7 +30,7 @@ namespace HISGUISetLib.Views
 
             GenderCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
             GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
-            DeparmentCombo.ItemsSource = myd.getALLDepartment();
+            DeparmentCombo.ItemsSource = myd.getALLDepartment("");
             JobCombo.ItemsSource = myd1.GetAllJob();
             bIsEdit = false;
             if (employee != null)

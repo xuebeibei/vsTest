@@ -144,7 +144,7 @@ namespace HISGUIRegistrationLib.ViewModels
         public List<CommContracts.Department> getDepts()
         {
             CommClient.Department myd = new CommClient.Department();
-            List<CommContracts.Department> data = myd.getALLDepartment();
+            List<CommContracts.Department> data = myd.getALLDepartment(CommContracts.DepartmentEnum.临床科室);
 
             return data;
         }

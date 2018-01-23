@@ -244,13 +244,21 @@ namespace HISGUIFeeLib.ViewModels
             return myd.SavePrePay(prePay);
         }
 
-
         // 删除缴费单
         public bool DeletePrePay(int PrePayID)
         {
             CommClient.PrePay myd = new CommClient.PrePay();
             return myd.DeletePrePay(PrePayID);
         }
+
+        // 得到所有临床科室
+        public List<CommContracts.Department> getAllDepartment(CommContracts.DepartmentEnum departmentEnum = CommContracts.DepartmentEnum.临床科室)
+        {
+            CommClient.Department myd = new CommClient.Department();
+            return myd.getALLDepartment(departmentEnum);
+        }
+
+
         // 当前住院患者的住院号ID
         #region CurrentInHospitalID
         public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(

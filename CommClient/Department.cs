@@ -26,10 +26,16 @@ namespace CommClient
             return client.getAllDepartmentNum();
         }
         
-        public List<CommContracts.Department> getALLDepartment(string strName = "")
+        public List<CommContracts.Department> getALLDepartment(CommContracts.DepartmentEnum departmentEnum)
         {
-            return client.getALLDepartment(strName);
+            return client.getALLDepartment(departmentEnum);
         }
+
+        public List<CommContracts.Department> getALLDepartment(string strName)
+        {
+            return client.getALLDepartmentByName(strName);
+        }
+
 
         public bool SaveDepartment(CommContracts.Department department)
         {

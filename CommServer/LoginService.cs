@@ -62,11 +62,18 @@ namespace CommServer
             return tempDepart.getAllDepartmentNum();
         }
 
-        public List<CommContracts.Department> getALLDepartment(string strName = "")
+        public List<CommContracts.Department> getALLDepartment(CommContracts.DepartmentEnum departmentEnum)
+        {
+            BLL.Department tempDepart = new BLL.Department();
+            return tempDepart.getALLDepartment(departmentEnum);
+        }
+
+        public List<CommContracts.Department> getALLDepartmentByName(string strName = "")
         {
             BLL.Department tempDepart = new BLL.Department();
             return tempDepart.getALLDepartment(strName);
         }
+
         public bool SaveDepartment(CommContracts.Department department)
         {
             BLL.Department temp = new BLL.Department();

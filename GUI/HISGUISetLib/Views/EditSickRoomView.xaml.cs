@@ -29,7 +29,7 @@ namespace HISGUISetLib.Views
             SickRoomCombo.SelectedItem = CommContracts.SickRoomEnum.普通病房;
 
             CommClient.Department myd = new CommClient.Department();
-            DepartmentCombo.ItemsSource = myd.getALLDepartment();
+            DepartmentCombo.ItemsSource = myd.getALLDepartment("");
 
             bIsEdit = false;
             if (sickroom != null)

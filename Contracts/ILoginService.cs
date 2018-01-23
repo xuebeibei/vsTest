@@ -29,7 +29,10 @@ namespace CommContracts
         int getAllDepartmentNum();
 
         [OperationContract]
-        List<CommContracts.Department> getALLDepartment(string strName = "");
+        List<CommContracts.Department> getALLDepartment(CommContracts.DepartmentEnum departmentEnum);
+
+        [OperationContract]
+        List<CommContracts.Department> getALLDepartmentByName(string strName = "");
 
         [OperationContract]
         bool SaveDepartment(CommContracts.Department department);

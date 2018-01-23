@@ -28,7 +28,7 @@ namespace HISGUISetLib.Views
             CommClient.Department myd = new CommClient.Department();
             CommClient.SickRoom myd1 = new CommClient.SickRoom();
 
-            DepartmentCombo.ItemsSource = myd.getALLDepartment();
+            DepartmentCombo.ItemsSource = myd.getALLDepartment("");
             SickRoomCombo.ItemsSource = myd1.GetAllSickRoom();
             bIsEdit = false;
             if (sickBed != null)

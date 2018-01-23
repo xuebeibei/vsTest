@@ -18,7 +18,7 @@ namespace HISGUIFeeLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIFeeView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIFeeView));
         }
     }
 }

@@ -25,31 +25,52 @@ namespace BLL
             }
         }
 
-        public List<CommContracts.Department> getALLDepartment(string strName = "")
+        public List<CommContracts.Department> getALLDepartment(CommContracts.DepartmentEnum departmentEnum)
         {
+            List<CommContracts.Department> list = new List<CommContracts.Department>();
+
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-
-                IEnumerable<DAL.Department> queryResultList = from u in ctx.Departments
-                                                              where u.Name.StartsWith(strName) || 
-                                                              u.Abbr.StartsWith(strName)
-                                                                        select u;
-                List<CommContracts.Department> myList = new List<CommContracts.Department>();
-
-                
-                foreach(DAL.Department tem in queryResultList)
+                var query = from u in ctx.Departments
+                            where u.DepartmentEnum == (DAL.DepartmentEnum)departmentEnum
+                            select u;
+                foreach (DAL.Department ass in query)
                 {
-                    CommContracts.Department temp1 = new CommContracts.Department();
-                    temp1.ID = tem.ID;
-                    temp1.Name = tem.Name;
-                    temp1.Abbr = tem.Abbr;
-                    temp1.DepartmentEnum = (CommContracts.DepartmentEnum)tem.DepartmentEnum;
-                    temp1.ParentID = tem.ParentID;
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Department, CommContracts.Department>();
+                    });
+                    var mapper = config.CreateMapper();
 
-                    myList.Add(temp1);
+                    CommContracts.Department temp = mapper.Map<CommContracts.Department>(ass);
+                    list.Add(temp);
                 }
-                return myList;
             }
+            return list;
+        }
+
+        public List<CommContracts.Department> getALLDepartment(string strName = "")
+        {
+            List<CommContracts.Department> list = new List<CommContracts.Department>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from u in ctx.Departments
+                            where u.Name.StartsWith(strName)
+                            select u;
+                foreach (DAL.Department ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Department, CommContracts.Department>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Department temp = mapper.Map<CommContracts.Department>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
         }
 
         public bool SaveDepartment(CommContracts.Department department)
@@ -64,7 +85,7 @@ namespace BLL
 
                 DAL.Department temp = new DAL.Department();
                 temp = mapper.Map<DAL.Department>(department);
-                
+
                 ctx.Departments.Add(temp);
                 try
                 {
@@ -83,7 +104,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var temp = ctx.Departments.FirstOrDefault(m => m.ID == departmentID);
-                if(temp != null)
+                if (temp != null)
                 {
                     ctx.Departments.Remove(temp);
                 }
@@ -92,7 +113,7 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return false;
                 }
