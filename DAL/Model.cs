@@ -1302,7 +1302,6 @@ namespace DAL
         {
             MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
         }
-        public string ReCheckName { get; set; }
         public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
     }
 
@@ -1324,7 +1323,6 @@ namespace DAL
         {
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
-        public string ReCheckName { get; set; }
         public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
     }
 }

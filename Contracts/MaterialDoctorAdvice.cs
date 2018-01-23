@@ -14,8 +14,6 @@ namespace CommContracts
         {
         }
         [DataMember]
-        public string ReCheckName { get; set; }
-        [DataMember]
         public List<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
     }
 }

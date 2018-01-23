@@ -15,8 +15,6 @@ namespace CommContracts
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
         [DataMember]
-        public string ReCheckName { get; set; }
-        [DataMember]
         public List<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
     }
 }
