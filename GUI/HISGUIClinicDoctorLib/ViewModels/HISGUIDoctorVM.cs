@@ -207,7 +207,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentMedicineDoctorAdvice.SumOfMoney = 300;// ?
             CurrentMedicineDoctorAdvice.WriteTime = DateTime.Now;
             CurrentMedicineDoctorAdvice.WriteDoctorUserID = 3; // ?
-            CurrentMedicineDoctorAdvice.PatientID = CurrentPatientID;
+            CurrentMedicineDoctorAdvice.PatientID = 8;
 
             CurrentMedicineDoctorAdvice.MedicineDoctorAdviceDetails = list;
             myd.MyMedicineDoctorAdvice = CurrentMedicineDoctorAdvice;
@@ -229,7 +229,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentTherapy.SumOfMoney = 300;// ?
             CurrentTherapy.WriteTime = DateTime.Now;
             CurrentTherapy.WriteDoctorUserID = 3; // ?
-            CurrentTherapy.PatientID = CurrentPatientID;
+            CurrentTherapy.PatientID = 8;
 
             CurrentTherapy.TherapyDoctorAdviceDetails = list;
             if (therapy.SaveTherapyDoctorAdvice(CurrentTherapy))
@@ -253,7 +253,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentAssayDoctorAdvice.SumOfMoney = 300;// ?
             CurrentAssayDoctorAdvice.WriteTime = DateTime.Now;
             CurrentAssayDoctorAdvice.WriteDoctorUserID = 3;// ?
-            CurrentAssayDoctorAdvice.PatientID = CurrentPatientID;
+            CurrentAssayDoctorAdvice.PatientID = 8;
 
             CurrentAssayDoctorAdvice.AssayDoctorAdviceDetails = list;
             if (therapy.SaveAssay(CurrentAssayDoctorAdvice))
@@ -277,7 +277,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentInspect.SumOfMoney = 300;// ?
             CurrentInspect.WriteTime = DateTime.Now;
             CurrentInspect.WriteDoctorUserID = 3; // ?
-            CurrentInspect.PatientID = CurrentPatientID;
+            CurrentInspect.PatientID = 8;
 
             CurrentInspect.InspectDoctorAdviceDetails = list;
             if (therapy.SaveInspectDoctorAdvice(CurrentInspect))
@@ -301,7 +301,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentMaterialDoctorAdvice.SumOfMoney = 300;// ?
             CurrentMaterialDoctorAdvice.WriteTime = DateTime.Now;
             CurrentMaterialDoctorAdvice.WriteDoctorUserID = 3; // ?
-            CurrentMaterialDoctorAdvice.PatientID = CurrentPatientID;
+            CurrentMaterialDoctorAdvice.PatientID = 8;
 
             CurrentMaterialDoctorAdvice.MaterialDoctorAdviceDetails = list;
             if (materialBill.SaveMaterialDoctorAdvice(CurrentMaterialDoctorAdvice))
@@ -325,7 +325,7 @@ namespace HISGUIDoctorLib.ViewModels
             CurrentOtherService.SumOfMoney = 300;// ?
             CurrentOtherService.WriteTime = DateTime.Now;
             CurrentOtherService.WriteDoctorUserID = 3; // ?
-            CurrentOtherService.PatientID = CurrentPatientID;
+            CurrentOtherService.PatientID = 8;
 
             CurrentOtherService.OtherServiceDoctorAdviceDetails = list;
             if (otherService.SaveOtherService(CurrentOtherService))
@@ -416,21 +416,6 @@ namespace HISGUIDoctorLib.ViewModels
         }
 
         #endregion
-
-        // 当前患者ID
-        #region CurrentPatientID
-        public static readonly DependencyProperty CurrentPatientIDProperty = DependencyProperty.Register(
-            "CurrentPatientID", typeof(int), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
-
-        public int CurrentPatientID
-        {
-            get { return (int)GetValue(CurrentPatientIDProperty); }
-            set { SetValue(CurrentPatientIDProperty, value); }
-        }
-
-        #endregion
-
-        
 
 
         // 当前处方单
