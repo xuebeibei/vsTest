@@ -75,7 +75,7 @@ namespace HISGUIDoctorLib.Views
             foreach (var tem in listDetail)
             {
                 CommContracts.AssayDoctorAdviceDetail recipeDetail = new CommContracts.AssayDoctorAdviceDetail();
-                recipeDetail.ID = tem.ID;
+                recipeDetail.AssayID = tem.ID;
                 recipeDetail.AllNum = tem.SingleDose;
                 recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
