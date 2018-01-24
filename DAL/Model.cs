@@ -263,6 +263,8 @@ namespace DAL
         public DateTime? VistTime { get; set; }       // 看诊日期
         public int MaxNum { get; set; }               // 最大号源
         public int SignalItemID { get; set; }         // 号源种类
+        public int EmployeeID { get; set; }           // 值班医生
+        public int DepartmentID { get; set; }         // 所属科室
         public virtual SignalItem SignalItem { get; set; }
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
     }
@@ -1036,6 +1038,7 @@ namespace DAL
         微信
     }
 
+    // 预付单
     public class PrePay
     {
         public int ID { get; set; }

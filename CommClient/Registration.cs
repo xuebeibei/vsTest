@@ -58,35 +58,34 @@ namespace CommClient
 
         public string getDepartment()
         {
-            try
-            {
-                return registration.SignalSource.GetDepartment.Name;
-            }
-            catch(Exception ex)
-            {
+            //try
+            //{
+            //    return registration.SignalSource.GetDepartment.Name;
+            //}
+            //catch(Exception ex)
+            //{
                 return "";
-            }
+            //}
             
         }
 
         public string getDoctor()
         {
-            if(registration.SignalSource.SignalType == 1)
-            {
+            //if(registration.SignalSource.SignalType == 1)
+            //{
                 return "";
             }
-            return registration.SignalSource.Specialist.ToString();
+            //return registration.SignalSource.Specialist.ToString();
         }
 
-        public DateTime? getVisitingTime()
-        {
-            return registration.SignalSource.VistTime;
-        }
+        //public DateTime? getVisitingTime()
+        //{
+        //    return registration.SignalSource.VistTime;
+        //}
 
-        public bool SaveRegistration()
-        {
-            return client.SaveRegistration(registration);
-        }
+        //public bool SaveRegistration()
+        //{
+        //    return client.SaveRegistration(registration);
+        //}
 
-    }
 }

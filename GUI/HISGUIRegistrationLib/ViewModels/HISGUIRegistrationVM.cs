@@ -172,49 +172,49 @@ namespace HISGUIRegistrationLib.ViewModels
             {
                 SignalSource temp = new SignalSource();
 
-                temp.SignalID = sg.ID;
-                temp.DepartmentID = sg.GetDepartment.ID;
-                temp.VistTime = sg.VistTime;
+                //temp.SignalID = sg.ID;
+                //temp.DepartmentID = sg.GetDepartment.ID;
+                //temp.VistTime = sg.VistTime;
 
-                if (sg.TimeIntival == 1)
-                {
-                    temp.TimeIntival = "上午";
-                }
-                else if (sg.TimeIntival == 2)
-                {
-                    temp.TimeIntival = "下午";
-                }
-                else if (sg.TimeIntival == 3)
-                {
-                    temp.TimeIntival = "晚上";
-                }
+                //if (sg.TimeIntival == 1)
+                //{
+                //    temp.TimeIntival = "上午";
+                //}
+                //else if (sg.TimeIntival == 2)
+                //{
+                //    temp.TimeIntival = "下午";
+                //}
+                //else if (sg.TimeIntival == 3)
+                //{
+                //    temp.TimeIntival = "晚上";
+                //}
 
-                if (sg.SignalType == 1)
-                {
-                    temp.SignalType = "普通门诊";
-                }
-                else if (sg.SignalType == 2)
-                {
-                    temp.SignalType = "专家";
-                }
+                //if (sg.SignalType == 1)
+                //{
+                //    temp.SignalType = "普通门诊";
+                //}
+                //else if (sg.SignalType == 2)
+                //{
+                //    temp.SignalType = "专家";
+                //}
 
-                temp.MaxNum = sg.MaxNum;
-                temp.AddMaxNum = sg.AddMaxNum;
-                temp.HasUsedNum = sg.HasUsedNum;
+                //temp.MaxNum = sg.MaxNum;
+                //temp.AddMaxNum = sg.AddMaxNum;
+                //temp.HasUsedNum = sg.HasUsedNum;
 
-                if (sg.Specialist == 0)
-                {
-                    temp.Specialist = "";
-                }
-                else
-                {
-                    temp.Specialist = sg.Specialist.ToString();
-                }
+                //if (sg.Specialist == 0)
+                //{
+                //    temp.Specialist = "";
+                //}
+                //else
+                //{
+                //    temp.Specialist = sg.Specialist.ToString();
+                //}
 
-                temp.Explain = sg.Explain;
-                temp.Price = sg.Price;
+                //temp.Explain = sg.Explain;
+                //temp.Price = sg.Price;
 
-                signalList.Add(temp);
+                //signalList.Add(temp);
 
             }
 
@@ -319,11 +319,11 @@ namespace HISGUIRegistrationLib.ViewModels
 
 
             myd.SetRegistration(registration);
-            if(myd.SaveRegistration())
-            {
-                CommClient.SignalSource myd1 = new CommClient.SignalSource();
-                myd1.UpdateSignalSource(SignalSourceTest.SignalID);
-            }
+            //if(myd.SaveRegistration())
+            //{
+            //    CommClient.SignalSource myd1 = new CommClient.SignalSource();
+            //    myd1.UpdateSignalSource(SignalSourceTest.SignalID);
+            //}
             return true;
         }
 
