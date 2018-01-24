@@ -258,6 +258,50 @@ namespace HISGUIFeeLib.ViewModels
             return myd.getALLDepartment(departmentEnum);
         }
 
+        // 显示某个科室的号源情况
+        public DataTable showDepartmentSignal(int DepartmentID)
+        {
+            DataTable data = new DataTable();
+            data.Columns.Add("时段\\日期", typeof(string));
+            CommClient.SignalSource myd = new CommClient.SignalSource();
+
+            // 得到所有挂号日期
+            List<DateTime> aa = myd.getAllSignalDate(DepartmentID);
+            int nDateNum = 0;
+            foreach (DateTime temp in aa)
+            {
+                data.Columns.Add(temp.ToString("yyyy-MM-dd \n dddd"), typeof(String));
+                nDateNum++;
+            }
+
+
+
+            // 得到可挂号的时段
+            List<int> TimeList = myd.getAllSignalTimeIntival(DepartmentID);
+            int nTimeIntivalNum = 0;
+            foreach (int temp in TimeList)
+            {
+                data.Rows.Add();
+                data.Rows[nTimeIntivalNum][0] = temp.ToString();
+
+                nTimeIntivalNum++;
+            }
+
+            for (int row = 0; row < nTimeIntivalNum; row++)
+            {
+                for (int column = 0; column < nDateNum; column++)
+                {
+                    string sss = myd.getSignalSourceTip(DepartmentID, aa.ElementAt(column), TimeList.ElementAt(row));
+
+
+                    data.Rows[row][column + 1] = sss;
+
+                }
+            }
+
+            return data;
+
+        }
 
         // 当前住院患者的住院号ID
         #region CurrentInHospitalID

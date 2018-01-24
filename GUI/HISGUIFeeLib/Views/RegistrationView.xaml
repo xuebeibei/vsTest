@@ -10,7 +10,7 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="departmentList" Margin="5" TreeViewItem.Selected="departmentTree_Selected"
+        <ListView x:Name="departmentList" Margin="5" SelectionChanged="departmentList_Selected"
                    MinWidth="100">
         </ListView>
         <Grid Grid.Column="1" >

@@ -51,15 +51,6 @@ namespace HISGUIFeeLib.Views
             set { this.VM = value; }
         }
 
-        private void departmentTree_Selected(object sender, RoutedEventArgs e)
-        {
-            var aaa = this.departmentList.SelectedItem as CommContracts.Department;
-
-            var vm = this.DataContext as HISGUIFeeVM;
-            //vm?.showDepartmentSignal(aaa.ID);
-            //this.grid1.ItemsSource = vm._dt.DefaultView;
-        }
-
         private void ShowList(string row, string column)
         {
             DateTime date = Convert.ToDateTime(column);
@@ -147,6 +138,15 @@ namespace HISGUIFeeLib.Views
         private void FindPatientBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void departmentList_Selected(object sender, RoutedEventArgs e)
+        {
+            var department = this.departmentList.SelectedItem as CommContracts.Department;
+            DataTable data = new DataTable();
+            var vm = this.DataContext as HISGUIFeeVM;
+            data = vm?.showDepartmentSignal(department.ID);
+            this.grid1.ItemsSource = data.DefaultView;
         }
     }
 }
