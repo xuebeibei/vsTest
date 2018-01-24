@@ -140,7 +140,6 @@ namespace DAL
         public DbSet<BodyRegion> BodyRegions { get; set; }
         public DbSet<TherapyItem> TherapyItems { get; set; }
         public DbSet<MaterialItem> MaterialItems { get; set; }
-        public DbSet<Responsibility> Responsibilities { get; set; }
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
         public DbSet<MedicineInStore> MedicineInStores { get; set; }
         public DbSet<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
@@ -263,10 +262,8 @@ namespace DAL
 
         public DateTime? VistTime { get; set; }       // 看诊日期
         public int MaxNum { get; set; }               // 最大号源
-        public int EmployeeID { get; set; }           // 值班人
         public int SignalItemID { get; set; }         // 号源种类
-        //public virtual Employee Employee { get; set; }
-        //public virtual SignalItem SignalItem { get; set; }
+        public virtual SignalItem SignalItem { get; set; }
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
     }
 
@@ -279,11 +276,17 @@ namespace DAL
 
     public class SignalItem
     {
+        public SignalItem()
+        {
+            SignalSources = new List<SignalSource>();
+        }
         public int ID { get; set; }
         public string Name { get; set; }
         public SignalTimeEnum SignalTimeEnum { get; set; }
         public int MaxNum { get; set; }
         public decimal SellPrice { get; set; }
+
+        public virtual ICollection<SignalSource> SignalSources { get; set; }
     }
 
     public class Registration
@@ -392,7 +395,6 @@ namespace DAL
         {
             Name = "";
             Users = new List<User>();
-            Responsibilities = new List<Responsibility>();
         }
 
         public int ID { get; set; }
@@ -406,7 +408,6 @@ namespace DAL
         public virtual ICollection<User> Users { get; set; }
         public virtual Job Job { get; set; }
         public virtual Department Department { get; set; }
-        public virtual ICollection<Responsibility> Responsibilities { get; set; }
     }
 
     public class Job
@@ -581,17 +582,6 @@ namespace DAL
 
         public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
         public virtual User InPatientUser { get; set; }
-    }
-
-    // 住院患者接诊表
-    public class Responsibility
-    {
-        public int ID { get; set; }
-        public int InpatientID { get; set; }
-        public int EmployeeID { get; set; }
-        public DateTime? StartTime { get; set; }
-
-        public virtual Employee Employee { get; set; }
     }
 
     // 化验项目
