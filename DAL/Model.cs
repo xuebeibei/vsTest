@@ -257,20 +257,16 @@ namespace DAL
         {
             Registrations = new List<Registration>();
         }
-        public int ID { get; set; }               // 号源ID
+        public int ID { get; set; }                  // 号源ID
         [DecimalPrecision(18, 4)]
-        public decimal Price { get; set; }        // 号源单价
+        public decimal Price { get; set; }           // 号源单价
 
-        public DateTime? VistTime { get; set; }    // 看诊日期
-        public int TimeIntival { get; set; }      // 看诊时段ID
-        public int DepartmentID { get; set; }     // 科室
-        public int SignalType { get; set; }       // 号别
-        public int MaxNum { get; set; }           // 最大号源
-        public int AddMaxNum { get; set; }        // 临时加号号源
-        public int HasUsedNum { get; set; }       // 已挂号源
-        public int Specialist { get; set; }       // 专家ID
-        public string Explain { get; set; }       // 说明
-
+        public DateTime? VistTime { get; set; }       // 看诊日期
+        public int MaxNum { get; set; }               // 最大号源
+        public int EmployeeID { get; set; }           // 值班人
+        public int SignalItemID { get; set; }         // 号源种类
+        //public virtual Employee Employee { get; set; }
+        //public virtual SignalItem SignalItem { get; set; }
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
     }
 
@@ -307,7 +303,6 @@ namespace DAL
                         (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
                         "岁\r\n" +
                         "科室：外科\r\n" +
-                        "医生：" + SignalSource.Specialist.ToString() + "\r\n" +
                         "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
             return str;
         }

@@ -25,6 +25,7 @@ namespace HISGUIDoctorLib.Views
 {
     public class PaiBan
     {
+        public int EmployeeID { get; set; }
         public string Name { get; set; }
         public CommContracts.SignalItem Monday { get; set; }
         public CommContracts.SignalItem Tuesday { get; set; }
@@ -40,6 +41,7 @@ namespace HISGUIDoctorLib.Views
     public partial class ClinicManagementView : HISGUIViewBase
     {
         private DateTime currentManageDate;  // 用来实现日历翻页的
+
         public ClinicManagementView()
         {
             InitializeComponent();
@@ -48,7 +50,7 @@ namespace HISGUIDoctorLib.Views
 
             currentManageDate = DateTime.Now.Date;
             updateDateMsg();
-            
+
             updateDateClinicMsg();
             this.Loaded += ClinicManagementView_Loaded;
         }
@@ -81,7 +83,7 @@ namespace HISGUIDoctorLib.Views
             DateTime startWeek = currentManageDate.AddDays(1 - Convert.ToInt32(currentManageDate.DayOfWeek.ToString("d")));  //周一  
             DateTime endWeek = startWeek.AddDays(6);  //周日 
             string str = startWeek.ToString("yyyy年MM月dd日") + "-" + endWeek.ToString("yyyy年MM月dd日");
-            
+
             this.DateMsg.Inlines.Add(new Run(str) { FontSize = 20 });
         }
 
@@ -154,6 +156,7 @@ namespace HISGUIDoctorLib.Views
                 if (employee == null)
                     continue;
                 PaiBan paiBan = new PaiBan();
+                paiBan.EmployeeID = employee.ID;
                 paiBan.Name = employee.Name;
                 data.Add(paiBan);
             }
@@ -162,7 +165,13 @@ namespace HISGUIDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            List<PaiBan> list = this.DateClinicMsgGrid.ItemsSource as List<PaiBan>;
+            if (list == null)
+                return;
+            for (int i = 0; i < list.Count; i++)
+            {
+                CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+            }
         }
 
     }
