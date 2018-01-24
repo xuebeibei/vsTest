@@ -83,6 +83,11 @@
                     </Grid>
                 </ScrollViewer>
             </TabItem>
+            <TabItem Header="门诊排班">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <local:ClinicManagementView></local:ClinicManagementView>
+                </ScrollViewer>
+            </TabItem>
         </TabControl>
     </Grid>
 </HISGUICore:HISGUIViewBase>

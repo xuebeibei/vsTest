@@ -20,9 +20,9 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.Employee> getAllDoctor()
+        public List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0)
         {
-            return client.getAllDoctor();
+            return client.getAllDoctor(DepartmentID);
         }
 
         public List<CommContracts.Employee> GetAllEmployee(string strName = "")

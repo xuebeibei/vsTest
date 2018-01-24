@@ -69,6 +69,7 @@
     <Compile Include="Registration.cs" />
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />
+    <Compile Include="SignalItem.cs" />
     <Compile Include="SignalSource.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />

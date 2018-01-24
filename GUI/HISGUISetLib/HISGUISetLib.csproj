@@ -123,6 +123,9 @@
     <Compile Include="Views\EditSickRoomView.xaml.cs">
       <DependentUpon>EditSickRoomView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditSignalItemView.xaml.cs">
+      <DependentUpon>EditSignalItemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditStorehouseView.xaml.cs">
       <DependentUpon>EditStorehouseView.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,9 @@
     </Compile>
     <Compile Include="Views\SickRoomSetView.xaml.cs">
       <DependentUpon>SickRoomSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SignalItemSetView.xaml.cs">
+      <DependentUpon>SignalItemSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StorehouseSetView.xaml.cs">
       <DependentUpon>StorehouseSetView.xaml</DependentUpon>
@@ -256,6 +262,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditSignalItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditStorehouseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +323,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\SickRoomSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SignalItemSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

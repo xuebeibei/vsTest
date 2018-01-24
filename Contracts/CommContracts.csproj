@@ -61,6 +61,7 @@
     <Compile Include="MedicineDoctorAdvice.cs" />
     <Compile Include="MedicineDoctorAdviceDetail.cs" />
     <Compile Include="PrePay.cs" />
+    <Compile Include="SignalItem.cs" />
     <Compile Include="User.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="Material.cs" />

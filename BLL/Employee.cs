@@ -9,13 +9,14 @@ namespace BLL
 {
     public class Employee
     {
-        public List<CommContracts.Employee> getAllDoctor()
+        public List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0)
         {
             List<CommContracts.Employee> list = new List<CommContracts.Employee>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from e in ctx.Employees 
+                var query = from e in ctx.Employees
+                            where (DepartmentID >0 && e.DepartmentID == DepartmentID)
                             select e;
 
                 var config = new MapperConfiguration(cfg =>

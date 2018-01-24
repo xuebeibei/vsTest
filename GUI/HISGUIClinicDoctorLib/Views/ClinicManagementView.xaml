@@ -1,0 +1,60 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIDoctorLib.Views.ClinicManagementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIDoctorLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <Label Margin="5">科室：</Label>
+                <ComboBox x:Name="DepartmentCombo" Width="100" Margin="5" SelectionChanged="DepartmentCombo_SelectionChanged"></ComboBox>
+                <ComboBox x:Name="EmployeeCombo" Width="100" Margin="5" Visibility="Collapsed"></ComboBox>
+                <Button Margin="5" Visibility="Collapsed">查找</Button>
+            </StackPanel>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <Button x:Name="LastWeekBtn" Margin="5" Click="LastWeekBtn_Click">上一周</Button>
+                    <Button x:Name="NextWeekBtn" Margin="5" Click="NextWeekBtn_Click">下一周</Button>
+                    <Button x:Name="NowWeekBtn" Margin="5" Click="NowWeekBtn_Click">今天</Button>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <TextBlock x:Name="DateMsg"></TextBlock>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:Name="CopyBtn" Margin="5">复制上周</Button>
+                </StackPanel>
+            </Grid>
+            <DataGrid x:Name="DateClinicMsgGrid" Margin="5" Grid.Row="2" 
+                      CanUserAddRows="False" 
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False" 
+                      SelectionMode="Single" 
+                      SelectionUnit="Cell">
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="30" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</HISGUICore:HISGUIViewBase>

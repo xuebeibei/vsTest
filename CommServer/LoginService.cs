@@ -146,10 +146,10 @@ namespace CommServer
             return temp.getPatientBMIMsg(RegistrationID);
         }
 
-        public List<CommContracts.Employee> getAllDoctor()
+        public List<CommContracts.Employee> getAllDoctor(int DepartmentID)
         {
             BLL.Employee temp = new BLL.Employee();
-            return temp.getAllDoctor();
+            return temp.getAllDoctor(DepartmentID);
         }
 
 
@@ -841,6 +841,30 @@ namespace CommServer
         {
             BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
             return temp.UpdateChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
+        }
+
+        public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
+        {
+            BLL.SignalItem temp = new BLL.SignalItem();
+            return temp.GetAllSignalItem(strName);
+        }
+
+        public bool UpdateSignalItem(CommContracts.SignalItem signalItem)
+        {
+            BLL.SignalItem temp = new BLL.SignalItem();
+            return temp.UpdateSignalItem(signalItem);
+        }
+
+        public bool SaveSignalItem(CommContracts.SignalItem signalItem)
+        {
+            BLL.SignalItem temp = new BLL.SignalItem();
+            return temp.SaveSignalItem(signalItem);
+        }
+
+        public bool DeleteSignalItem(int signalItemID)
+        {
+            BLL.SignalItem temp = new BLL.SignalItem();
+            return temp.DeleteSignalItem(signalItemID);
         }
     }
 }

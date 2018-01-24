@@ -337,5 +337,27 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 得到所有的号源种类
+        public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
+        {
+            CommClient.SignalItem myd = new CommClient.SignalItem();
+
+            List<CommContracts.SignalItem> list = new List<CommContracts.SignalItem>();
+            list = myd.GetAllSignalItem(strName);
+            return list;
+        }
+
+        // 删除供号源种类
+        public bool DeleteSignalItem(int SignalItemID)
+        {
+            CommClient.SignalItem myd = new CommClient.SignalItem();
+            if (myd.DeleteSignalItem(SignalItemID))
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

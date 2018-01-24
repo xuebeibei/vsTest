@@ -71,7 +71,7 @@ namespace CommContracts
         string getPatientBMIMsg(int RegistrationID);
 
         [OperationContract]
-        List<CommContracts.Employee> getAllDoctor();
+        List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0);
 
         [OperationContract]
         List<CommContracts.Employee> GetAllEmployee(string strName = "");
@@ -432,5 +432,13 @@ namespace CommContracts
         CommContracts.Patient ReadCurrentPatient(int PatientID);
         [OperationContract]
         decimal GetCurrentPatientBalance(int PatientID);
+        [OperationContract]
+        List<CommContracts.SignalItem> GetAllSignalItem(string strName = "");
+        [OperationContract]
+        bool UpdateSignalItem(CommContracts.SignalItem signalItem);
+        [OperationContract]
+        bool SaveSignalItem(CommContracts.SignalItem signalItem);
+        [OperationContract]
+        bool DeleteSignalItem(int signalItemID);
     }
 }

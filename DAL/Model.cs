@@ -170,6 +170,7 @@ namespace DAL
         public DbSet<TherapyDoctorAdvice> TherapyDoctorAdvices { get; set; }
 
         public DbSet<OtherServiceDoctorAdvice> OtherServiceDoctorAdvices { get; set; }
+        public DbSet<SignalItem> SignalItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -271,6 +272,22 @@ namespace DAL
         public string Explain { get; set; }       // 说明
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
+    }
+
+    public enum SignalTimeEnum
+    {
+        上午,
+        下午,
+        晚上
+    }
+
+    public class SignalItem
+    {
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public SignalTimeEnum SignalTimeEnum { get; set; }
+        public int MaxNum { get; set; }
+        public decimal SellPrice { get; set; }
     }
 
     public class Registration
