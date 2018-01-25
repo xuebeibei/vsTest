@@ -26,14 +26,14 @@ namespace CommClient
             return client.GetAllAssayItem(strName);
         }
 
-        public bool UpdateAssayItem(CommContracts.AssayItem AssayItem)
+        public bool UpdateAssayItem(CommContracts.AssayItem assayItem)
         {
-            return client.UpdateAssayItem(AssayItem);
+            return client.UpdateAssayItem(assayItem);
         }
 
-        public bool SaveAssayItem(CommContracts.AssayItem material)
+        public bool SaveAssayItem(CommContracts.AssayItem assayItem)
         {
-            return client.SaveAssayItem(material);
+            return client.SaveAssayItem(assayItem);
         }
 
         public bool DeleteAssayItem(int AssayItemID)
