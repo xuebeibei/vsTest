@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum PayWayEnum
+    public enum PrePayWayEnum
     {
         现金,
         支付宝,
@@ -28,7 +28,7 @@ namespace CommContracts
         [DataMember]
         public string PayerName { get; set; }
         [DataMember]
-        public PayWayEnum PayWayEnum { get; set; }
+        public PrePayWayEnum PrePayWayEnum { get; set; }
         [DataMember]
         public int PatientID { get; set; }
         [DataMember]
