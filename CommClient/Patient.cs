@@ -30,5 +30,24 @@ namespace CommClient
             return client.GetCurrentPatientBalance(PatientID);
         }
 
+        public List<CommContracts.Patient> GetAllPatient(string strName = "")
+        {
+            return client.GetAllPatient(strName);
+        }
+
+        public bool UpdatePatient(CommContracts.Patient patient)
+        {
+            return client.UpdatePatient(patient);
+        }
+
+        public bool SavePatient(CommContracts.Patient patient)
+        {
+            return client.SavePatient(patient);
+        }
+
+        public bool DeletePatient(int PatientID)
+        {
+            return client.DeletePatient(PatientID);
+        }
     }
 }
