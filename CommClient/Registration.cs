@@ -40,52 +40,16 @@ namespace CommClient
             return client.getPatientBMIMsg(RegistrationID);
         }
 
-        public void SetRegistration(CommContracts.Registration registration)
+        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
-            this.registration = registration;
+            return client.GetDepartmentRegistrationList(DepartmentID, EmployeeID, startDate, endDate);
         }
 
-        public DateTime? GetDateTime ()
+        public bool SaveRegistration(CommContracts.Registration registration)
         {
-            return registration.RegisterTime;
+            return client.SaveRegistration(registration);
         }
 
-        public string getPatientMsg()
-        {
-            return registration.Patient.Name + " " +
-                registration.Patient.Gender + " ";
-        }
 
-        public string getDepartment()
-        {
-            //try
-            //{
-            //    return registration.SignalSource.GetDepartment.Name;
-            //}
-            //catch(Exception ex)
-            //{
-                return "";
-            //}
-            
-        }
-
-        public string getDoctor()
-        {
-            //if(registration.SignalSource.SignalType == 1)
-            //{
-                return "";
-            }
-            //return registration.SignalSource.Specialist.ToString();
-        }
-
-        //public DateTime? getVisitingTime()
-        //{
-        //    return registration.SignalSource.VistTime;
-        //}
-
-        //public bool SaveRegistration()
-        //{
-        //    return client.SaveRegistration(registration);
-        //}
-
+    }
 }
