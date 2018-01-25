@@ -291,6 +291,11 @@ namespace DAL
         public virtual ICollection<SignalSource> SignalSources { get; set; }
     }
 
+    public enum PayWayEnum
+    {
+        账户支付,
+        现金支付
+    }
     public class Registration
     {
         public Registration()
@@ -321,6 +326,7 @@ namespace DAL
         public DateTime? RegisterTime { get; set; }                // 经办时间
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
+        public PayWayEnum PayWayEnum { get; set; }                // 支付方式
 
         public virtual Patient Patient { get; set; }                      // 患者
         public virtual SignalSource SignalSource { get; set; }            // 号源
@@ -1031,7 +1037,7 @@ namespace DAL
         public virtual SickRoom SickRoom { get; set; }
     }
 
-    public enum PayWayEnum
+    public enum PrePayWayEnum
     {
         现金,
         支付宝,
@@ -1046,7 +1052,7 @@ namespace DAL
         public DateTime? PrePayTime { get; set; }
         public decimal PrePayMoney { get; set; }
         public string PayerName { get; set; }
-        public PayWayEnum PayWayEnum { get; set; }
+        public PrePayWayEnum PrePayWayEnum { get; set; }
         public int PatientID { get; set; }
         public int UserID { get; set; }
 
