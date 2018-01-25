@@ -104,5 +104,33 @@ namespace BLL
             return true;
         }
 
+        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        {
+            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Registrations
+                            where
+                            (DepartmentID > 0 && a.SignalSource.DepartmentID == DepartmentID) &&
+                            (EmployeeID <= 0 || a.SignalSource.EmployeeID == EmployeeID) &&
+                            a.SignalSource.VistTime.Value <= endDate &&
+                            a.SignalSource.VistTime.Value >= startDate
+                            select a;
+                foreach (DAL.Registration ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Registration temp = mapper.Map<CommContracts.Registration>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
     }
 }
