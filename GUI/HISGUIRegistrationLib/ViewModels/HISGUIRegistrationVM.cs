@@ -164,7 +164,7 @@ namespace HISGUIRegistrationLib.ViewModels
         {
             CommClient.SignalSource myd = new CommClient.SignalSource();
             // 得到所有有效号源
-            List<CommContracts.SignalSource> listOfSignalSource = myd.getALLSignalSource(DepartmentID, dateTime, timeInterval);
+            List<CommContracts.SignalSource> listOfSignalSource = myd.GetAllSignalSource();
 
             List<SignalSource> signalList = new List<SignalSource>();
 
@@ -318,7 +318,7 @@ namespace HISGUIRegistrationLib.ViewModels
             registration.PatientID = 1;
 
 
-            myd.SetRegistration(registration);
+           // myd.SetRegistration(registration);
             //if(myd.SaveRegistration())
             //{
             //    CommClient.SignalSource myd1 = new CommClient.SignalSource();
