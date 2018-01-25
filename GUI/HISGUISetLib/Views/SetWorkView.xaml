@@ -41,6 +41,9 @@
                 <TreeViewItem Margin="0,0,5,0" Header="诊断" Selected="DiagnosisSet"/>
                 <TreeViewItem Margin="0,0,5,0" Header="号源种类" Selected="SignalItemSet"/>
             </TreeViewItem>
+            <TreeViewItem Margin="0,5,10,5" Header="患者">
+                <TreeViewItem Margin="0,0,5,0" Header="患者" Selected="PatientSet"/>
+            </TreeViewItem>
         </TreeView>
         <StackPanel Grid.Column="1">
             <local:HospitalInfoSetView x:Name="HospitalSetView" Visibility="Collapsed"></local:HospitalInfoSetView>
@@ -59,6 +62,7 @@
             <local:AssayItemSetView x:Name="AssayItemView" Visibility="Collapsed"></local:AssayItemSetView>
             <local:OtherServiceItemSetView x:Name="OtherServiceItemView" Visibility="Collapsed"></local:OtherServiceItemSetView>
             <local:SignalItemSetView x:Name="SignalItemView" Visibility="Collapsed"></local:SignalItemSetView>
+            <local:PatientSetView x:Name="PatientView" Visibility="Collapsed"></local:PatientSetView>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
