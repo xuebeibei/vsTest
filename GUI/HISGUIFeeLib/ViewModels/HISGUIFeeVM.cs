@@ -119,7 +119,7 @@ namespace HISGUIFeeLib.ViewModels
         public List<CommContracts.InspectDoctorAdvice> GetAllJianCha()
         {
             CommClient.InspectDoctorAdvice inspect = new CommClient.InspectDoctorAdvice();  // 检查申请
-            
+
             List<CommContracts.InspectDoctorAdvice> list = new List<CommContracts.InspectDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
@@ -136,7 +136,7 @@ namespace HISGUIFeeLib.ViewModels
         public List<CommContracts.MaterialDoctorAdvice> GetAllCaiLiao()
         {
             CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();   // 材料
-            
+
             List<CommContracts.MaterialDoctorAdvice> list = new List<CommContracts.MaterialDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
@@ -238,7 +238,7 @@ namespace HISGUIFeeLib.ViewModels
             CommContracts.PrePay prePay = new CommContracts.PrePay();
             prePay.PatientID = PatientID;
             prePay.PrePayMoney = money;
-            prePay.PayWayEnum = CommContracts.PayWayEnum.现金;
+            prePay.PrePayWayEnum = CommContracts.PrePayWayEnum.现金;
             prePay.UserID = UserID;
             prePay.PrePayTime = DateTime.Now;
             return myd.SavePrePay(prePay);
@@ -257,50 +257,22 @@ namespace HISGUIFeeLib.ViewModels
             CommClient.Department myd = new CommClient.Department();
             return myd.getALLDepartment(departmentEnum);
         }
-
-        // 显示某个科室的号源情况
-        public DataTable showDepartmentSignal(int DepartmentID)
+        public List<CommContracts.SignalSource> GetDepartmentSignalSourceList(int DepartmentID, DateTime startDate, DateTime endDate)
         {
-            DataTable data = new DataTable();
-            data.Columns.Add("时段\\日期", typeof(string));
             CommClient.SignalSource myd = new CommClient.SignalSource();
+            return myd.GetSignalSourceList(DepartmentID, 0, startDate, endDate);
+        }
 
-            // 得到所有挂号日期
-            List<DateTime> aa = myd.getAllSignalDate(DepartmentID);
-            int nDateNum = 0;
-            foreach (DateTime temp in aa)
-            {
-                data.Columns.Add(temp.ToString("yyyy-MM-dd \n dddd"), typeof(String));
-                nDateNum++;
-            }
+        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, DateTime startDate, DateTime endDate)
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.GetDepartmentRegistrationList(DepartmentID, 0, startDate, endDate);
+        }
 
-
-
-            // 得到可挂号的时段
-            List<int> TimeList = myd.getAllSignalTimeIntival(DepartmentID);
-            int nTimeIntivalNum = 0;
-            foreach (int temp in TimeList)
-            {
-                data.Rows.Add();
-                data.Rows[nTimeIntivalNum][0] = temp.ToString();
-
-                nTimeIntivalNum++;
-            }
-
-            for (int row = 0; row < nTimeIntivalNum; row++)
-            {
-                for (int column = 0; column < nDateNum; column++)
-                {
-                    string sss = myd.getSignalSourceTip(DepartmentID, aa.ElementAt(column), TimeList.ElementAt(row));
-
-
-                    data.Rows[row][column + 1] = sss;
-
-                }
-            }
-
-            return data;
-
+        public bool SaveRegistration(CommContracts.Registration registration)
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.SaveRegistration(registration);
         }
 
         // 当前住院患者的住院号ID
