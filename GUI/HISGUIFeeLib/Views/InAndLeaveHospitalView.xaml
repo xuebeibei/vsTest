@@ -15,9 +15,8 @@
                 <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="1" Click="ReadCardBtn_Click">读卡</Button>
             </StackPanel>
             <Separator x:Name="Spe2" Margin="5"/>
-            <Grid x:Name="InHospitalGrid">
-                <Grid HorizontalAlignment="Left">
-                    <Grid.RowDefinitions>
+            <Grid x:Name="InHospitalGrid" HorizontalAlignment="Left">
+                <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -126,11 +125,10 @@
                     <Label Margin="5" Grid.Row="6" Grid.Column="6">入院经办：</Label>
                     <TextBox x:Name="InUserName" Margin="5" Grid.Row="6" Grid.Column="7" IsEnabled="False"></TextBox>
 
-                    <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-                        <Button x:Name="InHospitalBtn" Margin="5" Click="InHospitalBtn_Click">入院</Button>
-                        <Button x:Name="EditMsgBtn" Margin="5" Click="EditMsgBtn_Click" Visibility="Collapsed">修改</Button>
-                    </StackPanel>
-                </Grid>
+                <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <Button x:Name="InHospitalBtn" Margin="5" Click="InHospitalBtn_Click">入院</Button>
+                    <Button x:Name="EditMsgBtn" Margin="5" Click="EditMsgBtn_Click" Visibility="Collapsed">修改</Button>
+                </StackPanel>
             </Grid>
             <Separator x:Name="Spe" Margin="5" Visibility="Collapsed"/>
             <Grid x:Name="LeaveHospitalGrid" Visibility="Collapsed">
