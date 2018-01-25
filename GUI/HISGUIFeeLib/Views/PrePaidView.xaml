@@ -14,7 +14,7 @@
                 <Button x:Name="FindBtn" Margin="5" Click="FindBtn_Click">查找</Button>
             </StackPanel>
             <Separator x:Name="Spe" Margin="5"/>
-            <TextBlock x:Name="PatientMsg" Margin="5" Height="100" Background="AntiqueWhite" TextWrapping="Wrap">
+            <TextBlock x:Name="PatientMsg" Margin="5" Height="100" Background="AliceBlue" TextWrapping="Wrap">
                 
             </TextBlock>
             <Separator x:Name="Spe1" Margin="5"/>
