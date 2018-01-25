@@ -149,15 +149,17 @@ namespace HISGUIFeeLib.Views
                                     where u.VistTime.Value.DayOfWeek == day &&
                                     u.SignalItem.SignalTimeEnum == tim
                                     select u.MaxNum;
-                        string str = (query.Sum() <= 0 ? "" : query.Sum().ToString());
+                        int HaveNum = query.Sum(); int UsedNum = 0;
                         if (bIsHasRegistration)
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistTime.Value.DayOfWeek == day &&
                                              e.SignalSource.SignalItem.SignalTimeEnum == tim
                                              select e;
-                            str += ("|" + regisQuery.Count().ToString());
+                            UsedNum = regisQuery.Count();
                         }
+
+                        string str = HaveNum - UsedNum == 0 ? "" : (HaveNum - UsedNum).ToString();
 
                         switch (day)
                         {
@@ -294,7 +296,7 @@ namespace HISGUIFeeLib.Views
 
             this.DiscountEdit.Text = 0.0.ToString();
             this.DuePayMoneyEdit.Text = tem.Price.ToString();
-            if(currentPatientBalance.Value>=tem.Price)
+            if (currentPatientBalance.Value >= tem.Price)
             {
                 this.PayWayCombo.SelectedItem = CommContracts.PayWayEnum.账户支付;
             }
@@ -319,7 +321,7 @@ namespace HISGUIFeeLib.Views
 
         private void RealPayMoneyEdit_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Return||e.Key == Key.Enter)
+            if (e.Key == Key.Return || e.Key == Key.Enter)
             {
                 this.PayBtn.Focus();
             }
@@ -329,7 +331,7 @@ namespace HISGUIFeeLib.Views
         {
             CommContracts.Registration registration = new CommContracts.Registration();
             registration.PatientID = 1;
-            
+
             registration.PayWayEnum = (CommContracts.PayWayEnum)this.PayWayCombo.SelectedItem;
             registration.RegisterFee = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
             registration.RegisterTime = DateTime.Now;
@@ -342,9 +344,9 @@ namespace HISGUIFeeLib.Views
 
             var vm = this.DataContext as HISGUIFeeVM;
             bool? result = vm.SaveRegistration(registration);
-            if(result.HasValue)
+            if (result.HasValue)
             {
-                if(result.Value)
+                if (result.Value)
                 {
                     MessageBox.Show("挂号成功！");
                     return;
