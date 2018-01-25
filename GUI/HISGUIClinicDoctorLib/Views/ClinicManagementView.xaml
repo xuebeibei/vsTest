@@ -37,7 +37,8 @@
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False" 
                       SelectionMode="Single" 
-                      SelectionUnit="Cell">
+                      SelectionUnit="Cell"
+                      CanUserDeleteRows="False">
                 <DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -49,8 +50,8 @@
                         <Setter Property="Height" Value="30" />
                     </Style>
                 </DataGrid.RowStyle>
-                <DataGrid.Columns>
-                </DataGrid.Columns>
+                <!--<DataGrid.Columns>
+                </DataGrid.Columns>-->
             </DataGrid>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
