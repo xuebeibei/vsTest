@@ -5,130 +5,133 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUIFeeLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <ListView x:Name="departmentList" Margin="5" SelectionChanged="departmentList_Selected"
-                   MinWidth="100">
-        </ListView>
-        <Grid Grid.Column="1" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
+        <StackPanel>
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="3*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0" >
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid Grid.Row="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="0" Click="ReadCardBtn_Click">读卡</Button>
-                        <TextBox x:Name="FindPatientBox" Margin="5, 5, 0, 5" Grid.Column="1" MinWidth="100"></TextBox>
-                        <Button x:Name="FindPatientBtn" Margin="0,5, 5, 5" Grid.Column="2" Click="FindPatientBtn_Click">查找</Button>
-                    </Grid>
-                    <TextBlock Grid.Row="1"  x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap"></TextBlock>
-                </Grid>
-
-                <Grid Grid.Column="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition MinWidth="100"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition MinWidth="100"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition MinWidth="100"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Right">挂号单号：</Label>
-                    <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right">就诊日期：</Label>
-                    <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right">号别：</Label>
-                    <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right">院内减免：</Label>
-                    <Label Grid.Row="4" Grid.Column="0" HorizontalAlignment="Right">挂号时间：</Label>
-                    <Label Grid.Row="5" Grid.Column="0" HorizontalAlignment="Right">退号时间：</Label>
-
-                    <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" Text="{Binding RegistrationBillTest.BillNo}" IsEnabled="False"></TextBox>
-                    <DatePicker Grid.Row="1" Grid.Column="1" Margin="5" Grid.ColumnSpan="3" Text="{Binding SignalSourceTest.VistTime}"></DatePicker>
-                    <ComboBox Grid.Row="2" Grid.Column="1" Margin="5" Text="{Binding SignalSourceTest.SignalType}">
-                        <ComboBoxItem>普通门诊</ComboBoxItem>
-                        <ComboBoxItem>专家</ComboBoxItem>
-                    </ComboBox>
-                    <TextBox Grid.Row="3" Grid.Column="1" Margin="5"></TextBox>
-                    <DatePicker Grid.Row="4" Grid.Column="1" Margin="5" Text="{Binding RegistrationBillTest.MakeTime}"></DatePicker>
-                    <DatePicker Grid.Row="5" Grid.Column="1" Margin="5" Text="{Binding RegistrationBillTest.CancelTime}"></DatePicker>
-
-                    <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right">专家：</Label>
-                    <Label Grid.Row="3" Grid.Column="2" HorizontalAlignment="Right">医保报销：</Label>
-                    <Label Grid.Row="4" Grid.Column="2" HorizontalAlignment="Right">挂号经办：</Label>
-                    <Label Grid.Row="5" Grid.Column="2" HorizontalAlignment="Right">退号经办：</Label>
-
-                    <TextBox x:Name="ZhuanjiaText" Grid.Row="2" Grid.Column="3" Margin="5" Text="{Binding SignalSourceTest.Specialist}"></TextBox>
-                    <TextBox Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>
-                    <TextBox Grid.Row="4" Grid.Column="3" Margin="5" Text="{Binding RegistrationBillTest.MakerUser}" IsEnabled="False"></TextBox>
-                    <TextBox Grid.Row="5" Grid.Column="3" Margin="5" Text="{Binding RegistrationBillTest.CancelUser}" IsEnabled="False"></TextBox>
-
-                    <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right">就诊状态：</Label>
-                    <Label Grid.Row="1" Grid.Column="4" HorizontalAlignment="Right">就诊时段：</Label>
-                    <Label Grid.Row="2" Grid.Column="4" HorizontalAlignment="Right">费用：</Label>
-                    <Label Grid.Row="3" Grid.Column="4" HorizontalAlignment="Right">自付：</Label>
-                    <Button Grid.Row="4" Grid.Column="4" Grid.ColumnSpan="2" Margin="5" Click="Button_Click_21">挂号</Button>
-                    <Button Grid.Row="5" Grid.Column="4" Grid.ColumnSpan="2" Margin="5">退号</Button>
-
-                    <ComboBox Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding RegistrationBillTest.SeeDoctorStatus}">
-                        <ComboBoxItem>未就诊</ComboBoxItem>
-                        <ComboBoxItem>已就诊</ComboBoxItem>
-                    </ComboBox>
-                    <ComboBox Grid.Row="1" Grid.Column="5" Margin="5" Text="{Binding SignalSourceTest.TimeIntival}">
-                        <ComboBoxItem>上午</ComboBoxItem>
-                        <ComboBoxItem>下午</ComboBoxItem>
-                        <ComboBoxItem>晚上</ComboBoxItem>
-                    </ComboBox>
-                    <TextBox Grid.Row="2" Grid.Column="5" Margin="5" Text="{Binding SignalSourceTest.Price}" IsEnabled="False"></TextBox>
-                    <TextBox Grid.Row="3" Grid.Column="5" Margin="5"></TextBox>
-                </Grid>
-            </Grid>
-            <Grid Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <!--<Viewbox Grid.Row="0" VerticalAlignment="Center">-->
-                <DataGrid x:Name="grid1" Margin="5" AutoGenerateColumns="True" SelectionUnit="Cell" SelectionMode="Single"
-                          CanUserAddRows="False" CanUserDeleteRows="False" IsReadOnly="True" 
-                              SelectedCellsChanged="grid1_SelectedCellsChanged_1" MinHeight="100"></DataGrid>
-                <!--</Viewbox>-->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                            <RadioButton x:Name="AddCheck" IsChecked="True" Margin="5" Click="AddCheck_Click">挂号</RadioButton>
+                            <RadioButton x:Name="DeleteCheck" Margin="5" Click="DeleteCheck_Click">退号</RadioButton>
+                        </StackPanel>
 
-                <ListView Name="listView1" Grid.Row="1" Margin="5" SelectionChanged="listView1_SelectionChanged">
-                    <ListView.View>
-                        <GridView x:Name="gridView1">
-                            <GridViewColumn Header="号源编号" DisplayMemberBinding="{Binding Path=SignalID}"></GridViewColumn>
-                            <GridViewColumn Header="号源类别" DisplayMemberBinding="{Binding Path=SignalType}"></GridViewColumn>
-                            <GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=Specialist}"></GridViewColumn>
-                            <GridViewColumn Header="最大号源" DisplayMemberBinding="{Binding Path=MaxNum}"></GridViewColumn>
-                            <GridViewColumn Header="已挂号源" DisplayMemberBinding="{Binding Path=HasUsedNum}"></GridViewColumn>
-                            <GridViewColumn Header="费用" DisplayMemberBinding="{Binding Path=Price}"></GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                        <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="0" Click="ReadCardBtn_Click">读卡</Button>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                        <TextBox x:Name="FindPatientBox" Margin="5" MinWidth="100"></TextBox>
+                        <Button x:Name="FindPatientBtn" Margin="5" Click="FindPatientBtn_Click">查找</Button>
+                    </StackPanel>
+
+                </Grid>
+                <TextBlock Grid.Row="1"  x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap"
+                           MinHeight="100"></TextBlock>
             </Grid>
-        </Grid>
+            <Grid x:Name="EditGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <ListView x:Name="departmentList" Grid.Column="0"
+                      Margin="5" 
+                  SelectionChanged="departmentList_Selected" 
+                  MinWidth="100" MaxWidth="200"/>
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <DataGrid x:Name="SignalSourceGrid" Margin="5" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False" 
+                          SelectionMode="Single"
+                          SelectionUnit="Cell" 
+                          CanUserDeleteRows="False" 
+                          IsReadOnly="True" 
+                          HeadersVisibility="Column" 
+                              MinHeight="100"
+                          SelectedCellsChanged="SignalSourceGrid_SelectedCellsChanged" >
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="30" />
+                            </Style>
+                        </DataGrid.RowStyle>
+                    </DataGrid>
+
+                    <DataGrid Name="SignalList" Grid.Row="1" Margin="5" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False" 
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow" 
+                          CanUserDeleteRows="False" 
+                          IsReadOnly="True" 
+                          MinHeight="200" 
+                          HeadersVisibility="Column" 
+                              SelectionChanged="SignalList_SelectionChanged">
+                        <DataGrid.ColumnHeaderStyle>
+                            <Style TargetType="DataGridColumnHeader">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </DataGrid.ColumnHeaderStyle>
+                        <DataGrid.RowStyle>
+                            <Style TargetType="DataGridRow">
+                                <Setter Property="Height" Value="30" />
+                            </Style>
+                        </DataGrid.RowStyle>
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="号源类别" Binding="{Binding Path= SignalItem.Name}" Width="63"></DataGridTextColumn>
+                            <DataGridTextColumn Header="最大号源" Binding="{Binding Path=MaxNum}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="已挂号源" Binding="{Binding Path=HasUsedNum}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="费用" Binding="{Binding Path=Price}" Width="5*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </Grid>
+            <StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="PayPanel">
+                    <Label Margin="5">支付方式：</Label>
+                    <ComboBox x:Name="PayWayCombo" Width="100" Margin="5"></ComboBox>
+                    <Label Margin="5">折扣金额：</Label>
+                    <TextBox x:Name="DiscountEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                    <Label Margin="5">应收金额：</Label>
+                    <TextBox x:Name="DuePayMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                    <Label Margin="5">实收金额：</Label>
+                    <TextBox x:Name="RealPayMoneyEdit" Margin="5" Width="60" 
+                             TextChanged="RealPayMoneyEdit_TextChanged"
+                             PreviewKeyDown="RealPayMoneyEdit_PreviewKeyDown"></TextBox>
+                    <Label Margin="5">找零金额：</Label>
+                    <TextBox x:Name="ChargeMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" x:Name="ReturnPanel" Visibility="Collapsed">
+                    <Label Margin="5">退费方式：</Label>
+                    <ComboBox x:Name="ReturnWayCombo" Width="100" Margin="5"></ComboBox>
+                    <Label Margin="5">应退金额：</Label>
+                    <TextBox x:Name="DueReturnMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                    <Label Margin="5">手续费用：</Label>
+                    <TextBox x:Name="ServiceMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                    <Label Margin="5">实退金额：</Label>
+                    <TextBox x:Name="RealReturnMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click">挂号</Button>
+                <Button x:Name="ReturnBtn" Margin="5" Visibility="Collapsed" Click="ReturnBtn_Click">退号</Button>
+                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
