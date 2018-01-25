@@ -21,9 +21,9 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval)
+        public List<CommContracts.SignalSource> GetAllSignalSource()
         {
-            return client.getALLSignalSource(DepartmentID, dateTime, timeInterval);
+            return client.GetAllSignalSource();
         }
 
         public List<DateTime> getAllSignalDate(int DepartmentID)
@@ -44,6 +44,16 @@ namespace CommClient
         public bool UpdateSignalSource(int nSignalSourceID)
         {
             return client.UpdateSignalSource(nSignalSourceID);
+        }
+
+        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        {
+            return client.SaveSignalSourceList(list);
+        }
+
+        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        {
+            return client.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
     }
 }
