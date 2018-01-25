@@ -30,9 +30,6 @@ namespace HISGUIFeeLib.Views
         public FeeWorkView()
         {
             InitializeComponent();
-            //this.StartChargeDate.SelectedDate = DateTime.Now;
-            //this.EndChargeDate.SelectedDate = DateTime.Now;
-            //this.FindChargeTextEdti.Text = "";
             this.Loaded += View_Loaded;
         }
 
