@@ -80,7 +80,7 @@ namespace HISGUIDoctorLib.Views
         {
             this.DateMsg.Inlines.Clear();
 
-            DateTime startWeek = currentManageDate.AddDays(1 - Convert.ToInt32(currentManageDate.DayOfWeek.ToString("d")));  //周一  
+            DateTime startWeek = getMonday(currentManageDate);  //周一  
             DateTime endWeek = startWeek.AddDays(6);  //周日 
             string str = startWeek.ToString("yyyy年MM月dd日") + "-" + endWeek.ToString("yyyy年MM月dd日");
 
@@ -135,7 +135,7 @@ namespace HISGUIDoctorLib.Views
 
             for (int i = 0; i < 7; i++)
             {
-                DateTime tempDate = currentManageDate.AddDays(1 - Convert.ToInt32(currentManageDate.DayOfWeek.ToString("d"))).AddDays(i);
+                DateTime tempDate = getMonday(currentManageDate).AddDays(i);
                 this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
                 {
                     Header = tempDate.ToString("yyyy-MM-dd dddd") + (tempDate.Date == DateTime.Now.Date ? "*" : ""),
@@ -149,29 +149,253 @@ namespace HISGUIDoctorLib.Views
         }
         private List<PaiBan> updateDateClinicMsgGrid()
         {
+            var department = this.DepartmentCombo.SelectedItem as CommContracts.Department;
+            if (department == null)
+                return null;
+            if (department.ID < 0)
+                return null;
+
+            var vm = this.DataContext as HISGUIDoctorVM;
+            DateTime monday = getMonday(currentManageDate);
+
             List<PaiBan> data = new List<PaiBan>();
             for (int i = 0; i < this.EmployeeCombo.Items.Count; i++)
             {
                 CommContracts.Employee employee = this.EmployeeCombo.Items.GetItemAt(i) as CommContracts.Employee;
                 if (employee == null)
                     continue;
-                PaiBan paiBan = new PaiBan();
-                paiBan.EmployeeID = employee.ID;
-                paiBan.Name = employee.Name;
-                data.Add(paiBan);
+
+                List<CommContracts.SignalSource> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6));
+                if (sourceList == null || sourceList.Count <= 0)
+                {
+                    PaiBan paiBan = new PaiBan();
+                    paiBan.EmployeeID = employee.ID;
+                    paiBan.Name = employee.Name;
+                    data.Add(paiBan);
+                }
+                else
+                {
+                    PaiBan paiBan = new PaiBan();
+                    paiBan.EmployeeID = employee.ID;
+                    paiBan.Name = employee.Name;
+
+                    foreach (var tem in sourceList)
+                    {
+                        if (tem == null)
+                            continue;
+                       
+                        DayOfWeek dayOfWeek = tem.VistTime.Value.DayOfWeek;
+
+                        switch (dayOfWeek)
+                        {
+                            case DayOfWeek.Monday:
+                                {
+                                    paiBan.Monday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Tuesday:
+                                {
+                                    paiBan.Tuesday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Wednesday:
+                                {
+                                    paiBan.Wednesday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Thursday:
+                                {
+                                    paiBan.Thursday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Saturday:
+                                {
+                                    paiBan.Saturday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Sunday:
+                                {
+                                    paiBan.Sunday = tem.SignalItem;
+                                }
+                                break;
+                            case DayOfWeek.Friday:
+                                {
+                                    paiBan.Friday = tem.SignalItem;
+                                }
+                                break;
+
+                            default: 
+                                break;
+                        }
+                    }
+                    data.Add(paiBan);
+                }
+
             }
             return data;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
+            List<CommContracts.SignalSource> sourceList = getSignalsFromView();
+            if (sourceList != null)
+            {
+                if (sourceList.Count > 0)
+                {
+                    var vm = this.DataContext as HISGUIDoctorVM;
+                    bool? result = vm?.SaveSignalSourceList(sourceList);
+                    if (result.HasValue)
+                    {
+                        if (result.Value)
+                        {
+                            MessageBox.Show("门诊号源保存成功！");
+                            return;
+                        }
+                    }
+                }
+            }
+            MessageBox.Show("门诊号源保存失败！");
+        }
+
+        private List<CommContracts.SignalSource> getSignalsFromView()
+        {
+            var department = this.DepartmentCombo.SelectedItem as CommContracts.Department;
+            if (department == null)
+                return null;
+            if (department.ID < 0)
+                return null;
+
             List<PaiBan> list = this.DateClinicMsgGrid.ItemsSource as List<PaiBan>;
             if (list == null)
-                return;
+                return null;
+
+            List<CommContracts.SignalSource> sourceList = new List<CommContracts.SignalSource>();
+
             for (int i = 0; i < list.Count; i++)
             {
-                CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                PaiBan paiBan = list.ElementAt(i);
+                if (paiBan == null)
+                    continue;
+
+                if (paiBan.EmployeeID <= 0)
+                    continue;
+
+                if (paiBan.Monday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Monday.MaxNum;
+                    signalSource.Price = paiBan.Monday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Monday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(0);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+                if (paiBan.Tuesday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Tuesday.MaxNum;
+                    signalSource.Price = paiBan.Tuesday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Tuesday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(1);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+
+                if (paiBan.Wednesday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Wednesday.MaxNum;
+                    signalSource.Price = paiBan.Wednesday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Wednesday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(2);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+                if (paiBan.Thursday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Thursday.MaxNum;
+                    signalSource.Price = paiBan.Thursday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Thursday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(3);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+
+                if (paiBan.Friday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Friday.MaxNum;
+                    signalSource.Price = paiBan.Friday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Friday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(4);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+
+                if (paiBan.Saturday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Saturday.MaxNum;
+                    signalSource.Price = paiBan.Saturday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Saturday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(5);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
+
+
+                if (paiBan.Sunday != null)
+                {
+                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    signalSource.DepartmentID = department.ID;
+                    signalSource.EmployeeID = paiBan.EmployeeID;
+                    signalSource.MaxNum = paiBan.Sunday.MaxNum;
+                    signalSource.Price = paiBan.Sunday.SellPrice;
+                    signalSource.SignalItemID = paiBan.Sunday.ID;
+                    signalSource.VistTime = getMonday(currentManageDate).AddDays(6);
+                    if (signalSource.VistTime.Value.Date >= DateTime.Now.Date)
+                    {
+                        sourceList.Add(signalSource);
+                    }
+                }
             }
+            return sourceList;
+        }
+
+        private DateTime getMonday(DateTime dt)
+        {
+            DateTime tempDate = dt.AddDays(1 - Convert.ToInt32(currentManageDate.DayOfWeek.ToString("d")));
+            return tempDate;
         }
 
     }
