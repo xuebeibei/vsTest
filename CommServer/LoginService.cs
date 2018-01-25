@@ -92,10 +92,10 @@ namespace CommServer
             return temp.DeleteDepartment(departmentID);
         }
 
-        public List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval)
+        public List<CommContracts.SignalSource> GetAllSignalSource()
         {
             BLL.SignalSource tempDepart = new BLL.SignalSource();
-            return tempDepart.getALLSignalSource(DepartmentID, dateTime, timeInterval);
+            return tempDepart.GetAllSignalSource();
         }
 
         public List<DateTime> getAllSignalDate(int DepartmentID)
@@ -121,6 +121,16 @@ namespace CommServer
             BLL.SignalSource temp = new BLL.SignalSource();
             return temp.UpdateSignalSource(nSignalSourceID);
         }
+        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        {
+            BLL.SignalSource temp = new BLL.SignalSource();
+            return temp.SaveSignalSourceList(list);
+        }
+        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate ,DateTime endDate)
+        {
+            BLL.SignalSource temp = new BLL.SignalSource();
+            return temp.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
+        }
 
         public bool SaveRegistration(Registration registration)
         {
@@ -144,6 +154,11 @@ namespace CommServer
         {
             BLL.Registration temp = new BLL.Registration();
             return temp.getPatientBMIMsg(RegistrationID);
+        }
+        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID,int EmployeeID, DateTime startDate, DateTime endDate)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.GetDepartmentRegistrationList(DepartmentID, EmployeeID, startDate, endDate);
         }
 
         public List<CommContracts.Employee> getAllDoctor(int DepartmentID)
@@ -865,6 +880,30 @@ namespace CommServer
         {
             BLL.SignalItem temp = new BLL.SignalItem();
             return temp.DeleteSignalItem(signalItemID);
+        }
+
+        public List<CommContracts.Patient> GetAllPatient(string strName = "")
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.GetAllPatient(strName);
+        }
+
+        public bool UpdatePatient(CommContracts.Patient patient)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.UpdatePatient(patient);
+        }
+
+        public bool SavePatient(CommContracts.Patient patient)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.SavePatient(patient);
+        }
+
+        public bool DeletePatient(int PatientID)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.DeletePatient(PatientID);
         }
     }
 }

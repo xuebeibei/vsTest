@@ -44,7 +44,7 @@ namespace CommContracts
         bool DeleteDepartment(int departmentID);
 
         [OperationContract]
-        List<CommContracts.SignalSource> getALLSignalSource(int DepartmentID, DateTime dateTime, int timeInterval);
+        List<CommContracts.SignalSource> GetAllSignalSource();
 
         [OperationContract]
         List<DateTime> getAllSignalDate(int DepartmentID);
@@ -57,6 +57,10 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateSignalSource(int nSignalSourceID);
+        [OperationContract]
+        bool SaveSignalSourceList(List<CommContracts.SignalSource> list);
+        [OperationContract]
+        List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
 
         [OperationContract]
         bool SaveRegistration(Registration registration);
@@ -69,6 +73,9 @@ namespace CommContracts
 
         [OperationContract]
         string getPatientBMIMsg(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
 
         [OperationContract]
         List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0);
@@ -359,8 +366,6 @@ namespace CommContracts
         // 得到当前药品的合理库存
         List<CommContracts.StoreRoomMedicineNum> GetStoreFromMedicine(int nMedicineID, int nNum);
 
-
-
         [OperationContract]
         List<CommContracts.Job> GetAllJob(string strName = "");
 
@@ -432,6 +437,16 @@ namespace CommContracts
         CommContracts.Patient ReadCurrentPatient(int PatientID);
         [OperationContract]
         decimal GetCurrentPatientBalance(int PatientID);
+
+        [OperationContract]
+        List<CommContracts.Patient> GetAllPatient(string strName);
+        [OperationContract]
+        bool UpdatePatient(CommContracts.Patient Patient);
+        [OperationContract]
+        bool SavePatient(CommContracts.Patient Patient);
+        [OperationContract]
+        bool DeletePatient(int PatientID);
+
         [OperationContract]
         List<CommContracts.SignalItem> GetAllSignalItem(string strName = "");
         [OperationContract]
