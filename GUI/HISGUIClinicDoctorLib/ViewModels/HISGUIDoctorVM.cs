@@ -378,6 +378,18 @@ namespace HISGUIDoctorLib.ViewModels
             return medicalRecord.ContentXml;
         }
 
+        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        {
+            CommClient.SignalSource myd = new CommClient.SignalSource();
+            return myd.SaveSignalSourceList(list);
+        }
+
+        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        {
+            CommClient.SignalSource myd = new CommClient.SignalSource();
+            return myd.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
+        }
+
         // 当前医生看诊的挂号单ID
         #region CurrentRegistrationID
         public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
