@@ -44,7 +44,7 @@ namespace HISGUISetLib.ViewModels
         public bool DeleteDepartment(int departmentID)
         {
             CommClient.Department myd = new CommClient.Department();
-            if(myd.DeleteDepartment(departmentID))
+            if (myd.DeleteDepartment(departmentID))
             {
                 return true;
             }
@@ -353,6 +353,28 @@ namespace HISGUISetLib.ViewModels
         {
             CommClient.SignalItem myd = new CommClient.SignalItem();
             if (myd.DeleteSignalItem(SignalItemID))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // 得到所有的患者
+        public List<CommContracts.Patient> GetAllPatient(string strName = "")
+        {
+            CommClient.Patient myd = new CommClient.Patient();
+
+            List<CommContracts.Patient> list = new List<CommContracts.Patient>();
+            list = myd.GetAllPatient(strName);
+            return list;
+        }
+
+        // 删除供患者
+        public bool DeletePatient(int PatientID)
+        {
+            CommClient.Patient myd = new CommClient.Patient();
+            if (myd.DeletePatient(PatientID))
             {
                 return true;
             }
