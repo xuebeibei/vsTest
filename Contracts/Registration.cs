@@ -7,6 +7,12 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
+    public enum PayWayEnum
+    {
+        账户支付,
+        现金支付
+    }
+
     public enum SeeDoctorStatusEnum { watting, seeing, leaved };
     public enum TriageStatusEnum { no, yes };
     [DataContract]
@@ -38,6 +44,8 @@ namespace CommContracts
         public SignalSource SignalSource { get; set; }            // 号源
         [DataMember]
         public User RegisterUser { get; set; }                    // 经办人
+        [DataMember]
+        public PayWayEnum PayWayEnum { get; set; }                // 支付方式
 
     }
 }
