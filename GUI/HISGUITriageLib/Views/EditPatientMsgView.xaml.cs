@@ -33,7 +33,7 @@ namespace HISGUINurseLib.Views
         }
 
         [Import]
-        private EditPatientMsgVM ImportVM
+        private HISGUINurseVM ImportVM
         {
             set { this.VM = value; }
         }

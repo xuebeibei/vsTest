@@ -84,17 +84,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="ViewModels\EditPatientMsgVM.cs" />
     <Compile Include="ViewModels\HISGUINurseVM.cs" />
-    <Compile Include="ViewModels\NurseVM.cs" />
     <Compile Include="Views\EditPatientMsgView.xaml.cs">
       <DependentUpon>EditPatientMsgView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HISGUINurseView.xaml.cs">
       <DependentUpon>HISGUINurseView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SelectDoctorView.xaml.cs">
-      <DependentUpon>SelectDoctorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NurseView.xaml.cs">
       <DependentUpon>NurseView.xaml</DependentUpon>
@@ -117,10 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HISGUINurseView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\SelectDoctorView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

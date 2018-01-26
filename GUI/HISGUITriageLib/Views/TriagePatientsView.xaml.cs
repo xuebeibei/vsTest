@@ -192,6 +192,26 @@ namespace HISGUINurseLib.Views
 
         }
 
+        private void EditBMIBtn_Click(object sender, RoutedEventArgs e)
+        {
+            //EditPatientMsgView
+            // 新增化验项目
+            var window = new Window();
+
+            EditPatientMsgView eidtAssayItem = new EditPatientMsgView();
+            window.Content = eidtAssayItem;
+            window.Width = 400;
+            window.Height = 500;
+            window.ResizeMode = ResizeMode.NoResize;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
+            {
+                //MessageBox.Show("化验项目新建完成！");
+                //UpdateAllDate();
+            }
+        }
+
         //private void ShowAllRegistration()
         //{
         //    var vm = this.DataContext as NurseVM;
