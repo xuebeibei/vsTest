@@ -43,8 +43,10 @@
                 </Grid.ColumnDefinitions>
                 <ListView x:Name="departmentList" Grid.Column="0"
                       Margin="5" 
-                  SelectionChanged="departmentList_Selected" 
-                  MinWidth="100" MaxWidth="200"/>
+                      SelectionMode="Single"
+                      SelectionChanged="departmentList_Selected" 
+                      MinWidth="100" 
+                      MaxWidth="200"/>
                 <Grid Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"></RowDefinition>
@@ -79,7 +81,6 @@
                           SelectionUnit="FullRow" 
                           CanUserDeleteRows="False" 
                           IsReadOnly="True" 
-                          MinHeight="200" 
                           HeadersVisibility="Column" 
                               SelectionChanged="SignalList_SelectionChanged">
                         <DataGrid.ColumnHeaderStyle>
@@ -93,10 +94,10 @@
                             </Style>
                         </DataGrid.RowStyle>
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="号源类别" Binding="{Binding Path= SignalItem.Name}" Width="63"></DataGridTextColumn>
-                            <DataGridTextColumn Header="最大号源" Binding="{Binding Path=MaxNum}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="号源类别" Binding="{Binding Path= SignalSource.SignalItem.Name}" Width="63"></DataGridTextColumn>
+                            <DataGridTextColumn Header="最大号源" Binding="{Binding Path=SignalSource.MaxNum}" Width="*"></DataGridTextColumn>
                             <DataGridTextColumn Header="已挂号源" Binding="{Binding Path=HasUsedNum}" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="费用" Binding="{Binding Path=Price}" Width="5*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="费用" Binding="{Binding Path=SignalSource.Price}" Width="5*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
