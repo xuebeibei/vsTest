@@ -43,17 +43,28 @@ namespace HISGUIFeeLib.Views
         public string Saturday { get; set; }
         public string Sunday { get; set; }
     }
+
+    public class SignalSourceNums
+    {
+        public int HasUsedNum { get; set; }
+        public CommContracts.SignalSource SignalSource { get; set; }
+    }
+
     [Export]
     [Export("RegistrationView", typeof(RegistrationView))]
     public partial class RegistrationView : HISGUIViewBase
     {
         private CommContracts.Registration currentRegistration;
         private decimal? currentPatientBalance;
+        private int currentPatientID;
+        private int currentUserID;
         public RegistrationView()
         {
             InitializeComponent();
             currentPatientBalance = 0.0m;
             currentRegistration = new CommContracts.Registration();
+            currentPatientID = 0;
+            currentUserID = 1;// 默认值
             updateSignalSourceMsg();
             this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
             this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
@@ -74,15 +85,16 @@ namespace HISGUIFeeLib.Views
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
+            currentPatientID = 1;// 默认值
             var vm = this.DataContext as HISGUIFeeVM;
             PatientMsg.Inlines.Clear();
-            currentPatientBalance = vm?.GetCurrentPatientBalance(1);
+            currentPatientBalance = vm?.GetCurrentPatientBalance(currentPatientID);
             if (this.AddCheck.IsChecked.Value)
             {
-                CommContracts.Patient patient = vm?.ReadCurrentPatient(1);
+                CommContracts.Patient patient = vm?.ReadCurrentPatient(currentPatientID);
                 if (patient == null)
                     return;
-                
+
                 string str =
                     "姓名：" + patient.Name + "     " +
                     "性别：" + patient.Gender + "     " +
@@ -101,7 +113,7 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.DeleteCheck.IsChecked.Value)
             {
-                currentRegistration = vm?.ReadLastRegistration(1);
+                currentRegistration = vm?.ReadLastRegistration(currentPatientID);
                 if (currentRegistration == null)
                     return;
                 if (currentRegistration.Patient == null)
@@ -123,17 +135,17 @@ namespace HISGUIFeeLib.Views
                     FontSize = 25
                 });
 
-                str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " + 
+                str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " +
                     "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
                     "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
                     "看诊时间：" + currentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
                     "时段：" + currentRegistration.SignalSource.SignalItem.SignalTimeEnum + "     " +
                     "费用：" + currentRegistration.RegisterFee + "元     " +
                     "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
-                    "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " +"\n";
+                    "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
                 PatientMsg.Inlines.Add(new Run(str));
 
-                if(currentRegistration.ReturnTime.HasValue)
+                if (currentRegistration.ReturnTime.HasValue)
                 {
                     this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
                     this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
@@ -152,7 +164,7 @@ namespace HISGUIFeeLib.Views
                     this.ServiceMoneyEdit.IsEnabled = true;
                     this.ReturnBtn.IsEnabled = true;
                 }
-                
+
             }
         }
 
@@ -219,7 +231,8 @@ namespace HISGUIFeeLib.Views
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistTime.Value.DayOfWeek == day &&
-                                             e.SignalSource.SignalItem.SignalTimeEnum == tim
+                                             e.SignalSource.SignalItem.SignalTimeEnum == tim &&
+                                             (!e.ReturnTime.HasValue)
                                              select e;
                             UsedNum = regisQuery.Count();
                         }
@@ -331,13 +344,38 @@ namespace HISGUIFeeLib.Views
 
                 var vm = this.DataContext as HISGUIFeeVM;
                 List<CommContracts.SignalSource> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, dt, dt);
-                SignalList.ItemsSource = sourceList;
+
+                List<CommContracts.Registration> registrationList = vm?.GetDepartmentRegistrationList(department.ID, dt, dt);
+
+                List<SignalSourceNums> numsList = new List<SignalSourceNums>();
+
+                foreach (var source in sourceList)
+                {
+                    if (source == null)
+                        continue;
+                    SignalSourceNums nums = new SignalSourceNums();
+                    if (!(registrationList == null || registrationList.Count <= 0))
+                    {
+                        int hasNum = 0;
+                        var query = from u in registrationList
+                                    where u.SignalSourceID == source.ID &&
+                                    (!u.ReturnTime.HasValue)
+                                    select u;
+                        hasNum = query.Count();
+                        nums.HasUsedNum = hasNum;
+                    }
+                    nums.SignalSource = source;
+                    numsList.Add(nums);
+                }
+
+
+                SignalList.ItemsSource = numsList;
             }
         }
 
         private void AddCheck_Click(object sender, RoutedEventArgs e)
         {
-            initDate();
+            clearAllDate();
             this.PayBtn.Visibility = Visibility.Visible;
             this.ReturnBtn.Visibility = Visibility.Collapsed;
             this.PayPanel.Visibility = Visibility.Visible;
@@ -347,7 +385,7 @@ namespace HISGUIFeeLib.Views
 
         private void DeleteCheck_Click(object sender, RoutedEventArgs e)
         {
-            initDate();
+            clearAllDate();
             this.PayBtn.Visibility = Visibility.Collapsed;
             this.ReturnBtn.Visibility = Visibility.Visible;
             this.PayPanel.Visibility = Visibility.Collapsed;
@@ -355,24 +393,44 @@ namespace HISGUIFeeLib.Views
             this.EditGrid.Visibility = Visibility.Collapsed;
         }
 
-        private void initDate()
+        private void clearAllDate()
         {
+            currentPatientID = 0;
+            currentPatientBalance = 0;
+            currentRegistration = new CommContracts.Registration();
+
             PatientMsg.Inlines.Clear();
             ReturnWayCombo.SelectedItem = null;
             DueReturnMoneyEdit.Text = "";
             ServiceMoneyEdit.Text = "";
             RealPayMoneyEdit.Text = "";
+
+            PayWayCombo.SelectedItem = null;
+            DiscountEdit.Text = "";
+            DuePayMoneyEdit.Text = "";
+            RealPayMoneyEdit.Text = "";
+            ChargeMoneyEdit.Text = "";
+
+            departmentList.SelectedItem = null;
+            SignalSourceGrid.SelectedItem = null;
+            SignalList.SelectedItem = null;
+
+            updateSignalList();
+            updateSignalSourceMsg();
         }
 
         private void SignalList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var tem = this.SignalList.SelectedItem as CommContracts.SignalSource;
+            var tem = this.SignalList.SelectedItem as SignalSourceNums;
             if (tem == null)
                 return;
 
+            if (tem.SignalSource == null)
+                return;
+
             this.DiscountEdit.Text = 0.0.ToString();
-            this.DuePayMoneyEdit.Text = tem.Price.ToString();
-            if (currentPatientBalance.Value >= tem.Price)
+            this.DuePayMoneyEdit.Text = tem.SignalSource.Price.ToString();
+            if (currentPatientBalance.Value >= tem.SignalSource.Price)
             {
                 this.PayWayCombo.SelectedItem = CommContracts.PayWayEnum.账户支付;
             }
@@ -399,24 +457,28 @@ namespace HISGUIFeeLib.Views
         {
             if (e.Key == Key.Return || e.Key == Key.Enter)
             {
-                this.PayBtn.Focus();
+                decimal charge = string.IsNullOrEmpty(this.ChargeMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ChargeMoneyEdit.Text);
+                if (charge >= 0)
+                    this.PayBtn.Focus();
             }
         }
 
         private void PayBtn_Click(object sender, RoutedEventArgs e)
         {
             CommContracts.Registration registration = new CommContracts.Registration();
-            registration.PatientID = 1;
+            registration.PatientID = currentPatientID;
 
             registration.PayWayEnum = (CommContracts.PayWayEnum)this.PayWayCombo.SelectedItem;
             registration.RegisterFee = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
             registration.RegisterTime = DateTime.Now;
-            registration.RegisterUserID = 1;
-            var signal = this.SignalList.SelectedItem as CommContracts.SignalSource;
+            registration.RegisterUserID = currentUserID;
+            var signal = this.SignalList.SelectedItem as SignalSourceNums;
             if (signal == null)
                 return;
+            if (signal.SignalSource == null)
+                return;
 
-            registration.SignalSourceID = signal.ID;
+            registration.SignalSourceID = signal.SignalSource.ID;
 
             var vm = this.DataContext as HISGUIFeeVM;
             bool? result = vm.SaveRegistration(registration);
@@ -425,6 +487,7 @@ namespace HISGUIFeeLib.Views
                 if (result.Value)
                 {
                     MessageBox.Show("挂号成功！");
+                    clearAllDate();
                     return;
                 }
             }
@@ -435,7 +498,7 @@ namespace HISGUIFeeLib.Views
         {
             currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
             currentRegistration.ReturnTime = DateTime.Now;
-            currentRegistration.ReturnUserID = 1;
+            currentRegistration.ReturnUserID = currentUserID;
 
             var vm = this.DataContext as HISGUIFeeVM;
             bool? result = vm.UpdateRegistration(currentRegistration);
@@ -444,6 +507,7 @@ namespace HISGUIFeeLib.Views
                 if (result.Value)
                 {
                     MessageBox.Show("退号成功！");
+                    clearAllDate();
                     return;
                 }
             }

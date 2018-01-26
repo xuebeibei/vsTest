@@ -26,5 +26,6 @@ namespace CommContracts
         public int DepartmentID { get; set; }         // 所属科室
         [DataMember]
         public SignalItem SignalItem { get; set; }
+
     }
 }
