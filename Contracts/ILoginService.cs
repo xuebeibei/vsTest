@@ -460,6 +460,6 @@ namespace CommContracts
 
         [OperationContract]
         // 查找某个患者最后一次挂号情况
-        CommContracts.Registration ReadLastRegistration(int PatientID);
+        CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null);
     }
 }

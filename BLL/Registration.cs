@@ -176,7 +176,7 @@ namespace BLL
         }
 
         // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
         {
             CommContracts.Registration list = new CommContracts.Registration();
 
@@ -184,7 +184,8 @@ namespace BLL
             {
                 var query = from a in ctx.Registrations
                             where
-                            a.PatientID == PatientID
+                            a.PatientID == PatientID && 
+                            (!DateTime.HasValue || a.SignalSource.VistTime <= DateTime)
                             orderby a.RegisterTime descending
                             select a;
                 foreach (DAL.Registration ass in query)

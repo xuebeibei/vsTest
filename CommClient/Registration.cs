@@ -56,9 +56,9 @@ namespace CommClient
         }
 
         // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
         {
-            return client.ReadLastRegistration(PatientID);
+            return client.ReadLastRegistration(PatientID,DateTime);
         }
 
     }

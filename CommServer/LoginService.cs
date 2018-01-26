@@ -913,10 +913,10 @@ namespace CommServer
         }
 
         // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
         {
             BLL.Registration temp = new BLL.Registration();
-            return temp.ReadLastRegistration(PatientID);
+            return temp.ReadLastRegistration(PatientID, DateTime);
         }
     }
 }
