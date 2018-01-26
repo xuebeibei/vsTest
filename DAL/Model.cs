@@ -12,7 +12,7 @@ namespace DAL
 {
     public enum GenderEnum { man, woman };
     public enum VolkEnum { hanzu, other };
-    public enum SeeDoctorStatusEnum { watting, seeing, leaved };
+    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 已看诊 };
     public enum TriageStatusEnum { no, yes };
     public enum JobEnum
     {
@@ -302,7 +302,7 @@ namespace DAL
         {
             this.RegisterFee = 0.0m;
             this.RegisterTime = DateTime.Now;
-            this.SeeDoctorStatus = SeeDoctorStatusEnum.watting;
+            this.SeeDoctorStatus = SeeDoctorStatusEnum.未到诊;
             this.TriageStatus = TriageStatusEnum.no;
             this.MedicalRecords = new List<MedicalRecord>();
         }
