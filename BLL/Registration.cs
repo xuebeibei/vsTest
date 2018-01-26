@@ -22,7 +22,7 @@ namespace BLL
 
         }
 
-        public Dictionary<int ,string> getAllRegistration()
+        public Dictionary<int, string> getAllRegistration()
         {
             Dictionary<int, string> dictionary = new Dictionary<int, string>();
 
@@ -65,7 +65,7 @@ namespace BLL
             string strBMIMsg = "";
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = ctx.Registrations.Find(RegistrationID); 
+                var query = ctx.Registrations.Find(RegistrationID);
                 var temp = query as DAL.Registration;
                 if (temp == null)
                     return strBMIMsg;
@@ -84,7 +84,11 @@ namespace BLL
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Registration, DAL.Registration>();
+                    cfg.CreateMap<CommContracts.Registration, DAL.Registration>().
+                    ForMember(x => x.MedicalRecords, opt => opt.Ignore()).
+                    ForMember(x => x.Patient, opt => opt.Ignore()).
+                    ForMember(x=>x.SignalSource, opt=>opt.Ignore()).
+                    ForMember(x=>x.RegisterUser, opt=>opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
@@ -102,6 +106,44 @@ namespace BLL
                 }
             }
             return true;
+        }
+
+        public bool UpdateRegistration(CommContracts.Registration registration)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Registrations.FirstOrDefault(m => m.ID == registration.ID);
+                if (temp != null)
+                {
+                    temp.PatientID = registration.PatientID;
+                    temp.SignalSourceID = registration.SignalSourceID;
+                    temp.RegisterUserID = registration.RegisterUserID;
+                    temp.RegisterFee = registration.RegisterFee;
+                    temp.RegisterTime = registration.RegisterTime;
+                    temp.SeeDoctorStatus = (DAL.SeeDoctorStatusEnum)registration.SeeDoctorStatus;
+                    temp.TriageStatus = (DAL.TriageStatusEnum)registration.TriageStatus;
+                    temp.PayWayEnum = (DAL.PayWayEnum)registration.PayWayEnum;
+                    temp.ReturnServiceMoney = registration.ReturnServiceMoney;
+                    temp.ReturnUserID = registration.ReturnUserID;
+                    temp.ReturnTime = registration.ReturnTime;
+                    
+                }
+                else
+                {
+                    return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+
         }
 
         public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
@@ -142,7 +184,7 @@ namespace BLL
                 var query = from a in ctx.Registrations
                             where
                             a.PatientID == PatientID
-                            orderby a.RegisterTime descending 
+                            orderby a.RegisterTime descending
                             select a;
                 foreach (DAL.Registration ass in query)
                 {

@@ -64,6 +64,8 @@ namespace CommContracts
 
         [OperationContract]
         bool SaveRegistration(Registration registration);
+        [OperationContract]
+        bool UpdateRegistration(CommContracts.Registration registration);
 
         [OperationContract]
         Dictionary<int, string> getAllRegistration();

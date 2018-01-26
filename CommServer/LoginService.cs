@@ -138,6 +138,12 @@ namespace CommServer
             return temp.SaveRegistration();
         }
 
+        public bool UpdateRegistration(CommContracts.Registration registration)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.UpdateRegistration(registration);
+        }
+
         public Dictionary<int, string> getAllRegistration()
         {
             BLL.Registration temp = new BLL.Registration();

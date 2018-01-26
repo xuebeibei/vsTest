@@ -322,11 +322,15 @@ namespace DAL
         public int PatientID { get; set; }                        // 患者ID
         public int SignalSourceID { get; set; }                   // 号源ID
         public int RegisterUserID { get; set; }                   // 经办人ID
-        public decimal RegisterFee { get; set; }                   // 挂号费用
-        public DateTime? RegisterTime { get; set; }                // 经办时间
+        public decimal RegisterFee { get; set; }                  // 挂号费用
+        public DateTime? RegisterTime { get; set; }               // 经办时间
         public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
         public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
         public PayWayEnum PayWayEnum { get; set; }                // 支付方式
+
+        public decimal ReturnServiceMoney { get; set; }           // 退号手续费
+        public int ReturnUserID { get; set; }                     // 退号人ID
+        public DateTime? ReturnTime { get; set; }                 // 退号时间
 
         public virtual Patient Patient { get; set; }                      // 患者
         public virtual SignalSource SignalSource { get; set; }            // 号源

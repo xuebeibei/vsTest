@@ -47,11 +47,13 @@ namespace HISGUIFeeLib.Views
     [Export("RegistrationView", typeof(RegistrationView))]
     public partial class RegistrationView : HISGUIViewBase
     {
+        private CommContracts.Registration currentRegistration;
         private decimal? currentPatientBalance;
         public RegistrationView()
         {
             InitializeComponent();
             currentPatientBalance = 0.0m;
+            currentRegistration = new CommContracts.Registration();
             updateSignalSourceMsg();
             this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
             this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
@@ -99,20 +101,20 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.DeleteCheck.IsChecked.Value)
             {
-                CommContracts.Registration registration = vm?.ReadLastRegistration(1);
-                if (registration == null)
+                currentRegistration = vm?.ReadLastRegistration(1);
+                if (currentRegistration == null)
                     return;
-                if (registration.Patient == null)
+                if (currentRegistration.Patient == null)
                     return;
 
                 string str =
-                    "姓名：" + registration.Patient.Name + "     " +
-                    "性别：" + registration.Patient.Gender + "     " +
-                    "生日：" + registration.Patient.BirthDay + "     " +
-                    "身份证号：" + registration.Patient.IDCardNo + "     " +
-                    "民族：" + registration.Patient.Volk + "     " +
-                    "籍贯：" + registration.Patient.JiGuan + "     " +
-                    "电话：" + registration.Patient.Tel + "     ";
+                    "姓名：" + currentRegistration.Patient.Name + "     " +
+                    "性别：" + currentRegistration.Patient.Gender + "     " +
+                    "生日：" + currentRegistration.Patient.BirthDay + "     " +
+                    "身份证号：" + currentRegistration.Patient.IDCardNo + "     " +
+                    "民族：" + currentRegistration.Patient.Volk + "     " +
+                    "籍贯：" + currentRegistration.Patient.JiGuan + "     " +
+                    "电话：" + currentRegistration.Patient.Tel + "     ";
                 ;
                 PatientMsg.Inlines.Add(new Run(str));
                 PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value + "元\n")
@@ -121,19 +123,36 @@ namespace HISGUIFeeLib.Views
                     FontSize = 25
                 });
 
-                str = "号源名称：" + registration.SignalSource.SignalItem.Name + "     " + 
-                    "科室：" + registration.SignalSource.DepartmentID + "     " +
-                    "看诊状态：" + registration.SeeDoctorStatus.ToString() + "     " +
-                    "看诊时间：" + registration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
-                    "时段：" + registration.SignalSource.SignalItem.SignalTimeEnum + "     " +
-                    "费用：" + registration.RegisterFee + "元     " +
-                    "挂号经办人：" + registration.RegisterUser.Username + "     " +
-                    "经办时间：" + registration.RegisterTime.Value.Date + "     " +"\n";
+                str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " + 
+                    "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
+                    "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
+                    "看诊时间：" + currentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
+                    "时段：" + currentRegistration.SignalSource.SignalItem.SignalTimeEnum + "     " +
+                    "费用：" + currentRegistration.RegisterFee + "元     " +
+                    "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
+                    "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " +"\n";
                 PatientMsg.Inlines.Add(new Run(str));
 
-                this.ReturnWayCombo.SelectedItem = registration.PayWayEnum;
-                this.DueReturnMoneyEdit.Text = registration.RegisterFee.ToString();
-                this.ServiceMoneyEdit.Focus();
+                if(currentRegistration.ReturnTime.HasValue)
+                {
+                    this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
+                    this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
+                    this.ServiceMoneyEdit.Text = currentRegistration.ReturnServiceMoney.ToString();
+                    this.RealPayMoneyEdit.Text = (currentRegistration.RegisterFee - currentRegistration.ReturnServiceMoney).ToString();
+
+                    this.ServiceMoneyEdit.IsEnabled = false;
+                    this.ReturnBtn.IsEnabled = false;
+                }
+                else
+                {
+                    this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
+                    this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
+                    this.ServiceMoneyEdit.Focus();
+
+                    this.ServiceMoneyEdit.IsEnabled = true;
+                    this.ReturnBtn.IsEnabled = true;
+                }
+                
             }
         }
 
@@ -339,6 +358,10 @@ namespace HISGUIFeeLib.Views
         private void initDate()
         {
             PatientMsg.Inlines.Clear();
+            ReturnWayCombo.SelectedItem = null;
+            DueReturnMoneyEdit.Text = "";
+            ServiceMoneyEdit.Text = "";
+            RealPayMoneyEdit.Text = "";
         }
 
         private void SignalList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -410,7 +433,21 @@ namespace HISGUIFeeLib.Views
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("退号");
+            currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
+            currentRegistration.ReturnTime = DateTime.Now;
+            currentRegistration.ReturnUserID = 1;
+
+            var vm = this.DataContext as HISGUIFeeVM;
+            bool? result = vm.UpdateRegistration(currentRegistration);
+            if (result.HasValue)
+            {
+                if (result.Value)
+                {
+                    MessageBox.Show("退号成功！");
+                    return;
+                }
+            }
+            MessageBox.Show("退号失败！");
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)

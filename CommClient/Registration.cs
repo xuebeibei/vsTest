@@ -50,6 +50,11 @@ namespace CommClient
             return client.SaveRegistration(registration);
         }
 
+        public bool UpdateRegistration(CommContracts.Registration registration)
+        {
+            return client.UpdateRegistration(registration);
+        }
+
         // 查找某个患者最后一次挂号情况
         public CommContracts.Registration ReadLastRegistration(int PatientID)
         {

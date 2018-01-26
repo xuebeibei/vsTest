@@ -275,6 +275,12 @@ namespace HISGUIFeeLib.ViewModels
             return myd.SaveRegistration(registration);
         }
 
+        public bool UpdateRegistration(CommContracts.Registration registration)
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.UpdateRegistration(registration);
+        }
+
         // 查找某个患者最后一次挂号情况
         public CommContracts.Registration ReadLastRegistration(int PatientID)
         {

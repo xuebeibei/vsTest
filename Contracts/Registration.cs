@@ -46,6 +46,12 @@ namespace CommContracts
         public User RegisterUser { get; set; }                    // 经办人
         [DataMember]
         public PayWayEnum PayWayEnum { get; set; }                // 支付方式
+        [DataMember]
+        public decimal ReturnServiceMoney { get; set; }           // 退号手续费
+        [DataMember]
+        public int ReturnUserID { get; set; }                     // 退号人ID
+        [DataMember]
+        public DateTime? ReturnTime { get; set; }                 // 退号时间
 
     }
 }
