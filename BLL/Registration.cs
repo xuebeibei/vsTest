@@ -132,5 +132,33 @@ namespace BLL
             return list;
         }
 
+        // 查找某个患者最后一次挂号情况
+        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        {
+            CommContracts.Registration list = new CommContracts.Registration();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Registrations
+                            where
+                            a.PatientID == PatientID
+                            orderby a.RegisterTime descending 
+                            select a;
+                foreach (DAL.Registration ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Registration temp = mapper.Map<CommContracts.Registration>(ass);
+                    list = temp;
+                    break;
+                }
+            }
+            return list;
+        }
+
     }
 }

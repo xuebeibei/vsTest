@@ -126,7 +126,7 @@ namespace CommServer
             BLL.SignalSource temp = new BLL.SignalSource();
             return temp.SaveSignalSourceList(list);
         }
-        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate ,DateTime endDate)
+        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
             BLL.SignalSource temp = new BLL.SignalSource();
             return temp.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
@@ -155,7 +155,7 @@ namespace CommServer
             BLL.Registration temp = new BLL.Registration();
             return temp.getPatientBMIMsg(RegistrationID);
         }
-        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID,int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
             BLL.Registration temp = new BLL.Registration();
             return temp.GetDepartmentRegistrationList(DepartmentID, EmployeeID, startDate, endDate);
@@ -904,6 +904,13 @@ namespace CommServer
         {
             BLL.Patient temp = new BLL.Patient();
             return temp.DeletePatient(PatientID);
+        }
+
+        // 查找某个患者最后一次挂号情况
+        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.ReadLastRegistration(PatientID);
         }
     }
 }
