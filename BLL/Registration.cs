@@ -155,7 +155,7 @@ namespace BLL
             {
                 var query = from a in ctx.Registrations
                             where
-                            (DepartmentID > 0 && a.SignalSource.DepartmentID == DepartmentID) &&
+                            (DepartmentID <= 0 || a.SignalSource.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.SignalSource.EmployeeID == EmployeeID) &&
                             a.SignalSource.VistTime.Value <= endDate &&
                             a.SignalSource.VistTime.Value >= startDate

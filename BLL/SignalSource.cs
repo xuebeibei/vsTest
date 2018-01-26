@@ -289,7 +289,7 @@ namespace BLL
             {
                 var query = from a in ctx.SignalSources
                             where
-                            (DepartmentID > 0 && a.DepartmentID == DepartmentID) &&
+                            (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.EmployeeID == EmployeeID) &&
                             a.VistTime.Value <= endDate &&
                             a.VistTime.Value >= startDate
