@@ -294,7 +294,7 @@ namespace HISGUIFeeLib.Views
                 DateTime tempDate = DateTime.Now.AddDays(i);
                 this.SignalSourceGrid.Columns.Add(new DataGridTextColumn()
                 {
-                    Header = tempDate.ToString("yyyy-MM-dd dddd") + (tempDate.Date == DateTime.Now.Date ? "*" : ""),
+                    Header = tempDate.ToString("yyyy-MM-dd dddd"),
                     Binding = new Binding(tempDate.DayOfWeek.ToString()),
                     Width = length,
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)

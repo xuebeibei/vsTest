@@ -138,7 +138,7 @@ namespace HISGUIDoctorLib.Views
                 DateTime tempDate = getMonday(currentManageDate).AddDays(i);
                 this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
                 {
-                    Header = tempDate.ToString("yyyy-MM-dd dddd") + (tempDate.Date == DateTime.Now.Date ? "*" : ""),
+                    Header = tempDate.ToString("yyyy-MM-dd dddd"),
                     SelectedItemBinding = new Binding(tempDate.DayOfWeek.ToString()),
                     ItemsSource = listOfAllSignalItems,
                     Width = length,
