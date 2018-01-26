@@ -52,6 +52,10 @@ namespace CommContracts
         public int ReturnUserID { get; set; }                     // 退号人ID
         [DataMember]
         public DateTime? ReturnTime { get; set; }                 // 退号时间
+        [DataMember]
+        public int ArriveUserID { get; set; }                     // 到诊用户ID
+        [DataMember]
+        public DateTime? ArriveTime { get; set; }                 // 到诊时间 
 
     }
 }

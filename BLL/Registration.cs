@@ -126,7 +126,8 @@ namespace BLL
                     temp.ReturnServiceMoney = registration.ReturnServiceMoney;
                     temp.ReturnUserID = registration.ReturnUserID;
                     temp.ReturnTime = registration.ReturnTime;
-                    
+                    temp.ArriveUserID = registration.ArriveUserID;
+                    temp.ArriveTime = registration.ArriveTime;
                 }
                 else
                 {

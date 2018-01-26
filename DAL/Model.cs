@@ -332,6 +332,9 @@ namespace DAL
         public int ReturnUserID { get; set; }                     // 退号人ID
         public DateTime? ReturnTime { get; set; }                 // 退号时间
 
+        public int ArriveUserID { get; set; }                     // 到诊用户ID
+        public DateTime? ArriveTime { get; set; }                 // 到诊时间 
+
         public virtual Patient Patient { get; set; }                      // 患者
         public virtual SignalSource SignalSource { get; set; }            // 号源
         public virtual User RegisterUser { get; set; }                    // 经办人
