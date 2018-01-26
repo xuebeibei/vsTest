@@ -112,17 +112,19 @@
                     <Label Margin="5">实收金额：</Label>
                     <TextBox x:Name="RealPayMoneyEdit" Margin="5" Width="60" 
                              TextChanged="RealPayMoneyEdit_TextChanged"
-                             PreviewKeyDown="RealPayMoneyEdit_PreviewKeyDown"></TextBox>
+                             KeyDown="RealPayMoneyEdit_KeyDown"></TextBox>
                     <Label Margin="5">找零金额：</Label>
                     <TextBox x:Name="ChargeMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" x:Name="ReturnPanel" Visibility="Collapsed">
                     <Label Margin="5">退费方式：</Label>
-                    <ComboBox x:Name="ReturnWayCombo" Width="100" Margin="5"></ComboBox>
+                    <ComboBox x:Name="ReturnWayCombo" Width="100" Margin="5" IsEnabled="False"></ComboBox>
                     <Label Margin="5">应退金额：</Label>
                     <TextBox x:Name="DueReturnMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
                     <Label Margin="5">手续费用：</Label>
-                    <TextBox x:Name="ServiceMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
+                    <TextBox x:Name="ServiceMoneyEdit" Margin="5" Width="60" 
+                             TextChanged="ServiceMoneyEdit_TextChanged"
+                             KeyDown="ServiceMoneyEdit_KeyDown"></TextBox>
                     <Label Margin="5">实退金额：</Label>
                     <TextBox x:Name="RealReturnMoneyEdit" Margin="5" Width="60" IsEnabled="False"></TextBox>
                 </StackPanel>

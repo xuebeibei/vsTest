@@ -54,6 +54,7 @@ namespace HISGUIFeeLib.Views
             currentPatientBalance = 0.0m;
             updateSignalSourceMsg();
             this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
+            this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
             this.Loaded += RegistrationView_Loaded;
         }
 
@@ -72,23 +73,68 @@ namespace HISGUIFeeLib.Views
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            CommContracts.Patient patient = vm?.ReadCurrentPatient(1);
-            currentPatientBalance = vm?.GetCurrentPatientBalance(1);
-            if (patient == null)
-                return;
             PatientMsg.Inlines.Clear();
-            string str =
-                "姓名：" + patient.Name + " " +
-                "性别：" + patient.Gender + " " +
-                "生日：" + patient.BirthDay + " " +
-                "身份证号：" + patient.IDCardNo + " " +
-                "民族：" + patient.Volk + " " +
-                "籍贯：" + patient.JiGuan + " " +
-                "电话：" + patient.Tel + " "
-                ;
-            PatientMsg.Inlines.Add(new Run(str));
-            PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value) { Foreground = Brushes.Green, FontSize = 25 });
+            currentPatientBalance = vm?.GetCurrentPatientBalance(1);
+            if (this.AddCheck.IsChecked.Value)
+            {
+                CommContracts.Patient patient = vm?.ReadCurrentPatient(1);
+                if (patient == null)
+                    return;
+                
+                string str =
+                    "姓名：" + patient.Name + "     " +
+                    "性别：" + patient.Gender + "     " +
+                    "生日：" + patient.BirthDay + "     " +
+                    "身份证号：" + patient.IDCardNo + "     " +
+                    "民族：" + patient.Volk + "     " +
+                    "籍贯：" + patient.JiGuan + "     " +
+                    "电话：" + patient.Tel + "     "
+                    ;
+                PatientMsg.Inlines.Add(new Run(str));
+                PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value + "元\n")
+                {
+                    Foreground = Brushes.Green,
+                    FontSize = 25
+                });
+            }
+            else if (this.DeleteCheck.IsChecked.Value)
+            {
+                CommContracts.Registration registration = vm?.ReadLastRegistration(1);
+                if (registration == null)
+                    return;
+                if (registration.Patient == null)
+                    return;
 
+                string str =
+                    "姓名：" + registration.Patient.Name + "     " +
+                    "性别：" + registration.Patient.Gender + "     " +
+                    "生日：" + registration.Patient.BirthDay + "     " +
+                    "身份证号：" + registration.Patient.IDCardNo + "     " +
+                    "民族：" + registration.Patient.Volk + "     " +
+                    "籍贯：" + registration.Patient.JiGuan + "     " +
+                    "电话：" + registration.Patient.Tel + "     ";
+                ;
+                PatientMsg.Inlines.Add(new Run(str));
+                PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value + "元\n")
+                {
+                    Foreground = Brushes.Green,
+                    FontSize = 25
+                });
+
+                str = "号源名称：" + registration.SignalSource.SignalItem.Name + "     " + 
+                    "科室：" + registration.SignalSource.DepartmentID + "     " +
+                    "看诊状态：" + registration.SeeDoctorStatus.ToString() + "     " +
+                    "看诊时间：" + registration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
+                    "时段：" + registration.SignalSource.SignalItem.SignalTimeEnum + "     " +
+                    "费用：" + registration.RegisterFee + "元     " +
+                    "挂号经办人：" + registration.RegisterUser.Username + "     " +
+                    "经办时间：" + registration.RegisterTime.Value.Date + "     " +"\n";
+                PatientMsg.Inlines.Add(new Run(str));
+
+                this.ReturnWayCombo.SelectedItem = registration.PayWayEnum;
+                this.DueReturnMoneyEdit.Text = registration.RegisterFee.ToString();
+                this.ServiceMoneyEdit.Focus();
+            }
         }
 
         private void FindPatientBtn_Click(object sender, RoutedEventArgs e)
@@ -272,6 +318,7 @@ namespace HISGUIFeeLib.Views
 
         private void AddCheck_Click(object sender, RoutedEventArgs e)
         {
+            initDate();
             this.PayBtn.Visibility = Visibility.Visible;
             this.ReturnBtn.Visibility = Visibility.Collapsed;
             this.PayPanel.Visibility = Visibility.Visible;
@@ -281,11 +328,17 @@ namespace HISGUIFeeLib.Views
 
         private void DeleteCheck_Click(object sender, RoutedEventArgs e)
         {
+            initDate();
             this.PayBtn.Visibility = Visibility.Collapsed;
             this.ReturnBtn.Visibility = Visibility.Visible;
             this.PayPanel.Visibility = Visibility.Collapsed;
             this.ReturnPanel.Visibility = Visibility.Visible;
             this.EditGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void initDate()
+        {
+            PatientMsg.Inlines.Clear();
         }
 
         private void SignalList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -319,7 +372,7 @@ namespace HISGUIFeeLib.Views
             this.ChargeMoneyEdit.Text = charge.ToString();
         }
 
-        private void RealPayMoneyEdit_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void RealPayMoneyEdit_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Return || e.Key == Key.Enter)
             {
@@ -357,12 +410,30 @@ namespace HISGUIFeeLib.Views
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            MessageBox.Show("退号");
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void ServiceMoneyEdit_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            decimal DueReturn = 0, ServiceMoney = 0, RealReturn = 0;
+            DueReturn = string.IsNullOrEmpty(this.DueReturnMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DueReturnMoneyEdit.Text);
+            ServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
+            RealReturn = DueReturn - ServiceMoney;
+
+            this.RealReturnMoneyEdit.Text = RealReturn.ToString();
+        }
+
+        private void ServiceMoneyEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return || e.Key == Key.Enter)
+            {
+                this.ReturnBtn.Focus();
+            }
         }
     }
 }
