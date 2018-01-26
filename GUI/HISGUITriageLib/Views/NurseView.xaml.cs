@@ -30,67 +30,12 @@ namespace HISGUINurseLib.Views
         public NurseWorkView()
         {
             InitializeComponent();
-            this.Loaded += Triage_Loaded;
         }
 
         [Import]
-        private NurseVM ImportVM
+        private HISGUINurseVM ImportVM
         {
             set { this.VM = value; }
-        }
-
-        private void Triage_Loaded(object sender, RoutedEventArgs e)
-        {
-            ShowAllRegistration();
-        }
-
-        private void ShowAllRegistration()
-        {
-            var vm = this.DataContext as NurseVM;
-
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetAllUnTriagePatient();
-
-            List<PatientMsgBox> list = new List<PatientMsgBox>();
-            if (dictionary != null)
-            {
-                for (int i = 0; i < dictionary.Count(); i++)
-                {
-                    // 实例化一个控件
-                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-                }
-
-                this.aaa.ItemsSource = list;
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.aaa.SelectedItems.Count <= 0)
-            {
-                MessageBox.Show("请选择患者!");
-                return;
-            }
-
-            var vm = this.DataContext as NurseVM;
-            //if(vm?.CurrentPatientList == null)
-            //{
-
-            //}
-            //vm?.CurrentPatientList.Clear();
-            List<int> list = new List<int>();
-            for (int i = 0; i < this.aaa.SelectedItems.Count; i++)
-            {
-                PatientMsgBox aa = this.aaa.SelectedItems[i] as PatientMsgBox;
-                if (aa != null)
-                {
-                    list.Add(aa.ID);
-                }
-            }
-
-            vm?.setList(list);
-
-            vm?.SelectDoctor();
         }
     }
 }

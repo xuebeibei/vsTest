@@ -20,7 +20,7 @@ using Prism.Commands;
 namespace HISGUINurseLib.ViewModels
 {
     [Export]
-    [Export("TriageVM", typeof(HISGUIVMBase))]
+    [Export("NurseVM", typeof(HISGUIVMBase))]
     class NurseVM : HISGUIVMBase
     {
         public ICommand SelectDoctorCommand { get; set; }

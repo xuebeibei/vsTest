@@ -99,6 +99,9 @@
     <Compile Include="Views\NurseView.xaml.cs">
       <DependentUpon>NurseView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TriagePatientsView.xaml.cs">
+      <DependentUpon>TriagePatientsView.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -122,6 +125,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TriagePatientsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

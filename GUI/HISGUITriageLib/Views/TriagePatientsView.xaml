@@ -1,0 +1,51 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUINurseLib.Views.TriagePatientsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUINurseLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <Grid>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Button x:Name="ReadCardBtn" Margin="5" Click="ReadCardBtn_Click">读卡</Button>
+                <TextBox x:Name="FindName" Margin="5" Width="150"/>
+                <Button x:Name="FindBtn" Margin="5" Click="FindBtn_Click">查找</Button>
+            </StackPanel>
+            <TextBlock x:Name="PatientMsg" Margin="5" Height="100" Background="AliceBlue" TextWrapping="Wrap"/>
+            <Separator x:Name="Spe" Margin="5"/>
+            <StackPanel Orientation="Horizontal">
+                <Button x:Name="ArriveBtn" Margin="5" Click="ArriveBtn_Click">标记到诊</Button>
+                <Button x:Name="EditBMIBtn" Margin="5">完善体征信息</Button>
+            </StackPanel>
+            <Separator x:Name="Spe1" Margin="5"/>
+            <DataGrid x:Name="AllWaitGrid" Margin="5" 
+                          CanUserAddRows="False" 
+                          AutoGenerateColumns="False" 
+                          SelectionMode="Single"
+                          SelectionUnit="FullRow" 
+                          CanUserDeleteRows="False" 
+                          IsReadOnly="True" 
+                          HeadersVisibility="Column" 
+                          SelectedCellsChanged="AllWaitGrid_SelectedCellsChanged" >
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Height" Value="30" />
+                    </Style>
+                </DataGrid.RowStyle>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="科室" Binding="{Binding Path=Department}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="时段" Binding="{Binding Path=TimeEnum}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="医生" Binding="{Binding Path=Doctor}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="候诊数量" Binding="{Binding Path=WaitNum}" Width="3*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</HISGUICore:HISGUIViewBase>
