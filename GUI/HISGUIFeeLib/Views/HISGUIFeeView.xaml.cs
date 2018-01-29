@@ -41,6 +41,7 @@ namespace HISGUIFeeLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
+            vm.CurrentUser = vm?.getUser(1);
             vm?.FeeWorkManage();
         }
     }
