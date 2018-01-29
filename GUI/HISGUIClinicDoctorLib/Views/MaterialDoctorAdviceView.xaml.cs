@@ -77,6 +77,7 @@ namespace HISGUIDoctorLib.Views
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             List<CommContracts.MaterialDoctorAdviceDetail> list = new List<CommContracts.MaterialDoctorAdviceDetail>();
+            decimal sum = 0.0m;
             foreach (var tem in listDetail)
             {
                 CommContracts.MaterialDoctorAdviceDetail materialBillDetail = new CommContracts.MaterialDoctorAdviceDetail();
@@ -84,10 +85,37 @@ namespace HISGUIDoctorLib.Views
                 materialBillDetail.AllNum = tem.SingleDose;
                 materialBillDetail.Remarks = tem.Illustration;
                 list.Add(materialBillDetail);
+                sum += tem.SingleDose * tem.SellPrice;
             }
+            CommContracts.MaterialDoctorAdvice materialDoctorAdvice = new CommContracts.MaterialDoctorAdvice();
 
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveMaterialDoctorAdvice(list);
+
+            materialDoctorAdvice.NO = "";// ?
+            if (vm.IsClinicOrInHospital)
+            {
+                if (vm.CurrentRegistration != null)
+                {
+                    materialDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    materialDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if (vm.CurrentInpatient != null)
+                {
+                    materialDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    materialDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+            materialDoctorAdvice.SumOfMoney = sum;
+            materialDoctorAdvice.WriteTime = DateTime.Now;
+            if (vm.CurrentUser != null)
+                materialDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+
+            materialDoctorAdvice.MaterialDoctorAdviceDetails = list;
+
+            bool? saveResult = vm?.SaveMaterialDoctorAdvice(materialDoctorAdvice);
 
             if (!saveResult.HasValue)
             {

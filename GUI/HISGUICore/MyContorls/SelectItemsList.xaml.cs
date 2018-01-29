@@ -36,15 +36,67 @@ namespace HISGUICore.MyContorls
 
         private void initGrid()
         {
+            //this.Grid1.Columns.Clear();
+            if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
+            {
+                this.Grid1.View = this.Resources["haveMedicineColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.zhiliao)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.jianyan)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.jiancha)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.cailiao)
+            {
+                this.Grid1.View = this.Resources["haveMaterialColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.qita)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.medicineOutStock)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
+            else if (editEnum == MyTableEditEnum.medicineCheckStock)
+            {
+                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+            }
         }
 
         private void getAllData()
         {
             string strFindName = ""; // 暂时先搜索空
-            if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
+
+            this.Grid1.ItemsSource = null;
+
+            if (editEnum == MyTableEditEnum.xichengyao)
             {
                 CommClient.Medicine myd = new CommClient.Medicine();
-                List<CommContracts.Medicine> list = myd.GetAllMedicine();
+                List<CommContracts.Medicine> list = myd.GetAllXiChengMedicine(strFindName);
+
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
+            else if (editEnum == MyTableEditEnum.zhongyao)
+            {
+                CommClient.Medicine myd = new CommClient.Medicine();
+                List<CommContracts.Medicine> list = myd.GetOneTypeMedicine(CommContracts.MedicineTypeEnum.zhongyao, strFindName);
+
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
+            }
+            else if (editEnum == MyTableEditEnum.medicineInStock)
+            {
+                CommClient.Medicine myd = new CommClient.Medicine();
+                List<CommContracts.Medicine> list = myd.GetAllMedicine(strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
@@ -57,7 +109,7 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if(editEnum == MyTableEditEnum.jianyan)
+            else if (editEnum == MyTableEditEnum.jianyan)
             {
                 CommClient.AssayItem therapyItem = new CommClient.AssayItem();
                 List<CommContracts.AssayItem> list = therapyItem.GetAllAssayItem(strFindName);
@@ -73,7 +125,7 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if(editEnum == MyTableEditEnum.cailiao)
+            else if (editEnum == MyTableEditEnum.cailiao)
             {
                 CommClient.MaterialItem therapyItem = new CommClient.MaterialItem();
                 List<CommContracts.MaterialItem> list = therapyItem.GetAllMaterialItem(strFindName);
@@ -81,7 +133,7 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if(editEnum == MyTableEditEnum.qita)
+            else if (editEnum == MyTableEditEnum.qita)
             {
                 CommClient.OtherServiceItem otherServiceItem = new CommClient.OtherServiceItem();
                 List<CommContracts.OtherServiceItem> list = otherServiceItem.GetAllOtherServiceItem(strFindName);
@@ -92,25 +144,25 @@ namespace HISGUICore.MyContorls
             else if (editEnum == MyTableEditEnum.medicineOutStock)
             {
                 CommClient.StoreRoomMedicineNum storeRoomMedicineNum = new CommClient.StoreRoomMedicineNum();
-                List<CommContracts.StoreRoomMedicineNum> list = storeRoomMedicineNum.getAllMedicineItemNum(1,"",0,-1,true,true,false,false);
+                List<CommContracts.StoreRoomMedicineNum> list = storeRoomMedicineNum.getAllMedicineItemNum(1, "", 0, -1, true, true, false, false);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if(editEnum == MyTableEditEnum.medicineCheckStock)
+            else if (editEnum == MyTableEditEnum.medicineCheckStock)
             {
 
             }
         }
 
 
-        private void Grid1_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void Grid1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter || e.Key == Key.Return)
             {
                 if (editEnum == MyTableEditEnum.xichengyao || editEnum == MyTableEditEnum.zhongyao || editEnum == MyTableEditEnum.medicineInStock)
                 {
-                    CommContracts.Medicine medicine = ((sender as DataGrid).CurrentCell.Item as CommContracts.Medicine);
+                    CommContracts.Medicine medicine = this.Grid1.SelectedItem as CommContracts.Medicine;
 
                     CurrentMedicine = medicine;
                     (this.Parent as Window).DialogResult = true;
@@ -118,7 +170,7 @@ namespace HISGUICore.MyContorls
                 }
                 else if (editEnum == MyTableEditEnum.zhiliao)
                 {
-                    CommContracts.TherapyItem therapyItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.TherapyItem);
+                    CommContracts.TherapyItem therapyItem = this.Grid1.SelectedItem as CommContracts.TherapyItem;
 
                     CurrentTherapyItem = therapyItem;
                     (this.Parent as Window).DialogResult = true;
@@ -126,7 +178,7 @@ namespace HISGUICore.MyContorls
                 }
                 else if (editEnum == MyTableEditEnum.jianyan)
                 {
-                    CommContracts.AssayItem therapyItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.AssayItem);
+                    CommContracts.AssayItem therapyItem = this.Grid1.SelectedItem as CommContracts.AssayItem;
 
                     CurrentAssayItem = therapyItem;
                     (this.Parent as Window).DialogResult = true;
@@ -134,24 +186,24 @@ namespace HISGUICore.MyContorls
                 }
                 else if (editEnum == MyTableEditEnum.jiancha)
                 {
-                    CommContracts.InspectItem therapyItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.InspectItem);
+                    CommContracts.InspectItem therapyItem = this.Grid1.SelectedItem as CommContracts.InspectItem;
 
                     CurrentInspectItem = therapyItem;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }
-                else if(editEnum == MyTableEditEnum.cailiao)
+                else if (editEnum == MyTableEditEnum.cailiao)
                 {
-                    CommContracts.MaterialItem materialItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.MaterialItem);
+                    CommContracts.MaterialItem materialItem = this.Grid1.SelectedItem as CommContracts.MaterialItem;
 
                     CurrentMaterialItem = materialItem;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
 
                 }
-                else if(editEnum == MyTableEditEnum.qita)
+                else if (editEnum == MyTableEditEnum.qita)
                 {
-                    CommContracts.OtherServiceItem otherServiceItem = ((sender as DataGrid).CurrentCell.Item as CommContracts.OtherServiceItem);
+                    CommContracts.OtherServiceItem otherServiceItem = this.Grid1.SelectedItem as CommContracts.OtherServiceItem;
 
                     CurrentOtherServiceItem = otherServiceItem;
                     (this.Parent as Window).DialogResult = true;
@@ -159,13 +211,13 @@ namespace HISGUICore.MyContorls
                 }
                 else if (editEnum == MyTableEditEnum.medicineOutStock)
                 {
-                    CommContracts.StoreRoomMedicineNum storeRoomMedicineNum = ((sender as DataGrid).CurrentCell.Item as CommContracts.StoreRoomMedicineNum);
+                    CommContracts.StoreRoomMedicineNum storeRoomMedicineNum = this.Grid1.SelectedItem as CommContracts.StoreRoomMedicineNum;
 
                     CurrentStoreRoomMedicineNum = storeRoomMedicineNum;
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }
-                else if(editEnum == MyTableEditEnum.medicineCheckStock)
+                else if (editEnum == MyTableEditEnum.medicineCheckStock)
                 {
 
                 }

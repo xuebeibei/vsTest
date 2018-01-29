@@ -66,5 +66,10 @@ namespace CommClient
         {
             return client.DeleteLoginUser(jobID);
         }
+
+        public CommContracts.User getUser(int UserID)
+        {
+            return client.getUser(UserID);
+        }
     }
 }

@@ -78,6 +78,8 @@ namespace HISGUIDoctorLib.Views
             }
 
             List<CommContracts.MedicineDoctorAdviceDetail> list = new List<CommContracts.MedicineDoctorAdviceDetail>();
+            decimal sum = 0.0m;
+
             foreach (var tem in listDetail)
             {
                 CommContracts.MedicineDoctorAdviceDetail doctorAdviceDetail = new CommContracts.MedicineDoctorAdviceDetail();
@@ -89,11 +91,43 @@ namespace HISGUIDoctorLib.Views
                 //doctorAdviceDetail.DaysNum = tem.DaysNum;
                 //doctorAdviceDetail.IntegralDose = tem.IntegralDose;
                 doctorAdviceDetail.Remarks = tem.Illustration;
+
                 list.Add(doctorAdviceDetail);
+
+                sum += tem.SellPrice * tem.SingleDose;
             }
 
+            CommContracts.MedicineDoctorAdvice medicineDoctorAdvice = new CommContracts.MedicineDoctorAdvice();
+
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveMedicineDoctorAdvice(doctorAdviceContentEnum, list);
+
+            medicineDoctorAdvice.RecipeContentEnum = doctorAdviceContentEnum;
+            medicineDoctorAdvice.ChargeStatusEnum = CommContracts.ChargeStatusEnum.未收费;
+            if (vm.IsClinicOrInHospital)
+            {
+                if (vm.CurrentRegistration != null)
+                {
+                    medicineDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    medicineDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if (vm.CurrentInpatient != null)
+                {
+                    medicineDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    medicineDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+            medicineDoctorAdvice.SumOfMoney = sum;
+            medicineDoctorAdvice.WriteTime = DateTime.Now;
+            if (vm.CurrentUser != null)
+                medicineDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+
+            medicineDoctorAdvice.MedicineDoctorAdviceDetails = list;
+
+
+            bool? saveResult = vm?.SaveMedicineDoctorAdvice(medicineDoctorAdvice);
 
             if (!saveResult.HasValue)
             {
@@ -151,7 +185,7 @@ namespace HISGUIDoctorLib.Views
             var vm = this.DataContext as HISGUIDoctorVM;
             this.XiChengDoctorAdviceMsg.Text = vm?.NewMedicineDoctorAdvice();
             this.myXiChengTableEdit.ClearAllDetails();
-            
+
             this.AllXiChengList.SelectedItems.Clear();
             this.myXiChengTableEdit.IsEnabled = true;
             this.SaveBtn.IsEnabled = true;
@@ -218,7 +252,7 @@ namespace HISGUIDoctorLib.Views
             this.DeleteBtn.IsEnabled = true;
         }
 
-        private void ShowDetails(CommContracts.MedicineDoctorAdvice doctorAdvice , CommContracts.DoctorAdviceContentEnum doctorAdviceContentEnum)
+        private void ShowDetails(CommContracts.MedicineDoctorAdvice doctorAdvice, CommContracts.DoctorAdviceContentEnum doctorAdviceContentEnum)
         {
             if (doctorAdvice == null)
                 return;
@@ -235,6 +269,7 @@ namespace HISGUIDoctorLib.Views
                 medicine = myd.GetMedicine(tem.MedicineID);
                 doctorAdviceDetail.Name = medicine.Name;
                 doctorAdviceDetail.Specifications = medicine.Specifications;
+                doctorAdviceDetail.SingleDose = tem.AllNum;
                 //doctorAdviceDetail.SingleDose = tem.SingleDose;
                 //doctorAdviceDetail.Usage = tem.Usage;
                 //doctorAdviceDetail.DDDS = tem.DDDS;
@@ -250,7 +285,7 @@ namespace HISGUIDoctorLib.Views
                 myXiChengTableEdit.SetAllDetails(list);
                 myXiChengTableEdit.IsEnabled = false;
             }
-            else if(doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.ZhongYao)
+            else if (doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.ZhongYao)
             {
                 this.ZhongDoctorAdviceMsg.Text = doctorAdvice.ToString();
                 myZhongTableEdit.SetAllDetails(list);

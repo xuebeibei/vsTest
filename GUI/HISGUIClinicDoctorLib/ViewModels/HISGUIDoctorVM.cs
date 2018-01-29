@@ -42,11 +42,17 @@ namespace HISGUIDoctorLib.ViewModels
             DoctorWorkManage();
         }
 
+        public CommContracts.User getUser(int UserID)
+        {
+            CommClient.User user = new CommClient.User();
+            return user.getUser(UserID);
+        }
+
         // 获得当前医生的患者
-        public Dictionary<int, string> GetPatients()
+        public List<CommContracts.Registration> GetDoctorPatients(int EmployeeID = 0, DateTime? VistTime = null)
         {
             CommClient.Registration myd = new CommClient.Registration();
-            return myd.getAllRegistration();
+            return myd.getAllRegistration(EmployeeID, VistTime);
         }
 
         // 获得当前医生的住院患者
@@ -67,11 +73,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.MedicineDoctorAdvice MedicineDoctorAdvice = new CommClient.MedicineDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return MedicineDoctorAdvice.getAllXiCheng(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return MedicineDoctorAdvice.getAllXiCheng(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return MedicineDoctorAdvice.getAllInHospitalXiCheng(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return MedicineDoctorAdvice.getAllInHospitalXiCheng(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -80,11 +92,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.MedicineDoctorAdvice MedicineDoctorAdvice = new CommClient.MedicineDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return MedicineDoctorAdvice.getAllZhong(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return MedicineDoctorAdvice.getAllZhong(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return MedicineDoctorAdvice.getAllInHospitalZhong(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return MedicineDoctorAdvice.getAllInHospitalZhong(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -93,11 +111,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.AssayDoctorAdvice assay = new CommClient.AssayDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return assay.getAllAssay(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return assay.getAllAssay(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return assay.getAllInHospitalAssay(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return assay.getAllInHospitalAssay(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -106,11 +130,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.TherapyDoctorAdvice therapy = new CommClient.TherapyDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return therapy.getAllTherapyDoctorAdvice(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return therapy.getAllTherapyDoctorAdvice(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return therapy.getAllInHospitalTherapyDoctorAdvice(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return therapy.getAllInHospitalTherapyDoctorAdvice(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -119,11 +149,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.InspectDoctorAdvice inspect = new CommClient.InspectDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return inspect.getAllInspectDoctorAdvice(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return inspect.getAllInspectDoctorAdvice(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return inspect.getAllInHospitalInspect(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return inspect.getAllInHospitalInspect(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -132,11 +168,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return materialBill.getAllMaterialDoctorAdvice(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return materialBill.getAllMaterialDoctorAdvice(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return materialBill.getAllInHospitalMaterialDoctorAdvice(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return materialBill.getAllInHospitalMaterialDoctorAdvice(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -145,11 +187,17 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.OtherServiceDoctorAdvice otherService = new CommClient.OtherServiceDoctorAdvice();
             if (IsClinicOrInHospital)
             {
-                return otherService.getAllOtherService(CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    return otherService.getAllOtherService(CurrentRegistration.ID);
+                else
+                    return null;
             }
             else
             {
-                return otherService.getAllInHospitalOtherService(CurrentInpatientID);
+                if (CurrentInpatient != null)
+                    return otherService.getAllInHospitalOtherService(CurrentInpatient.ID);
+                else
+                    return null;
             }
         }
 
@@ -195,176 +243,60 @@ namespace HISGUIDoctorLib.ViewModels
             return CurrentOtherService.ToString();
         }
 
-        public bool SaveMedicineDoctorAdvice(CommContracts.DoctorAdviceContentEnum recipeContentEnum, List<CommContracts.MedicineDoctorAdviceDetail> list)
+        public bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice medicineDoctorAdvice)
         {
             CommClient.MedicineDoctorAdvice myd = new CommClient.MedicineDoctorAdvice();
-            CurrentMedicineDoctorAdvice.RecipeContentEnum = recipeContentEnum;
-            CurrentMedicineDoctorAdvice.ChargeStatusEnum = CommContracts.ChargeStatusEnum.未收费;
-            if (IsClinicOrInHospital)
-                CurrentMedicineDoctorAdvice.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentMedicineDoctorAdvice.InpatientID = CurrentInpatientID;
-            CurrentMedicineDoctorAdvice.SumOfMoney = 300;// ?
-            CurrentMedicineDoctorAdvice.WriteTime = DateTime.Now;
-            CurrentMedicineDoctorAdvice.WriteDoctorUserID = 3; // ?
-            CurrentMedicineDoctorAdvice.PatientID = 8;
-
-            CurrentMedicineDoctorAdvice.MedicineDoctorAdviceDetails = list;
-            myd.MyMedicineDoctorAdvice = CurrentMedicineDoctorAdvice;
-
-            if (myd.SaveMedicineDoctorAdvice())
-                return true;
-            else
-                return false;
+            return myd.SaveMedicineDoctorAdvice(medicineDoctorAdvice);
         }
 
-        public bool SaveTherapy(List<CommContracts.TherapyDoctorAdviceDetail> list)
+        public bool SaveTherapyDoctorAdvice(CommContracts.TherapyDoctorAdvice therapyDoctorAdvice)
         {
             CommClient.TherapyDoctorAdvice therapy = new CommClient.TherapyDoctorAdvice();
-            CurrentTherapy.NO = "001";
-            if (IsClinicOrInHospital)
-                CurrentTherapy.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentTherapy.InpatientID = CurrentInpatientID;
-            CurrentTherapy.SumOfMoney = 300;// ?
-            CurrentTherapy.WriteTime = DateTime.Now;
-            CurrentTherapy.WriteDoctorUserID = 3; // ?
-            CurrentTherapy.PatientID = 8;
-
-            CurrentTherapy.TherapyDoctorAdviceDetails = list;
-            if (therapy.SaveTherapyDoctorAdvice(CurrentTherapy))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return therapy.SaveTherapyDoctorAdvice(therapyDoctorAdvice);
         }
 
-        public bool SaveAssayDoctorAdvice(List<CommContracts.AssayDoctorAdviceDetail> list)
+        public bool SaveAssayDoctorAdvice(CommContracts.AssayDoctorAdvice assayDoctorAdvice)
         {
             CommClient.AssayDoctorAdvice therapy = new CommClient.AssayDoctorAdvice();
-            CurrentAssayDoctorAdvice.NO = "001";// ?
-            if (IsClinicOrInHospital)
-                CurrentAssayDoctorAdvice.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentAssayDoctorAdvice.InpatientID = CurrentInpatientID;
-            CurrentAssayDoctorAdvice.SumOfMoney = 300;// ?
-            CurrentAssayDoctorAdvice.WriteTime = DateTime.Now;
-            CurrentAssayDoctorAdvice.WriteDoctorUserID = 3;// ?
-            CurrentAssayDoctorAdvice.PatientID = 8;
-
-            CurrentAssayDoctorAdvice.AssayDoctorAdviceDetails = list;
-            if (therapy.SaveAssay(CurrentAssayDoctorAdvice))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return therapy.SaveAssay(assayDoctorAdvice);
         }
 
-        public bool SaveInspect(List<CommContracts.InspectDoctorAdviceDetail> list)
+        public bool SaveInspectDoctorAdvice(CommContracts.InspectDoctorAdvice inspectDoctorAdvice)
         {
             CommClient.InspectDoctorAdvice therapy = new CommClient.InspectDoctorAdvice();
-            CurrentInspect.NO = "001";// ?
-            if (IsClinicOrInHospital)
-                CurrentInspect.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentInspect.InpatientID = CurrentInpatientID;
-            CurrentInspect.SumOfMoney = 300;// ?
-            CurrentInspect.WriteTime = DateTime.Now;
-            CurrentInspect.WriteDoctorUserID = 3; // ?
-            CurrentInspect.PatientID = 8;
-
-            CurrentInspect.InspectDoctorAdviceDetails = list;
-            if (therapy.SaveInspectDoctorAdvice(CurrentInspect))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return therapy.SaveInspectDoctorAdvice(inspectDoctorAdvice);
         }
 
-        public bool SaveMaterialDoctorAdvice(List<CommContracts.MaterialDoctorAdviceDetail> list)
+        public bool SaveMaterialDoctorAdvice(CommContracts.MaterialDoctorAdvice materialDoctorAdvice)
         {
             CommClient.MaterialDoctorAdvice materialBill = new CommClient.MaterialDoctorAdvice();
-            CurrentMaterialDoctorAdvice.NO = "001";// ?
-            if (IsClinicOrInHospital)
-                CurrentMaterialDoctorAdvice.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentMaterialDoctorAdvice.InpatientID = CurrentInpatientID;
-            CurrentMaterialDoctorAdvice.SumOfMoney = 300;// ?
-            CurrentMaterialDoctorAdvice.WriteTime = DateTime.Now;
-            CurrentMaterialDoctorAdvice.WriteDoctorUserID = 3; // ?
-            CurrentMaterialDoctorAdvice.PatientID = 8;
-
-            CurrentMaterialDoctorAdvice.MaterialDoctorAdviceDetails = list;
-            if (materialBill.SaveMaterialDoctorAdvice(CurrentMaterialDoctorAdvice))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return materialBill.SaveMaterialDoctorAdvice(materialDoctorAdvice);
         }
 
-        public bool SaveOtherService(List<CommContracts.OtherServiceDoctorAdviceDetail> list)
+        public bool SaveOtherServiceDoctorAdvice(CommContracts.OtherServiceDoctorAdvice otherServiceDoctorAdvice)
         {
             CommClient.OtherServiceDoctorAdvice otherService = new CommClient.OtherServiceDoctorAdvice();
-            CurrentOtherService.NO = "001";
-            if (IsClinicOrInHospital)
-                CurrentOtherService.RegistrationID = CurrentRegistrationID;
-            else
-                CurrentOtherService.InpatientID = CurrentInpatientID;
-            CurrentOtherService.SumOfMoney = 300;// ?
-            CurrentOtherService.WriteTime = DateTime.Now;
-            CurrentOtherService.WriteDoctorUserID = 3; // ?
-            CurrentOtherService.PatientID = 8;
-
-            CurrentOtherService.OtherServiceDoctorAdviceDetails = list;
-            if (otherService.SaveOtherService(CurrentOtherService))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return otherService.SaveOtherService(otherServiceDoctorAdvice);
         }
 
         public string getPatientBMIMsg()
         {
-            if(IsClinicOrInHospital)
+            if (IsClinicOrInHospital)
             {
                 CommClient.Registration myd = new CommClient.Registration();
-                return myd.getPatientBMIMsg(CurrentRegistrationID);
+                return myd.getPatientBMIMsg(CurrentRegistration.ID);
             }
             else
             {
                 CommClient.Inpatient inpatient = new CommClient.Inpatient();
-                return inpatient.getInPatientBMIMsg(CurrentInpatientID);
+                return inpatient.getInPatientBMIMsg(CurrentInpatient.ID);
             }
         }
 
 
-        public bool SaveClinicMedicalRecord(string strTextContent)
+        public bool SaveClinicMedicalRecord(CommContracts.MedicalRecord medicalRecord)
         {
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
-
-            CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
-            medicalRecord.RegistrationID = CurrentRegistrationID;
-            medicalRecord.NO = "001";
-            medicalRecord.MedicalRecordEnum = CommContracts.MedicalRecordEnum.MenZhen;
-            medicalRecord.WriteUserID = 1;
-            medicalRecord.WriteTime = DateTime.Now;
-            medicalRecord.ContentXml = strTextContent;
-
             return myd.SaveMedicalRecord(medicalRecord);
         }
 
@@ -373,7 +305,8 @@ namespace HISGUIDoctorLib.ViewModels
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
 
             CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
-            medicalRecord = myd.GetMedicalRecord(CurrentRegistrationID);
+            if (CurrentRegistration != null)
+                medicalRecord = myd.GetMedicalRecord(CurrentRegistration.ID);
 
             return medicalRecord.ContentXml;
         }
@@ -390,28 +323,42 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
 
-        // 当前医生看诊的挂号单ID
-        #region CurrentRegistrationID
-        public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
-            "CurrentRegistrationID", typeof(int), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+        // 当前用户ID
+        #region CurrentUser
+        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
+            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public int CurrentRegistrationID
+        public CommContracts.User CurrentUser
         {
-            get { return (int)GetValue(CurrentRegistrationIDProperty); }
-            set { SetValue(CurrentRegistrationIDProperty, value); }
+            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            set { SetValue(CurrentUserProperty, value); }
+        }
+
+        #endregion
+
+
+        // 当前医生看诊的挂号单ID
+        #region CurrentRegistration
+        public static readonly DependencyProperty CurrentRegistrationProperty = DependencyProperty.Register(
+            "CurrentRegistration", typeof(CommContracts.Registration), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Registration CurrentRegistration
+        {
+            get { return (CommContracts.Registration)GetValue(CurrentRegistrationProperty); }
+            set { SetValue(CurrentRegistrationProperty, value); }
         }
 
         #endregion
 
         // 当前医生看诊的住院号ID
-        #region CurrentInpatientID
-        public static readonly DependencyProperty CurrentInPatientIDProperty = DependencyProperty.Register(
-            "CurrentInpatientID", typeof(int), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentInpatient
+        public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
+            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public int CurrentInpatientID
+        public CommContracts.Inpatient CurrentInpatient
         {
-            get { return (int)GetValue(CurrentInPatientIDProperty); }
-            set { SetValue(CurrentInPatientIDProperty, value); }
+            get { return (CommContracts.Inpatient)GetValue(CurrentInPatientProperty); }
+            set { SetValue(CurrentInPatientProperty, value); }
         }
 
         #endregion

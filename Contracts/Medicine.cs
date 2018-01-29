@@ -48,7 +48,7 @@ namespace CommContracts
         [DataMember]
         public string Abbr3 { get; set; }                           // 别名3
         [DataMember]
-        public DosageFormEnum DosageFormEnum { get; set; }          // 药品剂型ID       
+        public DosageFormEnum DosageFormEnum { get; set; }          // 药品剂型       
         [DataMember]
         public string Unit { get; set; }                            // 单位
         [DataMember]

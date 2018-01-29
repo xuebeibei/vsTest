@@ -25,9 +25,9 @@ namespace CommClient
             registration = new CommContracts.Registration();
         }
 
-        public Dictionary<int, string> getAllRegistration()
+        public List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null)
         {
-            return client.getAllRegistration();
+            return client.getAllRegistration(EmployeeID, VistTime);
         }
 
         public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)

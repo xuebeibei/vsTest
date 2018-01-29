@@ -19,16 +19,26 @@ namespace CommClient
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
-        
+
 
         public CommContracts.Medicine GetMedicine(int id)
         {
             return client.GetMedicine(id);
         }
 
+        public List<CommContracts.Medicine> GetOneTypeMedicine(CommContracts.MedicineTypeEnum medicineTypeEnum, string strName = "")
+        {
+            return client.GetOneTypeMedicine(medicineTypeEnum, strName);
+        }
+
+        public List<CommContracts.Medicine> GetAllXiChengMedicine(string strName = "")
+        {
+             return client.GetAllXiChengMedicine(strName);
+        }
+
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
         {
-            return client.GetAllMedicine(strName);
+             return client.GetAllMedicine(strName);
         }
 
         public bool UpdateMedicine(CommContracts.Medicine Medicine)

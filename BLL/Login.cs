@@ -178,5 +178,23 @@ namespace BLL
             }
             return true;
         }
+
+        public CommContracts.User getUser(int UserID)
+        {
+            CommContracts.User user = new CommContracts.User();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var temp = ctx.Users.Find(UserID);
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.User, CommContracts.User>();
+                });
+                var mapper = config.CreateMapper();
+
+                user = mapper.Map<CommContracts.User>(temp);
+            }
+            return user;
+        }
     }
 }

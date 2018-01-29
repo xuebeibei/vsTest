@@ -36,8 +36,8 @@ namespace BLL
                 });
                 var mapperDetail = configDetail.CreateMapper();
 
-                List<CommContracts.MedicineDoctorAdviceDetail> list1 = recipe.MedicineDoctorAdviceDetails;
-                List<DAL.MedicineDoctorAdviceDetail> res = mapperDetail.Map<List<DAL.MedicineDoctorAdviceDetail>>(list1); ;
+                List<CommContracts.MedicineDoctorAdviceDetail> details = recipe.MedicineDoctorAdviceDetails;
+                List<DAL.MedicineDoctorAdviceDetail> res = mapperDetail.Map<List<DAL.MedicineDoctorAdviceDetail>>(details); ;
 
                 temp.MedicineDoctorAdviceDetails = res;
                 ctx.MedicineDoctorAdvices.Add(temp);

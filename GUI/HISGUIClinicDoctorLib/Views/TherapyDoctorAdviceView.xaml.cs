@@ -24,11 +24,11 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("ClinicRemedy", typeof(ClinicRemedy))]
-    public partial class ClinicRemedy : HISGUIViewBase
+    [Export("TherapyDoctorAdviceView", typeof(TherapyDoctorAdviceView))]
+    public partial class TherapyDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public ClinicRemedy()
+        public TherapyDoctorAdviceView()
         {
             InitializeComponent();
 
@@ -72,6 +72,7 @@ namespace HISGUIDoctorLib.Views
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             List<CommContracts.TherapyDoctorAdviceDetail> list = new List<CommContracts.TherapyDoctorAdviceDetail>();
+            decimal sum = 0.0m;
             foreach (var tem in listDetail)
             {
                 CommContracts.TherapyDoctorAdviceDetail recipeDetail = new CommContracts.TherapyDoctorAdviceDetail();
@@ -79,10 +80,38 @@ namespace HISGUIDoctorLib.Views
                 recipeDetail.AllNum = tem.SingleDose;
                 recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
+                sum += tem.SellPrice * tem.SingleDose;
             }
 
+            CommContracts.TherapyDoctorAdvice therapyDoctorAdvice = new CommContracts.TherapyDoctorAdvice();
+
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveTherapy(list);
+
+            if (vm.IsClinicOrInHospital)
+            {
+                if(vm.CurrentRegistration != null)
+                {
+                    therapyDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    therapyDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if(vm.CurrentInpatient != null)
+                {
+                    therapyDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    therapyDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+            therapyDoctorAdvice.SumOfMoney = sum;
+            therapyDoctorAdvice.WriteTime = DateTime.Now;
+            if(vm.CurrentUser != null)
+                therapyDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+            
+            therapyDoctorAdvice.TherapyDoctorAdviceDetails = list;
+
+            bool? saveResult = vm?.SaveTherapyDoctorAdvice(therapyDoctorAdvice);
+
 
             if (!saveResult.HasValue)
             {

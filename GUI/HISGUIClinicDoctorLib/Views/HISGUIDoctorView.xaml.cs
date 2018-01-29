@@ -41,6 +41,7 @@ namespace HISGUIDoctorLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIDoctorVM;
+            vm.CurrentUser = vm?.getUser(1);
             vm?.DoctorWorkManage();
         }
     }

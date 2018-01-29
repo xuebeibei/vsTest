@@ -27,9 +27,12 @@ namespace HISGUIDoctorLib.Views
     [Export("ReceivingNewPatientsView", typeof(ReceivingNewPatientsView))]
     public partial class ReceivingNewPatientsView : HISGUIViewBase
     {
+        private bool bIsClinicOrInHospital { get; set; }
+        private CommContracts.Registration CurrentRegistration { get; set; }
         public ReceivingNewPatientsView()
         {
             InitializeComponent();
+            CurrentRegistration = new CommContracts.Registration();
             this.Loaded += ReceivingNewPatients_Loaded;
         }
 
@@ -41,13 +44,19 @@ namespace HISGUIDoctorLib.Views
 
         private void ReceivingNewPatients_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIDoctorVM;
+        }
 
-            // 使用blend设计之后状态切换，效果很不好，所以弃用
-            //var isClinicOrHospitalState = vm.IsClinicOrInHospital ? "VisualState" : "VisualState1";
-            //VisualStateManager.GoToState(this, isClinicOrHospitalState, false);
+        public void ShowClinicMsg(CommContracts.Registration registration)
+        {
+            this.bIsClinicOrInHospital = true;
+            this.CurrentRegistration = registration;
+            showVisibility();
+            showPatientMsg();
+        }
 
-            if(vm.IsClinicOrInHospital)
+        private void showVisibility()
+        {
+            if (this.bIsClinicOrInHospital)
             {
                 Page1.Visibility = Visibility.Visible;
                 Page2.Visibility = Visibility.Collapsed;
@@ -58,7 +67,40 @@ namespace HISGUIDoctorLib.Views
                 Page1.Visibility = Visibility.Collapsed;
                 Page2.Visibility = Visibility.Visible;
                 this.tabControl.SelectedIndex = 1;
+            }
+        }
 
+        private void showPatientMsg()
+        {
+            if(this.bIsClinicOrInHospital)
+            {
+                PatientMsg.Inlines.Clear();
+                
+                if (CurrentRegistration == null)
+                    return;
+                if (CurrentRegistration.Patient == null)
+                    return;
+
+                string str =
+                    "姓名：" + CurrentRegistration.Patient.Name + "     " +
+                    "性别：" + CurrentRegistration.Patient.Gender + "     " +
+                    "生日：" + CurrentRegistration.Patient.BirthDay + "     " +
+                    "身份证号：" + CurrentRegistration.Patient.IDCardNo + "     " +
+                    "民族：" + CurrentRegistration.Patient.Volk + "     " +
+                    "籍贯：" + CurrentRegistration.Patient.JiGuan + "     " +
+                    "电话：" + CurrentRegistration.Patient.Tel + "\n";
+                ;
+                PatientMsg.Inlines.Add(new Run(str));
+
+                str = "号源名称：" + CurrentRegistration.SignalSource.SignalItem.Name + "     " +
+                    "科室：" + CurrentRegistration.SignalSource.DepartmentID + "     " +
+                    "看诊状态：" + CurrentRegistration.SeeDoctorStatus.ToString() + "     " +
+                    "看诊时间：" + CurrentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
+                    "时段：" + CurrentRegistration.SignalSource.SignalItem.SignalTimeEnum + "     " +
+                    "费用：" + CurrentRegistration.RegisterFee + "元     " +
+                    "挂号经办人：" + CurrentRegistration.RegisterUser.Username + "     " +
+                    "经办时间：" + CurrentRegistration.RegisterTime.Value.Date + "     " ;
+                PatientMsg.Inlines.Add(new Run(str));
             }
         }
 

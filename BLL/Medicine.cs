@@ -55,6 +55,56 @@ namespace BLL
             return medicine;
         }
 
+        public List<CommContracts.Medicine> GetAllMedicine(CommContracts.MedicineTypeEnum medicineTypeEnum, string strName = "")
+        {
+            List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Medicines
+                            where a.Name.StartsWith(strName) && 
+                            (a.MedicineTypeEnum == (DAL.MedicineTypeEnum)medicineTypeEnum)
+                            select a;
+                foreach (DAL.Medicine ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Medicine, CommContracts.Medicine>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Medicine temp = mapper.Map<CommContracts.Medicine>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
+        public List<CommContracts.Medicine> GetAllXiChengMedicine(string strName = "")
+        {
+            List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Medicines
+                            where a.Name.StartsWith(strName) &&
+                            (a.MedicineTypeEnum == DAL.MedicineTypeEnum.xiyao || a.MedicineTypeEnum == DAL.MedicineTypeEnum.zhongchengyao)
+                            select a;
+                foreach (DAL.Medicine ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Medicine, CommContracts.Medicine>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Medicine temp = mapper.Map<CommContracts.Medicine>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
         {
             List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
@@ -78,6 +128,7 @@ namespace BLL
             }
             return list;
         }
+
 
         public bool SaveMedicine(CommContracts.Medicine Medicine)
         {

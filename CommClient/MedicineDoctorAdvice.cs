@@ -14,7 +14,7 @@ namespace CommClient
     {
         private ILoginService client;
 
-        public CommContracts.MedicineDoctorAdvice MyMedicineDoctorAdvice { get; set; }
+        //public CommContracts.MedicineDoctorAdvice MyMedicineDoctorAdvice { get; set; }
 
         public MedicineDoctorAdvice()
         {
@@ -22,12 +22,12 @@ namespace CommClient
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
 
-            MyMedicineDoctorAdvice = new CommContracts.MedicineDoctorAdvice();
+            //MyMedicineDoctorAdvice = new CommContracts.MedicineDoctorAdvice();
         }
 
-        public bool SaveMedicineDoctorAdvice()
+        public bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice medicineDoctorAdvice)
         {
-            return client.SaveMedicineDoctorAdvice(MyMedicineDoctorAdvice);
+            return client.SaveMedicineDoctorAdvice(medicineDoctorAdvice);
         }
 
         public List<CommContracts.MedicineDoctorAdvice> getAllXiCheng(int RegistrationID)

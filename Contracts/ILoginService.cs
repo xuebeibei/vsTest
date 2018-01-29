@@ -14,6 +14,8 @@ namespace CommContracts
         [OperationContract]
         bool UserAuthenticate(User login);
         [OperationContract]
+        CommContracts.User getUser(int UserID);
+        [OperationContract]
         List<CommContracts.User> GetAllLoginUser(string strName = "");
         [OperationContract]
         bool UpdateLoginUser(CommContracts.User job);
@@ -68,7 +70,7 @@ namespace CommContracts
         bool UpdateRegistration(CommContracts.Registration registration);
 
         [OperationContract]
-        Dictionary<int, string> getAllRegistration();
+        List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null);
 
         [OperationContract]
         Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
@@ -97,8 +99,12 @@ namespace CommContracts
         CommContracts.Medicine GetMedicine(int id);
 
         [OperationContract]
-        List<CommContracts.Medicine> GetAllMedicine(string strName = "");
+        List<CommContracts.Medicine> GetOneTypeMedicine(CommContracts.MedicineTypeEnum medicineTypeEnum, string strName = "");
 
+        [OperationContract]
+        List<CommContracts.Medicine> GetAllXiChengMedicine(string strName = "");
+        [OperationContract]
+        List<CommContracts.Medicine> GetAllMedicine(string strName = "");
         [OperationContract]
         bool UpdateMedicine(CommContracts.Medicine Medicine);
         [OperationContract]

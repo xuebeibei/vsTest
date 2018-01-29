@@ -25,11 +25,11 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("OtherService", typeof(OtherService))]
-    public partial class OtherService : HISGUIViewBase
+    [Export("OtherServiceDoctorAdviceView", typeof(OtherServiceDoctorAdviceView))]
+    public partial class OtherServiceDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public OtherService()
+        public OtherServiceDoctorAdviceView()
         {
             InitializeComponent();
             myTableEdit = new MyTableEdit(MyTableEditEnum.qita);
@@ -77,6 +77,7 @@ namespace HISGUIDoctorLib.Views
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             List<CommContracts.OtherServiceDoctorAdviceDetail> list = new List<CommContracts.OtherServiceDoctorAdviceDetail>();
+            decimal sum = 0.0m;
             foreach (var tem in listDetail)
             {
                 CommContracts.OtherServiceDoctorAdviceDetail otherServiceDetail = new CommContracts.OtherServiceDoctorAdviceDetail();
@@ -84,10 +85,37 @@ namespace HISGUIDoctorLib.Views
                 otherServiceDetail.AllNum = tem.SingleDose;
                 otherServiceDetail.Remarks = tem.Illustration;
                 list.Add(otherServiceDetail);
+                sum += tem.SingleDose * tem.SellPrice;
             }
 
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveOtherService(list);
+
+            CommContracts.OtherServiceDoctorAdvice otherServiceDoctorAdvice = new CommContracts.OtherServiceDoctorAdvice();
+            otherServiceDoctorAdvice.NO = "";
+            if (vm.IsClinicOrInHospital)
+            {
+                if (vm.CurrentRegistration != null)
+                {
+                    otherServiceDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    otherServiceDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if (vm.CurrentInpatient != null)
+                {
+                    otherServiceDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    otherServiceDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+
+            otherServiceDoctorAdvice.SumOfMoney = sum;
+            otherServiceDoctorAdvice.WriteTime = DateTime.Now;
+            if (vm.CurrentUser != null)
+                otherServiceDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+            otherServiceDoctorAdvice.OtherServiceDoctorAdviceDetails = list;
+
+            bool? saveResult = vm?.SaveOtherServiceDoctorAdvice(otherServiceDoctorAdvice);
 
             if (!saveResult.HasValue)
             {

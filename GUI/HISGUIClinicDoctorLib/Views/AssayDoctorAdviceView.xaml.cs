@@ -72,6 +72,7 @@ namespace HISGUIDoctorLib.Views
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             List<CommContracts.AssayDoctorAdviceDetail> list = new List<CommContracts.AssayDoctorAdviceDetail>();
+            decimal sum = 0.0m;
             foreach (var tem in listDetail)
             {
                 CommContracts.AssayDoctorAdviceDetail recipeDetail = new CommContracts.AssayDoctorAdviceDetail();
@@ -79,10 +80,39 @@ namespace HISGUIDoctorLib.Views
                 recipeDetail.AllNum = tem.SingleDose;
                 recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
+                sum += tem.SingleDose * tem.SellPrice;
             }
 
+            CommContracts.AssayDoctorAdvice assayDoctorAdvice = new CommContracts.AssayDoctorAdvice();
+
+
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveAssayDoctorAdvice(list);
+
+            assayDoctorAdvice.NO = "";// ?
+            if (vm.IsClinicOrInHospital)
+            {
+                if (vm.CurrentRegistration != null)
+                {
+                    assayDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    assayDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if(vm.CurrentInpatient != null)
+                {
+                    assayDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    assayDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+
+            assayDoctorAdvice.SumOfMoney = sum;
+            assayDoctorAdvice.WriteTime = DateTime.Now;
+            if(vm.CurrentUser != null)
+                assayDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+            assayDoctorAdvice.AssayDoctorAdviceDetails = list;
+
+            bool? saveResult = vm?.SaveAssayDoctorAdvice(assayDoctorAdvice);
 
             if (!saveResult.HasValue)
             {
@@ -114,7 +144,7 @@ namespace HISGUIDoctorLib.Views
             List<MyDetail> list = new List<MyDetail>();
             foreach (var tem in assay.AssayDoctorAdviceDetails)
             {
-                MyDetail assayDetail = new MyDetail(); 
+                MyDetail assayDetail = new MyDetail();
                 assayDetail.ID = tem.AssayID;
                 assayDetail.Name = tem.Assay.Name;
                 assayDetail.SingleDose = tem.AllNum;

@@ -11,11 +11,11 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Row="0" Grid.ColumnSpan="2" >
+        </Grid.ColumnDefinitions>-->
+        <!--<Grid Grid.Row="0" Grid.ColumnSpan="2" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -25,11 +25,14 @@
                 <Button Margin="5" Click="Button_Click">费用预览</Button>
                 <Button Margin="5" Command="{Binding RecevingOverCommand}">结束接诊</Button>
             </StackPanel>
-        </Grid>
+        </Grid>-->
 
-        <local:PatientBMIMsg Grid.Row="1" Grid.Column="0"></local:PatientBMIMsg>
+        <!--<local:PatientBMIMsg Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></local:PatientBMIMsg>-->
+        <StackPanel Grid.Row="0">
+            <TextBlock x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap"/>
+        </StackPanel>
 
-        <TabControl x:Name="tabControl"  Margin="5" VerticalAlignment="Top"   Grid.Row="1" Grid.Column="1">
+        <TabControl x:Name="tabControl"  Margin="5"  Grid.Row="1"><!--VerticalAlignment="Top"-->
             <TabItem x:Name="Page1" Header="门诊病历">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Border BorderBrush="Black">
@@ -48,7 +51,7 @@
             <TabItem Header="治疗">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <local:ClinicRemedy></local:ClinicRemedy>
+                    <local:TherapyDoctorAdviceView></local:TherapyDoctorAdviceView>
 
                 </ScrollViewer>
             </TabItem>
@@ -62,7 +65,7 @@
             <TabItem Header="检查">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-                    <local:Inspect></local:Inspect>
+                    <local:InspectDoctorAdviceView></local:InspectDoctorAdviceView>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="材料">
@@ -72,7 +75,7 @@
             </TabItem>
             <TabItem Header="其他">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:OtherService></local:OtherService>
+                    <local:OtherServiceDoctorAdviceView></local:OtherServiceDoctorAdviceView>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="报告">

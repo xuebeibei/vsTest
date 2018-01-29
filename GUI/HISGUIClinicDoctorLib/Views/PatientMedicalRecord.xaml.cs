@@ -187,7 +187,18 @@ namespace HISGUIDoctorLib.Views
             }
             strXML += "</note>";
 
-            bool? result = vm?.SaveClinicMedicalRecord(strXML);
+            CommContracts.MedicalRecord medicalRecord = new CommContracts.MedicalRecord();
+            if(vm.CurrentRegistration != null)
+                medicalRecord.RegistrationID = vm.CurrentRegistration.ID;
+            medicalRecord.NO = "";
+            medicalRecord.MedicalRecordEnum = CommContracts.MedicalRecordEnum.MenZhen;
+            if(vm.CurrentUser != null)
+                medicalRecord.WriteUserID = vm.CurrentUser.ID;
+            medicalRecord.WriteTime = DateTime.Now;
+            medicalRecord.ContentXml = strXML;
+
+
+            bool? result = vm?.SaveClinicMedicalRecord(medicalRecord);
 
             if(result.HasValue)
             {

@@ -4,8 +4,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
+    <UserControl.Resources>
+        <GridView x:Key="haveMedicineColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+            <GridViewColumn Header="剂型" DisplayMemberBinding="{Binding Path=DosageFormEnum}" Width="80"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Specifications}" Width="60"/>
+            <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Manufacturer}" Width="100"/>
+            <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=SellPrice}" Width="60"/>
+            <GridViewColumn Header="医保分类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="60"/>
+        </GridView>
+        <GridView x:Key="haveMaterialColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Specifications}" Width="60"/>
+            <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Manufacturer}" Width="100"/>
+            <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=SellPrice}" Width="60"/>
+            <GridViewColumn Header="医保分类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="60"/>
+        </GridView>
+        <GridView x:Key="haveZhiliaoColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"/>
+            <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=SellPrice}" Width="60"/>
+            <GridViewColumn Header="医保分类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="60"/>
+        </GridView>
+    </UserControl.Resources>
     <Grid>
-        <DataGrid x:Name="Grid1" PreviewKeyDown="Grid1_PreviewKeyDown" IsReadOnly="True">
-        </DataGrid>
+        <ListView Name="Grid1" Margin="5" Grid.Row="2" Grid.Column="0" KeyDown="Grid1_KeyDown" SelectionMode="Single"/>
     </Grid>
 </UserControl>

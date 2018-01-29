@@ -1,4 +1,4 @@
-﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIDoctorLib.Views.Inspect"
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIDoctorLib.Views.OtherServiceDoctorAdviceView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -17,18 +17,18 @@
             </StackPanel>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <StackPanel x:Name="InspectPanel">
-                        <ListView Name="InspectList" Margin="5" SelectionChanged="InspectList_SelectionChanged">
+                    <StackPanel x:Name="OtherServicePanel">
+                        <ListView Name="OtherServiceList" Margin="5" SelectionChanged="OtherServiceList_SelectionChanged">
                             <ListView.View>
                                 <GridView x:Name="gridView1">
-                                    <GridViewColumn Header="检查申请单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
+                                    <GridViewColumn Header="其他服务单号" DisplayMemberBinding="{Binding Path=NO}"></GridViewColumn>
                                     <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}"></GridViewColumn>
                                     <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                         <WrapPanel Orientation="Horizontal">
-                            <TextBlock x:Name="InspectMsg" Margin="5"></TextBlock>
+                            <TextBlock x:Name="OtherServiceMsg" Margin="5"></TextBlock>
                         </WrapPanel>
                     </StackPanel>
                 </ScrollViewer>

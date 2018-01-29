@@ -18,10 +18,15 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel Grid.Column="1" Margin="5">
-            <Label x:Name="ReportNameLabel" HorizontalAlignment="Center">报告名称</Label>
-            <Separator/>
-            <WebBrowser x:Name="samlogin" Source="http://www.baidu.com"/>
-        </StackPanel>
+        <Grid Grid.Column="1" Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" x:Name="ReportNameLabel" HorizontalAlignment="Center">报告名称</Label>
+            <Separator Grid.Row="1"/>
+            <WebBrowser Grid.Row="2" x:Name="samlogin" Source="http://www.baidu.com"/>
+        </Grid>
     </Grid>
 </UserControl>

@@ -26,6 +26,12 @@ namespace CommServer
             return login.Authenticate();
         }
 
+        public CommContracts.User getUser(int UserID)
+        {
+            BLL.Login login = new BLL.Login();
+            return login.getUser(UserID);
+        }
+
         public List<CommContracts.User> GetAllLoginUser(string strName = "")
         {
             BLL.Login login = new BLL.Login();
@@ -144,10 +150,10 @@ namespace CommServer
             return temp.UpdateRegistration(registration);
         }
 
-        public Dictionary<int, string> getAllRegistration()
+        public List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null)
         {
             BLL.Registration temp = new BLL.Registration();
-            return temp.getAllRegistration();
+            return temp.getAllRegistration(EmployeeID, VistTime);
         }
 
         public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
@@ -202,6 +208,18 @@ namespace CommServer
         {
             BLL.Medicine temp = new BLL.Medicine();
             return temp.GetMedicine(id);
+        }
+
+        public List<CommContracts.Medicine> GetOneTypeMedicine(CommContracts.MedicineTypeEnum medicineTypeEnum, string strName = "")
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.GetAllMedicine(medicineTypeEnum, strName);
+        }
+
+        public List<CommContracts.Medicine> GetAllXiChengMedicine(string strName = "")
+        {
+            BLL.Medicine temp = new BLL.Medicine();
+            return temp.GetAllXiChengMedicine(strName);
         }
 
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")

@@ -488,6 +488,8 @@ namespace HISGUICore.MyContorls
                 var window = new Window();
 
                 SelectItemsList list = new SelectItemsList(editEnum);
+                window.Width = 400;
+                window.Height = 500;
                 window.Content = list;
                 window.ResizeMode = ResizeMode.NoResize;
                 bool? bResult = window.ShowDialog();

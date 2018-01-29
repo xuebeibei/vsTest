@@ -24,11 +24,11 @@ using System.Data;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("Inspect", typeof(Inspect))]
-    public partial class Inspect : HISGUIViewBase
+    [Export("InspectDoctorAdviceView", typeof(InspectDoctorAdviceView))]
+    public partial class InspectDoctorAdviceView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public Inspect()
+        public InspectDoctorAdviceView()
         {
             InitializeComponent();
 
@@ -72,6 +72,7 @@ namespace HISGUIDoctorLib.Views
         {
             List<MyDetail> listDetail = myTableEdit.GetAllDetails();
             List<CommContracts.InspectDoctorAdviceDetail> list = new List<CommContracts.InspectDoctorAdviceDetail>();
+            decimal sum = 0.0m;
             foreach (var tem in listDetail)
             {
                 CommContracts.InspectDoctorAdviceDetail recipeDetail = new CommContracts.InspectDoctorAdviceDetail();
@@ -79,10 +80,38 @@ namespace HISGUIDoctorLib.Views
                 recipeDetail.AllNum = tem.SingleDose;
                 recipeDetail.Remarks = tem.Illustration;
                 list.Add(recipeDetail);
+                sum += tem.SingleDose * tem.SellPrice;
             }
 
+            CommContracts.InspectDoctorAdvice inspectDoctorAdvice = new CommContracts.InspectDoctorAdvice();
+
+
             var vm = this.DataContext as HISGUIDoctorVM;
-            bool? saveResult = vm?.SaveInspect(list);
+
+            inspectDoctorAdvice.NO = "";// ?
+            if (vm.IsClinicOrInHospital)
+            {
+                if (vm.CurrentRegistration != null)
+                {
+                    inspectDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
+                    inspectDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+                }
+            }
+            else
+            {
+                if (vm.CurrentInpatient != null)
+                {
+                    inspectDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
+                    inspectDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                }
+            }
+            inspectDoctorAdvice.SumOfMoney = sum;
+            inspectDoctorAdvice.WriteTime = DateTime.Now;
+            if (vm.CurrentUser != null)
+                inspectDoctorAdvice.WriteDoctorUserID = vm.CurrentUser.ID;
+            inspectDoctorAdvice.InspectDoctorAdviceDetails = list;
+
+            bool? saveResult = vm?.SaveInspectDoctorAdvice(inspectDoctorAdvice);
 
             if (!saveResult.HasValue)
             {

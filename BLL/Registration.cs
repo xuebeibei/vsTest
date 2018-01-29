@@ -22,23 +22,33 @@ namespace BLL
 
         }
 
-        public Dictionary<int, string> getAllRegistration()
+        public List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null, bool HaveArrive = true)
         {
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from r in ctx.Registrations
+                            where
+                            (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
+                            (VistTime == null || r.SignalSource.VistTime == VistTime) &&
+                            (!HaveArrive || r.ArriveTime.HasValue)
                             select r;
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+                });
+                var mapper = config.CreateMapper();
 
                 foreach (DAL.Registration tem in query)
                 {
-                    string str = tem.ToString();
-                    dictionary.Add(tem.ID, str);
+                    var dto = mapper.Map<CommContracts.Registration>(tem);
+                    list.Add(dto);
                 }
             }
 
-            return dictionary;
+            return list;
         }
 
         public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
@@ -87,8 +97,8 @@ namespace BLL
                     cfg.CreateMap<CommContracts.Registration, DAL.Registration>().
                     ForMember(x => x.MedicalRecords, opt => opt.Ignore()).
                     ForMember(x => x.Patient, opt => opt.Ignore()).
-                    ForMember(x=>x.SignalSource, opt=>opt.Ignore()).
-                    ForMember(x=>x.RegisterUser, opt=>opt.Ignore());
+                    ForMember(x => x.SignalSource, opt => opt.Ignore()).
+                    ForMember(x => x.RegisterUser, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
@@ -184,7 +194,7 @@ namespace BLL
             {
                 var query = from a in ctx.Registrations
                             where
-                            a.PatientID == PatientID && 
+                            a.PatientID == PatientID &&
                             (!DateTime.HasValue || a.SignalSource.VistTime <= DateTime)
                             orderby a.RegisterTime descending
                             select a;
