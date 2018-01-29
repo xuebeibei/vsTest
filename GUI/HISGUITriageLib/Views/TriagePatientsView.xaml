@@ -17,7 +17,7 @@
             <Separator x:Name="Spe" Margin="5"/>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="ArriveBtn" Margin="5" Click="ArriveBtn_Click">标记到诊</Button>
-                <Button x:Name="EditBMIBtn" Margin="5" Click="EditBMIBtn_Click">完善体征信息</Button>
+                <Button x:Name="EditBMIBtn" Margin="5" Click="EditBMIBtn_Click" Visibility="Collapsed">完善体征信息</Button>
             </StackPanel>
             <Separator x:Name="Spe1" Margin="5"/>
             <DataGrid x:Name="AllWaitGrid" Margin="5" 
