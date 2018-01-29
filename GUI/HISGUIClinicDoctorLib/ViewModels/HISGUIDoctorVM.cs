@@ -311,6 +311,12 @@ namespace HISGUIDoctorLib.ViewModels
             return medicalRecord.ContentXml;
         }
 
+        public bool UpdateRegistration(CommContracts.Registration registration)
+        {
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.UpdateRegistration(registration);
+        }
+
         public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
         {
             CommClient.SignalSource myd = new CommClient.SignalSource();
@@ -337,7 +343,7 @@ namespace HISGUIDoctorLib.ViewModels
         #endregion
 
 
-        // 当前医生看诊的挂号单ID
+        // 当前医生看诊的挂号单
         #region CurrentRegistration
         public static readonly DependencyProperty CurrentRegistrationProperty = DependencyProperty.Register(
             "CurrentRegistration", typeof(CommContracts.Registration), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
@@ -350,7 +356,7 @@ namespace HISGUIDoctorLib.ViewModels
 
         #endregion
 
-        // 当前医生看诊的住院号ID
+        // 当前医生看诊的住院号
         #region CurrentInpatient
         public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
             "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));

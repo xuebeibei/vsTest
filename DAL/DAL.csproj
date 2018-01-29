@@ -90,6 +90,22 @@
     <Compile Include="Migrations\201801260925094_PaperTest9.Designer.cs">
       <DependentUpon>201801260925094_PaperTest9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801290948519_PaperTest10.cs" />
+    <Compile Include="Migrations\201801290948519_PaperTest10.Designer.cs">
+      <DependentUpon>201801290948519_PaperTest10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290959086_PaperTest11.cs" />
+    <Compile Include="Migrations\201801290959086_PaperTest11.Designer.cs">
+      <DependentUpon>201801290959086_PaperTest11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801290959205_PaperTest12.cs" />
+    <Compile Include="Migrations\201801290959205_PaperTest12.Designer.cs">
+      <DependentUpon>201801290959205_PaperTest12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801291002263_PaperTest13.cs" />
+    <Compile Include="Migrations\201801291002263_PaperTest13.Designer.cs">
+      <DependentUpon>201801291002263_PaperTest13.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,6 +155,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801260925094_PaperTest9.resx">
       <DependentUpon>201801260925094_PaperTest9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290948519_PaperTest10.resx">
+      <DependentUpon>201801290948519_PaperTest10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290959086_PaperTest11.resx">
+      <DependentUpon>201801290959086_PaperTest11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801290959205_PaperTest12.resx">
+      <DependentUpon>201801290959205_PaperTest12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801291002263_PaperTest13.resx">
+      <DependentUpon>201801291002263_PaperTest13.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

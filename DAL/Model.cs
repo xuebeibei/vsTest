@@ -12,7 +12,7 @@ namespace DAL
 {
     public enum GenderEnum { man, woman };
     public enum VolkEnum { hanzu, other };
-    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 已看诊 };
+    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 接诊中, 接诊结束 };
     public enum TriageStatusEnum { no, yes };
     public enum JobEnum
     {
@@ -335,6 +335,8 @@ namespace DAL
         public int ArriveUserID { get; set; }                     // 到诊用户ID
         public DateTime? ArriveTime { get; set; }                 // 到诊时间 
 
+        public DateTime? StartSeeDoctorTime { get; set; }               // 开始看诊时间 
+        public DateTime? EndSeeDoctorTime { get; set; }                 // 结束看诊时间
         public virtual Patient Patient { get; set; }                      // 患者
         public virtual SignalSource SignalSource { get; set; }            // 号源
         public virtual User RegisterUser { get; set; }                    // 经办人

@@ -27,7 +27,8 @@
                 <Button>退出</Button>
             </StackPanel>
         </Grid>
-        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" ><!--VerticalAlignment="Top"-->
+        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" >
+            <!--VerticalAlignment="Top"-->
             <TabItem Header="门诊接诊">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -35,30 +36,30 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <!--<StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <Button Margin="5">呼叫</Button>
-                            <Button Margin="5">到诊</Button>
-                            <Button Margin="5">过号</Button>
-                            <Button Margin="5">结束</Button>
-                        </StackPanel>-->
                         <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" MouseDoubleClick="AllPatientList_MouseDoubleClick" SelectionMode="Single">
                             <ListView.View>
                                 <GridView x:Name="gridViewPatient">
                                     <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
                                     <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
+                                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=SeeDoctorStatus}" Width="60"></GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
                     </Grid>
                     <Grid Grid.Column="1">
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <Label x:Name="TipMsgLabel">请双击选择患者开始接诊</Label>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <StackPanel Grid.Row="0" Orientation="Horizontal">
+                            <Button x:Name="CallBtn" Margin="5" Click="CallBtn_Click">呼叫下一个</Button>
+                            <Button x:Name="StartBtn" Margin="5" Click="StartBtn_Click">开始接诊</Button>
+                            <Button x:Name="OverBtn" Margin="5" Click="OverBtn_Click">结束接诊</Button>
+                        </StackPanel>
+                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
+                            <Label x:Name="TipMsgLabel">医生工作站</Label>
                         </Grid>
-                        <local:ReceivingNewPatientsView x:Name="PatientMsgView" Visibility="Collapsed"></local:ReceivingNewPatientsView>
+                        <local:ReceivingNewPatientsView x:Name="PatientMsgView" Visibility="Collapsed" Grid.Row="1"></local:ReceivingNewPatientsView>
                     </Grid>
                 </Grid>
             </TabItem>
@@ -72,7 +73,7 @@
                         </Grid.RowDefinitions>
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
                             <StackPanel Orientation="Horizontal" Margin="5">
-                                <Button Click="Button_Click_1" Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top">查看详情</Button>
+                                <Button Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top">查看详情</Button>
                                 <RadioButton Margin="5" IsChecked="True">在院中</RadioButton>
                                 <RadioButton Margin="5">已出院</RadioButton>
                                 <CheckBox Margin="5">查看全科室患者</CheckBox>

@@ -138,6 +138,8 @@ namespace BLL
                     temp.ReturnTime = registration.ReturnTime;
                     temp.ArriveUserID = registration.ArriveUserID;
                     temp.ArriveTime = registration.ArriveTime;
+                    temp.StartSeeDoctorTime = registration.StartSeeDoctorTime;
+                    temp.EndSeeDoctorTime = registration.EndSeeDoctorTime;
                 }
                 else
                 {

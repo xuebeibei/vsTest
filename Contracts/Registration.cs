@@ -13,7 +13,7 @@ namespace CommContracts
         现金支付
     }
 
-    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 已看诊 };
+    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 接诊中, 接诊结束 };
     public enum TriageStatusEnum { no, yes };
     [DataContract]
     public class Registration
@@ -56,6 +56,10 @@ namespace CommContracts
         public int ArriveUserID { get; set; }                     // 到诊用户ID
         [DataMember]
         public DateTime? ArriveTime { get; set; }                 // 到诊时间 
+        [DataMember]
+        public DateTime? StartSeeDoctorTime { get; set; }               // 开始看诊时间 
+        [DataMember]
+        public DateTime? EndSeeDoctorTime { get; set; }                 // 结束看诊时间
 
     }
 }

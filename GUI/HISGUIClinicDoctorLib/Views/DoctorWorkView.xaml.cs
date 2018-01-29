@@ -50,7 +50,7 @@ namespace HISGUIDoctorLib.Views
         private void ShowAllRegistration()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.AllPatientList.ItemsSource = vm?.GetDoctorPatients(currentEmployeeID , DateTime.Now.Date);
+            this.AllPatientList.ItemsSource = vm?.GetDoctorPatients(currentEmployeeID, DateTime.Now.Date);
         }
 
         private void ShowAllInPatient()
@@ -74,38 +74,112 @@ namespace HISGUIDoctorLib.Views
 
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            //var vm = this.DataContext as HISGUIDoctorVM;
-            //var thePatient = this.AllPatientList.SelectedItem as PatientMsgBox;
-            //vm.IsClinicOrInHospital = true;
-            //vm.CurrentRegistrationID = thePatient.ID;
-            //vm?.ReceivingNewPatientsManage();
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            //var vm = this.DataContext as HISGUIDoctorVM;
-            //var thePatient = this.AllInPatientList.SelectedItem as PatientMsgBox;
-            //vm.IsClinicOrInHospital = false;
-            //vm.CurrentInpatientID = thePatient.ID;
-            //vm?.ReceivingNewPatientsManage();
-        }
-
         private void AllPatientList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            //var vm = this.DataContext as HISGUIDoctorVM;
+            //var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
+
+            //if (tempRegistration == null)
+            //    return;
+
+            //this.PatientMsgView.ShowClinicMsg(tempRegistration);
+            //this.PatientMsgView.Visibility = Visibility.Visible;
+            //this.TipMsgLabel.Visibility = Visibility.Collapsed;
+        }
+
+        private void CallBtn_Click(object sender, RoutedEventArgs e)
+        {
+            List<CommContracts.Registration> list = this.AllPatientList.ItemsSource as List<CommContracts.Registration>;
+            if (list == null || list.Count <= 0)
+                return;
+
+            var vm = this.DataContext as HISGUIDoctorVM;
+            var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
+
+            int nextNo = 0;
+            if (tempRegistration == null)
+            {
+                nextNo = 0;
+            }
+            else
+            {
+                int nIndex = list.IndexOf(tempRegistration);
+                if (nIndex < 0 || nIndex >= list.Count-1)
+                {
+                    nextNo = 0;
+                }
+                else
+                {
+                    nextNo = nIndex + 1;
+                }
+            }
+
+            this.AllPatientList.SelectedItem = list.ElementAt(nextNo);
+            tempRegistration = list.ElementAt(nextNo);
+            if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中)
+            {
+                this.StartBtn.Content = "开始接诊";
+                this.StartBtn.IsEnabled = true;
+                this.OverBtn.IsEnabled = true;
+            }
+            else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊中)
+            {
+                this.StartBtn.Content = "继续接诊";
+                this.StartBtn.IsEnabled = true;
+                this.OverBtn.IsEnabled = true;
+            }
+            else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊结束 || tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.未到诊)
+            {
+                this.StartBtn.Content = "开始接诊";
+                this.StartBtn.IsEnabled = false;
+                this.OverBtn.IsEnabled = false;
+            }
+            
+            this.PatientMsgView.SetMyEnable(false);
+            this.PatientMsgView.ShowClinicMsg(tempRegistration);
+            this.PatientMsgView.Visibility = Visibility.Visible;
+            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+        }
+
+        private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIDoctorVM;
             var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
 
             if (tempRegistration == null)
                 return;
-            vm.IsClinicOrInHospital = true;
-            vm.CurrentRegistration = tempRegistration;
 
-            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+            tempRegistration.StartSeeDoctorTime = DateTime.Now;
+            tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.接诊中;
+            vm.UpdateRegistration(tempRegistration);
 
+            this.PatientMsgView.SetMyEnable(true);
             this.PatientMsgView.ShowClinicMsg(tempRegistration);
             this.PatientMsgView.Visibility = Visibility.Visible;
+            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+            this.StartBtn.IsEnabled = false;
+            ShowAllRegistration();
+        }
+
+        private void OverBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
+
+            if (tempRegistration == null)
+                return;
+
+            tempRegistration.EndSeeDoctorTime = DateTime.Now;
+            tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.接诊结束;
+            vm.UpdateRegistration(tempRegistration);
+
+            this.PatientMsgView.SetMyEnable(false);
+            this.PatientMsgView.ShowClinicMsg(tempRegistration);
+            this.PatientMsgView.Visibility = Visibility.Visible;
+            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+            this.StartBtn.IsEnabled = false;
+            this.OverBtn.IsEnabled = false;
+            ShowAllRegistration();
         }
     }
 }
