@@ -55,16 +55,14 @@ namespace HISGUIFeeLib.Views
     public partial class RegistrationView : HISGUIViewBase
     {
         private CommContracts.Registration currentRegistration;
-        private decimal? currentPatientBalance;
-        private int currentPatientID;
-        private int currentUserID;
+        private decimal? myCurrentBalance;
+        private int myCurrentPatientID;
         public RegistrationView()
         {
             InitializeComponent();
-            currentPatientBalance = 0.0m;
+            myCurrentBalance = 0.0m;
             currentRegistration = new CommContracts.Registration();
-            currentPatientID = 0;
-            currentUserID = 1;// 默认值
+            myCurrentPatientID = 0;
             updateSignalSourceMsg();
             this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
             this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
@@ -85,13 +83,13 @@ namespace HISGUIFeeLib.Views
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentPatientID = 1;// 默认值
+            myCurrentPatientID = 1;// 默认值
             var vm = this.DataContext as HISGUIFeeVM;
             PatientMsg.Inlines.Clear();
-            currentPatientBalance = vm?.GetCurrentPatientBalance(currentPatientID);
+            myCurrentBalance = vm?.GetCurrentPatientBalance(myCurrentPatientID);
             if (this.AddCheck.IsChecked.Value)
             {
-                CommContracts.Patient patient = vm?.ReadCurrentPatient(currentPatientID);
+                CommContracts.Patient patient = vm?.ReadCurrentPatient(myCurrentPatientID);
                 if (patient == null)
                     return;
 
@@ -105,7 +103,7 @@ namespace HISGUIFeeLib.Views
                     "电话：" + patient.Tel + "     "
                     ;
                 PatientMsg.Inlines.Add(new Run(str));
-                PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value + "元\n")
+                PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
                 {
                     Foreground = Brushes.Green,
                     FontSize = 25
@@ -113,7 +111,7 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.DeleteCheck.IsChecked.Value)
             {
-                currentRegistration = vm?.ReadLastRegistration(currentPatientID);
+                currentRegistration = vm?.ReadLastRegistration(myCurrentPatientID);
                 if (currentRegistration == null)
                     return;
                 if (currentRegistration.Patient == null)
@@ -129,7 +127,7 @@ namespace HISGUIFeeLib.Views
                     "电话：" + currentRegistration.Patient.Tel + "     ";
                 ;
                 PatientMsg.Inlines.Add(new Run(str));
-                PatientMsg.Inlines.Add(new Run("账户余额：" + currentPatientBalance.Value + "元\n")
+                PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
                 {
                     Foreground = Brushes.Green,
                     FontSize = 25
@@ -395,8 +393,8 @@ namespace HISGUIFeeLib.Views
 
         private void clearAllDate()
         {
-            currentPatientID = 0;
-            currentPatientBalance = 0;
+            myCurrentPatientID = 0;
+            myCurrentBalance = 0;
             currentRegistration = new CommContracts.Registration();
 
             PatientMsg.Inlines.Clear();
@@ -430,7 +428,7 @@ namespace HISGUIFeeLib.Views
 
             this.DiscountEdit.Text = 0.0.ToString();
             this.DuePayMoneyEdit.Text = tem.SignalSource.Price.ToString();
-            if (currentPatientBalance.Value >= tem.SignalSource.Price)
+            if (myCurrentBalance.Value >= tem.SignalSource.Price)
             {
                 this.PayWayCombo.SelectedItem = CommContracts.PayWayEnum.账户支付;
             }
@@ -465,13 +463,15 @@ namespace HISGUIFeeLib.Views
 
         private void PayBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIFeeVM;
             CommContracts.Registration registration = new CommContracts.Registration();
-            registration.PatientID = currentPatientID;
+            registration.PatientID = myCurrentPatientID;
 
             registration.PayWayEnum = (CommContracts.PayWayEnum)this.PayWayCombo.SelectedItem;
             registration.RegisterFee = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
             registration.RegisterTime = DateTime.Now;
-            registration.RegisterUserID = currentUserID;
+            if (vm.CurrentUser != null)
+                registration.RegisterUserID = vm.CurrentUser.ID;
             var signal = this.SignalList.SelectedItem as SignalSourceNums;
             if (signal == null)
                 return;
@@ -480,7 +480,6 @@ namespace HISGUIFeeLib.Views
 
             registration.SignalSourceID = signal.SignalSource.ID;
 
-            var vm = this.DataContext as HISGUIFeeVM;
             bool? result = vm.SaveRegistration(registration);
             if (result.HasValue)
             {
@@ -496,11 +495,13 @@ namespace HISGUIFeeLib.Views
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIFeeVM;
             currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
             currentRegistration.ReturnTime = DateTime.Now;
-            currentRegistration.ReturnUserID = currentUserID;
 
-            var vm = this.DataContext as HISGUIFeeVM;
+            if (vm.CurrentUser != null)
+                currentRegistration.RegisterUserID = vm.CurrentUser.ID;
+
             bool? result = vm.UpdateRegistration(currentRegistration);
             if (result.HasValue)
             {
