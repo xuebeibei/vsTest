@@ -174,7 +174,8 @@ namespace HISGUINurseLib.Views
 
                         var numQuery = (from u in registrationList
                                         where u.SignalSourceID == doc.ID && 
-                                        u.ArriveTime.HasValue
+                                        u.ArriveTime.HasValue && 
+                                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中 
                                         select u).Count();
 
                         waitMsg.WaitNum = numQuery;
