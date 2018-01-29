@@ -120,19 +120,22 @@ namespace HISGUIDoctorLib.Views
             {
                 this.StartBtn.Content = "开始接诊";
                 this.StartBtn.IsEnabled = true;
-                this.OverBtn.IsEnabled = true;
+                this.OverBtn.IsEnabled = false;
+                this.TurnToInHospitalBtn.IsEnabled = false;
             }
             else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊中)
             {
                 this.StartBtn.Content = "继续接诊";
                 this.StartBtn.IsEnabled = true;
-                this.OverBtn.IsEnabled = true;
+                this.OverBtn.IsEnabled = false;
+                this.TurnToInHospitalBtn.IsEnabled = false;
             }
             else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊结束 || tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.未到诊)
             {
                 this.StartBtn.Content = "开始接诊";
                 this.StartBtn.IsEnabled = false;
                 this.OverBtn.IsEnabled = false;
+                this.TurnToInHospitalBtn.IsEnabled = false;
             }
             
             this.PatientMsgView.SetMyEnable(false);
@@ -158,6 +161,8 @@ namespace HISGUIDoctorLib.Views
             this.PatientMsgView.Visibility = Visibility.Visible;
             this.TipMsgLabel.Visibility = Visibility.Collapsed;
             this.StartBtn.IsEnabled = false;
+            this.OverBtn.IsEnabled = true;
+            this.TurnToInHospitalBtn.IsEnabled = true;
             ShowAllRegistration();
         }
 
@@ -179,7 +184,34 @@ namespace HISGUIDoctorLib.Views
             this.TipMsgLabel.Visibility = Visibility.Collapsed;
             this.StartBtn.IsEnabled = false;
             this.OverBtn.IsEnabled = false;
+            this.TurnToInHospitalBtn.IsEnabled = false;
             ShowAllRegistration();
+        }
+
+        private void TurnToInHospitalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
+
+            if (tempRegistration == null)
+                return;
+
+            tempRegistration.EndSeeDoctorTime = DateTime.Now;
+            tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.申请入院;
+            vm.UpdateRegistration(tempRegistration);
+
+            this.PatientMsgView.SetMyEnable(false);
+            this.PatientMsgView.ShowClinicMsg(tempRegistration);
+            this.PatientMsgView.Visibility = Visibility.Visible;
+            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+            this.StartBtn.IsEnabled = false;
+            this.OverBtn.IsEnabled = false;
+            this.TurnToInHospitalBtn.IsEnabled = false;
+            ShowAllRegistration();
+
+            CommContracts.Inpatient inpatient = new CommContracts.Inpatient();
+            inpatient.PatientID = vm.CurrentRegistration.PatientID;
+            vm.SaveInPatient(inpatient);
         }
     }
 }

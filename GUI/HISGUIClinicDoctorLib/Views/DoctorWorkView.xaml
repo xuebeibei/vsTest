@@ -39,7 +39,7 @@
                         <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" MouseDoubleClick="AllPatientList_MouseDoubleClick" SelectionMode="Single">
                             <ListView.View>
                                 <GridView x:Name="gridViewPatient">
-                                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
+                                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
                                     <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
                                     <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=SeeDoctorStatus}" Width="60"></GridViewColumn>
                                 </GridView>
@@ -53,8 +53,9 @@
                         </Grid.RowDefinitions>
                         <StackPanel Grid.Row="0" Orientation="Horizontal">
                             <Button x:Name="CallBtn" Margin="5" Click="CallBtn_Click">呼叫下一个</Button>
-                            <Button x:Name="StartBtn" Margin="5" Click="StartBtn_Click">开始接诊</Button>
-                            <Button x:Name="OverBtn" Margin="5" Click="OverBtn_Click">结束接诊</Button>
+                            <Button x:Name="StartBtn" Margin="5" Click="StartBtn_Click" IsEnabled="False">开始看诊</Button>
+                            <Button x:Name="OverBtn" Margin="5" Click="OverBtn_Click" IsEnabled="False">正常结束看诊</Button>
+                            <Button x:Name="TurnToInHospitalBtn" Margin="5" Click="TurnToInHospitalBtn_Click" IsEnabled="False">入院结束看诊</Button>
                         </StackPanel>
                         <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
                             <Label x:Name="TipMsgLabel">医生工作站</Label>
