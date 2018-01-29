@@ -13,7 +13,7 @@ namespace CommContracts
         现金支付
     }
 
-    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 接诊中, 接诊结束 };
+    public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 接诊中, 接诊结束 , 申请入院 };
     public enum TriageStatusEnum { no, yes };
     [DataContract]
     public class Registration
