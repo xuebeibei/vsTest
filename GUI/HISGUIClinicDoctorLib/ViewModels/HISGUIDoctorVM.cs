@@ -329,7 +329,13 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
 
-        // 当前用户ID
+        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        {
+            CommClient.Inpatient myd = new CommClient.Inpatient();
+            return myd.SaveInPatient(inpatient); 
+        }
+
+        // 当前用户
         #region CurrentUser
         public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
             "CurrentUser", typeof(CommContracts.User), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
