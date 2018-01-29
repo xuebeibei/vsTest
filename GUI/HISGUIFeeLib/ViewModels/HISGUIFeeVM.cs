@@ -56,11 +56,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.MedicineDoctorAdvice> list = new List<CommContracts.MedicineDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = recipe.getAllXiCheng(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = recipe.getAllXiCheng(this.CurrentRegistration.ID);
             }
             else
             {
-                list = recipe.getAllInHospitalXiCheng(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = recipe.getAllInHospitalXiCheng(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -72,11 +74,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.MedicineDoctorAdvice> list = new List<CommContracts.MedicineDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = recipe.getAllZhong(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = recipe.getAllZhong(this.CurrentRegistration.ID);
             }
             else
             {
-                list = recipe.getAllInHospitalZhong(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = recipe.getAllInHospitalZhong(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -89,13 +93,21 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.TherapyDoctorAdvice> list = new List<CommContracts.TherapyDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = therapy.getAllTherapyDoctorAdvice(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = therapy.getAllTherapyDoctorAdvice(this.CurrentRegistration.ID);
             }
             else
             {
-                list = therapy.getAllInHospitalTherapyDoctorAdvice(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = therapy.getAllInHospitalTherapyDoctorAdvice(this.CurrentInpatient.ID);
             }
             return list;
+        }
+
+        public CommContracts.User getUser(int UserID)
+        {
+            CommClient.User user = new CommClient.User();
+            return user.getUser(UserID);
         }
 
         // 得到当前门诊患者的所有化验申请单
@@ -106,11 +118,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.AssayDoctorAdvice> list = new List<CommContracts.AssayDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = assay.getAllAssay(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = assay.getAllAssay(this.CurrentRegistration.ID);
             }
             else
             {
-                list = assay.getAllInHospitalAssay(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = assay.getAllInHospitalAssay(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -123,11 +137,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.InspectDoctorAdvice> list = new List<CommContracts.InspectDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = inspect.getAllInspectDoctorAdvice(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = inspect.getAllInspectDoctorAdvice(this.CurrentRegistration.ID);
             }
             else
             {
-                list = inspect.getAllInHospitalInspect(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = inspect.getAllInHospitalInspect(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -140,11 +156,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.MaterialDoctorAdvice> list = new List<CommContracts.MaterialDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = materialBill.getAllMaterialDoctorAdvice(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = materialBill.getAllMaterialDoctorAdvice(this.CurrentRegistration.ID);
             }
             else
             {
-                list = materialBill.getAllInHospitalMaterialDoctorAdvice(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = materialBill.getAllInHospitalMaterialDoctorAdvice(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -157,11 +175,13 @@ namespace HISGUIFeeLib.ViewModels
             List<CommContracts.OtherServiceDoctorAdvice> list = new List<CommContracts.OtherServiceDoctorAdvice>();
             if (IsClinicOrInHospital)
             {
-                list = otherService.getAllOtherService(this.CurrentRegistrationID);
+                if (CurrentRegistration != null)
+                    list = otherService.getAllOtherService(this.CurrentRegistration.ID);
             }
             else
             {
-                list = otherService.getAllInHospitalOtherService(this.CurrentInHospitalID);
+                if (CurrentInpatient != null)
+                    list = otherService.getAllInHospitalOtherService(this.CurrentInpatient.ID);
             }
             return list;
         }
@@ -288,31 +308,46 @@ namespace HISGUIFeeLib.ViewModels
             return myd.ReadLastRegistration(PatientID);
         }
 
-        // 当前住院患者的住院号ID
-        #region CurrentInHospitalID
-        public static readonly DependencyProperty CurrentInHospitalIDProperty = DependencyProperty.Register(
-            "CurrentInHospitalID", typeof(int), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+        // 当前用户
+        #region CurrentUser
+        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
+            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
 
-        public int CurrentInHospitalID
+        public CommContracts.User CurrentUser
         {
-            get { return (int)GetValue(CurrentInHospitalIDProperty); }
-            set { SetValue(CurrentInHospitalIDProperty, value); }
+            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            set { SetValue(CurrentUserProperty, value); }
         }
 
         #endregion
 
-        // 当前医生收费的挂号单ID
-        #region CurrentRegistrationID
-        public static readonly DependencyProperty CurrentRegistrationIDProperty = DependencyProperty.Register(
-            "CurrentRegistrationID", typeof(int), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+        // 当前医生收费的挂号单I
+        #region CurrentRegistration
+        public static readonly DependencyProperty CurrentRegistrationProperty = DependencyProperty.Register(
+            "CurrentRegistration", typeof(CommContracts.Registration), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
 
-        public int CurrentRegistrationID
+        public CommContracts.Registration CurrentRegistration
         {
-            get { return (int)GetValue(CurrentRegistrationIDProperty); }
-            set { SetValue(CurrentRegistrationIDProperty, value); }
+            get { return (CommContracts.Registration)GetValue(CurrentRegistrationProperty); }
+            set { SetValue(CurrentRegistrationProperty, value); }
         }
 
         #endregion
+
+        // 当前住院患者的住院号
+        #region CurrentInpatient
+        public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
+            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Inpatient CurrentInpatient
+        {
+            get { return (CommContracts.Inpatient)GetValue(CurrentInPatientProperty); }
+            set { SetValue(CurrentInPatientProperty, value); }
+        }
+
+        #endregion
+
+        
 
         // 当前是门诊还是住院收费
         #region IsClinicOrInHospital
