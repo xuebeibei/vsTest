@@ -251,7 +251,7 @@ namespace DAL
 
             modelBuilder.Entity<ChargeDetailBase>().ToTable("tpt.ChargeDetailBase");
             modelBuilder.Entity<MedicineChargeDetail>().ToTable("tpt.MedicineChargeDetail");
-            modelBuilder.Entity<MaterialChargeDetail>().ToTable("MaterialChargeDetail");  // 此处有错误,未加tpt.
+            modelBuilder.Entity<MaterialChargeDetail>().ToTable("tpt.MaterialChargeDetail");
             modelBuilder.Entity<TherapyChargeDetail>().ToTable("tpt.TherapyChargeDetail");
             modelBuilder.Entity<AssayChargeDetail>().ToTable("tpt.AssayChargeDetail");
             modelBuilder.Entity<InspectChargeDetail>().ToTable("tpt.InspectChargeDetail");
