@@ -61,5 +61,14 @@ namespace CommContracts
         [DataMember]
         public DateTime? EndSeeDoctorTime { get; set; }                 // 结束看诊时间
 
+        public override bool Equals(object obj)
+        {
+            var temp = obj as Registration;
+            if (temp == null)
+                return false;
+            if (temp.ID != this.ID)
+                return false;
+            return true;
+        }
     }
 }

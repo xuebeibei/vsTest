@@ -43,48 +43,19 @@ namespace HISGUIDoctorLib.Views
 
         private void DoctorWork_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowAllRegistration();
-            ShowAllInPatient();
+            UpdateAllRegistration();
         }
 
-        private void ShowAllRegistration()
+        private void UpdateAllRegistration()
         {
+            var temp = this.AllPatientList.SelectedItem as CommContracts.Registration;
+
             var vm = this.DataContext as HISGUIDoctorVM;
             this.AllPatientList.ItemsSource = vm?.GetDoctorPatients(currentEmployeeID, DateTime.Now.Date);
-        }
-
-        private void ShowAllInPatient()
-        {
-            var vm = this.DataContext as HISGUIDoctorVM;
-
-            //Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            //dictionary = vm?.GetAllInPatient();
-
-            //List<PatientMsgBox> list = new List<PatientMsgBox>();
-            //if (dictionary != null)
-            //{
-            //    for (int i = 0; i < dictionary.Count; i++)
-            //    {
-            //        // 实例化一个控件
-            //        list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-            //    }
-
-            //    this.AllInPatientList.ItemsSource = list;
-            //}
-
-        }
-
-        private void AllPatientList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            //var vm = this.DataContext as HISGUIDoctorVM;
-            //var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
-
-            //if (tempRegistration == null)
-            //    return;
-
-            //this.PatientMsgView.ShowClinicMsg(tempRegistration);
-            //this.PatientMsgView.Visibility = Visibility.Visible;
-            //this.TipMsgLabel.Visibility = Visibility.Collapsed;
+            if (temp != null)
+            {
+                this.AllPatientList.SelectedItem = temp;
+            }
         }
 
         private void CallBtn_Click(object sender, RoutedEventArgs e)
@@ -163,7 +134,7 @@ namespace HISGUIDoctorLib.Views
             this.StartBtn.IsEnabled = false;
             this.OverBtn.IsEnabled = true;
             this.TurnToInHospitalBtn.IsEnabled = true;
-            ShowAllRegistration();
+            UpdateAllRegistration();
         }
 
         private void OverBtn_Click(object sender, RoutedEventArgs e)
@@ -185,7 +156,7 @@ namespace HISGUIDoctorLib.Views
             this.StartBtn.IsEnabled = false;
             this.OverBtn.IsEnabled = false;
             this.TurnToInHospitalBtn.IsEnabled = false;
-            ShowAllRegistration();
+            UpdateAllRegistration();
         }
 
         private void TurnToInHospitalBtn_Click(object sender, RoutedEventArgs e)
@@ -207,7 +178,7 @@ namespace HISGUIDoctorLib.Views
             this.StartBtn.IsEnabled = false;
             this.OverBtn.IsEnabled = false;
             this.TurnToInHospitalBtn.IsEnabled = false;
-            ShowAllRegistration();
+            UpdateAllRegistration();
 
             CommContracts.Inpatient inpatient = new CommContracts.Inpatient();
             inpatient.PatientID = vm.CurrentRegistration.PatientID;

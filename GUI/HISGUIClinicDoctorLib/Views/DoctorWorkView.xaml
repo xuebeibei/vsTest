@@ -36,7 +36,7 @@
                         <ColumnDefinition></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Grid Grid.Column="0">
-                        <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" MouseDoubleClick="AllPatientList_MouseDoubleClick" SelectionMode="Single">
+                        <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" SelectionMode="Single">
                             <ListView.View>
                                 <GridView x:Name="gridViewPatient">
                                     <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
