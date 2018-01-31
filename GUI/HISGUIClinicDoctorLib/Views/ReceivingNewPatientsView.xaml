@@ -11,28 +11,11 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <!--<Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>-->
-        <!--<Grid Grid.Row="0" Grid.ColumnSpan="2" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0">logo接诊</Label>
-            <StackPanel Grid.Column="2" Orientation="Horizontal"  HorizontalAlignment="Right">
-                <Button Margin="5" Click="Button_Click">费用预览</Button>
-                <Button Margin="5" Command="{Binding RecevingOverCommand}">结束接诊</Button>
-            </StackPanel>
-        </Grid>-->
-
-        <!--<local:PatientBMIMsg Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"></local:PatientBMIMsg>-->
         <StackPanel Grid.Row="0">
             <TextBlock x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap"/>
         </StackPanel>
 
-        <TabControl x:Name="tabControl"  Margin="5"  Grid.Row="1"><!--VerticalAlignment="Top"-->
+        <TabControl x:Name="tabControl"  Margin="5"  Grid.Row="1">
             <TabItem x:Name="Page1" Header="门诊病历">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <Border BorderBrush="Black">
