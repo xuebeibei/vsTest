@@ -14,15 +14,11 @@ namespace CommClient
     {
         private ILoginService client;
 
-        //public CommContracts.MedicineDoctorAdvice MyMedicineDoctorAdvice { get; set; }
-
         public MedicineDoctorAdvice()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-
-            //MyMedicineDoctorAdvice = new CommContracts.MedicineDoctorAdvice();
         }
 
         public bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice medicineDoctorAdvice)
@@ -50,9 +46,9 @@ namespace CommClient
             return client.getAllInHospitalZhong(InpatientID);
         }
 
-        public bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        public bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
         {
-            return client.UpdateChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
+            return client.UpdateMedicineChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
         }
     }
 }

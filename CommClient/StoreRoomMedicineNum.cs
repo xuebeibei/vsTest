@@ -31,6 +31,11 @@ namespace CommClient
             return client.RecheckMedicineOutStore(medicineOutStore);
         }
 
+        public bool ReCheckMedicineCheckStore(CommContracts.MedicineCheckStore medicineCheckStore)
+        {
+            return client.ReCheckMedicineCheckStore(medicineCheckStore);
+        }
+
         public List<CommContracts.StoreRoomMedicineNum> getAllMedicineItemNum(int StoreID,
             string ItemName,
             int SupplierID,
@@ -50,9 +55,15 @@ namespace CommClient
         }
 
         // 根据收费单更新库存
-        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        public bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
         {
-            return client.SubdStoreNum(recipeChargeBill);
+            return client.SubdMedicineStoreNum(recipeChargeBill);
+        }
+
+        // 根据收费单更新库存
+        public bool SubdMedicineStoreNum(CommContracts.MedicineCharge medicineCharge)
+        {
+            return client.SubdMedicineStoreNumByAdvice(medicineCharge);
         }
     }
 }

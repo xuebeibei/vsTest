@@ -147,8 +147,18 @@ namespace DAL
         public DbSet<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
         public DbSet<MedicineCheckStore> MedicineCheckStores { get; set; }
         public DbSet<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
+
+        public DbSet<MaterialInStore> MaterialInStores { get; set; }
+        public DbSet<MaterialInStoreDetail> MaterialInStoreDetails { get; set; }
+        public DbSet<MaterialOutStore> MaterialOutStores { get; set; }
+        public DbSet<MaterialOutStoreDetail> MaterialOutStoreDetails { get; set; }
+        public DbSet<MaterialCheckStore> MaterialCheckStores { get; set; }
+        public DbSet<MaterialCheckStoreDetail> MaterialCheckStoreDetails { get; set; }
+
         public DbSet<StoreRoom> StoreRooms { get; set; }
+        public DbSet<StoreNumBase> StoreNumBases { get; set; }
         public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+        public DbSet<StoreRoomMaterialNum> StoreRoomMaterialNums { get; set; }
 
         public DbSet<Supplier> Suppliers { get; set; }
 
@@ -170,6 +180,26 @@ namespace DAL
 
         public DbSet<OtherServiceDoctorAdvice> OtherServiceDoctorAdvices { get; set; }
         public DbSet<SignalItem> SignalItems { get; set; }
+
+        public DbSet<DoctorAdviceBase> DoctorAdviceBases { get; set; }
+
+        public DbSet<GoodsBase> GoodsBases { get; set; }
+
+        public DbSet<ChargeDetailBase> ChargeDetailBases { get; set; }
+        public DbSet<MedicineChargeDetail> MedicineChargeDetails { get; set; }
+        public DbSet<MaterialChargeDetail> MaterialChargeDetails { get; set; }
+        public DbSet<TherapyChargeDetail> TherapyChargeDetails { get; set; }
+        public DbSet<AssayChargeDetail> AssayChargeDetails { get; set; }
+        public DbSet<InspectChargeDetail> InspectChargeDetails { get; set; }
+        public DbSet<OtherServiceChargeDetail> OtherServiceChargeDetails { get; set; }
+
+        public DbSet<ChargeBase> ChargeBases { get; set; }
+        public DbSet<MedicineCharge> MedicineCharges { get; set; }
+        public DbSet<MaterialCharge> MaterialCharges { get; set; }
+        public DbSet<TherapyCharge> TherapyCharges { get; set; }
+        public DbSet<AssayCharge> AssayCharges { get; set; }
+        public DbSet<InspectCharge> InspectCharges { get; set; }
+        public DbSet<OtherServiceCharge> OtherServiceCharges { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -194,6 +224,46 @@ namespace DAL
 
             modelBuilder.Entity<OtherServiceDoctorAdvice>().ToTable("tpt.OtherServiceDoctorAdvice");
             modelBuilder.Entity<OtherServiceDoctorAdviceDetail>().ToTable("tpt.OtherServiceDoctorAdviceDetail");
+
+            modelBuilder.Entity<GoodsBase>().ToTable("tpt.GoodsBase");
+            modelBuilder.Entity<Medicine>().ToTable("tpt.Medicine");
+            modelBuilder.Entity<MaterialItem>().ToTable("tpt.MaterialItem");
+
+            modelBuilder.Entity<StoreNumBase>().ToTable("tpt.StoreNumBase");
+            modelBuilder.Entity<StoreRoomMedicineNum>().ToTable("tpt.StoreRoomMedicineNum");
+            modelBuilder.Entity<StoreRoomMaterialNum>().ToTable("tpt.StoreRoomMaterialNum");
+
+            modelBuilder.Entity<StoreOperateBillDetailBase>().ToTable("tpt.StoreOperateBillDetailBase");
+            modelBuilder.Entity<MedicineInStoreDetail>().ToTable("tpt.MedicineInStoreDetail");
+            modelBuilder.Entity<MedicineOutStoreDetail>().ToTable("tpt.MedicineOutStoreDetail");
+            modelBuilder.Entity<MedicineCheckStoreDetail>().ToTable("tpt.MedicineCheckStoreDetail");
+            modelBuilder.Entity<MaterialInStoreDetail>().ToTable("tpt.MaterialInStoreDetail");
+            modelBuilder.Entity<MaterialOutStoreDetail>().ToTable("tpt.MaterialOutStoreDetail");
+            modelBuilder.Entity<MaterialCheckStoreDetail>().ToTable("tpt.MaterialCheckStoreDetail");
+
+            modelBuilder.Entity<StoreOperateBillBase>().ToTable("tpt.StoreOperateBillBase");
+            modelBuilder.Entity<MedicineInStore>().ToTable("tpt.MedicineInStore");
+            modelBuilder.Entity<MedicineOutStore>().ToTable("tpt.MedicineOutStore");
+            modelBuilder.Entity<MedicineCheckStore>().ToTable("tpt.MedicineCheckStore");
+            modelBuilder.Entity<MaterialInStore>().ToTable("tpt.MaterialInStore");
+            modelBuilder.Entity<MaterialOutStore>().ToTable("tpt.MaterialOutStore");
+            modelBuilder.Entity<MaterialCheckStore>().ToTable("tpt.MaterialCheckStore");
+
+            modelBuilder.Entity<ChargeDetailBase>().ToTable("tpt.ChargeDetailBase");
+            modelBuilder.Entity<MedicineChargeDetail>().ToTable("tpt.MedicineChargeDetail");
+            modelBuilder.Entity<MaterialChargeDetail>().ToTable("MaterialChargeDetail");  // 此处有错误,未加tpt.
+            modelBuilder.Entity<TherapyChargeDetail>().ToTable("tpt.TherapyChargeDetail");
+            modelBuilder.Entity<AssayChargeDetail>().ToTable("tpt.AssayChargeDetail");
+            modelBuilder.Entity<InspectChargeDetail>().ToTable("tpt.InspectChargeDetail");
+            modelBuilder.Entity<OtherServiceChargeDetail>().ToTable("tpt.OtherServiceChargeDetail");
+
+            modelBuilder.Entity<ChargeBase>().ToTable("tpt.ChargeBase");
+            modelBuilder.Entity<MedicineCharge>().ToTable("tpt.MedicineCharge");
+            modelBuilder.Entity<MaterialCharge>().ToTable("tpt.MaterialCharge");
+            modelBuilder.Entity<TherapyCharge>().ToTable("tpt.TherapyCharge");
+            modelBuilder.Entity<AssayCharge>().ToTable("tpt.AssayCharge");
+            modelBuilder.Entity<InspectCharge>().ToTable("tpt.InspectCharge");
+            modelBuilder.Entity<OtherServiceCharge>().ToTable("tpt.OtherServiceCharge");
         }
     }
 
@@ -206,9 +276,10 @@ namespace DAL
             this.Status = LoginStatus.unknow;
             Registrations = new List<Registration>();
             Inpatients = new List<Inpatient>();
-            MedicineInStores = new List<MedicineInStore>();
             PrePays = new List<PrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
+            StoreOperateBillBases = new List<StoreOperateBillBase>();
+            ChargeBases = new List<ChargeBase>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -223,10 +294,13 @@ namespace DAL
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
         public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
 
-        public virtual ICollection<MedicineInStore> MedicineInStores { get; set; }
         public virtual ICollection<PrePay> PrePays { get; set; }
 
         public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
+
+        public virtual ICollection<StoreOperateBillBase> StoreOperateBillBases { get; set; }
+
+        public virtual ICollection<ChargeBase> ChargeBases { get; set; }
     }
 
     public class Department
@@ -472,8 +546,24 @@ namespace DAL
         水剂
     }
 
+    public class GoodsBase
+    {
+        public int ID { get; set; }                                 // ID
+        public string Name { get; set; }                            // 名
+        public string AbbrPY { get; set; }                          // 拼音简称
+        public string AbbrWB { get; set; }                          // 五笔简称
+        public string Unit { get; set; }                            // 单位
+        public string Specifications { get; set; }                  // 规格
+        public string Manufacturer { get; set; }                    // 生产厂家
+        public YiBaoEnum YiBaoEnum { get; set; }                    // 医保甲乙类
+        public int MaxNum { get; set; }                             // 最大库存量
+        public int MinNum { get; set; }                             // 最小库存量
+        [DecimalPrecision(18, 4)]
+        public decimal SellPrice { get; set; }                      // 零售价
+    }
+
     // 药品字典
-    public class Medicine
+    public class Medicine : GoodsBase
     {
         public Medicine()
         {
@@ -482,26 +572,15 @@ namespace DAL
             MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
         }
 
-        public int ID { get; set; }                                 // ID
         public MedicineTypeEnum MedicineTypeEnum { get; set; }      // 药品类型
-        public string Name { get; set; }                            // 药品品名
         public string Abbr1 { get; set; }                           // 别名1
         public string Abbr2 { get; set; }                           // 别名2
         public string Abbr3 { get; set; }                           // 别名3
         public DosageFormEnum DosageFormEnum { get; set; }          // 药品剂型   
-        public string Unit { get; set; }                            // 单位
         public string AdministrationRoute { get; set; }             // 给药方式
-        public string Specifications { get; set; }                  // 规格
-        public string Manufacturer { get; set; }                    // 生产厂家
         public bool PoisonousHemp { get; set; }                     // 毒麻
         public bool Valuable { get; set; }                          // 贵重
         public bool EssentialDrugs { get; set; }                    // 基本药物
-        public YiBaoEnum YiBaoEnum { get; set; }                    // 医保甲乙类
-        public int MaxNum { get; set; }                             // 最大库存量
-        public int MinNum { get; set; }                             // 最小库存量
-        [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }                      // 零售价
-
         public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
@@ -607,6 +686,7 @@ namespace DAL
         public AssayItem()
         {
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
+            AssayChargeDetails = new List<AssayChargeDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -620,6 +700,7 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
         public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
+        public virtual ICollection<AssayChargeDetail> AssayChargeDetails { get; set; }
     }
 
     // 化验标本
@@ -642,6 +723,7 @@ namespace DAL
         public InspectItem()
         {
             InspectDoctorAdviceDetail = new List<InspectDoctorAdviceDetail>();
+            InspectChargeDetails = new List<InspectChargeDetail>();
         }
 
         public int ID { get; set; }                             // ID
@@ -654,6 +736,7 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类 
 
         public virtual ICollection<InspectDoctorAdviceDetail> InspectDoctorAdviceDetail { get; set; }
+        public virtual ICollection<InspectChargeDetail> InspectChargeDetails { get; set; }
     }
 
     // 检查部位
@@ -676,6 +759,7 @@ namespace DAL
         public TherapyItem()
         {
             TherapyDoctorAdviceDetails = new List<TherapyDoctorAdviceDetail>();
+            TherapyChargeDetails = new List<TherapyChargeDetail>(); 
         }
 
         public int ID { get; set; }                                 // ID
@@ -688,31 +772,22 @@ namespace DAL
         public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类
 
         public virtual ICollection<TherapyDoctorAdviceDetail> TherapyDoctorAdviceDetails { get; set; }
+        public virtual ICollection<TherapyChargeDetail> TherapyChargeDetails { get; set; }
     }
 
     // 物资项目
-    public class MaterialItem
+    public class MaterialItem : GoodsBase
     {
         public MaterialItem()
         {
             MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
+            StoreRoomMaterialNums = new List<StoreRoomMaterialNum>();
         }
 
-        public int ID { get; set; }
-        public string Name { get; set; }                        // 名称
-        public string AbbrPY { get; set; }                      // 拼音简称
-        public string AbbrWB { get; set; }                      // 五笔简称
-        [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }                  // 零售价
-        public string Unit { get; set; }                        // 单位
-        public string Specifications { get; set; }              // 规格
-        public string Manufacturer { get; set; }                // 生产厂家
         public bool Valuable { get; set; }                      // 是否是贵重
-        public YiBaoEnum YiBaoEnum { get; set; }                // 医保甲乙类
-        public int MaxNum { get; set; }                         // 最大库存量
-        public int MinNum { get; set; }                         // 最小库存量
 
         public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
+        public virtual ICollection<StoreRoomMaterialNum> StoreRoomMaterialNums { get; set; }
     }
 
     // 其他服务字典
@@ -721,6 +796,7 @@ namespace DAL
         public OtherServiceItem()
         {
             OtherServiceDoctorAdviceDetails = new List<OtherServiceDoctorAdviceDetail>();
+            OtherServiceChargeDetails = new List<OtherServiceChargeDetail>();
         }
 
         public int ID { get; set; }                                 // ID
@@ -732,6 +808,7 @@ namespace DAL
         public string Unit { get; set; }                            // 单位
 
         public virtual ICollection<OtherServiceDoctorAdviceDetail> OtherServiceDoctorAdviceDetails { get; set; }
+        public virtual ICollection<OtherServiceChargeDetail> OtherServiceChargeDetails { get; set; }
     }
 
     public enum InStoreEnum
@@ -747,54 +824,53 @@ namespace DAL
         已审核
     }
 
-    // 药品入库表
-    public class MedicineInStore
+    // 库存表基类
+    public class StoreNumBase
     {
-        public MedicineInStore()
+        public StoreNumBase()
         {
-            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
         }
 
         public int ID { get; set; }                  // ID
-        public string NO { get; set; }               // 单号 
-        public decimal SumOfMoney { get; set; }      // 总金额，成本价
-        public DateTime? OperateTime { get; set; }    // 操作时间
-        public InStoreEnum InStoreEnum { get; set; }
-        public int FromSupplierID { get; set; }      // 供应商
-        public int ToStoreID { get; set; }           // 入库库房
-        public string Remarks { get; set; }          // 备注
-        public int OperateUserID { get; set; }       // 操作用户
-        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }      // 审核状态
-        public int ReCheckUserID { get; set; }       // 复检用户 
-
-        public virtual User OperateUser { get; set; }     // 制单用户
-        public virtual Supplier FromSupplier { get; set; }
-        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
-    }
-
-    // 药品入库明细
-    public class MedicineInStoreDetail
-    {
-        public MedicineInStoreDetail()
-        {
-
-        }
-
-        public int ID { get; set; }       // ID
-        public int MedicineID { get; set; }          // 对应药品字典
+        public int StoreRoomID { get; set; }         // 库房ID
+        public int SupplierID { get; set; }          // 供应商ID
         public string Batch { get; set; }            // 批次
         public DateTime? ExpirationDate { get; set; } // 有效期
         [DecimalPrecision(18, 4)]
         public decimal StorePrice { get; set; }      // 成本价
-        [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }       // 零售价
-        public int Num { get; set; }             // 入库数量
+        public int Num { get; set; }                 // 库存
 
-        public int MedicineInStoreID { get; set; }  // 入库单ID
-        public virtual Medicine Medicine { get; set; }    // 药品字典外键
-        public virtual MedicineInStore MedicineInStore { get; set; }   // 入库单外键
+        public virtual StoreRoom StoreRoom { get; set; }
+        public virtual Supplier Supplier { get; set; }
     }
 
+    // 库存操作明细基类
+    public class StoreOperateBillDetailBase
+    {
+        public int ID { get; set; }                      // ID
+        public string Batch { get; set; }                // 批次
+        public DateTime? ExpirationDate { get; set; }    // 有效期
+        [DecimalPrecision(18, 4)]
+        public decimal StorePrice { get; set; }          // 成本价
+        [DecimalPrecision(18, 4)]
+        public decimal SellPrice { get; set; }           // 零售价
+        public int Num { get; set; }                     // 数量
+    }
+
+    // 库存操作表基类
+    public class StoreOperateBillBase
+    {
+        public int ID { get; set; }                     // ID
+        public string NO { get; set; }                  // 单号 
+        public decimal SumOfMoney { get; set; }         // 总金额，成本价
+        public DateTime? OperateTime { get; set; }      // 操作时间
+        public string Remarks { get; set; }             // 备注
+        public int OperateUserID { get; set; }          // 操作用户
+        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }      // 审核状态
+        public int ReCheckUserID { get; set; }         // 复检用户 
+
+        public virtual User OperateUser { get; set; }  // 制单用户
+    }
     public enum OutStoreEnum
     {
         科室出库,
@@ -804,96 +880,176 @@ namespace DAL
         其他出库
     }
 
+    // 药品入库表
+    public class MedicineInStore : StoreOperateBillBase
+    {
+        public MedicineInStore()
+        {
+            MedicineInStoreDetails = new List<MedicineInStoreDetail>();
+        }
+        public InStoreEnum InStoreEnum { get; set; }
+        public int FromSupplierID { get; set; }      // 供应商
+        public int ToStoreID { get; set; }           // 入库库房
+
+        public virtual Supplier FromSupplier { get; set; }
+        public virtual ICollection<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
+    }
+
+    // 药品入库明细
+    public class MedicineInStoreDetail : StoreOperateBillDetailBase
+    {
+        public MedicineInStoreDetail()
+        {
+
+        }
+        public int MedicineID { get; set; }          // 对应药品字典
+        public int MedicineInStoreID { get; set; }  // 入库单ID
+
+        public virtual Medicine Medicine { get; set; }    // 药品字典外键
+        public virtual MedicineInStore MedicineInStore { get; set; }   // 入库单外键
+    }
+
+
     // 药品出库表
-    public class MedicineOutStore
+    public class MedicineOutStore : StoreOperateBillBase
     {
         public MedicineOutStore()
         {
             MedicineOutStoreDetails = new List<MedicineOutStoreDetail>();
         }
 
-        public int ID { get; set; }                      // ID
-        public string NO { get; set; }                   // 单号
-        public decimal SumOfMoney { get; set; }          // 总金额，成本价
-        public DateTime? OperateTime { get; set; }        // 操作时间
         public OutStoreEnum OutStoreEnum { get; set; }   // 出库类型
         public int FromStoreID { get; set; }
         public int ToStoreID { get; set; }
         public int ToOtherHospitalID { get; set; }
         public int ToSupplierID { get; set; }        // 供货商退货 
-        public string Remarks { get; set; }          // 备注
-
-        public int OperateUserID { get; set; }       // 操作用户
-        public int ReCheckUserID { get; set; }       // 复检用户
-        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }
 
         public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
     }
 
     // 药品出库明细
-    public class MedicineOutStoreDetail
+    public class MedicineOutStoreDetail : StoreOperateBillDetailBase
     {
-        public MedicineOutStoreDetail()
-        {
-
-        }
-
-        public int ID { get; set; }                      // ID
         public int StoreRoomMedicineNumID { get; set; }  // 库存ID
         public int NumBeforeOut { get; set; }            // 出库前数量 
-        public int Num { get; set; }                     // 出库数量
-        [DecimalPrecision(18, 4)]
-        public decimal StorePrice { get; set; }          // 出库前成本价
-        [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }           // 出库前零售价
-
         public int MedicineOutStoreID { get; set; }  // 出库单ID
         public virtual StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
         public virtual MedicineOutStore MedicineOutStore { get; set; }   // 出库单外键
     }
 
     // 药品盘存表
-    public class MedicineCheckStore
+    public class MedicineCheckStore : StoreOperateBillBase
     {
         public MedicineCheckStore()
         {
             MedicineCheckStoreDetails = new List<MedicineCheckStoreDetail>();
         }
 
-        public int ID { get; set; }                  // ID
-        public string NO { get; set; }               // 单号
-        public decimal SumOfMoney { get; set; }      // 总损益，成本价
-        public DateTime? OperateTime { get; set; }    // 操作时间
         public int CheckStoreID { get; set; }        // 盘存库房
-        public string Remarks { get; set; }          // 备注
-
-        public int OperateUserID { get; set; }       // 操作用户
-        public int ReCheckUserID { get; set; }       // 复检用户
-        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }
 
         public virtual ICollection<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
     }
 
     // 药品盘存明细
-    public class MedicineCheckStoreDetail
+    public class MedicineCheckStoreDetail : StoreOperateBillDetailBase
     {
         public MedicineCheckStoreDetail()
         {
 
         }
 
-        public int ID { get; set; }                      // ID
         public int StoreRoomMedicineNumID { get; set; }  // 库存ID
         public int NumBeforeCheck { get; set; }          // 出库前数量 
-        public int Num { get; set; }                     // 出库数量
-        [DecimalPrecision(18, 4)]
-        public decimal StorePrice { get; set; }          // 出库前成本价
-        [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }           // 出库前零售价
 
-        public int MedicineCheckStoreID { get; set; }  // 盘存单ID
+        public int MedicineCheckStoreID { get; set; }    // 盘存单ID
 
         public virtual MedicineCheckStore MedicineCheckStore { get; set; }   // 盘存单外键
+    }
+
+    // 物资入库表
+    public class MaterialInStore : StoreOperateBillBase
+    {
+        public MaterialInStore()
+        {
+            MaterialInStoreDetails = new List<MaterialInStoreDetail>();
+        }
+        public InStoreEnum InStoreEnum { get; set; }
+        public int FromSupplierID { get; set; }      // 供应商
+        public int ToStoreID { get; set; }           // 入库库房
+
+        public virtual Supplier FromSupplier { get; set; }
+        public virtual ICollection<MaterialInStoreDetail> MaterialInStoreDetails { get; set; }
+    }
+
+    // 物资入库明细
+    public class MaterialInStoreDetail : StoreOperateBillDetailBase
+    {
+        public MaterialInStoreDetail()
+        {
+
+        }
+        public int MaterialID { get; set; }          // 对应物资字典
+        public int MaterialInStoreID { get; set; }  // 入库单ID
+
+        public virtual MaterialItem Material { get; set; }    // 物资字典外键
+        public virtual MaterialInStore MaterialInStore { get; set; }   // 入库单外键
+    }
+
+
+    // 物资出库表
+    public class MaterialOutStore : StoreOperateBillBase
+    {
+        public MaterialOutStore()
+        {
+            MaterialOutStoreDetails = new List<MaterialOutStoreDetail>();
+        }
+
+        public OutStoreEnum OutStoreEnum { get; set; }   // 出库类型
+        public int FromStoreID { get; set; }
+        public int ToStoreID { get; set; }
+        public int ToOtherHospitalID { get; set; }
+        public int ToSupplierID { get; set; }        // 供货商退货 
+
+        public virtual ICollection<MaterialOutStoreDetail> MaterialOutStoreDetails { get; set; }
+    }
+
+    // 物资出库明细
+    public class MaterialOutStoreDetail : StoreOperateBillDetailBase
+    {
+        public int StoreRoomMaterialNumID { get; set; }     // 库存ID
+        public int NumBeforeOut { get; set; }               // 出库前数量 
+        public int MaterialOutStoreID { get; set; }         // 出库单ID
+        public virtual StoreRoomMaterialNum StoreRoomMaterialNum { get; set; }
+        public virtual MaterialOutStore MaterialOutStore { get; set; }   // 出库单外键
+    }
+
+    // 物资盘存表
+    public class MaterialCheckStore : StoreOperateBillBase
+    {
+        public MaterialCheckStore()
+        {
+            MaterialCheckStoreDetails = new List<MaterialCheckStoreDetail>();
+        }
+
+        public int CheckStoreID { get; set; }        // 盘存库房
+
+        public virtual ICollection<MaterialCheckStoreDetail> MaterialCheckStoreDetails { get; set; }
+    }
+
+    // 物资盘存明细
+    public class MaterialCheckStoreDetail : StoreOperateBillDetailBase
+    {
+        public MaterialCheckStoreDetail()
+        {
+
+        }
+
+        public int StoreRoomMaterialNumID { get; set; }  // 库存ID
+        public int NumBeforeCheck { get; set; }          // 出库前数量 
+
+        public int MaterialCheckStoreID { get; set; }    // 盘存单ID
+
+        public virtual MaterialCheckStore MaterialCheckStore { get; set; }   // 盘存单外键
     }
 
     public enum StoreRoomEnum
@@ -924,31 +1080,33 @@ namespace DAL
         public virtual ICollection<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
     }
 
-    // 库房库存
-    public class StoreRoomMedicineNum
+    // 药品库存
+    public class StoreRoomMedicineNum : StoreNumBase
     {
         public StoreRoomMedicineNum()
         {
             MedicineOutStoreDetails = new List<MedicineOutStoreDetail>();
             RecipeChargeDetails = new List<RecipeChargeDetail>();
+            MedicineChargeDetails = new List<MedicineChargeDetail>();
         }
-
-        public int ID { get; set; }   // ID
-        public int StoreRoomID { get; set; }         // 库房ID
-        public int SupplierID { get; set; }          // 供应商ID
         public int MedicineID { get; set; }          // 对应药品字典
-        public string Batch { get; set; }            // 批次
-        public DateTime? ExpirationDate { get; set; } // 有效期
-        [DecimalPrecision(18, 4)]
-        public decimal StorePrice { get; set; }      // 成本价
-        public int Num { get; set; }                 // 库存
 
-        public virtual StoreRoom StoreRoom { get; set; }
-        public virtual Supplier Supplier { get; set; }
         public virtual Medicine Medicine { get; set; }
-
         public virtual ICollection<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
         public virtual ICollection<RecipeChargeDetail> RecipeChargeDetails { get; set; }
+        public virtual ICollection<MedicineChargeDetail> MedicineChargeDetails { get; set; }
+    }
+
+    // 物资库存
+    public class StoreRoomMaterialNum : StoreNumBase
+    {
+        public StoreRoomMaterialNum()
+        {
+            MaterialChargeDetails = new List<MaterialChargeDetail>();
+        }
+        public int MaterialItemID { get; set; }          // 对应药品字典
+        public virtual MaterialItem MaterialItem { get; set; }
+        public virtual ICollection<MaterialChargeDetail> MaterialChargeDetails { get; set; }
     }
 
 
@@ -1114,9 +1272,12 @@ namespace DAL
         public MedicineDoctorAdvice()
         {
             MedicineDoctorAdviceDetails = new List<MedicineDoctorAdviceDetail>();
+            MedicineCharges = new List<MedicineCharge>();
         }
         public DoctorAdviceContentEnum RecipeContentEnum { get; set; }
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
+
+        public virtual ICollection<MedicineCharge> MedicineCharges { get; set; }
     }
 
     // 材料物资医嘱明细
@@ -1135,8 +1296,10 @@ namespace DAL
         public MaterialDoctorAdvice()
         {
             MaterialDoctorAdviceDetails = new List<MaterialDoctorAdviceDetail>();
+            MaterialCharges = new List<MaterialCharge>();
         }
         public virtual ICollection<MaterialDoctorAdviceDetail> MaterialDoctorAdviceDetails { get; set; }
+        public virtual ICollection<MaterialCharge> MaterialCharges { get; set; }
     }
 
 
@@ -1156,8 +1319,10 @@ namespace DAL
         public AssayDoctorAdvice()
         {
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
+            AssayCharges = new List<AssayCharge>();
         }
         public virtual ICollection<AssayDoctorAdviceDetail> AssayDoctorAdviceDetails { get; set; }
+        public virtual ICollection<AssayCharge> AssayCharges { get; set; }
     }
 
 
@@ -1177,8 +1342,10 @@ namespace DAL
         public InspectDoctorAdvice()
         {
             InspectDoctorAdviceDetails = new List<InspectDoctorAdviceDetail>();
+            InspectCharges = new List<InspectCharge>();
         }
         public virtual ICollection<InspectDoctorAdviceDetail> InspectDoctorAdviceDetails { get; set; }
+        public virtual ICollection<InspectCharge> InspectCharges { get; set; }
     }
 
     // 治疗医嘱明细
@@ -1197,8 +1364,10 @@ namespace DAL
         public TherapyDoctorAdvice()
         {
             TherapyDoctorAdviceDetails = new List<TherapyDoctorAdviceDetail>();
+            TherapyCharges = new List<TherapyCharge>();
         }
         public virtual ICollection<TherapyDoctorAdviceDetail> TherapyDoctorAdviceDetails { get; set; }
+        public virtual ICollection<TherapyCharge> TherapyCharges { get; set; }
     }
 
     // 其他医嘱明细
@@ -1217,7 +1386,163 @@ namespace DAL
         public OtherServiceDoctorAdvice()
         {
             OtherServiceDoctorAdviceDetails = new List<OtherServiceDoctorAdviceDetail>();
+            OtherServiceCharges = new List<OtherServiceCharge>();
         }
         public virtual ICollection<OtherServiceDoctorAdviceDetail> OtherServiceDoctorAdviceDetails { get; set; }
+        public virtual ICollection<OtherServiceCharge> OtherServiceCharges { get; set; }
+    }
+
+    // 收费明细基类
+    public class ChargeDetailBase
+    {
+        public int ID { get; set; }                               // ID
+        [DecimalPrecision(18, 4)]
+        public decimal SellPrice { get; set; }                    // 单价
+        public int AllNum { get; set; }                           // 数量
+        public int Rebate { get; set; }                           // 折扣
+    }
+
+    // 收费单基类
+    public class ChargeBase
+    {
+        public int ID { get; set; }                               // ID
+        public string NO { get; set; }                            // 收费单编号
+        public DateTime? ChargeTime { get; set; }                 // 收费时间  
+        public int ChargeUserID { get; set; }                     // 收费人员
+        public decimal SumOfMoney { get; set; }                   // 收费金额
+        public virtual User ChargeUser { get; set; }
+    }
+
+    // 用药处方医嘱收费单明细
+    public class MedicineChargeDetail : ChargeDetailBase
+    {
+        public int StoreRoomMedicineNumID { get; set; }         // 药品库存
+        public int MedicineChargeID { get; set; }               // 所属收费单
+
+        public virtual MedicineCharge MedicineCharge { get; set; }
+        public virtual StoreRoomMedicineNum StoreRoomMedicineNum { get; set; }
+    }
+
+    // 用药处方医嘱收费单
+    public class MedicineCharge : ChargeBase
+    {
+        public MedicineCharge()
+        {
+            MedicineChargeDetails = new List<MedicineChargeDetail>();
+        }
+
+        public int MedicineDoctorAdviceID { get; set; }                    // 所对应的的用药医嘱
+        public MedicineDoctorAdvice MedicineDoctorAdvice { get; set; }
+        public virtual ICollection<MedicineChargeDetail> MedicineChargeDetails { get; set; }
+    }
+
+    // 材料物资医嘱收费单明细
+    public class MaterialChargeDetail : ChargeDetailBase
+    {
+        public int StoreRoomMaterialNumID { get; set; }               // 物资材料
+        public int MaterialChargeID { get; set; }
+
+        public virtual MaterialCharge MaterialCharge { get; set; }
+        public virtual StoreRoomMaterialNum StoreRoomMaterialNum { get; set; }
+    }
+
+    // 材料物资医嘱收费单
+    public class MaterialCharge : ChargeBase
+    {
+        public MaterialCharge()
+        {
+            MaterialChargeDetails = new List<MaterialChargeDetail>();
+        }
+        public int MaterialDoctorAdviceID { get; set; }                    // 所对应的的物资材料医嘱
+        public MaterialDoctorAdvice MaterialDoctorAdvice { get; set; }
+        public virtual ICollection<MaterialChargeDetail> MaterialChargeDetails { get; set; }
+    }
+
+    // 治疗医嘱收费单明细
+    public class TherapyChargeDetail : ChargeDetailBase
+    {
+        public int TherapyID { get; set; }               // 治疗项目
+        public int TherapyChargeID { get; set; }
+
+        public virtual TherapyCharge TherapyCharge { get; set; }
+        public virtual TherapyItem Therapy { get; set; }
+    }
+
+    // 治疗医嘱收费单
+    public class TherapyCharge : ChargeBase
+    {
+        public TherapyCharge()
+        {
+            TherapyChargeDetails = new List<TherapyChargeDetail>();
+        }
+        public int TherapyDoctorAdviceID { get; set; }
+        public TherapyDoctorAdvice TherapyDoctorAdvice { get; set; }
+        public virtual ICollection<TherapyChargeDetail> TherapyChargeDetails { get; set; }
+    }
+
+    // 化验医嘱收费单明细
+    public class AssayChargeDetail : ChargeDetailBase
+    {
+        public int AssayID { get; set; }               // 化验项目
+        public int AssayChargeID { get; set; }
+
+        public virtual AssayCharge AssayCharge { get; set; }
+        public virtual AssayItem Assay { get; set; }
+    }
+
+    // 化验医嘱收费单
+    public class AssayCharge : ChargeBase
+    {
+        public AssayCharge()
+        {
+            AssayChargeDetails = new List<AssayChargeDetail>();
+        }
+        public int AssayDoctorAdviceID { get; set; }
+        public AssayDoctorAdvice AssayDoctorAdvice { get; set; }
+        public virtual ICollection<AssayChargeDetail> AssayChargeDetails { get; set; }
+    }
+
+    // 检查医嘱收费单明细
+    public class InspectChargeDetail : ChargeDetailBase
+    {
+        public int InspectID { get; set; }               // 检查项目
+        public int InspectChargeID { get; set; }
+
+        public virtual InspectCharge InspectCharge { get; set; }
+        public virtual InspectItem Inspect { get; set; }
+    }
+
+    // 检查医嘱收费单
+    public class InspectCharge : ChargeBase
+    {
+        public InspectCharge()
+        {
+            InspectChargeDetails = new List<InspectChargeDetail>();
+        }
+        public int InspectDoctorAdviceID { get; set; }
+        public InspectDoctorAdvice InspectDoctorAdvice { get; set; }
+        public virtual ICollection<InspectChargeDetail> InspectChargeDetails { get; set; }
+    }
+
+    // 其他医嘱收费单明细
+    public class OtherServiceChargeDetail : ChargeDetailBase
+    {
+        public int OtherServiceID { get; set; }               // 其他项目
+        public int OtherServiceChargeID { get; set; }
+
+        public virtual OtherServiceCharge OtherServiceCharge { get; set; }
+        public virtual OtherServiceItem OtherService { get; set; }
+    }
+
+    // 其他医嘱收费单
+    public class OtherServiceCharge : ChargeBase
+    {
+        public OtherServiceCharge()
+        {
+            OtherServiceChargeDetails = new List<OtherServiceChargeDetail>();
+        }
+        public int OtherServiceDoctorAdviceID { get; set; }
+        public OtherServiceDoctorAdvice OtherServiceDoctorAdvice { get; set; }
+        public virtual ICollection<OtherServiceChargeDetail> OtherServiceChargeDetails { get; set; }
     }
 }

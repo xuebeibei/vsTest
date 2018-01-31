@@ -57,20 +57,20 @@ namespace HISGUIDoctorLib.Views
         {
             var vm = this.DataContext as HISGUIDoctorVM;
 
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
-            dictionary = vm?.GetAllInPatient();
+            //Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            //dictionary = vm?.GetAllInPatient();
 
-            List<PatientMsgBox> list = new List<PatientMsgBox>();
-            if (dictionary != null)
-            {
-                for (int i = 0; i < dictionary.Count; i++)
-                {
-                    // 实例化一个控件
-                    list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-                }
+            //List<PatientMsgBox> list = new List<PatientMsgBox>();
+            //if (dictionary != null)
+            //{
+            //    for (int i = 0; i < dictionary.Count; i++)
+            //    {
+            //        // 实例化一个控件
+            //        list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
+            //    }
 
-                this.AllInPatientList.ItemsSource = list;
-            }
+            //    this.AllInPatientList.ItemsSource = list;
+            //}
 
         }
 

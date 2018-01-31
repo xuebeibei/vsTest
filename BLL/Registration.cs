@@ -51,23 +51,31 @@ namespace BLL
             return list;
         }
 
-        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.Registration> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from r in ctx.Registrations
-                            select r;
+                var query = (from r in ctx.Registrations
+                            join d in ctx.DoctorAdviceBases
+                            on r.ID equals d.RegistrationID 
+                            select r).Distinct();
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+                });
+                var mapper = config.CreateMapper();
 
                 foreach (DAL.Registration tem in query)
                 {
-                    string str = tem.ToString();
-                    dictionary.Add(tem.ID, str);
+                    var dto = mapper.Map<CommContracts.Registration>(tem);
+                    list.Add(dto);
                 }
             }
 
-            return dictionary;
+            return list;
         }
 
         public string getPatientBMIMsg(int RegistrationID)

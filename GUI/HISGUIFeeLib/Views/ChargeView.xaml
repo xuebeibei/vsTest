@@ -7,14 +7,36 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <RadioButton x:Name="ClinicRadio" Margin="5" IsChecked="True" Click="ClinicRadio_Click">门诊</RadioButton>
+                <RadioButton x:Name="HospitalRadio" Margin="5" Click="HospitalRadio_Click">住院</RadioButton>
+            </StackPanel>
+            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" MouseDoubleClick="AllPatientList_MouseDoubleClick">
+                <ListView.View>
+                    <GridView x:Name="gridViewAllPatient">
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        <StackPanel Grid.Column="1">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="ReadCard" Margin="5" Click="ReadCard_Click">读卡</Button>
                 <TextBox x:Name="FindName" Margin="5" Width="150"/>
                 <Button x:Name="FindBtn" Margin="5" Click="FindBtn_Click">查找</Button>
             </StackPanel>
             <Separator x:Name="Spe" Margin="5"/>
-            <TextBlock x:Name="PatientMsg" Margin="5" Height="100" Background="AliceBlue" TextWrapping="Wrap">
+            <TextBlock x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap">
 
             </TextBlock>
             <Separator x:Name="Spe1" Margin="5"/>
@@ -23,32 +45,32 @@
                     <RadioButton x:Name="NoPayCheck" Margin="5" IsChecked="True" Click="NoPayCheck_Click">未收费</RadioButton>
                     <RadioButton x:Name="HavePayCheck" Margin="5" Click="HavePayCheck_Click">已收费</RadioButton>
                 </StackPanel>
-                <TextBox x:Name="MoneyBox" Margin="5,5,0,5" Width="100"></TextBox>
-                <Label Margin="0,5,5,5">元</Label>
-                <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click">收费</Button>
-                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">删除</Button>
             </StackPanel>
-            <Separator x:Name="Spe2" Margin="5"/>
-            <ListView Name="AllPayList" Margin="5"  SelectionMode="Single" Visibility="Collapsed">
+            <ListView Name="AllPayList" Margin="5"  SelectionMode="Single" Visibility="Collapsed" SelectionChanged="AllPayList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewAllPay">
-                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=PrePayTime}" Width="150"></GridViewColumn>
-                        <GridViewColumn Header="支付方式" DisplayMemberBinding="{Binding Path=PayWayEnum}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="金额" DisplayMemberBinding="{Binding Path=PrePayMoney}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=User.Username}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="收费单编号" DisplayMemberBinding="{Binding Path=NO}" Width="150"></GridViewColumn>
+                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=ChargeTime}" Width="150"></GridViewColumn>
+                        <GridViewColumn Header="金额" DisplayMemberBinding="{Binding Path=SumOfMoney}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=ChargeUser.Username}" Width="100"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView Name="AllWillPayList" Margin="5"  SelectionMode="Single">
+            <ListView Name="AllWillPayList" Margin="5"  SelectionMode="Single" SelectionChanged="AllWillPayList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewAllWillPay">
-                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=WriteTime}" Width="150"></GridViewColumn>
-                        <GridViewColumn Header="类型" DisplayMemberBinding="{Binding Path=YiZhuEnum}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="金额" DisplayMemberBinding="{Binding Path=SumOfMoney}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=Doctor}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="产生时间" DisplayMemberBinding="{Binding Path=WriteTime}" Width="150"></GridViewColumn>
+                        <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=WriteDoctorUser.Employee.Name}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="类型" DisplayMemberBinding="{Binding Path=DoctorAdviceEnum}" Width="100"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
+            <StackPanel x:Name="DetailsPanel">
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click">收费</Button>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

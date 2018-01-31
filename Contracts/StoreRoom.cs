@@ -32,7 +32,22 @@ namespace CommContracts
         public string Tel { get; set; }      // 库房联系方式
         [DataMember]
         public StoreRoomEnum StoreRoomEnum { get; set; }  // 库房的等级
-        //[DataMember]
-        //public List<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
+                                                          //[DataMember]
+                                                          //public List<StoreRoomMedicineNum> StoreRoomMedicineBatchs { get; set; }
+
+        public override string ToString()
+        {
+            return Name +" "+ StoreRoomEnum;
+        }
+
+        public override bool Equals(object obj)
+        {
+            var s = obj as StoreRoom;
+            if (s == null)
+                return false;
+            if (s.ID != this.ID)
+                return false;
+            return true;
+        }
     }
 }

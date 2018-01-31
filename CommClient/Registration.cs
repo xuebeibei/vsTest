@@ -30,7 +30,7 @@ namespace CommClient
             return client.getAllRegistration(EmployeeID, VistTime);
         }
 
-        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.Registration> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             return client.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
         }

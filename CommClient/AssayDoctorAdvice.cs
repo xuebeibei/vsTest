@@ -40,5 +40,10 @@ namespace CommClient
         {
             return client.getAllInHospitalAssayDoctorAdvice(InpatientID);
         }
+
+        public bool UpdateAssayChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            return client.UpdateAssayChargeStatus(AdviceID, chargeStatusEnum);
+        }
     }
 }

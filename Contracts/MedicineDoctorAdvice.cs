@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public MedicineDoctorAdvice()
         {
+            DoctorAdviceEnum = DoctorAdviceBaseEnum.处方;
         }
 
         [DataMember]

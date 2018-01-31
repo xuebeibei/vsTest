@@ -37,6 +37,16 @@ namespace HISGUIMedicineLib.Views
             this.Loaded += View_Loaded;
         }
 
+        public void UpdateInStores()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            if (vm.IsMedicineOrMaterial)
+                ShowAllMedicineInStore();
+            else
+                ShowAllMaterialInStore();
+        }
+
+
         [Import]
         private HISGUIMedicineVM ImportVM
         {
@@ -45,28 +55,48 @@ namespace HISGUIMedicineLib.Views
 
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
-            getAllMedicineInStore();
+            UpdateInStores();
         }
         private void AddNewStockBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            var currentInStore = new CommContracts.MedicineInStore();
-            vm.CurrentMedicineInStore = currentInStore;
-            vm.IsInitViewEdit = true;
-            vm?.ShowInStoreDetail();
+            if(vm.IsMedicineOrMaterial)
+            {
+                var currentInStore = new CommContracts.MedicineInStore();
+                vm.CurrentMedicineInStore = currentInStore;
+                vm.IsInitViewEdit = true;
+                vm?.ShowMedicineInStoreDetail();
+            }
+            else
+            {
+                var currentInStore = new CommContracts.MaterialInStore();
+                vm.CurrentMaterialInStore = currentInStore;
+                vm.IsInitViewEdit = true;
+                vm?.ShowMaterialInStoreDetail();
+            }
         }
 
         private void AllStockList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
-
             var vm = this.DataContext as HISGUIMedicineVM;
-            vm.IsInitViewEdit = false;
-            vm.CurrentMedicineInStore = currentInStore;
-            vm?.ShowInStoreDetail();
+            if(vm.IsMedicineOrMaterial)
+            {
+                var currentInStore = this.AllStockList.SelectedItem as CommContracts.MedicineInStore;
+                vm.IsInitViewEdit = false;
+                vm.CurrentMedicineInStore = currentInStore;
+                vm?.ShowMedicineInStoreDetail();
+            }
+            else
+            {
+                var currentInStore = this.AllStockList.SelectedItem as CommContracts.MaterialInStore;
+                vm.IsInitViewEdit = false;
+                vm.CurrentMaterialInStore = currentInStore;
+                vm?.ShowMaterialInStoreDetail();
+            }
+            
         }
 
-        private void getAllMedicineInStore()
+        private void ShowAllMedicineInStore()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
             DateTime startDateTime = this.StartStockDate.SelectedDate.Value.Date;
@@ -74,15 +104,29 @@ namespace HISGUIMedicineLib.Views
             endDateTime = endDateTime.AddDays(1);
             endDateTime = endDateTime.AddSeconds(-1);
 
-            List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore(1, (CommContracts.InStoreEnum)this.StockWay.SelectedItem,
+            List<CommContracts.MedicineInStore> list = vm?.getAllMedicineInStore((CommContracts.InStoreEnum)this.StockWay.SelectedItem,
+                startDateTime, endDateTime, FindStockIDEdit.Text);
+
+            this.AllStockList.ItemsSource = list;
+        }
+        private void ShowAllMaterialInStore()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            DateTime startDateTime = this.StartStockDate.SelectedDate.Value.Date;
+            DateTime endDateTime = this.EndStockDate.SelectedDate.Value.Date;
+            endDateTime = endDateTime.AddDays(1);
+            endDateTime = endDateTime.AddSeconds(-1);
+
+            List<CommContracts.MaterialInStore> list = vm?.getAllMaterialInStore((CommContracts.InStoreEnum)this.StockWay.SelectedItem,
                 startDateTime, endDateTime, FindStockIDEdit.Text);
 
             this.AllStockList.ItemsSource = list;
         }
 
+
         private void FindStockBtn_Click(object sender, RoutedEventArgs e)
         {
-            getAllMedicineInStore();
+            UpdateInStores();
         }
     }
 }

@@ -70,6 +70,8 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
+                if (medicineOutStore == null)
+                    return false;
                 if (medicineOutStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
                     return false;
 
@@ -95,6 +97,51 @@ namespace BLL
                             temp.Num -= tempDetail.Num;
                         else
                             return false;
+                    }
+                    else
+                        return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public bool ReCheckMedicineCheckStore(CommContracts.MedicineCheckStore medicineCheckStore)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                if (medicineCheckStore == null)
+                    return false;
+                if (medicineCheckStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                    return false;
+
+                if (medicineCheckStore.MedicineCheckStoreDetails == null)
+                    return false;
+
+                foreach (var tempDetail in medicineCheckStore.MedicineCheckStoreDetails)
+                {
+                    if (tempDetail == null)
+                        continue;
+
+                    var query = from s in ctx.StoreRoomMedicineNums
+                                where s.ID == tempDetail.StoreRoomMedicineNumID &&
+                                s.StoreRoomID == medicineCheckStore.CheckStoreID &&
+                                s.StorePrice == tempDetail.StorePrice
+                                select s;
+
+
+                    if (query.Count() == 1)
+                    {
+                        var temp = query.First();
+                        temp.Num = tempDetail.Num;
                     }
                     else
                         return false;
@@ -196,8 +243,8 @@ namespace BLL
             return list;
         }
 
-        // 根据收费单更新库存
-        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        // 根据收费单更新库存,将要废弃
+        public bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -226,6 +273,55 @@ namespace BLL
                         var temp = query.First();
                         if (temp.Num >= tempDetail.Num)
                             temp.Num -= tempDetail.Num;
+                        else
+                            return false;
+                    }
+                    else
+                        return false;
+                }
+
+                try
+                {
+                    ctx.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // 根据用药医嘱收费单更新库存
+        public bool SubdMedicineStoreNumByAdvice(CommContracts.MedicineCharge medicineCharge)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                if (medicineCharge == null)
+                    return false;
+
+                // 如果已执行，则不能操作
+                //if (recipeChargeBill.zhixingstatus == CommContracts.ReCheckStatusEnum.已审核)
+                //    return false;
+
+                if (medicineCharge.MedicineChargeDetails == null)
+                    return false;
+
+                foreach (var tempDetail in medicineCharge.MedicineChargeDetails)
+                {
+                    if (tempDetail == null)
+                        continue;
+
+                    var query = from s in ctx.StoreRoomMedicineNums
+                                where s.ID == tempDetail.StoreRoomMedicineNumID
+                                select s;
+
+
+                    if (query.Count() == 1)
+                    {
+                        var temp = query.First();
+                        if (temp.Num >= tempDetail.AllNum)
+                            temp.Num -= tempDetail.AllNum;
                         else
                             return false;
                     }

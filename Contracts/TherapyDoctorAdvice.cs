@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public TherapyDoctorAdvice()
         {
+            DoctorAdviceEnum = DoctorAdviceBaseEnum.治疗;
         }
         [DataMember]
         public List<TherapyDoctorAdviceDetail> TherapyDoctorAdviceDetails { get; set; }

@@ -28,6 +28,26 @@
             <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=SellPrice}" Width="60"/>
             <GridViewColumn Header="医保分类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="60"/>
         </GridView>
+        <GridView x:Key="haveMedicineNumsColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Medicine.Name}" Width="100"/>
+            <GridViewColumn Header="剂型" DisplayMemberBinding="{Binding Path=Medicine.DosageFormEnum}" Width="80"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Medicine.Unit}" Width="80"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Medicine.Specifications}" Width="60"/>
+            <GridViewColumn Header="库存" DisplayMemberBinding="{Binding Path=Num}" Width="60"/>
+            <GridViewColumn Header="批次" DisplayMemberBinding="{Binding Path=Batch}" Width="60"/>
+            <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="60"/>
+            <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="60"/>
+        </GridView>
+        <GridView x:Key="haveMaterialItemNumsColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=MaterialItem.Name}" Width="100"/>
+            <GridViewColumn Header="剂型" DisplayMemberBinding="{Binding Path=MaterialItem.DosageFormEnum}" Width="80"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=MaterialItem.Unit}" Width="80"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=MaterialItem.Specifications}" Width="60"/>
+            <GridViewColumn Header="库存" DisplayMemberBinding="{Binding Path=Num}" Width="60"/>
+            <GridViewColumn Header="批次" DisplayMemberBinding="{Binding Path=Batch}" Width="60"/>
+            <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="60"/>
+            <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="60"/>
+        </GridView>
     </UserControl.Resources>
     <Grid>
         <ListView Name="Grid1" Margin="5" Grid.Row="2" Grid.Column="0" KeyDown="Grid1_KeyDown" SelectionMode="Single"/>

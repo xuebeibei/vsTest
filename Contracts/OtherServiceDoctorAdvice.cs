@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public OtherServiceDoctorAdvice()
         {
+            DoctorAdviceEnum = DoctorAdviceBaseEnum.其他;
         }
         [DataMember]
         public List<OtherServiceDoctorAdviceDetail> OtherServiceDoctorAdviceDetails { get; set; }

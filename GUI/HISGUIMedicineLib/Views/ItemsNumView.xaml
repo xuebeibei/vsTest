@@ -6,6 +6,33 @@
              xmlns:local="clr-namespace:HISGUIMedicineLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+
+    <HISGUICore:HISGUIViewBase.Resources>
+        <GridView x:Key="haveMedicineColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Medicine.Name}" Width="100"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Medicine.Specifications}" Width="100"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Medicine.Unit}" Width="100"/>
+            <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Medicine.Manufacturer}" Width="200"/>
+            <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=Supplier.Name}" Width="80"/>
+            <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=Medicine.SellPrice}" Width="80"/>
+            <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="80"/>
+            <GridViewColumn Header="批号" DisplayMemberBinding="{Binding Path=Batch}" Width="120"/>
+            <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="120"/>
+            <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=Num}" Width="120"/>
+        </GridView>
+        <GridView x:Key="haveMaterialColumn">
+            <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=MaterialItem.Name}" Width="100"/>
+            <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=MaterialItem.Specifications}" Width="100"/>
+            <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=MaterialItem.Unit}" Width="100"/>
+            <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=MaterialItem.Manufacturer}" Width="200"/>
+            <GridViewColumn Header="供应商" DisplayMemberBinding="{Binding Path=Supplier.Name}" Width="80"/>
+            <GridViewColumn Header="零售价" DisplayMemberBinding="{Binding Path=MaterialItem.SellPrice}" Width="80"/>
+            <GridViewColumn Header="成本价" DisplayMemberBinding="{Binding Path=StorePrice}" Width="80"/>
+            <GridViewColumn Header="批号" DisplayMemberBinding="{Binding Path=Batch}" Width="120"/>
+            <GridViewColumn Header="有效期" DisplayMemberBinding="{Binding Path=ExpirationDate}" Width="120"/>
+            <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=Num}" Width="120"/>
+        </GridView>
+    </HISGUICore:HISGUIViewBase.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -26,49 +53,17 @@
                 <ComboBoxItem>中药</ComboBoxItem>
             </ComboBox>
             <Label Margin="5">筛选：</Label>
-            <CheckBox x:Name="IsStatusOkCheck" Margin="5" VerticalContentAlignment="Center">药品状态正常</CheckBox>
-            <CheckBox x:Name="IsHasNumCheck" Margin="5" VerticalContentAlignment="Center" IsChecked="True">数量大于0</CheckBox>
-            <CheckBox x:Name="IsOverDateCheck" Margin="5" VerticalContentAlignment="Center">逾期报警</CheckBox>
-            <CheckBox x:Name="IsNumNoEnoughCheck" Margin="5" VerticalContentAlignment="Center">库存报警</CheckBox>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <CheckBox x:Name="IsStatusOkCheck" Margin="5">药品状态正常</CheckBox>
+                <CheckBox x:Name="IsHasNumCheck" Margin="5" IsChecked="True">数量大于0</CheckBox>
+                <CheckBox x:Name="IsOverDateCheck" Margin="5">逾期报警</CheckBox>
+                <CheckBox x:Name="IsNumNoEnoughCheck" Margin="5">库存报警</CheckBox>
+            </StackPanel>
             <Button x:Name="FindItemBtn" Margin="5" Click="FindItemBtn_Click">查找</Button>
             <Button Margin="5">生成表格</Button>
         </StackPanel>
 
-        <ListView x:Name="AllItemsNumList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllItemsNumList_SelectionChanged">
-            <ListView.View>
-                <GridView x:Name="gridViewItemsNum">
-                    <GridViewColumn Header="名称" 
-                                    DisplayMemberBinding="{Binding Path=Medicine.Name}" 
-                                    Width="100"></GridViewColumn>
-                    <GridViewColumn Header="规格" 
-                                    DisplayMemberBinding="{Binding Path=Medicine.Specifications}" 
-                                    Width="100"></GridViewColumn>
-                    <GridViewColumn Header="单位" 
-                                    DisplayMemberBinding="{Binding Path=Medicine.Unit}" 
-                                    Width="100"></GridViewColumn>
-                    <GridViewColumn Header="生产厂家" 
-                                    DisplayMemberBinding="{Binding Path=Medicine.Manufacturer}" 
-                                    Width="200"></GridViewColumn>
-                    <GridViewColumn Header="供应商" 
-                                    DisplayMemberBinding="{Binding Path=Supplier.Name}" 
-                                    Width="80"></GridViewColumn>
-                    <GridViewColumn Header="零售价" 
-                                    DisplayMemberBinding="{Binding Path=Medicine.SellPrice}" 
-                                    Width="80"></GridViewColumn>
-                    <GridViewColumn Header="成本价" 
-                                    DisplayMemberBinding="{Binding Path=StorePrice}" 
-                                    Width="80"></GridViewColumn>
-                    <GridViewColumn Header="批号" 
-                                    DisplayMemberBinding="{Binding Path=Batch}" 
-                                    Width="120"></GridViewColumn>
-                    <GridViewColumn Header="有效期" 
-                                    DisplayMemberBinding="{Binding Path=ExpirationDate}" 
-                                    Width="120"></GridViewColumn>
-                    <GridViewColumn Header="数量" 
-                                    DisplayMemberBinding="{Binding Path=Num}" 
-                                    Width="120"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <ListView x:Name="AllItemsNumList" Margin="5" Grid.Row="1" Grid.ColumnSpan="2" SelectionChanged="AllItemsNumList_SelectionChanged"/>
+
     </Grid>
 </HISGUICore:HISGUIViewBase>

@@ -36,17 +36,126 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 得到所有需要收费的门诊患者
-        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.Registration> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.Registration myd = new CommClient.Registration();
             return myd.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
+
         }
 
         // 得到所有需要收费的门诊患者
-        public Dictionary<int, string> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.Inpatient> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
             return myd.GetAllInPatientMsg();
+        }
+
+        // 得到当前门诊患者的所有药品医嘱收费单
+        public List<CommContracts.MedicineCharge> GetAllMedicineCharge()
+        {
+            CommClient.MedicineCharge charge = new CommClient.MedicineCharge();
+            List<CommContracts.MedicineCharge> list = new List<CommContracts.MedicineCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicMedicineCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalMedicineCharge(CurrentInpatient.ID);
+            }
+            return list;
+        }
+
+        // 得到当前患者的所有物资材料医嘱收费单
+        public List<CommContracts.MaterialCharge> GetAllMaterialCharge()
+        {
+            CommClient.MaterialCharge charge = new CommClient.MaterialCharge();
+            List<CommContracts.MaterialCharge> list = new List<CommContracts.MaterialCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicMaterialCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalMaterialCharge(CurrentInpatient.ID);
+            }
+            return list;
+        }
+
+        // 得到当前患者的所有治疗医嘱收费单
+        public List<CommContracts.TherapyCharge> GetAllTherapyCharge()
+        {
+            CommClient.TherapyCharge charge = new CommClient.TherapyCharge();
+            List<CommContracts.TherapyCharge> list = new List<CommContracts.TherapyCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicTherapyCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalTherapyCharge(CurrentInpatient.ID);
+            }
+            return list;
+        }
+
+        // 得到当前患者的所有化验医嘱收费单
+        public List<CommContracts.AssayCharge> GetAllAssayCharge()
+        {
+            CommClient.AssayCharge charge = new CommClient.AssayCharge();
+            List<CommContracts.AssayCharge> list = new List<CommContracts.AssayCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicAssayCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalAssayCharge(CurrentInpatient.ID);
+            }
+            return list;
+        }
+
+        // 得到当前患者的所有检查医嘱收费单
+        public List<CommContracts.InspectCharge> GetAllInspectCharge()
+        {
+            CommClient.InspectCharge charge = new CommClient.InspectCharge();
+            List<CommContracts.InspectCharge> list = new List<CommContracts.InspectCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicInspectCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalInspectCharge(CurrentInpatient.ID);
+            }
+            return list;
+        }
+
+        // 得到当前患者的所有其他医嘱收费单
+        public List<CommContracts.OtherServiceCharge> GetAllOtherServiceCharge()
+        {
+            CommClient.OtherServiceCharge charge = new CommClient.OtherServiceCharge();
+            List<CommContracts.OtherServiceCharge> list = new List<CommContracts.OtherServiceCharge>();
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                    list = charge.GetAllClinicOtherServiceCharge(CurrentRegistration.ID);
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                    list = charge.GetAllInHospitalOtherServiceCharge(CurrentInpatient.ID);
+            }
+            return list;
         }
 
         // 得到当前门诊患者的所有西成药处方
@@ -57,12 +166,12 @@ namespace HISGUIFeeLib.ViewModels
             if (IsClinicOrInHospital)
             {
                 if (CurrentRegistration != null)
-                    list = recipe.getAllXiCheng(this.CurrentRegistration.ID);
+                    list = recipe.getAllXiCheng(CurrentRegistration.ID);
             }
             else
             {
                 if (CurrentInpatient != null)
-                    list = recipe.getAllInHospitalXiCheng(this.CurrentInpatient.ID);
+                    list = recipe.getAllInHospitalXiCheng(CurrentInpatient.ID);
             }
             return list;
         }
@@ -166,6 +275,8 @@ namespace HISGUIFeeLib.ViewModels
             }
             return list;
         }
+
+
 
         // 得到当前门诊患者的所其他服务单
         public List<CommContracts.OtherServiceDoctorAdvice> GetAllQiTa()
@@ -347,7 +458,7 @@ namespace HISGUIFeeLib.ViewModels
 
         #endregion
 
-        
+
 
         // 当前是门诊还是住院收费
         #region IsClinicOrInHospital

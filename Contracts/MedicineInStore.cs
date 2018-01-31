@@ -21,7 +21,7 @@ namespace CommContracts
     }
 
     [DataContract]
-    public class MedicineInStore
+    public class MedicineInStore : StoreOperateBillBase
     {
         public MedicineInStore()
         {
@@ -33,31 +33,13 @@ namespace CommContracts
         }
 
         [DataMember]
-        public int ID { get; set; }                  // ID
-        [DataMember]
-        public string NO { get; set; }               // 单号 
-        [DataMember]
-        public decimal SumOfMoney { get; set; }      // 总金额，成本价
-        [DataMember]
-        public DateTime? OperateTime { get; set; }    // 操作时间
-        [DataMember]
         public InStoreEnum InStoreEnum { get; set; }
         [DataMember]
         public int FromSupplierID { get; set; }      // 供应商
         [DataMember]
         public int ToStoreID { get; set; }           // 入库库房
         [DataMember]
-        public string Remarks { get; set; }          // 备注
-        [DataMember]
-        public int OperateUserID { get; set; }       // 操作用户
-        [DataMember]
-        public ReCheckStatusEnum ReCheckStatusEnum { get; set; }      // 审核状态
-        [DataMember]
-        public int ReCheckUserID { get; set; }       // 复检用户
-        [DataMember]
         public Supplier FromSupplier { get; set; }
-        [DataMember]
-        public User OperateUser { get; set; }
         [DataMember]
         public List<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
     }

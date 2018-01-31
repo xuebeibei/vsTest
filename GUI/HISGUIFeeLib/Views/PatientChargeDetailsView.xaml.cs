@@ -34,7 +34,7 @@ namespace HISGUIFeeLib.Views
         public PatientChargeDetailsView(MyTableEditEnum sourceEditEnum)
         {
             InitializeComponent();
-            MyTableEdit = new MyTableEdit(MyTableEditEnum.chargeDetail);
+            MyTableEdit = new MyTableEdit(MyTableEditEnum.medicineChargeDetail);
             DetailsPanel.Children.Add(MyTableEdit);
             this.sourceEditEnum = sourceEditEnum;
             this.Loaded += View_Loaded;
@@ -106,7 +106,7 @@ namespace HISGUIFeeLib.Views
 
                         if (storeList == null || storeList.Count <= 0)
                         {
-                            myDetail.StoreRoomMedicineNumID = 0;
+                            myDetail.StoreRoomNumID = 0;
                             myDetail.Name = tem.Medicine.Name;
                             myDetail.Specifications = tem.Medicine.Specifications;
                             myDetail.SingleDoseUnit = tem.Medicine.Unit;
@@ -127,7 +127,7 @@ namespace HISGUIFeeLib.Views
                                 int nLastNum = tem.SingleDose;
                                 foreach (var store in storeList)
                                 {
-                                    myDetail.StoreRoomMedicineNumID = store.ID;
+                                    myDetail.StoreRoomNumID = store.ID;
                                     myDetail.Name = tem.Medicine.Name;
                                     myDetail.Specifications = tem.Medicine.Specifications;
                                     myDetail.SingleDoseUnit = tem.Medicine.Unit;
@@ -210,7 +210,7 @@ namespace HISGUIFeeLib.Views
             foreach (var detail in list)
             {
                 CommContracts.RecipeChargeDetail recipeChargeDetail = new CommContracts.RecipeChargeDetail();
-                recipeChargeDetail.StoreRoomMedicineNumID = detail.StoreRoomMedicineNumID;
+                recipeChargeDetail.StoreRoomMedicineNumID = detail.StoreRoomNumID;
                 recipeChargeDetail.Num = detail.SingleDose;
                 recipeChargeDetail.SellPrice = detail.SellPrice;
                 recipeChargeDetail.Rebate = detail.Rebate;
@@ -221,13 +221,13 @@ namespace HISGUIFeeLib.Views
             if (myd.SaveRecipeChargeBill(recipeCharge))
             {
                 CommClient.StoreRoomMedicineNum myd2 = new CommClient.StoreRoomMedicineNum();
-                if (!myd2.SubdStoreNum(recipeCharge))
+                if (!myd2.SubdMedicineStoreNum(recipeCharge))
                 {
                     return;
                 }
 
                 CommClient.MedicineDoctorAdvice myd1 = new CommClient.MedicineDoctorAdvice();
-                if (!myd1.UpdateChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateMedicineChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -270,7 +270,7 @@ namespace HISGUIFeeLib.Views
                     continue;
                 MyDetail myDetail = new MyDetail();
 
-                myDetail.StoreRoomMedicineNumID = detail.StoreRoomMedicineNumID;
+                myDetail.StoreRoomNumID = detail.StoreRoomMedicineNumID;
                 myDetail.Name = detail.StoreRoomMedicineNum.Medicine.Name;
                 if (detail.StoreRoomMedicineNum != null)
                 {

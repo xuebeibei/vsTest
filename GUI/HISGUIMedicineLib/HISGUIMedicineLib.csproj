@@ -104,14 +104,23 @@
     <Compile Include="Views\MedicineWorkView.xaml.cs">
       <DependentUpon>MedicineWorkView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewCheckStockView.xaml.cs">
-      <DependentUpon>NewCheckStockView.xaml</DependentUpon>
+    <Compile Include="Views\NewMaterialInStockView.xaml.cs">
+      <DependentUpon>NewMaterialInStockView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewInStockView.xaml.cs">
-      <DependentUpon>NewInStockView.xaml</DependentUpon>
+    <Compile Include="Views\NewMaterialCheckStockView.xaml.cs">
+      <DependentUpon>NewMaterialCheckStockView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewOutStockView.xaml.cs">
-      <DependentUpon>NewOutStockView.xaml</DependentUpon>
+    <Compile Include="Views\NewMaterialOutStockView.xaml.cs">
+      <DependentUpon>NewMaterialOutStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewMedicineCheckStockView.xaml.cs">
+      <DependentUpon>NewMedicineCheckStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewMedicineInStockView.xaml.cs">
+      <DependentUpon>NewMedicineInStockView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewMedicineOutStockView.xaml.cs">
+      <DependentUpon>NewMedicineOutStockView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutStockView.xaml.cs">
       <DependentUpon>OutStockView.xaml</DependentUpon>
@@ -119,6 +128,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -161,15 +171,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewCheckStockView.xaml">
+    <Page Include="Views\NewMaterialInStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewInStockView.xaml">
+    <Page Include="Views\NewMaterialCheckStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\NewOutStockView.xaml">
+    <Page Include="Views\NewMaterialOutStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewMedicineCheckStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewMedicineInStockView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewMedicineOutStockView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

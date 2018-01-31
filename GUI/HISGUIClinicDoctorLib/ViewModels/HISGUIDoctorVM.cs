@@ -56,7 +56,7 @@ namespace HISGUIDoctorLib.ViewModels
         }
 
         // 获得当前医生的住院患者
-        public Dictionary<int, string> GetAllInPatient()
+        public List<CommContracts.Inpatient> GetAllInPatient()
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
             return myd.GetAllInPatientMsg();

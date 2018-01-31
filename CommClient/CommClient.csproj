@@ -42,23 +42,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssayCharge.cs" />
     <Compile Include="AssayDoctorAdvice.cs" />
     <Compile Include="AssayItem.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="Inpatient.cs" />
+    <Compile Include="InspectCharge.cs" />
     <Compile Include="InspectDoctorAdvice.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="MaterialCharge.cs" />
+    <Compile Include="MaterialCheckStore.cs" />
     <Compile Include="MaterialDoctorAdvice.cs" />
+    <Compile Include="MaterialInStore.cs" />
     <Compile Include="MaterialItem.cs" />
+    <Compile Include="MaterialOutStore.cs" />
     <Compile Include="MedicalRecord.cs" />
     <Compile Include="Medicine.cs" />
+    <Compile Include="MedicineCharge.cs" />
     <Compile Include="MedicineCheckStore.cs" />
     <Compile Include="MedicineDoctorAdvice.cs" />
     <Compile Include="MedicineInStore.cs" />
     <Compile Include="MedicineOutStore.cs" />
+    <Compile Include="OtherServiceCharge.cs" />
     <Compile Include="OtherServiceDoctorAdvice.cs" />
     <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
@@ -72,8 +80,10 @@
     <Compile Include="SignalItem.cs" />
     <Compile Include="SignalSource.cs" />
     <Compile Include="StoreRoom.cs" />
+    <Compile Include="StoreRoomMaterialNum.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />
     <Compile Include="Supplier.cs" />
+    <Compile Include="TherapyCharge.cs" />
     <Compile Include="TherapyDoctorAdvice.cs" />
     <Compile Include="TherapyItem.cs" />
     <Compile Include="Triage.cs" />

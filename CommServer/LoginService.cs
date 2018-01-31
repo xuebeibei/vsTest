@@ -156,7 +156,7 @@ namespace CommServer
             return temp.getAllRegistration(EmployeeID, VistTime);
         }
 
-        public Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.Registration> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             BLL.Registration temp = new BLL.Registration();
             return temp.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
@@ -441,16 +441,33 @@ namespace CommServer
             return temp.getAllInHospitalInspectDoctorAdvice(InpatientID);
         }
 
+        public bool UpdateInspectChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
+            return temp.UpdateInspectChargeStatus(AdviceID, chargeStatusEnum);
+        }
+
         public List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID)
         {
             BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
             return temp.getAllInHospitalTherapyDoctorAdvice(InpatientID);
+        }
+        public bool UpdateTherapyChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
+            return temp.UpdateTherapyChargeStatus(AdviceID, chargeStatusEnum);
         }
 
         public List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID)
         {
             BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
             return temp.getAllInHospitalAssayDoctorAdvice(InpatientID);
+        }
+
+        public bool UpdateAssayChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
+            return temp.UpdateAssayChargeStatus(AdviceID, chargeStatusEnum);
         }
 
         //public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
@@ -496,6 +513,11 @@ namespace CommServer
             return temp.getAllInHospitalMaterialDoctorAdvice(InpatientID);
         }
 
+        public bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
+            return temp.UpdateMaterialChargeStatus(MaterialDoctorAdviceID, chargeStatusEnum);
+        }
         public CommContracts.OtherServiceDoctorAdvice GetOtherService(int Id)
         {
             BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
@@ -518,6 +540,12 @@ namespace CommServer
         {
             BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.getAllInHospitalOtherService(InpatientID);
+        }
+
+        public bool UpdateOtherServiceChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
+            return temp.UpdateOtherServiceChargeStatus(AdviceID, chargeStatusEnum);
         }
 
         public List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName)
@@ -636,6 +664,11 @@ namespace CommServer
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.RecheckMedicineOutStore(medicineOutStore);
         }
+        public bool ReCheckMedicineCheckStore(CommContracts.MedicineCheckStore medicineCheckStore)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.ReCheckMedicineCheckStore(medicineCheckStore);
+        }
 
         public bool SaveMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore)
         {
@@ -665,12 +698,21 @@ namespace CommServer
             return temp.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
-        // 根据收费单更新库存
-        public bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
+        // 根据收费单更新库存， 将要废弃
+        public bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
         {
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
-            return temp.SubdStoreNum(recipeChargeBill);
+            return temp.SubdMedicineStoreNum(recipeChargeBill);
         }
+
+        // 根据收费单更新库存
+        public bool SubdMedicineStoreNumByAdvice(CommContracts.MedicineCharge medicineCharge)
+        {
+            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
+            return temp.SubdMedicineStoreNumByAdvice(medicineCharge);
+        }
+
+        
 
         public bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill)
         {
@@ -682,6 +724,18 @@ namespace CommServer
         {
             BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
             return temp.GetAllChargeFromRecipe(RecipeID);
+        }
+
+        public bool SaveMedicineCharge(CommContracts.MedicineCharge MedicineCharge)
+        {
+            BLL.MedicineCharge temp = new BLL.MedicineCharge();
+            return temp.SaveMedicineCharge(MedicineCharge);
+        }
+
+        public List<CommContracts.MedicineCharge> GetAllChargeFromMedicineAdvice(int AdviceID)
+        {
+            BLL.MedicineCharge temp = new BLL.MedicineCharge();
+            return temp.GetAllChargeFromMedicineAdvice(AdviceID);
         }
 
         public List<CommContracts.Job> GetAllJob(string strName = "")
@@ -876,10 +930,22 @@ namespace CommServer
         }
 
 
-        public bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        public bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
         {
             BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
             return temp.UpdateChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
+        }
+
+        public List<CommContracts.MedicineCharge> GetAllClinicMedicineCharge(int RegistrationID)
+        {
+            BLL.MedicineCharge temp = new BLL.MedicineCharge();
+            return temp.GetAllClinicMedicineCharge(RegistrationID);
+        }
+
+        public List<CommContracts.MedicineCharge> GetAllInHospitalMedicineCharge(int InpatientID)
+        {
+            BLL.MedicineCharge temp = new BLL.MedicineCharge();
+            return temp.GetAllInHospitalMedicineCharge(InpatientID);
         }
 
         public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
@@ -935,6 +1001,236 @@ namespace CommServer
         {
             BLL.Registration temp = new BLL.Registration();
             return temp.ReadLastRegistration(PatientID, DateTime);
+        }
+
+        public bool SaveMaterialInStock(CommContracts.MaterialInStore MaterialInStore)
+        {
+            BLL.MaterialInStore temp = new BLL.MaterialInStore();
+            return temp.SaveMaterialInStock(MaterialInStore);
+        }
+
+        public bool RecheckMaterialInStock(CommContracts.MaterialInStore MaterialInStore)
+        {
+            BLL.MaterialInStore temp = new BLL.MaterialInStore();
+            return temp.RecheckMaterialInStock(MaterialInStore);
+        }
+
+        public List<CommContracts.MaterialInStore> getAllMaterialInStore(int StoreID, CommContracts.
+            InStoreEnum inStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
+        {
+            BLL.MaterialInStore temp = new BLL.MaterialInStore();
+            return temp.getAllMaterialInStore(StoreID, inStoreEnum, StartInStoreTime, EndInStoreTime, InStoreNo);
+        }
+
+        public bool SaveMaterialOutStock(CommContracts.MaterialOutStore MaterialOutStore)
+        {
+            BLL.MaterialOutStore temp = new BLL.MaterialOutStore();
+            return temp.SaveMaterialOutStock(MaterialOutStore);
+        }
+
+        public bool RecheckMaterialOutStock(CommContracts.MaterialOutStore MaterialOutStore)
+        {
+            BLL.MaterialOutStore temp = new BLL.MaterialOutStore();
+            return temp.RecheckMaterialOutStock(MaterialOutStore);
+        }
+
+        public List<CommContracts.MaterialOutStore> getAllMaterialOutStore(int StoreID, CommContracts.
+            OutStoreEnum outStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string OutStoreNo = "")
+        {
+            BLL.MaterialOutStore temp = new BLL.MaterialOutStore();
+            return temp.getAllMaterialOutStore(StoreID, outStoreEnum, StartInStoreTime, EndInStoreTime, OutStoreNo);
+        }
+
+        public bool SaveMaterialCheckStock(CommContracts.MaterialCheckStore MaterialCheckStore)
+        {
+            BLL.MaterialCheckStore temp = new BLL.MaterialCheckStore();
+            return temp.SaveMaterialCheckStock(MaterialCheckStore);
+        }
+
+        public bool RecheckMaterialCheckStock(CommContracts.MaterialCheckStore MaterialCheckStore)
+        {
+            BLL.MaterialCheckStore temp = new BLL.MaterialCheckStore();
+            return temp.RecheckMaterialCheckStock(MaterialCheckStore);
+        }
+
+        public List<CommContracts.MaterialCheckStore> getAllMaterialCheckStore(int StoreID,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "")
+        {
+            BLL.MaterialCheckStore temp = new BLL.MaterialCheckStore();
+            return temp.getAllMaterialCheckStore(StoreID, StartInStoreTime, EndInStoreTime, InStoreNo);
+        }
+
+        public bool ReCheckMaterialInStore(CommContracts.MaterialInStore MaterialInStore)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.ReCheckMaterialInStore(MaterialInStore);
+        }
+
+        public bool RecheckMaterialOutStore(CommContracts.MaterialOutStore MaterialOutStore)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.RecheckMaterialOutStore(MaterialOutStore);
+        }
+
+        public bool ReCheckMaterialCheckStore(CommContracts.MaterialCheckStore MaterialCheckStore)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.ReCheckMaterialCheckStore(MaterialCheckStore);
+        }
+
+        public List<CommContracts.StoreRoomMaterialNum> getAllMaterialItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.getAllMaterialItemNum(StoreID, ItemName, SupplierID, ItemType, IsStatusOk, IsHasNum, IsOverDate, IsNoEnough);
+        }
+
+        // 得到当前物资的合理库存
+        public List<CommContracts.StoreRoomMaterialNum> GetStoreFromMaterial(int nMaterialID, int nNum)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.GetStoreFromMaterial(nMaterialID, nNum);
+        }
+
+        // 根据收费单更新物资库存
+        public bool SubdMaterialStoreNum(CommContracts.MaterialCharge materialCharge)
+        {
+            BLL.StoreRoomMaterialNum temp = new BLL.StoreRoomMaterialNum();
+            return temp.SubdMaterialStoreNum(materialCharge);
+        }
+
+        public bool SaveMaterialCharge(CommContracts.MaterialCharge MaterialCharge)
+        {
+            BLL.MaterialCharge temp = new BLL.MaterialCharge();
+            return temp.SaveMaterialCharge(MaterialCharge);
+        }
+
+        public List<CommContracts.MaterialCharge> GetAllChargeFromMaterialAdvice(int AdviceID)
+        {
+            BLL.MaterialCharge temp = new BLL.MaterialCharge();
+            return temp.GetAllChargeFromMaterialAdvice(AdviceID);
+        }
+
+        public List<CommContracts.MaterialCharge> GetAllClinicMaterialCharge(int RegistrationID)
+        {
+            BLL.MaterialCharge temp = new BLL.MaterialCharge();
+            return temp.GetAllClinicMaterialCharge(RegistrationID);
+        }
+
+        public List<CommContracts.MaterialCharge> GetAllInHospitalMaterialCharge(int InpatientID)
+        {
+            BLL.MaterialCharge temp = new BLL.MaterialCharge();
+            return temp.GetAllInHospitalMaterialCharge(InpatientID);
+        }
+
+        public bool SaveTherapyCharge(CommContracts.TherapyCharge TherapyCharge)
+        {
+            BLL.TherapyCharge temp = new BLL.TherapyCharge();
+            return temp.SaveTherapyCharge(TherapyCharge);
+        }
+
+        public List<CommContracts.TherapyCharge> GetAllChargeFromTherapyAdvice(int AdviceID)
+        {
+            BLL.TherapyCharge temp = new BLL.TherapyCharge();
+            return temp.GetAllChargeFromTherapyAdvice(AdviceID);
+        }
+
+        public List<CommContracts.TherapyCharge> GetAllClinicTherapyCharge(int RegistrationID)
+        {
+            BLL.TherapyCharge temp = new BLL.TherapyCharge();
+            return temp.GetAllClinicTherapyCharge(RegistrationID);
+        }
+
+        public List<CommContracts.TherapyCharge> GetAllInHospitalTherapyCharge(int InpatientID)
+        {
+            BLL.TherapyCharge temp = new BLL.TherapyCharge();
+            return temp.GetAllInHospitalTherapyCharge(InpatientID);
+        }
+
+        public bool SaveAssayCharge(CommContracts.AssayCharge AssayCharge)
+        {
+            BLL.AssayCharge temp = new BLL.AssayCharge();
+            return temp.SaveAssayCharge(AssayCharge);
+        }
+
+        public List<CommContracts.AssayCharge> GetAllChargeFromAssayAdvice(int AdviceID)
+        {
+            BLL.AssayCharge temp = new BLL.AssayCharge();
+            return temp.GetAllChargeFromAssayAdvice(AdviceID);
+        }
+
+        public List<CommContracts.AssayCharge> GetAllClinicAssayCharge(int RegistrationID)
+        {
+            BLL.AssayCharge temp = new BLL.AssayCharge();
+            return temp.GetAllClinicAssayCharge(RegistrationID);
+        }
+
+        public List<CommContracts.AssayCharge> GetAllInHospitalAssayCharge(int InpatientID)
+        {
+            BLL.AssayCharge temp = new BLL.AssayCharge();
+            return temp.GetAllInHospitalAssayCharge(InpatientID);
+        }
+
+        public bool SaveInspectCharge(CommContracts.InspectCharge InspectCharge)
+        {
+            BLL.InspectCharge temp = new BLL.InspectCharge();
+            return temp.SaveInspectCharge(InspectCharge);
+        }
+
+        public List<CommContracts.InspectCharge> GetAllChargeFromInspectAdvice(int AdviceID)
+        {
+            BLL.InspectCharge temp = new BLL.InspectCharge();
+            return temp.GetAllChargeFromInspectAdvice(AdviceID);
+        }
+
+        public List<CommContracts.InspectCharge> GetAllClinicInspectCharge(int RegistrationID)
+        {
+            BLL.InspectCharge temp = new BLL.InspectCharge();
+            return temp.GetAllClinicInspectCharge(RegistrationID);
+        }
+
+        public List<CommContracts.InspectCharge> GetAllInHospitalInspectCharge(int InpatientID)
+        {
+            BLL.InspectCharge temp = new BLL.InspectCharge();
+            return temp.GetAllInHospitalInspectCharge(InpatientID);
+        }
+
+        public bool SaveOtherServiceCharge(CommContracts.OtherServiceCharge OtherServiceCharge)
+        {
+            BLL.OtherServiceCharge temp = new BLL.OtherServiceCharge();
+            return temp.SaveOtherServiceCharge(OtherServiceCharge);
+        }
+
+        public List<CommContracts.OtherServiceCharge> GetAllChargeFromOtherServiceAdvice(int AdviceID)
+        {
+            BLL.OtherServiceCharge temp = new BLL.OtherServiceCharge();
+            return temp.GetAllChargeFromOtherServiceAdvice(AdviceID);
+        }
+
+        public List<CommContracts.OtherServiceCharge> GetAllClinicOtherServiceCharge(int RegistrationID)
+        {
+            BLL.OtherServiceCharge temp = new BLL.OtherServiceCharge();
+            return temp.GetAllClinicOtherServiceCharge(RegistrationID);
+        }
+
+        public List<CommContracts.OtherServiceCharge> GetAllInHospitalOtherServiceCharge(int InpatientID)
+        {
+            BLL.OtherServiceCharge temp = new BLL.OtherServiceCharge();
+            return temp.GetAllInHospitalOtherServiceCharge(InpatientID);
         }
     }
 }

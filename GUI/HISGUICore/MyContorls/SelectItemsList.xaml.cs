@@ -23,7 +23,8 @@ namespace HISGUICore.MyContorls
         public CommContracts.InspectItem CurrentInspectItem { get; set; }  // 检查
         public CommContracts.MaterialItem CurrentMaterialItem { get; set; }// 材料
         public CommContracts.OtherServiceItem CurrentOtherServiceItem { get; set; } // 其他服务
-        public CommContracts.StoreRoomMedicineNum CurrentStoreRoomMedicineNum { get; set; }  // 库存
+        public CommContracts.StoreRoomMedicineNum CurrentStoreRoomMedicineNum { get; set; }  // 药品库存
+        public CommContracts.StoreRoomMaterialNum CurrentStoreRoomMaterialNum { get; set; }  // 物资库存
 
         private MyTableEditEnum editEnum;
         public SelectItemsList(MyTableEditEnum itemEnum)
@@ -53,7 +54,7 @@ namespace HISGUICore.MyContorls
             {
                 this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
             }
-            else if (editEnum == MyTableEditEnum.cailiao)
+            else if (editEnum == MyTableEditEnum.cailiao || editEnum == MyTableEditEnum.materialInStock)
             {
                 this.Grid1.View = this.Resources["haveMaterialColumn"] as GridView;
             }
@@ -63,11 +64,11 @@ namespace HISGUICore.MyContorls
             }
             else if (editEnum == MyTableEditEnum.medicineOutStock)
             {
-                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+                this.Grid1.View = this.Resources["haveMedicineNumsColumn"] as GridView;
             }
-            else if (editEnum == MyTableEditEnum.medicineCheckStock)
+            else if(editEnum == MyTableEditEnum.materialOutStock)
             {
-                this.Grid1.View = this.Resources["haveZhiliaoColumn"] as GridView;
+                this.Grid1.View = this.Resources["haveMaterialItemNumsColumn"] as GridView;
             }
         }
 
@@ -125,7 +126,7 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if (editEnum == MyTableEditEnum.cailiao)
+            else if (editEnum == MyTableEditEnum.cailiao || editEnum == MyTableEditEnum.materialInStock)
             {
                 CommClient.MaterialItem therapyItem = new CommClient.MaterialItem();
                 List<CommContracts.MaterialItem> list = therapyItem.GetAllMaterialItem(strFindName);
@@ -149,9 +150,13 @@ namespace HISGUICore.MyContorls
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();
             }
-            else if (editEnum == MyTableEditEnum.medicineCheckStock)
+            else if(editEnum == MyTableEditEnum.materialOutStock)
             {
+                CommClient.StoreRoomMaterialNum storeRoomMaterialNum = new CommClient.StoreRoomMaterialNum();
+                List<CommContracts.StoreRoomMaterialNum> list = storeRoomMaterialNum.getAllMaterialItemNum(1, "", 0, -1, true, true, false, false);
 
+                this.Grid1.ItemsSource = list;
+                this.Grid1.Focus();
             }
         }
 
@@ -192,7 +197,7 @@ namespace HISGUICore.MyContorls
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }
-                else if (editEnum == MyTableEditEnum.cailiao)
+                else if (editEnum == MyTableEditEnum.cailiao || editEnum == MyTableEditEnum.materialInStock)
                 {
                     CommContracts.MaterialItem materialItem = this.Grid1.SelectedItem as CommContracts.MaterialItem;
 
@@ -217,9 +222,13 @@ namespace HISGUICore.MyContorls
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();
                 }
-                else if (editEnum == MyTableEditEnum.medicineCheckStock)
+                else if(editEnum == MyTableEditEnum.materialOutStock)
                 {
+                    CommContracts.StoreRoomMaterialNum storeRoomMaterialNum = this.Grid1.SelectedItem as CommContracts.StoreRoomMaterialNum;
 
+                    CurrentStoreRoomMaterialNum = storeRoomMaterialNum;
+                    (this.Parent as Window).DialogResult = true;
+                    (this.Parent as Window).Close();
                 }
             }
         }

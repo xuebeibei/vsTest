@@ -7,6 +7,16 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
+    public enum DoctorAdviceBaseEnum
+    {
+        处方,
+        治疗,
+        化验,
+        检查,
+        材料,
+        其他
+    }
+
     [DataContract]
     public class DoctorAdviceBase
     {
@@ -32,6 +42,8 @@ namespace CommContracts
         public User WriteDoctorUser { get; set; }       // 开具医生
         [DataMember]
         public Patient Patient { get; set; }
+        [DataMember]
+        public DoctorAdviceBaseEnum DoctorAdviceEnum { get; set; }
 
         public override string ToString()
         {

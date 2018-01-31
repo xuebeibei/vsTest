@@ -19,7 +19,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
                 <Label>Logo</Label>
-                <Label>药品管理</Label>
+                <Label>库存管理</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label>2017-11-27周一</Label>
@@ -28,25 +28,35 @@
             </StackPanel>
         </Grid>
         <StackPanel Grid.Row="1" >
+            <StackPanel Orientation="Horizontal">
+                <Label Margin="5">当前库房：</Label>
+                <ComboBox x:Name="StoreCombo" Margin="5" Width="100"></ComboBox>
+                <Label Margin="5">当前物品：</Label>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <RadioButton x:Name="MedicineRadio" Margin="5" IsChecked="True" Click="MedicineRadio_Click">药品</RadioButton>
+                    <RadioButton x:Name="MaterialRadio" Margin="5" Click="MaterialRadio_Click">物资</RadioButton>
+                </StackPanel>
+            </StackPanel>
+            
             <TabControl x:Name="tabControl" Margin="5" >
                 <TabItem Header="入库管理">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:InStockView></local:InStockView>
+                        <local:InStockView x:Name="InStockView"></local:InStockView>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="出库管理">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:OutStockView></local:OutStockView>
+                        <local:OutStockView x:Name="OutStockView"></local:OutStockView>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="当前库存">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:ItemsNumView></local:ItemsNumView>
+                        <local:ItemsNumView x:Name="ItemsNumView"></local:ItemsNumView>
                     </ScrollViewer>
                 </TabItem>
                 <TabItem Header="库存盘点">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:CheckView></local:CheckView>
+                        <local:CheckView x:Name="CheckView"></local:CheckView>
                     </ScrollViewer>
                 </TabItem>
             </TabControl>

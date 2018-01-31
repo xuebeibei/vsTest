@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public AssayDoctorAdvice()
         {
+            DoctorAdviceEnum = DoctorAdviceBaseEnum.化验;
             AssayDoctorAdviceDetails = new List<AssayDoctorAdviceDetail>();
         }
         [DataMember]

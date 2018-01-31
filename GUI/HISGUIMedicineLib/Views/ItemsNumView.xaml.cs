@@ -33,6 +33,17 @@ namespace HISGUIMedicineLib.Views
             this.Loaded += View_Loaded;
         }
 
+        public void UpdateNumsStores()
+        {
+            initGrid();
+            var vm = this.DataContext as HISGUIMedicineVM;
+            if (vm.IsMedicineOrMaterial)
+                ShowAllMedicineNumsStore();
+            else
+                ShowAllMaterialNumsStore();
+        }
+
+
         [Import]
         private HISGUIMedicineVM ImportVM
         {
@@ -43,10 +54,24 @@ namespace HISGUIMedicineLib.Views
         {
             var vm = this.DataContext as HISGUIMedicineVM;
             this.SupplierNameBox.ItemsSource = vm?.getAllSupplier();
-            //getAllMedicineItemNum();
+            UpdateNumsStores();
         }
 
-        private void getAllMedicineItemNum()
+        private void initGrid()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+            if (vm.IsMedicineOrMaterial)
+            {
+                this.AllItemsNumList.View = this.Resources["haveMedicineColumn"] as GridView;
+            }
+            else 
+            {
+                this.AllItemsNumList.View = this.Resources["haveMaterialColumn"] as GridView;
+            }
+            
+        }
+
+        private void ShowAllMedicineNumsStore()
         {
             var vm = this.DataContext as HISGUIMedicineVM;
 
@@ -70,7 +95,30 @@ namespace HISGUIMedicineLib.Views
                 nCurrentItemType = (int)CommContracts.MedicineTypeEnum.zhongyao;
             }
 
-            List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(1,
+            List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(
+                FindItemNameBox.Text,
+                nSupplierID,
+                nCurrentItemType,
+                IsStatusOkCheck.IsChecked.Value,
+                IsHasNumCheck.IsChecked.Value,
+                IsOverDateCheck.IsChecked.Value,
+                IsNumNoEnoughCheck.IsChecked.Value);
+
+            this.AllItemsNumList.ItemsSource = list;
+        }
+
+        private void ShowAllMaterialNumsStore()
+        {
+            var vm = this.DataContext as HISGUIMedicineVM;
+
+            int nSupplierID = 0;
+            var supplier = this.SupplierNameBox.SelectedItem as CommContracts.Supplier;
+            if (supplier != null)
+                nSupplierID = supplier.ID;
+
+            int nCurrentItemType = -1;
+
+            List<CommContracts.StoreRoomMaterialNum> list = vm?.getAllMaterialItemNum(
                 FindItemNameBox.Text,
                 nSupplierID,
                 nCurrentItemType,
@@ -89,7 +137,7 @@ namespace HISGUIMedicineLib.Views
 
         private void FindItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            getAllMedicineItemNum();
+            UpdateNumsStores();
         }
     }
 }

@@ -73,7 +73,7 @@ namespace CommContracts
         List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null);
 
         [OperationContract]
-        Dictionary<int, string> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
+        List<CommContracts.Registration> GetAllClinicPatients(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false);
 
         [OperationContract]
         string getPatientBMIMsg(int RegistrationID);
@@ -134,14 +134,24 @@ namespace CommContracts
         //bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
+        // 根据收费单更新库存， 将要废弃
+        bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
+
+        [OperationContract]
         // 根据收费单更新库存
-        bool SubdStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
+        bool SubdMedicineStoreNumByAdvice(CommContracts.MedicineCharge medicineCharge);
 
         [OperationContract]
         bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
 
         [OperationContract]
         List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
+
+        [OperationContract]
+        bool SaveMedicineCharge(CommContracts.MedicineCharge MedicineCharge);
+
+        [OperationContract]
+        List<CommContracts.MedicineCharge> GetAllChargeFromMedicineAdvice(int AdviceID);
 
 
         [OperationContract]
@@ -160,8 +170,12 @@ namespace CommContracts
         List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID);
 
         [OperationContract]
-        bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+        bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
+        [OperationContract]
+        List<CommContracts.MedicineCharge> GetAllClinicMedicineCharge(int RegistrationID);
+        [OperationContract]
+        List<CommContracts.MedicineCharge> GetAllInHospitalMedicineCharge(int InpatientID);
         //[OperationContract]
         //// 根据收费单更新库存
         //bool SubdStoreNum(CommContracts.MedicineDoctorAdviceChargeBill MedicineDoctorAdviceChargeBill);
@@ -261,10 +275,17 @@ namespace CommContracts
         List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID);
 
         [OperationContract]
+        bool UpdateInspectChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+
+        [OperationContract]
         List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID);
+        [OperationContract]
+        bool UpdateTherapyChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID);
+        [OperationContract]
+        bool UpdateAssayChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id);
@@ -277,6 +298,8 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.MaterialDoctorAdvice> getAllInHospitalMaterialDoctorAdvice(int InpatientID);
+        [OperationContract]
+        bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
 
         [OperationContract]
@@ -290,6 +313,9 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.OtherServiceDoctorAdvice> getAllInHospitalOtherService(int InpatientID);
+
+        [OperationContract]
+        bool UpdateOtherServiceChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName);
@@ -357,13 +383,15 @@ namespace CommContracts
 
         [OperationContract]
         bool RecheckMedicineOutStore(CommContracts.MedicineOutStore medicineOutStore);
+        [OperationContract]
+        bool ReCheckMedicineCheckStore(CommContracts.MedicineCheckStore medicineCheckStore);
 
         [OperationContract]
         bool SaveMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore);
-        
+
         [OperationContract]
         bool RecheckMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore);
-        
+
         [OperationContract]
         List<CommContracts.MedicineCheckStore> getAllMedicineCheckStore(int StoreID,
             DateTime StartInStoreTime,
@@ -467,5 +495,123 @@ namespace CommContracts
         [OperationContract]
         // 查找某个患者最后一次挂号情况
         CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null);
+
+        [OperationContract]
+        bool SaveMaterialCheckStock(CommContracts.MaterialCheckStore MaterialCheckStore);
+        [OperationContract]
+        bool RecheckMaterialCheckStock(CommContracts.MaterialCheckStore MaterialCheckStore);
+        [OperationContract]
+        List<CommContracts.MaterialCheckStore> getAllMaterialCheckStore(int StoreID,
+                    DateTime StartInStoreTime,
+                    DateTime EndInStoreTime,
+                    string InStoreNo = "");
+
+        [OperationContract]
+        bool SaveMaterialOutStock(CommContracts.MaterialOutStore MaterialOutStore);
+        [OperationContract]
+        bool RecheckMaterialOutStock(CommContracts.MaterialOutStore MaterialOutStore);
+        [OperationContract]
+        List<CommContracts.MaterialOutStore> getAllMaterialOutStore(int StoreID, CommContracts.
+            OutStoreEnum outStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string OutStoreNo = "");
+
+        [OperationContract]
+        bool SaveMaterialInStock(CommContracts.MaterialInStore MaterialInStore);
+
+        [OperationContract]
+        bool RecheckMaterialInStock(CommContracts.MaterialInStore MaterialInStore);
+
+        [OperationContract]
+        List<CommContracts.MaterialInStore> getAllMaterialInStore(int StoreID, CommContracts.
+            InStoreEnum inStoreEnum,
+            DateTime StartInStoreTime,
+            DateTime EndInStoreTime,
+            string InStoreNo = "");
+
+        [OperationContract]
+        bool ReCheckMaterialInStore(CommContracts.MaterialInStore MaterialInStore);
+
+        [OperationContract]
+        bool RecheckMaterialOutStore(CommContracts.MaterialOutStore MaterialOutStore);
+
+        [OperationContract]
+        bool ReCheckMaterialCheckStore(CommContracts.MaterialCheckStore MaterialCheckStore);
+
+        [OperationContract]
+        List<CommContracts.StoreRoomMaterialNum> getAllMaterialItemNum(int StoreID,
+            string ItemName,
+            int SupplierID,
+            int ItemType,
+            bool IsStatusOk,
+            bool IsHasNum,
+            bool IsOverDate,
+            bool IsNoEnough);
+        // 得到当前物资的合理库存
+        [OperationContract]
+        List<CommContracts.StoreRoomMaterialNum> GetStoreFromMaterial(int nMaterialID, int nNum);
+
+        // 根据收费单更新物资库存
+        [OperationContract]
+        bool SubdMaterialStoreNum(CommContracts.MaterialCharge materialCharge);
+
+        [OperationContract]
+        bool SaveMaterialCharge(CommContracts.MaterialCharge MaterialCharge);
+        [OperationContract]
+        List<CommContracts.MaterialCharge> GetAllChargeFromMaterialAdvice(int AdviceID);
+
+        [OperationContract]
+        List<CommContracts.MaterialCharge> GetAllClinicMaterialCharge(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.MaterialCharge> GetAllInHospitalMaterialCharge(int InpatientID);
+
+        [OperationContract]
+        bool SaveTherapyCharge(CommContracts.TherapyCharge TherapyCharge);
+
+        [OperationContract]
+        List<CommContracts.TherapyCharge> GetAllChargeFromTherapyAdvice(int AdviceID);
+
+        [OperationContract]
+        List<CommContracts.TherapyCharge> GetAllClinicTherapyCharge(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.TherapyCharge> GetAllInHospitalTherapyCharge(int InpatientID);
+
+        [OperationContract]
+        bool SaveAssayCharge(CommContracts.AssayCharge AssayCharge);
+
+        [OperationContract]
+        List<CommContracts.AssayCharge> GetAllChargeFromAssayAdvice(int AdviceID);
+
+        [OperationContract]
+        List<CommContracts.AssayCharge> GetAllClinicAssayCharge(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.AssayCharge> GetAllInHospitalAssayCharge(int InpatientID);
+
+        [OperationContract]
+        bool SaveInspectCharge(CommContracts.InspectCharge InspectCharge);
+
+        [OperationContract]
+        List<CommContracts.InspectCharge> GetAllChargeFromInspectAdvice(int AdviceID);
+
+        [OperationContract]
+        List<CommContracts.InspectCharge> GetAllClinicInspectCharge(int RegistrationID);
+
+        [OperationContract]
+        List<CommContracts.InspectCharge> GetAllInHospitalInspectCharge(int InpatientID);
+
+        [OperationContract]
+        bool SaveOtherServiceCharge(CommContracts.OtherServiceCharge OtherServiceCharge);
+
+        [OperationContract]
+        List<CommContracts.OtherServiceCharge> GetAllChargeFromOtherServiceAdvice(int AdviceID);
+
+        [OperationContract]
+        List<CommContracts.OtherServiceCharge> GetAllClinicOtherServiceCharge(int RegistrationID);
+        [OperationContract]
+        List<CommContracts.OtherServiceCharge> GetAllInHospitalOtherServiceCharge(int InpatientID);
     }
 }

@@ -50,61 +50,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201801230800337_PaperTest.cs" />
-    <Compile Include="Migrations\201801230800337_PaperTest.Designer.cs">
-      <DependentUpon>201801230800337_PaperTest.cs</DependentUpon>
+    <Compile Include="Migrations\201801300626554_PaperTest.cs" />
+    <Compile Include="Migrations\201801300626554_PaperTest.Designer.cs">
+      <DependentUpon>201801300626554_PaperTest.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801240616447_PaperTest1.cs" />
-    <Compile Include="Migrations\201801240616447_PaperTest1.Designer.cs">
-      <DependentUpon>201801240616447_PaperTest1.cs</DependentUpon>
+    <Compile Include="Migrations\201801310230592_PaperTest1.cs" />
+    <Compile Include="Migrations\201801310230592_PaperTest1.Designer.cs">
+      <DependentUpon>201801310230592_PaperTest1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801240920076_PaperTest2.cs" />
-    <Compile Include="Migrations\201801240920076_PaperTest2.Designer.cs">
-      <DependentUpon>201801240920076_PaperTest2.cs</DependentUpon>
+    <Compile Include="Migrations\201801310442077_PaperTest2.cs" />
+    <Compile Include="Migrations\201801310442077_PaperTest2.Designer.cs">
+      <DependentUpon>201801310442077_PaperTest2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201801240931023_PaperTest3.cs" />
-    <Compile Include="Migrations\201801240931023_PaperTest3.Designer.cs">
-      <DependentUpon>201801240931023_PaperTest3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801240934387_PaperTest4.cs" />
-    <Compile Include="Migrations\201801240934387_PaperTest4.Designer.cs">
-      <DependentUpon>201801240934387_PaperTest4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801241024431_PaperTest5.cs" />
-    <Compile Include="Migrations\201801241024431_PaperTest5.Designer.cs">
-      <DependentUpon>201801241024431_PaperTest5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801251050282_PaperTest6.cs" />
-    <Compile Include="Migrations\201801251050282_PaperTest6.Designer.cs">
-      <DependentUpon>201801251050282_PaperTest6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801251054010_PaperTest7.cs" />
-    <Compile Include="Migrations\201801251054010_PaperTest7.Designer.cs">
-      <DependentUpon>201801251054010_PaperTest7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801260326505_PaperTest8.cs" />
-    <Compile Include="Migrations\201801260326505_PaperTest8.Designer.cs">
-      <DependentUpon>201801260326505_PaperTest8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801260925094_PaperTest9.cs" />
-    <Compile Include="Migrations\201801260925094_PaperTest9.Designer.cs">
-      <DependentUpon>201801260925094_PaperTest9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801290948519_PaperTest10.cs" />
-    <Compile Include="Migrations\201801290948519_PaperTest10.Designer.cs">
-      <DependentUpon>201801290948519_PaperTest10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801290959086_PaperTest11.cs" />
-    <Compile Include="Migrations\201801290959086_PaperTest11.Designer.cs">
-      <DependentUpon>201801290959086_PaperTest11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801290959205_PaperTest12.cs" />
-    <Compile Include="Migrations\201801290959205_PaperTest12.Designer.cs">
-      <DependentUpon>201801290959205_PaperTest12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801291002263_PaperTest13.cs" />
-    <Compile Include="Migrations\201801291002263_PaperTest13.Designer.cs">
-      <DependentUpon>201801291002263_PaperTest13.cs</DependentUpon>
+    <Compile Include="Migrations\201801310551266_PaperTest3.cs" />
+    <Compile Include="Migrations\201801310551266_PaperTest3.Designer.cs">
+      <DependentUpon>201801310551266_PaperTest3.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
@@ -126,47 +86,17 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801230800337_PaperTest.resx">
-      <DependentUpon>201801230800337_PaperTest.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801300626554_PaperTest.resx">
+      <DependentUpon>201801300626554_PaperTest.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801240616447_PaperTest1.resx">
-      <DependentUpon>201801240616447_PaperTest1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801310230592_PaperTest1.resx">
+      <DependentUpon>201801310230592_PaperTest1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801240920076_PaperTest2.resx">
-      <DependentUpon>201801240920076_PaperTest2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801310442077_PaperTest2.resx">
+      <DependentUpon>201801310442077_PaperTest2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801240931023_PaperTest3.resx">
-      <DependentUpon>201801240931023_PaperTest3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801240934387_PaperTest4.resx">
-      <DependentUpon>201801240934387_PaperTest4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801241024431_PaperTest5.resx">
-      <DependentUpon>201801241024431_PaperTest5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801251050282_PaperTest6.resx">
-      <DependentUpon>201801251050282_PaperTest6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801251054010_PaperTest7.resx">
-      <DependentUpon>201801251054010_PaperTest7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801260326505_PaperTest8.resx">
-      <DependentUpon>201801260326505_PaperTest8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801260925094_PaperTest9.resx">
-      <DependentUpon>201801260925094_PaperTest9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801290948519_PaperTest10.resx">
-      <DependentUpon>201801290948519_PaperTest10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801290959086_PaperTest11.resx">
-      <DependentUpon>201801290959086_PaperTest11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801290959205_PaperTest12.resx">
-      <DependentUpon>201801290959205_PaperTest12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801291002263_PaperTest13.resx">
-      <DependentUpon>201801291002263_PaperTest13.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201801310551266_PaperTest3.resx">
+      <DependentUpon>201801310551266_PaperTest3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

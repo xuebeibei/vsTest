@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public InspectDoctorAdvice()
         {
+            DoctorAdviceEnum = DoctorAdviceBaseEnum.检查;
         }
         [DataMember]
         public List<InspectDoctorAdviceDetail> InspectDoctorAdviceDetails { get; set; }

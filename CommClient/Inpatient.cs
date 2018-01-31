@@ -31,9 +31,9 @@ namespace CommClient
             return client.getInPatientBMIMsg(InpatientID);
         }
 
-        public Dictionary<int, string> GetAllInPatientMsg()
+        public List<CommContracts.Inpatient> GetAllInPatientMsg()
         {
-            Dictionary<int, string> dictionary = new Dictionary<int, string>();
+            List<CommContracts.Inpatient> dictionary = new List<CommContracts.Inpatient>();
 
             List<CommContracts.Inpatient> list = new List<CommContracts.Inpatient>();
             list = client.GetAllInPatientList(CommContracts.InHospitalStatusEnum.在院中);
@@ -47,7 +47,7 @@ namespace CommClient
                                     "科室：\r\n" +
                                     "医生：" + "\r\n" +
                                     "入院时间：" + tem.InHospitalTime.ToString() + "\r\n";
-                    dictionary.Add(tem.ID, str);
+                    dictionary.Add(tem);
                 }
             }
             return dictionary;

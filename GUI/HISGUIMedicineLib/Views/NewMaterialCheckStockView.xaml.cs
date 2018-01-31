@@ -20,18 +20,17 @@ using HISGUICore;
 using HISGUICore.MyContorls;
 using HISGUIMedicineLib.ViewModels;
 using System.Data;
-
 namespace HISGUIMedicineLib.Views
 {
     [Export]
-    [Export("NewCheckStockView", typeof(NewCheckStockView))]
-    public partial class NewCheckStockView : HISGUIViewBase
+    [Export("NewMaterialCheckStockView", typeof(NewMaterialCheckStockView))]
+    public partial class NewMaterialCheckStockView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
-        public NewCheckStockView()
+        public NewMaterialCheckStockView()
         {
             InitializeComponent();
-            myTableEdit = new MyTableEdit(MyTableEditEnum.medicineCheckStock);
+            myTableEdit = new MyTableEdit(MyTableEditEnum.materialCheckStock);
             CheckPanel.Children.Add(myTableEdit);
 
             this.Loaded += View_Loaded;
@@ -60,26 +59,26 @@ namespace HISGUIMedicineLib.Views
         {
             var vm = this.DataContext as HISGUIMedicineVM;
 
-            if (vm.CurrentMedicineCheckStore != null)
+            if (vm.CurrentMaterialCheckStore != null)
             {
                 this.myTableEdit.ClearAllDetails();
-                
-                if (vm.CurrentMedicineCheckStore.MedicineCheckStoreDetails != null)
+
+                if (vm.CurrentMaterialCheckStore.MaterialCheckStoreDetails != null)
                 {
                     List<MyDetail> list = new List<MyDetail>();
-                    foreach (var tem in vm.CurrentMedicineCheckStore.MedicineCheckStoreDetails)
+                    foreach (var tem in vm.CurrentMaterialCheckStore.MaterialCheckStoreDetails)
                     {
                         MyDetail myDetail = new MyDetail();
-                        myDetail.ID = tem.StoreRoomMedicineNumID;
+                        myDetail.ID = tem.StoreRoomMaterialNumID;
                         //myDetail.ExpirationDate = tem.ExpirationDate;
                         //myDetail.BatchID = tem.Batch;
                         myDetail.SingleDose = tem.Num;
-                        //if (tem.Medicine != null)
+                        //if (tem.Material != null)
                         //{
-                        //    myDetail.SingleDoseUnit = tem.Medicine.Unit;
-                        //    myDetail.Name = tem.Medicine.Name;
-                        //    myDetail.Manufacturer = tem.Medicine.Manufacturer;
-                        //    myDetail.Specifications = tem.Medicine.Specifications;
+                        //    myDetail.SingleDoseUnit = tem.Material.Unit;
+                        //    myDetail.Name = tem.Material.Name;
+                        //    myDetail.Manufacturer = tem.Material.Manufacturer;
+                        //    myDetail.Specifications = tem.Material.Specifications;
                         //}
 
                         myDetail.SellPrice = tem.SellPrice;
@@ -112,7 +111,7 @@ namespace HISGUIMedicineLib.Views
             {
                 this.SaveBtn.Visibility = Visibility.Collapsed;
                 this.SaveAndCheckBtn.Visibility = Visibility.Collapsed;
-                if (vm.CurrentMedicineCheckStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
+                if (vm.CurrentMaterialCheckStore.ReCheckStatusEnum == CommContracts.ReCheckStatusEnum.已审核)
                 {
                     this.EditBtn.Visibility = Visibility.Collapsed;
                     this.ReCheckBtn.Visibility = Visibility.Collapsed;
@@ -125,56 +124,68 @@ namespace HISGUIMedicineLib.Views
             }
         }
 
-        private List<CommContracts.MedicineCheckStoreDetail> GetDetails()
+        private List<CommContracts.MaterialCheckStoreDetail> GetDetails()
         {
             List<MyDetail> list = myTableEdit.GetAllDetails();
-            List<CommContracts.MedicineCheckStoreDetail> Details = new List<CommContracts.MedicineCheckStoreDetail>();
+            List<CommContracts.MaterialCheckStoreDetail> Details = new List<CommContracts.MaterialCheckStoreDetail>();
             foreach (var tem in list)
             {
-                CommContracts.MedicineCheckStoreDetail detail = new CommContracts.MedicineCheckStoreDetail();
+                CommContracts.MaterialCheckStoreDetail detail = new CommContracts.MaterialCheckStoreDetail();
                 detail.Num = tem.SingleDose;
                 detail.SellPrice = tem.SellPrice;
                 detail.StorePrice = tem.StockPrice;
                 //detail.Batch = tem.BatchID;
                 //detail.ExpirationDate = tem.ExpirationDate;
-                detail.SellPrice = tem.SellPrice;
-                detail.StorePrice = tem.StockPrice;
-                //detail.MedicineID = tem.ID;
-                detail.StoreRoomMedicineNumID = tem.ID;
+                //detail.MaterialID = tem.ID;
+                detail.StoreRoomMaterialNumID = tem.StoreRoomNumID;
 
                 Details.Add(detail);
             }
             return Details;
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private bool MySaveMaterialCheckStore(bool bIsRecheck = false)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineCheckStock(GetDetails());
+            CommContracts.MaterialCheckStore materialCheckStore = new CommContracts.MaterialCheckStore();
+            if (vm.CurrentUser != null)
+                materialCheckStore.OperateUserID = vm.CurrentUser.ID;
+            if (vm.CurrentStoreRoom != null)
+                materialCheckStore.CheckStoreID = vm.CurrentStoreRoom.ID;
+            materialCheckStore.MaterialCheckStoreDetails = GetDetails();
+
+            bool? result = vm?.SaveMaterialCheckStock(materialCheckStore, bIsRecheck);
             if (result.HasValue)
             {
                 if (result.Value)
                 {
-                    MessageBox.Show("保存成功!");
-                    vm?.MedicineWorkManage();
-                    return;
+                    return true;
                 }
+            }
+
+            return false;
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MySaveMaterialCheckStore())
+            {
+                MessageBox.Show("保存成功!");
+                var vm = this.DataContext as HISGUIMedicineVM;
+                vm?.MedicineWorkManage();
+                return;
             }
             MessageBox.Show("保存失败!");
         }
 
         private void SaveAndCheckBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineCheckStock(GetDetails(), true);
-            if (result.HasValue)
+            if (MySaveMaterialCheckStore(true))
             {
-                if (result.Value)
-                {
-                    MessageBox.Show("保存并审核成功!");
-                    vm?.MedicineWorkManage();
-                    return;
-                }
+                MessageBox.Show("保存并审核成功!");
+                var vm = this.DataContext as HISGUIMedicineVM;
+                vm?.MedicineWorkManage();
+                return;
             }
             MessageBox.Show("保存并审核失败!");
         }
@@ -190,7 +201,7 @@ namespace HISGUIMedicineLib.Views
         private void ReCheckBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.ReCheckMedicineCheckStore();
+            bool? result = vm?.ReCheckMaterialCheckStore();
             if (result.HasValue)
             {
                 if (result.Value)

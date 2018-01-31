@@ -24,12 +24,12 @@ using System.Data;
 namespace HISGUIMedicineLib.Views
 {
     [Export]
-    [Export("NewInStockView", typeof(NewInStockView))]
-    public partial class NewInStockView : HISGUIViewBase
+    [Export("NewMedicineInStockView", typeof(NewMedicineInStockView))]
+    public partial class NewMedicineInStockView : HISGUIViewBase
     {
         private MyTableEdit myTableEdit;
         private List<CommContracts.Supplier> supplierList;
-        public NewInStockView()
+        public NewMedicineInStockView()
         {
             InitializeComponent();
             myTableEdit = new MyTableEdit(MyTableEditEnum.medicineInStock);
@@ -148,34 +148,50 @@ namespace HISGUIMedicineLib.Views
             return Details;
         }
 
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        private bool MySaveMedicineInStore(bool bIsRecheck = false)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineInStock(GetDetails());
+            CommContracts.MedicineInStore MedicineInStore = new CommContracts.MedicineInStore();
+            if (vm.CurrentUser != null)
+                MedicineInStore.OperateUserID = vm.CurrentUser.ID;
+            if (vm.CurrentStoreRoom != null)
+                MedicineInStore.ToStoreID = vm.CurrentStoreRoom.ID;
+            if ((CommContracts.Supplier)this.SupplierEdit.SelectedItem != null)
+                MedicineInStore.FromSupplierID = ((CommContracts.Supplier)this.SupplierEdit.SelectedItem).ID;
+            MedicineInStore.MedicineInStoreDetails = GetDetails();
+
+            bool? result = vm?.SaveMedicineInStock(MedicineInStore, bIsRecheck);
             if (result.HasValue)
             {
                 if (result.Value)
                 {
-                    MessageBox.Show("保存成功!");
-                    vm?.MedicineWorkManage();
-                    return;
+                    return true;
                 }
+            }
+
+            return false;
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (MySaveMedicineInStore())
+            {
+                MessageBox.Show("保存成功!");
+                var vm = this.DataContext as HISGUIMedicineVM;
+                vm?.MedicineWorkManage();
+                return;
             }
             MessageBox.Show("保存失败!");
         }
 
         private void SaveAndCheckBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIMedicineVM;
-            bool? result = vm?.SaveMedicineInStock(GetDetails(), true);
-            if (result.HasValue)
+            if (MySaveMedicineInStore(true))
             {
-                if (result.Value)
-                {
-                    MessageBox.Show("保存并审核成功!");
-                    vm?.MedicineWorkManage();
-                    return;
-                }
+                MessageBox.Show("保存并审核成功!");
+                var vm = this.DataContext as HISGUIMedicineVM;
+                vm?.MedicineWorkManage();
+                return;
             }
             MessageBox.Show("保存并审核失败!");
         }
