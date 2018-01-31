@@ -56,6 +56,7 @@
     <Compile Include="AssayDoctorAdvice.cs" />
     <Compile Include="AssayItem.cs" />
     <Compile Include="Department.cs" />
+    <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="FixDalError.cs" />
     <Compile Include="Inpatient.cs" />

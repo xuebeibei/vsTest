@@ -441,21 +441,10 @@ namespace CommServer
             return temp.getAllInHospitalInspectDoctorAdvice(InpatientID);
         }
 
-        public bool UpdateInspectChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.InspectDoctorAdvice temp = new BLL.InspectDoctorAdvice();
-            return temp.UpdateInspectChargeStatus(AdviceID, chargeStatusEnum);
-        }
-
         public List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID)
         {
             BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
             return temp.getAllInHospitalTherapyDoctorAdvice(InpatientID);
-        }
-        public bool UpdateTherapyChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.TherapyDoctorAdvice temp = new BLL.TherapyDoctorAdvice();
-            return temp.UpdateTherapyChargeStatus(AdviceID, chargeStatusEnum);
         }
 
         public List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID)
@@ -463,31 +452,6 @@ namespace CommServer
             BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
             return temp.getAllInHospitalAssayDoctorAdvice(InpatientID);
         }
-
-        public bool UpdateAssayChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.AssayDoctorAdvice temp = new BLL.AssayDoctorAdvice();
-            return temp.UpdateAssayChargeStatus(AdviceID, chargeStatusEnum);
-        }
-
-        //public List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.getAllInHospitalXiCheng(InpatientID);
-        //}
-
-        //public List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.getAllInHospitalZhong(InpatientID);
-        //}
-
-        //public bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        //{
-        //    BLL.Recipe temp = new BLL.Recipe();
-        //    return temp.UpdateChargeStatus(RecipeID, chargeStatusEnum);
-        //}
-
 
         public CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id)
         {
@@ -513,11 +477,6 @@ namespace CommServer
             return temp.getAllInHospitalMaterialDoctorAdvice(InpatientID);
         }
 
-        public bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.MaterialDoctorAdvice temp = new BLL.MaterialDoctorAdvice();
-            return temp.UpdateMaterialChargeStatus(MaterialDoctorAdviceID, chargeStatusEnum);
-        }
         public CommContracts.OtherServiceDoctorAdvice GetOtherService(int Id)
         {
             BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
@@ -540,12 +499,6 @@ namespace CommServer
         {
             BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
             return temp.getAllInHospitalOtherService(InpatientID);
-        }
-
-        public bool UpdateOtherServiceChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.OtherServiceDoctorAdvice temp = new BLL.OtherServiceDoctorAdvice();
-            return temp.UpdateOtherServiceChargeStatus(AdviceID, chargeStatusEnum);
         }
 
         public List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName)
@@ -929,13 +882,6 @@ namespace CommServer
             return temp.getAllInHospitalZhong(InpatientID);
         }
 
-
-        public bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            BLL.MedicineDoctorAdvice temp = new BLL.MedicineDoctorAdvice();
-            return temp.UpdateChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
-        }
-
         public List<CommContracts.MedicineCharge> GetAllClinicMedicineCharge(int RegistrationID)
         {
             BLL.MedicineCharge temp = new BLL.MedicineCharge();
@@ -1231,6 +1177,12 @@ namespace CommServer
         {
             BLL.OtherServiceCharge temp = new BLL.OtherServiceCharge();
             return temp.GetAllInHospitalOtherServiceCharge(InpatientID);
+        }
+
+        public bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
+        {
+            BLL.DoctorAdviceBase temp = new BLL.DoctorAdviceBase();
+            return temp.UpdateChargeStatus(DoctorAdviceID, chargeStatusEnum);
         }
     }
 }

@@ -227,7 +227,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 CommClient.MedicineDoctorAdvice myd1 = new CommClient.MedicineDoctorAdvice();
-                if (!myd1.UpdateMedicineChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(CurrentRecipe.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }

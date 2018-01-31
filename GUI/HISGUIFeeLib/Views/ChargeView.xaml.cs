@@ -128,7 +128,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 CommClient.MedicineDoctorAdvice myd1 = new CommClient.MedicineDoctorAdvice();
-                if (!myd1.UpdateMedicineChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -189,7 +189,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 CommClient.MaterialDoctorAdvice myd1 = new CommClient.MaterialDoctorAdvice();
-                if (!myd1.UpdateMaterialChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -245,7 +245,7 @@ namespace HISGUIFeeLib.Views
             {
 
                 CommClient.TherapyDoctorAdvice myd1 = new CommClient.TherapyDoctorAdvice();
-                if (!myd1.UpdateTherapyChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -301,7 +301,7 @@ namespace HISGUIFeeLib.Views
             {
 
                 CommClient.AssayDoctorAdvice myd1 = new CommClient.AssayDoctorAdvice();
-                if (!myd1.UpdateAssayChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -357,7 +357,7 @@ namespace HISGUIFeeLib.Views
             {
 
                 CommClient.InspectDoctorAdvice myd1 = new CommClient.InspectDoctorAdvice();
-                if (!myd1.UpdateInspectChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }
@@ -413,7 +413,7 @@ namespace HISGUIFeeLib.Views
             {
 
                 CommClient.OtherServiceDoctorAdvice myd1 = new CommClient.OtherServiceDoctorAdvice();
-                if (!myd1.UpdateOtherServiceChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
+                if (!myd1.UpdateChargeStatus(tempAdvice.ID, CommContracts.ChargeStatusEnum.全部收费))
                 {
                     return;
                 }

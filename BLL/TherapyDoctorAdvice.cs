@@ -12,7 +12,7 @@ using AutoMapper;
 
 namespace BLL
 {
-    public class TherapyDoctorAdvice
+    public class TherapyDoctorAdvice : DoctorAdviceBase
     {
         public CommContracts.TherapyDoctorAdvice GetTherapy(int Id)
         {
@@ -122,28 +122,6 @@ namespace BLL
                 }
             }
             return list;
-        }
-
-        public bool UpdateTherapyChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            using (DAL.HisContext context = new DAL.HisContext())
-            {
-                var tem = context.TherapyDoctorAdvices.Find(AdviceID);
-                if (tem == null)
-                    return false;
-
-                tem.ChargeStatusEnum = (DAL.ChargeStatusEnum)chargeStatusEnum;
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

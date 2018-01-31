@@ -10,17 +10,8 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class MaterialDoctorAdvice
+    public class MaterialDoctorAdvice : DoctorAdviceBase
     {
-        private ILoginService client;
-
-        public MaterialDoctorAdvice()
-        {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-        }
-
         public CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id)
         {
             return client.GetMaterialDoctorAdvice(Id);
@@ -39,11 +30,6 @@ namespace CommClient
         public List<CommContracts.MaterialDoctorAdvice> getAllInHospitalMaterialDoctorAdvice(int InpatientID)
         {
             return client.getAllInHospitalMaterialDoctorAdvice(InpatientID);
-        }
-
-        public bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            return client.UpdateMaterialChargeStatus(MaterialDoctorAdviceID, chargeStatusEnum);
         }
     }
 }

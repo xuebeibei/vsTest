@@ -10,17 +10,8 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class MedicineDoctorAdvice
+    public class MedicineDoctorAdvice : DoctorAdviceBase
     {
-        private ILoginService client;
-
-        public MedicineDoctorAdvice()
-        {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-        }
-
         public bool SaveMedicineDoctorAdvice(CommContracts.MedicineDoctorAdvice medicineDoctorAdvice)
         {
             return client.SaveMedicineDoctorAdvice(medicineDoctorAdvice);
@@ -44,11 +35,6 @@ namespace CommClient
         public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID)
         {
             return client.getAllInHospitalZhong(InpatientID);
-        }
-
-        public bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            return client.UpdateMedicineChargeStatus(MedicineDoctorAdviceID, chargeStatusEnum);
         }
     }
 }

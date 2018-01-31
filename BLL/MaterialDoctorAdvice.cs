@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class MaterialDoctorAdvice
+    public class MaterialDoctorAdvice : DoctorAdviceBase
     {
         public CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id)
         {
@@ -115,28 +115,6 @@ namespace BLL
                 }
             }
             return list;
-        }
-
-        public bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            using (DAL.HisContext context = new DAL.HisContext())
-            {
-                var tem = context.MaterialDoctorAdvices.Find(MaterialDoctorAdviceID);
-                if (tem == null)
-                    return false;
-
-                tem.ChargeStatusEnum = (DAL.ChargeStatusEnum)chargeStatusEnum;
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

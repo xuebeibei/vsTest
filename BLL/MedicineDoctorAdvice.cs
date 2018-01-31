@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class MedicineDoctorAdvice
+    public class MedicineDoctorAdvice : DoctorAdviceBase
     {
         public void ReadMedicineDoctorAdvice()
         {
@@ -102,28 +102,6 @@ namespace BLL
         public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID)
         {
             return getAllMedicineDoctorAdvices(0, InpatientID, DAL.DoctorAdviceContentEnum.ZhongYao);
-        }
-
-        public bool UpdateChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)
-        {
-            using (DAL.HisContext context = new DAL.HisContext())
-            {
-                var tem = context.MedicineDoctorAdvices.Find(MedicineDoctorAdviceID);
-                if (tem == null)
-                    return false;
-
-                tem.ChargeStatusEnum = (DAL.ChargeStatusEnum)chargeStatusEnum;
-                try
-                {
-                    context.SaveChanges();
-                }
-                catch (Exception ex)
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

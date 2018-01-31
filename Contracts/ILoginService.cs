@@ -170,9 +170,6 @@ namespace CommContracts
         List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID);
 
         [OperationContract]
-        bool UpdateMedicineChargeStatus(int MedicineDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
-
-        [OperationContract]
         List<CommContracts.MedicineCharge> GetAllClinicMedicineCharge(int RegistrationID);
         [OperationContract]
         List<CommContracts.MedicineCharge> GetAllInHospitalMedicineCharge(int InpatientID);
@@ -275,17 +272,10 @@ namespace CommContracts
         List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID);
 
         [OperationContract]
-        bool UpdateInspectChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
-
-        [OperationContract]
         List<CommContracts.TherapyDoctorAdvice> getAllInHospitalTherapyDoctorAdvice(int InpatientID);
-        [OperationContract]
-        bool UpdateTherapyChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         List<CommContracts.AssayDoctorAdvice> getAllInHospitalAssayDoctorAdvice(int InpatientID);
-        [OperationContract]
-        bool UpdateAssayChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         CommContracts.MaterialDoctorAdvice GetMaterialDoctorAdvice(int Id);
@@ -298,8 +288,6 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.MaterialDoctorAdvice> getAllInHospitalMaterialDoctorAdvice(int InpatientID);
-        [OperationContract]
-        bool UpdateMaterialChargeStatus(int MaterialDoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
 
         [OperationContract]
@@ -313,9 +301,6 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.OtherServiceDoctorAdvice> getAllInHospitalOtherService(int InpatientID);
-
-        [OperationContract]
-        bool UpdateOtherServiceChargeStatus(int AdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
         List<CommContracts.OtherServiceItem> GetAllOtherServiceItem(string strName);
@@ -613,5 +598,8 @@ namespace CommContracts
         List<CommContracts.OtherServiceCharge> GetAllClinicOtherServiceCharge(int RegistrationID);
         [OperationContract]
         List<CommContracts.OtherServiceCharge> GetAllInHospitalOtherServiceCharge(int InpatientID);
+
+        [OperationContract]
+        bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
     }
 }
