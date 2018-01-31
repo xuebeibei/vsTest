@@ -45,12 +45,12 @@ namespace HISGUIFeeLib.Views
 
 
             NewInPatient();
-            updateAllWait();
+            UpdateAllWait();
 
             this.Loaded += InpatientRegistrationView_Loaded;
         }
 
-        private void updateAllWait()
+        private void UpdateAllWait()
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
             if (this.InManageCheck.IsChecked.Value)
@@ -120,7 +120,7 @@ namespace HISGUIFeeLib.Views
                         {
                             MessageBox.Show("入院成功！");
                             NewInPatient();
-                            updateAllWait();
+                            UpdateAllWait();
                             return;
                         }
                     }
@@ -297,7 +297,7 @@ namespace HISGUIFeeLib.Views
             LeaveHospitalGrid.Visibility = Visibility.Collapsed;
             Spe.Visibility = Visibility.Collapsed;
             setInHospitalGridEnable();
-            updateAllWait();
+            UpdateAllWait();
         }
 
         // 出院办理
@@ -313,7 +313,7 @@ namespace HISGUIFeeLib.Views
             LeaveHospitalDiagnosisBtn.IsEnabled = true;
             LeaveHospitalDoctorBtn.IsEnabled = true;
             LeaveHospitalTime.IsEnabled = true;
-            updateAllWait();
+            UpdateAllWait();
 
         }
 
@@ -330,7 +330,7 @@ namespace HISGUIFeeLib.Views
             LeaveHospitalDiagnosisBtn.IsEnabled = false;
             LeaveHospitalDoctorBtn.IsEnabled = false;
             LeaveHospitalTime.IsEnabled = false;
-            updateAllWait();
+            UpdateAllWait();
         }
 
         private void setInHospitalGridEnable(bool bEnable = true)
@@ -481,7 +481,7 @@ namespace HISGUIFeeLib.Views
                     {
                         MessageBox.Show("出院成功！");
                         setInHospitalGridEnable(false);
-                        updateAllWait();
+                        UpdateAllWait();
                         return;
                     }
                 }
@@ -507,7 +507,7 @@ namespace HISGUIFeeLib.Views
                     {
                         MessageBox.Show("召回成功！");
                         setInHospitalGridEnable(false);
-                        updateAllWait();
+                        UpdateAllWait();
                         return;
                     }
                 }
