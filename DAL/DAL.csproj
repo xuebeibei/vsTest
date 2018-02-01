@@ -58,6 +58,8 @@
     <Compile Include="BodyRegion.cs" />
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
+    <Compile Include="DecimalPrecisionAttribute.cs" />
+    <Compile Include="DecimalPrecisionAttributeConvention.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="DoctorAdviceDetailBase.cs" />
@@ -115,6 +117,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
+    <Compile Include="MyEnum.cs" />
     <Compile Include="OtherServiceCharge.cs" />
     <Compile Include="OtherServiceChargeDetail.cs" />
     <Compile Include="OtherServiceDoctorAdvice.cs" />
