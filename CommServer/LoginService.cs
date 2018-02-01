@@ -19,47 +19,47 @@ namespace CommServer
             this.hostApp = hostApp;
         }
 
-        public bool UserAuthenticate(User l)
+        public bool UserAuthenticate(User user)
         {
             // 这里调用BLL中的逻辑
-            BLL.Login login = new BLL.Login(l.Username, l.Password);
-            return login.Authenticate();
+            BLL.User temp = new BLL.User();
+            return temp.Authenticate(user);
         }
 
         public CommContracts.User getUser(int UserID)
         {
-            BLL.Login login = new BLL.Login();
-            return login.getUser(UserID);
+            BLL.User temp = new BLL.User();
+            return temp.getUser(UserID);
         }
 
         public List<CommContracts.User> GetAllLoginUser(string strName = "")
         {
-            BLL.Login login = new BLL.Login();
-            return login.GetAllLoginUser(strName);
+            BLL.User temp = new BLL.User();
+            return temp.GetAllLoginUser(strName);
         }
 
-        public bool UpdateLoginUser(CommContracts.User job)
+        public bool UpdateLoginUser(CommContracts.User user)
         {
-            BLL.Login login = new BLL.Login();
-            return login.UpdateLoginUser(job);
+            BLL.User temp = new BLL.User();
+            return temp.UpdateLoginUser(user);
         }
 
-        public bool SaveLoginUser(CommContracts.User job)
+        public bool SaveLoginUser(CommContracts.User user)
         {
-            BLL.Login login = new BLL.Login();
-            return login.SaveLoginUser(job);
+            BLL.User temp = new BLL.User();
+            return temp.SaveLoginUser(user);
         }
 
-        public bool DeleteLoginUser(int jobID)
+        public bool DeleteLoginUser(int userID)
         {
-            BLL.Login login = new BLL.Login();
-            return login.DeleteLoginUser(jobID);
+            BLL.User temp = new BLL.User();
+            return temp.DeleteLoginUser(userID);
         }
 
-        public bool UserLogout(User l)
+        public bool UserLogout(User user)
         {
-            BLL.Login login = new BLL.Login(l.Username, l.Password);
-            return login.Logout();
+            BLL.User temp = new BLL.User();
+            return temp.Logout(user);
         }
 
         public int getAllDepartmentNum()

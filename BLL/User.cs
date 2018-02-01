@@ -9,28 +9,9 @@ using AutoMapper;
 
 namespace BLL
 {
-    public class Login
+    public class User
     {
-        CommContracts.User user;
-        
-        public Login()
-        {
-
-        }
-
-        public Login(CommContracts.User user)
-        {
-            this.user = user;
-        }
-
-        public Login(string username, string password)
-        {
-            user = new CommContracts.User();
-            user.Username = username;
-            user.Password = password;
-        }
-
-        public bool Authenticate()
+        public bool Authenticate(CommContracts.User user)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -57,7 +38,7 @@ namespace BLL
             }
         }
 
-        public bool Logout()
+        public bool Logout(CommContracts.User user)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -101,7 +82,7 @@ namespace BLL
             return list;
         }
 
-        public bool SaveLoginUser(CommContracts.User loginUser)
+        public bool SaveLoginUser(CommContracts.User user)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -112,7 +93,7 @@ namespace BLL
                 var mapper = config.CreateMapper();
 
                 DAL.User temp = new DAL.User();
-                temp = mapper.Map<DAL.User>(loginUser);
+                temp = mapper.Map<DAL.User>(user);
 
                 ctx.Users.Add(temp);
                 try
@@ -149,18 +130,18 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateLoginUser(CommContracts.User loginUser)
+        public bool UpdateLoginUser(CommContracts.User user)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.Users.FirstOrDefault(m => m.ID == loginUser.ID);
+                var temp = ctx.Users.FirstOrDefault(m => m.ID == user.ID);
                 if (temp != null)
                 {
-                    temp.Username = loginUser.Username;
-                    temp.Password = loginUser.Password;
-                    temp.Status = (DAL.User.LoginStatus)loginUser.Status;
-                    temp.LastLogin = loginUser.LastLogin;
-                    temp.EmployeeID = loginUser.EmployeeID;
+                    temp.Username = user.Username;
+                    temp.Password = user.Password;
+                    temp.Status = (DAL.User.LoginStatus)user.Status;
+                    temp.LastLogin = user.LastLogin;
+                    temp.EmployeeID = user.EmployeeID;
                 }
                 else
                 {
