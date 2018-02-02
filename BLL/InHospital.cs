@@ -9,16 +9,19 @@ namespace BLL
 {
     public class InHospital
     {
-        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
         {
             List<CommContracts.InHospital> list = new List<CommContracts.InHospital>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.InHospitals
+                            from b in a.InHospitalPatientDoctors
                             where a.InHospitalStatusEnum == (DAL.InHospitalStatusEnum)inHospitalStatusEnum &&
-                            a.Patient.Name.StartsWith(strName)
+                            a.Patient.Name.StartsWith(strName) &&
+                            (EmployeeID == 0 || (b.EndTime == null && b.DoctorID == EmployeeID))
                             select a;
+
                 foreach (DAL.InHospital ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
@@ -73,15 +76,31 @@ namespace BLL
                 DAL.Patient patient = new DAL.Patient();
                 patient = mapper1.Map<DAL.Patient>(InHospital.Patient);
 
-                var config = new MapperConfiguration(cfg =>
+                var config2 = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.InHospital, DAL.InHospital>().ForMember(x => x.Patient, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.InHospitalPatientDoctor, DAL.InHospitalPatientDoctor>().
+                    ForMember(x => x.InHospital, opt => opt.Ignore()).
+                    ForMember(x=>x.Doctor, opt=>opt.Ignore()).ForMember(x=>x.User ,opt=>opt.Ignore());
                 });
+                var mapper2 = config2.CreateMapper();
+
+                List<DAL.InHospitalPatientDoctor> patientDoctors = new List<DAL.InHospitalPatientDoctor>();
+                patientDoctors = mapper2.Map<List<DAL.InHospitalPatientDoctor>>(InHospital.InHospitalPatientDoctors);
+
+
+                var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<CommContracts.InHospital, DAL.InHospital>().
+                        ForMember(x => x.Patient, opt => opt.Ignore()).
+                        ForMember(x => x.InHospitalPatientDoctors, opt => opt.Ignore());
+                    });
                 var mapper = config.CreateMapper();
+
 
                 DAL.InHospital temp = new DAL.InHospital();
                 temp = mapper.Map<DAL.InHospital>(InHospital);
                 temp.Patient = patient;
+                temp.InHospitalPatientDoctors = patientDoctors;
 
 
 
