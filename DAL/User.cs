@@ -19,6 +19,8 @@ namespace DAL
             DoctorAdviceBases = new List<DoctorAdviceBase>();
             StoreOperateBillBases = new List<StoreOperateBillBase>();
             ChargeBases = new List<ChargeBase>();
+            InHospitalApplys = new List<InHospitalApply>();
+            MyTableBases = new List<MyTableBase>();
         }
         public enum LoginStatus { invalid, unknow, logout, login };
         public int ID { get; set; }
@@ -36,9 +38,12 @@ namespace DAL
         public virtual ICollection<PrePay> PrePays { get; set; }
 
         public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
+        public virtual ICollection<MyTableBase> MyTableBases { get; set; }
 
         public virtual ICollection<StoreOperateBillBase> StoreOperateBillBases { get; set; }
 
         public virtual ICollection<ChargeBase> ChargeBases { get; set; }
+
+        public virtual ICollection<InHospitalApply> InHospitalApplys { get; set; }
     }
 }

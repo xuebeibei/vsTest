@@ -12,6 +12,7 @@ namespace DAL
         {
             Name = "";
             Users = new List<User>();
+            InHospitalPatientDoctors = new List<InHospitalPatientDoctor>();
         }
 
         public int ID { get; set; }
@@ -25,5 +26,7 @@ namespace DAL
         public virtual ICollection<User> Users { get; set; }
         public virtual Job Job { get; set; }
         public virtual Department Department { get; set; }
+
+        public virtual ICollection<InHospitalPatientDoctor> InHospitalPatientDoctors { get; set; }
     }
 }

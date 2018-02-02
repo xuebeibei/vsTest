@@ -601,5 +601,16 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
+
+        [OperationContract]
+        List<CommContracts.InHospitalApply> GetAllInHospitalApply(string strName);
+
+        [OperationContract]
+        bool SaveInHospitalApply(CommContracts.InHospitalApply InHospitalApply);
+        [OperationContract]
+        bool DeleteInHospitalApply(int InHospitalApplyID);
+
+        [OperationContract]
+        bool UpdateInHospitalApply(CommContracts.InHospitalApply InHospitalApply);
     }
 }

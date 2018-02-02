@@ -665,7 +665,7 @@ namespace CommServer
             return temp.SubdMedicineStoreNumByAdvice(medicineCharge);
         }
 
-        
+
 
         public bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill)
         {
@@ -1183,6 +1183,29 @@ namespace CommServer
         {
             BLL.DoctorAdviceBase temp = new BLL.DoctorAdviceBase();
             return temp.UpdateChargeStatus(DoctorAdviceID, chargeStatusEnum);
+        }
+
+        public List<CommContracts.InHospitalApply> GetAllInHospitalApply(string strName)
+        {
+            BLL.InHospitalApply temp = new BLL.InHospitalApply();
+            return temp.GetAllInHospitalApply(strName);
+        }
+
+        public bool SaveInHospitalApply(CommContracts.InHospitalApply InHospitalApply)
+        {
+            BLL.InHospitalApply temp = new BLL.InHospitalApply();
+            return temp.SaveInHospitalApply(InHospitalApply);
+        }
+        public bool DeleteInHospitalApply(int InHospitalApplyID)
+        {
+            BLL.InHospitalApply temp = new BLL.InHospitalApply();
+            return temp.DeleteInHospitalApply(InHospitalApplyID);
+        }
+
+        public bool UpdateInHospitalApply(CommContracts.InHospitalApply InHospitalApply)
+        {
+            BLL.InHospitalApply temp = new BLL.InHospitalApply();
+            return temp.UpdateInHospitalApply(InHospitalApply);
         }
     }
 }

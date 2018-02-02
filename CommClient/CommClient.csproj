@@ -48,6 +48,7 @@
     <Compile Include="Department.cs" />
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="InHospitalApply.cs" />
     <Compile Include="Inpatient.cs" />
     <Compile Include="InspectCharge.cs" />
     <Compile Include="InspectDoctorAdvice.cs" />

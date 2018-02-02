@@ -65,6 +65,9 @@
     <Compile Include="DoctorAdviceDetailBase.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="GoodsBase.cs" />
+    <Compile Include="InHospital.cs" />
+    <Compile Include="InHospitalApply.cs" />
+    <Compile Include="InHospitalPatientDoctor.cs" />
     <Compile Include="Inpatient.cs" />
     <Compile Include="InspectCharge.cs" />
     <Compile Include="InspectChargeDetail.cs" />
@@ -72,6 +75,7 @@
     <Compile Include="InspectDoctorAdviceDetail.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="LeaveHospital.cs" />
     <Compile Include="MaterialCharge.cs" />
     <Compile Include="MaterialChargeDetail.cs" />
     <Compile Include="MaterialCheckStore.cs" />
@@ -115,9 +119,18 @@
     <Compile Include="Migrations\201801310725217_PaperTest4.Designer.cs">
       <DependentUpon>201801310725217_PaperTest4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201802020159076_PaperTest5.cs" />
+    <Compile Include="Migrations\201802020159076_PaperTest5.Designer.cs">
+      <DependentUpon>201802020159076_PaperTest5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802020329149_PaperTest6.cs" />
+    <Compile Include="Migrations\201802020329149_PaperTest6.Designer.cs">
+      <DependentUpon>201802020329149_PaperTest6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
+    <Compile Include="MyTableBase.cs" />
     <Compile Include="OtherServiceCharge.cs" />
     <Compile Include="OtherServiceChargeDetail.cs" />
     <Compile Include="OtherServiceDoctorAdvice.cs" />
@@ -131,6 +144,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="RecallHospital.cs" />
     <Compile Include="RecipeChargeBill.cs" />
     <Compile Include="RecipeChargeDetail.cs" />
     <Compile Include="Registration.cs" />
@@ -179,6 +193,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801310725217_PaperTest4.resx">
       <DependentUpon>201801310725217_PaperTest4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020159076_PaperTest5.resx">
+      <DependentUpon>201802020159076_PaperTest5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802020329149_PaperTest6.resx">
+      <DependentUpon>201802020329149_PaperTest6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

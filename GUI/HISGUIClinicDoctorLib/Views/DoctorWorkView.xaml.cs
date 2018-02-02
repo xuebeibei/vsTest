@@ -167,22 +167,34 @@ namespace HISGUIDoctorLib.Views
             if (tempRegistration == null)
                 return;
 
-            tempRegistration.EndSeeDoctorTime = DateTime.Now;
-            tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.申请入院;
-            vm.UpdateRegistration(tempRegistration);
+            
 
-            this.PatientMsgView.SetMyEnable(false);
-            this.PatientMsgView.ShowClinicMsg(tempRegistration);
-            this.PatientMsgView.Visibility = Visibility.Visible;
-            this.TipMsgLabel.Visibility = Visibility.Collapsed;
-            this.StartBtn.IsEnabled = false;
-            this.OverBtn.IsEnabled = false;
-            this.TurnToInHospitalBtn.IsEnabled = false;
-            UpdateAllRegistration();
+            CommContracts.InHospitalApply inHospitalApply = new CommContracts.InHospitalApply();
+            inHospitalApply.PatientID = vm.CurrentRegistration.PatientID;
+            inHospitalApply.UserID = vm.CurrentUser.ID;
+            
+            bool? result =  vm.SaveInHospitalApply(inHospitalApply);
+            if(result.HasValue)
+            {
+                if(result.Value)
+                {
+                    MessageBox.Show("入院申请成功！");
+                    tempRegistration.EndSeeDoctorTime = DateTime.Now;
+                    tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.申请入院;
+                    vm.UpdateRegistration(tempRegistration);
 
-            CommContracts.Inpatient inpatient = new CommContracts.Inpatient();
-            inpatient.PatientID = vm.CurrentRegistration.PatientID;
-            vm.SaveInPatient(inpatient);
+                    this.PatientMsgView.SetMyEnable(false);
+                    this.PatientMsgView.ShowClinicMsg(tempRegistration);
+                    this.PatientMsgView.Visibility = Visibility.Visible;
+                    this.TipMsgLabel.Visibility = Visibility.Collapsed;
+                    this.StartBtn.IsEnabled = false;
+                    this.OverBtn.IsEnabled = false;
+                    this.TurnToInHospitalBtn.IsEnabled = false;
+                    UpdateAllRegistration();
+                    return;
+                }
+            }
+            MessageBox.Show("入院申请失败！");
         }
     }
 }

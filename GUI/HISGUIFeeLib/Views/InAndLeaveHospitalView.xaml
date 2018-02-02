@@ -9,9 +9,9 @@
     <Grid>
         <StackPanel Width="990">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <RadioButton x:Name="InManageCheck" Margin="5" IsChecked="True" Click="RadioButton_Click">未入院</RadioButton>
-                <RadioButton x:Name="LeaveManageCheck" Margin="5" Click="RadioButton_Click_1">住院中</RadioButton>
-                <RadioButton x:Name="RecallManageCheck" Margin="5" Click="RadioButton_Click_2">已出院</RadioButton>
+                <RadioButton x:Name="InManageCheck" Margin="5" IsChecked="True" Click="InManageCheck_Click">未入院</RadioButton>
+                <RadioButton x:Name="LeaveManageCheck" Margin="5" Click="LeaveManageCheck_Click">住院中</RadioButton>
+                <RadioButton x:Name="RecallManageCheck" Margin="5" Click="RecallManageCheck_Click">已出院</RadioButton>
                 <Button x:Name="ReadCardBtn" Margin="5" Grid.Column="1" Click="ReadCardBtn_Click">读卡</Button>
             </StackPanel>
             <Separator x:Name="Spe2" Margin="5"/>
@@ -211,7 +211,7 @@
                 <Button Margin="5" Grid.Column="1">查找</Button>
             </StackPanel>
             <ListView Name="AllWaitList" Margin="5" 
-                              SelectionMode="Single" MouseDoubleClick="AllWaitList_MouseDoubleClick">
+                              SelectionMode="Single" SelectionChanged="AllWaitList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewAllWait">
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>

@@ -27,7 +27,7 @@ namespace HISGUIFeeLib.Views
     [Export("InAndLeaveHospitalView", typeof(InAndLeaveHospitalView))]
     public partial class InAndLeaveHospitalView : HISGUIViewBase
     {
-        private CommContracts.Inpatient Inpatient;
+        private CommContracts.Inpatient MyCurrentInpatient;
         private bool IsEdit;
         public InAndLeaveHospitalView()
         {
@@ -54,7 +54,11 @@ namespace HISGUIFeeLib.Views
         {
             CommClient.Inpatient myd = new CommClient.Inpatient();
             if (this.InManageCheck.IsChecked.Value)
-                AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.未入院);
+            {
+                CommClient.InHospitalApply mydApply = new CommClient.InHospitalApply();               
+                AllWaitList.ItemsSource = mydApply.GetAllInHospitalApply();
+            }
+                
             else if (this.LeaveManageCheck.IsChecked.Value)
                 AllWaitList.ItemsSource = myd.GetAllInPatientList(CommContracts.InHospitalStatusEnum.在院中);
             else if (this.RecallManageCheck.IsChecked.Value)
@@ -62,7 +66,7 @@ namespace HISGUIFeeLib.Views
         }
         private void NewInPatient()
         {
-            Inpatient = new CommContracts.Inpatient();
+            MyCurrentInpatient = new CommContracts.Inpatient();
             IsEdit = false;
 
             updateInDateToView();
@@ -70,7 +74,7 @@ namespace HISGUIFeeLib.Views
 
         private void NoInPatient()
         {
-            Inpatient = null;
+            MyCurrentInpatient = null;
             IsEdit = false;
 
             updateInDateToView();
@@ -90,16 +94,16 @@ namespace HISGUIFeeLib.Views
 
         private void InHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return;
 
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToInDate())
             {
-                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
+                MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
                 if (IsEdit)
                 {
-                    bool? bResult = vm?.UpdateInPatient(Inpatient);
+                    bool? bResult = vm?.UpdateInPatient(MyCurrentInpatient);
                     if (bResult.HasValue)
                     {
                         if (bResult.Value)
@@ -113,7 +117,7 @@ namespace HISGUIFeeLib.Views
                 }
                 else
                 {
-                    bool? bResult = vm?.SaveInPatient(Inpatient);
+                    bool? bResult = vm?.SaveInPatient(MyCurrentInpatient);
                     if (bResult.HasValue)
                     {
                         if (bResult.Value)
@@ -132,40 +136,40 @@ namespace HISGUIFeeLib.Views
 
         private void updateInDateToView()
         {
-            if (Inpatient != null)
+            if (MyCurrentInpatient != null)
             {
-                this.InHospitalNo.Text = Inpatient.No;
-                this.CaseNo.Text = Inpatient.CaseNo;
-                this.PayTypeEnumCombo.SelectedItem = Inpatient.BaoXianEnum;
-                this.YiBaoNo.Text = Inpatient.YiBaoNo;
-                if (Inpatient.Patient != null)
+                this.InHospitalNo.Text = MyCurrentInpatient.No;
+                this.CaseNo.Text = MyCurrentInpatient.CaseNo;
+                this.PayTypeEnumCombo.SelectedItem = MyCurrentInpatient.BaoXianEnum;
+                this.YiBaoNo.Text = MyCurrentInpatient.YiBaoNo;
+                if (MyCurrentInpatient.Patient != null)
                 {
-                    this.Name.Text = Inpatient.Patient.Name;
-                    this.GenderCombo.SelectedItem = Inpatient.Patient.Gender;
-                    this.BirthDay.SelectedDate = Inpatient.Patient.BirthDay;
-                    this.IDCardNo.Text = Inpatient.Patient.IDCardNo;
-                    this.VolkEnumCombo.SelectedItem = Inpatient.Patient.Volk;
-                    this.JiGuan.Text = Inpatient.Patient.JiGuan;
-                    this.Tel.Text = Inpatient.Patient.Tel;
+                    this.Name.Text = MyCurrentInpatient.Patient.Name;
+                    this.GenderCombo.SelectedItem = MyCurrentInpatient.Patient.Gender;
+                    this.BirthDay.SelectedDate = MyCurrentInpatient.Patient.BirthDay;
+                    this.IDCardNo.Text = MyCurrentInpatient.Patient.IDCardNo;
+                    this.VolkEnumCombo.SelectedItem = MyCurrentInpatient.Patient.Volk;
+                    this.JiGuan.Text = MyCurrentInpatient.Patient.JiGuan;
+                    this.Tel.Text = MyCurrentInpatient.Patient.Tel;
                 }
 
-                this.MarriageEnumCombo.SelectedItem = Inpatient.MarriageEnum;
-                this.Job.Text = Inpatient.Job;
-                this.WorkUnitAddress.Text = Inpatient.WorkAddress;
-                this.ConnectsName.Text = Inpatient.ContactsName;
-                this.ConnectsTel.Text = Inpatient.ContactsTel;
-                this.ConnectsAddress.Text = Inpatient.ContactsAddress;
-                this.InHospitalTime.SelectedDate = Inpatient.InHospitalTime;
-                this.IllnesSstateEnumCombo.SelectedItem = Inpatient.IllnesSstateEnum;
-                this.InHospitalDiagnosis.Text = Inpatient.InHospitalDiagnoses;
-                this.InDepartmentEdit.Text = Inpatient.InHospitalDepartment;
-                this.InDoctorEdit.Text = Inpatient.InHospitalDoctorName;
+                this.MarriageEnumCombo.SelectedItem = MyCurrentInpatient.MarriageEnum;
+                this.Job.Text = MyCurrentInpatient.Job;
+                this.WorkUnitAddress.Text = MyCurrentInpatient.WorkAddress;
+                this.ConnectsName.Text = MyCurrentInpatient.ContactsName;
+                this.ConnectsTel.Text = MyCurrentInpatient.ContactsTel;
+                this.ConnectsAddress.Text = MyCurrentInpatient.ContactsAddress;
+                this.InHospitalTime.SelectedDate = MyCurrentInpatient.InHospitalTime;
+                this.IllnesSstateEnumCombo.SelectedItem = MyCurrentInpatient.IllnesSstateEnum;
+                this.InHospitalDiagnosis.Text = MyCurrentInpatient.InHospitalDiagnoses;
+                this.InDepartmentEdit.Text = MyCurrentInpatient.InHospitalDepartment;
+                this.InDoctorEdit.Text = MyCurrentInpatient.InHospitalDoctorName;
                 this.InHospitalYaJin.Text = "_";
 
-                this.InHospitalStatus.Text = Inpatient.InHospitalStatusEnum.ToString();
-                if (Inpatient.InPatientUser != null)
+                this.InHospitalStatus.Text = MyCurrentInpatient.InHospitalStatusEnum.ToString();
+                if (MyCurrentInpatient.InPatientUser != null)
                 {
-                    this.InUserName.Text = Inpatient.InPatientUser.Username;
+                    this.InUserName.Text = MyCurrentInpatient.InPatientUser.Username;
                 }
 
                 this.InHospitalTime.DisplayDateEnd = DateTime.Now;
@@ -206,17 +210,17 @@ namespace HISGUIFeeLib.Views
             if (this.GenderCombo.SelectedItem == null)
                 return false;
 
-            if (Inpatient != null)
+            if (MyCurrentInpatient != null)
             {
-                Inpatient.No = this.InHospitalNo.Text;
-                Inpatient.CaseNo = this.CaseNo.Text;
-                Inpatient.BaoXianEnum = (CommContracts.BaoXianEnum)this.PayTypeEnumCombo.SelectedItem;
-                Inpatient.YiBaoNo = this.YiBaoNo.Text;
+                MyCurrentInpatient.No = this.InHospitalNo.Text;
+                MyCurrentInpatient.CaseNo = this.CaseNo.Text;
+                MyCurrentInpatient.BaoXianEnum = (CommContracts.BaoXianEnum)this.PayTypeEnumCombo.SelectedItem;
+                MyCurrentInpatient.YiBaoNo = this.YiBaoNo.Text;
 
                 CommContracts.Patient patient = new CommContracts.Patient();
-                if (Inpatient.Patient != null)
+                if (MyCurrentInpatient.Patient != null)
                 {
-                    patient.ID = Inpatient.Patient.ID;
+                    patient.ID = MyCurrentInpatient.Patient.ID;
                 }
                 patient.Name = this.Name.Text;
                 patient.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
@@ -227,22 +231,22 @@ namespace HISGUIFeeLib.Views
                 patient.JiGuan = this.JiGuan.Text;
                 patient.Tel = this.Tel.Text;
 
-                Inpatient.Patient = patient;
+                MyCurrentInpatient.Patient = patient;
 
-                Inpatient.MarriageEnum = (CommContracts.MarriageEnum)this.MarriageEnumCombo.SelectedItem;
-                Inpatient.Job = this.Job.Text;
-                Inpatient.WorkAddress = this.WorkUnitAddress.Text;
-                Inpatient.ContactsName = this.ConnectsName.Text;
-                Inpatient.ContactsTel = this.ConnectsTel.Text;
-                Inpatient.ContactsAddress = this.ConnectsAddress.Text;
-                Inpatient.InHospitalTime = this.InHospitalTime.SelectedDate.Value;
-                Inpatient.IllnesSstateEnum = (CommContracts.IllnesSstateEnum)this.IllnesSstateEnumCombo.SelectedItem;
-                Inpatient.InHospitalDiagnoses = this.InHospitalDiagnosis.Text;
-                Inpatient.InHospitalDepartment = this.InDepartmentEdit.Text;
-                Inpatient.InHospitalDoctorName = this.InDoctorEdit.Text;
+                MyCurrentInpatient.MarriageEnum = (CommContracts.MarriageEnum)this.MarriageEnumCombo.SelectedItem;
+                MyCurrentInpatient.Job = this.Job.Text;
+                MyCurrentInpatient.WorkAddress = this.WorkUnitAddress.Text;
+                MyCurrentInpatient.ContactsName = this.ConnectsName.Text;
+                MyCurrentInpatient.ContactsTel = this.ConnectsTel.Text;
+                MyCurrentInpatient.ContactsAddress = this.ConnectsAddress.Text;
+                MyCurrentInpatient.InHospitalTime = this.InHospitalTime.SelectedDate.Value;
+                MyCurrentInpatient.IllnesSstateEnum = (CommContracts.IllnesSstateEnum)this.IllnesSstateEnumCombo.SelectedItem;
+                MyCurrentInpatient.InHospitalDiagnoses = this.InHospitalDiagnosis.Text;
+                MyCurrentInpatient.InHospitalDepartment = this.InDepartmentEdit.Text;
+                MyCurrentInpatient.InHospitalDoctorName = this.InDoctorEdit.Text;
                 //"_" = this.InHospitalYaJin.Text;
 
-                Inpatient.InPatientUserID = 3;
+                MyCurrentInpatient.InPatientUserID = 3;
             }
 
             return true;
@@ -250,16 +254,16 @@ namespace HISGUIFeeLib.Views
 
         private void updateLeaveDateToView()
         {
-            if (Inpatient != null)
+            if (MyCurrentInpatient != null)
             {
-                if (Inpatient.InHospitalTime != null)
-                    this.LeaveHospitalTime.DisplayDateStart = Inpatient.InHospitalTime;
+                if (MyCurrentInpatient.InHospitalTime != null)
+                    this.LeaveHospitalTime.DisplayDateStart = MyCurrentInpatient.InHospitalTime;
                 this.LeaveHospitalTime.DisplayDateEnd = DateTime.Now;
 
-                this.LeaveHospitalDepartment.Text = Inpatient.LeaveHospitalDepartment;
-                this.LeaveHospitalDoctor.Text = Inpatient.LeaveHospitalDoctorName;
-                this.LeaveHospitalDiagnosis.Text = Inpatient.LeaveHospitalDiagnoses;
-                this.LeaveHospitalTime.SelectedDate = Inpatient.LeaveHospitalTime;
+                this.LeaveHospitalDepartment.Text = MyCurrentInpatient.LeaveHospitalDepartment;
+                this.LeaveHospitalDoctor.Text = MyCurrentInpatient.LeaveHospitalDoctorName;
+                this.LeaveHospitalDiagnosis.Text = MyCurrentInpatient.LeaveHospitalDiagnoses;
+                this.LeaveHospitalTime.SelectedDate = MyCurrentInpatient.LeaveHospitalTime;
             }
             else
             {
@@ -278,19 +282,19 @@ namespace HISGUIFeeLib.Views
                 return false;
             if (string.IsNullOrEmpty(LeaveHospitalDepartment.Text.Trim()))
                 return false;
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return false;
 
-            Inpatient.LeaveHospitalDepartment = this.LeaveHospitalDepartment.Text;
-            Inpatient.LeaveHospitalDoctorName = this.LeaveHospitalDoctor.Text;
-            Inpatient.LeaveHospitalDiagnoses = this.LeaveHospitalDiagnosis.Text;
-            Inpatient.LeaveHospitalTime = this.LeaveHospitalTime.SelectedDate;
+            MyCurrentInpatient.LeaveHospitalDepartment = this.LeaveHospitalDepartment.Text;
+            MyCurrentInpatient.LeaveHospitalDoctorName = this.LeaveHospitalDoctor.Text;
+            MyCurrentInpatient.LeaveHospitalDiagnoses = this.LeaveHospitalDiagnosis.Text;
+            MyCurrentInpatient.LeaveHospitalTime = this.LeaveHospitalTime.SelectedDate;
 
             return true;
         }
 
         // 入院办理
-        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        private void InManageCheck_Click(object sender, RoutedEventArgs e)
         {
             NewInPatient();
 
@@ -301,7 +305,7 @@ namespace HISGUIFeeLib.Views
         }
 
         // 出院办理
-        private void RadioButton_Click_1(object sender, RoutedEventArgs e)
+        private void LeaveManageCheck_Click(object sender, RoutedEventArgs e)
         {
             NoInPatient();
 
@@ -318,7 +322,7 @@ namespace HISGUIFeeLib.Views
         }
 
         // 召回办理
-        private void RadioButton_Click_2(object sender, RoutedEventArgs e)
+        private void RecallManageCheck_Click(object sender, RoutedEventArgs e)
         {
             NoInPatient();
 
@@ -384,33 +388,21 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        private void AllWaitList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var temp = this.AllWaitList.SelectedItem as CommContracts.Inpatient;
-            if (temp == null)
-                return;
-
-            Inpatient = temp;
-
-            updateInDateToView();
-            updateLeaveDateToView();
-        }
-
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
             // 读卡
             var vm = this.DataContext as HISGUIFeeVM;
             if (InManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadNewInPatient(7);
+                MyCurrentInpatient = vm?.ReadNewInPatient(7);
             }
             else if (LeaveManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadCurrentInPatient(9);
+                MyCurrentInpatient = vm?.ReadCurrentInPatient(9);
             }
             else if (RecallManageCheck.IsChecked.Value)
             {
-                Inpatient = vm?.ReadLeavedPatient(9);
+                MyCurrentInpatient = vm?.ReadLeavedPatient(9);
             }
 
             updateInDateToView();
@@ -419,7 +411,7 @@ namespace HISGUIFeeLib.Views
 
         private void EditMsgBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return;
             setInHospitalGridEnable();
             IsEdit = true;
@@ -437,7 +429,7 @@ namespace HISGUIFeeLib.Views
 
         private void LeaveHospitalDoctorBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return;
 
             var tempDoctor = getDoctor();
@@ -466,15 +458,15 @@ namespace HISGUIFeeLib.Views
 
         private void LeaveHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return;
 
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {
-                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
+                MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
 
-                bool? bResult = vm?.UpdateInPatient(Inpatient);
+                bool? bResult = vm?.UpdateInPatient(MyCurrentInpatient);
                 if (bResult.HasValue)
                 {
                     if (bResult.Value)
@@ -491,16 +483,16 @@ namespace HISGUIFeeLib.Views
 
         private void RecallHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (Inpatient == null)
+            if (MyCurrentInpatient == null)
                 return;
 
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {
-                Inpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
-                Inpatient.LeaveHospitalTime = null;
+                MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
+                MyCurrentInpatient.LeaveHospitalTime = null;
 
-                bool? bResult = vm?.UpdateInPatient(Inpatient);
+                bool? bResult = vm?.UpdateInPatient(MyCurrentInpatient);
                 if (bResult.HasValue)
                 {
                     if (bResult.Value)
@@ -515,5 +507,31 @@ namespace HISGUIFeeLib.Views
             }
         }
 
+        private void AllWaitList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            if(this.InManageCheck.IsChecked.Value)
+            {
+                var tempApply = this.AllWaitList.SelectedItem as CommContracts.InHospitalApply;
+                if (tempApply == null)
+                    return;
+                
+                MyCurrentInpatient.PatientID = tempApply.PatientID;
+                MyCurrentInpatient.Patient = tempApply.Patient;
+                MyCurrentInpatient.InHospitalTime = DateTime.Now;
+            }
+            else
+            {
+                var temp = this.AllWaitList.SelectedItem as CommContracts.Inpatient;
+                if (temp == null)
+                    return;
+
+                MyCurrentInpatient = temp;
+
+                updateLeaveDateToView();
+            }
+
+            updateInDateToView();
+        }
     }
 }

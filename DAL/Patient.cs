@@ -17,6 +17,8 @@ namespace DAL
             Inpatients = new List<Inpatient>();
             PrePays = new List<PrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
+            InHospitalApplys = new List<InHospitalApply>();
+            InHospitals = new List<InHospital>();
         }
 
         public string ToBMIMsg()
@@ -52,5 +54,8 @@ namespace DAL
 
         public virtual ICollection<PrePay> PrePays { get; set; }
         public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }
+        public virtual ICollection<InHospitalApply> InHospitalApplys { get; set; }
+
+        public virtual ICollection<InHospital> InHospitals { get; set; }
     }
 }

@@ -39,7 +39,7 @@ namespace DAL
         public int LeaveHospitalUserID { get; set; }                 // 出院经办人账户ID 
         public InHospitalStatusEnum InHospitalStatusEnum { get; set; } // 住院状态
 
-        public virtual Patient Patient { get; set; }             // 报错，会形成循环或者树状引用
+        public virtual Patient Patient { get; set; }            
         public virtual User InPatientUser { get; set; }
     }
 }

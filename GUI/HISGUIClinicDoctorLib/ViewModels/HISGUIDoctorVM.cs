@@ -329,10 +329,10 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
 
-        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        public bool SaveInHospitalApply(CommContracts.InHospitalApply inpatient)
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.SaveInPatient(inpatient); 
+            CommClient.InHospitalApply myd = new CommClient.InHospitalApply();
+            return myd.SaveInHospitalApply(inpatient); 
         }
 
         // 当前用户

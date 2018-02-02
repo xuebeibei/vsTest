@@ -88,6 +88,14 @@ namespace DAL
         public DbSet<InspectCharge> InspectCharges { get; set; }
         public DbSet<OtherServiceCharge> OtherServiceCharges { get; set; }
 
+        public DbSet<InHospitalApply> InHospitalApplys { get; set; }
+
+        public DbSet<MyTableBase> MyTableBases { get; set; }
+        public DbSet<InHospital> InHospitals { get; set; }
+        public DbSet<InHospitalPatientDoctor> InHospitalPatientDoctor { get; set; }
+        public DbSet<LeaveHospital> LeaveHospitals { get; set; }
+        public DbSet<RecallHospital> RecallHospitals { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -151,6 +159,12 @@ namespace DAL
             modelBuilder.Entity<AssayCharge>().ToTable("tpt.AssayCharge");
             modelBuilder.Entity<InspectCharge>().ToTable("tpt.InspectCharge");
             modelBuilder.Entity<OtherServiceCharge>().ToTable("tpt.OtherServiceCharge");
+
+            modelBuilder.Entity<MyTableBase>().ToTable("tpt.MyTableBase");
+            modelBuilder.Entity<InHospital>().ToTable("tpt.InHospital");
+            modelBuilder.Entity<InHospitalPatientDoctor>().ToTable("tpt.InHospitalPatientDoctor");
+            modelBuilder.Entity<LeaveHospital>().ToTable("tpt.LeaveHospital");
+            modelBuilder.Entity<RecallHospital>().ToTable("tpt.RecallHospital");
         }
     }
 }

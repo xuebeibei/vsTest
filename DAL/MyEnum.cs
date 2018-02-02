@@ -168,4 +168,11 @@ namespace DAL
         支付宝,
         微信
     }
+
+    public enum InHospitalApplyEnum
+    {
+        未处理,
+        同意申请,
+        拒绝申请
+    }
 }
