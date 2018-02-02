@@ -28,7 +28,6 @@
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" >
-            <!--VerticalAlignment="Top"-->
             <TabItem Header="门诊接诊">
                 <Grid>
                     <Grid.ColumnDefinitions>
