@@ -220,6 +220,8 @@ namespace HISGUIFeeLib.Views
             if (this.GenderCombo.SelectedItem == null)
                 return false;
 
+            var vm = this.DataContext as HISGUIFeeVM;
+
             if (MyCurrentInpatient != null)
             {
                 MyCurrentInpatient.NO = this.InHospitalNo.Text;
@@ -256,7 +258,8 @@ namespace HISGUIFeeLib.Views
                 //MyCurrentInpatient.InHospitalDoctorName = this.InDoctorEdit.Text;
                 //"_" = this.InHospitalYaJin.Text;
 
-                MyCurrentInpatient.UserID = 3;
+                MyCurrentInpatient.UserID = vm.CurrentUser.ID;
+
             }
 
             return true;
@@ -500,7 +503,6 @@ namespace HISGUIFeeLib.Views
             if (updateViewToLeaveDate())
             {
                 MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
-                //MyCurrentInpatient.LeaveHospitalTime = null;
 
                 bool? bResult = vm?.UpdateInHospital(MyCurrentInpatient);
                 if (bResult.HasValue)
@@ -519,6 +521,7 @@ namespace HISGUIFeeLib.Views
 
         private void AllWaitList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIFeeVM;
 
             if (this.InManageCheck.IsChecked.Value)
             {
@@ -531,6 +534,15 @@ namespace HISGUIFeeLib.Views
                 MyCurrentInpatient.InTime = DateTime.Now;
 
                 MyCurrentInHospitalApply = tempApply;
+                
+                CommContracts.InHospitalPatientDoctor inHospitalPatientDoctor = new CommContracts.InHospitalPatientDoctor();
+                inHospitalPatientDoctor.StartTime = DateTime.Now;
+                inHospitalPatientDoctor.DoctorID = tempApply.User.EmployeeID;
+                inHospitalPatientDoctor.Doctor = tempApply.User.Employee;
+                inHospitalPatientDoctor.UserID = vm.CurrentUser.ID;
+
+                MyCurrentInpatient.InHospitalPatientDoctors.Add(inHospitalPatientDoctor);
+                
             }
             else
             {

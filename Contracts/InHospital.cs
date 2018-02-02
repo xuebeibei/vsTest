@@ -12,6 +12,7 @@ namespace CommContracts
     {
         public InHospital()
         {
+            InHospitalPatientDoctors = new List<InHospitalPatientDoctor>();
         }
         [DataMember]
         public string NO { get; set; }

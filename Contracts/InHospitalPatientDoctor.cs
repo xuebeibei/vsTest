@@ -19,8 +19,6 @@ namespace CommContracts
         [DataMember]
         public DateTime? EndTime { get; set; }
         [DataMember]
-        public InHospital InHospital { get; set; }
-        [DataMember]
         public Employee Doctor { get; set; }
     }
 }
