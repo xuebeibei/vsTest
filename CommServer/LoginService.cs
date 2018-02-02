@@ -435,10 +435,10 @@ namespace CommServer
         //    return temp.ReadLeavedPatient(InPatientID);
         //}
 
-        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
         {
             BLL.InHospital temp = new BLL.InHospital();
-            return temp.GetAllInHospitalList(inHospitalStatusEnum, strName);
+            return temp.GetAllInHospitalList(inHospitalStatusEnum, EmployeeID, strName);
         }
 
         public string getInHospitalBMIMsg(int InHospitalID)

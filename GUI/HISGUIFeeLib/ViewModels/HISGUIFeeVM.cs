@@ -47,7 +47,7 @@ namespace HISGUIFeeLib.ViewModels
         public List<CommContracts.InHospital> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
             CommClient.InHospital myd = new CommClient.InHospital();
-            return myd.GetAllInHospitalMsg();
+            return myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中);
         }
 
         // 得到当前门诊患者的所有药品医嘱收费单

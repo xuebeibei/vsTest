@@ -8,31 +8,9 @@ namespace CommClient
 {
     public class InHospital : MyTableBase
     {
-        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
+        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
         {
-            return client.GetAllInHospitalList(inHospitalStatusEnum, strName);
-        }
-
-        public List<CommContracts.InHospital> GetAllInHospitalMsg()
-        {
-            List<CommContracts.InHospital> dictionary = new List<CommContracts.InHospital>();
-
-            List<CommContracts.InHospital> list = new List<CommContracts.InHospital>();
-            list = client.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中);
-            foreach (var tem in list)
-            {
-                if (tem != null)
-                {
-                    string str = tem.Patient.Name + " " +
-                                    tem.Patient.Gender +
-                                    "岁\r\n" +
-                                    "科室：\r\n" +
-                                    "医生：" + "\r\n" +
-                                    "入院时间：" + tem.InTime.ToString() + "\r\n";
-                    dictionary.Add(tem);
-                }
-            }
-            return dictionary;
+            return client.GetAllInHospitalList(inHospitalStatusEnum, EmployeeID, strName);
         }
 
         public bool SaveInHospital(CommContracts.InHospital inpatient)

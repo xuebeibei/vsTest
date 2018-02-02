@@ -48,18 +48,18 @@ namespace HISGUIDoctorLib.ViewModels
             return user.getUser(UserID);
         }
 
-        // 获得当前医生的患者
-        public List<CommContracts.Registration> GetDoctorPatients(int EmployeeID = 0, DateTime? VistTime = null)
+        // 获得当前医生的门诊患者
+        public List<CommContracts.Registration> GetDoctorClinicPatients(int EmployeeID = 0, DateTime? VistTime = null)
         {
             CommClient.Registration myd = new CommClient.Registration();
             return myd.getAllRegistration(EmployeeID, VistTime);
         }
 
         // 获得当前医生的住院患者
-        public List<CommContracts.InHospital> GetAllInPatient()
+        public List<CommContracts.InHospital> GetDoctorInHospitalPatients(int EmployeeID = 0)
         {
             CommClient.InHospital myd = new CommClient.InHospital();
-            return myd.GetAllInHospitalMsg();
+            return myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中, EmployeeID);
         }
 
         // 显示接诊界面

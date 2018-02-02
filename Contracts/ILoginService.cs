@@ -269,7 +269,7 @@ namespace CommContracts
         //CommContracts.Inpatient ReadLeavedPatient(int InPatientID);
 
         [OperationContract]
-        List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
+        List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "");
 
         [OperationContract]
         string getInHospitalBMIMsg(int InHospitalID);

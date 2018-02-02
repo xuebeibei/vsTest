@@ -29,66 +29,11 @@
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" >
             <TabItem Header="门诊接诊">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid Grid.Column="0">
-                        <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" SelectionMode="Single">
-                            <ListView.View>
-                                <GridView x:Name="gridViewPatient">
-                                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
-                                    <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
-                                    <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=SeeDoctorStatus}" Width="60"></GridViewColumn>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </Grid>
-                    <Grid Grid.Column="1">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Grid.Row="0" Orientation="Horizontal">
-                            <Button x:Name="CallBtn" Margin="5" Click="CallBtn_Click">呼叫下一个</Button>
-                            <Button x:Name="StartBtn" Margin="5" Click="StartBtn_Click" IsEnabled="False">开始看诊</Button>
-                            <Button x:Name="OverBtn" Margin="5" Click="OverBtn_Click" IsEnabled="False">正常结束看诊</Button>
-                            <Button x:Name="TurnToInHospitalBtn" Margin="5" Click="TurnToInHospitalBtn_Click" IsEnabled="False">入院结束看诊</Button>
-                        </StackPanel>
-                        <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-                            <Label x:Name="TipMsgLabel">医生工作站</Label>
-                        </Grid>
-                        <local:ReceivingNewPatientsView x:Name="PatientMsgView" Visibility="Collapsed" Grid.Row="1"></local:ReceivingNewPatientsView>
-                    </Grid>
-                </Grid>
+                <local:ClinicRecivingView></local:ClinicRecivingView>
             </TabItem>
             <TabItem Header="住院治疗">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                            <RowDefinition Height="auto"></RowDefinition>
-                        </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="0">
-                            <StackPanel Orientation="Horizontal" Margin="5">
-                                <Button Height="26" Margin="0,0,0,-0.4" VerticalAlignment="Top">查看详情</Button>
-                                <RadioButton Margin="5" IsChecked="True">在院中</RadioButton>
-                                <RadioButton Margin="5">已出院</RadioButton>
-                                <CheckBox Margin="5">查看全科室患者</CheckBox>
-                            </StackPanel>
-                            <Controls:FindDateContorl></Controls:FindDateContorl>
-                        </StackPanel>
-                        <ListBox x:Name="AllInPatientList" Grid.Row="1">
-                            <ListBox.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Columns="4"/>
-                                </ItemsPanelTemplate>
-                            </ListBox.ItemsPanel>
-                        </ListBox>
-                        <Controls:PageFind Grid.Row="2"></Controls:PageFind>
-                    </Grid>
+                    <local:InHospitalRecivingView></local:InHospitalRecivingView>
                 </ScrollViewer>
             </TabItem>
             <TabItem Header="门诊排班">
