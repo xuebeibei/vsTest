@@ -132,8 +132,8 @@ namespace HISGUIFeeLib.Views
                 {
                     return;
                 }
-
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
@@ -563,30 +563,6 @@ namespace HISGUIFeeLib.Views
         {
             var vm = this.DataContext as HISGUIFeeVM;
             ShowAllPatient();
-        }
-
-        private void AllPatientList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var vm = this.DataContext as HISGUIFeeVM;
-            if (this.ClinicRadio.IsChecked.Value)
-            {
-                var re = this.AllPatientList.SelectedItem as CommContracts.Registration;
-                if (re == null)
-                    return;
-                myCurrentPatientID = re.PatientID;
-                vm.CurrentRegistration = re;
-            }
-            else if (this.HospitalRadio.IsChecked.Value)
-            {
-                var inp = this.AllPatientList.SelectedItem as CommContracts.InHospital;
-                if (inp == null)
-                    return;
-                myCurrentPatientID = inp.PatientID;
-                vm.CurrentInpatient = inp;
-            }
-
-            ShowPatientMsg();
-            UpdateAllChage();
         }
 
         private void AllWillPayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1230,6 +1206,32 @@ namespace HISGUIFeeLib.Views
                 default:
                     break;
             }
+        }
+
+        private void AllPatientList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIFeeVM;
+            if (this.ClinicRadio.IsChecked.Value)
+            {
+                var re = this.AllPatientList.SelectedItem as CommContracts.Registration;
+                if (re == null)
+                    return;
+                myCurrentPatientID = re.PatientID;
+                vm.CurrentRegistration = re;
+                vm.IsClinicOrInHospital = true;
+            }
+            else if (this.HospitalRadio.IsChecked.Value)
+            {
+                var inp = this.AllPatientList.SelectedItem as CommContracts.InHospital;
+                if (inp == null)
+                    return;
+                myCurrentPatientID = inp.PatientID;
+                vm.CurrentInpatient = inp;
+                vm.IsClinicOrInHospital = false;
+            }
+
+            ShowPatientMsg();
+            UpdateAllChage();
         }
     }
 }

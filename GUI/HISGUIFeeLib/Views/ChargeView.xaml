@@ -20,7 +20,7 @@
                 <RadioButton x:Name="ClinicRadio" Margin="5" IsChecked="True" Click="ClinicRadio_Click">门诊</RadioButton>
                 <RadioButton x:Name="HospitalRadio" Margin="5" Click="HospitalRadio_Click">住院</RadioButton>
             </StackPanel>
-            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" MouseDoubleClick="AllPatientList_MouseDoubleClick">
+            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" SelectionChanged="AllPatientList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewAllPatient">
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
