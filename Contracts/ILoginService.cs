@@ -244,29 +244,53 @@ namespace CommContracts
         [OperationContract]
         bool DeleteInspectItem(int InspectItemID);
 
-        [OperationContract]
-        List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
+        //[OperationContract]
+        //List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
+
+        //[OperationContract]
+        //string getInPatientBMIMsg(int InpatientID);
+
+        //[OperationContract]
+        //bool SaveInPatient(CommContracts.Inpatient inpatient);
+
+        //[OperationContract]
+        //bool UpdateInPatient(CommContracts.Inpatient inpatient);
+
+        //// 读取未入院患者信息，并新建入院登记
+        //[OperationContract]
+        //CommContracts.Inpatient ReadNewInPatient(int PatientID);
+
+        //// 读取已入院患者信息
+        //[OperationContract]
+        //CommContracts.Inpatient ReadCurrentInPatient(int InPatientID);
+
+        //// 读取已出院患者信息
+        //[OperationContract]
+        //CommContracts.Inpatient ReadLeavedPatient(int InPatientID);
 
         [OperationContract]
-        string getInPatientBMIMsg(int InpatientID);
+        List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
 
         [OperationContract]
-        bool SaveInPatient(CommContracts.Inpatient inpatient);
+        string getInHospitalBMIMsg(int InHospitalID);
 
         [OperationContract]
-        bool UpdateInPatient(CommContracts.Inpatient inpatient);
+        bool SaveInHospital(CommContracts.InHospital InHospital);
+
+        [OperationContract]
+        bool UpdateInHospital(CommContracts.InHospital InHospital);
 
         // 读取未入院患者信息，并新建入院登记
         [OperationContract]
-        CommContracts.Inpatient ReadNewInPatient(int PatientID);
+        CommContracts.InHospital ReadNewInHospital(int PatientID);
 
         // 读取已入院患者信息
         [OperationContract]
-        CommContracts.Inpatient ReadCurrentInPatient(int InPatientID);
+        CommContracts.InHospital ReadCurrentInHospital(int InHospitalID);
 
         // 读取已出院患者信息
         [OperationContract]
-        CommContracts.Inpatient ReadLeavedPatient(int InPatientID);
+        CommContracts.InHospital ReadLeavedPatient(int InHospitalID);
 
         [OperationContract]
         List<CommContracts.InspectDoctorAdvice> getAllInHospitalInspect(int InpatientID);
@@ -603,7 +627,7 @@ namespace CommContracts
         bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
-        List<CommContracts.InHospitalApply> GetAllInHospitalApply(string strName);
+        List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum, string strName = "");
 
         [OperationContract]
         bool SaveInHospitalApply(CommContracts.InHospitalApply InHospitalApply);

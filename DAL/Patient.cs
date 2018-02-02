@@ -14,7 +14,7 @@ namespace DAL
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
             Registrations = new List<Registration>();
-            Inpatients = new List<Inpatient>();
+            //Inpatients = new List<Inpatient>();
             PrePays = new List<PrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
             InHospitalApplys = new List<InHospitalApply>();
@@ -50,7 +50,7 @@ namespace DAL
         public string JiGuan { get; set; }       // 籍贯
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
-        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
+        //public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院
 
         public virtual ICollection<PrePay> PrePays { get; set; }
         public virtual ICollection<DoctorAdviceBase> DoctorAdviceBases { get; set; }

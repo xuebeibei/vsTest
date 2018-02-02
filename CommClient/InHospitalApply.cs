@@ -21,9 +21,9 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public List<CommContracts.InHospitalApply> GetAllInHospitalApply(string strName = "")
+        public List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum, string strName = "")
         {
-            return client.GetAllInHospitalApply(strName);
+            return client.GetAllInHospitalApply(inHospitalApplyEnum, strName);
         }
 
         public bool UpdateInHospitalApply(CommContracts.InHospitalApply InHospitalApply)

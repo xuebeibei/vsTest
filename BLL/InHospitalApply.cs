@@ -9,14 +9,15 @@ namespace BLL
 {
     public class InHospitalApply
     {
-        public List<CommContracts.InHospitalApply> GetAllInHospitalApply(string strName)
+        public List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum,string strName ="")
         {
             List<CommContracts.InHospitalApply> list = new List<CommContracts.InHospitalApply>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from t in ctx.InHospitalApplys
-                            where t.Patient.Name.StartsWith(strName)
+                            where t.Patient.Name.StartsWith(strName) && 
+                            t.InHospitalApplyEnum == (DAL.InHospitalApplyEnum)inHospitalApplyEnum
                             select t;
 
                 var config = new MapperConfiguration(cfg =>

@@ -8,6 +8,10 @@ namespace DAL
 {
     public class InHospitalApply
     {
+        public InHospitalApply()
+        {
+
+        }
         public int ID { get; set; }
         public DateTime ApplyTime { get; set; }
         public int PatientID { get; set; }
@@ -16,5 +20,6 @@ namespace DAL
 
         public virtual User User { get; set; }
         public virtual Patient Patient { get; set; }
+
     }
 }

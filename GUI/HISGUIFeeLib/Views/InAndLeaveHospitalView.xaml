@@ -6,6 +6,26 @@
              xmlns:local="clr-namespace:HISGUIFeeLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <HISGUICore:HISGUIViewBase.Resources>
+        <GridView x:Key="inApplyColumn">
+            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
+            <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
+        </GridView>
+        <GridView x:Key="inHospitalColumn">
+            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
+            <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
+        </GridView>
+        <GridView x:Key="leaveHospitalColumn">
+            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
+            <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
+        </GridView>
+    </HISGUICore:HISGUIViewBase.Resources>
     <Grid>
         <StackPanel Width="990">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
@@ -17,113 +37,113 @@
             <Separator x:Name="Spe2" Margin="5"/>
             <Grid x:Name="InHospitalGrid" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
 
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="167"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="167"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+
+                    <ColumnDefinition Width="167"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="167"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Label Margin="5" Grid.Row="0" Grid.Column="0">住院号*：</Label>
+                <TextBox x:Name="InHospitalNo" Margin="5" IsEnabled="False" Grid.Row="0" Grid.Column="1"></TextBox>
+
+                <Label Margin="5" Grid.Row="0" Grid.Column="2">病历号*：</Label>
+                <TextBox x:Name="CaseNo" Margin="5" Grid.Row="0" Grid.Column="3"></TextBox>
+
+                <Label Margin="5" Grid.Row="0" Grid.Column="4">费用类别：</Label>
+                <ComboBox x:Name="PayTypeEnumCombo" Margin="5" Grid.Row="0" Grid.Column="5"></ComboBox>
+
+                <Label Margin="5" Grid.Row="0" Grid.Column="6">医保号：</Label>
+                <TextBox x:Name="YiBaoNo" Margin="5" Grid.Row="0" Grid.Column="7"></TextBox>
+
+                <Label Margin="5" Grid.Row="1" Grid.Column="0">姓名*：</Label>
+                <TextBox x:Name="Name" Margin="5" Grid.Row="1" Grid.Column="1"></TextBox>
+
+                <Label Margin="5" Grid.Row="1" Grid.Column="2">性别*：</Label>
+                <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="1" Grid.Column="3"></ComboBox>
+
+                <Label Margin="5" Grid.Row="1" Grid.Column="4">出生日期：</Label>
+                <DatePicker x:Name="BirthDay" Margin="5" Grid.Row="1" Grid.Column="5"></DatePicker>
+
+                <Label Margin="5" Grid.Row="1" Grid.Column="6">身份证：</Label>
+                <TextBox x:Name="IDCardNo" Margin="5" Grid.Row="1" Grid.Column="7"></TextBox>
+
+                <Label Margin="5" Grid.Row="2" Grid.Column="0">民族：</Label>
+                <ComboBox x:Name="VolkEnumCombo" Margin="5" Grid.Row="2" Grid.Column="1"></ComboBox>
+
+                <Label Margin="5" Grid.Row="2" Grid.Column="2">婚姻状况：</Label>
+                <ComboBox x:Name="MarriageEnumCombo" Margin="5" Grid.Row="2" Grid.Column="3"></ComboBox>
+
+                <Label Margin="5" Grid.Row="2" Grid.Column="4">籍贯：</Label>
+                <TextBox x:Name="JiGuan" Margin="5" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
+
+                <Label Margin="5" Grid.Row="3" Grid.Column="0">电话：</Label>
+                <TextBox x:Name="Tel" Margin="5" Grid.Row="3" Grid.Column="1"></TextBox>
+
+                <Label Margin="5" Grid.Row="3" Grid.Column="2">职业：</Label>
+                <TextBox x:Name="Job" Margin="5" Grid.Row="3" Grid.Column="3"></TextBox>
+
+                <Label Margin="5" Grid.Row="3" Grid.Column="4">工作单位：</Label>
+                <TextBox x:Name="WorkUnitAddress" Margin="5" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
+
+
+                <Label Margin="5" Grid.Row="4" Grid.Column="0">联系人*：</Label>
+                <TextBox x:Name="ConnectsName" Margin="5" Grid.Row="4" Grid.Column="1"></TextBox>
+
+                <Label Margin="5" Grid.Row="4" Grid.Column="2">联系电话：</Label>
+                <TextBox x:Name="ConnectsTel" Margin="5" Grid.Row="4" Grid.Column="3"></TextBox>
+
+                <Label Margin="5" Grid.Row="4" Grid.Column="4">联系地址：</Label>
+                <TextBox x:Name="ConnectsAddress" Margin="5" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
+
+                <Label Margin="5" Grid.Row="5" Grid.Column="0">入院时间*：</Label>
+                <DatePicker x:Name="InHospitalTime" Margin="5" Grid.Row="5" Grid.Column="1"></DatePicker>
+                <Label Margin="5" Grid.Row="5" Grid.Column="2">病情：</Label>
+                <ComboBox x:Name="IllnesSstateEnumCombo" Margin="5" Grid.Row="5" Grid.Column="3"></ComboBox>
+
+                <Label Margin="5" Grid.Row="5" Grid.Column="4">入院诊断*：</Label>
+                <Grid Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
-                        <ColumnDefinition Width="167"></ColumnDefinition>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
-                        <ColumnDefinition Width="167"></ColumnDefinition>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
-
-                        <ColumnDefinition Width="167"></ColumnDefinition>
-                        <ColumnDefinition Width="80"></ColumnDefinition>
-                        <ColumnDefinition Width="167"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
+                    <TextBox x:Name="InHospitalDiagnosis" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
+                    <Button x:Name="InHospitalDiagnosisBtn" Margin="5" Grid.Column="1">编辑</Button>
+                </Grid>
 
-                    <Label Margin="5" Grid.Row="0" Grid.Column="0">住院号*：</Label>
-                    <TextBox x:Name="InHospitalNo" Margin="5" IsEnabled="False" Grid.Row="0" Grid.Column="1"></TextBox>
+                <Label Margin="5" Grid.Row="6" Grid.Column="0">入院医生：</Label>
+                <Grid Grid.Row="6" Grid.Column="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="InDoctorEdit" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
+                    <Button x:Name="InDoctorEditBtn" Margin="5" Grid.Column="1" Click="InDoctorEditBtn_Click">选择</Button>
+                </Grid>
 
-                    <Label Margin="5" Grid.Row="0" Grid.Column="2">病历号*：</Label>
-                    <TextBox x:Name="CaseNo" Margin="5" Grid.Row="0" Grid.Column="3"></TextBox>
+                <Label x:Name="InDepartmentLabel" Margin="5" Grid.Row="6" Grid.Column="2">入院科室：</Label>
+                <TextBox x:Name="InDepartmentEdit" Margin="5" Grid.Row="6" Grid.Column="3" IsEnabled="False"></TextBox>
+                <Label Margin="5" Grid.Row="6" Grid.Column="4">入院押金：</Label>
+                <TextBox x:Name="InHospitalYaJin" Margin="5" Grid.Row="6" Grid.Column="5"></TextBox>
 
-                    <Label Margin="5" Grid.Row="0" Grid.Column="4">费用类别：</Label>
-                    <ComboBox x:Name="PayTypeEnumCombo" Margin="5" Grid.Row="0" Grid.Column="5"></ComboBox>
-
-                    <Label Margin="5" Grid.Row="0" Grid.Column="6">医保号：</Label>
-                    <TextBox x:Name="YiBaoNo" Margin="5" Grid.Row="0" Grid.Column="7"></TextBox>
-
-                    <Label Margin="5" Grid.Row="1" Grid.Column="0">姓名*：</Label>
-                    <TextBox x:Name="Name" Margin="5" Grid.Row="1" Grid.Column="1"></TextBox>
-
-                    <Label Margin="5" Grid.Row="1" Grid.Column="2">性别*：</Label>
-                    <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="1" Grid.Column="3"></ComboBox>
-
-                    <Label Margin="5" Grid.Row="1" Grid.Column="4">出生日期：</Label>
-                    <DatePicker x:Name="BirthDay" Margin="5" Grid.Row="1" Grid.Column="5"></DatePicker>
-
-                    <Label Margin="5" Grid.Row="1" Grid.Column="6">身份证：</Label>
-                    <TextBox x:Name="IDCardNo" Margin="5" Grid.Row="1" Grid.Column="7"></TextBox>
-
-                    <Label Margin="5" Grid.Row="2" Grid.Column="0">民族：</Label>
-                    <ComboBox x:Name="VolkEnumCombo" Margin="5" Grid.Row="2" Grid.Column="1"></ComboBox>
-
-                    <Label Margin="5" Grid.Row="2" Grid.Column="2">婚姻状况：</Label>
-                    <ComboBox x:Name="MarriageEnumCombo" Margin="5" Grid.Row="2" Grid.Column="3"></ComboBox>
-
-                    <Label Margin="5" Grid.Row="2" Grid.Column="4">籍贯：</Label>
-                    <TextBox x:Name="JiGuan" Margin="5" Grid.Row="2" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
-
-                    <Label Margin="5" Grid.Row="3" Grid.Column="0">电话：</Label>
-                    <TextBox x:Name="Tel" Margin="5" Grid.Row="3" Grid.Column="1"></TextBox>
-
-                    <Label Margin="5" Grid.Row="3" Grid.Column="2">职业：</Label>
-                    <TextBox x:Name="Job" Margin="5" Grid.Row="3" Grid.Column="3"></TextBox>
-
-                    <Label Margin="5" Grid.Row="3" Grid.Column="4">工作单位：</Label>
-                    <TextBox x:Name="WorkUnitAddress" Margin="5" Grid.Row="3" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
-
-
-                    <Label Margin="5" Grid.Row="4" Grid.Column="0">联系人*：</Label>
-                    <TextBox x:Name="ConnectsName" Margin="5" Grid.Row="4" Grid.Column="1"></TextBox>
-
-                    <Label Margin="5" Grid.Row="4" Grid.Column="2">联系电话：</Label>
-                    <TextBox x:Name="ConnectsTel" Margin="5" Grid.Row="4" Grid.Column="3"></TextBox>
-
-                    <Label Margin="5" Grid.Row="4" Grid.Column="4">联系地址：</Label>
-                    <TextBox x:Name="ConnectsAddress" Margin="5" Grid.Row="4" Grid.Column="5" Grid.ColumnSpan="3"></TextBox>
-
-                    <Label Margin="5" Grid.Row="5" Grid.Column="0">入院时间*：</Label>
-                    <DatePicker x:Name="InHospitalTime" Margin="5" Grid.Row="5" Grid.Column="1"></DatePicker>
-                    <Label Margin="5" Grid.Row="5" Grid.Column="2">病情：</Label>
-                    <ComboBox x:Name="IllnesSstateEnumCombo" Margin="5" Grid.Row="5" Grid.Column="3"></ComboBox>
-
-                    <Label Margin="5" Grid.Row="5" Grid.Column="4">入院诊断*：</Label>
-                    <Grid Grid.Row="5" Grid.Column="5" Grid.ColumnSpan="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBox x:Name="InHospitalDiagnosis" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
-                        <Button x:Name="InHospitalDiagnosisBtn" Margin="5" Grid.Column="1">编辑</Button>
-                    </Grid>
-
-                    <Label Margin="5" Grid.Row="6" Grid.Column="0">入院医生：</Label>
-                    <Grid Grid.Row="6" Grid.Column="1" >
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="auto"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <TextBox x:Name="InDoctorEdit" Margin="5" Grid.Column="0" IsEnabled="False"></TextBox>
-                        <Button x:Name="InDoctorEditBtn" Margin="5" Grid.Column="1" Click="InDoctorEditBtn_Click">选择</Button>
-                    </Grid>
-                    
-                    <Label x:Name="InDepartmentLabel" Margin="5" Grid.Row="6" Grid.Column="2">入院科室：</Label>
-                    <TextBox x:Name="InDepartmentEdit" Margin="5" Grid.Row="6" Grid.Column="3" IsEnabled="False"></TextBox>
-                    <Label Margin="5" Grid.Row="6" Grid.Column="4">入院押金：</Label>
-                    <TextBox x:Name="InHospitalYaJin" Margin="5" Grid.Row="6" Grid.Column="5"></TextBox>
-
-                    <Label Margin="5" Grid.Row="6" Grid.Column="6">入院经办：</Label>
-                    <TextBox x:Name="InUserName" Margin="5" Grid.Row="6" Grid.Column="7" IsEnabled="False"></TextBox>
+                <Label Margin="5" Grid.Row="6" Grid.Column="6">入院经办：</Label>
+                <TextBox x:Name="InUserName" Margin="5" Grid.Row="6" Grid.Column="7" IsEnabled="False"></TextBox>
 
                 <StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="6" Grid.ColumnSpan="2" HorizontalAlignment="Right">
                     <Button x:Name="InHospitalBtn" Margin="5" Click="InHospitalBtn_Click">入院</Button>
@@ -211,17 +231,8 @@
                 <Button Margin="5" Grid.Column="1">查找</Button>
             </StackPanel>
             <ListView Name="AllWaitList" Margin="5" 
-                              SelectionMode="Single" SelectionChanged="AllWaitList_SelectionChanged">
-                <ListView.View>
-                    <GridView x:Name="gridViewAllWait">
-                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="病情" DisplayMemberBinding="{Binding Path=IllnesSstateEnum}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                              SelectionMode="Single" 
+                      SelectionChanged="AllWaitList_SelectionChanged"/>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

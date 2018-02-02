@@ -578,7 +578,7 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.HospitalRadio.IsChecked.Value)
             {
-                var inp = this.AllPatientList.SelectedItem as CommContracts.Inpatient;
+                var inp = this.AllPatientList.SelectedItem as CommContracts.InHospital;
                 if (inp == null)
                     return;
                 myCurrentPatientID = inp.PatientID;

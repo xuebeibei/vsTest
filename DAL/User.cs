@@ -14,7 +14,7 @@ namespace DAL
             this.Password = "";
             this.Status = LoginStatus.unknow;
             Registrations = new List<Registration>();
-            Inpatients = new List<Inpatient>();
+            //Inpatients = new List<Inpatient>();
             PrePays = new List<PrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
             StoreOperateBillBases = new List<StoreOperateBillBase>();
@@ -33,7 +33,7 @@ namespace DAL
         public virtual Employee Employee { get; set; }
 
         public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号
-        public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
+        //public virtual ICollection<Inpatient> Inpatients { get; set; }       // 所有住院登记 
 
         public virtual ICollection<PrePay> PrePays { get; set; }
 

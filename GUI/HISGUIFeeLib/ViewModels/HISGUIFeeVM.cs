@@ -43,11 +43,11 @@ namespace HISGUIFeeLib.ViewModels
 
         }
 
-        // 得到所有需要收费的门诊患者
-        public List<CommContracts.Inpatient> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        // 得到所有需要收费的住院患者
+        public List<CommContracts.InHospital> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.GetAllInPatientMsg();
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.GetAllInHospitalMsg();
         }
 
         // 得到当前门诊患者的所有药品医嘱收费单
@@ -305,28 +305,45 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 保存入院登记
-        public bool SaveInPatient(CommContracts.Inpatient inpatient)
+        public bool SaveInHospital(CommContracts.InHospital inHospital, CommContracts.InHospitalApply inHospitalApply = null)
         {
-            if (inpatient == null)
+            if (inHospital == null)
                 return false;
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.SaveInPatient(inpatient);
+            CommClient.InHospital myd = new CommClient.InHospital();
+            if(myd.SaveInHospital(inHospital))
+            {
+                if(inHospitalApply == null)
+                {
+                    return true;
+                }
+                else
+                {
+                    CommClient.InHospitalApply myd1 = new CommClient.InHospitalApply();
+                    inHospitalApply.InHospitalApplyEnum = CommContracts.InHospitalApplyEnum.已处理;
+                    if (myd1.UpdateInHospitalApply(inHospitalApply))
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
 
+
         // 修改入院登记
-        public bool UpdateInPatient(CommContracts.Inpatient inpatient)
+        public bool UpdateInHospital(CommContracts.InHospital inHospital)
         {
-            if (inpatient == null)
+            if (inHospital == null)
                 return false;
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.UpdateInPatient(inpatient);
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.UpdateInHospital(inHospital);
         }
 
         // 读取未入院患者信息，并新建入院登记
-        public CommContracts.Inpatient ReadNewInPatient(int PatientID)
+        public CommContracts.InHospital ReadNewInHospital(int PatientID)
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.ReadNewInPatient(PatientID);
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.ReadNewInHospital(PatientID);
         }
 
         // 读取当前患者信息
@@ -344,16 +361,16 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         // 读取已入院患者信息
-        public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
+        public CommContracts.InHospital ReadCurrentInHospital(int InPatientID)
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.ReadCurrentInPatient(InPatientID);
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.ReadCurrentInHospital(InPatientID);
         }
 
         // 读取已出院患者信息
-        public CommContracts.Inpatient ReadLeavedPatient(int InPatientID)
+        public CommContracts.InHospital ReadLeavedPatient(int InPatientID)
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
+            CommClient.InHospital myd = new CommClient.InHospital();
             return myd.ReadLeavedPatient(InPatientID);
         }
         // 得到所有的缴费单
@@ -448,11 +465,11 @@ namespace HISGUIFeeLib.ViewModels
         // 当前住院患者的住院号
         #region CurrentInpatient
         public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
-            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentInpatient", typeof(CommContracts.InHospital), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Inpatient CurrentInpatient
+        public CommContracts.InHospital CurrentInpatient
         {
-            get { return (CommContracts.Inpatient)GetValue(CurrentInPatientProperty); }
+            get { return (CommContracts.InHospital)GetValue(CurrentInPatientProperty); }
             set { SetValue(CurrentInPatientProperty, value); }
         }
 

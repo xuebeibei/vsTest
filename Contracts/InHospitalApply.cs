@@ -10,8 +10,7 @@ namespace CommContracts
     public enum InHospitalApplyEnum
     {
         未处理,
-        同意申请,
-        拒绝申请
+        已处理
     }
 
     [DataContract]

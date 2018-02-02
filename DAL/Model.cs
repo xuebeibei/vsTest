@@ -20,7 +20,7 @@ namespace DAL
         public DbSet<Triage> Triages { get; set; }
         public DbSet<Medicine> Medicines { get; set; }
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
-        public DbSet<Inpatient> Inpatients { get; set; }
+        //public DbSet<Inpatient> Inpatients { get; set; }
         public DbSet<AssayItem> AssayItems { get; set; }
         public DbSet<Specimen> Specimens { get; set; }
         public DbSet<InspectItem> InspectItems { get; set; }

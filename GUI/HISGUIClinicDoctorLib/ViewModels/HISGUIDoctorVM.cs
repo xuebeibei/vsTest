@@ -56,10 +56,10 @@ namespace HISGUIDoctorLib.ViewModels
         }
 
         // 获得当前医生的住院患者
-        public List<CommContracts.Inpatient> GetAllInPatient()
+        public List<CommContracts.InHospital> GetAllInPatient()
         {
-            CommClient.Inpatient myd = new CommClient.Inpatient();
-            return myd.GetAllInPatientMsg();
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.GetAllInHospitalMsg();
         }
 
         // 显示接诊界面
@@ -279,21 +279,6 @@ namespace HISGUIDoctorLib.ViewModels
             return otherService.SaveOtherService(otherServiceDoctorAdvice);
         }
 
-        public string getPatientBMIMsg()
-        {
-            if (IsClinicOrInHospital)
-            {
-                CommClient.Registration myd = new CommClient.Registration();
-                return myd.getPatientBMIMsg(CurrentRegistration.ID);
-            }
-            else
-            {
-                CommClient.Inpatient inpatient = new CommClient.Inpatient();
-                return inpatient.getInPatientBMIMsg(CurrentInpatient.ID);
-            }
-        }
-
-
         public bool SaveClinicMedicalRecord(CommContracts.MedicalRecord medicalRecord)
         {
             CommClient.MedicalRecord myd = new CommClient.MedicalRecord();
@@ -365,11 +350,11 @@ namespace HISGUIDoctorLib.ViewModels
         // 当前医生看诊的住院号
         #region CurrentInpatient
         public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
-            "CurrentInpatient", typeof(CommContracts.Inpatient), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentInpatient", typeof(CommContracts.InHospital), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.Inpatient CurrentInpatient
+        public CommContracts.InHospital CurrentInpatient
         {
-            get { return (CommContracts.Inpatient)GetValue(CurrentInPatientProperty); }
+            get { return (CommContracts.InHospital)GetValue(CurrentInPatientProperty); }
             set { SetValue(CurrentInPatientProperty, value); }
         }
 

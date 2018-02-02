@@ -18,8 +18,8 @@ namespace DAL
         public DateTime InTime { get; set; }
         public string Diagnosis { get; set; }
         public InHospitalStatusEnum InHospitalStatusEnum { get; set; }
-        public virtual Patient Patient { get; set; }
 
+        public virtual Patient Patient { get; set; }
         public virtual ICollection<LeaveHospital> LeaveHospitals { get; set; }
         public virtual ICollection<InHospitalPatientDoctor> InHospitalPatientDoctors { get; set; }
     }
