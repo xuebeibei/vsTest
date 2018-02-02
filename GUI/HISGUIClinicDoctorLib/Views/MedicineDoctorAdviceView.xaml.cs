@@ -113,10 +113,10 @@ namespace HISGUIDoctorLib.Views
             }
             else
             {
-                if (vm.CurrentInpatient != null)
+                if (vm.CurrentInHospital != null)
                 {
-                    medicineDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
-                    medicineDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                    medicineDoctorAdvice.InpatientID = vm.CurrentInHospital.ID;
+                    medicineDoctorAdvice.PatientID = vm.CurrentInHospital.PatientID;
                 }
             }
             medicineDoctorAdvice.SumOfMoney = sum;

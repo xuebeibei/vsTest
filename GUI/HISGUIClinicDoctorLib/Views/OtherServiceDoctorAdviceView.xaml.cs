@@ -102,10 +102,10 @@ namespace HISGUIDoctorLib.Views
             }
             else
             {
-                if (vm.CurrentInpatient != null)
+                if (vm.CurrentInHospital != null)
                 {
-                    otherServiceDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
-                    otherServiceDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                    otherServiceDoctorAdvice.InpatientID = vm.CurrentInHospital.ID;
+                    otherServiceDoctorAdvice.PatientID = vm.CurrentInHospital.PatientID;
                 }
             }
 

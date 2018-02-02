@@ -12,12 +12,12 @@
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" SelectionMode="Single">
+            <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" SelectionMode="Single" SelectionChanged="AllPatientList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewPatient">
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
                         <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=SeeDoctorStatus}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=InHospitalStatusEnum}" Width="60"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

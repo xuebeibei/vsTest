@@ -52,6 +52,15 @@ namespace HISGUIDoctorLib.Views
             showPatientMsg();
         }
 
+        public void ShowInHospitalMsg(CommContracts.InHospital inHospital)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            vm.IsClinicOrInHospital = false;
+            vm.CurrentInHospital = inHospital;
+            showVisibility();
+            showPatientMsg();
+        }
+
         public void SetMyEnable(bool IsEnable)
         {
             tabControl.IsEnabled = IsEnable;
@@ -105,6 +114,26 @@ namespace HISGUIDoctorLib.Views
                     "费用：" + vm.CurrentRegistration.RegisterFee + "元     " +
                     "挂号经办人：" + vm.CurrentRegistration.RegisterUser.Username + "     " +
                     "经办时间：" + vm.CurrentRegistration.RegisterTime.Value.Date + "     " ;
+                PatientMsg.Inlines.Add(new Run(str));
+            }
+            else
+            {
+                PatientMsg.Inlines.Clear();
+
+                if (vm.CurrentInHospital == null)
+                    return;
+                if (vm.CurrentInHospital.Patient == null)
+                    return;
+
+                string str =
+                    "姓名：" + vm.CurrentInHospital.Patient.Name + "     " +
+                    "性别：" + vm.CurrentInHospital.Patient.Gender + "     " +
+                    "生日：" + vm.CurrentInHospital.Patient.BirthDay + "     " +
+                    "身份证号：" + vm.CurrentInHospital.Patient.IDCardNo + "     " +
+                    "民族：" + vm.CurrentInHospital.Patient.Volk + "     " +
+                    "籍贯：" + vm.CurrentInHospital.Patient.JiGuan + "     " +
+                    "电话：" + vm.CurrentInHospital.Patient.Tel + "\n";
+                ;
                 PatientMsg.Inlines.Add(new Run(str));
             }
         }

@@ -97,10 +97,10 @@ namespace HISGUIDoctorLib.Views
             }
             else
             {
-                if(vm.CurrentInpatient != null)
+                if(vm.CurrentInHospital != null)
                 {
-                    therapyDoctorAdvice.InpatientID = vm.CurrentInpatient.ID;
-                    therapyDoctorAdvice.PatientID = vm.CurrentInpatient.PatientID;
+                    therapyDoctorAdvice.InpatientID = vm.CurrentInHospital.ID;
+                    therapyDoctorAdvice.PatientID = vm.CurrentInHospital.PatientID;
                 }
             }
             therapyDoctorAdvice.SumOfMoney = sum;

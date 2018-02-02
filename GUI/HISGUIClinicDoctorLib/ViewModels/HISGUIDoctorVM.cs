@@ -80,8 +80,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return MedicineDoctorAdvice.getAllInHospitalXiCheng(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return MedicineDoctorAdvice.getAllInHospitalXiCheng(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -99,8 +99,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return MedicineDoctorAdvice.getAllInHospitalZhong(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return MedicineDoctorAdvice.getAllInHospitalZhong(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -118,8 +118,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return assay.getAllInHospitalAssay(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return assay.getAllInHospitalAssay(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -137,8 +137,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return therapy.getAllInHospitalTherapyDoctorAdvice(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return therapy.getAllInHospitalTherapyDoctorAdvice(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -156,8 +156,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return inspect.getAllInHospitalInspect(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return inspect.getAllInHospitalInspect(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -175,8 +175,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return materialBill.getAllInHospitalMaterialDoctorAdvice(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return materialBill.getAllInHospitalMaterialDoctorAdvice(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -194,8 +194,8 @@ namespace HISGUIDoctorLib.ViewModels
             }
             else
             {
-                if (CurrentInpatient != null)
-                    return otherService.getAllInHospitalOtherService(CurrentInpatient.ID);
+                if (CurrentInHospital != null)
+                    return otherService.getAllInHospitalOtherService(CurrentInHospital.ID);
                 else
                     return null;
             }
@@ -348,14 +348,14 @@ namespace HISGUIDoctorLib.ViewModels
         #endregion
 
         // 当前医生看诊的住院号
-        #region CurrentInpatient
-        public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
-            "CurrentInpatient", typeof(CommContracts.InHospital), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
+        #region CurrentInHospital
+        public static readonly DependencyProperty CurrentInHospitalProperty = DependencyProperty.Register(
+            "CurrentInHospital", typeof(CommContracts.InHospital), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.InHospital CurrentInpatient
+        public CommContracts.InHospital CurrentInHospital
         {
-            get { return (CommContracts.InHospital)GetValue(CurrentInPatientProperty); }
-            set { SetValue(CurrentInPatientProperty, value); }
+            get { return (CommContracts.InHospital)GetValue(CurrentInHospitalProperty); }
+            set { SetValue(CurrentInHospitalProperty, value); }
         }
 
         #endregion

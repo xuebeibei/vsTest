@@ -55,5 +55,19 @@ namespace HISGUIDoctorLib.Views
                 this.AllPatientList.SelectedItem = temp;
             }
         }
+
+        private void AllPatientList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+
+            var temp = this.AllPatientList.SelectedItem as CommContracts.InHospital;
+            if (temp == null)
+                return;
+
+            this.PatientMsgView.SetMyEnable(true);
+            this.PatientMsgView.ShowInHospitalMsg(temp);
+            this.PatientMsgView.Visibility = Visibility.Visible;
+            this.TipMsgLabel.Visibility = Visibility.Collapsed;
+        }
     }
 }
