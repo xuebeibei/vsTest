@@ -29,6 +29,8 @@ namespace HISGUIFeeLib.Views
     {
         private CommContracts.InHospital MyCurrentInpatient { get; set; }
         private CommContracts.InHospitalApply MyCurrentInHospitalApply { get; set; }
+
+        private CommContracts.LeaveHospital MyCurrentLeaveHospital { get; set; }
         private bool IsEdit;
         public InAndLeaveHospitalView()
         {
@@ -70,7 +72,7 @@ namespace HISGUIFeeLib.Views
                 this.AllWaitList.View = this.Resources["leaveHospitalColumn"] as GridView;
                 AllWaitList.ItemsSource = myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.已出院);
             }
-                
+
         }
         private void NewInPatient()
         {
@@ -273,10 +275,17 @@ namespace HISGUIFeeLib.Views
                     this.LeaveHospitalTime.DisplayDateStart = MyCurrentInpatient.InTime;
                 this.LeaveHospitalTime.DisplayDateEnd = DateTime.Now;
 
-                //this.LeaveHospitalDepartment.Text = MyCurrentInpatient.LeaveHospitalDepartment;
-                //this.LeaveHospitalDoctor.Text = MyCurrentInpatient.LeaveHospitalDoctorName;
+
+                if (MyCurrentInpatient.InHospitalPatientDoctors != null && MyCurrentInpatient.InHospitalPatientDoctors.Count() > 0)
+                {
+                    this.LeaveHospitalDepartment.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Department.Name;
+                    this.LeaveHospitalDoctor.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Name;
+                }
+
+
                 //this.LeaveHospitalDiagnosis.Text = MyCurrentInpatient.LeaveHospitalDiagnoses;
                 //this.LeaveHospitalTime.SelectedDate = MyCurrentInpatient.LeaveHospitalTime;
+
             }
             else
             {
@@ -289,20 +298,24 @@ namespace HISGUIFeeLib.Views
 
         public bool updateViewToLeaveDate()
         {
-            if (LeaveHospitalTime.SelectedDate == null)
-                return false;
-            if (string.IsNullOrEmpty(LeaveHospitalDoctor.Text.Trim()))
-                return false;
-            if (string.IsNullOrEmpty(LeaveHospitalDepartment.Text.Trim()))
-                return false;
+            //if (LeaveHospitalTime.SelectedDate == null)
+            //    return false;
+            //if (string.IsNullOrEmpty(LeaveHospitalDoctor.Text.Trim()))
+            //    return false;
+            //if (string.IsNullOrEmpty(LeaveHospitalDepartment.Text.Trim()))
+            //    return false;
             if (MyCurrentInpatient == null)
                 return false;
+            if(MyCurrentLeaveHospital == null)
+            {
+                MyCurrentLeaveHospital = new CommContracts.LeaveHospital();
+            }
 
-            //MyCurrentInpatient.LeaveHospitalDepartment = this.LeaveHospitalDepartment.Text;
-            //MyCurrentInpatient.LeaveHospitalDoctorName = this.LeaveHospitalDoctor.Text;
-            //MyCurrentInpatient.LeaveHospitalDiagnoses = this.LeaveHospitalDiagnosis.Text;
-            //MyCurrentInpatient.LeaveHospitalTime = this.LeaveHospitalTime.SelectedDate;
+            var vm = this.DataContext as HISGUIFeeVM;
 
+            MyCurrentLeaveHospital.InHospitalID = MyCurrentInpatient.ID;
+            MyCurrentLeaveHospital.LeaveTime = DateTime.Now;
+            MyCurrentLeaveHospital.UserID = vm.CurrentUser.ID;
             return true;
         }
 
@@ -471,18 +484,21 @@ namespace HISGUIFeeLib.Views
 
         private void LeaveHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MyCurrentInpatient == null)
-                return;
+            if (MyCurrentLeaveHospital == null)
+            {
+                MyCurrentLeaveHospital = new CommContracts.LeaveHospital();
+            }
 
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {
                 MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
 
-                bool? bResult = vm?.UpdateInHospital(MyCurrentInpatient);
-                if (bResult.HasValue)
+                bool? bResult = vm?.SaveLeaveHospital(MyCurrentLeaveHospital);
+                if (bResult.HasValue && bResult.Value)
                 {
-                    if (bResult.Value)
+                    bResult = vm?.UpdateInHospital(MyCurrentInpatient);
+                    if (bResult.HasValue && bResult.Value)
                     {
                         MessageBox.Show("出院成功！");
                         setInHospitalGridEnable(false);
@@ -490,6 +506,7 @@ namespace HISGUIFeeLib.Views
                         return;
                     }
                 }
+
                 MessageBox.Show("出院失败！");
             }
         }
@@ -534,7 +551,7 @@ namespace HISGUIFeeLib.Views
                 MyCurrentInpatient.InTime = DateTime.Now;
 
                 MyCurrentInHospitalApply = tempApply;
-                
+
                 CommContracts.InHospitalPatientDoctor inHospitalPatientDoctor = new CommContracts.InHospitalPatientDoctor();
                 inHospitalPatientDoctor.StartTime = DateTime.Now;
                 inHospitalPatientDoctor.DoctorID = tempApply.User.EmployeeID;
@@ -542,7 +559,7 @@ namespace HISGUIFeeLib.Views
                 inHospitalPatientDoctor.UserID = vm.CurrentUser.ID;
 
                 MyCurrentInpatient.InHospitalPatientDoctors.Add(inHospitalPatientDoctor);
-                
+
             }
             else
             {

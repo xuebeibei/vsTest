@@ -65,6 +65,7 @@
     <Compile Include="InspectDoctorAdvice.cs" />
     <Compile Include="InspectItem.cs" />
     <Compile Include="Job.cs" />
+    <Compile Include="LeaveHospital.cs" />
     <Compile Include="User.cs" />
     <Compile Include="MaterialCharge.cs" />
     <Compile Include="MaterialCheckStore.cs" />

@@ -612,5 +612,14 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateInHospitalApply(CommContracts.InHospitalApply InHospitalApply);
+
+        [OperationContract]
+        List<CommContracts.LeaveHospital> GetAllLeaveHospitalList(int EmployeeID = 0, string strName = "");
+
+        [OperationContract]
+        bool SaveLeaveHospital(CommContracts.LeaveHospital leaveHospital);
+
+        [OperationContract]
+        bool UpdateLeaveHospital(CommContracts.LeaveHospital leaveHospital);
     }
 }

@@ -304,15 +304,24 @@ namespace HISGUIFeeLib.ViewModels
             return storeRoomMedicineNum.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
+        // 保存出院登记
+        public bool SaveLeaveHospital(CommContracts.LeaveHospital LeaveHospital)
+        {
+            if (LeaveHospital == null)
+                return false;
+            CommClient.LeaveHospital myd = new CommClient.LeaveHospital();
+            return myd.SaveLeaveHospital(LeaveHospital);
+        }
+
         // 保存入院登记
         public bool SaveInHospital(CommContracts.InHospital inHospital, CommContracts.InHospitalApply inHospitalApply = null)
         {
             if (inHospital == null)
                 return false;
             CommClient.InHospital myd = new CommClient.InHospital();
-            if(myd.SaveInHospital(inHospital))
+            if (myd.SaveInHospital(inHospital))
             {
-                if(inHospitalApply == null)
+                if (inHospitalApply == null)
                 {
                     return true;
                 }

@@ -11,6 +11,10 @@ namespace BLL
     {
         public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
         {
+            if(inHospitalStatusEnum == CommContracts.InHospitalStatusEnum.已出院)
+            {
+                return null;
+            }
             List<CommContracts.InHospital> list = new List<CommContracts.InHospital>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
