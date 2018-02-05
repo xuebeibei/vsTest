@@ -25,5 +25,10 @@ namespace CommClient
         {
             return client.UpdateChargeStatus(DoctorAdviceID, chargeStatusEnum);
         }
+
+        public bool UpdateExecuteEnum(int DoctorAdviceID, CommContracts.ExecuteEnum executeEnum)
+        {
+            return client.UpdateExecuteEnum(DoctorAdviceID, executeEnum);
+        }
     }
 }

@@ -1164,6 +1164,12 @@ namespace CommServer
             return temp.UpdateChargeStatus(DoctorAdviceID, chargeStatusEnum);
         }
 
+        public bool UpdateExecuteEnum(int DoctorAdviceID, CommContracts.ExecuteEnum executeEnum)
+        {
+            BLL.DoctorAdviceBase temp = new BLL.DoctorAdviceBase();
+            return temp.UpdateExecuteEnum(DoctorAdviceID, executeEnum);
+        }
+
         public List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum, string strName = "")
         {
             BLL.InHospitalApply temp = new BLL.InHospitalApply();
@@ -1221,6 +1227,18 @@ namespace CommServer
         {
             BLL.RecallHospital temp = new BLL.RecallHospital();
             return temp.UpdateRecallHospital(recallHospital);
+        }
+
+        public bool SaveInjectionBill(CommContracts.InjectionBill injectionBill)
+        {
+            BLL.InjectionBill temp = new BLL.InjectionBill();
+            return temp.SaveInjectionBill(injectionBill);
+        }
+
+        public List<CommContracts.InjectionBill> GetAllInjectionBill(int nRegistrationID)
+        {
+            BLL.InjectionBill temp = new BLL.InjectionBill();
+            return temp.GetAllInjectionBill(nRegistrationID);
         }
     }
 }

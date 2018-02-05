@@ -39,6 +39,12 @@ namespace CommContracts
         全部收费
     }
 
+    public enum ExecuteEnum
+    {
+        未执行,
+        已执行
+    }
+
     [DataContract]
     public class DoctorAdviceBase
     {
@@ -56,6 +62,10 @@ namespace CommContracts
         public int PatientID { get; set; }                      // 所属患者
         [DataMember]
         public ChargeStatusEnum ChargeStatusEnum { get; set; }  // 收费状态
+        
+        [DataMember]
+        public ExecuteEnum ExecuteEnum { get; set; }            // 执行状态
+
         [DataMember]
         public int RegistrationID { get; set; }                 // 门诊看诊标记
         [DataMember]

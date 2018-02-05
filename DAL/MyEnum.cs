@@ -174,4 +174,10 @@ namespace DAL
         未处理,
         已处理
     }
+
+    public enum ExecuteEnum
+    {
+        未执行,
+        已执行
+    }
 }

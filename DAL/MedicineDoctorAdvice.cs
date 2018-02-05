@@ -18,5 +18,6 @@ namespace DAL
         public virtual ICollection<MedicineDoctorAdviceDetail> MedicineDoctorAdviceDetails { get; set; }
 
         public virtual ICollection<MedicineCharge> MedicineCharges { get; set; }
+        public virtual ICollection<InjectionBill> InjectionBills { get; set; }
     }
 }

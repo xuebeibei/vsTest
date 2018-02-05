@@ -43,6 +43,7 @@ namespace HISGUINurseLib.Views
         private void Triage_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUINurseVM;
+            vm.CurrentUser = vm?.getUser(1);
             vm?.TriageManage();
         }
 

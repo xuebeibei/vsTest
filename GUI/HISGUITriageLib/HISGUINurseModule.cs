@@ -18,7 +18,7 @@ namespace HISGUINurseLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUINurseView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUINurseView));
         }
     }
 }

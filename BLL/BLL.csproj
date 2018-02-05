@@ -61,6 +61,7 @@
     <Compile Include="FixDalError.cs" />
     <Compile Include="InHospital.cs" />
     <Compile Include="InHospitalApply.cs" />
+    <Compile Include="InjectionBill.cs" />
     <Compile Include="InspectCharge.cs" />
     <Compile Include="InspectDoctorAdvice.cs" />
     <Compile Include="InspectItem.cs" />

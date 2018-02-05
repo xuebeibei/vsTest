@@ -91,6 +91,9 @@
     <Compile Include="Views\HISGUINurseView.xaml.cs">
       <DependentUpon>HISGUINurseView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\InjectionView.xaml.cs">
+      <DependentUpon>InjectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\NurseView.xaml.cs">
       <DependentUpon>NurseView.xaml</DependentUpon>
     </Compile>
@@ -112,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HISGUINurseView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\InjectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

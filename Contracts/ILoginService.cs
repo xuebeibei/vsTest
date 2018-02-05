@@ -566,6 +566,9 @@ namespace CommContracts
         bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum);
 
         [OperationContract]
+        bool UpdateExecuteEnum(int DoctorAdviceID, CommContracts.ExecuteEnum executeEnum);
+
+        [OperationContract]
         List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum, string strName = "");
 
         [OperationContract]
@@ -593,5 +596,11 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateRecallHospital(CommContracts.RecallHospital recallHospital);
+
+        [OperationContract]
+        bool SaveInjectionBill(CommContracts.InjectionBill injectionBill);
+
+        [OperationContract]
+        List<CommContracts.InjectionBill> GetAllInjectionBill(int nRegistrationID);
     }
 }

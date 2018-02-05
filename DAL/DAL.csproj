@@ -68,6 +68,7 @@
     <Compile Include="InHospital.cs" />
     <Compile Include="InHospitalApply.cs" />
     <Compile Include="InHospitalPatientDoctor.cs" />
+    <Compile Include="InjectionBill.cs" />
     <Compile Include="InspectCharge.cs" />
     <Compile Include="InspectChargeDetail.cs" />
     <Compile Include="InspectDoctorAdvice.cs" />
@@ -137,6 +138,14 @@
     <Compile Include="Migrations\201802050241465_PaperTest9.cs" />
     <Compile Include="Migrations\201802050241465_PaperTest9.Designer.cs">
       <DependentUpon>201802050241465_PaperTest9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802050659313_PaperTest10.cs" />
+    <Compile Include="Migrations\201802050659313_PaperTest10.Designer.cs">
+      <DependentUpon>201802050659313_PaperTest10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201802050716404_PaperTest11.cs" />
+    <Compile Include="Migrations\201802050716404_PaperTest11.Designer.cs">
+      <DependentUpon>201802050716404_PaperTest11.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
@@ -217,6 +226,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201802050241465_PaperTest9.resx">
       <DependentUpon>201802050241465_PaperTest9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802050659313_PaperTest10.resx">
+      <DependentUpon>201802050659313_PaperTest10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201802050716404_PaperTest11.resx">
+      <DependentUpon>201802050716404_PaperTest11.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

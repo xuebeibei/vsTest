@@ -19,6 +19,8 @@ namespace DAL
         public int WriteDoctorUserID { get; set; }              // 开具医生
         public int PatientID { get; set; }                      // 所属患者
         public ChargeStatusEnum ChargeStatusEnum { get; set; }  // 收费状态
+
+        public ExecuteEnum ExecuteEnum { get; set; }            // 执行状态
         public int RegistrationID { get; set; }                 // 门诊看诊标记
         public int InpatientID { get; set; }                    // 住院看诊标记
 

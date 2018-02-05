@@ -29,5 +29,27 @@ namespace BLL
 
             return true;
         }
+
+        public bool UpdateExecuteEnum(int DoctorAdviceID, CommContracts.ExecuteEnum executeEnum)
+        {
+            using (DAL.HisContext context = new DAL.HisContext())
+            {
+                var tem = context.DoctorAdviceBases.Find(DoctorAdviceID);
+                if (tem == null)
+                    return false;
+
+                tem.ExecuteEnum = (DAL.ExecuteEnum)executeEnum;
+                try
+                {
+                    context.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
     }
 }

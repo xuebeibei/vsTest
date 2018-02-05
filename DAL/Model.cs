@@ -93,6 +93,8 @@ namespace DAL
         public DbSet<LeaveHospital> LeaveHospitals { get; set; }
         public DbSet<RecallHospital> RecallHospitals { get; set; }
 
+        public DbSet<InjectionBill> InjectionBills { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -162,6 +164,8 @@ namespace DAL
             modelBuilder.Entity<InHospitalPatientDoctor>().ToTable("tpt.InHospitalPatientDoctor");
             modelBuilder.Entity<LeaveHospital>().ToTable("tpt.LeaveHospital");
             modelBuilder.Entity<RecallHospital>().ToTable("tpt.RecallHospital");
+
+            modelBuilder.Entity<InjectionBill>().ToTable("tpt.InjectionBill");
         }
     }
 }
