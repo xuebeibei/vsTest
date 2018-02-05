@@ -244,30 +244,6 @@ namespace CommContracts
         [OperationContract]
         bool DeleteInspectItem(int InspectItemID);
 
-        //[OperationContract]
-        //List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "");
-
-        //[OperationContract]
-        //string getInPatientBMIMsg(int InpatientID);
-
-        //[OperationContract]
-        //bool SaveInPatient(CommContracts.Inpatient inpatient);
-
-        //[OperationContract]
-        //bool UpdateInPatient(CommContracts.Inpatient inpatient);
-
-        //// 读取未入院患者信息，并新建入院登记
-        //[OperationContract]
-        //CommContracts.Inpatient ReadNewInPatient(int PatientID);
-
-        //// 读取已入院患者信息
-        //[OperationContract]
-        //CommContracts.Inpatient ReadCurrentInPatient(int InPatientID);
-
-        //// 读取已出院患者信息
-        //[OperationContract]
-        //CommContracts.Inpatient ReadLeavedPatient(int InPatientID);
-
         [OperationContract]
         List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "");
 

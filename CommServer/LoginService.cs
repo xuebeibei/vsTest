@@ -390,51 +390,6 @@ namespace CommServer
             return temp.getAllTherapy(RegistrationID);
         }
 
-        //public List<CommContracts.Inpatient> GetAllInPatientList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, string strName = "")
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.GetAllInPatientList(inHospitalStatusEnum, strName);
-        //}
-
-        //public string getInPatientBMIMsg(int InpatientID)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.getInPatientBMIMsg(InpatientID);
-        //}
-
-        //public bool SaveInPatient(CommContracts.Inpatient inpatient)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.SaveInPatient(inpatient);
-        //}
-
-        //public bool UpdateInPatient(CommContracts.Inpatient inpatient)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.UpdateInPatient(inpatient);
-        //}
-
-        //// 读取未入院患者信息，并新建入院登记
-        //public CommContracts.Inpatient ReadNewInPatient(int PatientID)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.ReadNewInPatient(PatientID);
-        //}
-
-        //// 读取已入院患者信息
-        //public CommContracts.Inpatient ReadCurrentInPatient(int InPatientID)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.ReadCurrentInPatient(InPatientID);
-        //}
-
-        //// 读取已出院患者信息
-        //public CommContracts.Inpatient ReadLeavedPatient(int InPatientID)
-        //{
-        //    BLL.Inpatient temp = new BLL.Inpatient();
-        //    return temp.ReadLeavedPatient(InPatientID);
-        //}
-
         public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
         {
             BLL.InHospital temp = new BLL.InHospital();
@@ -1251,6 +1206,24 @@ namespace CommServer
         {
             BLL.InHospitalApply temp = new BLL.InHospitalApply();
             return temp.UpdateInHospitalApply(InHospitalApply);
+        }
+
+        public List<CommContracts.LeaveHospital> GetAllLeaveHospitalList(int EmployeeID = 0, string strName = "")
+        {
+            BLL.LeaveHospital temp = new BLL.LeaveHospital();
+            return temp.GetAllLeaveHospitalList(EmployeeID, strName);
+        }
+
+        public bool SaveLeaveHospital(CommContracts.LeaveHospital leaveHospital)
+        {
+            BLL.LeaveHospital temp = new BLL.LeaveHospital();
+            return temp.SaveLeaveHospital(leaveHospital);
+        }
+
+        public bool UpdateLeaveHospital(CommContracts.LeaveHospital leaveHospital)
+        {
+            BLL.LeaveHospital temp = new BLL.LeaveHospital();
+            return temp.UpdateLeaveHospital(leaveHospital);
         }
     }
 }
