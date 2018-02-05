@@ -65,16 +65,16 @@ namespace HISGUIDoctorLib.Views
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             List<MyDetail> listDetail = new List<MyDetail>();
-            CommContracts.DoctorAdviceContentEnum doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.XiChengYao;
+            CommContracts.DoctorAdviceContentEnum doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.西药成药;
             if (this.tabControl.SelectedIndex == 0)
             {
                 listDetail = myXiChengTableEdit.GetAllDetails();
-                doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.XiChengYao;
+                doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.西药成药;
             }
             else if (this.tabControl.SelectedIndex == 1)
             {
                 listDetail = myZhongTableEdit.GetAllDetails();
-                doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.ZhongYao;
+                doctorAdviceContentEnum = CommContracts.DoctorAdviceContentEnum.中药;
             }
 
             List<CommContracts.MedicineDoctorAdviceDetail> list = new List<CommContracts.MedicineDoctorAdviceDetail>();
@@ -237,7 +237,7 @@ namespace HISGUIDoctorLib.Views
         private void AllXiChengList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CommContracts.MedicineDoctorAdvice doctorAdvice = AllXiChengList.SelectedItem as CommContracts.MedicineDoctorAdvice;
-            ShowDetails(doctorAdvice, CommContracts.DoctorAdviceContentEnum.XiChengYao);
+            ShowDetails(doctorAdvice, CommContracts.DoctorAdviceContentEnum.西药成药);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
@@ -246,7 +246,7 @@ namespace HISGUIDoctorLib.Views
         private void AllZhongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             CommContracts.MedicineDoctorAdvice doctorAdvice = AllZhongList.SelectedItem as CommContracts.MedicineDoctorAdvice;
-            ShowDetails(doctorAdvice, CommContracts.DoctorAdviceContentEnum.ZhongYao);
+            ShowDetails(doctorAdvice, CommContracts.DoctorAdviceContentEnum.中药);
 
             this.SaveBtn.IsEnabled = false;
             this.DeleteBtn.IsEnabled = true;
@@ -279,13 +279,13 @@ namespace HISGUIDoctorLib.Views
                 list.Add(doctorAdviceDetail);
             }
 
-            if (doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.XiChengYao)
+            if (doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.西药成药)
             {
                 this.XiChengDoctorAdviceMsg.Text = doctorAdvice.ToString();
                 myXiChengTableEdit.SetAllDetails(list);
                 myXiChengTableEdit.IsEnabled = false;
             }
-            else if (doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.ZhongYao)
+            else if (doctorAdviceContentEnum == CommContracts.DoctorAdviceContentEnum.中药)
             {
                 this.ZhongDoctorAdviceMsg.Text = doctorAdvice.ToString();
                 myZhongTableEdit.SetAllDetails(list);

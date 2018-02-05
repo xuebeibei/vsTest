@@ -17,6 +17,28 @@ namespace CommContracts
         其他
     }
 
+    public enum RecipeTypeEnum
+    {
+        普通处方,             // 普通处方
+        急诊处方,             // 急诊处方
+        儿科处方,               // 儿科处方  
+        麻精一,           // 麻精一   
+        精二              // 精二  
+    }
+
+    public enum DoctorAdviceContentEnum
+    {
+        西药成药,
+        中药
+    }
+
+    public enum ChargeStatusEnum
+    {
+        未收费,
+        部分收费,
+        全部收费
+    }
+
     [DataContract]
     public class DoctorAdviceBase
     {
