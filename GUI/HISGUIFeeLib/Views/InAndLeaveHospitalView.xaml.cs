@@ -273,29 +273,29 @@ namespace HISGUIFeeLib.Views
 
         private void updateLeaveDateToView()
         {
-            if (MyCurrentLeaveHospital != null && MyCurrentInpatient != null)
+
+            this.LeaveHospitalDepartment.Text = "";
+            this.LeaveHospitalDoctor.Text = "";
+            this.LeaveHospitalDiagnosis.Text = "";
+            this.LeaveHospitalTime.SelectedDate = null;
+            this.LeaveHospitalTime.DisplayDateEnd = DateTime.Now;
+
+
+            if (MyCurrentInpatient != null)
             {
                 if (MyCurrentInpatient.InTime != null)
                     this.LeaveHospitalTime.DisplayDateStart = MyCurrentInpatient.InTime;
-                this.LeaveHospitalTime.DisplayDateEnd = DateTime.Now;
-
-
                 if (MyCurrentInpatient.InHospitalPatientDoctors != null && MyCurrentInpatient.InHospitalPatientDoctors.Count() > 0)
                 {
                     this.LeaveHospitalDepartment.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Department.Name;
                     this.LeaveHospitalDoctor.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Name;
                 }
+            }
 
+            if (MyCurrentLeaveHospital != null)
+            {
                 this.LeaveHospitalDiagnosis.Text = MyCurrentLeaveHospital.Diagnosis;
                 this.LeaveHospitalTime.SelectedDate = MyCurrentLeaveHospital.LeaveTime;
-
-            }
-            else
-            {
-                this.LeaveHospitalDepartment.Text = "";
-                this.LeaveHospitalDoctor.Text = "";
-                this.LeaveHospitalDiagnosis.Text = "";
-                this.LeaveHospitalTime.SelectedDate = null;
             }
         }
 
