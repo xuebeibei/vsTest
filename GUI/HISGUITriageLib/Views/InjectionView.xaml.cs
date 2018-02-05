@@ -28,6 +28,7 @@ namespace HISGUINurseLib.Views
     public partial class InjectionView : HISGUIViewBase
     {
         private int MyCurrentRegistrationID { get; set; }
+        private int myCurrentPatientID{ get; set; }
         public InjectionView()
         {
             InitializeComponent();
@@ -41,9 +42,16 @@ namespace HISGUINurseLib.Views
 
         private void ShowAllPatient()
         {
+            this.AllPatientList.ItemsSource = null;
             var vm = this.DataContext as HISGUINurseVM;
-
-            this.AllPatientList.ItemsSource = vm?.GetAllClinicPatients(DateTime.Now, DateTime.Now);
+            if (this.ClinicRadio.IsChecked.Value)
+            {
+                this.AllPatientList.ItemsSource = vm?.GetAllClinicPatients(DateTime.Now, DateTime.Now);
+            }
+            else if (this.HospitalRadio.IsChecked.Value)
+            {
+                this.AllPatientList.ItemsSource = vm?.GetAllInHospitalChargePatient();
+            }
         }
 
         [Import]
@@ -55,22 +63,34 @@ namespace HISGUINurseLib.Views
         private void AllPatientList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var vm = this.DataContext as HISGUINurseVM;
+            if (this.ClinicRadio.IsChecked.Value)
+            {
+                var re = this.AllPatientList.SelectedItem as CommContracts.Registration;
+                if (re == null)
+                    return;
+                MyCurrentRegistrationID = re.PatientID;
+                vm.CurrentRegistration = re;
+                vm.IsClinicOrInHospital = true;
+            }
+            else if (this.HospitalRadio.IsChecked.Value)
+            {
+                var inp = this.AllPatientList.SelectedItem as CommContracts.InHospital;
+                if (inp == null)
+                    return;
+                myCurrentPatientID = inp.PatientID;
+                vm.CurrentInpatient = inp;
+                vm.IsClinicOrInHospital = false;
+            }
 
-            var re = this.AllPatientList.SelectedItem as CommContracts.Registration;
-            if (re == null)
-                return;
-
-            MyCurrentRegistrationID = re.ID;
-
-            ShowPatientMsg(re.PatientID);
+            ShowPatientMsg();
             UpdateAllChage();
         }
 
-        private void ShowPatientMsg(int PatientID)
+        private void ShowPatientMsg()
         {
             var vm = this.DataContext as HISGUINurseVM;
-            CommContracts.Patient tempPatient = vm?.ReadCurrentPatient(PatientID);
-            decimal? dBalance = vm?.GetCurrentPatientBalance(PatientID);
+            CommContracts.Patient tempPatient = vm?.ReadCurrentPatient(myCurrentPatientID);
+            decimal? dBalance = vm?.GetCurrentPatientBalance(myCurrentPatientID);
 
             PatientMsg.Inlines.Clear();
             string str =
@@ -93,7 +113,7 @@ namespace HISGUINurseLib.Views
             {
                 // 得到所有已收费单据
                 List<CommContracts.InjectionBill> listAllCharge = new List<CommContracts.InjectionBill>();
-                listAllCharge.AddRange(vm?.GetAllInjectionBill(MyCurrentRegistrationID));
+                listAllCharge.AddRange(vm?.GetAllInjectionBill());
 
                 this.AllHaveDoneList.ItemsSource = listAllCharge;
             }
@@ -101,7 +121,7 @@ namespace HISGUINurseLib.Views
             {
                 List<CommContracts.DoctorAdviceBase> listAllAdvice = new List<CommContracts.DoctorAdviceBase>();
 
-                listAllAdvice.AddRange(vm?.GetAllMedicineDoctorAdvice(MyCurrentRegistrationID));
+                listAllAdvice.AddRange(vm?.GetAllMedicineDoctorAdvice());
 
                 var query = from u in listAllAdvice
                             where u.ChargeStatusEnum == CommContracts.ChargeStatusEnum.全部收费 &&
@@ -261,6 +281,20 @@ namespace HISGUINurseLib.Views
                 default:
                     break;
             }
+        }
+
+        private void ClinicRadio_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUINurseVM;
+            vm.IsClinicOrInHospital = true;
+            ShowAllPatient();
+        }
+
+        private void HospitalRadio_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUINurseVM;
+            vm.IsClinicOrInHospital = false;
+            ShowAllPatient();
         }
     }
 }

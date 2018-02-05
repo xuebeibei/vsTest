@@ -69,6 +69,13 @@ namespace HISGUINurseLib.ViewModels
             return myd.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
         }
 
+        // 得到所有需要收费的住院患者
+        public List<CommContracts.InHospital> GetAllInHospitalChargePatient()
+        {
+            CommClient.InHospital myd = new CommClient.InHospital();
+            return myd.GetAllInHospitalList();
+        }
+
 
         // 读取当前患者信息
         public CommContracts.Patient ReadCurrentPatient(int PatientID)
@@ -85,22 +92,50 @@ namespace HISGUINurseLib.ViewModels
         }
 
         // 得到当前门诊患者的所有处方
-        public List<CommContracts.MedicineDoctorAdvice> GetAllMedicineDoctorAdvice(int nRegistrationID)
+        public List<CommContracts.MedicineDoctorAdvice> GetAllMedicineDoctorAdvice()
         {
             CommClient.MedicineDoctorAdvice recipe = new CommClient.MedicineDoctorAdvice();     // 处方
             List<CommContracts.MedicineDoctorAdvice> list = new List<CommContracts.MedicineDoctorAdvice>();
-
-            list.AddRange(recipe.getAllXiCheng(nRegistrationID));
-            list.AddRange(recipe.getAllZhong(nRegistrationID));
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                {
+                    list.AddRange(recipe.getAllXiCheng(CurrentRegistration.ID));
+                    list.AddRange(recipe.getAllZhong(CurrentRegistration.ID));
+                }
+                    
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                {
+                    list = recipe.getAllInHospitalXiCheng(CurrentInpatient.ID);
+                    list = recipe.getAllInHospitalXiCheng(CurrentInpatient.ID);
+                }
+                    
+            }
             return list;
         }
 
         // 得到当前门诊患者的已执行单
-        public List<CommContracts.InjectionBill> GetAllInjectionBill(int nRegistrationID)
+        public List<CommContracts.InjectionBill> GetAllInjectionBill()
         {
             CommClient.InjectionBill recipe = new CommClient.InjectionBill();
             List<CommContracts.InjectionBill> list = new List<CommContracts.InjectionBill>();
-            list.AddRange(recipe.GetAllInjectionBill(nRegistrationID));
+            if (IsClinicOrInHospital)
+            {
+                if (CurrentRegistration != null)
+                {
+                    list.AddRange(recipe.GetAllInjectionBill(CurrentRegistration.ID));
+                }
+            }
+            else
+            {
+                if (CurrentInpatient != null)
+                {
+                    list.AddRange(recipe.GetAllInHospitalInjectionBill(CurrentInpatient.ID));
+                }
+            }
             return list;
         }
 
@@ -128,6 +163,45 @@ namespace HISGUINurseLib.ViewModels
             set { SetValue(CurrentUserProperty, value); }
         }
 
+        #endregion
+
+
+        // 当前是门诊还是住院收费
+        #region IsClinicOrInHospital
+        public static readonly DependencyProperty IsClinicOrInHospitalProperty = DependencyProperty.Register(
+            "IsClinicOrInHospital", typeof(bool), typeof(HISGUINurseVM), new PropertyMetadata((sender, e) => { }));
+
+        public bool IsClinicOrInHospital
+        {
+            get { return (bool)GetValue(IsClinicOrInHospitalProperty); }
+            set { SetValue(IsClinicOrInHospitalProperty, value); }
+        }
+
+        #endregion
+
+        // 当前住院患者的住院号
+        #region CurrentInpatient
+        public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
+            "CurrentInpatient", typeof(CommContracts.InHospital), typeof(HISGUINurseVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.InHospital CurrentInpatient
+        {
+            get { return (CommContracts.InHospital)GetValue(CurrentInPatientProperty); }
+            set { SetValue(CurrentInPatientProperty, value); }
+        }
+
+        #endregion
+
+        // 当前医生收费的挂号单I
+        #region CurrentRegistration
+        public static readonly DependencyProperty CurrentRegistrationProperty = DependencyProperty.Register(
+            "CurrentRegistration", typeof(CommContracts.Registration), typeof(HISGUINurseVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Registration CurrentRegistration
+        {
+            get { return (CommContracts.Registration)GetValue(CurrentRegistrationProperty); }
+            set { SetValue(CurrentRegistrationProperty, value); }
+        }
         #endregion
     }
 }

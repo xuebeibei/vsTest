@@ -562,6 +562,7 @@ namespace HISGUIFeeLib.Views
         private void HospitalRadio_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
+            vm.IsClinicOrInHospital = false;
             ShowAllPatient();
         }
 

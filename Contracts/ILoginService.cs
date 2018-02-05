@@ -602,5 +602,7 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.InjectionBill> GetAllInjectionBill(int nRegistrationID);
+        [OperationContract]
+        List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID);
     }
 }

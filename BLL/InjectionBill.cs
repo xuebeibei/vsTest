@@ -71,5 +71,41 @@ namespace BLL
             }
             return list;
         }
+
+        public List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID)
+        {
+            List<CommContracts.InjectionBill> list = new List<CommContracts.InjectionBill>();
+            using (DAL.HisContext context = new DAL.HisContext())
+            {
+                var query = from m in context.InjectionBills
+                            where m.MedicineDoctorAdvice.InpatientID == InHospitalID
+                            select m;
+
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.InjectionBill, CommContracts.InjectionBill>().ForMember(x => x.MedicineDoctorAdvice, opt => opt.Ignore());
+                });
+                var mapper = config.CreateMapper();
+
+
+                var config1 = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.MedicineDoctorAdvice, CommContracts.MedicineDoctorAdvice>();
+                });
+                var mapper1 = config1.CreateMapper();
+
+
+                foreach (var tem in query)
+                {
+                    var advice = mapper1.Map<CommContracts.MedicineDoctorAdvice>(tem.MedicineDoctorAdvice);
+                    var injection = mapper.Map<CommContracts.InjectionBill>(tem);
+                    injection.MedicineDoctorAdvice = advice;
+
+                    list.Add(injection);
+                }
+
+            }
+            return list;
+        }
     }
 }

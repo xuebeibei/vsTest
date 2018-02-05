@@ -11,14 +11,25 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" SelectionChanged="AllPatientList_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
-                    <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
+                <RadioButton x:Name="ClinicRadio" Margin="5" IsChecked="True" Click="ClinicRadio_Click">门诊</RadioButton>
+                <RadioButton x:Name="HospitalRadio" Margin="5" Click="HospitalRadio_Click">住院</RadioButton>
+            </StackPanel>
+            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" SelectionChanged="AllPatientList_SelectionChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
+                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+        
         <StackPanel Grid.Column="1">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="ReadCard" Margin="5" Click="ReadCard_Click">读卡</Button>

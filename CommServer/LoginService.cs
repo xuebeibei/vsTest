@@ -1240,5 +1240,11 @@ namespace CommServer
             BLL.InjectionBill temp = new BLL.InjectionBill();
             return temp.GetAllInjectionBill(nRegistrationID);
         }
+
+        public List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID)
+        {
+            BLL.InjectionBill temp = new BLL.InjectionBill();
+            return temp.GetAllInHospitalInjectionBill(InHospitalID);
+        }
     }
 }

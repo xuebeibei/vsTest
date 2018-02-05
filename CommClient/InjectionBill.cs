@@ -17,5 +17,10 @@ namespace CommClient
         {
             return client.GetAllInjectionBill(nRegistrationID);
         }
+
+        public List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID)
+        {
+            return client.GetAllInHospitalInjectionBill(InHospitalID);
+        }
     }
 }
