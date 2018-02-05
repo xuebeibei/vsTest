@@ -9,19 +9,15 @@ namespace BLL
 {
     public class InHospital
     {
-        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
+        public List<CommContracts.InHospital> GetAllInHospitalList(int EmployeeID = 0, string strName = "")
         {
-            if(inHospitalStatusEnum == CommContracts.InHospitalStatusEnum.已出院)
-            {
-                return null;
-            }
             List<CommContracts.InHospital> list = new List<CommContracts.InHospital>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.InHospitals
                             from b in a.InHospitalPatientDoctors
-                            where a.InHospitalStatusEnum == (DAL.InHospitalStatusEnum)inHospitalStatusEnum &&
+                            where a.InHospitalStatusEnum == DAL.InHospitalStatusEnum.在院中 &&
                             a.Patient.Name.StartsWith(strName) &&
                             (EmployeeID == 0 || (b.EndTime == null && b.DoctorID == EmployeeID))
                             select a;

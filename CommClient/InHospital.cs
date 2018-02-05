@@ -8,9 +8,9 @@ namespace CommClient
 {
     public class InHospital : MyTableBase
     {
-        public List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "")
+        public List<CommContracts.InHospital> GetAllInHospitalList(int EmployeeID = 0, string strName = "")
         {
-            return client.GetAllInHospitalList(inHospitalStatusEnum, EmployeeID, strName);
+            return client.GetAllInHospitalList( EmployeeID, strName);
         }
 
         public bool SaveInHospital(CommContracts.InHospital inpatient)

@@ -16,7 +16,5 @@ namespace CommContracts
         public DateTime RecallTime { get; set; }
         [DataMember]
         public string Reason { get; set; }
-        [DataMember]
-        public LeaveHospital LeaveHospital { get; set; }
     }
 }

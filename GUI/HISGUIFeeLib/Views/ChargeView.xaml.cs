@@ -548,7 +548,7 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.HospitalRadio.IsChecked.Value)
             {
-                this.AllPatientList.ItemsSource = vm?.GetAllInHospitalChargePatient(DateTime.Now, DateTime.Now);
+                this.AllPatientList.ItemsSource = vm?.GetAllInHospitalChargePatient();
             }
         }
 

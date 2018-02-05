@@ -55,7 +55,7 @@ namespace HISGUIFeeLib.Views
 
         private void UpdateAllWait()
         {
-            CommClient.InHospital myd = new CommClient.InHospital();
+            
             if (this.InManageCheck.IsChecked.Value)
             {
                 this.AllWaitList.View = this.Resources["inApplyColumn"] as GridView;
@@ -64,13 +64,15 @@ namespace HISGUIFeeLib.Views
             }
             else if (this.LeaveManageCheck.IsChecked.Value)
             {
+                CommClient.InHospital myd = new CommClient.InHospital();
                 this.AllWaitList.View = this.Resources["inHospitalColumn"] as GridView;
-                AllWaitList.ItemsSource = myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中);
+                AllWaitList.ItemsSource = myd.GetAllInHospitalList();
             }
             else if (this.RecallManageCheck.IsChecked.Value)
             {
+                CommClient.LeaveHospital myd = new CommClient.LeaveHospital();
                 this.AllWaitList.View = this.Resources["leaveHospitalColumn"] as GridView;
-                AllWaitList.ItemsSource = myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.已出院);
+                AllWaitList.ItemsSource = myd.GetAllLeaveHospitalList();
             }
 
         }
@@ -561,13 +563,23 @@ namespace HISGUIFeeLib.Views
                 MyCurrentInpatient.InHospitalPatientDoctors.Add(inHospitalPatientDoctor);
 
             }
-            else
+            else if (this.LeaveManageCheck.IsChecked.Value)
             {
                 var temp = this.AllWaitList.SelectedItem as CommContracts.InHospital;
                 if (temp == null)
                     return;
 
                 MyCurrentInpatient = temp;
+
+                updateLeaveDateToView();
+            }
+            else
+            {
+                var temp = this.AllWaitList.SelectedItem as CommContracts.LeaveHospital;
+                if (temp == null)
+                    return;
+                MyCurrentInpatient = temp.InHospital;
+                MyCurrentLeaveHospital = temp;
 
                 updateLeaveDateToView();
             }

@@ -59,7 +59,7 @@ namespace HISGUIDoctorLib.ViewModels
         public List<CommContracts.InHospital> GetDoctorInHospitalPatients(int EmployeeID = 0)
         {
             CommClient.InHospital myd = new CommClient.InHospital();
-            return myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中, EmployeeID);
+            return myd.GetAllInHospitalList(EmployeeID);
         }
 
         // 显示接诊界面

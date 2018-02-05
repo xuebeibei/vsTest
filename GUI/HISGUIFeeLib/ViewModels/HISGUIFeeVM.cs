@@ -40,14 +40,13 @@ namespace HISGUIFeeLib.ViewModels
         {
             CommClient.Registration myd = new CommClient.Registration();
             return myd.GetAllClinicPatients(startDate, endDate, strFindName, HavePay);
-
         }
 
         // 得到所有需要收费的住院患者
-        public List<CommContracts.InHospital> GetAllInHospitalChargePatient(DateTime startDate, DateTime endDate, string strFindName = "", bool HavePay = false)
+        public List<CommContracts.InHospital> GetAllInHospitalChargePatient()
         {
             CommClient.InHospital myd = new CommClient.InHospital();
-            return myd.GetAllInHospitalList(CommContracts.InHospitalStatusEnum.在院中);
+            return myd.GetAllInHospitalList();
         }
 
         // 得到当前门诊患者的所有药品医嘱收费单

@@ -208,7 +208,7 @@ namespace CommContracts
         bool DeleteInspectItem(int InspectItemID);
 
         [OperationContract]
-        List<CommContracts.InHospital> GetAllInHospitalList(CommContracts.InHospitalStatusEnum inHospitalStatusEnum, int EmployeeID = 0, string strName = "");
+        List<CommContracts.InHospital> GetAllInHospitalList(int EmployeeID = 0, string strName = "");
 
         [OperationContract]
         string getInHospitalBMIMsg(int InHospitalID);

@@ -16,14 +16,12 @@
         <GridView x:Key="inHospitalColumn">
             <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
             <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
-            <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
             <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
         </GridView>
         <GridView x:Key="leaveHospitalColumn">
-            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
-            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="80"></GridViewColumn>
-            <GridViewColumn Header="申请时间" DisplayMemberBinding="{Binding Path=ApplyTime}" Width="100"></GridViewColumn>
-            <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=Patient.Tel}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=InHospital.Patient.Name}" Width="100"></GridViewColumn>
+            <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=InHospital.Patient.Gender}" Width="80"></GridViewColumn>
+            <GridViewColumn Header="电话" DisplayMemberBinding="{Binding Path=InHospital.Patient.Tel}" Width="100"></GridViewColumn>
         </GridView>
     </HISGUICore:HISGUIViewBase.Resources>
     <Grid>
