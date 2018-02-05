@@ -99,12 +99,6 @@
     <Compile Include="Views\InAndLeaveHospitalView.xaml.cs">
       <DependentUpon>InAndLeaveHospitalView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PatientChargeDetailsView.xaml.cs">
-      <DependentUpon>PatientChargeDetailsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PatientChargesView.xaml.cs">
-      <DependentUpon>PatientChargesView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\PrePaidView.xaml.cs">
       <DependentUpon>PrePaidView.xaml</DependentUpon>
     </Compile>
@@ -151,14 +145,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InAndLeaveHospitalView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PatientChargeDetailsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\PatientChargesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

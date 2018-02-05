@@ -49,9 +49,6 @@ namespace DAL
 
         public DbSet<Supplier> Suppliers { get; set; }
 
-        public DbSet<RecipeChargeBill> RecipeChargeBills { get; set; }
-        public DbSet<RecipeChargeDetail> RecipeChargeDetails { get; set; }
-
         public DbSet<SickRoom> SickRooms { get; set; }
         public DbSet<SickBed> SickBeds { get; set; }
 

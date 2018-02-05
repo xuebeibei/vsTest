@@ -55,12 +55,6 @@ namespace CommClient
         }
 
         // 根据收费单更新库存
-        public bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
-        {
-            return client.SubdMedicineStoreNum(recipeChargeBill);
-        }
-
-        // 根据收费单更新库存
         public bool SubdMedicineStoreNum(CommContracts.MedicineCharge medicineCharge)
         {
             return client.SubdMedicineStoreNumByAdvice(medicineCharge);

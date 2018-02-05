@@ -651,32 +651,11 @@ namespace CommServer
             return temp.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
-        // 根据收费单更新库存， 将要废弃
-        public bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill)
-        {
-            BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
-            return temp.SubdMedicineStoreNum(recipeChargeBill);
-        }
-
         // 根据收费单更新库存
         public bool SubdMedicineStoreNumByAdvice(CommContracts.MedicineCharge medicineCharge)
         {
             BLL.StoreRoomMedicineNum temp = new BLL.StoreRoomMedicineNum();
             return temp.SubdMedicineStoreNumByAdvice(medicineCharge);
-        }
-
-
-
-        public bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill)
-        {
-            BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
-            return temp.SaveRecipeChargeBill(recipeChargeBill);
-        }
-
-        public List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID)
-        {
-            BLL.RecipeChargeBill temp = new BLL.RecipeChargeBill();
-            return temp.GetAllChargeFromRecipe(RecipeID);
         }
 
         public bool SaveMedicineCharge(CommContracts.MedicineCharge MedicineCharge)

@@ -152,8 +152,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="RecallHospital.cs" />
-    <Compile Include="RecipeChargeBill.cs" />
-    <Compile Include="RecipeChargeDetail.cs" />
     <Compile Include="Registration.cs" />
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />

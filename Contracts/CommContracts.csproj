@@ -110,7 +110,6 @@
     <Compile Include="Patient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
-    <Compile Include="RecipeChargeBill.cs" />
     <Compile Include="RecipeChargeDetail.cs" />
     <Compile Include="RecipeDetails.cs" />
     <Compile Include="Registration.cs" />

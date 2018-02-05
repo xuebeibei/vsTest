@@ -115,37 +115,9 @@ namespace CommContracts
         [OperationContract]
         bool SaveTriage(int nDoctorID, int nRegistrationID);
 
-        //[OperationContract]
-        //bool SaveRecipe(CommContracts.Recipe recipe);
-
-        //[OperationContract]
-        //List<CommContracts.Recipe> getAllXiCheng(int RegistrationID);
-
-        //[OperationContract]
-        //List<CommContracts.Recipe> getAllZhong(int RegistrationID);
-
-        //[OperationContract]
-        //List<CommContracts.Recipe> getAllInHospitalXiCheng(int InpatientID);
-
-        //[OperationContract]
-        //List<CommContracts.Recipe> getAllInHospitalZhong(int InpatientID);
-
-        //[OperationContract]
-        //bool UpdateChargeStatus(int RecipeID, CommContracts.ChargeStatusEnum chargeStatusEnum);
-
-        [OperationContract]
-        // 根据收费单更新库存， 将要废弃
-        bool SubdMedicineStoreNum(CommContracts.RecipeChargeBill recipeChargeBill);
-
         [OperationContract]
         // 根据收费单更新库存
         bool SubdMedicineStoreNumByAdvice(CommContracts.MedicineCharge medicineCharge);
-
-        [OperationContract]
-        bool SaveRecipeChargeBill(CommContracts.RecipeChargeBill recipeChargeBill);
-
-        [OperationContract]
-        List<CommContracts.RecipeChargeBill> GetAllChargeFromRecipe(int RecipeID);
 
         [OperationContract]
         bool SaveMedicineCharge(CommContracts.MedicineCharge MedicineCharge);
@@ -173,15 +145,6 @@ namespace CommContracts
         List<CommContracts.MedicineCharge> GetAllClinicMedicineCharge(int RegistrationID);
         [OperationContract]
         List<CommContracts.MedicineCharge> GetAllInHospitalMedicineCharge(int InpatientID);
-        //[OperationContract]
-        //// 根据收费单更新库存
-        //bool SubdStoreNum(CommContracts.MedicineDoctorAdviceChargeBill MedicineDoctorAdviceChargeBill);
-
-        //[OperationContract]
-        //bool SaveMedicineDoctorAdviceChargeBill(CommContracts.MedicineDoctorAdviceChargeBill MedicineDoctorAdviceChargeBill);
-
-        //[OperationContract]
-        //List<CommContracts.MedicineDoctorAdviceChargeBill> GetAllChargeFromMedicineDoctorAdvice(int MedicineDoctorAdviceID);
 
         [OperationContract]
         CommContracts.MedicalRecord GetMedicalRecord(int id);
