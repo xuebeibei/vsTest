@@ -22,15 +22,26 @@ namespace BLL
                             (EmployeeID == 0 || (b.EndTime == null && b.DoctorID == EmployeeID))
                             select a;
 
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.LeaveHospital, CommContracts.LeaveHospital>().ForMember(x => x.InHospital, opt => opt.Ignore());
+                });
+                var mapper = config.CreateMapper();
+
+                var config1 = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.InHospital, CommContracts.InHospital>().ForMember(x=>x.LeaveHospitals, opt=>opt.Ignore());
+                });
+                var mapper1 = config1.CreateMapper();
+
+
                 foreach (DAL.InHospital ass in query)
                 {
-                    var config = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<DAL.InHospital, CommContracts.InHospital>();
-                    });
-                    var mapper = config.CreateMapper();
+                    List<CommContracts.LeaveHospital> leaveList = new List<CommContracts.LeaveHospital>();
+                    leaveList = mapper.Map<List<CommContracts.LeaveHospital>>(ass.LeaveHospitals);
 
-                    CommContracts.InHospital temp = mapper.Map<CommContracts.InHospital>(ass);
+                    CommContracts.InHospital temp = mapper1.Map<CommContracts.InHospital>(ass);
+                    temp.LeaveHospitals = leaveList;
                     list.Add(temp);
                 }
             }

@@ -18,7 +18,8 @@ namespace BLL
                 var query = from a in ctx.LeaveHospitals
                             from b in a.InHospital.InHospitalPatientDoctors
                             where a.InHospital.Patient.Name.StartsWith(strName) &&
-                            (EmployeeID == 0 || (b.EndTime == null && b.DoctorID == EmployeeID))
+                            (EmployeeID == 0 || (b.EndTime == null && b.DoctorID == EmployeeID)) && 
+                            a.InHospital.InHospitalStatusEnum == DAL.InHospitalStatusEnum.已出院 
                             select a;
 
                 var config1 = new MapperConfiguration(cfg =>

@@ -1204,5 +1204,23 @@ namespace CommServer
             BLL.LeaveHospital temp = new BLL.LeaveHospital();
             return temp.UpdateLeaveHospital(leaveHospital);
         }
+
+        public List<CommContracts.RecallHospital> GetAllRecallHospitalList(int EmployeeID = 0, string strName = "")
+        {
+            BLL.RecallHospital temp = new BLL.RecallHospital();
+            return temp.GetAllRecallHospitalList(EmployeeID, strName);
+        }
+
+        public bool SaveRecallHospital(CommContracts.RecallHospital recallHospital)
+        {
+            BLL.RecallHospital temp = new BLL.RecallHospital();
+            return temp.SaveRecallHospital(recallHospital);
+        }
+
+        public bool UpdateRecallHospital(CommContracts.RecallHospital recallHospital)
+        {
+            BLL.RecallHospital temp = new BLL.RecallHospital();
+            return temp.UpdateRecallHospital(recallHospital);
+        }
     }
 }

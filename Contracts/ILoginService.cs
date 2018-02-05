@@ -584,5 +584,14 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateLeaveHospital(CommContracts.LeaveHospital leaveHospital);
+
+        [OperationContract]
+        List<CommContracts.RecallHospital> GetAllRecallHospitalList(int EmployeeID = 0, string strName = "");
+
+        [OperationContract]
+        bool SaveRecallHospital(CommContracts.RecallHospital recallHospital);
+
+        [OperationContract]
+        bool UpdateRecallHospital(CommContracts.RecallHospital recallHospital);
     }
 }

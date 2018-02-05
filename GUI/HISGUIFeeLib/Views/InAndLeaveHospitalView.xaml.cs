@@ -31,6 +31,8 @@ namespace HISGUIFeeLib.Views
         private CommContracts.InHospitalApply MyCurrentInHospitalApply { get; set; }
 
         private CommContracts.LeaveHospital MyCurrentLeaveHospital { get; set; }
+
+        private CommContracts.RecallHospital MyCurrentRecallHospital { get; set; }
         private bool IsEdit;
         public InAndLeaveHospitalView()
         {
@@ -271,7 +273,7 @@ namespace HISGUIFeeLib.Views
 
         private void updateLeaveDateToView()
         {
-            if (MyCurrentInpatient != null)
+            if (MyCurrentLeaveHospital != null && MyCurrentInpatient != null)
             {
                 if (MyCurrentInpatient.InTime != null)
                     this.LeaveHospitalTime.DisplayDateStart = MyCurrentInpatient.InTime;
@@ -284,9 +286,8 @@ namespace HISGUIFeeLib.Views
                     this.LeaveHospitalDoctor.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Name;
                 }
 
-
-                //this.LeaveHospitalDiagnosis.Text = MyCurrentInpatient.LeaveHospitalDiagnoses;
-                //this.LeaveHospitalTime.SelectedDate = MyCurrentInpatient.LeaveHospitalTime;
+                this.LeaveHospitalDiagnosis.Text = MyCurrentLeaveHospital.Diagnosis;
+                this.LeaveHospitalTime.SelectedDate = MyCurrentLeaveHospital.LeaveTime;
 
             }
             else
@@ -298,14 +299,8 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        public bool updateViewToLeaveDate()
+        private bool updateViewToLeaveDate()
         {
-            //if (LeaveHospitalTime.SelectedDate == null)
-            //    return false;
-            //if (string.IsNullOrEmpty(LeaveHospitalDoctor.Text.Trim()))
-            //    return false;
-            //if (string.IsNullOrEmpty(LeaveHospitalDepartment.Text.Trim()))
-            //    return false;
             if (MyCurrentInpatient == null)
                 return false;
             if(MyCurrentLeaveHospital == null)
@@ -318,6 +313,23 @@ namespace HISGUIFeeLib.Views
             MyCurrentLeaveHospital.InHospitalID = MyCurrentInpatient.ID;
             MyCurrentLeaveHospital.LeaveTime = DateTime.Now;
             MyCurrentLeaveHospital.UserID = vm.CurrentUser.ID;
+            return true;
+        }
+
+        private bool updateViewToRecallDate()
+        {
+            if (MyCurrentLeaveHospital == null)
+                return false;
+            if (MyCurrentRecallHospital == null)
+            {
+                MyCurrentRecallHospital = new CommContracts.RecallHospital();
+            }
+
+            var vm = this.DataContext as HISGUIFeeVM;
+
+            MyCurrentRecallHospital.LeaveHospitalID = MyCurrentLeaveHospital.ID;
+            MyCurrentRecallHospital.RecallTime = DateTime.Now;
+            MyCurrentRecallHospital.UserID = vm.CurrentUser.ID;
             return true;
         }
 
@@ -494,11 +506,10 @@ namespace HISGUIFeeLib.Views
             var vm = this.DataContext as HISGUIFeeVM;
             if (updateViewToLeaveDate())
             {
-                MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
-
                 bool? bResult = vm?.SaveLeaveHospital(MyCurrentLeaveHospital);
                 if (bResult.HasValue && bResult.Value)
                 {
+                    MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.已出院;
                     bResult = vm?.UpdateInHospital(MyCurrentInpatient);
                     if (bResult.HasValue && bResult.Value)
                     {
@@ -515,19 +526,22 @@ namespace HISGUIFeeLib.Views
 
         private void RecallHospitalBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (MyCurrentInpatient == null)
-                return;
+            if (MyCurrentRecallHospital == null)
+            {
+                MyCurrentRecallHospital = new CommContracts.RecallHospital();
+            }
 
             var vm = this.DataContext as HISGUIFeeVM;
-            if (updateViewToLeaveDate())
+            if (updateViewToRecallDate())
             {
-                MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
-
-                bool? bResult = vm?.UpdateInHospital(MyCurrentInpatient);
+                bool? bResult = vm?.SaveRecallHospital(MyCurrentRecallHospital);
                 if (bResult.HasValue)
                 {
-                    if (bResult.Value)
-                    {
+                    MyCurrentInpatient.InHospitalStatusEnum = CommContracts.InHospitalStatusEnum.在院中;
+
+                    bResult = vm?.UpdateInHospital(MyCurrentInpatient);
+                    if (bResult.HasValue && bResult.Value)
+                    { 
                         MessageBox.Show("召回成功！");
                         setInHospitalGridEnable(false);
                         UpdateAllWait();

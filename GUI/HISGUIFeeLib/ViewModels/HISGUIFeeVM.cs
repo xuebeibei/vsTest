@@ -303,6 +303,15 @@ namespace HISGUIFeeLib.ViewModels
             return storeRoomMedicineNum.GetStoreFromMedicine(nMedicineID, nNum);
         }
 
+        // 保存召回
+        public bool SaveRecallHospital(CommContracts.RecallHospital recallHospital)
+        {
+            if (recallHospital == null)
+                return false;
+            CommClient.RecallHospital myd = new CommClient.RecallHospital();
+            return myd.SaveRecallHospital(recallHospital);
+        }
+
         // 保存出院登记
         public bool SaveLeaveHospital(CommContracts.LeaveHospital LeaveHospital)
         {
