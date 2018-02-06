@@ -70,7 +70,7 @@ namespace HISGUILoginLib.Views
             {
                 string json_out = JsonConvert.SerializeObject(vm.CurrentUser);
                 vm?.MainData.SetToken("LoginUser", json_out);
-                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIMedicineView");
+                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUISetView");
             }
         }
 

@@ -27,7 +27,7 @@ namespace HISGUIMedicineLib.Views
     [Export("MedicineWorkView", typeof(MedicineWorkView))]
     public partial class MedicineWorkView : HISGUIViewBase
     {
-        private DispatcherTimer ShowTimer;
+        protected DispatcherTimer ShowTimer;
         public MedicineWorkView()
         {
             InitializeComponent();

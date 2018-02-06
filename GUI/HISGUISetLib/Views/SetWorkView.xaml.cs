@@ -20,6 +20,7 @@ using HISGUICore;
 using HISGUISetLib.ViewModels;
 using System.Data;
 using HISGUICore.MyContorls;
+using System.Windows.Threading;
 
 namespace HISGUISetLib.Views
 {
@@ -27,17 +28,43 @@ namespace HISGUISetLib.Views
     [Export("SetWorkView", typeof(SetWorkView))]
     public partial class SetWorkView : HISGUIViewBase    
     {
+        protected DispatcherTimer ShowTimer;
         public SetWorkView()
         {
             InitializeComponent();
+            // 在此点下面插入创建对象所需的代码。
+            //show timer by_songgp
+            ShowTimer = new System.Windows.Threading.DispatcherTimer();
+            ShowTimer.Tick += new EventHandler(ShowCurTimer);//起个Timer一直获取当前时间
+            ShowTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            ShowTimer.Start();
+
             this.Loaded += SetWorkView_Loaded;
         }
 
         private void SetWorkView_Loaded(object sender, RoutedEventArgs e)
         {
             //InitVisable();
+            var vm = this.DataContext as HISGUISetVM;
+            this.UserName.Content = vm.CurrentUser.Username;
         }
 
+
+        //show timer by_songgp
+        private void ShowCurTimer(object sender, EventArgs e)
+        {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.Tt.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.Tt.Text += " ";
+            //获得年月日
+            this.Tt.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.Tt.Text += " ";
+            //获得时分秒
+            this.Tt.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
+        }
         [Import]
         private HISGUISetVM ImportVM
         {
@@ -63,6 +90,7 @@ namespace HISGUISetLib.Views
             OtherServiceItemView.Visibility = Visibility.Collapsed;
             SignalItemView.Visibility = Visibility.Collapsed;
             PatientView.Visibility = Visibility.Collapsed;
+            TipLabel.Visibility = Visibility.Visible;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -84,48 +112,56 @@ namespace HISGUISetLib.Views
         {
             InitVisable();
             HospitalSetView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void DepartmentSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             DepartmentView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void JobSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             JobView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void StorehouseSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             StorehourseView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void SupplierSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             SupplierView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void SickRoomSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             SickRoomView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void EmployeeSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             EmployeeView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void UserSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             UserView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void PowerSet(object sender, RoutedEventArgs e)
@@ -142,30 +178,35 @@ namespace HISGUISetLib.Views
         {
             InitVisable();
             OtherServiceItemView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void AssayItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             AssayItemView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void InspectItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             InspectView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void MaterialItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             MaterialView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void MedicineItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             MedicineView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void OpinionSet(object sender, RoutedEventArgs e)
@@ -177,24 +218,34 @@ namespace HISGUISetLib.Views
         {
             InitVisable();
             SickBedView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void TherapyItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             TherapyItemView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void SignalItemSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             SignalItemView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void PatientSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
             PatientView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
+        }
+
+        private void LayoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUISetVM;
+            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
         }
     }
 }

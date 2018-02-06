@@ -381,5 +381,18 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        // 当前用户
+        #region CurrentUser
+        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
+            "CurrentUser", typeof(CommContracts.User), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.User CurrentUser
+        {
+            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            set { SetValue(CurrentUserProperty, value); }
+        }
+
+        #endregion
     }
 }

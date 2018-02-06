@@ -19,6 +19,7 @@ using Prism.Regions;
 using HISGUICore;
 using HISGUISetLib.ViewModels;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace HISGUISetLib.Views
 {
@@ -41,6 +42,13 @@ namespace HISGUISetLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUISetVM;
+
+            var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
+            CommContracts.User user = new CommContracts.User();
+            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
+
+            vm.CurrentUser = user;
+
             vm?.SetWorkManage();
         }
     }
