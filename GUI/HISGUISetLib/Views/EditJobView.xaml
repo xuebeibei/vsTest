@@ -9,8 +9,9 @@
             <Label Margin="5">名称*：</Label>
             <TextBox x:Name="NameEdit" Margin="5"></TextBox>
             <Label Margin="5">类型：</Label>
-            <ComboBox x:Name="JobCombo" Margin="5">
-            </ComboBox>
+            <ComboBox x:Name="JobCombo" Margin="5"/>
+            <Label Margin="5">工作模块</Label>
+            <ComboBox x:Name="PowerEnum" Margin="5"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
                 <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>

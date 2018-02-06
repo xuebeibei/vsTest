@@ -27,12 +27,14 @@ namespace HISGUISetLib.Views
             InitializeComponent();
             JobCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.JobEnum));
             JobCombo.SelectedItem = CommContracts.JobEnum.初级;
+            PowerEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.PowerEnum));
             bIsEdit = false;
             if (job != null)
             {
                 this.Job = job;
                 this.NameEdit.Text = job.Name;
                 this.JobCombo.SelectedItem = job.JobEnum;
+                this.PowerEnum.SelectedItem = job.PowerEnum;
                 bIsEdit = true;
             }
         }
@@ -48,10 +50,14 @@ namespace HISGUISetLib.Views
             {
                 return;
             }
+            if (this.PowerEnum.SelectedItem == null)
+                return;
+
             if (bIsEdit)
             {
                 Job.Name = this.NameEdit.Text.Trim();
                 Job.JobEnum = (CommContracts.JobEnum)this.JobCombo.SelectedItem;
+                Job.PowerEnum = (CommContracts.PowerEnum)this.PowerEnum.SelectedItem;
 
                 CommClient.Job myd = new CommClient.Job();
                 if (myd.UpdateJob(Job))
@@ -65,6 +71,7 @@ namespace HISGUISetLib.Views
                 CommContracts.Job job = new CommContracts.Job();
                 job.Name = this.NameEdit.Text.Trim();
                 job.JobEnum = (CommContracts.JobEnum)this.JobCombo.SelectedItem;
+                job.PowerEnum = (CommContracts.PowerEnum)this.PowerEnum.SelectedItem;
 
                 CommClient.Job myd = new CommClient.Job();
                 if (myd.SaveJob(job))

@@ -98,16 +98,6 @@ namespace HISGUISetLib.Views
             InitVisable();
         }
 
-        private void UserInfoSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-        }
-
-        private void PasswordSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-        }
-
         private void HospitalInfoSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
@@ -164,16 +154,6 @@ namespace HISGUISetLib.Views
             TipLabel.Visibility = Visibility.Collapsed;
         }
 
-        private void PowerSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-        }
-
-        private void DiagnosisSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-        }
-
         private void OtherServiceSet(object sender, RoutedEventArgs e)
         {
             InitVisable();
@@ -207,11 +187,6 @@ namespace HISGUISetLib.Views
             InitVisable();
             MedicineView.Visibility = Visibility.Visible;
             TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void OpinionSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
         }
 
         private void SickBedSet(object sender, RoutedEventArgs e)

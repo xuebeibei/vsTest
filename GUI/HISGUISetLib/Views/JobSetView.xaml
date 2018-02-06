@@ -23,6 +23,7 @@
                     <GridView x:Name="gridViewJob">
                         <GridViewColumn Header="职位名称" DisplayMemberBinding="{Binding Path=Name}" Width="120"></GridViewColumn>
                         <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=JobEnum}" Width="80"></GridViewColumn>
+                        <GridViewColumn Header="工作模块" DisplayMemberBinding="{Binding Path=PowerEnum}" Width="80"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

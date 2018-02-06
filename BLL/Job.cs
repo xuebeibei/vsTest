@@ -89,7 +89,8 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Name = job.Name;
-                    temp.JobEnum = (DAL.JobEnum)job.JobEnum;                    
+                    temp.JobEnum = (DAL.JobEnum)job.JobEnum;
+                    temp.PowerEnum = (DAL.PowerEnum)job.PowerEnum;
                 }
                 else
                 {

@@ -13,6 +13,16 @@ namespace CommContracts
         中级,         // 中级
         高级          // 高级
     }
+
+    public enum PowerEnum
+    {
+        设置模块,
+        医生模块,
+        综合收费模块,
+        库存管理模块,
+        护士模块
+    }
+
     [DataContract]
     public class Job
     {
@@ -29,6 +39,8 @@ namespace CommContracts
 
         [DataMember]
         public JobEnum JobEnum { get; set; }
+        [DataMember]
+        public PowerEnum PowerEnum { get; set; }
 
         public override string ToString()
         {
