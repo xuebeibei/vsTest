@@ -21,7 +21,7 @@ using HISGUILoginLib.ViewModels;
 using System.IO;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
-
+using Newtonsoft.Json.Linq;
 
 namespace HISGUILoginLib.Views
 {
@@ -37,7 +37,7 @@ namespace HISGUILoginLib.Views
 
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUILoginVM;
+            var vm = this.DataContext as HISGUILoginVM;        
             vm.LogName = "登录";
             vm.UserName = "";
             vm.PassWord = "";
@@ -67,6 +67,8 @@ namespace HISGUILoginLib.Views
             }
             if ((bool)loginResult)
             {
+                string json_out = JsonConvert.SerializeObject(vm.CurrentUser);
+                vm?.MainData.SetToken("LoginUser", json_out);
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIMedicineView");
             }
         }
