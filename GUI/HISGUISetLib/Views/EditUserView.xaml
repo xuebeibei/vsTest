@@ -10,8 +10,8 @@
         <StackPanel>
             <Label Margin="5">名称*：</Label>
             <TextBox x:Name="NameEdit" Margin="5"/>
-            <Label Margin="5">密码：</Label>
-            <TextBox x:Name="Password" Margin="5"/>
+            <Label x:Name="PasswordLabel" Margin="5">密码：</Label>
+            <PasswordBox x:Name="Password" Margin="5"/>
             <Label Margin="5">对应人员：</Label>
             <ComboBox x:Name="EmployeeCombo" Margin="5"/>
             <Label Margin="5">状态：</Label>

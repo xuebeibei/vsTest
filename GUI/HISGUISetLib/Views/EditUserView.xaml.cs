@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,12 +32,15 @@ namespace HISGUISetLib.Views
             StatusCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.LoginStatus));
             StatusCombo.SelectedItem = CommContracts.LoginStatus.logout;
 
+            PasswordLabel.Content = "密码：";
             bIsEdit = false;
             if (user != null)
             {
+                PasswordLabel.Content = "新密码：";
                 this.User = user;
                 this.NameEdit.Text = user.Username;
-                this.Password.Text = user.Password;
+                this.Password.Password = "";
+                
                 this.StatusCombo.SelectedItem = user.Status;
                 this.EmployeeCombo.SelectedItem = user.Employee; // 不起作用，未知原因
                 bIsEdit = true;
@@ -61,7 +65,18 @@ namespace HISGUISetLib.Views
             if (bIsEdit)
             {
                 User.Username = this.NameEdit.Text.Trim();
-                User.Password = this.Password.Text.Trim();
+
+                if(!string.IsNullOrEmpty(this.Password.Password.Trim()))
+                {
+                    byte[] result = Encoding.Default.GetBytes(this.Password.Password.Trim());    //tbPass为输入密码的文本框  
+                    MD5 md5 = new MD5CryptoServiceProvider();
+                    byte[] output = md5.ComputeHash(result);
+                    string strPassWrod = BitConverter.ToString(output);
+
+                    User.Password = strPassWrod;
+                }
+                
+
                 User.Status = (CommContracts.LoginStatus)this.StatusCombo.SelectedItem;
                 User.EmployeeID = ((CommContracts.Employee)this.EmployeeCombo.SelectedItem).ID;
 
@@ -76,7 +91,12 @@ namespace HISGUISetLib.Views
             {
                 CommContracts.User user = new CommContracts.User();
                 user.Username = this.NameEdit.Text.Trim();
-                user.Password = this.Password.Text.Trim();
+                byte[] result = Encoding.Default.GetBytes(this.Password.Password.Trim());    //tbPass为输入密码的文本框  
+                MD5 md5 = new MD5CryptoServiceProvider();
+                byte[] output = md5.ComputeHash(result);
+                string strPassWrod = BitConverter.ToString(output);
+
+                user.Password = strPassWrod;
                 user.Status = (CommContracts.LoginStatus)this.StatusCombo.SelectedItem;
                 user.EmployeeID = ((CommContracts.Employee)this.EmployeeCombo.SelectedItem).ID;
 
