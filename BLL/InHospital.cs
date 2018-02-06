@@ -76,17 +76,6 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var config1 = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<CommContracts.Patient, DAL.Patient>().
-                    ForMember(x => x.Registrations, opt => opt.Ignore()).
-                    ForMember(x => x.InHospitals, opt => opt.Ignore());
-                });
-                var mapper1 = config1.CreateMapper();
-
-                DAL.Patient patient = new DAL.Patient();
-                patient = mapper1.Map<DAL.Patient>(InHospital.Patient);
-
                 var config2 = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<CommContracts.InHospitalPatientDoctor, DAL.InHospitalPatientDoctor>().
@@ -110,7 +99,6 @@ namespace BLL
 
                 DAL.InHospital temp = new DAL.InHospital();
                 temp = mapper.Map<DAL.InHospital>(InHospital);
-                temp.Patient = patient;
                 temp.InHospitalPatientDoctors = patientDoctors;
 
 
