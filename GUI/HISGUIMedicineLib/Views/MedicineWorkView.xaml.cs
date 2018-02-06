@@ -84,6 +84,8 @@ namespace HISGUIMedicineLib.Views
                 vm.IsMedicineOrMaterial = false;
 
             vm.CurrentStoreRoom = (CommContracts.StoreRoom)this.StoreCombo.SelectedItem;
+
+            this.UserName.Content = vm.CurrentUser.Username;
         }
 
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
