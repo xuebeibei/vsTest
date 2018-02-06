@@ -20,7 +20,7 @@ using HISGUICore;
 using HISGUICore.MyContorls;
 using HISGUINurseLib.ViewModels;
 using System.Data;
-
+using Newtonsoft.Json;
 
 namespace HISGUINurseLib.Views
 {
@@ -43,7 +43,11 @@ namespace HISGUINurseLib.Views
         private void Triage_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUINurseVM;
-            vm.CurrentUser = vm?.getUser(1);
+            var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
+            CommContracts.User user = new CommContracts.User();
+            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
+
+            vm.CurrentUser = user;
             vm?.TriageManage();
         }
 

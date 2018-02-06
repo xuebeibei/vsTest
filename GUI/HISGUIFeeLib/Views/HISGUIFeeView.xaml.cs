@@ -19,6 +19,7 @@ using Prism.Regions;
 using HISGUICore;
 using HISGUIFeeLib.ViewModels;
 using System.Data;
+using Newtonsoft.Json;
 
 namespace HISGUIFeeLib.Views
 {
@@ -41,7 +42,11 @@ namespace HISGUIFeeLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            vm.CurrentUser = vm?.getUser(1);
+            var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
+            CommContracts.User user = new CommContracts.User();
+            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
+
+            vm.CurrentUser = user;
             vm?.FeeWorkManage();
         }
     }
