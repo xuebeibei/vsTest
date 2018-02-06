@@ -27,7 +27,7 @@
                 <Button>退出</Button>
             </StackPanel>
         </Grid>
-        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" >
+        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5"  VerticalAlignment="Stretch" >
             <TabItem Header="门诊接诊">
                 <local:ClinicRecivingView></local:ClinicRecivingView>
             </TabItem>

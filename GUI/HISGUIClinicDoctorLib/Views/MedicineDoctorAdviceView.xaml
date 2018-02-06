@@ -15,7 +15,7 @@
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
                 <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">作废</Button>
             </StackPanel>
-            <TabControl x:Name="tabControl"  Margin="5"  Grid.Row="1" Grid.Column="1">
+            <TabControl x:Name="tabControl"  Margin="5"  Grid.Row="1" Grid.Column="1"  VerticalAlignment="Stretch" >
                 <TabItem Header="西/成药处方">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <StackPanel x:Name="xiyaoPanel" Orientation="Vertical">

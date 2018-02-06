@@ -39,6 +39,10 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\PrismLib\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\JsonLib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="Prism">
@@ -75,6 +79,10 @@
     <ProjectReference Include="..\..\CommClient\CommClient.csproj">
       <Project>{ab36f953-cc8d-427c-a427-36ddb542f73c}</Project>
       <Name>CommClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Contracts\CommContracts.csproj">
+      <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
+      <Name>CommContracts</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace CommServer
             this.hostApp = hostApp;
         }
 
-        public bool UserAuthenticate(User user)
+        public CommContracts.User UserAuthenticate(User user)
         {
             // 这里调用BLL中的逻辑
             BLL.User temp = new BLL.User();

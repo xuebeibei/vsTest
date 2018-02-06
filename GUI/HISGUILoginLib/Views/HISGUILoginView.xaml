@@ -6,51 +6,10 @@
              xmlns:local="clr-namespace:HISGUILoginLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              >
-    <!--<Grid>
-        <Button Content="{Binding LogName}" Click="Button_Click"  />
-    </Grid>-->
-    <Grid Background="#FF205060">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="3*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <!--<Image Grid.RowSpan="6" Source="C:\Users\xuebei\Downloads\背景.jpg">
-        </Image>-->
-        <Border>
-            <Border.Background>
-                <LinearGradientBrush EndPoint="0.5,0" StartPoint="0,0">
-                    <GradientStop Color="#FF1E5260" Offset="0"/>
-                    <GradientStop Color="#995BCCDF" Offset="1"/>
-                </LinearGradientBrush>
-            </Border.Background>
-        </Border>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Label x:Name="currentDateTime" Height="55" Margin="5,5,5,5" VerticalContentAlignment="Center" Foreground="#FFFAF5F5">Monday, 25-10-2015 3:14 PM</Label>
-            <Button x:Name="RefechBtn" Grid.Column="2" Height="55" Width="55" Margin="5,5,5,5" Background="#FF27A9EC" BorderBrush="{x:Null}">
-                <Grid Margin="5,5,5,5">
-                    <Image Source="C:\Users\xuebei\Downloads\刷新.png"></Image>
-                </Grid>
-            </Button>
-            <Button x:Name="logoutBtn" Grid.Column="3" Height="55" Width="55" Margin="5,5,5,5" Click="logoutBtn_Click" BorderBrush="{x:Null}" Background="#FF27A9EC">
-                <Grid Margin="5,5,5,5">
-                    <Image Source="C:\Users\xuebei\Downloads\退出.png"></Image>
-                </Grid>
-            </Button>
-        </Grid>
-        <Image  Grid.Row="2" Width="150" Height="150" Margin="5,5,5,5" Source="C:\Users\xuebei\Downloads\医院.png"></Image>
-        <Grid Grid.Row="4" Width="350" Height="200" Margin="5,5,5,5">
-            <Border CornerRadius ="8" Background="#99000000">
-            </Border>
+    <Grid>
+        <Grid Width="350" Height="200" Margin="5,5,5,5">
+            <Border CornerRadius ="4" Background="#99000000"/>
+
             <Grid Margin="35,35,35,35">
                 <Grid.RowDefinitions>
                     <RowDefinition></RowDefinition>
@@ -71,8 +30,9 @@
                          ></PasswordBox>
                 <TextBlock x:Name="loginResult" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White"></TextBlock>
                 <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"
-                        x:Name="loginBtn" Click="loginBtn_Click" BorderBrush="{x:Null}" Foreground="#FFF7F6F6" Background="#FF27A9EC"
-                        Content="{Binding LogName}"  ></Button>
+                        x:Name="loginBtn" Click="loginBtn_Click" BorderBrush="{x:Null}" 
+                       >登录</Button>
+                <!--Foreground="#FFF7F6F6" Background="#FF27A9EC"-->
             </Grid>
         </Grid>
     </Grid>

@@ -11,31 +11,41 @@ namespace BLL
 {
     public class User
     {
-        public bool Authenticate(CommContracts.User user)
+        public CommContracts.User Authenticate(CommContracts.User user)
         {
+            CommContracts.User temp = new CommContracts.User();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                Trace.WriteLine("Querying database..." +
-                    "usename: " + user.Username + ", password: " + user.Password);
-
                 var queryResult = from u in ctx.Users
                                   where u.Username == user.Username &&
                                         u.Password == user.Password 
                                   select u;
-
-                Trace.WriteLine("Query database finished, record number: "
-                    + queryResult.Count());
 
                 if (queryResult.Count() == 1)
                 {
                     var u = queryResult.First();
                     u.LastLogin = DateTime.Now;
                     u.Status = DAL.User.LoginStatus.login;
-                    ctx.SaveChanges();
-                    return true;
+
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.User, CommContracts.User>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    temp = mapper.Map<CommContracts.User>(u);
+
+                    try
+                    {
+                        ctx.SaveChanges();
+                    }
+                    catch(Exception ex)
+                    {
+                        return null;
+                    }
                 }
-                return false;
             }
+            return temp;
         }
 
         public bool Logout(CommContracts.User user)

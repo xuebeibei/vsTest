@@ -6,11 +6,13 @@
              xmlns:local="clr-namespace:HISGUIFeeLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Border Background="White" Grid.RowSpan="2"/>
         <Grid Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -26,7 +28,7 @@
                 <Button>退出</Button>
             </StackPanel>
         </Grid>
-        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Top" >
+        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Stretch" >
 
             <TabItem Header="挂号管理">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">

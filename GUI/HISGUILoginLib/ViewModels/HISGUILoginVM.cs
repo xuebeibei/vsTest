@@ -20,6 +20,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+
 namespace HISGUILoginLib.ViewModels
 {
     [Export]
@@ -60,16 +61,30 @@ namespace HISGUILoginLib.ViewModels
         }
         #endregion
 
+        #region CurrentUser
+        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
+            "CurrentUser", typeof(CommContracts.User), typeof(HISGUILoginVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.User CurrentUser
+        {
+            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            set { SetValue(CurrentUserProperty, value); }
+        }
+        #endregion
+
         public bool Login()
         {
             CommClient.User login = new CommClient.User(UserName, PassWord);
-            if (login.Authenticate())
+
+            var tem = login.Authenticate();
+            if (tem == null)
             {
-                return true;
+                return false;
             }
             else
             {
-                return false;
+                CurrentUser = tem;
+                return true;
             }
         }
     }

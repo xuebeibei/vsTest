@@ -18,6 +18,10 @@ using Microsoft.Practices.ServiceLocation;
 using Prism.Regions;
 using HISGUICore;
 using HISGUILoginLib.ViewModels;
+using System.IO;
+using Newtonsoft.Json;
+using System.Security.Cryptography;
+
 
 namespace HISGUILoginLib.Views
 {
@@ -45,10 +49,17 @@ namespace HISGUILoginLib.Views
             set { this.VM = value; }
         }
 
+
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUILoginVM;
-            vm.PassWord = this.passbox.Password;
+
+            byte[] result = Encoding.Default.GetBytes(this.passbox.Password.Trim());    //tbPass为输入密码的文本框  
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] output = md5.ComputeHash(result);
+            string str = BitConverter.ToString(output);
+
+            vm.PassWord = str;
             bool? loginResult = vm?.Login();
             if (!loginResult.HasValue)
             {
@@ -56,7 +67,7 @@ namespace HISGUILoginLib.Views
             }
             if ((bool)loginResult)
             {
-                vm?.RegionManager.RequestNavigate("MainRegion", "MedicineWorkView");
+                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIMedicineView");
             }
         }
 

@@ -31,7 +31,7 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public bool Authenticate()
+        public CommContracts.User Authenticate()
         {
             CommContracts.User login = new CommContracts.User();
             login.Username = username;

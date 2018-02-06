@@ -12,7 +12,7 @@ namespace CommContracts
     public interface ILoginService
     {
         [OperationContract]
-        bool UserAuthenticate(User login);
+        CommContracts.User UserAuthenticate(User login);
         [OperationContract]
         CommContracts.User getUser(int UserID);
         [OperationContract]

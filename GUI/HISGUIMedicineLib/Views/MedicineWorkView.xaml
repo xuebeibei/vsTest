@@ -11,6 +11,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+        <Border CornerRadius ="4" Background="White" Grid.RowSpan="2"/>
         <Grid Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
@@ -27,8 +28,12 @@
                 <Button x:Name="LayoutBtn" Click="LayoutBtn_Click">退出</Button>
             </StackPanel>
         </Grid>
-        <StackPanel Grid.Row="1" >
-            <StackPanel Orientation="Horizontal">
+        <Grid Grid.Row="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <Label Margin="5">当前库房：</Label>
                 <ComboBox x:Name="StoreCombo" Margin="5" Width="100"></ComboBox>
                 <Label Margin="5">当前物品：</Label>
@@ -37,8 +42,8 @@
                     <RadioButton x:Name="MaterialRadio" Margin="5" Click="MaterialRadio_Click">物资</RadioButton>
                 </StackPanel>
             </StackPanel>
-            
-            <TabControl x:Name="tabControl" Margin="5" >
+
+            <TabControl x:Name="tabControl" Margin="5"  VerticalAlignment="Stretch"  Grid.Row="1">
                 <TabItem Header="入库管理">
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <local:InStockView x:Name="InStockView"></local:InStockView>
@@ -60,6 +65,6 @@
                     </ScrollViewer>
                 </TabItem>
             </TabControl>
-        </StackPanel>
+        </Grid>
     </Grid>
 </HISGUICore:HISGUIViewBase>

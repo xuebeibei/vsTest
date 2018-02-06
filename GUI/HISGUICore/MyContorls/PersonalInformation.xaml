@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUICore.MyContorls">
     <Grid>
-        <TabControl x:Name="tabControl" Margin="5">
+        <TabControl x:Name="tabControl" Margin="5" VerticalAlignment="Stretch" >
             <TabItem Header="体征信息">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <local:BodyCharacteristics></local:BodyCharacteristics>
