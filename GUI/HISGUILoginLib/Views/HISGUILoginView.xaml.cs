@@ -60,7 +60,7 @@ namespace HISGUILoginLib.Views
                 return;
             }
 
-            if(string.IsNullOrEmpty(this.passbox.Password.Trim()))
+            if (string.IsNullOrEmpty(this.passbox.Password.Trim()))
             {
                 this.loginResult.Text = "密码不能为空";
                 return;
@@ -81,7 +81,37 @@ namespace HISGUILoginLib.Views
             {
                 string json_out = JsonConvert.SerializeObject(vm.CurrentUser);
                 vm?.MainData.SetToken("LoginUser", json_out);
-                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUISetView");
+
+                switch (vm.CurrentUser.Employee.Job.PowerEnum)
+                {
+                    case CommContracts.PowerEnum.设置模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUISetView");
+                            break;
+                        }
+                    case CommContracts.PowerEnum.医生模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIDoctorView");
+                            break;
+                        }
+                    case CommContracts.PowerEnum.库存管理模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIMedicineView");
+                            break;
+                        }
+                    case CommContracts.PowerEnum.护士模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUINurseView");
+                            break;
+                        }
+                    case CommContracts.PowerEnum.综合收费模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIFeeView");
+                            break;
+                        }
+                    default:
+                        break;
+                }
             }
         }
 
