@@ -43,14 +43,11 @@ namespace HISGUIMedicineLib.Views
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            vm.CurrentUser = vm?.getUser(1);
+            var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
+            CommContracts.User user = new CommContracts.User();
+            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
 
-            //StreamReader sr1 = new StreamReader("HISGUIJson.json", Encoding.Default);
-            //string jsons1 = sr1.ReadToEnd();
-            //CommContracts.User tmp_cfg1 = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
-            //sr1.Close();
-
-            //vm.CurrentUser = tmp_cfg1;
+            vm.CurrentUser = user;
 
             vm?.MedicineWorkManage();
         }
