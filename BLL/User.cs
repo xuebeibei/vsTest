@@ -44,7 +44,14 @@ namespace BLL
                         return null;
                     }
                 }
+                else
+                {
+                    return null;
+                }
             }
+
+            if (temp.ID == 0)
+                return null;
             return temp;
         }
 

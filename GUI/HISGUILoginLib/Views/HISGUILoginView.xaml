@@ -24,9 +24,9 @@
                 <Label Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center">用户名：</Label>
                 <Label Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center">密码：</Label>
 
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Background="White" Text="{Binding UserName}"/>
+                <TextBox x:Name="UserNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Background="White"/>
                 <PasswordBox x:Name="passbox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                <TextBlock x:Name="loginResult" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <TextBlock x:Name="loginResult" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Foreground="Red"/>
                 <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" x:Name="loginBtn" Click="loginBtn_Click" >登录</Button>
             </Grid>
         </Grid>

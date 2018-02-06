@@ -37,11 +37,10 @@ namespace HISGUILoginLib.Views
 
         private void Login_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUILoginVM;        
-            vm.LogName = "登录";
-            vm.UserName = "";
-            vm.PassWord = "";
+            var vm = this.DataContext as HISGUILoginVM;
+            this.UserNameBox.Clear();
             this.passbox.Clear();
+            this.loginResult.Text = "";
         }
 
         [Import]
@@ -54,19 +53,31 @@ namespace HISGUILoginLib.Views
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUILoginVM;
+            this.loginResult.Text = "";
+            if (string.IsNullOrEmpty(UserNameBox.Text.Trim()))
+            {
+                this.loginResult.Text = "用户名不能为空";
+                return;
+            }
+
+            if(string.IsNullOrEmpty(this.passbox.Password.Trim()))
+            {
+                this.loginResult.Text = "密码不能为空";
+                return;
+            }
 
             byte[] result = Encoding.Default.GetBytes(this.passbox.Password.Trim());    //tbPass为输入密码的文本框  
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] output = md5.ComputeHash(result);
-            string str = BitConverter.ToString(output);
+            string strPassWrod = BitConverter.ToString(output);
 
-            vm.PassWord = str;
-            bool? loginResult = vm?.Login();
-            if (!loginResult.HasValue)
+            bool? loginResult = vm?.Login(UserNameBox.Text.Trim(), strPassWrod);
+            if (!(loginResult.HasValue && loginResult.Value))
             {
+                this.loginResult.Text = "用户名或者密码错误";
                 return;
             }
-            if ((bool)loginResult)
+            else
             {
                 string json_out = JsonConvert.SerializeObject(vm.CurrentUser);
                 vm?.MainData.SetToken("LoginUser", json_out);
