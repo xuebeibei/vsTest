@@ -41,6 +41,7 @@ namespace HISGUILoginLib.Views
             vm.LogName = "登录";
             vm.UserName = "";
             vm.PassWord = "";
+            this.passbox.Clear();
         }
 
         [Import]

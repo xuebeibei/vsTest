@@ -8,7 +8,7 @@
              >
     <Grid>
         <Grid Width="350" Height="200" Margin="5,5,5,5">
-            <Border CornerRadius ="4" Background="#99000000"/>
+            <!--<Border CornerRadius ="4" Background="#99000000"/>-->
 
             <Grid Margin="35,35,35,35">
                 <Grid.RowDefinitions>
@@ -21,18 +21,13 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center" Foreground="#FFF9F4F4">用户名：</Label>
-                <Label Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center" Foreground="#FFF9F2F2">密码：</Label>
+                <Label Grid.Row="0" Grid.Column="0" VerticalContentAlignment="Center">用户名：</Label>
+                <Label Grid.Row="1" Grid.Column="0" VerticalContentAlignment="Center">密码：</Label>
 
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="5,5,5,5" Background="White" BorderBrush="{x:Null}"
-                        Text="{Binding UserName}"></TextBox>
-                <PasswordBox x:Name="passbox" Grid.Row="1" Grid.Column="1" Margin="5,5,5,5" BorderBrush="{x:Null}"
-                         ></PasswordBox>
-                <TextBlock x:Name="loginResult" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Foreground="White"></TextBlock>
-                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5,5,5,5"
-                        x:Name="loginBtn" Click="loginBtn_Click" BorderBrush="{x:Null}" 
-                       >登录</Button>
-                <!--Foreground="#FFF7F6F6" Background="#FF27A9EC"-->
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Background="White" Text="{Binding UserName}"/>
+                <PasswordBox x:Name="passbox" Grid.Row="1" Grid.Column="1" Margin="5"/>
+                <TextBlock x:Name="loginResult" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" x:Name="loginBtn" Click="loginBtn_Click" >登录</Button>
             </Grid>
         </Grid>
     </Grid>
