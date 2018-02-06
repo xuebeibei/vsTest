@@ -19,6 +19,7 @@ using Prism.Regions;
 using HISGUICore;
 using HISGUIMedicineLib.ViewModels;
 using System.Data;
+using System.Windows.Threading;
 
 namespace HISGUIMedicineLib.Views
 {
@@ -26,9 +27,19 @@ namespace HISGUIMedicineLib.Views
     [Export("MedicineWorkView", typeof(MedicineWorkView))]
     public partial class MedicineWorkView : HISGUIViewBase
     {
+        private DispatcherTimer ShowTimer;
         public MedicineWorkView()
         {
             InitializeComponent();
+
+            // 在此点下面插入创建对象所需的代码。
+            //show timer by_songgp
+            ShowTimer = new System.Windows.Threading.DispatcherTimer();
+            ShowTimer.Tick += new EventHandler(ShowCurTimer);//起个Timer一直获取当前时间
+            ShowTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            ShowTimer.Start();
+
+
             CommClient.StoreRoom myd = new CommClient.StoreRoom();
             List<CommContracts.StoreRoom> storeRoomList = myd.GetAllStoreRoom();
             
@@ -45,6 +56,23 @@ namespace HISGUIMedicineLib.Views
         private HISGUIMedicineVM ImportVM
         {
             set { this.VM = value; }
+        }
+
+
+        //show timer by_songgp
+        private void ShowCurTimer(object sender, EventArgs e)
+        {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.Tt.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.Tt.Text += " ";
+            //获得年月日
+            this.Tt.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.Tt.Text += " ";
+            //获得时分秒
+            this.Tt.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         }
 
         private void View_Loaded(object sender, RoutedEventArgs e)
