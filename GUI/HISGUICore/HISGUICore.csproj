@@ -67,6 +67,7 @@
     <Compile Include="HISGUIMoudleBase.cs" />
     <Compile Include="HISGUIViewBase.cs" />
     <Compile Include="HISGUIVMBase.cs" />
+    <Compile Include="HISGUIJObjectManager.cs" />
     <Compile Include="MyContorls\BodyCharacteristics.xaml.cs">
       <DependentUpon>BodyCharacteristics.xaml</DependentUpon>
     </Compile>
@@ -101,6 +102,7 @@
       <DependentUpon>SelectItemsList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="HISGUIPublicDatas.cs" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="MyContorls\BodyCharacteristics.xaml">

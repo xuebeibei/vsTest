@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Newtonsoft.Json.Linq;
 using Prism.Regions;
 
 namespace HISGUICore
@@ -28,6 +29,20 @@ namespace HISGUICore
         {
 
         }
+
+        #region MainData
+
+        public static readonly DependencyProperty MainDataProperty = DependencyProperty.Register("MainData",
+            typeof(JObject), typeof(HISGUIVMBase),
+            new PropertyMetadata(HISGUIPublicDatas.Instance.MainData, (sender, e) => { }));
+
+        public JObject MainData
+        {
+            get { return GetValue(MainDataProperty) as JObject; }
+            set { SetValue(MainDataProperty, value); }
+        }
+
+        #endregion
 
         public HISGUIVMBase()
         {
