@@ -20,6 +20,7 @@ using HISGUICore;
 using HISGUICore.MyContorls;
 using HISGUIDoctorLib.ViewModels;
 using System.Data;
+using System.Windows.Threading;
 
 namespace HISGUIDoctorLib.Views
 {
@@ -27,12 +28,18 @@ namespace HISGUIDoctorLib.Views
     [Export("DoctorWorkView", typeof(DoctorWorkView))]
     public partial class DoctorWorkView : HISGUIViewBase
     {
-        //private int currentEmployeeID { get; set; }
+        protected DispatcherTimer ShowTimer;
         public DoctorWorkView()
         {
             InitializeComponent();
-            //currentEmployeeID = 1;
-            //this.Loaded += DoctorWork_Loaded;
+            // 在此点下面插入创建对象所需的代码。
+            //show timer by_songgp
+            ShowTimer = new System.Windows.Threading.DispatcherTimer();
+            ShowTimer.Tick += new EventHandler(ShowCurTimer);//起个Timer一直获取当前时间
+            ShowTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            ShowTimer.Start();
+
+            this.Loaded += DoctorWork_Loaded;
         }
 
         [Import]
@@ -41,160 +48,32 @@ namespace HISGUIDoctorLib.Views
             set { this.VM = value; }
         }
 
-        private void DoctorWork_Loaded(object sender, RoutedEventArgs e)
+        //show timer by_songgp
+        private void ShowCurTimer(object sender, EventArgs e)
         {
-            //UpdateAllRegistration();
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.Tt.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.Tt.Text += " ";
+            //获得年月日
+            this.Tt.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.Tt.Text += " ";
+            //获得时分秒
+            this.Tt.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
         }
 
-        //private void UpdateAllRegistration()
-        //{
-        //    var temp = this.AllPatientList.SelectedItem as CommContracts.Registration;
+        private void DoctorWork_Loaded(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            this.UserName.Content = vm.CurrentUser.Username;
+        }
 
-        //    var vm = this.DataContext as HISGUIDoctorVM;
-        //    this.AllPatientList.ItemsSource = vm?.GetDoctorPatients(currentEmployeeID, DateTime.Now.Date);
-        //    if (temp != null)
-        //    {
-        //        this.AllPatientList.SelectedItem = temp;
-        //    }
-        //}
-
-        //private void CallBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    List<CommContracts.Registration> list = this.AllPatientList.ItemsSource as List<CommContracts.Registration>;
-        //    if (list == null || list.Count <= 0)
-        //        return;
-
-        //    var vm = this.DataContext as HISGUIDoctorVM;
-        //    var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
-
-        //    int nextNo = 0;
-        //    if (tempRegistration == null)
-        //    {
-        //        nextNo = 0;
-        //    }
-        //    else
-        //    {
-        //        int nIndex = list.IndexOf(tempRegistration);
-        //        if (nIndex < 0 || nIndex >= list.Count-1)
-        //        {
-        //            nextNo = 0;
-        //        }
-        //        else
-        //        {
-        //            nextNo = nIndex + 1;
-        //        }
-        //    }
-
-        //    this.AllPatientList.SelectedItem = list.ElementAt(nextNo);
-        //    tempRegistration = list.ElementAt(nextNo);
-        //    if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中)
-        //    {
-        //        this.StartBtn.Content = "开始接诊";
-        //        this.StartBtn.IsEnabled = true;
-        //        this.OverBtn.IsEnabled = false;
-        //        this.TurnToInHospitalBtn.IsEnabled = false;
-        //    }
-        //    else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊中)
-        //    {
-        //        this.StartBtn.Content = "继续接诊";
-        //        this.StartBtn.IsEnabled = true;
-        //        this.OverBtn.IsEnabled = false;
-        //        this.TurnToInHospitalBtn.IsEnabled = false;
-        //    }
-        //    else if(tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.接诊结束 || tempRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.未到诊)
-        //    {
-        //        this.StartBtn.Content = "开始接诊";
-        //        this.StartBtn.IsEnabled = false;
-        //        this.OverBtn.IsEnabled = false;
-        //        this.TurnToInHospitalBtn.IsEnabled = false;
-        //    }
-            
-        //    this.PatientMsgView.SetMyEnable(false);
-        //    this.PatientMsgView.ShowClinicMsg(tempRegistration);
-        //    this.PatientMsgView.Visibility = Visibility.Visible;
-        //    this.TipMsgLabel.Visibility = Visibility.Collapsed;
-        //}
-
-        //private void StartBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var vm = this.DataContext as HISGUIDoctorVM;
-        //    var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
-
-        //    if (tempRegistration == null)
-        //        return;
-
-        //    tempRegistration.StartSeeDoctorTime = DateTime.Now;
-        //    tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.接诊中;
-        //    vm.UpdateRegistration(tempRegistration);
-
-        //    this.PatientMsgView.SetMyEnable(true);
-        //    this.PatientMsgView.ShowClinicMsg(tempRegistration);
-        //    this.PatientMsgView.Visibility = Visibility.Visible;
-        //    this.TipMsgLabel.Visibility = Visibility.Collapsed;
-        //    this.StartBtn.IsEnabled = false;
-        //    this.OverBtn.IsEnabled = true;
-        //    this.TurnToInHospitalBtn.IsEnabled = true;
-        //    UpdateAllRegistration();
-        //}
-
-        //private void OverBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var vm = this.DataContext as HISGUIDoctorVM;
-        //    var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
-
-        //    if (tempRegistration == null)
-        //        return;
-
-        //    tempRegistration.EndSeeDoctorTime = DateTime.Now;
-        //    tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.接诊结束;
-        //    vm.UpdateRegistration(tempRegistration);
-
-        //    this.PatientMsgView.SetMyEnable(false);
-        //    this.PatientMsgView.ShowClinicMsg(tempRegistration);
-        //    this.PatientMsgView.Visibility = Visibility.Visible;
-        //    this.TipMsgLabel.Visibility = Visibility.Collapsed;
-        //    this.StartBtn.IsEnabled = false;
-        //    this.OverBtn.IsEnabled = false;
-        //    this.TurnToInHospitalBtn.IsEnabled = false;
-        //    UpdateAllRegistration();
-        //}
-
-        //private void TurnToInHospitalBtn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    var vm = this.DataContext as HISGUIDoctorVM;
-        //    var tempRegistration = this.AllPatientList.SelectedItem as CommContracts.Registration;
-
-        //    if (tempRegistration == null)
-        //        return;
-
-            
-
-        //    CommContracts.InHospitalApply inHospitalApply = new CommContracts.InHospitalApply();
-        //    inHospitalApply.PatientID = vm.CurrentRegistration.PatientID;
-        //    inHospitalApply.UserID = vm.CurrentUser.ID;
-            
-        //    bool? result =  vm.SaveInHospitalApply(inHospitalApply);
-        //    if(result.HasValue)
-        //    {
-        //        if(result.Value)
-        //        {
-        //            MessageBox.Show("入院申请成功！");
-        //            tempRegistration.EndSeeDoctorTime = DateTime.Now;
-        //            tempRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.申请入院;
-        //            vm.UpdateRegistration(tempRegistration);
-
-        //            this.PatientMsgView.SetMyEnable(false);
-        //            this.PatientMsgView.ShowClinicMsg(tempRegistration);
-        //            this.PatientMsgView.Visibility = Visibility.Visible;
-        //            this.TipMsgLabel.Visibility = Visibility.Collapsed;
-        //            this.StartBtn.IsEnabled = false;
-        //            this.OverBtn.IsEnabled = false;
-        //            this.TurnToInHospitalBtn.IsEnabled = false;
-        //            UpdateAllRegistration();
-        //            return;
-        //        }
-        //    }
-        //    MessageBox.Show("入院申请失败！");
-        //}
+        private void LayoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+        }
     }
 }

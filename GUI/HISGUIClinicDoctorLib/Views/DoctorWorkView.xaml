@@ -22,9 +22,9 @@
                 <Label>医生工作站</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Label>2017-11-27周一</Label>
-                <Label>李医生</Label>
-                <Button>退出</Button>
+                <TextBlock x:Name="Tt" Margin="5" TextWrapping="Wrap"></TextBlock>
+                <Label x:Name="UserName"></Label>
+                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click">退出</Button>
             </StackPanel>
         </Grid>
         <TabControl x:Name="tabControl" Grid.Row="1" Margin="5"  VerticalAlignment="Stretch" >
