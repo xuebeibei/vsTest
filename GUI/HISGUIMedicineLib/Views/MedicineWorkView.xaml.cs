@@ -91,7 +91,11 @@ namespace HISGUIMedicineLib.Views
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIMedicineVM;
-            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+            bool? bRe = vm.Logout(vm.CurrentUser);
+            if (bRe.HasValue && bRe.Value)
+            {
+                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+            }
         }
 
         private void MedicineRadio_Click(object sender, RoutedEventArgs e)

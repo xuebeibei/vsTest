@@ -27,23 +27,11 @@ namespace HISGUILoginLib.ViewModels
     [Export("HISGUILoginVM", typeof(HISGUIVMBase))]
     public class HISGUILoginVM : HISGUIVMBase
     {
-
-        #region CurrentUser
-        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUILoginVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.User CurrentUser
-        {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
-            set { SetValue(CurrentUserProperty, value); }
-        }
-        #endregion
-
         public bool Login(string UserName, string PassWord)
         {
-            CommClient.User login = new CommClient.User(UserName, PassWord);
+            CommClient.User login = new CommClient.User();
 
-            var tem = login.Authenticate();
+            var tem = login.Authenticate(UserName, PassWord);
             if (tem == null)
             {
                 return false;

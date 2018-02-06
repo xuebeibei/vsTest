@@ -30,6 +30,13 @@ namespace HISGUICore
 
         }
 
+        public bool Logout(CommContracts.User user)
+        {
+            CommClient.User myd = new CommClient.User();
+            return myd.Logout(user);
+        }
+
+
         #region MainData
 
         public static readonly DependencyProperty MainDataProperty = DependencyProperty.Register("MainData",
@@ -42,6 +49,17 @@ namespace HISGUICore
             set { SetValue(MainDataProperty, value); }
         }
 
+        #endregion
+
+        #region CurrentUser
+        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
+            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIVMBase), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.User CurrentUser
+        {
+            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            set { SetValue(CurrentUserProperty, value); }
+        }
         #endregion
 
         public HISGUIVMBase()

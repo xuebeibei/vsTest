@@ -320,19 +320,6 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.SaveInHospitalApply(inpatient); 
         }
 
-        // 当前用户
-        #region CurrentUser
-        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIDoctorVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.User CurrentUser
-        {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
-            set { SetValue(CurrentUserProperty, value); }
-        }
-
-        #endregion
-
 
         // 当前医生看诊的挂号单
         #region CurrentRegistration

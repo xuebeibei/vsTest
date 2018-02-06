@@ -73,7 +73,11 @@ namespace HISGUINurseLib.Views
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUINurseVM;
-            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+            bool? bRe = vm.Logout(vm.CurrentUser);
+            if (bRe.HasValue && bRe.Value)
+            {
+                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+            }
         }
     }
 }

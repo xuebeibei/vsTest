@@ -453,19 +453,6 @@ namespace HISGUIFeeLib.ViewModels
             return myd.ReadLastRegistration(PatientID);
         }
 
-        // 当前用户
-        #region CurrentUser
-        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.User CurrentUser
-        {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
-            set { SetValue(CurrentUserProperty, value); }
-        }
-
-        #endregion
-
         // 当前医生收费的挂号单I
         #region CurrentRegistration
         public static readonly DependencyProperty CurrentRegistrationProperty = DependencyProperty.Register(

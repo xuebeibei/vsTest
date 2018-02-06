@@ -152,19 +152,6 @@ namespace HISGUINurseLib.ViewModels
             return myd.UpdateExecuteEnum(doctorAdvice.ID, doctorAdvice.ExecuteEnum);
         }
 
-        // 当前用户
-        #region CurrentUser
-        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUINurseVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.User CurrentUser
-        {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
-            set { SetValue(CurrentUserProperty, value); }
-        }
-
-        #endregion
-
 
         // 当前是门诊还是住院收费
         #region IsClinicOrInHospital

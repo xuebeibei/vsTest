@@ -12,8 +12,6 @@ namespace CommClient
     public class User
     {
         private ILoginService client;
-        private string username;
-        private string password;
 
         public User()
         {
@@ -22,16 +20,7 @@ namespace CommClient
                 new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
-        public User(string username, string password)
-        {
-            this.username = username;
-            this.password = password;
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-        }
-
-        public CommContracts.User Authenticate()
+        public CommContracts.User Authenticate(string username, string password)
         {
             CommContracts.User login = new CommContracts.User();
             login.Username = username;
@@ -39,12 +28,9 @@ namespace CommClient
             return client.UserAuthenticate(login);
         }
 
-        public bool Logout()
+        public bool Logout(CommContracts.User user)
         {
-            CommContracts.User login = new CommContracts.User();
-            login.Username = username;
-            login.Password = password;
-            return client.UserLogout(login);
+            return client.UserLogout(user);
         }
 
         public List<CommContracts.User> GetAllLoginUser(string strName = "")

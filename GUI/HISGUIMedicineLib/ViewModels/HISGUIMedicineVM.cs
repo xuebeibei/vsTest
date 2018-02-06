@@ -468,18 +468,5 @@ namespace HISGUIMedicineLib.ViewModels
         }
 
         #endregion
-
-        // 当前用户
-        #region CurrentUser
-        public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIMedicineVM), new PropertyMetadata((sender, e) => { }));
-
-        public CommContracts.User CurrentUser
-        {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
-            set { SetValue(CurrentUserProperty, value); }
-        }
-
-        #endregion
     }
 }
