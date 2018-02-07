@@ -66,9 +66,9 @@ namespace HISGUIFeeLib.Views
         {
             this.AllWillPayList.Visibility = Visibility.Visible;
             this.AllPayList.Visibility = Visibility.Collapsed;
-            this.PayBtn.Visibility = Visibility.Visible;
             this.MyMedicineTableEdit.Visibility = Visibility.Collapsed;
             this.MyJianYanTableEdit.Visibility = Visibility.Collapsed;
+            this.PayBtn.Visibility = Visibility.Collapsed;
             UpdateAllChage();
         }
 
@@ -625,6 +625,7 @@ namespace HISGUIFeeLib.Views
                 default:
                     break;
             }
+            this.PayBtn.Visibility = Visibility.Visible;
         }
 
         private void ShowMedicineAdviceDetails(CommContracts.MedicineDoctorAdvice medicineDoctorAdvice)
@@ -1216,6 +1217,9 @@ namespace HISGUIFeeLib.Views
 
         private void AllPatientList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            this.MyMedicineTableEdit.Visibility = Visibility.Collapsed;
+            this.MyJianYanTableEdit.Visibility = Visibility.Collapsed;
+            this.PayBtn.Visibility = Visibility.Collapsed;
             var vm = this.DataContext as HISGUIFeeVM;
             if (this.ClinicRadio.IsChecked.Value)
             {

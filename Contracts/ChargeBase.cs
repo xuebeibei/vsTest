@@ -20,6 +20,10 @@ namespace CommContracts
     [DataContract]
     public class ChargeBase
     {
+        public ChargeBase()
+        {
+            PayWayEnum = PayWayEnum.账户支付;
+        }
         [DataMember]
         public int ID { get; set; }                               // ID
         [DataMember]
@@ -34,5 +38,7 @@ namespace CommContracts
         public User ChargeUser { get; set; }
         [DataMember]
         public ChargeEnum ChargeEnum { get; set; }
+        [DataMember]
+        public PayWayEnum PayWayEnum { get; set; }
     }
 }

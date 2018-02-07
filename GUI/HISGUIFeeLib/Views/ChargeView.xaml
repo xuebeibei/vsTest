@@ -52,6 +52,8 @@
                         <GridViewColumn Header="收费单编号" DisplayMemberBinding="{Binding Path=NO}" Width="150"></GridViewColumn>
                         <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=ChargeTime}" Width="150"></GridViewColumn>
                         <GridViewColumn Header="金额" DisplayMemberBinding="{Binding Path=SumOfMoney}" Width="100"></GridViewColumn>
+                        <GridViewColumn Header="支付方式" DisplayMemberBinding="{Binding Path=PayWayEnum}" Width="100"></GridViewColumn>
+                        
                         <GridViewColumn Header="制单人" DisplayMemberBinding="{Binding Path=ChargeUser.Username}" Width="100"></GridViewColumn>
                     </GridView>
                 </ListView.View>
@@ -69,7 +71,7 @@
             <StackPanel x:Name="DetailsPanel">
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click">收费</Button>
+                <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click" Visibility="Collapsed">收费</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
