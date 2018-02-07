@@ -195,6 +195,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
@@ -251,6 +252,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
@@ -307,6 +309,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
@@ -363,6 +366,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
@@ -419,6 +423,7 @@ namespace HISGUIFeeLib.Views
                 }
 
                 MessageBox.Show("收费成功！");
+                UpdateAllChage();
                 return;
             }
             else
