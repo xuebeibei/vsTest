@@ -6,14 +6,39 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 收费单基类
+    
+    /// <summary>
+    /// 收费单基类
+    /// </summary>
     public class ChargeBase
     {
-        public int ID { get; set; }                               // ID
-        public string NO { get; set; }                            // 收费单编号
-        public DateTime? ChargeTime { get; set; }                 // 收费时间  
-        public int ChargeUserID { get; set; }                     // 收费人员
-        public decimal SumOfMoney { get; set; }                   // 收费金额
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 收费单编号
+        /// </summary>
+        public string NO { get; set; }
+        /// <summary>
+        /// 收费时间
+        /// </summary>
+        public DateTime? ChargeTime { get; set; }
+        /// <summary>
+        /// 收费人员ID
+        /// </summary>
+        public int ChargeUserID { get; set; }
+        /// <summary>
+        /// 收费金额
+        /// </summary>
+        public decimal SumOfMoney { get; set; }
+        /// <summary>
+        /// 支付方式 0账户支付,1现金支付
+        /// </summary>
+        public PayWayEnum PayWayEnum { get; set; }
+        /// <summary>
+        /// 收费人员
+        /// </summary>
         public virtual User ChargeUser { get; set; }
     }
 }
