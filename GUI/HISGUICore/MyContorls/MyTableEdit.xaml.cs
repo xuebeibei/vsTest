@@ -589,7 +589,7 @@ namespace HISGUICore.MyContorls
 
             foreach (var tem in m_contentItems)
             {
-                if (tem.StoreRoomMedicineNumID == ID)
+                if (tem.StoreRoomNumID == ID)
                     return true;
             }
 
