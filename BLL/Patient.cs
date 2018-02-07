@@ -43,6 +43,8 @@ namespace BLL
                     balance += prePayBalance;
                 }
 
+
+                // 挂号付费
                 temp = (from u in ctx.Registrations
                         where u.PatientID == PatientID &&
                         u.PayWayEnum == DAL.PayWayEnum.账户支付 &&
@@ -57,7 +59,75 @@ namespace BLL
                                              select u.RegisterFee).Sum();
                     balance -= RegistrationBalance;
                 }
-                
+
+
+                // 正常用药收费
+                temp = (from u in ctx.MedicineCharges
+                        where u.MedicineDoctorAdvice.PatientID == PatientID &&
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付
+                        select u.SumOfMoney).Count();
+                if(temp>0)
+                {
+                    var MedicineChargeBalance = (from u in ctx.MedicineCharges
+                                                 where u.MedicineDoctorAdvice.PatientID == PatientID &&
+                                               u.PayWayEnum == DAL.PayWayEnum.账户支付
+                                                 select u.SumOfMoney).Sum();
+                    balance -= MedicineChargeBalance;
+                }
+
+                // 材料收费
+                temp = (from u in ctx.MaterialCharges
+                        where u.MaterialDoctorAdvice.PatientID == PatientID &&
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付
+                        select u.SumOfMoney).Count();
+                if (temp > 0)
+                {
+                    var MaterialChargeBalance = (from u in ctx.MaterialCharges
+                                                 where u.MaterialDoctorAdvice.PatientID == PatientID &&
+                                               u.PayWayEnum == DAL.PayWayEnum.账户支付
+                                                 select u.SumOfMoney).Sum();
+                    balance -= MaterialChargeBalance;
+                }
+                //  化验收费
+                temp = (from u in ctx.AssayCharges
+                        where u.AssayDoctorAdvice.PatientID == PatientID &&
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付
+                        select u.SumOfMoney).Count();
+                if (temp > 0)
+                {
+                    var AssayChargeBalance = (from u in ctx.AssayCharges
+                                              where u.AssayDoctorAdvice.PatientID == PatientID &&
+                                            u.PayWayEnum == DAL.PayWayEnum.账户支付
+                                              select u.SumOfMoney).Sum();
+                    balance -= AssayChargeBalance;
+                }
+                //  检查收费
+                temp = (from u in ctx.InspectCharges
+                        where u.InspectDoctorAdvice.PatientID == PatientID &&
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付
+                        select u.SumOfMoney).Count();
+                if (temp > 0)
+                {
+                    var InspectChargeBalance = (from u in ctx.InspectCharges
+                                                where u.InspectDoctorAdvice.PatientID == PatientID &&
+                                              u.PayWayEnum == DAL.PayWayEnum.账户支付
+                                                select u.SumOfMoney).Sum();
+                    balance -= InspectChargeBalance;
+                }
+                //  治疗收费
+                temp = (from u in ctx.TherapyCharges
+                        where u.TherapyDoctorAdvice.PatientID == PatientID &&
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付
+                        select u.SumOfMoney).Count();
+                if (temp > 0)
+                {
+                    var TherapyChargeBalance = (from u in ctx.TherapyCharges
+                                               where u.TherapyDoctorAdvice.PatientID == PatientID &&
+                                             u.PayWayEnum == DAL.PayWayEnum.账户支付
+                                               select u.SumOfMoney).Sum();
+                    balance -= TherapyChargeBalance;
+                }
+
 
                 return balance;
 
