@@ -6,17 +6,35 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 物资入库明细
+    // 
+    /// <summary>
+    /// 物资入库明细
+    /// </summary>
     public class MaterialInStoreDetail : StoreOperateBillDetailBase
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MaterialInStoreDetail()
         {
 
         }
-        public int MaterialID { get; set; }          // 对应物资字典
-        public int MaterialInStoreID { get; set; }  // 入库单ID
+        /// <summary>
+        /// 对应物资字典
+        /// </summary>
+        public int MaterialID { get; set; }
+        /// <summary>
+        /// 入库单ID
+        /// </summary>
+        public int MaterialInStoreID { get; set; }
 
-        public virtual MaterialItem Material { get; set; }    // 物资字典外键
-        public virtual MaterialInStore MaterialInStore { get; set; }   // 入库单外键
+        /// <summary>
+        /// 物资字典外键
+        /// </summary>
+        public virtual MaterialItem Material { get; set; }
+        /// <summary>
+        /// 入库单外键
+        /// </summary>
+        public virtual MaterialInStore MaterialInStore { get; set; }
     }
 }

@@ -6,13 +6,27 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 检验医嘱明细
+    /// <summary>
+    /// 检查医嘱明细
+    /// </summary>
     public class InspectDoctorAdviceDetail : DoctorAdviceDetailBase
     {
-        public int InspectID { get; set; }               // 检验项目
+        /// <summary>
+        /// 检查项目ID
+        /// </summary>
+        public int InspectID { get; set; }
+        /// <summary>
+        /// 检查医嘱ID
+        /// </summary>
         public int InspectDoctorAdviceID { get; set; }
 
+        /// <summary>
+        /// 检查医嘱
+        /// </summary>
         public virtual InspectDoctorAdvice InspectDoctorAdvice { get; set; }
+        /// <summary>
+        /// 检查项目
+        /// </summary>
         public virtual InspectItem Inspect { get; set; }
     }
 }

@@ -6,13 +6,27 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 收费明细基类
+    /// <summary>
+    /// 收费明细基类
+    /// </summary>
     public class ChargeDetailBase
     {
-        public int ID { get; set; }                               // ID
+        /// <summary>
+        /// ID
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 单价
+        /// </summary>
         [DecimalPrecision(18, 4)]
-        public decimal SellPrice { get; set; }                    // 单价
-        public int AllNum { get; set; }                           // 数量
-        public int Rebate { get; set; }                           // 折扣
+        public decimal SellPrice { get; set; }
+        /// <summary>
+        /// 数量
+        /// </summary>
+        public int AllNum { get; set; }
+        /// <summary>
+        /// 折扣
+        /// </summary>
+        public int Rebate { get; set; }
     }
 }

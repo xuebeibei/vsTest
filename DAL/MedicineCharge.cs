@@ -6,16 +6,30 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 用药处方医嘱收费单
+    /// <summary>
+    /// 用药处方医嘱收费单
+    /// </summary>
     public class MedicineCharge : ChargeBase
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MedicineCharge()
         {
             MedicineChargeDetails = new List<MedicineChargeDetail>();
         }
 
-        public int MedicineDoctorAdviceID { get; set; }                    // 所对应的的用药医嘱
+        /// <summary>
+        /// 药品医嘱ID
+        /// </summary>
+        public int MedicineDoctorAdviceID { get; set; }
+        /// <summary>
+        /// 药品医嘱
+        /// </summary>
         public MedicineDoctorAdvice MedicineDoctorAdvice { get; set; }
+        /// <summary>
+        /// 药品医嘱明细列表
+        /// </summary>
         public virtual ICollection<MedicineChargeDetail> MedicineChargeDetails { get; set; }
     }
 }

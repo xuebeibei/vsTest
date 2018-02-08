@@ -6,22 +6,51 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 病历
+    /// <summary>
+    /// 病历
+    /// </summary>
     public class MedicalRecord
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MedicalRecord()
         {
 
         }
 
-        public int ID { get; set; }  // ID
-        public string NO { get; set; } // 病历号
-        public MedicalRecordEnum MedicalRecordEnum { get; set; }  // 类别
-        public int RegistrationID { get; set; }                   // 门诊ID
-        public DateTime? WriteTime { get; set; }                   // 编辑时间
-        public int WriteUserID { get; set; }                      // 编写人的用户ID
-        public string ContentXml { get; set; }                    // 内容xml
+        /// <summary>
+        /// ID
+        /// </summary>
+        public int ID { get; set; }
+        /// <summary>
+        /// 病历号
+        /// </summary>
+        public string NO { get; set; }
+        /// <summary>
+        /// 类别
+        /// </summary>
+        public MedicalRecordEnum MedicalRecordEnum { get; set; }
+        /// <summary>
+        /// 门诊ID
+        /// </summary>
+        public int RegistrationID { get; set; }
+        /// <summary>
+        /// 编辑时间
+        /// </summary>
+        public DateTime? WriteTime { get; set; }
+        /// <summary>
+        /// 编写人的用户ID
+        /// </summary>
+        public int WriteUserID { get; set; }
+        /// <summary>
+        /// 内容xml
+        /// </summary>
+        public string ContentXml { get; set; }                    
 
+        /// <summary>
+        /// 门诊
+        /// </summary>
         public virtual Registration Registration { get; set; }
     }
 }

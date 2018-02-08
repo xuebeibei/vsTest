@@ -6,16 +6,27 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 药品盘存表
+    /// <summary>
+    /// 药品盘存表
+    /// </summary>
     public class MedicineCheckStore : StoreOperateBillBase
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MedicineCheckStore()
         {
             MedicineCheckStoreDetails = new List<MedicineCheckStoreDetail>();
         }
 
-        public int CheckStoreID { get; set; }        // 盘存库房
+        /// <summary>
+        /// 盘存库房
+        /// </summary>
+        public int CheckStoreID { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public virtual ICollection<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
     }
 }

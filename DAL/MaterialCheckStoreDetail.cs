@@ -6,19 +6,36 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 物资盘存明细
+    /// <summary>
+    /// 物资盘存明细
+    /// </summary>
     public class MaterialCheckStoreDetail : StoreOperateBillDetailBase
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public MaterialCheckStoreDetail()
         {
 
         }
 
-        public int StoreRoomMaterialNumID { get; set; }  // 库存ID
-        public int NumBeforeCheck { get; set; }          // 出库前数量 
+        /// <summary>
+        /// 库存ID
+        /// </summary>
+        public int StoreRoomMaterialNumID { get; set; }
+        /// <summary>
+        /// 出库前数量
+        /// </summary>
+        public int NumBeforeCheck { get; set; }
 
-        public int MaterialCheckStoreID { get; set; }    // 盘存单ID
+        /// <summary>
+        /// 盘存单ID
+        /// </summary>
+        public int MaterialCheckStoreID { get; set; }
 
-        public virtual MaterialCheckStore MaterialCheckStore { get; set; }   // 盘存单外键
+        /// <summary>
+        /// 盘存单外键
+        /// </summary>
+        public virtual MaterialCheckStore MaterialCheckStore { get; set; }
     }
 }

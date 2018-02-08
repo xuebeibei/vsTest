@@ -6,25 +6,66 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    // 医嘱基类
+    /// <summary>
+    /// 医嘱基类
+    /// </summary>
     public class DoctorAdviceBase
     {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
         public DoctorAdviceBase()
         {
         }
+        /// <summary>
+        /// 主键ID
+        /// </summary>
         public int ID { get; set; }
+        /// <summary>
+        /// 医嘱编号
+        /// </summary>
         public string NO { get; set; }
-        public decimal SumOfMoney { get; set; }                 // 金额
-        public DateTime? WriteTime { get; set; }                // 开具时间
-        public int WriteDoctorUserID { get; set; }              // 开具医生
-        public int PatientID { get; set; }                      // 所属患者
-        public ChargeStatusEnum ChargeStatusEnum { get; set; }  // 收费状态
+        /// <summary>
+        /// 金额
+        /// </summary>
+        public decimal SumOfMoney { get; set; }
+        /// <summary>
+        /// 开具时间
+        /// </summary>
+        public DateTime? WriteTime { get; set; }
+        /// <summary>
+        /// 开具医生
+        /// </summary>
+        public int WriteDoctorUserID { get; set; }
+        /// <summary>
+        /// 所属患者ID
+        /// </summary>
+        public int PatientID { get; set; }
+        /// <summary>
+        /// 收费状态
+        /// </summary>
+        public ChargeStatusEnum ChargeStatusEnum { get; set; }
 
-        public ExecuteEnum ExecuteEnum { get; set; }            // 执行状态
-        public int RegistrationID { get; set; }                 // 门诊看诊标记
-        public int InpatientID { get; set; }                    // 住院看诊标记
+        /// <summary>
+        /// 执行状态
+        /// </summary>
+        public ExecuteEnum ExecuteEnum { get; set; }
+        /// <summary>
+        /// 门诊看诊标记
+        /// </summary>
+        public int RegistrationID { get; set; }
+        /// <summary>
+        /// 住院看诊标记
+        /// </summary>
+        public int InpatientID { get; set; }
 
-        public virtual User WriteDoctorUser { get; set; }       // 开具医生
+        /// <summary>
+        /// 开具医生
+        /// </summary>
+        public virtual User WriteDoctorUser { get; set; }
+        /// <summary>
+        /// 所属患者
+        /// </summary>
         public virtual Patient Patient { get; set; }
     }
 }
