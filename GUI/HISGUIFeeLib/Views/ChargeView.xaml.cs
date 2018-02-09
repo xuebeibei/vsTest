@@ -1243,5 +1243,23 @@ namespace HISGUIFeeLib.Views
             ShowPatientMsg();
             UpdateAllChage();
         }
+
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+            myPrint();
+        }
+
+        /// <summary>
+        /// 打印程序
+        /// </summary>
+        private void myPrint()
+        {
+            PrintDialog dlg = new PrintDialog();
+            if (dlg.ShowDialog() == true)
+            {
+                dlg.PrintVisual(printGrid, "Print Receipt");
+            }
+        }
     }
 }

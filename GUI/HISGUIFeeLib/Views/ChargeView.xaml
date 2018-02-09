@@ -70,8 +70,13 @@
             </ListView>
             <StackPanel x:Name="DetailsPanel">
             </StackPanel>
+            <Grid Name="printGrid">
+                <TextBlock Height="115" HorizontalAlignment="Left" Margin="79,31,0,0" Name="textBlock1" Text="打印测试" VerticalAlignment="Top" Width="322" FontSize="56" />
+            </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                
                 <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click" Visibility="Collapsed">收费</Button>
+                <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
             </StackPanel>
         </StackPanel>
     </Grid>
