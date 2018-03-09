@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class PrePay
+    public class PrePay : MyTableBase
     {
-        private ILoginService client;
-
         public PrePay()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public CommContracts.PrePay GetPrePay(int Id)

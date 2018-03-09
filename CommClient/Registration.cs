@@ -10,19 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Registration
+    public class Registration : MyTableBase
     {
-        private ILoginService client;
-
-        private CommContracts.Registration registration;
-
         public Registration()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
-
-            registration = new CommContracts.Registration();
         }
 
         public List<CommContracts.Registration> getAllRegistration(int EmployeeID = 0, DateTime? VistTime = null)

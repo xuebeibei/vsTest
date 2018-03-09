@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class StoreRoom
+    public class StoreRoom : MyTableBase
     {
-        private ILoginService client;
-
         public StoreRoom()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.StoreRoom> GetAllStoreRoom(string strName = "")

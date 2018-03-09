@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Department
+    public class Department : MyTableBase
     {
-        private ILoginService client;
-
         public Department()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public int getAllDepartmentNum()

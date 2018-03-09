@@ -46,7 +46,10 @@ namespace HISGUISetLib.Views
         {
             //InitVisable();
             var vm = this.DataContext as HISGUISetVM;
-            this.UserName.Content = vm.CurrentUser.Username;
+            if(vm.CurrentUser != null)
+            {
+                this.UserName.Content = vm.CurrentUser.Username;
+            }
         }
 
 

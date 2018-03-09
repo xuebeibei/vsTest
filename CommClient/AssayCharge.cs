@@ -10,15 +10,11 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class AssayCharge
+    public class AssayCharge : MyTableBase
     {
-        private ILoginService client;
-
         public AssayCharge()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
+
         }
 
         public bool SaveAssayCharge(CommContracts.AssayCharge AssayCharge)

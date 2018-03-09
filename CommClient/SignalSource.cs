@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class SignalSource
+    public class SignalSource : MyTableBase
     {
-        private ILoginService client;
-
         public SignalSource()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.SignalSource> GetAllSignalSource()

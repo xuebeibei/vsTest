@@ -10,14 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Employee
+    public class Employee : MyTableBase
     {
-        private ILoginService client;
         public Employee()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0)

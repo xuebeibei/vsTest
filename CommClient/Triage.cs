@@ -9,15 +9,10 @@ using System.ServiceModel;
 
 namespace CommClient
 {
-    public class Triage
+    public class Triage : MyTableBase
     {
-        private ILoginService client;
-
         public Triage()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool SaveTriage(int nDoctorID, int nRegistrationID)

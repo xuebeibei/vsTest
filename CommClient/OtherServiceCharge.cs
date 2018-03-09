@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class OtherServiceCharge
+    public class OtherServiceCharge : MyTableBase
     {
-        private ILoginService client;
-
         public OtherServiceCharge()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool SaveOtherServiceCharge(CommContracts.OtherServiceCharge OtherServiceCharge)

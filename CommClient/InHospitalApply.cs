@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class InHospitalApply
+    public class InHospitalApply : MyTableBase
     {
-        private ILoginService client;
-
         public InHospitalApply()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.InHospitalApply> GetAllInHospitalApply(CommContracts.InHospitalApplyEnum inHospitalApplyEnum, string strName = "")

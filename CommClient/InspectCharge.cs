@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class InspectCharge
+    public class InspectCharge : MyTableBase
     {
-        private ILoginService client;
-
         public InspectCharge()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool SaveInspectCharge(CommContracts.InspectCharge InspectCharge)

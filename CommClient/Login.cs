@@ -9,15 +9,10 @@ using System.ServiceModel;
 
 namespace CommClient
 {
-    public class User
+    public class User : MyTableBase
     {
-        private ILoginService client;
-
         public User()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public CommContracts.User Authenticate(string username, string password)

@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class StoreRoomMaterialNum
+    public class StoreRoomMaterialNum : MyTableBase
     {
-        private ILoginService client;
-
         public StoreRoomMaterialNum()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool ReCheckMaterialInStore(CommContracts.MaterialInStore MaterialInStore)

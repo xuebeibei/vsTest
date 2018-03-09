@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class DoctorAdviceBase
+    public class DoctorAdviceBase : MyTableBase
     {
-        protected ILoginService client;
-
         public DoctorAdviceBase()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool UpdateChargeStatus(int DoctorAdviceID, CommContracts.ChargeStatusEnum chargeStatusEnum)

@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class MedicineCheckStore
+    public class MedicineCheckStore : MyTableBase
     {
-        private ILoginService client;
-
         public MedicineCheckStore()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public bool SaveMedicineCheckStock(CommContracts.MedicineCheckStore medicineCheckStore)

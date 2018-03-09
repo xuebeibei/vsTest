@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Supplier
+    public class Supplier : MyTableBase
     {
-        private ILoginService client;
-
         public Supplier()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.Supplier> GetAllSuppliers(string strFindName)

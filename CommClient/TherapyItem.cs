@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class TherapyItem
+    public class TherapyItem : MyTableBase
     {
-        private ILoginService client;
-
         public TherapyItem()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.TherapyItem> GetAllTherapyItem(string strName = "")

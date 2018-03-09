@@ -10,15 +10,10 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class AssayItem
+    public class AssayItem : MyTableBase
     {
-        private ILoginService client;
-
         public AssayItem()
         {
-            client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
         }
 
         public List<CommContracts.AssayItem> GetAllAssayItem(string strName = "")
