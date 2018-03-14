@@ -17,7 +17,7 @@ namespace CommClient
         public MyTableBase()
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
-                new NetTcpBinding(),
+                new NetTcpBinding(SecurityMode.None),
                 new EndpointAddress("net.tcp://192.168.1.114:50557/"));
         }
     }
