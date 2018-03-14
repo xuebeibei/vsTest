@@ -29,16 +29,19 @@ namespace HISGUILoginLib.ViewModels
     {
         public bool Login(string UserName, string PassWord)
         {
+            CommClient.Log  log = CommClient.Log.getInstance("C://");
             CommClient.User login = new CommClient.User();
-
+            log.write("begin login.Authenticate");
             var tem = login.Authenticate(UserName, PassWord);
             if (tem == null)
             {
+                log.write("end login.Authenticate return null return false");
                 return false;
             }
             else
             {
                 CurrentUser = tem;
+                log.write("end login.Authenticate return user return true");
                 return true;
             }
         }
