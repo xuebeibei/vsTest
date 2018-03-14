@@ -18,7 +18,7 @@ namespace CommClient
         {
             client = ChannelFactory<ILoginService>.CreateChannel(
                 new NetTcpBinding(),
-                new EndpointAddress("net.tcp://localhost:50557/LoginService"));
+                new EndpointAddress("net.tcp://192.168.1.114:50557/"));
         }
     }
 }
