@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 using Prism.Mef.Modularity;
 using Prism.Modularity;
 using HISGUICore;
-using HISGUILoginLib.Views;
+using HISGUIPatientCardLib.Views;
 
-namespace HISGUILoginLib
+namespace HISGUIPatientCardLib
 {
-    [ModuleExport(typeof(HISGUILoginModule))]
-    public class HISGUILoginModule : HISGUIMoudleBase
+    [ModuleExport(typeof(HISGUIPatientCardModule))]
+    class HISGUIPatientCardModule : HISGUIMoudleBase
     {
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUILoginView));
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIPatientCardView));
         }
     }
 }
