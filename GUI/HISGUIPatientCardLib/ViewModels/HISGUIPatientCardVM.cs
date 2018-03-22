@@ -27,5 +27,11 @@ namespace HISGUIPatientCardLib.ViewModels
         {
             base.RegisterCommands();
         }
+
+        //显示就诊卡界面
+        public void PatientCardManage()
+        {
+            this.RegionManager.RequestNavigate("DownRegion", "PatientCardManageView");
+        }
     }
 }
