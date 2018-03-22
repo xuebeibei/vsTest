@@ -7,6 +7,5 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
-        <Label>患者办卡</Label>
     </Grid>
 </HISGUICore:HISGUIViewBase>
