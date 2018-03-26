@@ -20,7 +20,8 @@ namespace CommContracts
         医生模块,
         综合收费模块,
         库存管理模块,
-        护士模块
+        护士模块,
+        就诊卡模块
     }
 
     [DataContract]

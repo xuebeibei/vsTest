@@ -166,6 +166,8 @@ namespace DAL
             modelBuilder.Entity<RecallHospital>().ToTable("tpt.RecallHospital");
 
             modelBuilder.Entity<InjectionBill>().ToTable("tpt.InjectionBill");
+
+            modelBuilder.Entity<PatientCardManage>().ToTable("tpt.PatientCardManage");
         }
     }
 }

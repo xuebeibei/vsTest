@@ -99,7 +99,7 @@ namespace HISGUIFeeLib.Views
                     "生日：" + patient.BirthDay + "     " +
                     "身份证号：" + patient.IDCardNo + "     " +
                     "民族：" + patient.Volk + "     " +
-                    "籍贯：" + patient.JiGuan + "     " +
+                    "籍贯：" + patient.JiGuan_Sheng + "     " +
                     "电话：" + patient.Tel + "     "
                     ;
                 PatientMsg.Inlines.Add(new Run(str));
@@ -123,7 +123,7 @@ namespace HISGUIFeeLib.Views
                     "生日：" + currentRegistration.Patient.BirthDay + "     " +
                     "身份证号：" + currentRegistration.Patient.IDCardNo + "     " +
                     "民族：" + currentRegistration.Patient.Volk + "     " +
-                    "籍贯：" + currentRegistration.Patient.JiGuan + "     " +
+                    "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
                     "电话：" + currentRegistration.Patient.Tel + "     ";
                 ;
                 PatientMsg.Inlines.Add(new Run(str));

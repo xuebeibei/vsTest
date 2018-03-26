@@ -116,6 +116,11 @@ namespace HISGUILoginLib.Views
                             vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIFeeView");
                             break;
                         }
+                    case CommContracts.PowerEnum.就诊卡模块:
+                        {
+                            vm?.RegionManager.RequestNavigate("DownRegion", "HISGUIPatientCardView");
+                            break;
+                        }
                     default:
                         break;
                 }

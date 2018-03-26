@@ -101,7 +101,7 @@ namespace HISGUIDoctorLib.Views
                     "生日：" + vm.CurrentRegistration.Patient.BirthDay + "     " +
                     "身份证号：" + vm.CurrentRegistration.Patient.IDCardNo + "     " +
                     "民族：" + vm.CurrentRegistration.Patient.Volk + "     " +
-                    "籍贯：" + vm.CurrentRegistration.Patient.JiGuan + "     " +
+                    "籍贯：" + vm.CurrentRegistration.Patient.JiGuan_Sheng + "     " +
                     "电话：" + vm.CurrentRegistration.Patient.Tel + "\n";
                 ;
                 PatientMsg.Inlines.Add(new Run(str));
@@ -131,7 +131,7 @@ namespace HISGUIDoctorLib.Views
                     "生日：" + vm.CurrentInHospital.Patient.BirthDay + "     " +
                     "身份证号：" + vm.CurrentInHospital.Patient.IDCardNo + "     " +
                     "民族：" + vm.CurrentInHospital.Patient.Volk + "     " +
-                    "籍贯：" + vm.CurrentInHospital.Patient.JiGuan + "     " +
+                    "籍贯：" + vm.CurrentInHospital.Patient.JiGuan_Sheng + "     " +
                     "电话：" + vm.CurrentInHospital.Patient.Tel + "\n";
                 ;
                 PatientMsg.Inlines.Add(new Run(str));

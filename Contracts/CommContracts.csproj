@@ -85,6 +85,7 @@
     <Compile Include="MyTableBase.cs" />
     <Compile Include="OtherServiceCharge.cs" />
     <Compile Include="OtherServiceChargeDetail.cs" />
+    <Compile Include="PatientCardManage.cs" />
     <Compile Include="PrePay.cs" />
     <Compile Include="RecallHospital.cs" />
     <Compile Include="SignalItem.cs" />

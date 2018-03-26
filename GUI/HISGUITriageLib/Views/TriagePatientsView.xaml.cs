@@ -83,7 +83,7 @@ namespace HISGUINurseLib.Views
                 "生日：" + currentRegistration.Patient.BirthDay + "     " +
                 "身份证号：" + currentRegistration.Patient.IDCardNo + "     " +
                 "民族：" + currentRegistration.Patient.Volk + "     " +
-                "籍贯：" + currentRegistration.Patient.JiGuan + "     " +
+                "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
                 "电话：" + currentRegistration.Patient.Tel + "\n";
             ;
             PatientMsg.Inlines.Add(new Run(str));

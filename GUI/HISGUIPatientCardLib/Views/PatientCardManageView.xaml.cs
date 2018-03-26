@@ -50,15 +50,18 @@ namespace HISGUIPatientCardLib.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIPatientCardVM;
             // 新增检查项目
             var window = new Window();
+            window.DataContext = this.DataContext;
+            window.Width = 600;
+            window.Height = 400;
+            window.Title = "办理就诊卡";
+
 
             PatientCardMsgView eidtInspect = new PatientCardMsgView();
             window.Content = eidtInspect;
-            window.Width = 500;
-            window.Height = 300;
-            window.Title = "办理就诊卡";
-            //window.ResizeMode = ResizeMode.NoResize;
+
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)

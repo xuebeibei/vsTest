@@ -221,7 +221,7 @@ namespace BLL
                     temp.IDCardNo = Patient.IDCardNo;
                     temp.Volk = (DAL.VolkEnum)Patient.Volk;
                     temp.Tel = Patient.Tel;
-                    temp.JiGuan = Patient.JiGuan;
+                    temp.JiGuan_Sheng = Patient.JiGuan_Sheng;
                 }
                 else
                 {

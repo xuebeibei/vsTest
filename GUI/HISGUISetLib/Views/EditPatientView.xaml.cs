@@ -34,7 +34,7 @@ namespace HISGUISetLib.Views
                 this.Patient = patient;
                 this.Name.Text = patient.Name;
                 this.IDCardNo.Text = patient.IDCardNo;
-                this.JiGuan.Text = patient.JiGuan;
+                this.JiGuan.Text = patient.JiGuan_Sheng;
                 this.Tel.Text = patient.Tel;
                 this.GenderCombo.Text = patient.Gender.ToString();
                 this.VolkEnumCombo.Text = patient.Volk.ToString();
@@ -59,7 +59,7 @@ namespace HISGUISetLib.Views
             {
                 Patient.Name = this.Name.Text.Trim();
                 Patient.IDCardNo = this.IDCardNo.Text;
-                Patient.JiGuan = this.JiGuan.Text;
+                Patient.JiGuan_Sheng = this.JiGuan.Text;
                 Patient.Tel = this.Tel.Text;
                 Patient.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
                 Patient.Volk = (CommContracts.VolkEnum)this.VolkEnumCombo.SelectedItem;
@@ -78,7 +78,7 @@ namespace HISGUISetLib.Views
                 CommContracts.Patient patient = new CommContracts.Patient();
                 patient.Name = this.Name.Text.Trim();
                 patient.IDCardNo = this.IDCardNo.Text.Trim();
-                patient.JiGuan = this.JiGuan.Text.Trim();
+                patient.JiGuan_Sheng = this.JiGuan.Text.Trim();
                 patient.Tel = this.Tel.Text.Trim();
                 patient.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
                 patient.Volk = (CommContracts.VolkEnum)this.VolkEnumCombo.SelectedItem;

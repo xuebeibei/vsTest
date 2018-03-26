@@ -33,5 +33,18 @@ namespace HISGUIPatientCardLib.ViewModels
         {
             this.RegionManager.RequestNavigate("DownRegion", "PatientCardManageView");
         }
+
+        // 当前住院患者的住院号
+        #region CurrentPatient
+        public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(
+            "CurrentPatient", typeof(CommContracts.Patient), typeof(HISGUIPatientCardVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Patient CurrentPatient
+        {
+            get { return (CommContracts.Patient)GetValue(CurrentInPatientProperty); }
+            set { SetValue(CurrentInPatientProperty, value); }
+        }
+
+        #endregion
     }
 }

@@ -160,7 +160,7 @@ namespace HISGUIFeeLib.Views
                     this.BirthDay.SelectedDate = MyCurrentInpatient.Patient.BirthDay;
                     this.IDCardNo.Text = MyCurrentInpatient.Patient.IDCardNo;
                     this.VolkEnumCombo.SelectedItem = MyCurrentInpatient.Patient.Volk;
-                    this.JiGuan.Text = MyCurrentInpatient.Patient.JiGuan;
+                    this.JiGuan.Text = MyCurrentInpatient.Patient.JiGuan_Sheng;
                     this.Tel.Text = MyCurrentInpatient.Patient.Tel;
                 }
 
@@ -246,7 +246,7 @@ namespace HISGUIFeeLib.Views
                     patient.BirthDay = this.BirthDay.SelectedDate.Value;
                 patient.IDCardNo = this.IDCardNo.Text;
                 patient.Volk = (CommContracts.VolkEnum)this.VolkEnumCombo.SelectedItem;
-                patient.JiGuan = this.JiGuan.Text;
+                patient.JiGuan_Sheng = this.JiGuan.Text;
                 patient.Tel = this.Tel.Text;
 
                 MyCurrentInpatient.Patient = patient;
