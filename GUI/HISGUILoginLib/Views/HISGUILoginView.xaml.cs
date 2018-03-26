@@ -24,8 +24,10 @@ using System.Security.Cryptography;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 
+
 namespace HISGUILoginLib.Views
 {
+
     [Export]
     [Export("HISGUILoginView", typeof(HISGUILoginView))]
     public partial class HISGUILoginView : HISGUIViewBase
@@ -53,21 +55,17 @@ namespace HISGUILoginLib.Views
 
         private void loginBtn_Click(object sender, RoutedEventArgs e)
         {
-            CommClient.Log log = CommClient.Log.getInstance("C://");
-
             var vm = this.DataContext as HISGUILoginVM;
             this.loginResult.Text = "";
             if (string.IsNullOrEmpty(UserNameBox.Text.Trim()))
             {
                 this.loginResult.Text = "用户名不能为空";
-                log.write("用户名不能为空,失败");
                 return;
             }
 
             if (string.IsNullOrEmpty(this.passbox.Password.Trim()))
             {
                 this.loginResult.Text = "密码不能为空";
-                log.write("密码不能为空，失败");
                 return;
             }
 
@@ -76,12 +74,10 @@ namespace HISGUILoginLib.Views
             
             byte[] output = md5.ComputeHash(result);
             string strPassWrod = BitConverter.ToString(output);
-            log.write("md5：strPassWrod");
             bool? loginResult = vm?.Login(UserNameBox.Text.Trim(), strPassWrod);
             if (!(loginResult.HasValue && loginResult.Value))
             {
                 this.loginResult.Text = "用户名或者密码错误";
-                log.write("用户名或者密码错误，失败");
                 return;
             }
             else

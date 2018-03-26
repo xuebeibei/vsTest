@@ -29,7 +29,7 @@ namespace HISGUIPatientCardLib.ViewModels
         }
 
         //显示就诊卡界面
-        public void PatientCardManage()
+        public void PatientCardManageView()
         {
             this.RegionManager.RequestNavigate("DownRegion", "PatientCardManageView");
         }
@@ -43,6 +43,19 @@ namespace HISGUIPatientCardLib.ViewModels
         {
             get { return (CommContracts.Patient)GetValue(CurrentInPatientProperty); }
             set { SetValue(CurrentInPatientProperty, value); }
+        }
+
+        #endregion
+
+        // 当前住院患者的住院号
+        #region PatientCardManage
+        public static readonly DependencyProperty PatientCardManageProperty = DependencyProperty.Register(
+            "PatientCardManage", typeof(CommContracts.PatientCardManage), typeof(HISGUIPatientCardVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.PatientCardManage PatientCardManage
+        {
+            get { return (CommContracts.PatientCardManage)GetValue(PatientCardManageProperty); }
+            set { SetValue(PatientCardManageProperty, value); }
         }
 
         #endregion

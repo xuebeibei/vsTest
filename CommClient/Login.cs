@@ -27,7 +27,6 @@ namespace CommClient
         }
         public static Log getInstance(string filePath = null, string logFilePrefix = "log")
         {
-            // 
             if (m_log == null)
             {
                 if (filePath == null)
@@ -105,9 +104,9 @@ namespace CommClient
         {
         }
 
-        public CommContracts.User Authenticate(string username, string password)
+        public CommContracts.User Authenticate(string username, string password,string MachineCode)
         {
-            Log log = Log.getInstance("C://");
+            Log log = Log.getInstance(Directory.GetCurrentDirectory());
             CommContracts.User login = new CommContracts.User();
             login.Username = username;
             login.Password = password;
@@ -116,6 +115,15 @@ namespace CommClient
             try
             {
                 user = client.UserAuthenticate(login);
+                if(user != null)
+                {
+                    CommContracts.LoginInAndOutRecords loginInAndOut = new LoginInAndOutRecords();
+                    loginInAndOut.LoginInOrLoginOut = true;
+                    loginInAndOut.LoginMachineCode = MachineCode;
+                    loginInAndOut.UserID = user.ID;
+                    loginInAndOut.CurrentTime = DateTime.Now;
+                    client.SaveLoginInAndOutRecords(loginInAndOut);
+                }
             }
             catch (Exception ex)
             {
@@ -126,9 +134,21 @@ namespace CommClient
             return user;
         }
 
-        public bool Logout(CommContracts.User user)
+        public bool Logout(CommContracts.User user, string MachineCode)
         {
-            return client.UserLogout(user);
+            if (client.UserLogout(user))
+            {
+                CommContracts.LoginInAndOutRecords loginInAndOut = new LoginInAndOutRecords();
+                loginInAndOut.LoginInOrLoginOut = false;
+                loginInAndOut.LoginMachineCode = MachineCode;
+                loginInAndOut.UserID = user.ID;
+                loginInAndOut.CurrentTime = DateTime.Now;
+                client.SaveLoginInAndOutRecords(loginInAndOut);
+
+                return true;
+            }
+            else
+                return false;
         }
 
         public List<CommContracts.User> GetAllLoginUser(string strName = "")

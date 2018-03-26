@@ -44,7 +44,7 @@ namespace BLL
                     uu = new DAL.User();
                     uu.Username = "uu";
                     uu.Password = "uu";
-                    uu.Status = DAL.User.LoginStatus.login;
+                    uu.Status = DAL.LoginStatus.login;
                     uu.LastLogin = DateTime.Now;
                     ctx.Users.Add(uu);
                     ctx.SaveChanges();

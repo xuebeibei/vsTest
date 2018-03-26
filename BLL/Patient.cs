@@ -9,6 +9,26 @@ namespace BLL
 {
     public class Patient
     {
+        public string getNewPID()
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = (from u in ctx.Patients
+                            orderby u.ID descending
+                            select u.PID).ToList();
+                string str = "";
+                if(string.IsNullOrEmpty(query.Last()))
+                {
+                    str = "0000 0001";
+                }
+                else
+                {
+                    str = (int.Parse(query.Last()) + 1).ToString();
+                }
+                return str;
+            }
+        }
+
         public CommContracts.Patient ReadCurrentPatient(int PatientID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())

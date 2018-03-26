@@ -28,6 +28,15 @@ namespace CommContracts
         bool UserLogout(User login);
 
         [OperationContract]
+        List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName);
+        [OperationContract]
+        bool UpdateLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords);
+        [OperationContract]
+        bool SaveLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords);
+        [OperationContract]
+        bool DeleteLoginInAndOutRecords(int LoginInAndOutRecordsID);
+
+        [OperationContract]
         int getAllDepartmentNum();
 
         [OperationContract]
@@ -416,6 +425,9 @@ namespace CommContracts
 
         [OperationContract]
         bool DeletePrePay(int PrePayID);
+
+        [OperationContract]
+        string getNewPID();
 
         [OperationContract]
         CommContracts.Patient ReadCurrentPatient(int PatientID);

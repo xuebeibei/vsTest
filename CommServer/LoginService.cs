@@ -62,6 +62,32 @@ namespace CommServer
             return temp.Logout(user);
         }
 
+        
+        public List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName)
+        {
+            BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
+            return temp.GetAllLoginInAndOutRecords(strName);
+        }
+
+        public bool UpdateLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        {
+            BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
+            return temp.UpdateLoginInAndOutRecords(LoginInAndOutRecords);
+        }
+
+        public bool SaveLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        {
+            BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
+            return temp.SaveLoginInAndOutRecords(LoginInAndOutRecords);
+        }
+
+        public bool DeleteLoginInAndOutRecords(int LoginInAndOutRecordsID)
+        {
+            BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
+            return temp.DeleteLoginInAndOutRecords(LoginInAndOutRecordsID);
+        }
+
+
         public int getAllDepartmentNum()
         {
             BLL.Department tempDepart = new BLL.Department();
@@ -813,6 +839,12 @@ namespace CommServer
         {
             BLL.PrePay temp = new BLL.PrePay();
             return temp.DeletePrePay(PrePayID);
+        }
+
+        public string getNewPID()
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.getNewPID();
         }
 
         public CommContracts.Patient ReadCurrentPatient(int PatientID)

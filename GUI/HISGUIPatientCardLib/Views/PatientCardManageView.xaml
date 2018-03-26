@@ -29,8 +29,8 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <TextBlock x:Name="Tt" Margin="5" TextWrapping="Wrap"></TextBlock>
-                <Label x:Name="UserName" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
-                <Button Click="LayoutBtn_Click" Style="{DynamicResource MyToolBtn}">退出</Button> 
+                <Label x:Name="UserName" Margin="5" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
+                <Button Click="LayoutBtn_Click" Margin="5" Style="{DynamicResource MyToolBtn}">退出</Button> 
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1" Margin="5">

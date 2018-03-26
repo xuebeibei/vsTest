@@ -48,7 +48,7 @@ namespace HISGUIPatientCardLib.Views
             user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
 
             vm.CurrentUser = user;
-            vm?.PatientCardManage();
+            vm?.PatientCardManageView();
         }
     }
 }

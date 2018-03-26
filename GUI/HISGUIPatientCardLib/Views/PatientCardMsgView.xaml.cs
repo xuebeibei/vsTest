@@ -30,14 +30,11 @@ namespace HISGUIPatientCardLib.Views
     [Export("PatientCardMsgView", typeof(PatientCardMsgView))]
     public partial class PatientCardMsgView : HISGUIViewBase
     {
-        CommContracts.PatientCardManage PatientCardManage;
-        
         public PatientCardMsgView()
         {
             InitializeComponent();
             this.YBCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.YbEnum));
 
-            PatientCardManage = new CommContracts.PatientCardManage();
             this.Loaded += PatientCardMsgView_Loaded;
         }
 
@@ -49,10 +46,46 @@ namespace HISGUIPatientCardLib.Views
 
         private void PatientCardMsgView_Loaded(object sender, RoutedEventArgs e)
         {
+            //添加item
+
+            for (int i = 0; i <= 150; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = DateTime.Now.Year - i;
+                YearCombo.Items.Add(item);
+            }
+
+            for (int i = 1; i <= 12; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = i;
+                MonthCombo.Items.Add(item);
+            }
+
+            //for (int i = 1; i <= 31; i++)
+            //{
+            //    ComboBoxItem item = new ComboBoxItem();
+            //    item.Content = i;
+            //    DayCombo.Items.Add(item);
+            //}
+
+
+
             var vm = this.DataContext as HISGUIPatientCardVM;
 
+            CommClient.Patient pClient = new CommClient.Patient();
+
             CommContracts.Patient patient = new CommContracts.Patient();
+            patient.PID = pClient.getNewPID();
+            patient.PatientCardNo = "0000 0001";
             vm.CurrentPatient = patient;
+
+            CommContracts.PatientCardManage patientCardManage = new CommContracts.PatientCardManage();
+            patientCardManage.CurrentTime = DateTime.Now;
+            patientCardManage.User = vm.CurrentUser;
+            patientCardManage.Patient = patient;
+
+            vm.PatientCardManage = patientCardManage;
 
         }
 
@@ -83,7 +116,7 @@ namespace HISGUIPatientCardLib.Views
                 VisualStateManager.GoToState(this, "VisualState2", false);
                 return;
             }
-                
+
 
             var current = (CommContracts.YbEnum)YBCombo.SelectedItem;
 
@@ -104,9 +137,9 @@ namespace HISGUIPatientCardLib.Views
             var temp = vm.CurrentPatient;
             temp.Name += "";
 
-            PatientCardManage.CardNo = temp.PatientCardNo;
-            PatientCardManage.CardManageEnum = CommContracts.CardManageEnum.eNew;
-            
+            vm.PatientCardManage.CardNo = temp.PatientCardNo;
+            vm.PatientCardManage.CardManageEnum = CommContracts.CardManageEnum.eNew;
+
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -122,6 +155,81 @@ namespace HISGUIPatientCardLib.Views
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            string str = IDCardTextBox.Text.Trim();
+
+            bool bIsIDCardOK = true;
+
+            if (str.Length == 18)
+            {
+                bIsIDCardOK = IDCardHellper.CheckIDCard18(str);
+            }
+            else if (str.Length == 15)
+            {
+                bIsIDCardOK = IDCardHellper.CheckIDCard15(str);
+            }
+            else
+            {
+                bIsIDCardOK = false;
+            }
+
+        }
+
+        private void MonthCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateDayCombo();
+        }
+
+        private void YearCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            UpdateDayCombo();
+        }
+
+        private void UpdateDayCombo()
+        {
+            var year = this.YearCombo.SelectedValue;
+            var month = this.MonthCombo.SelectedValue;
+            if (month!=null && year != null)
+            {
+
+                int nMonth = int.Parse(month.ToString().Substring(month.ToString().IndexOf(':') + 1, month.ToString().Length - month.ToString().IndexOf(':') - 1));
+                int nYear = int.Parse(year.ToString().Substring(year.ToString().IndexOf(':') + 1, year.ToString().Length - year.ToString().IndexOf(':') - 1));
+
+
+                DayCombo.Items.Clear();
+
+                int nDayNum = 0;
+                if (nMonth == 2)
+                {
+                    if ((nYear % 4 == 0 && nYear % 100 != 0) || nYear % 400 == 0)
+                    {
+                        nDayNum = 29;
+                    }
+                    else
+                    {
+                        nDayNum = 28;
+                    }
+
+                }
+                else if (nMonth == 1 || nMonth == 3 || nMonth == 5 || nMonth == 7 || nMonth == 8 || nMonth == 10 || nMonth == 12)
+                {
+                    nDayNum = 31;
+                }
+                else
+                {
+                    nDayNum = 30;
+                }
+
+                for (int i = 1; i <= nDayNum; i++)
+                {
+                    ComboBoxItem item = new ComboBoxItem();
+                    item.Content = i;
+                    DayCombo.Items.Add(item);
+                }
+            }
         }
     }
 }

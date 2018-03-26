@@ -19,7 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using System.IO;
 
 namespace HISGUILoginLib.ViewModels
 {
@@ -29,19 +29,15 @@ namespace HISGUILoginLib.ViewModels
     {
         public bool Login(string UserName, string PassWord)
         {
-            CommClient.Log  log = CommClient.Log.getInstance("C://");
             CommClient.User login = new CommClient.User();
-            log.write("begin login.Authenticate");
-            var tem = login.Authenticate(UserName, PassWord);
+            var tem = login.Authenticate(UserName, PassWord, MachineCode.GetMachineCodeString());
             if (tem == null)
             {
-                log.write("end login.Authenticate return null return false");
                 return false;
             }
             else
             {
                 CurrentUser = tem;
-                log.write("end login.Authenticate return user return true");
                 return true;
             }
         }

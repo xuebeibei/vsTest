@@ -25,7 +25,7 @@ namespace BLL
                 {
                     var u = queryResult.First();
                     u.LastLogin = DateTime.Now;
-                    u.Status = DAL.User.LoginStatus.login;
+                    u.Status = DAL.LoginStatus.login;
 
                     var config = new MapperConfiguration(cfg =>
                     {
@@ -62,12 +62,12 @@ namespace BLL
                 var queryResult = from u in ctx.Users
                                   where u.Username == user.Username &&
                                         u.Password == user.Password &&
-                                        u.Status == DAL.User.LoginStatus.login
+                                        u.Status == DAL.LoginStatus.login
                                   select u;
                 if (queryResult.Count() == 1)
                 {
                     var u = queryResult.First();
-                    u.Status = DAL.User.LoginStatus.logout;
+                    u.Status = DAL.LoginStatus.logout;
                     ctx.SaveChanges();
                     return true;
                 }
@@ -156,7 +156,7 @@ namespace BLL
                 {
                     temp.Username = user.Username;
                     temp.Password = user.Password;
-                    temp.Status = (DAL.User.LoginStatus)user.Status;
+                    temp.Status = (DAL.LoginStatus)user.Status;
                     temp.LastLogin = user.LastLogin;
                     temp.EmployeeID = user.EmployeeID;
                 }

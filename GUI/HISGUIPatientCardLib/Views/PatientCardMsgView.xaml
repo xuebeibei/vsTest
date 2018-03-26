@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
-             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore" Height="300" Width="500">
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore" Height="300" Width="560">
     <Grid>
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
@@ -80,7 +80,7 @@
                 </StackPanel>
 
                 <Label Content="办理时间：" HorizontalAlignment="Right" Margin="5" Grid.Row="0" Grid.Column="2" VerticalAlignment="Top"/>
-                <TextBox HorizontalAlignment="Stretch" Height="23" Margin="5" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False"/>
+                <TextBox HorizontalAlignment="Stretch" Height="23" Margin="5" Grid.Row="0" Grid.Column="3" TextWrapping="Wrap"  VerticalAlignment="Top" IsEnabled="False" Text="{Binding PatientCardManage.CurrentTime}"/>
 
 
                 <Label Margin="5" HorizontalContentAlignment="Right" Grid.Row="1" Grid.Column="0">患者编号：</Label>
@@ -104,15 +104,25 @@
 
                 <Label Margin="5" HorizontalContentAlignment="Right" Grid.Row="3" Grid.Column="0">生日：</Label>
                 <Label Content="*" HorizontalContentAlignment="Right" Foreground="red" VerticalAlignment="Center" Grid.Row="3" Grid.Column="0"></Label>
-                <DatePicker Margin="5" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding CurrentPatient.BirthDay}"/>
+                <!--<DatePicker Margin="5" Grid.Row="3" Grid.Column="1" SelectedDate="{Binding CurrentPatient.BirthDay}"/>-->
+                <Grid Margin="5" Grid.Row="3" Grid.Column="1" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <ComboBox Margin="0,0,2,0" Grid.Column="0" x:Name="YearCombo" SelectionChanged="YearCombo_SelectionChanged"></ComboBox>
+                    <ComboBox Margin="0,0,2,0" Grid.Column="1" x:Name="MonthCombo" SelectionChanged="MonthCombo_SelectionChanged"></ComboBox>
+                    <ComboBox Margin="0,0,0,0" Grid.Column="2" x:Name="DayCombo"></ComboBox>
+                </Grid>
 
                 <Label Margin="5" HorizontalContentAlignment="Right" Grid.Row="3" Grid.Column="2">身份证号：</Label>
                 <Label x:Name="label1" Content="*" HorizontalContentAlignment="Right" Foreground="red" VerticalAlignment="Center" Grid.Row="3" Grid.Column="2"></Label>
-                <TextBox Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.IDCardNo}" MaxLength="18"></TextBox>
+                <TextBox x:Name="IDCardTextBox" Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.IDCardNo}" MaxLength="18" LostFocus="TextBox_LostFocus"></TextBox>
 
                 <Label Margin="5" HorizontalContentAlignment="Right" Grid.Row="4" Grid.Column="0">电话：</Label>
                 <Label Content="*" HorizontalContentAlignment="Right" Foreground="red" VerticalAlignment="Center" Grid.Row="4" Grid.Column="0"></Label>
-                <TextBox Margin="5" Grid.Row="4" Grid.Column="1" MaxLength="11" Text="{Binding CurrentPatient.Tel}"></TextBox>
+                <TextBox x:Name="TelNum" Margin="5" Grid.Row="4" Grid.Column="1" MaxLength="11" Text="{Binding CurrentPatient.Tel}"></TextBox>
 
                 <Label Content="籍贯：" Grid.Column="2" HorizontalAlignment="Right" Margin="5" Grid.Row="4" VerticalAlignment="Center"/>
                 <TextBox HorizontalAlignment="Stretch" Height="23" Margin="5" Grid.Row="4" Grid.Column="3" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>

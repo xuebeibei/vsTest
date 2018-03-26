@@ -15,6 +15,12 @@ namespace CommClient
         public Patient()
         {
         }
+
+        public string getNewPID()
+        {
+            return client.getNewPID();
+        }
+
         public CommContracts.Patient ReadCurrentPatient(int PatientID)
         {
             return client.ReadCurrentPatient(PatientID);

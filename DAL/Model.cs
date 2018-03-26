@@ -95,6 +95,8 @@ namespace DAL
 
         public DbSet<InjectionBill> InjectionBills { get; set; }
 
+        public DbSet<LoginInAndOutRecords> LoginInAndOutRecords { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
@@ -168,6 +170,7 @@ namespace DAL
             modelBuilder.Entity<InjectionBill>().ToTable("tpt.InjectionBill");
 
             modelBuilder.Entity<PatientCardManage>().ToTable("tpt.PatientCardManage");
+            modelBuilder.Entity<LoginInAndOutRecords>().ToTable("tpt.LoginInAndOutRecords");
         }
     }
 }

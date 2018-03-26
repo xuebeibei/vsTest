@@ -18,7 +18,7 @@ namespace HISGUIPatientCardLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIPatientCardView));
+            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIPatientCardView));
         }
     }
 }
