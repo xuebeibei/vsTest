@@ -45,7 +45,12 @@ namespace HISGUIPatientCardLib.Views
 
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUIPatientCardVM;
+            bool? bRe = vm.Logout(vm.CurrentUser);
+            if (bRe.HasValue && bRe.Value)
+            {
+                vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

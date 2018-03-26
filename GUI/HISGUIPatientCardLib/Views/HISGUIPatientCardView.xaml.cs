@@ -43,11 +43,11 @@ namespace HISGUIPatientCardLib.Views
         private void HISGUIPatientCardView_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIPatientCardVM;
-            //var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
-            //CommContracts.User user = new CommContracts.User();
-            //user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
+            var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
+            CommContracts.User user = new CommContracts.User();
+            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
 
-            //vm.CurrentUser = user;
+            vm.CurrentUser = user;
             vm?.PatientCardManage();
         }
     }
