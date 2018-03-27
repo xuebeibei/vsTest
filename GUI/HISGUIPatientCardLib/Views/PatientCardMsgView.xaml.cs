@@ -46,6 +46,7 @@ namespace HISGUIPatientCardLib.Views
 
         private void PatientCardMsgView_Loaded(object sender, RoutedEventArgs e)
         {
+
             var vm = this.DataContext as HISGUIPatientCardVM;
 
             CommClient.Patient pClient = new CommClient.Patient();
@@ -97,7 +98,7 @@ namespace HISGUIPatientCardLib.Views
 
             if (!bIsIDCardOK)
             {
-                this.IDCardTextBox.Foreground = new SolidColorBrush(Colors.Red);  //用固态画刷填充前景色
+                this.IDCardTextBox.BorderBrush = new SolidColorBrush(Colors.Red);  
             }
             else
             {
@@ -119,14 +120,63 @@ namespace HISGUIPatientCardLib.Views
 
         private void IDCardTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            this.IDCardTextBox.Foreground = new SolidColorBrush(Colors.Black);
+            this.IDCardTextBox.BorderBrush = new SolidColorBrush(Colors.LightGray);
+        }
+
+        private bool check()
+        {
+            var vm = this.DataContext as HISGUIPatientCardVM;
+
+            bool bIsOK = true;
+            if (string.IsNullOrEmpty(vm.CurrentPatient.Name))
+            {
+                bIsOK = false;
+                this.txt_Name.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                this.txt_Name.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            }
+
+            if (string.IsNullOrEmpty(vm.CurrentPatient.IDCardNo) || !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.IDCardNo))
+            {
+                bIsOK = false;
+                this.IDCardTextBox.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                this.IDCardTextBox.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            }
+
+            if (string.IsNullOrEmpty(vm.CurrentPatient.Tel))
+            {
+                bIsOK = false;
+                this.TelNum.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+            else
+            {
+                this.TelNum.BorderBrush = new SolidColorBrush(Colors.LightGray);
+            }
+            return bIsOK;
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            // 保存
             var vm = this.DataContext as HISGUIPatientCardVM;
             vm.CurrentPatient.BirthDay = this.myBirthControl.GetValue();
+            if (this.ManRadioBtn.IsChecked.Value)
+            {
+                vm.CurrentPatient.Gender = CommContracts.GenderEnum.男;
+            }
+            else if (this.WomanRadioBtn.IsChecked.Value)
+            {
+                vm.CurrentPatient.Gender = CommContracts.GenderEnum.女;
+            }
+
+            if (!check())
+            {
+                return;
+            }
 
             vm.PatientCardManage.CardNo = vm.CurrentPatient.PatientCardNo;
             vm.PatientCardManage.CardManageEnum = CommContracts.CardManageEnum.eNew;

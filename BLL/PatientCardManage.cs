@@ -41,13 +41,43 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from u in ctx.Patients
-                            where u.IDCardNo == PatientCardManage.Patient.IDCardNo
-                            select u;
-                if (query.Count() > 0)
+                if(!string.IsNullOrEmpty(PatientCardManage.Patient.IDCardNo))
                 {
-                    ErrorMsg = "身份证号已存在";
-                    return false;
+                    var query = from u in ctx.Patients
+                                where u.IDCardNo == PatientCardManage.Patient.IDCardNo
+                                select u;
+                    if (query.Count() > 0)
+                    {
+                        ErrorMsg = "身份证号已存在";
+                        return false;
+                    }
+                }
+
+                if(!string.IsNullOrEmpty(PatientCardManage.Patient.Tel))
+                {
+                    var query = from u in ctx.Patients
+                            where u.Tel == PatientCardManage.Patient.Tel
+                            select u;
+
+                    if (query.Count() > 0)
+                    {
+                        ErrorMsg = "电话号已存在";
+                        return false;
+                    }
+                }
+               
+                if(!string.IsNullOrEmpty(PatientCardManage.Patient.YbCardNo))
+                {
+                    var query = from u in ctx.Patients
+                                where u.YbCardNo == PatientCardManage.Patient.YbCardNo && 
+                                u.YbEnum == (DAL.YbEnum)PatientCardManage.Patient.YbEnum
+                                select u;
+
+                    if (query.Count() > 0)
+                    {
+                        ErrorMsg = "医保号已存在";
+                        return false;
+                    }
                 }
 
                 var config2 = new MapperConfiguration(cfg =>
