@@ -1,0 +1,17 @@
+﻿<UserControl x:Class="HISGUICore.MyContorls.BirthDayControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUICore.MyContorls">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <ComboBox Margin="0,0,2,0" Grid.Column="0" x:Name="YearCombo" SelectionChanged="YearCombo_SelectionChanged"></ComboBox>
+        <ComboBox Margin="0,0,2,0" Grid.Column="1" x:Name="MonthCombo" SelectionChanged="MonthCombo_SelectionChanged"></ComboBox>
+        <ComboBox Margin="0,0,0,0" Grid.Column="2" x:Name="DayCombo"></ComboBox>
+    </Grid>
+</UserControl>

@@ -34,6 +34,15 @@ namespace HISGUIPatientCardLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "PatientCardManageView");
         }
 
+        /// <summary>
+        /// 保存就诊卡办理
+        /// </summary>
+        public bool SavePatientCardManage(CommContracts.PatientCardManage patientCardManage, ref string ErrorMsg)
+        {
+            CommClient.PatientCardManage manage = new CommClient.PatientCardManage();
+            return manage.SavePatientCardManage(patientCardManage, ref ErrorMsg);
+        }
+
         // 当前住院患者的住院号
         #region CurrentPatient
         public static readonly DependencyProperty CurrentInPatientProperty = DependencyProperty.Register(

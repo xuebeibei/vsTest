@@ -36,6 +36,21 @@ namespace CommContracts
         [OperationContract]
         bool DeleteLoginInAndOutRecords(int LoginInAndOutRecordsID);
 
+
+        [OperationContract]
+        List<CommContracts.PatientCardManage> GetAllPatientCardManage(string strName = "");
+
+        [OperationContract]
+        bool UpdatePatientCardManage(CommContracts.PatientCardManage PatientCardManage);
+
+        [OperationContract]
+        bool SavePatientCardManage(CommContracts.PatientCardManage PatientCardManage, ref string ErrorMsg);
+
+        [OperationContract]
+        bool DeletePatientCardManage(int PatientCardManageID);
+
+
+
         [OperationContract]
         int getAllDepartmentNum();
 

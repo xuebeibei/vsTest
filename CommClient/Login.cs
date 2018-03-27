@@ -106,7 +106,8 @@ namespace CommClient
 
         public CommContracts.User Authenticate(string username, string password,string MachineCode)
         {
-            Log log = Log.getInstance(Directory.GetCurrentDirectory());
+            //Log log = Log.getInstance(Directory.GetCurrentDirectory());
+            Log log = Log.getInstance();
             CommContracts.User login = new CommContracts.User();
             login.Username = username;
             login.Password = password;
@@ -128,9 +129,8 @@ namespace CommClient
             catch (Exception ex)
             {
                 log.write("end client.UserAuthenticate(login) Error:"+ex.Message+" ; " + ex.ToString());
+                return null;
             }
-            
-
             return user;
         }
 

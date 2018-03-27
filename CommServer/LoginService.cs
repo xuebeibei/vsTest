@@ -88,6 +88,31 @@ namespace CommServer
         }
 
 
+        public List<CommContracts.PatientCardManage> GetAllPatientCardManage(string strName = "")
+        {
+            BLL.PatientCardManage temp = new BLL.PatientCardManage();
+            return temp.GetAllPatientCardManage(strName);
+        }
+
+        public bool UpdatePatientCardManage(CommContracts.PatientCardManage PatientCardManage)
+        {
+            BLL.PatientCardManage temp = new BLL.PatientCardManage();
+            return temp.UpdatePatientCardManage(PatientCardManage);
+        }
+
+        public bool SavePatientCardManage(CommContracts.PatientCardManage PatientCardManage, ref string ErrorMsg)
+        {
+            BLL.PatientCardManage temp = new BLL.PatientCardManage();
+            return temp.SavePatientCardManage(PatientCardManage,ref ErrorMsg);
+        }
+
+        public bool DeletePatientCardManage(int PatientCardManageID)
+        {
+            BLL.PatientCardManage temp = new BLL.PatientCardManage();
+            return temp.DeletePatientCardManage(PatientCardManageID);
+        }
+
+
         public int getAllDepartmentNum()
         {
             BLL.Department tempDepart = new BLL.Department();

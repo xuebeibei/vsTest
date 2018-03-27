@@ -95,6 +95,7 @@ namespace DAL
 
         public DbSet<InjectionBill> InjectionBills { get; set; }
 
+        public DbSet<PatientCardManage> PatientCardManages { get; set; }
         public DbSet<LoginInAndOutRecords> LoginInAndOutRecords { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

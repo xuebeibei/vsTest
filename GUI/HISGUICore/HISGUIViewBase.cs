@@ -165,5 +165,50 @@ namespace HISGUICore
             }
             return true;//正确
         }
+
+        public static bool IsIDCardNumOk(string strIDCardNum)
+        {
+            bool bIsIDCardOK = true;
+
+            if (strIDCardNum.Length == 18)
+            {
+                bIsIDCardOK = CheckIDCard18(strIDCardNum);
+            }
+            else if (strIDCardNum.Length == 15)
+            {
+                bIsIDCardOK = CheckIDCard15(strIDCardNum);
+            }
+            else
+            {
+                bIsIDCardOK = false;
+            }
+
+            return bIsIDCardOK;
+        }
+
+        public static void GetBirthAndSexFromIDCard(string strIDCardNum, ref int year, ref int month, ref int day, ref int sex)
+        {
+            string strBirth = "", strSex = "";
+            if (strIDCardNum.Length == 18)
+            {
+                strBirth = strIDCardNum.Substring(6, 8);
+                strSex = strIDCardNum.Substring(16, 1);
+
+                year = int.Parse(strBirth.Substring(0, 4));
+                month = int.Parse(strBirth.Substring(4, 2));
+                day = int.Parse(strBirth.Substring(6, 2));
+            }
+            else if (strIDCardNum.Length == 15)
+            {
+                strBirth = strIDCardNum.Substring(6, 6);
+                strSex = strIDCardNum.Substring(14, 1);
+
+                year = int.Parse("19" + strBirth.Substring(0, 2));
+                month = int.Parse(strBirth.Substring(2, 2));
+                day = int.Parse(strBirth.Substring(4, 2));
+            }
+
+            sex = int.Parse(strSex);
+        }
     } 
 }

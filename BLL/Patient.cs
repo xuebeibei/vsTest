@@ -7,6 +7,42 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
+    public static class NumStringHelper
+    {
+        public static string GetFirstNum()
+        {
+            string str = "";
+            str = "0000 0001";
+            return str;
+        }
+
+        public static string GetNextNum(string currentNum)
+        {
+            string str = "";
+            // 生成下一个代码
+
+            // 先取出一个代码"0000 0001",将" "替换成""
+            currentNum = currentNum.Replace(" ", "");
+
+            // 再将字符串转化为数字
+            int n = int.Parse(currentNum);
+
+            // 将数字加一之后变成字符串
+            str = (n + 1).ToString();
+
+            // 然后将字符串拿" "填充左侧为8位
+            str = str.PadLeft(8);
+
+            // 再将" "替换成"0"
+            str = str.Replace(" ", "0");
+
+            // 最后将字符串按照每4位进行" "分隔
+            str = str.Substring(0, 4) + " " + str.Substring(4, 4);
+
+            return str;
+        }
+    }
+
     public class Patient
     {
         public string getNewPID()
@@ -14,16 +50,19 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = (from u in ctx.Patients
-                            orderby u.ID descending
+                             where u.PID != null
+                            orderby u.ID ascending
                             select u.PID).ToList();
                 string str = "";
-                if(string.IsNullOrEmpty(query.Last()))
+
+                string strLast = query.Last();
+                if (string.IsNullOrEmpty(strLast))
                 {
-                    str = "0000 0001";
+                    str = NumStringHelper.GetFirstNum();
                 }
                 else
                 {
-                    str = (int.Parse(query.Last()) + 1).ToString();
+                    str = NumStringHelper.GetNextNum(strLast);
                 }
                 return str;
             }

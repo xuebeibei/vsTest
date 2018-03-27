@@ -30,16 +30,25 @@ namespace HISGUILoginLib.ViewModels
         public bool Login(string UserName, string PassWord)
         {
             CommClient.User login = new CommClient.User();
-            var tem = login.Authenticate(UserName, PassWord, MachineCode.GetMachineCodeString());
-            if (tem == null)
+
+            try
+            {
+                var tem = login.Authenticate(UserName, PassWord, MachineCode.GetMachineCodeString());
+                if (tem == null)
+                {
+                    return false;
+                }
+                else
+                {
+                    this.CurrentUser = tem;
+                    return true;
+                }
+            }
+            catch(Exception ex)
             {
                 return false;
             }
-            else
-            {
-                CurrentUser = tem;
-                return true;
-            }
+            
         }
     }
 }

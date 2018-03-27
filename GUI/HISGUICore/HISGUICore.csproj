@@ -69,6 +69,9 @@
     <Compile Include="HISGUIViewBase.cs" />
     <Compile Include="HISGUIVMBase.cs" />
     <Compile Include="HISGUIJObjectManager.cs" />
+    <Compile Include="MyContorls\BirthDayControl.xaml.cs">
+      <DependentUpon>BirthDayControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyContorls\BodyCharacteristics.xaml.cs">
       <DependentUpon>BodyCharacteristics.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
     <Compile Include="HISGUIPublicDatas.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="MyContorls\BirthDayControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MyContorls\BodyCharacteristics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
