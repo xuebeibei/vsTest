@@ -22,6 +22,8 @@ using HISGUIPatientCardLib.ViewModels;
 using System.Data;
 using Newtonsoft.Json;
 using System.IO;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace HISGUIPatientCardLib.Views
 {
@@ -32,9 +34,6 @@ namespace HISGUIPatientCardLib.Views
         public PatientCardManageView()
         {
             InitializeComponent();
-
-            string str = Directory.GetCurrentDirectory() + "\\dist\\echarts.html";
-            Web.Navigate(new Uri(str));
         }
 
         [Import]
@@ -42,7 +41,7 @@ namespace HISGUIPatientCardLib.Views
         {
             set { this.VM = value; }
         }
-
+        
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIPatientCardVM;
@@ -55,24 +54,29 @@ namespace HISGUIPatientCardLib.Views
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIPatientCardVM;
-            // 新增办理就诊卡
-            var window = new Window();
-            window.DataContext = this.DataContext;
-            window.Width = 600;
-            window.Height = 400;
-            window.Title = "办理就诊卡";
+            string header = "办理就诊卡";
 
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
 
             PatientCardMsgView eidtInspect = new PatientCardMsgView();
-            window.Content = eidtInspect;
 
-            bool? bResult = window.ShowDialog();
-
-            if (bResult.Value)
-            {
-                MessageBox.Show("办理就诊卡新建完成！");
-            }
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+            
+            
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
         }
 
         private void AddFeeBtn_Click(object sender, RoutedEventArgs e)
@@ -99,10 +103,14 @@ namespace HISGUIPatientCardLib.Views
 
         private void ReturnCardBtn_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void LostAndReDoCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuItemStatistic_Click(object sender, RoutedEventArgs e)
         {
 
         }

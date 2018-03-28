@@ -184,8 +184,8 @@ namespace HISGUIPatientCardLib.Views
             string ErrorMsg = "";
             if (vm.SavePatientCardManage(vm.PatientCardManage, ref ErrorMsg))
             {
-                (this.Parent as Window).DialogResult = true;
-                (this.Parent as Window).Close();
+                //(this.Parent as Window).DialogResult = true;
+                //(this.Parent as Window).Close();
             }
             else
             {
@@ -195,8 +195,8 @@ namespace HISGUIPatientCardLib.Views
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
-            (this.Parent as Window).DialogResult = false;
-            (this.Parent as Window).Close();
+            //(this.Parent as Window).DialogResult = false;
+            //(this.Parent as Window).Close();
         }
 
         private void NormalRadioBtn_Click(object sender, RoutedEventArgs e)
