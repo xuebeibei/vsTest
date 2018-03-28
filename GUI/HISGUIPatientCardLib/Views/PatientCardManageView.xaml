@@ -39,13 +39,13 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Orientation="Horizontal">
-                <Button Margin="5" Grid.Row="0" Grid.Column="0" Click="Button_Click">办卡</Button>
-                <Button Margin="5" Grid.Row="0" Grid.Column="1">充值</Button>
-                <Button Margin="5" Grid.Row="1" Grid.Column="0">退卡</Button>
-                <Button Margin="5" Grid.Row="1" Grid.Column="1">挂失</Button>
+                <Button x:Name="AddCardBtn" Margin="5" Grid.Row="0" Grid.Column="0" Click="AddCardButton_Click">办卡</Button>
+                <Button x:Name="AddFeeBtn" Margin="5" Grid.Row="0" Grid.Column="1" Click="AddFeeBtn_Click">充值</Button>
+                <Button x:Name="ReturnCardBtn" Margin="5" Grid.Row="1" Grid.Column="0" Click="ReturnCardBtn_Click">退卡</Button>
+                <Button x:Name="LostAndReDoCardBtn" Margin="5" Grid.Row="1" Grid.Column="1" Click="LostAndReDoCardBtn_Click">挂失与补办</Button>
             </StackPanel>
-            <WebBrowser Name="Web" Margin="5" Grid.Column="0" Grid.Row="1">
-            </WebBrowser>
+            <!--<WebBrowser Name="Web" Margin="5" Grid.Column="0" Grid.Row="1">
+            </WebBrowser>-->
         </Grid>
     </Grid>
 </HISGUICore:HISGUIViewBase>

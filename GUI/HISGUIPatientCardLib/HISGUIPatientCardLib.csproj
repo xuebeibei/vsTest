@@ -72,6 +72,9 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFVisifire.Charts">
+      <HintPath>..\ChartsLib\WPFVisifire.Charts.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HISGUIPatientCardModule.cs" />
@@ -91,6 +94,9 @@
     <Compile Include="ViewModels\HISGUIPatientCardVM.cs" />
     <Compile Include="Views\HISGUIPatientCardView.xaml.cs">
       <DependentUpon>HISGUIPatientCardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PatientCardAddFeeView.xaml.cs">
+      <DependentUpon>PatientCardAddFeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PatientCardManageView.xaml.cs">
       <DependentUpon>PatientCardManageView.xaml</DependentUpon>
@@ -148,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\HISGUIPatientCardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PatientCardAddFeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

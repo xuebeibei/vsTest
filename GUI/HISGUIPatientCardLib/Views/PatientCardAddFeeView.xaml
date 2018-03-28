@@ -1,0 +1,75 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIPatientCardLib.Views.PatientCardAddFeeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
+             
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore" Height="350" Width="560">
+    <HISGUICore:HISGUIViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HISGUIPatientCardLib;component/MyDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </HISGUICore:HISGUIViewBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Margin="5" Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="ReadCardBtn" Content="读卡" Click="ReadCardBtn_Click"></Button>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
+                <TextBox x:Name="FindContentBox" Margin="5" Width="200"></TextBox>
+                <Button x:Name="FindCardBtn" Margin="5" Content="查找" Click="FindCardBtn_Click"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1">
+            <StackPanel>
+                <Border BorderBrush="LightGray" BorderThickness="1" Margin="5">
+                    <TextBlock x:Name="CardContentBlock" MinHeight="180"></TextBlock>
+                </Border>
+                
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Content="支付方式：" Margin="5" Grid.Row="0" Grid.Column="0"></Label>
+                    <ComboBox x:Name="PayEnumCombo" Grid.Row="0" Grid.Column="1" Margin="5"/>
+
+                    <Label Content="金额：" Margin="5" Grid.Row="0" Grid.Column="2"></Label>
+                    <TextBox x:Name="FeeNumBox" Margin="5"  Grid.Row="0" Grid.Column="3"></TextBox>
+
+                    <Label Content="时间：" Margin="5" Grid.Row="1" Grid.Column="0"></Label>
+                    <TextBox x:Name="TimeBox" Margin="5"  Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
+
+                    <Label Content="收款人：" Margin="5" Grid.Row="1" Grid.Column="2"></Label>
+                    <TextBox x:Name="Employee" Margin="5"  Grid.Row="1" Grid.Column="3" IsEnabled="False"></TextBox>
+
+                    <!--<CheckBox Margin="5" Grid.Row="2" Grid.Column="0" Content="自动打印"></CheckBox>-->
+                </Grid>
+                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="5">确认</Button>
+                    <Button Margin="5">取消</Button>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</HISGUICore:HISGUIViewBase>
