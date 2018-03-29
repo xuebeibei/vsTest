@@ -49,7 +49,7 @@
                 <ColumnDefinition Width="165"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Label Margin="5" Grid.Row="0" Grid.Column="0">姓名：</Label>
-            <TextBox x:Name="txt_Name" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.Name}" TextWrapping="Wrap" MaxLength="15"></TextBox>
+            <TextBox x:Name="txt_Name" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.Name}" TextWrapping="Wrap" MaxLength="10"></TextBox>
 
             <Label Margin="5" Grid.Row="0" Grid.Column="2">性别：</Label>
             <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="0" Grid.Column="3" Text="{Binding CurrentPatient.Gender}"/>
@@ -58,14 +58,14 @@
             <ComboBox x:Name="YBCombo" Margin="5" Grid.Row="0" Grid.Column="5" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding CurrentPatient.YbEnum}"/>
 
             <Label Margin="5" Grid.Row="0" Grid.Column="6">医保卡号：</Label>
-            <TextBox x:Name="YbNumTextBox" Margin="5" Grid.Row="0" Grid.Column="7" Text="{Binding CurrentPatient.YbCardNo}"></TextBox>
+            <TextBox x:Name="YbNumTextBox" Margin="5" Grid.Row="0" Grid.Column="7" Text="{Binding CurrentPatient.YbCardNo}" MaxLength="18"></TextBox>
 
 
             <Label Margin="5" Grid.Row="1">证件类型：</Label>
             <ComboBox x:Name="ZJCombo" Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
 
             <Label Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">证件号：</Label>
-            <TextBox x:Name="ZJNumBox" Margin="5" Grid.Row="1" MaxLength="18" Grid.Column="3" Text="{Binding CurrentPatient.ZhengJianNum}"/>
+            <TextBox x:Name="ZJNumBox" Margin="5" Grid.Row="1" Grid.Column="3" Text="{Binding CurrentPatient.ZhengJianNum}" MaxLength="18"/>
 
             <Label Margin="5" Grid.Row="1" Grid.Column="4">出生日期：</Label>
             <Controls:BirthDayControl x:Name="myBirthControl" Margin="5" Grid.Row="1" Grid.Column="5" />
@@ -86,17 +86,17 @@
             <ComboBox x:Name="JobCombo" Margin="5" Grid.Row="2" Grid.Column="7" Text="{Binding CurrentPatient.PatientJob}"/>
 
             <Label Margin="5" Grid.Row="3" Grid.Column="0">工作单位：</Label>
-            <TextBox x:Name="JobUnitBox" Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.PatientJob}"></TextBox>
+            <TextBox x:Name="JobUnitBox" Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.PatientJobUnit}" TextWrapping="Wrap" MaxLength="30"></TextBox>
 
             <Label Margin="5" Grid.Row="3" Grid.Column="2">单位电话：</Label>
-            <TextBox x:Name="JobUnitTelBox" Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.JobUnitTel}"/>
+            <TextBox x:Name="JobUnitTelBox" Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.JobUnitTel}" MaxLength="12"/>
 
 
             <Label Margin="5" Grid.Row="3" Grid.Column="4">家庭地址：</Label>
-            <TextBox x:Name="HomeAddressBox" Margin="5" Grid.Row="3" Grid.Column="5" Text="{Binding CurrentPatient.HomeAddress}"></TextBox>
+            <TextBox x:Name="HomeAddressBox" Margin="5" Grid.Row="3" Grid.Column="5" Text="{Binding CurrentPatient.HomeAddress}" TextWrapping="Wrap"  MaxLength="30"></TextBox>
 
             <Label Margin="5" Grid.Row="3" Grid.Column="6">家庭电话：</Label>
-            <TextBox x:Name="HomeTelBox" Margin="5" Grid.Row="3" Grid.Column="7" Text="{Binding CurrentPatient.HomeTel}"/>
+            <TextBox x:Name="HomeTelBox" Margin="5" Grid.Row="3" Grid.Column="7" Text="{Binding CurrentPatient.HomeTel}" MaxLength="12"/>
 
 
             <Label Margin="5" Grid.Row="4" Grid.Column="0">联系人：</Label>
