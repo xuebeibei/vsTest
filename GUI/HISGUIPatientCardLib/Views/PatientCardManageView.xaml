@@ -25,7 +25,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label Foreground="White" Margin="5">Logo</Label>
+                <Label Foreground="White" Margin="5">SeimunDH</Label>
                 <Label Foreground="White" Margin="5">就诊卡管理</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
@@ -36,13 +36,13 @@
 
         <DockPanel Grid.Row="1">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="就诊卡" Click="AddCardButton_Click"/>
-                <MenuItem Header="预交金" Click="AddFeeBtn_Click"/>
-                <MenuItem Header="工作量" Click="MenuItemStatistic_Click"/>
+                <MenuItem Header="就诊卡" Margin="5" Click="AddCardButton_Click"/>
+                <MenuItem Header="预交金" Margin="5" Click="AddFeeBtn_Click"/>
+                <MenuItem Header="工作量" Margin="5" Click="MenuItemStatistic_Click"/>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
                 <StatusBarItem HorizontalAlignment="Right">
-                    <TextBlock Name="Tt" />
+                    <TextBlock Name="Tt"  Margin="5"/>
                 </StatusBarItem>
             </StatusBar>
             <TabControl x:Name="MyTabControl" Tag="100"/>

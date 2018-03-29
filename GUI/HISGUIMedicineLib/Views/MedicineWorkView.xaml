@@ -19,7 +19,7 @@
 
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label>Logo</Label>
+                <Label>SeimunDH</Label>
                 <Label>库存管理</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
