@@ -10,8 +10,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
-                            <Ellipse Width="15" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Stroke="{TemplateBinding BorderBrush}" Fill="{TemplateBinding Background}"></Ellipse>
-                            <TextBlock x:Name="text" FontSize="10" Text="X" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                            <TextBlock x:Name="text" FontSize="15" Text="×" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"></TextBlock>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="true">
@@ -26,7 +25,7 @@
     </TabItem.Resources>
     <TabItem.Style>
         <Style TargetType="{x:Type TabItem}">
-            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="BorderBrush" Value="Gray"></Setter>
             <Setter Property="Background" Value="White"></Setter>
             <Setter Property="Foreground" Value="Black"></Setter>
             <Setter Property="Padding" Value="5,0,0,0"></Setter>
@@ -35,7 +34,8 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TabItem}">
-                        <Border CornerRadius="5,0,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}">
+                        <!--{TemplateBinding BorderThickness}-->
+                        <Border CornerRadius="0,0,0,0" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1" Background="{TemplateBinding Background}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -47,7 +47,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
-                                <Setter Property="Background" Value="#FFFF923E"></Setter>
+                                <Setter Property="Background" Value="#38434E"></Setter>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>
