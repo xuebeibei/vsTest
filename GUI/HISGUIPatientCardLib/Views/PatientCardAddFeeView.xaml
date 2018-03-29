@@ -6,70 +6,101 @@
              xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
              
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
-             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore" Height="350" Width="560">
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore" >
     <HISGUICore:HISGUIViewBase.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/HISGUIPatientCardLib;component/MyDictionary.xaml"/>
+                <ResourceDictionary Source="/HISGUIPatientCardLib;component/MyDictionary.xaml"/>    
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+        
     </HISGUICore:HISGUIViewBase.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Margin="5" Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button x:Name="ReadCardBtn" Content="读卡" Click="ReadCardBtn_Click"></Button>
-            </StackPanel>
-            <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-                <TextBox x:Name="FindContentBox" Margin="5" Width="200"></TextBox>
-                <Button x:Name="FindCardBtn" Margin="5" Content="查找" Click="FindCardBtn_Click"></Button>
-            </StackPanel>
-        </Grid>
+        <ToolBar Grid.Row="0" Height="30">
+            <Button x:Name="ReadCardBtn" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
+            <Button x:Name="PayBtn" Content="收取" ToolTip="收取预交金" Click="PayBtn_Click"></Button>
+            <Button x:Name="ReturnBtn" Content="返还" ToolTip="返还预交金" Click="ReturnBtn_Click"></Button>
+            <Button x:Name="RePrintBtn" Content="补打" ToolTip="补打凭证" Click="RePrintBtn_Click"></Button>
+            <Button x:Name="ClearBtn" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
+        </ToolBar>
         <Grid Grid.Row="1">
-            <StackPanel>
-                <Border BorderBrush="LightGray" BorderThickness="1" Margin="5">
-                    <TextBlock x:Name="CardContentBlock" MinHeight="180"></TextBlock>
-                </Border>
-                
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Label Content="支付方式：" Margin="5" Grid.Row="0" Grid.Column="0"></Label>
-                    <ComboBox x:Name="PayEnumCombo" Grid.Row="0" Grid.Column="1" Margin="5"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
 
-                    <Label Content="金额：" Margin="5" Grid.Row="0" Grid.Column="2"></Label>
-                    <TextBox x:Name="FeeNumBox" Margin="5"  Grid.Row="0" Grid.Column="3"></TextBox>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Content="就诊卡号："  Grid.Row="0" Grid.Column="0" Margin="5"></Label>
+            <TextBox x:Name="CardNoBox"  Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.CardNum}"></TextBox>
 
-                    <Label Content="时间：" Margin="5" Grid.Row="1" Grid.Column="0"></Label>
-                    <TextBox x:Name="TimeBox" Margin="5"  Grid.Row="1" Grid.Column="1" IsEnabled="False"></TextBox>
+            <Label Content="卡类型："  Grid.Row="0" Grid.Column="2" Margin="5"></Label>
+            <ComboBox x:Name="CardTypeBox"  Grid.Row="0" Grid.Column="3" Margin="5" IsEnabled="False"></ComboBox>
 
-                    <Label Content="收款人：" Margin="5" Grid.Row="1" Grid.Column="2"></Label>
-                    <TextBox x:Name="Employee" Margin="5"  Grid.Row="1" Grid.Column="3" IsEnabled="False"></TextBox>
+            <Label Content="姓       名："  Grid.Row="0" Grid.Column="4" Margin="5"></Label>
+            <TextBox x:Name="NameBox"  Grid.Row="0" Grid.Column="5" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.Name}"></TextBox>
 
-                    <!--<CheckBox Margin="5" Grid.Row="2" Grid.Column="0" Content="自动打印"></CheckBox>-->
-                </Grid>
-                <StackPanel  Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Margin="5">确认</Button>
-                    <Button Margin="5">取消</Button>
-                </StackPanel>
-            </StackPanel>
+            <Label Content="性       别："  Grid.Row="0" Grid.Column="6" Margin="5"></Label>
+            <TextBox x:Name="GenderBox"  Grid.Row="0" Grid.Column="7" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.Gender}"></TextBox>
+
+            <Label Content="年       龄："  Grid.Row="0" Grid.Column="8" Margin="5"></Label>
+            <TextBox x:Name="AgeBox"  Grid.Row="0" Grid.Column="9" Margin="5" IsEnabled="False"></TextBox>
+
+
+            <Label Content="证件类型："  Grid.Row="1" Grid.Column="0" Margin="5"></Label>
+            <ComboBox x:Name="ZJTypeBox"  Grid.Row="1" Grid.Column="1" Margin="5" IsEnabled="False"></ComboBox>
+
+            <Label Content="证件号："  Grid.Row="1" Grid.Column="2" Margin="5"></Label>
+            <TextBox x:Name="ZJNumBox"  Grid.Row="1" Grid.Column="3" Margin="5" IsEnabled="False"></TextBox>
+
+            <Label Content="医保类别："  Grid.Row="1" Grid.Column="4" Margin="5"></Label>
+            <ComboBox x:Name="CountryBox"  Grid.Row="1" Grid.Column="5" Margin="5" IsEnabled="False"></ComboBox>
+
+            <Label Content="医保卡号："  Grid.Row="1" Grid.Column="6" Margin="5"></Label>
+            <TextBox x:Name="YBNumBox"  Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False"></TextBox>
+
+            <Label Content="账户余额："  Grid.Row="1" Grid.Column="8" Margin="5"></Label>
+            <TextBox x:Name="BalanceBox"  Grid.Row="1" Grid.Column="9" Margin="5" IsEnabled="False"></TextBox>
+
+            <Separator  Grid.Row="2" Grid.ColumnSpan="11"></Separator>
+
+            <Label Content="支付方式："  Grid.Row="3" Grid.Column="0" Margin="5"></Label>
+            <ComboBox x:Name="PayTypeBox"  Grid.Row="3" Grid.Column="1" Margin="5"></ComboBox>
+
+            <Label Content="金    额："  Grid.Row="3" Grid.Column="2" Margin="5"></Label>
+            <TextBox x:Name="FeeNumBox"  Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>
         </Grid>
+        <ListView x:Name="listView1" Grid.Row="2" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="票据号" Width="150" />
+                    <GridViewColumn Header="状态" Width="100"/>
+                    <GridViewColumn Header="金额" Width="100" />
+                    <GridViewColumn Header="时间" Width="200" />
+                    <GridViewColumn Header="操作员" Width="150" />
+                    <GridViewColumn Header="支付方式" Width="150" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </HISGUICore:HISGUIViewBase>

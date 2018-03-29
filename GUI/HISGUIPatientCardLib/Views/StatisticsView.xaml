@@ -4,37 +4,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
-             xmlns:vc="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
+             xmlns:myCharts="clr-namespace:Visifire.Charts;assembly=WPFVisifire.Charts"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <Grid Margin="5" Grid.Column="0" Grid.Row="1">
-            <vc:Chart Name="MyChart" Width="300" Height="300" Padding="10,10" Margin="5" AnimatedUpdate="True" Theme="Theme1">
-                <vc:Chart.Titles>
-                    <vc:Title Text="今日工作量统计"></vc:Title>
-                </vc:Chart.Titles>
-
-                <!--<vc:Chart.Legends >
-                        <vc:Legend Margin="0,9,-52,0" Height="148" VerticalAlignment="Top" HorizontalAlignment="Right" Width="44" >
-                            <vc:Legend.Template>
-                                <ControlTemplate>
-                                    -->
-                <!--<! —图例样式—>-->
-                <!--
-                                </ControlTemplate>
-                            </vc:Legend.Template>
-                        </vc:Legend>
-                    </vc:Chart.Legends>-->
-
-                <vc:Chart.Series>
-                    <vc:DataSeries RenderAs="Bar">
-                        <vc:DataSeries.DataMappings>
-                            <vc:DataMapping MemberName="AxisXLabel" Path="Label"></vc:DataMapping>
-                            <vc:DataMapping MemberName="YValue" Path="YValue"></vc:DataMapping>
-                        </vc:DataSeries.DataMappings>
-                    </vc:DataSeries>
-                </vc:Chart.Series>
-            </vc:Chart>
+            <myCharts:Chart Name="MyChart" Padding="10,10" DataPointWidth="1" AnimatedUpdate="True" Theme="Theme1" View3D="False">
+                <myCharts:Chart.Titles>
+                    <myCharts:Title Text="今日工作量统计"></myCharts:Title>
+                </myCharts:Chart.Titles>
+                <myCharts:Chart.Series>
+                    <myCharts:DataSeries  RenderAs="Column">
+                        <myCharts:DataSeries.DataMappings>
+                            <myCharts:DataMapping MemberName="AxisXLabel" Path="Label"></myCharts:DataMapping>
+                            <myCharts:DataMapping MemberName="YValue" Path="YValue"></myCharts:DataMapping>
+                        </myCharts:DataSeries.DataMappings>
+                    </myCharts:DataSeries>
+                </myCharts:Chart.Series>
+            </myCharts:Chart>
         </Grid>
     </Grid>
 </HISGUICore:HISGUIViewBase>

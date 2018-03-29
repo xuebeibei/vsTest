@@ -277,7 +277,7 @@ namespace BLL
                     temp.Name = Patient.Name;
                     temp.Gender = (DAL.GenderEnum)Patient.Gender;
                     temp.BirthDay = Patient.BirthDay;
-                    temp.IDCardNo = Patient.IDCardNo;
+                    temp.ZhengJianNum = Patient.ZhengJianNum;
                     temp.Volk = (DAL.VolkEnum)Patient.Volk;
                     temp.Tel = Patient.Tel;
                     temp.JiGuan_Sheng = Patient.JiGuan_Sheng;

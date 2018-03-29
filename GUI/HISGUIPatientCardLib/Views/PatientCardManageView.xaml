@@ -13,8 +13,8 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </HISGUICore:HISGUIViewBase.Resources>
-    
-    <Grid Background="#EEEEEE">
+
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -25,26 +25,27 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label Foreground="White">Logo</Label>
-                <Label Foreground="White">就诊卡管理</Label>
+                <Label Foreground="White" Margin="5">Logo</Label>
+                <Label Foreground="White" Margin="5">就诊卡管理</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <TextBlock x:Name="Tt" Margin="5" TextWrapping="Wrap"></TextBlock>
                 <Label x:Name="UserName" Margin="5" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
                 <Button Click="LayoutBtn_Click" Margin="5" Style="{DynamicResource MyToolBtn}">退出</Button>
             </StackPanel>
         </Grid>
 
-        <DockPanel Grid.Row="1" Margin="5">
+        <DockPanel Grid.Row="1">
             <Menu DockPanel.Dock="Top">
-                <MenuItem Header="办卡" Click="AddCardButton_Click"/>
-                <MenuItem Header="充值" Click="AddFeeBtn_Click"/>
-                <MenuItem Header="退卡" Click="ReturnCardBtn_Click"/>
-                <MenuItem Header="挂失与补办" Click="LostAndReDoCardBtn_Click"/>
-                <MenuItem Header="统计" Click="MenuItemStatistic_Click"/>
+                <MenuItem Header="就诊卡" Click="AddCardButton_Click"/>
+                <MenuItem Header="预交金" Click="AddFeeBtn_Click"/>
+                <MenuItem Header="工作量" Click="MenuItemStatistic_Click"/>
             </Menu>
-            <TabControl x:Name="MyTabControl" Tag="100">
-            </TabControl>
+            <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock Name="Tt" />
+                </StatusBarItem>
+            </StatusBar>
+            <TabControl x:Name="MyTabControl" Tag="100"/>
         </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

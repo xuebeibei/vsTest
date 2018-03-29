@@ -494,7 +494,7 @@ namespace HISGUIFeeLib.Views
                 "姓名：" + tempPatient.Name + " " +
                 "性别：" + tempPatient.Gender + " " +
                 "生日：" + tempPatient.BirthDay + " " +
-                "身份证号：" + tempPatient.IDCardNo + " " +
+                "身份证号：" + tempPatient.ZhengJianNum + " " +
                 "民族：" + tempPatient.Volk + " " +
                 "籍贯：" + tempPatient.JiGuan_Sheng + " " +
                 "电话：" + tempPatient.Tel + " "

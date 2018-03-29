@@ -43,20 +43,45 @@ namespace HISGUIPatientCardLib.Views
 
         private void PatientCardAddFeeView_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIPatientCardVM;
+
             CommClient.Patient patientClient = new CommClient.Patient();
             CommContracts.Patient patient = new CommContracts.Patient();
             patient = patientClient.ReadCurrentPatient(1);
 
-            string str = patient.Name + patient.Gender.ToString() + patient.Tel + patient.YbCardNo;
-            this.CardContentBlock.Text = str;
+            vm.CurrentPatient = patient;
         }
 
         private void FindCardBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Grid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void PayBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ReturnBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RePrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

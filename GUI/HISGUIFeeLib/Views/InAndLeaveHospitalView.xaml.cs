@@ -158,7 +158,7 @@ namespace HISGUIFeeLib.Views
                     this.Name.Text = MyCurrentInpatient.Patient.Name;
                     this.GenderCombo.SelectedItem = MyCurrentInpatient.Patient.Gender;
                     this.BirthDay.SelectedDate = MyCurrentInpatient.Patient.BirthDay;
-                    this.IDCardNo.Text = MyCurrentInpatient.Patient.IDCardNo;
+                    this.IDCardNo.Text = MyCurrentInpatient.Patient.ZhengJianNum;
                     this.VolkEnumCombo.SelectedItem = MyCurrentInpatient.Patient.Volk;
                     this.JiGuan.Text = MyCurrentInpatient.Patient.JiGuan_Sheng;
                     this.Tel.Text = MyCurrentInpatient.Patient.Tel;
@@ -244,7 +244,7 @@ namespace HISGUIFeeLib.Views
                 patient.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
                 if (this.BirthDay.SelectedDate.HasValue)
                     patient.BirthDay = this.BirthDay.SelectedDate.Value;
-                patient.IDCardNo = this.IDCardNo.Text;
+                patient.ZhengJianNum = this.IDCardNo.Text;
                 patient.Volk = (CommContracts.VolkEnum)this.VolkEnumCombo.SelectedItem;
                 patient.JiGuan_Sheng = this.JiGuan.Text;
                 patient.Tel = this.Tel.Text;

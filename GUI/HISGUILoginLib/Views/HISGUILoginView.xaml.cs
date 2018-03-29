@@ -24,10 +24,8 @@ using System.Security.Cryptography;
 using Newtonsoft.Json.Linq;
 using System.Collections;
 
-
 namespace HISGUILoginLib.Views
 {
-
     [Export]
     [Export("HISGUILoginView", typeof(HISGUILoginView))]
     public partial class HISGUILoginView : HISGUIViewBase
@@ -71,7 +69,7 @@ namespace HISGUILoginLib.Views
                 return;
             }
 
-            byte[] result = Encoding.Default.GetBytes(this.passbox.Password.Trim());    //tbPass为输入密码的文本框  
+            byte[] result = Encoding.Default.GetBytes(this.passbox.Password.Trim());
             MD5 md5 = new MD5CryptoServiceProvider();
             
             byte[] output = md5.ComputeHash(result);
@@ -125,9 +123,17 @@ namespace HISGUILoginLib.Views
             }
         }
 
-        private void logoutBtn_Click(object sender, RoutedEventArgs e)
+        private void loginOutBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                //(this.Parent as Window).Close();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show( ex.Message.ToString());
+            }
+            
         }
     }
 }

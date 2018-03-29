@@ -24,6 +24,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Windows.Threading;
 
 namespace HISGUIPatientCardLib.Views
 {
@@ -31,9 +32,16 @@ namespace HISGUIPatientCardLib.Views
     [Export("PatientCardManageView", typeof(PatientCardManageView))]
     public partial class PatientCardManageView : HISGUIViewBase
     {
+        protected DispatcherTimer ShowTimer;
         public PatientCardManageView()
         {
             InitializeComponent();
+
+            //show timer by_songgp
+            ShowTimer = new System.Windows.Threading.DispatcherTimer();
+            ShowTimer.Tick += new EventHandler(ShowCurTimer);//起个Timer一直获取当前时间
+            ShowTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
+            ShowTimer.Start();
         }
 
         [Import]
@@ -41,7 +49,24 @@ namespace HISGUIPatientCardLib.Views
         {
             set { this.VM = value; }
         }
-        
+
+
+        //show timer by_songgp
+        private void ShowCurTimer(object sender, EventArgs e)
+        {
+            //"星期"+DateTime.Now.DayOfWeek.ToString(("d"))
+
+            //获得星期几
+            this.Tt.Text = DateTime.Now.ToString("dddd", new System.Globalization.CultureInfo("zh-cn"));
+            this.Tt.Text += " ";
+            //获得年月日
+            this.Tt.Text += DateTime.Now.ToString("yyyy年MM月dd日");   //yyyy年MM月dd日
+            this.Tt.Text += " ";
+            //获得时分秒
+            this.Tt.Text += DateTime.Now.ToString("HH:mm:ss");
+            //System.Diagnostics.Debug.Print("this.ShowCurrentTime {0}", this.ShowCurrentTime);
+        }
+
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIPatientCardVM;
@@ -65,7 +90,7 @@ namespace HISGUIPatientCardLib.Views
                 }
             }
 
-            PatientCardMsgView eidtInspect = new PatientCardMsgView();
+            PatientCardNewCardView eidtInspect = new PatientCardNewCardView();
 
             MyTabItemWithClose myTabItem = new MyTabItemWithClose();
             myTabItem.Header = header;
@@ -81,24 +106,31 @@ namespace HISGUIPatientCardLib.Views
 
         private void AddFeeBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIPatientCardVM;
-            // 就诊卡充值
-            var window = new Window();
-            window.DataContext = this.DataContext;
-            window.Width = 600;
-            window.Height = 400;
-            window.Title = "办理就诊卡";
+            string header = "预交金";
 
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
 
             PatientCardAddFeeView eidtInspect = new PatientCardAddFeeView();
-            window.Content = eidtInspect;
+            eidtInspect.DataContext = this.DataContext;
 
-            bool? bResult = window.ShowDialog();
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+            myTabItem.DataContext = this.DataContext;
 
-            if (bResult.Value)
-            {
-                MessageBox.Show("办理就诊卡新建完成！");
-            }
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
         }
 
         private void ReturnCardBtn_Click(object sender, RoutedEventArgs e)
@@ -112,7 +144,29 @@ namespace HISGUIPatientCardLib.Views
 
         private void MenuItemStatistic_Click(object sender, RoutedEventArgs e)
         {
+            string header = "统计";
 
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            StatisticsView eidtInspect = new StatisticsView();
+
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
         }
     }
 }

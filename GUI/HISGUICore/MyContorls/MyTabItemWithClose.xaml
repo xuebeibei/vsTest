@@ -10,7 +10,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
                         <Grid>
-                            <TextBlock x:Name="text" FontSize="15" Text="×" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Gray"></TextBlock>
+                            <TextBlock x:Name="text" FontSize="15" Text="×" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"></TextBlock>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsPressed" Value="true">
@@ -47,7 +47,7 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsSelected" Value="true">
-                                <Setter Property="Background" Value="#38434E"></Setter>
+                                <Setter Property="Background" Value="#FF007ACC"></Setter>
                                 <Setter Property="Foreground" Value="White"></Setter>
                             </Trigger>
                         </ControlTemplate.Triggers>

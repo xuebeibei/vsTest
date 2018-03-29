@@ -7,10 +7,6 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    //[DataContract]
-    //public class PatientCardManage
-    //{
-    //}
     /// <summary>
     /// 就诊卡操作类型
     /// </summary>

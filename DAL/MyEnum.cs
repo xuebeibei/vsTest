@@ -26,6 +26,10 @@ namespace DAL
     public enum VolkEnum
     {
         /// <summary>
+        /// 未填
+        /// </summary>
+        unKnow,
+        /// <summary>
         /// 汉族
         /// </summary>
         hanzu,

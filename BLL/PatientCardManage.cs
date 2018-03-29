@@ -41,10 +41,10 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                if(!string.IsNullOrEmpty(PatientCardManage.Patient.IDCardNo))
+                if(!string.IsNullOrEmpty(PatientCardManage.Patient.ZhengJianNum))
                 {
                     var query = from u in ctx.Patients
-                                where u.IDCardNo == PatientCardManage.Patient.IDCardNo
+                                where u.ZhengJianNum == PatientCardManage.Patient.ZhengJianNum
                                 select u;
                     if (query.Count() > 0)
                     {
@@ -70,7 +70,7 @@ namespace BLL
                 {
                     var query = from u in ctx.Patients
                                 where u.YbCardNo == PatientCardManage.Patient.YbCardNo && 
-                                u.YbEnum == (DAL.YbEnum)PatientCardManage.Patient.YbEnum
+                                u.FeeTypeEnum == (DAL.FeeTypeEnum)PatientCardManage.Patient.FeeTypeEnum
                                 select u;
 
                     if (query.Count() > 0)

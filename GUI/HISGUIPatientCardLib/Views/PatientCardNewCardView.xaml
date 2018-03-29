@@ -1,0 +1,132 @@
+﻿<HISGUICore:HISGUIViewBase x:Class="HISGUIPatientCardLib.Views.PatientCardNewCardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
+             xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
+             xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <HISGUICore:HISGUIViewBase.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/HISGUIPatientCardLib;component/MyDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </HISGUICore:HISGUIViewBase.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <ToolBar Grid.Row="0" >
+            <Button x:Name="NewBtn" Margin="5" Content="新办卡" ToolTip="办理" Click="NewBtn_Click"></Button>
+            <Button x:Name="ReadBtn" Margin="5" Content="读卡" ToolTip="办理" Click="ReadBtn_Click"></Button>
+            <Button x:Name="LostBtn" Margin="5" Content="挂失卡" ToolTip="挂失" Click="LostBtn_Click"></Button>
+            <Button x:Name="ReNewBtn" Margin="5" Content="补办卡" ToolTip="补办" Click="ReNewBtn_Click"></Button>
+            <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="SaveBtn_Click"></Button>
+            <Button x:Name="EditBtn" Margin="5" Content="修改" ToolTip="修改患者信息" Click="NewBtn_Click"></Button>
+            <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询患者信息" Click="FindBtn_Click"></Button>
+            <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
+        </ToolBar>
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="180"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="165"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Label Margin="5" Grid.Row="0" Grid.Column="0">姓名：</Label>
+            <TextBox x:Name="txt_Name" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.Name}" TextWrapping="Wrap" MaxLength="15"></TextBox>
+
+            <Label Margin="5" Grid.Row="0" Grid.Column="2">性别：</Label>
+            <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="0" Grid.Column="3" Text="{Binding CurrentPatient.Gender}"/>
+
+            <Label Margin="5" Grid.Row="0" Grid.Column="4">医保类型：</Label>
+            <ComboBox x:Name="YBCombo" Margin="5" Grid.Row="0" Grid.Column="5" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding CurrentPatient.YbEnum}"/>
+
+            <Label Margin="5" Grid.Row="0" Grid.Column="6">医保卡号：</Label>
+            <TextBox x:Name="YbNumTextBox" Margin="5" Grid.Row="0" Grid.Column="7" Text="{Binding CurrentPatient.YbCardNo}"></TextBox>
+
+
+            <Label Margin="5" Grid.Row="1">证件类型：</Label>
+            <ComboBox x:Name="ZJCombo" Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
+
+            <Label Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">证件号：</Label>
+            <TextBox x:Name="ZJNumBox" Margin="5" Grid.Row="1" MaxLength="18" Grid.Column="3" Text="{Binding CurrentPatient.ZhengJianNum}"/>
+
+            <Label Margin="5" Grid.Row="1" Grid.Column="4">出生日期：</Label>
+            <Controls:BirthDayControl x:Name="myBirthControl" Margin="5" Grid.Row="1" Grid.Column="5" />
+
+            <Label Margin="5" Grid.Row="1" Grid.Column="6">年龄：</Label>
+            <TextBox x:Name="AgeBox" Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False"/>
+
+            <Label Margin="0,5,10,5" Grid.Row="2">婚姻状况：</Label>
+            <ComboBox x:Name="HYCombo" Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding CurrentPatient.HunYinEnum}"/>
+
+            <Label Margin="5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">国籍：</Label>
+            <ComboBox x:Name="CountryCombo" Margin="5" Grid.Row="2" Grid.Column="3" Text="{Binding CurrentPatient.HunYinEnum}"/>
+
+            <Label Margin="5" Grid.Row="2" Grid.Column="4">民族：</Label>
+            <ComboBox x:Name="VolkCombo" Margin="5" Grid.Row="2" Grid.Column="5" Text="{Binding CurrentPatient.Volk}"/>
+
+            <Label Margin="5" Grid.Row="2" Grid.Column="6">职业：</Label>
+            <ComboBox x:Name="JobCombo" Margin="5" Grid.Row="2" Grid.Column="7" Text="{Binding CurrentPatient.PatientJob}"/>
+
+            <Label Margin="5" Grid.Row="3" Grid.Column="0">工作单位：</Label>
+            <TextBox x:Name="JobUnitBox" Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.PatientJob}"></TextBox>
+
+            <Label Margin="5" Grid.Row="3" Grid.Column="2">单位电话：</Label>
+            <TextBox x:Name="JobUnitTelBox" Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.JobUnitTel}"/>
+
+
+            <Label Margin="5" Grid.Row="3" Grid.Column="4">家庭地址：</Label>
+            <TextBox x:Name="HomeAddressBox" Margin="5" Grid.Row="3" Grid.Column="5" Text="{Binding CurrentPatient.HomeAddress}"></TextBox>
+
+            <Label Margin="5" Grid.Row="3" Grid.Column="6">家庭电话：</Label>
+            <TextBox x:Name="HomeTelBox" Margin="5" Grid.Row="3" Grid.Column="7" Text="{Binding CurrentPatient.HomeTel}"/>
+
+
+            <Label Margin="5" Grid.Row="4" Grid.Column="0">联系人：</Label>
+            <TextBox x:Name="ConnectNameBox" Margin="5" Grid.Row="4" Grid.Column="1" Text="{Binding CurrentPatient.ConnectName}"></TextBox>
+
+            <Label Margin="5" Grid.Row="4" Grid.Column="2">关系：</Label>
+            <ComboBox x:Name="ConnectGX" Margin="5" Grid.Row="4" Grid.Column="3" Text="{Binding CurrentPatient.ConnectGuanXi}"/>
+
+            <Label Margin="5" Grid.Row="4" Grid.Column="4">联系电话：</Label>
+            <TextBox x:Name="ConnectTel" Margin="5" Grid.Row="4" Grid.Column="5" Text="{Binding CurrentPatient.ConnectTel}"/>
+
+            <Label Margin="5" Grid.Row="5" Grid.Column="0">卡号：</Label>
+            <TextBox x:Name="CardNumBox" Margin="5" Grid.Row="5" Grid.Column="1" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardEnum}"></TextBox>
+
+            <Label Margin="5" Grid.Row="4" Grid.Column="6">卡类型：</Label>
+            <ComboBox x:Name="CardTypeCombo" Margin="5" Grid.Row="4" Grid.Column="7" Text="{Binding CurrentPatient.PatientCardNo}"/>
+        </Grid>
+        <ListView x:Name="listView1" Grid.Row="2" Margin="5">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="姓名" Width="100" />
+                    <GridViewColumn Header="性别" Width="80"/>
+                    <GridViewColumn Header="卡类型" Width="80" />
+                    <GridViewColumn Header="卡号" Width="80" />
+                    <GridViewColumn Header="医保类型" Width="100" />
+                    <GridViewColumn Header="证件类型" Width="80" />
+                    <GridViewColumn Header="证件号" Width="150" />
+                    <GridViewColumn Header="状态" Width="150" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</HISGUICore:HISGUIViewBase>

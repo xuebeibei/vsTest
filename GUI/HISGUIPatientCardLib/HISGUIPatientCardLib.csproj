@@ -101,8 +101,8 @@
     <Compile Include="Views\PatientCardManageView.xaml.cs">
       <DependentUpon>PatientCardManageView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PatientCardMsgView.xaml.cs">
-      <DependentUpon>PatientCardMsgView.xaml</DependentUpon>
+    <Compile Include="Views\PatientCardNewCardView.xaml.cs">
+      <DependentUpon>PatientCardNewCardView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StatisticsView.xaml.cs">
       <DependentUpon>StatisticsView.xaml</DependentUpon>
@@ -147,7 +147,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PatientCardMsgView.xaml">
+    <Page Include="Views\PatientCardNewCardView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

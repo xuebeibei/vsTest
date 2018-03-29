@@ -81,7 +81,7 @@ namespace HISGUINurseLib.Views
                 "姓名：" + currentRegistration.Patient.Name + "     " +
                 "性别：" + currentRegistration.Patient.Gender + "     " +
                 "生日：" + currentRegistration.Patient.BirthDay + "     " +
-                "身份证号：" + currentRegistration.Patient.IDCardNo + "     " +
+                "身份证号：" + currentRegistration.Patient.ZhengJianNum + "     " +
                 "民族：" + currentRegistration.Patient.Volk + "     " +
                 "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
                 "电话：" + currentRegistration.Patient.Tel + "\n";

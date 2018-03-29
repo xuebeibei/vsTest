@@ -99,7 +99,7 @@ namespace HISGUIDoctorLib.Views
                     "姓名：" + vm.CurrentRegistration.Patient.Name + "     " +
                     "性别：" + vm.CurrentRegistration.Patient.Gender + "     " +
                     "生日：" + vm.CurrentRegistration.Patient.BirthDay + "     " +
-                    "身份证号：" + vm.CurrentRegistration.Patient.IDCardNo + "     " +
+                    "身份证号：" + vm.CurrentRegistration.Patient.ZhengJianNum + "     " +
                     "民族：" + vm.CurrentRegistration.Patient.Volk + "     " +
                     "籍贯：" + vm.CurrentRegistration.Patient.JiGuan_Sheng + "     " +
                     "电话：" + vm.CurrentRegistration.Patient.Tel + "\n";
@@ -129,7 +129,7 @@ namespace HISGUIDoctorLib.Views
                     "姓名：" + vm.CurrentInHospital.Patient.Name + "     " +
                     "性别：" + vm.CurrentInHospital.Patient.Gender + "     " +
                     "生日：" + vm.CurrentInHospital.Patient.BirthDay + "     " +
-                    "身份证号：" + vm.CurrentInHospital.Patient.IDCardNo + "     " +
+                    "身份证号：" + vm.CurrentInHospital.Patient.ZhengJianNum + "     " +
                     "民族：" + vm.CurrentInHospital.Patient.Volk + "     " +
                     "籍贯：" + vm.CurrentInHospital.Patient.JiGuan_Sheng + "     " +
                     "电话：" + vm.CurrentInHospital.Patient.Tel + "\n";

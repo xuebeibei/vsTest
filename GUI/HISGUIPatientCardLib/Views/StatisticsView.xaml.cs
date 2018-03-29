@@ -76,6 +76,7 @@ namespace HISGUIPatientCardLib.Views
         public StatisticsView()
         {
             InitializeComponent();
+            UpdateChart();
         }
 
         [Import]
@@ -102,10 +103,15 @@ namespace HISGUIPatientCardLib.Views
                             select u;
 
 
-            values.Add(new Value() { Label = "办理新卡", YValue = queryAdd.Count() });
-            values.Add(new Value() { Label = "退卡", YValue = queryReturn.Count() });
-            values.Add(new Value() { Label = "挂失补办", YValue = queryLost.Count() });
-            values.Add(new Value() { Label = "充值", YValue = 0 });
+            //values.Add(new Value() { Label = "办理新卡", YValue = queryAdd.Count() });
+            //values.Add(new Value() { Label = "退卡", YValue = queryReturn.Count() });
+            //values.Add(new Value() { Label = "挂失补办", YValue = queryLost.Count() });
+            //values.Add(new Value() { Label = "充值", YValue = 0 });
+
+            values.Add(new Value() { Label = "办理新卡", YValue = 25 });
+            values.Add(new Value() { Label = "退卡", YValue = 60});
+            values.Add(new Value() { Label = "挂失补办", YValue = 35 });
+            values.Add(new Value() { Label = "充值", YValue = 50 });
 
             MyChart.Series[0].DataSource = values;
         }
