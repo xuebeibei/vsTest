@@ -22,12 +22,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ToolBar Grid.Row="0" Height="30">
-            <Button x:Name="ReadCardBtn" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
-            <Button x:Name="PayBtn" Content="收取" ToolTip="收取预交金" Click="PayBtn_Click"></Button>
-            <Button x:Name="ReturnBtn" Content="返还" ToolTip="返还预交金" Click="ReturnBtn_Click"></Button>
-            <Button x:Name="RePrintBtn" Content="补打" ToolTip="补打凭证" Click="RePrintBtn_Click"></Button>
-            <Button x:Name="ClearBtn" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
+        <ToolBar Grid.Row="0">
+            <Button x:Name="ReadCardBtn" Margin="5" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
+            <Button x:Name="PayBtn" Margin="5" Content="收取" ToolTip="收取预交金" Click="PayBtn_Click"></Button>
+            <Button x:Name="ReturnBtn" Margin="5" Content="返还" ToolTip="返还预交金" Click="ReturnBtn_Click"></Button>
+            <Button x:Name="RePrintBtn" Margin="5" Content="补打" ToolTip="补打凭证" Click="RePrintBtn_Click"></Button>
+            <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
         </ToolBar>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="100"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
