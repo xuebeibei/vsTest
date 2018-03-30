@@ -63,7 +63,9 @@ namespace HISGUICore
                 if (iSagyObj.CallbackList.Contains(callBack))
                     iSagyObj.CallbackList.Remove(callBack);
             }
+#pragma warning disable CS0168 // 声明了变量“exp”，但从未使用过
             catch (Exception exp)
+#pragma warning restore CS0168 // 声明了变量“exp”，但从未使用过
             {
                 
             }
@@ -113,7 +115,9 @@ namespace HISGUICore
                 //    }
                 //}
             }
+#pragma warning disable CS0168 // 声明了变量“exp”，但从未使用过
             catch (Exception exp)
+#pragma warning restore CS0168 // 声明了变量“exp”，但从未使用过
             {
             }
         }

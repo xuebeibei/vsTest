@@ -43,46 +43,102 @@ namespace DAL
     /// </summary>
     public enum HunYinEnum
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未填”的 XML 注释
         未填 = 0,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未填”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未婚”的 XML 注释
         未婚 = 1,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未婚”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.已婚”的 XML 注释
         已婚 = 2,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.已婚”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.丧偶”的 XML 注释
         丧偶 = 3,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.丧偶”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.离婚”的 XML 注释
         离婚 = 4,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.离婚”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.其他”的 XML 注释
         其他 = 9
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.其他”的 XML 注释
     }
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum”的 XML 注释
     public enum PatientCardEnum
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum”的 XML 注释
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.普通卡”的 XML 注释
         普通卡,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.普通卡”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.临时卡”的 XML 注释
         临时卡
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.临时卡”的 XML 注释
     }
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum”的 XML 注释
     public enum CountryEnum
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum”的 XML 注释
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum.中国”的 XML 注释
         中国,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum.中国”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum.其他”的 XML 注释
         其他
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum.其他”的 XML 注释
     }
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum”的 XML 注释
     public enum PatientJobEnum
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum”的 XML 注释
     {
         //11.国家公务员、13.专业技术人员、17.职员、21.企业管理人员、24.工人、27.农民、31.学生、37.现役军人、51.自由职业者、54.个体经营者、70.无业人员、80.退（离）休人员、90.其他
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.未填”的 XML 注释
         未填 = 0,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.未填”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.国家公务员”的 XML 注释
         国家公务员 = 11,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.国家公务员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.专业技术人员”的 XML 注释
         专业技术人员 = 13,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.专业技术人员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.职员”的 XML 注释
         职员 = 17,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.职员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.企业管理人员”的 XML 注释
         企业管理人员 = 21,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.企业管理人员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.工人”的 XML 注释
         工人 = 24,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.工人”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.农民”的 XML 注释
         农民 = 27,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.农民”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.学生”的 XML 注释
         学生 = 31,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.学生”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.现役军人”的 XML 注释
         现役军人 = 37,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.现役军人”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.自由职业者”的 XML 注释
         自由职业者 = 51,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.自由职业者”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.个体经营者”的 XML 注释
         个体经营者 = 54,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.个体经营者”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.无业人员”的 XML 注释
         无业人员 = 70,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.无业人员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.退休离休人员”的 XML 注释
         退休离休人员 = 80,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.退休离休人员”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.其他”的 XML 注释
         其他 = 90
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.其他”的 XML 注释
     }
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum”的 XML 注释
     public enum GuanXiEnum
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum”的 XML 注释
     {
         /*
          * 联系人“关系”：指联系人与患者之间的关系，
@@ -92,15 +148,33 @@ namespace DAL
          * 根据联系人与患者实际关系情况填写，如：孙子。
          * 对于非家庭关系人员，统一使用“其他”，并可附加说明，如：同事。
          */
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.未填”的 XML 注释
         未填 = 0,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.未填”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.配偶”的 XML 注释
         配偶 = 1,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.配偶”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.子”的 XML 注释
         子 = 2,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.子”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.女”的 XML 注释
         女 = 3,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.女”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.孙子孙女或外孙子外孙女”的 XML 注释
         孙子孙女或外孙子外孙女 = 4,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.孙子孙女或外孙子外孙女”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.父母”的 XML 注释
         父母 = 5,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.父母”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.祖父母或外祖父母”的 XML 注释
         祖父母或外祖父母 = 6,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.祖父母或外祖父母”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.兄弟姐妹”的 XML 注释
         兄弟姐妹 = 7,
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.兄弟姐妹”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.其他”的 XML 注释
         其他 = 9
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.其他”的 XML 注释
     }
 
 

@@ -55,7 +55,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }
@@ -77,7 +79,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }
@@ -106,7 +110,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }

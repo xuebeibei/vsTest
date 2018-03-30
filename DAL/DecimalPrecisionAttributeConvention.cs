@@ -15,7 +15,9 @@ namespace DAL
     public class DecimalPrecisionAttributeConvention
         : PrimitivePropertyAttributeConfigurationConvention<DecimalPrecisionAttribute>
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“DecimalPrecisionAttributeConvention.Apply(ConventionPrimitivePropertyConfiguration, DecimalPrecisionAttribute)”的 XML 注释
         public override void Apply(ConventionPrimitivePropertyConfiguration configuration, DecimalPrecisionAttribute attribute)
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“DecimalPrecisionAttributeConvention.Apply(ConventionPrimitivePropertyConfiguration, DecimalPrecisionAttribute)”的 XML 注释
         {
             if (attribute.Precision < 1 || attribute.Precision > 38)
             {

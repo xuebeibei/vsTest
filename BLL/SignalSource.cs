@@ -39,7 +39,9 @@ namespace BLL
 
                     }
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return null;
                 }
@@ -81,7 +83,9 @@ namespace BLL
 
         public string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival)
         {
+#pragma warning disable CS0219 // 变量“temp”已被赋值，但从未使用过它的值
             string temp = "";
+#pragma warning restore CS0219 // 变量“temp”已被赋值，但从未使用过它的值
             //using (DAL.HisContext ctx = new DAL.HisContext())
             //{
             //    IEnumerable<DAL.SignalSource> queryResultList = from u in ctx.SignalSources
@@ -192,7 +196,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }
@@ -214,7 +220,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }
@@ -244,7 +252,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }
@@ -273,7 +283,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     return false;
                 }

@@ -8,7 +8,9 @@ using System.Runtime.Serialization;
 namespace CommContracts
 {
     [DataContract]
+#pragma warning disable CS0659 // “Supplier”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class Supplier
+#pragma warning restore CS0659 // “Supplier”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     {
         public Supplier()
         {

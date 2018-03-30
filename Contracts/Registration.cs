@@ -16,7 +16,9 @@ namespace CommContracts
     public enum SeeDoctorStatusEnum { 未到诊, 候诊中, 接诊中, 接诊结束 , 申请入院 };
     public enum TriageStatusEnum { no, yes };
     [DataContract]
+#pragma warning disable CS0659 // “Registration”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class Registration
+#pragma warning restore CS0659 // “Registration”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     {
         public Registration()
         {

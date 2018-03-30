@@ -8,97 +8,239 @@ using System.Data.Entity;
 
 namespace DAL
 {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
     public class HisContext : DbContext
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
     {
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
         public DbSet<User> Users { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
         public DbSet<Department> Departments { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SignalSources”的 XML 注释
         public DbSet<SignalSource> SignalSources { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SignalSources”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Registrations”的 XML 注释
         public DbSet<Registration> Registrations { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Registrations”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Patients”的 XML 注释
         public DbSet<Patient> Patients { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Patients”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Jobs”的 XML 注释
         public DbSet<Job> Jobs { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Jobs”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Employees”的 XML 注释
         public DbSet<Employee> Employees { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Employees”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Triages”的 XML 注释
         public DbSet<Triage> Triages { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Triages”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Medicines”的 XML 注释
         public DbSet<Medicine> Medicines { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Medicines”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicalRecords”的 XML 注释
         public DbSet<MedicalRecord> MedicalRecords { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicalRecords”的 XML 注释
         //public DbSet<Inpatient> Inpatients { get; set; }
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.AssayItems”的 XML 注释
         public DbSet<AssayItem> AssayItems { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.AssayItems”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Specimens”的 XML 注释
         public DbSet<Specimen> Specimens { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Specimens”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InspectItems”的 XML 注释
         public DbSet<InspectItem> InspectItems { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InspectItems”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.BodyRegions”的 XML 注释
         public DbSet<BodyRegion> BodyRegions { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.BodyRegions”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyItems”的 XML 注释
         public DbSet<TherapyItem> TherapyItems { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyItems”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialItems”的 XML 注释
         public DbSet<MaterialItem> MaterialItems { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialItems”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceItem”的 XML 注释
         public DbSet<OtherServiceItem> OtherServiceItem { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceItem”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineInStores”的 XML 注释
         public DbSet<MedicineInStore> MedicineInStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineInStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineInStoreDetails”的 XML 注释
         public DbSet<MedicineInStoreDetail> MedicineInStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineInStoreDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineOutStores”的 XML 注释
         public DbSet<MedicineOutStore> MedicineOutStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineOutStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineOutStoreDetails”的 XML 注释
         public DbSet<MedicineOutStoreDetail> MedicineOutStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineOutStoreDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCheckStores”的 XML 注释
         public DbSet<MedicineCheckStore> MedicineCheckStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCheckStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCheckStoreDetails”的 XML 注释
         public DbSet<MedicineCheckStoreDetail> MedicineCheckStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCheckStoreDetails”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialInStores”的 XML 注释
         public DbSet<MaterialInStore> MaterialInStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialInStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialInStoreDetails”的 XML 注释
         public DbSet<MaterialInStoreDetail> MaterialInStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialInStoreDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialOutStores”的 XML 注释
         public DbSet<MaterialOutStore> MaterialOutStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialOutStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialOutStoreDetails”的 XML 注释
         public DbSet<MaterialOutStoreDetail> MaterialOutStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialOutStoreDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCheckStores”的 XML 注释
         public DbSet<MaterialCheckStore> MaterialCheckStores { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCheckStores”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCheckStoreDetails”的 XML 注释
         public DbSet<MaterialCheckStoreDetail> MaterialCheckStoreDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCheckStoreDetails”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRooms”的 XML 注释
         public DbSet<StoreRoom> StoreRooms { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRooms”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.StoreNumBases”的 XML 注释
         public DbSet<StoreNumBase> StoreNumBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.StoreNumBases”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRoomMedicineNums”的 XML 注释
         public DbSet<StoreRoomMedicineNum> StoreRoomMedicineNums { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRoomMedicineNums”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRoomMaterialNums”的 XML 注释
         public DbSet<StoreRoomMaterialNum> StoreRoomMaterialNums { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.StoreRoomMaterialNums”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Suppliers”的 XML 注释
         public DbSet<Supplier> Suppliers { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Suppliers”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SickRooms”的 XML 注释
         public DbSet<SickRoom> SickRooms { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SickRooms”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SickBeds”的 XML 注释
         public DbSet<SickBed> SickBeds { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SickBeds”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.PrePays”的 XML 注释
         public DbSet<PrePay> PrePays { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.PrePays”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineDoctorAdvices”的 XML 注释
         public DbSet<MedicineDoctorAdvice> MedicineDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineDoctorAdvices”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialDoctorAdvices”的 XML 注释
         public DbSet<MaterialDoctorAdvice> MaterialDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialDoctorAdvices”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.AssayDoctorAdvices”的 XML 注释
         public DbSet<AssayDoctorAdvice> AssayDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.AssayDoctorAdvices”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InspectDoctorAdvices”的 XML 注释
         public DbSet<InspectDoctorAdvice> InspectDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InspectDoctorAdvices”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyDoctorAdvices”的 XML 注释
         public DbSet<TherapyDoctorAdvice> TherapyDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyDoctorAdvices”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceDoctorAdvices”的 XML 注释
         public DbSet<OtherServiceDoctorAdvice> OtherServiceDoctorAdvices { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceDoctorAdvices”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SignalItems”的 XML 注释
         public DbSet<SignalItem> SignalItems { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SignalItems”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.DoctorAdviceBases”的 XML 注释
         public DbSet<DoctorAdviceBase> DoctorAdviceBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.DoctorAdviceBases”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.GoodsBases”的 XML 注释
         public DbSet<GoodsBase> GoodsBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.GoodsBases”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.ChargeDetailBases”的 XML 注释
         public DbSet<ChargeDetailBase> ChargeDetailBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.ChargeDetailBases”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineChargeDetails”的 XML 注释
         public DbSet<MedicineChargeDetail> MedicineChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineChargeDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialChargeDetails”的 XML 注释
         public DbSet<MaterialChargeDetail> MaterialChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialChargeDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyChargeDetails”的 XML 注释
         public DbSet<TherapyChargeDetail> TherapyChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyChargeDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.AssayChargeDetails”的 XML 注释
         public DbSet<AssayChargeDetail> AssayChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.AssayChargeDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InspectChargeDetails”的 XML 注释
         public DbSet<InspectChargeDetail> InspectChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InspectChargeDetails”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceChargeDetails”的 XML 注释
         public DbSet<OtherServiceChargeDetail> OtherServiceChargeDetails { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceChargeDetails”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.ChargeBases”的 XML 注释
         public DbSet<ChargeBase> ChargeBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.ChargeBases”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCharges”的 XML 注释
         public DbSet<MedicineCharge> MedicineCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineCharges”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCharges”的 XML 注释
         public DbSet<MaterialCharge> MaterialCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MaterialCharges”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyCharges”的 XML 注释
         public DbSet<TherapyCharge> TherapyCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.TherapyCharges”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.AssayCharges”的 XML 注释
         public DbSet<AssayCharge> AssayCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.AssayCharges”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InspectCharges”的 XML 注释
         public DbSet<InspectCharge> InspectCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InspectCharges”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceCharges”的 XML 注释
         public DbSet<OtherServiceCharge> OtherServiceCharges { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceCharges”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitalApplys”的 XML 注释
         public DbSet<InHospitalApply> InHospitalApplys { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitalApplys”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MyTableBases”的 XML 注释
         public DbSet<MyTableBase> MyTableBases { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.MyTableBases”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitals”的 XML 注释
         public DbSet<InHospital> InHospitals { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitals”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitalPatientDoctor”的 XML 注释
         public DbSet<InHospitalPatientDoctor> InHospitalPatientDoctor { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InHospitalPatientDoctor”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.LeaveHospitals”的 XML 注释
         public DbSet<LeaveHospital> LeaveHospitals { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.LeaveHospitals”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.RecallHospitals”的 XML 注释
         public DbSet<RecallHospital> RecallHospitals { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.RecallHospitals”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.InjectionBills”的 XML 注释
         public DbSet<InjectionBill> InjectionBills { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.InjectionBills”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.PatientCardManages”的 XML 注释
         public DbSet<PatientCardManage> PatientCardManages { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.PatientCardManages”的 XML 注释
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
         public DbSet<LoginInAndOutRecords> LoginInAndOutRecords { get; set; }
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
 
+#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
+#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释
         {
             modelBuilder.Conventions.Add(new DecimalPrecisionAttributeConvention());
             base.OnModelCreating(modelBuilder);

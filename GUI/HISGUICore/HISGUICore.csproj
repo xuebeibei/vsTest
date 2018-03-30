@@ -65,6 +65,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="HISGUIMoudleBase.cs" />
     <Compile Include="HISGUIViewBase.cs" />
     <Compile Include="HISGUIVMBase.cs" />

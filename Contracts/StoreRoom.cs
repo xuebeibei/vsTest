@@ -15,7 +15,9 @@ namespace CommContracts
     }
 
     [DataContract]
+#pragma warning disable CS0659 // “StoreRoom”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class StoreRoom
+#pragma warning restore CS0659 // “StoreRoom”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     {
         public StoreRoom()
         {

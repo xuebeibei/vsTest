@@ -16,7 +16,9 @@ namespace CommContracts
     }
 
     [DataContract]
+#pragma warning disable CS0659 // “Department”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class Department
+#pragma warning restore CS0659 // “Department”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     {
         public Department()
         {

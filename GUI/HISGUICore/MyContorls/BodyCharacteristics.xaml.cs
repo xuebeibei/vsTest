@@ -37,7 +37,9 @@ namespace HISGUICore.MyContorls
                 {
                     dTemperature = Math.Round(double.Parse(strTemperature), 2);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     TemperatureError.Content = "请输入数字";
                     bIsError = false;
@@ -69,7 +71,9 @@ namespace HISGUICore.MyContorls
                 {
                     dWeight = Math.Round(double.Parse(strWeight), 2);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     WeightError.Content = "请输入数字";
                     bIsError = false;
@@ -92,7 +96,9 @@ namespace HISGUICore.MyContorls
                 {
                     dHeight = Math.Round(double.Parse(strHeight), 2);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     HeightError.Content = "请输入数字";
                     bIsError = false;
@@ -120,7 +126,9 @@ namespace HISGUICore.MyContorls
                 {
                     nBreath = int.Parse(strBreath);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     BreathErrorLabel.Content = "请输入整数";
                     bIsError = false;
@@ -143,7 +151,9 @@ namespace HISGUICore.MyContorls
                 {
                     nBreath = int.Parse(strPulse);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     PulseError.Content = "请输入整数";
                     bIsError = false;
@@ -165,7 +175,9 @@ namespace HISGUICore.MyContorls
                 {
                     nNumber = int.Parse(SystolicPressureEdit.Text);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     BloodPressureError.Content = "请输入整数";
                     bSystolicPressure = false;
@@ -181,7 +193,9 @@ namespace HISGUICore.MyContorls
                 {
                     nBreath = int.Parse(DiastolicPressureEdit.Text);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     BloodPressureError.Content = "请输入整数";
                     bDiastolicPressure = false;
@@ -225,7 +239,9 @@ namespace HISGUICore.MyContorls
                 {
                     nBreath = int.Parse(BloodGlucoseEdit.Text);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     BloodGlucoseError.Content = "请输入整数";
                     bIsError = false;
@@ -259,7 +275,9 @@ namespace HISGUICore.MyContorls
                 {
                     dNumber = Math.Round(double.Parse(OxygenSaturationEdit.Text), 2);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     OxygenSaturationError.Content = "请输入数字";
                     bIsError = false;
@@ -281,7 +299,9 @@ namespace HISGUICore.MyContorls
                 {
                     nNumber = int.Parse(PainGradeEdit.Text);
                 }
+#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
+#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
                     PainGradeError.Content = "请输入整数";
                     bIsError = false;

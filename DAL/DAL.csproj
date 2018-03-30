@@ -65,6 +65,7 @@
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="DoctorAdviceDetailBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GoodsBase.cs" />
     <Compile Include="InHospital.cs" />
     <Compile Include="InHospitalApply.cs" />
