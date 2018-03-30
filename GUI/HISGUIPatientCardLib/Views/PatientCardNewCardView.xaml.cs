@@ -73,6 +73,9 @@ namespace HISGUIPatientCardLib.Views
             var vm = this.DataContext as HISGUIPatientCardVM;
             vm.CurrentPatient = tempPatient;
 
+            this.PatientMsgGrid.IsEnabled = true;
+            this.bIsEdit = false;
+
             this.txt_Name.Focus();
         }
 
@@ -283,6 +286,8 @@ namespace HISGUIPatientCardLib.Views
                 else
                 {
                     MessageBox.Show(ErrorMsg);
+                    this.PatientMsgGrid.IsEnabled = false;
+                    this.bIsEdit = false;
                 }
             }
             else
