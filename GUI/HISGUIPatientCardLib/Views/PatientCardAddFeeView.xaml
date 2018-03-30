@@ -52,10 +52,10 @@
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
             <Label Content="就诊卡号："  Grid.Row="0" Grid.Column="0" Margin="5"></Label>
-            <TextBox x:Name="CardNoBox"  Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.CardNum}"></TextBox>
+            <TextBox x:Name="CardNoBox"  Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.PatientCardNo}"></TextBox>
 
             <Label Content="卡类型："  Grid.Row="0" Grid.Column="2" Margin="5"></Label>
-            <ComboBox x:Name="CardTypeBox"  Grid.Row="0" Grid.Column="3" Margin="5" IsEnabled="False"></ComboBox>
+            <ComboBox x:Name="CardTypeCombo"  Grid.Row="0" Grid.Column="3" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.PatientCardEnum}"></ComboBox>
 
             <Label Content="姓       名："  Grid.Row="0" Grid.Column="4" Margin="5"></Label>
             <TextBox x:Name="NameBox"  Grid.Row="0" Grid.Column="5" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.Name}"></TextBox>
@@ -68,24 +68,24 @@
 
 
             <Label Content="证件类型："  Grid.Row="1" Grid.Column="0" Margin="5"></Label>
-            <ComboBox x:Name="ZJTypeBox"  Grid.Row="1" Grid.Column="1" Margin="5" IsEnabled="False"></ComboBox>
+            <ComboBox x:Name="ZJCombo"  Grid.Row="1" Grid.Column="1" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
 
             <Label Content="证件号："  Grid.Row="1" Grid.Column="2" Margin="5"></Label>
-            <TextBox x:Name="ZJNumBox"  Grid.Row="1" Grid.Column="3" Margin="5" IsEnabled="False"></TextBox>
+            <TextBox x:Name="ZJNumBox"  Grid.Row="1" Grid.Column="3" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.ZhengJianNum}"></TextBox>
 
-            <Label Content="医保类别："  Grid.Row="1" Grid.Column="4" Margin="5"></Label>
-            <ComboBox x:Name="CountryBox"  Grid.Row="1" Grid.Column="5" Margin="5" IsEnabled="False"></ComboBox>
+            <Label Content="费用类别："  Grid.Row="1" Grid.Column="4" Margin="5"></Label>
+            <ComboBox x:Name="FeeTypeCombo"  Grid.Row="1" Grid.Column="5" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.FeeTypeEnum}"></ComboBox>
 
             <Label Content="医保卡号："  Grid.Row="1" Grid.Column="6" Margin="5"></Label>
-            <TextBox x:Name="YBNumBox"  Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False"></TextBox>
+            <TextBox x:Name="YBNumBox"  Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.YbCardNo}"></TextBox>
 
             <Label Content="账户余额："  Grid.Row="1" Grid.Column="8" Margin="5"></Label>
-            <TextBox x:Name="BalanceBox"  Grid.Row="1" Grid.Column="9" Margin="5" IsEnabled="False"></TextBox>
+            <TextBox x:Name="BalanceBox"  Grid.Row="1" Grid.Column="9" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardBalance}"></TextBox>
 
             <Separator  Grid.Row="2" Grid.ColumnSpan="11"></Separator>
 
             <Label Content="支付方式："  Grid.Row="3" Grid.Column="0" Margin="5"></Label>
-            <ComboBox x:Name="PayTypeBox"  Grid.Row="3" Grid.Column="1" Margin="5"></ComboBox>
+            <ComboBox x:Name="PayTypeCombo"  Grid.Row="3" Grid.Column="1" Margin="5"></ComboBox>
 
             <Label Content="金    额："  Grid.Row="3" Grid.Column="2" Margin="5"></Label>
             <TextBox x:Name="FeeNumBox"  Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>

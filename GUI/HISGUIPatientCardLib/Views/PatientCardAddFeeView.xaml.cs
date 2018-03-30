@@ -42,8 +42,24 @@ namespace HISGUIPatientCardLib.Views
             set { this.VM = value; }
         }
 
+        private void InitCombo()
+        {
+            this.FeeTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.FeeTypeEnum));
+            this.FeeTypeCombo.SelectedIndex = 0;
+
+            //this.PayTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
+            //this.PayTypeCombo.SelectedIndex = 0;
+
+            this.ZJCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.ZhengJianEnum));
+            this.ZJCombo.SelectedIndex = 0;
+
+            this.CardTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PatientCardEnum));
+            this.CardTypeCombo.SelectedIndex = 0;
+        }
+
         private void PatientCardAddFeeView_Loaded(object sender, RoutedEventArgs e)
         {
+            InitCombo();
         }
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
