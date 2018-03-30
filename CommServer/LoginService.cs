@@ -872,6 +872,12 @@ namespace CommServer
             return temp.getNewPID();
         }
 
+        public string getNewPatientCardNum()
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.getNewPatientCardNum();
+        }
+
         public CommContracts.Patient ReadCurrentPatient(int PatientID)
         {
             BLL.Patient temp = new BLL.Patient();

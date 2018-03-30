@@ -68,6 +68,29 @@ namespace BLL
             }
         }
 
+        public string getNewPatientCardNum()
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = (from u in ctx.Patients
+                             where u.PatientCardNo != null
+                             orderby u.ID ascending
+                             select u.PatientCardNo).ToList();
+                string str = "";
+
+                string strLast = query.Last();
+                if (string.IsNullOrEmpty(strLast))
+                {
+                    str = NumStringHelper.GetFirstNum();
+                }
+                else
+                {
+                    str = NumStringHelper.GetNextNum(strLast);
+                }
+                return str;
+            }
+        }
+
         public CommContracts.Patient ReadCurrentPatient(int PatientID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
@@ -303,6 +326,7 @@ namespace BLL
                     temp.JiGuan_Xian = Patient.JiGuan_Xian;
                     temp.FeeTypeEnum = (DAL.FeeTypeEnum)Patient.FeeTypeEnum;
                     temp.YbCardNo = Patient.YbCardNo;
+                    temp.PatientCardStatus = (DAL.PatientCardStatusEnum)Patient.PatientCardStatus;
                 }
                 else
                 {

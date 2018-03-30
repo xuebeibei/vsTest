@@ -111,17 +111,22 @@
             <Label Margin="5" Grid.Row="5" Grid.Column="0">卡号：</Label>
             <TextBox x:Name="CardNumBox" Margin="5" Grid.Row="5" Grid.Column="1" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardNo}"></TextBox>
 
+            <Label Margin="5" Grid.Row="5" Grid.Column="2">状态：</Label>
+            <ComboBox x:Name="PatientCardStatusCombo" Margin="5" Grid.Row="5" Grid.Column="3" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardStatus}"></ComboBox>
+            
         </Grid>
         <ListView x:Name="ManageCardRecordsList" Grid.Row="2" Margin="5" SelectionChanged="ManageCardRecordsList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="姓名" Width="100" DisplayMemberBinding="{Binding Path=Patient.Name}"/>
+                    <GridViewColumn Header="姓名" Width="80" DisplayMemberBinding="{Binding Path=Patient.Name}"/>
                     <GridViewColumn Header="性别" Width="80" DisplayMemberBinding="{Binding Path=Patient.Gender}"/>
                     <GridViewColumn Header="证件类型" Width="80" DisplayMemberBinding="{Binding Path=Patient.ZhengJianEnum}"/>
                     <GridViewColumn Header="证件号" Width="150" DisplayMemberBinding="{Binding Path=Patient.ZhengJianNum}"/>
                     <GridViewColumn Header="卡类型" Width="80" DisplayMemberBinding="{Binding Path=Patient.PatientCardEnum}"/>
                     <GridViewColumn Header="卡号" Width="80" DisplayMemberBinding="{Binding Path=CardNo}"/>
-                    <GridViewColumn Header="状态" Width="150" DisplayMemberBinding="{Binding Path=CardManageEnum}"/>
+                    <GridViewColumn Header="状态" Width="80" DisplayMemberBinding="{Binding Path=CardManageEnum}"/>
+                    <GridViewColumn Header="时间" Width="150" DisplayMemberBinding="{Binding Path=CurrentTime}"/>
+                    <GridViewColumn Header="经办" Width="80" DisplayMemberBinding="{Binding Path=User.Username}"/>
                 </GridView>
             </ListView.View>
         </ListView>

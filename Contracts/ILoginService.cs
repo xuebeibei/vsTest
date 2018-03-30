@@ -445,6 +445,9 @@ namespace CommContracts
         string getNewPID();
 
         [OperationContract]
+        string getNewPatientCardNum();
+
+        [OperationContract]
         CommContracts.Patient ReadCurrentPatient(int PatientID);
         [OperationContract]
         decimal GetCurrentPatientBalance(int PatientID);

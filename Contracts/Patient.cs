@@ -83,6 +83,32 @@ namespace CommContracts
         其他
     }
 
+    /// <summary>
+    /// 患者就诊卡当前状态
+    /// </summary>
+    public enum PatientCardStatusEnum
+    {
+        /// <summary>
+        /// 新建可用状态
+        /// </summary>
+        新建,
+
+        /// <summary>
+        /// 挂失不可用状态
+        /// </summary>
+        挂失,
+
+        /// <summary>
+        /// 补办可用状态
+        /// </summary>
+        补办,
+
+        /// <summary>
+        /// 换卡可用状态
+        /// </summary>
+        换卡
+    }
+
     [DataContract]
     public class Patient
     {
@@ -99,6 +125,7 @@ namespace CommContracts
             ConnectGuanXi = GuanXiEnum.未填;
 
             FeeTypeEnum = FeeTypeEnum.自费;
+            PatientCardStatus = PatientCardStatusEnum.新建;
         }
 
         /// <summary>
@@ -256,6 +283,12 @@ namespace CommContracts
         /// </summary>
         [DataMember]
         public string YbCardNo { get; set; }
+
+        /// <summary>
+        /// 患者就诊卡状态
+        /// </summary>
+        [DataMember]
+        public PatientCardStatusEnum PatientCardStatus { get; set; }
 
     }
 }

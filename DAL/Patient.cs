@@ -43,138 +43,229 @@ namespace DAL
     /// </summary>
     public enum HunYinEnum
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未填”的 XML 注释
+        /// <summary>
+        /// 未填写婚姻状况
+        /// </summary>
         未填 = 0,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未填”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未婚”的 XML 注释
+
+        /// <summary>
+        /// 为结婚
+        /// </summary>
         未婚 = 1,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.未婚”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.已婚”的 XML 注释
+
+        /// <summary>
+        /// 已经结婚
+        /// </summary>
         已婚 = 2,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.已婚”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.丧偶”的 XML 注释
+
+        /// <summary>
+        /// 丧偶
+        /// </summary>
         丧偶 = 3,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.丧偶”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.离婚”的 XML 注释
+
+        /// <summary>
+        /// 离婚
+        /// </summary>
         离婚 = 4,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.离婚”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HunYinEnum.其他”的 XML 注释
+
+        /// <summary>
+        /// 其他
+        /// </summary>
         其他 = 9
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HunYinEnum.其他”的 XML 注释
     }
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum”的 XML 注释
+    /// <summary>
+    /// 患者就诊卡类型
+    /// </summary>
     public enum PatientCardEnum
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum”的 XML 注释
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.普通卡”的 XML 注释
+
+        /// <summary>
+        /// 普通卡
+        /// </summary>
         普通卡,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.普通卡”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.临时卡”的 XML 注释
+        
+        /// <summary>
+        /// 临时卡
+        /// </summary>
         临时卡
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientCardEnum.临时卡”的 XML 注释
     }
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum”的 XML 注释
+    /// <summary>
+    /// 国籍
+    /// </summary>
     public enum CountryEnum
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum”的 XML 注释
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum.中国”的 XML 注释
+        /// <summary>
+        /// 中国
+        /// </summary>
         中国,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum.中国”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“CountryEnum.其他”的 XML 注释
+        /// <summary>
+        /// 其他
+        /// </summary>
         其他
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“CountryEnum.其他”的 XML 注释
     }
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum”的 XML 注释
+    /// <summary>
+    /// 患者工作类型
+    /// 住院病案首页中规定：
+    /// 11.国家公务员、13.专业技术人员、17.职员、21.企业管理人员、24.工人、27.农民、31.学生、37.现役军人、51.自由职业者、54.个体经营者、70.无业人员、80.退（离）休人员、90.其他
+    /// </summary>
     public enum PatientJobEnum
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum”的 XML 注释
     {
-        //11.国家公务员、13.专业技术人员、17.职员、21.企业管理人员、24.工人、27.农民、31.学生、37.现役军人、51.自由职业者、54.个体经营者、70.无业人员、80.退（离）休人员、90.其他
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.未填”的 XML 注释
+        /// <summary>
+        /// 未填写
+        /// </summary>
         未填 = 0,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.未填”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.国家公务员”的 XML 注释
+
+        /// <summary>
+        /// 国家公务员
+        /// </summary>
         国家公务员 = 11,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.国家公务员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.专业技术人员”的 XML 注释
+
+        /// <summary>
+        /// 专业技术人员
+        /// </summary>
         专业技术人员 = 13,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.专业技术人员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.职员”的 XML 注释
+
+        /// <summary>
+        /// 职员
+        /// </summary>
         职员 = 17,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.职员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.企业管理人员”的 XML 注释
+
+        /// <summary>
+        /// 企业管理人员
+        /// </summary>
         企业管理人员 = 21,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.企业管理人员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.工人”的 XML 注释
+
+        /// <summary>
+        /// 工人
+        /// </summary>
         工人 = 24,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.工人”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.农民”的 XML 注释
+
+        /// <summary>
+        /// 农民
+        /// </summary>
         农民 = 27,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.农民”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.学生”的 XML 注释
+
+        /// <summary>
+        /// 学生
+        /// </summary>
         学生 = 31,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.学生”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.现役军人”的 XML 注释
+
+        /// <summary>
+        /// 现役军人
+        /// </summary>
         现役军人 = 37,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.现役军人”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.自由职业者”的 XML 注释
+
+        /// <summary>
+        /// 自由职业者
+        /// </summary>
         自由职业者 = 51,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.自由职业者”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.个体经营者”的 XML 注释
+
+        /// <summary>
+        /// 个体经营者
+        /// </summary>
         个体经营者 = 54,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.个体经营者”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.无业人员”的 XML 注释
+
+        /// <summary>
+        /// 无业人员
+        /// </summary>
         无业人员 = 70,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.无业人员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.退休离休人员”的 XML 注释
+
+        /// <summary>
+        /// 退休离休人员
+        /// </summary>
         退休离休人员 = 80,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.退休离休人员”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.其他”的 XML 注释
+
+        /// <summary>
+        /// 其他
+        /// </summary>
         其他 = 90
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“PatientJobEnum.其他”的 XML 注释
     }
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum”的 XML 注释
+    /// <summary>
+    /// 联系人与患者关系
+    /// 住院病案首页规定：
+    /// 联系人“关系”：指联系人与患者之间的关系，
+    /// 参照《家庭关系代码》国家标准（GB/T4761）填写：
+    /// 1.配偶，2.子，3.女，4.孙子、孙女或外孙子、外孙女，5.父母，
+    /// 6.祖父母或外祖父母，7.兄、弟、姐、妹，8/9.其他。
+    /// 根据联系人与患者实际关系情况填写，如：孙子。
+    /// 对于非家庭关系人员，统一使用“其他”，并可附加说明，如：同事。
+    /// </summary>
     public enum GuanXiEnum
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum”的 XML 注释
     {
-        /*
-         * 联系人“关系”：指联系人与患者之间的关系，
-         * 参照《家庭关系代码》国家标准（GB/T4761）填写：
-         * 1.配偶，2.子，3.女，4.孙子、孙女或外孙子、外孙女，5.父母，
-         * 6.祖父母或外祖父母，7.兄、弟、姐、妹，8/9.其他。
-         * 根据联系人与患者实际关系情况填写，如：孙子。
-         * 对于非家庭关系人员，统一使用“其他”，并可附加说明，如：同事。
-         */
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.未填”的 XML 注释
+        /// <summary>
+        /// 未填写
+        /// </summary>
         未填 = 0,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.未填”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.配偶”的 XML 注释
+
+        /// <summary>
+        /// 配偶
+        /// </summary>
         配偶 = 1,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.配偶”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.子”的 XML 注释
+
+        /// <summary>
+        /// 子
+        /// </summary>
         子 = 2,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.子”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.女”的 XML 注释
+
+        /// <summary>
+        /// 女
+        /// </summary>
         女 = 3,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.女”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.孙子孙女或外孙子外孙女”的 XML 注释
+
+        /// <summary>
+        /// 孙子孙女或外孙子外孙女
+        /// </summary>
         孙子孙女或外孙子外孙女 = 4,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.孙子孙女或外孙子外孙女”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.父母”的 XML 注释
+
+        /// <summary>
+        /// 父母
+        /// </summary>
         父母 = 5,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.父母”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.祖父母或外祖父母”的 XML 注释
+
+        /// <summary>
+        /// 祖父母或外祖父母
+        /// </summary>
         祖父母或外祖父母 = 6,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.祖父母或外祖父母”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.兄弟姐妹”的 XML 注释
+
+        /// <summary>
+        /// 兄弟姐妹
+        /// </summary>
         兄弟姐妹 = 7,
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.兄弟姐妹”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.其他”的 XML 注释
+
+        /// <summary>
+        /// 其他
+        /// </summary>
         其他 = 9
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“GuanXiEnum.其他”的 XML 注释
+    }
+
+    /// <summary>
+    /// 患者就诊卡当前状态
+    /// </summary>
+    public enum PatientCardStatusEnum
+    {
+        /// <summary>
+        /// 新建可用状态
+        /// </summary>
+        新建,
+
+        /// <summary>
+        /// 挂失不可用状态
+        /// </summary>
+        挂失,
+
+        /// <summary>
+        /// 补办可用状态
+        /// </summary>
+        补办,
+
+        /// <summary>
+        /// 换卡可用状态
+        /// </summary>
+        换卡
     }
 
 
@@ -372,8 +463,12 @@ namespace DAL
         /// <summary>
         /// 医保卡号
         /// </summary>
-        
         public string YbCardNo { get; set; }
+
+        /// <summary>
+        /// 患者就诊卡状态
+        /// </summary>
+        public PatientCardStatusEnum PatientCardStatus { get; set; }
 
         /// <summary>
         /// 所有的门诊挂号

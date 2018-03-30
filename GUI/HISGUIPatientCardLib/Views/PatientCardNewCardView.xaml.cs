@@ -68,7 +68,7 @@ namespace HISGUIPatientCardLib.Views
 
             CommContracts.Patient tempPatient = new CommContracts.Patient();
             tempPatient.PID = patientClient.getNewPID();
-            tempPatient.PatientCardNo = patientClient.getNewPID();
+            tempPatient.PatientCardNo = patientClient.getNewPatientCardNum();
 
             var vm = this.DataContext as HISGUIPatientCardVM;
             vm.CurrentPatient = tempPatient;
@@ -127,6 +127,9 @@ namespace HISGUIPatientCardLib.Views
 
             this.HYCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.HunYinEnum));
             this.HYCombo.SelectedIndex = 0;
+
+            this.PatientCardStatusCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PatientCardStatusEnum));
+            this.PatientCardStatusCombo.SelectedIndex = 0;
         }
 
 
@@ -139,7 +142,7 @@ namespace HISGUIPatientCardLib.Views
         {
             if (YBCombo.SelectedItem == null)
             {
-               // VisualStateManager.GoToState(this, "VisualState2", false);
+                // VisualStateManager.GoToState(this, "VisualState2", false);
                 return;
             }
 
@@ -147,11 +150,11 @@ namespace HISGUIPatientCardLib.Views
 
             if (current == CommContracts.FeeTypeEnum.自费)
             {
-               // VisualStateManager.GoToState(this, "VisualState2", false);
+                // VisualStateManager.GoToState(this, "VisualState2", false);
             }
             else if (current == CommContracts.FeeTypeEnum.城镇职工 || current == CommContracts.FeeTypeEnum.城乡居民)
             {
-               // VisualStateManager.GoToState(this, "VisualState3", false);
+                // VisualStateManager.GoToState(this, "VisualState3", false);
             }
         }
 
@@ -162,12 +165,12 @@ namespace HISGUIPatientCardLib.Views
         /// <param name="e"></param>
         private void ZJBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if(this.ZJCombo.SelectedItem == null)
+            if (this.ZJCombo.SelectedItem == null)
             {
                 return;
             }
 
-            if((CommContracts.ZhengJianEnum)this.ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证)
+            if ((CommContracts.ZhengJianEnum)this.ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证)
             {
                 GetDateFromIDCard(ZJNumBox.Text.Trim());
             }
@@ -217,7 +220,7 @@ namespace HISGUIPatientCardLib.Views
                 Error = "证件号不能为空";
                 bIsOK = false;
             }
-            else if((CommContracts.ZhengJianEnum)ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证 &&
+            else if ((CommContracts.ZhengJianEnum)ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证 &&
                 !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.ZhengJianNum))
             {
                 Error = "证件号不正确";
@@ -244,11 +247,11 @@ namespace HISGUIPatientCardLib.Views
                 return;
             }
 
-            if(bIsEdit)
+            if (bIsEdit)
             {
                 if (vm.UpdatePatientMsg(vm.CurrentPatient, ref strMsg))
                 {
-                    strMsg = "修改患者信息完成！";
+                    MessageBox.Show("修改患者信息完成！");
                     newPatientCard();
                 }
                 else
@@ -266,7 +269,7 @@ namespace HISGUIPatientCardLib.Views
 
                 if (vm.SavePatientCardManage(manage, ref strMsg))
                 {
-                    strMsg = "新建卡完成！";
+                    MessageBox.Show("新建卡完成！");
                     newPatientCard();
                 }
                 else
@@ -299,12 +302,54 @@ namespace HISGUIPatientCardLib.Views
 
         private void LostBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIPatientCardVM;
 
+            CommContracts.PatientCardManage manage = new CommContracts.PatientCardManage();
+            
+            vm.CurrentPatient.PatientCardStatus = CommContracts.PatientCardStatusEnum.挂失;
+            manage.Patient = vm.CurrentPatient;
+            manage.PatientID = vm.CurrentPatient.ID;
+            manage.CardNo = vm.CurrentPatient.PatientCardNo;
+            manage.CardManageEnum = CommContracts.CardManageEnum.挂失卡;
+            manage.UserID = vm.CurrentUser.ID;
+
+            string strMsg = "";
+            if (vm.SavePatientCardManage(manage, ref strMsg))
+            {
+                MessageBox.Show("挂失卡完成！");
+                newPatientCard();
+            }
+            else
+            {
+                MessageBox.Show(strMsg);
+            }
         }
 
         private void ReNewBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIPatientCardVM;
 
+            CommClient.Patient client = new CommClient.Patient();
+            vm.CurrentPatient.PatientCardNo = client.getNewPatientCardNum();
+            vm.CurrentPatient.PatientCardStatus = CommContracts.PatientCardStatusEnum.补办;
+
+            CommContracts.PatientCardManage manage = new CommContracts.PatientCardManage();
+            manage.Patient = vm.CurrentPatient;
+            manage.PatientID = vm.CurrentPatient.ID;
+            manage.CardNo = vm.CurrentPatient.PatientCardNo;
+            manage.CardManageEnum = CommContracts.CardManageEnum.补办卡;
+            manage.UserID = vm.CurrentUser.ID;
+
+            string strMsg = "";
+            if (vm.SavePatientCardManage(manage, ref strMsg))
+            {
+                MessageBox.Show("补办卡完成！");
+                newPatientCard();
+            }
+            else
+            {
+                MessageBox.Show(strMsg);
+            }
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
@@ -330,9 +375,18 @@ namespace HISGUIPatientCardLib.Views
                 GetDateFromIDCard(manage.Patient.ZhengJianNum);
             }
 
+            if(manage.Patient.PatientCardStatus == CommContracts.PatientCardStatusEnum.挂失)
+            {
+                this.EditBtn.IsEnabled = false;
+                this.LostBtn.IsEnabled = false;
+            }
+            else
+            {
+                this.LostBtn.IsEnabled = true;
+                this.EditBtn.IsEnabled = true;
+            }
+
             PatientMsgGrid.IsEnabled = false;
-            this.LostBtn.IsEnabled = true;
-            this.EditBtn.IsEnabled = true;
             this.ReNewBtn.IsEnabled = true;
             this.SaveBtn.IsEnabled = false;
         }

@@ -18,11 +18,11 @@ namespace BLL
                 var query = from t in ctx.PatientCardManages
                             where t.Patient.Name.StartsWith(strName) ||
                             t.User.Username.StartsWith(strName)
+                            orderby t.CurrentTime descending
                             select t;
 
                 var config = new MapperConfiguration(cfg =>
                 {
-                    //.ForMember(x => x.User, opt => opt.Ignore())
                     cfg.CreateMap<DAL.PatientCardManage, CommContracts.PatientCardManage>();
                 });
                 var mapper = config.CreateMapper();
@@ -41,42 +41,45 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                if(!string.IsNullOrEmpty(PatientCardManage.Patient.ZhengJianNum))
+                if(PatientCardManage.CardManageEnum == CommContracts.CardManageEnum.新建卡)
                 {
-                    var query = from u in ctx.Patients
-                                where u.ZhengJianNum == PatientCardManage.Patient.ZhengJianNum
-                                select u;
-                    if (query.Count() > 0)
+                    if (!string.IsNullOrEmpty(PatientCardManage.Patient.ZhengJianNum))
                     {
-                        ErrorMsg = "身份证号已存在";
-                        return false;
+                        var query = from u in ctx.Patients
+                                    where u.ZhengJianNum == PatientCardManage.Patient.ZhengJianNum
+                                    select u;
+                        if (query.Count() > 0)
+                        {
+                            ErrorMsg = "证件号已存在";
+                            return false;
+                        }
                     }
-                }
 
-                if(!string.IsNullOrEmpty(PatientCardManage.Patient.Tel))
-                {
-                    var query = from u in ctx.Patients
-                            where u.Tel == PatientCardManage.Patient.Tel
-                            select u;
-
-                    if (query.Count() > 0)
+                    if (!string.IsNullOrEmpty(PatientCardManage.Patient.Tel))
                     {
-                        ErrorMsg = "电话号已存在";
-                        return false;
+                        var query = from u in ctx.Patients
+                                    where u.Tel == PatientCardManage.Patient.Tel
+                                    select u;
+
+                        if (query.Count() > 0)
+                        {
+                            ErrorMsg = "电话号已存在";
+                            return false;
+                        }
                     }
-                }
-               
-                if(!string.IsNullOrEmpty(PatientCardManage.Patient.YbCardNo))
-                {
-                    var query = from u in ctx.Patients
-                                where u.YbCardNo == PatientCardManage.Patient.YbCardNo && 
-                                u.FeeTypeEnum == (DAL.FeeTypeEnum)PatientCardManage.Patient.FeeTypeEnum
-                                select u;
 
-                    if (query.Count() > 0)
+                    if (!string.IsNullOrEmpty(PatientCardManage.Patient.YbCardNo))
                     {
-                        ErrorMsg = "医保号已存在";
-                        return false;
+                        var query = from u in ctx.Patients
+                                    where u.YbCardNo == PatientCardManage.Patient.YbCardNo &&
+                                    u.FeeTypeEnum == (DAL.FeeTypeEnum)PatientCardManage.Patient.FeeTypeEnum
+                                    select u;
+
+                        if (query.Count() > 0)
+                        {
+                            ErrorMsg = "医保号已存在";
+                            return false;
+                        }
                     }
                 }
 
@@ -90,18 +93,28 @@ namespace BLL
 
                 DAL.PatientCardManage dalPatientCardManage = new DAL.PatientCardManage();
                 dalPatientCardManage = mapper2.Map<DAL.PatientCardManage>(PatientCardManage);
-
-
-                var config = new MapperConfiguration(cfg =>
+               
+                if(PatientCardManage.CardManageEnum == CommContracts.CardManageEnum.新建卡)
                 {
-                    cfg.CreateMap<CommContracts.Patient, DAL.Patient>();
-                });
-                var mapper = config.CreateMapper();
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<CommContracts.Patient, DAL.Patient>();
+                    });
+                    var mapper = config.CreateMapper();
 
 
-                DAL.Patient tempPatient = new DAL.Patient();
-                tempPatient = mapper.Map<DAL.Patient>(PatientCardManage.Patient);
-                dalPatientCardManage.Patient = tempPatient;
+                    DAL.Patient tempPatient = new DAL.Patient();
+                    tempPatient = mapper.Map<DAL.Patient>(PatientCardManage.Patient);
+
+                    dalPatientCardManage.Patient = tempPatient;
+                }
+                else if(PatientCardManage.CardManageEnum == CommContracts.CardManageEnum.挂失卡 ||
+                    PatientCardManage.CardManageEnum == CommContracts.CardManageEnum.补办卡)
+                {
+                    Patient myPatient = new Patient();
+                    if (!myPatient.UpdatePatient(PatientCardManage.Patient, ref ErrorMsg))
+                        return false;
+                }
 
                 ctx.PatientCardManages.Add(dalPatientCardManage);
                 try

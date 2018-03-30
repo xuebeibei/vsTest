@@ -22,7 +22,15 @@ namespace DAL
         /// <summary>
         /// 退还卡
         /// </summary>
-        eReturn
+        eReturn,
+        /// <summary>
+        /// 补办卡
+        /// </summary>
+        eReNew,
+        /// <summary>
+        /// 换卡
+        /// </summary>
+        eChange
     }
 
     /// <summary>

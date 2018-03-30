@@ -23,7 +23,16 @@ namespace CommContracts
         /// <summary>
         /// 退还卡
         /// </summary>
-        退还卡
+        退还卡,
+
+        /// <summary>
+        /// 补办
+        /// </summary>
+        补办卡,
+        /// <summary>
+        /// 换卡
+        /// </summary>
+        换卡
     }
 
     /// <summary>
