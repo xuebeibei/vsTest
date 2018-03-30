@@ -21,13 +21,11 @@
         </Grid.RowDefinitions>
         <ToolBar Grid.Row="0" >
             <Button x:Name="NewBtn" Margin="5" Content="新办卡" ToolTip="办理" Click="NewBtn_Click"></Button>
-            <Button x:Name="ReadBtn" Margin="5" Content="读卡" ToolTip="办理" Click="ReadBtn_Click"></Button>
             <Button x:Name="LostBtn" Margin="5" Content="挂失卡" ToolTip="挂失" Click="LostBtn_Click"></Button>
             <Button x:Name="ReNewBtn" Margin="5" Content="补办卡" ToolTip="补办" Click="ReNewBtn_Click"></Button>
             <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="SaveBtn_Click"></Button>
             <Button x:Name="EditBtn" Margin="5" Content="修改" ToolTip="修改患者信息" Click="EditBtn_Click"></Button>
             <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询患者信息" Click="FindBtn_Click"></Button>
-            <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
         </ToolBar>
         <Grid Grid.Row="1" x:Name="PatientMsgGrid">
             <Grid.RowDefinitions>

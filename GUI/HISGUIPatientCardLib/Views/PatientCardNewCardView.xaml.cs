@@ -73,10 +73,15 @@ namespace HISGUIPatientCardLib.Views
             var vm = this.DataContext as HISGUIPatientCardVM;
             vm.CurrentPatient = tempPatient;
 
+
             this.PatientMsgGrid.IsEnabled = true;
             this.bIsEdit = false;
+            this.EditBtn.IsEnabled = false;
+            this.LostBtn.IsEnabled = false;
+            this.ReNewBtn.IsEnabled = false;
 
             this.txt_Name.Focus();
+            this.listView1.SelectedItems.Clear();
         }
 
         private bool LostPatientCard()
@@ -93,11 +98,6 @@ namespace HISGUIPatientCardLib.Views
         {
             CommClient.PatientCardManage manage = new CommClient.PatientCardManage();
             return manage.GetAllPatientCardManage(strName);
-        }
-
-        private void FindPatient()
-        {
-           
         }
 
         /// <summary>
@@ -296,11 +296,6 @@ namespace HISGUIPatientCardLib.Views
             this.listView1.ItemsSource = list;
         }
 
-        private void ClearBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
             newPatientCard();
@@ -312,11 +307,6 @@ namespace HISGUIPatientCardLib.Views
         }
 
         private void ReNewBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ReadBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }
