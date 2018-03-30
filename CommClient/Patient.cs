@@ -36,9 +36,9 @@ namespace CommClient
             return client.GetAllPatient(strName);
         }
 
-        public bool UpdatePatient(CommContracts.Patient patient)
+        public bool UpdatePatient(CommContracts.Patient patient, ref string ErrorMsg)
         {
-            return client.UpdatePatient(patient);
+            return client.UpdatePatient(patient, ref ErrorMsg);
         }
 
         public bool SavePatient(CommContracts.Patient patient)

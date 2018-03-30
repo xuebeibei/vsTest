@@ -62,7 +62,7 @@ namespace CommServer
             return temp.Logout(user);
         }
 
-        
+
         public List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName)
         {
             BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
@@ -103,7 +103,7 @@ namespace CommServer
         public bool SavePatientCardManage(CommContracts.PatientCardManage PatientCardManage, ref string ErrorMsg)
         {
             BLL.PatientCardManage temp = new BLL.PatientCardManage();
-            return temp.SavePatientCardManage(PatientCardManage,ref ErrorMsg);
+            return temp.SavePatientCardManage(PatientCardManage, ref ErrorMsg);
         }
 
         public bool DeletePatientCardManage(int PatientCardManageID)
@@ -960,10 +960,10 @@ namespace CommServer
             return temp.GetAllPatient(strName);
         }
 
-        public bool UpdatePatient(CommContracts.Patient patient)
+        public bool UpdatePatient(CommContracts.Patient patient, ref string ErrorMsg)
         {
             BLL.Patient temp = new BLL.Patient();
-            return temp.UpdatePatient(patient);
+            return temp.UpdatePatient(patient, ref ErrorMsg);
         }
 
         public bool SavePatient(CommContracts.Patient patient)

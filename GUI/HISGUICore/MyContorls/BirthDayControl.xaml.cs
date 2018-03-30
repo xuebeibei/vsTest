@@ -48,37 +48,46 @@ namespace HISGUICore.MyContorls
 
         private void BirthDayControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //添加item
-
-            for (int i = 0; i <= 150; i++)
+            for (int i = 0; i <= 130; i++)
             {
                 ComboBoxItem item = new ComboBoxItem();
                 item.Content = DateTime.Now.Year - i;
                 YearCombo.Items.Add(item);
             }
-
-            for (int i = 1; i <= 12; i++)
-            {
-                ComboBoxItem item = new ComboBoxItem();
-                item.Content = i;
-                MonthCombo.Items.Add(item);
-            }
         }
 
         private void YearCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDayCombo();
+            var year = this.YearCombo.SelectedValue;
+            if (year == null)
+            {
+                return;
+            }
+            else
+            {
+                int nYear = int.Parse(year.ToString().Substring(year.ToString().IndexOf(':') + 1, year.ToString().Length - year.ToString().IndexOf(':') - 1));
+
+                int nMonthNum = 12;
+                if (nYear == DateTime.Now.Year)
+                {
+                    MonthCombo.Items.Clear();
+                    nMonthNum = DateTime.Now.Month;
+                }
+
+                for (int i = 1; i <= nMonthNum; i++)
+                {
+                    ComboBoxItem item = new ComboBoxItem();
+                    item.Content = i;
+                    MonthCombo.Items.Add(item);
+                }
+            }
         }
 
         private void MonthCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            UpdateDayCombo();
-        }
-
-        private void UpdateDayCombo()
-        {
             var year = this.YearCombo.SelectedValue;
             var month = this.MonthCombo.SelectedValue;
+
             if (month != null && year != null)
             {
                 int nMonth = int.Parse(month.ToString().Substring(month.ToString().IndexOf(':') + 1, month.ToString().Length - month.ToString().IndexOf(':') - 1));
@@ -87,25 +96,33 @@ namespace HISGUICore.MyContorls
                 DayCombo.Items.Clear();
 
                 int nDayNum = 0;
-                if (nMonth == 2)
-                {
-                    if ((nYear % 4 == 0 && nYear % 100 != 0) || nYear % 400 == 0)
-                    {
-                        nDayNum = 29;
-                    }
-                    else
-                    {
-                        nDayNum = 28;
-                    }
 
-                }
-                else if (nMonth == 1 || nMonth == 3 || nMonth == 5 || nMonth == 7 || nMonth == 8 || nMonth == 10 || nMonth == 12)
+                if (nYear == DateTime.Now.Year && nMonth == DateTime.Now.Month)
                 {
-                    nDayNum = 31;
+                    nDayNum = DateTime.Now.Day;
                 }
                 else
                 {
-                    nDayNum = 30;
+                    if (nMonth == 2)
+                    {
+                        if ((nYear % 4 == 0 && nYear % 100 != 0) || nYear % 400 == 0)
+                        {
+                            nDayNum = 29;
+                        }
+                        else
+                        {
+                            nDayNum = 28;
+                        }
+
+                    }
+                    else if (nMonth == 1 || nMonth == 3 || nMonth == 5 || nMonth == 7 || nMonth == 8 || nMonth == 10 || nMonth == 12)
+                    {
+                        nDayNum = 31;
+                    }
+                    else
+                    {
+                        nDayNum = 30;
+                    }
                 }
 
                 for (int i = 1; i <= nDayNum; i++)

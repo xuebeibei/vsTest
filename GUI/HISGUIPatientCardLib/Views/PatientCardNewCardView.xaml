@@ -25,11 +25,11 @@
             <Button x:Name="LostBtn" Margin="5" Content="挂失卡" ToolTip="挂失" Click="LostBtn_Click"></Button>
             <Button x:Name="ReNewBtn" Margin="5" Content="补办卡" ToolTip="补办" Click="ReNewBtn_Click"></Button>
             <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="SaveBtn_Click"></Button>
-            <Button x:Name="EditBtn" Margin="5" Content="修改" ToolTip="修改患者信息" Click="NewBtn_Click"></Button>
+            <Button x:Name="EditBtn" Margin="5" Content="修改" ToolTip="修改患者信息" Click="EditBtn_Click"></Button>
             <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询患者信息" Click="FindBtn_Click"></Button>
             <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>
         </ToolBar>
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" x:Name="PatientMsgGrid">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -54,18 +54,18 @@
             <Label Margin="5" Grid.Row="0" Grid.Column="2">性别：</Label>
             <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="0" Grid.Column="3" Text="{Binding CurrentPatient.Gender}"/>
 
-            <Label Margin="5" Grid.Row="0" Grid.Column="4">医保类型：</Label>
-            <ComboBox x:Name="YBCombo" Margin="5" Grid.Row="0" Grid.Column="5" SelectionChanged="ComboBox_SelectionChanged" Text="{Binding CurrentPatient.YbEnum}"/>
+            <Label Margin="5" Grid.Row="0" Grid.Column="4">费用类型：</Label>
+            <ComboBox x:Name="YBCombo" Margin="5" Grid.Row="0" Grid.Column="5" SelectionChanged="ComboBox_SelectionChanged" SelectedItem="{Binding CurrentPatient.FeeTypeEnum}"/>
 
             <Label Margin="5" Grid.Row="0" Grid.Column="6">医保卡号：</Label>
             <TextBox x:Name="YbNumTextBox" Margin="5" Grid.Row="0" Grid.Column="7" Text="{Binding CurrentPatient.YbCardNo}" MaxLength="18"></TextBox>
 
 
             <Label Margin="5" Grid.Row="1">证件类型：</Label>
-            <ComboBox x:Name="ZJCombo" Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
+            <ComboBox x:Name="ZJCombo" Margin="5" Grid.Row="1" Grid.Column="1" SelectedItem="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
 
             <Label Margin="5" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2">证件号：</Label>
-            <TextBox x:Name="ZJNumBox" Margin="5" Grid.Row="1" Grid.Column="3" Text="{Binding CurrentPatient.ZhengJianNum}" MaxLength="18"/>
+            <TextBox x:Name="ZJNumBox" Margin="5" Grid.Row="1" Grid.Column="3" Text="{Binding CurrentPatient.ZhengJianNum}" MaxLength="18" LostFocus="ZJBox_LostFocus"/>
 
             <Label Margin="5" Grid.Row="1" Grid.Column="4">出生日期：</Label>
             <Controls:BirthDayControl x:Name="myBirthControl" Margin="5" Grid.Row="1" Grid.Column="5" />
@@ -74,19 +74,18 @@
             <TextBox x:Name="AgeBox" Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False"/>
 
             <Label Margin="0,5,10,5" Grid.Row="2">婚姻状况：</Label>
-            <ComboBox x:Name="HYCombo" Margin="5" Grid.Row="2" Grid.Column="1" Text="{Binding CurrentPatient.HunYinEnum}"/>
+            <ComboBox x:Name="HYCombo" Margin="5" Grid.Row="2" Grid.Column="1" SelectedItem="{Binding CurrentPatient.HunYin}"/>
 
             <Label Margin="5" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2">国籍：</Label>
-            <ComboBox x:Name="CountryCombo" Margin="5" Grid.Row="2" Grid.Column="3" Text="{Binding CurrentPatient.HunYinEnum}"/>
-
+            <ComboBox x:Name="CountryCombo" Margin="5" Grid.Row="2" Grid.Column="3" Text="{Binding CurrentPatient.Country}"/>
             <Label Margin="5" Grid.Row="2" Grid.Column="4">民族：</Label>
-            <ComboBox x:Name="VolkCombo" Margin="5" Grid.Row="2" Grid.Column="5" Text="{Binding CurrentPatient.Volk}"/>
+            <ComboBox x:Name="VolkCombo" Margin="5" Grid.Row="2" Grid.Column="5" SelectedItem="{Binding CurrentPatient.Volk}"/>
 
             <Label Margin="5" Grid.Row="2" Grid.Column="6">职业：</Label>
-            <ComboBox x:Name="JobCombo" Margin="5" Grid.Row="2" Grid.Column="7" Text="{Binding CurrentPatient.PatientJob}"/>
+            <ComboBox x:Name="JobCombo" Margin="5" Grid.Row="2" Grid.Column="7" SelectedItem="{Binding CurrentPatient.PatientJob}"/>
 
             <Label Margin="5" Grid.Row="3" Grid.Column="0">工作单位：</Label>
-            <TextBox x:Name="JobUnitBox" Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.PatientJobUnit}" TextWrapping="Wrap" MaxLength="30"></TextBox>
+            <TextBox x:Name="JobUnitBox" Margin="5" Grid.Row="3" Grid.Column="1" Text="{Binding CurrentPatient.JobUnit}" TextWrapping="Wrap" MaxLength="30"></TextBox>
 
             <Label Margin="5" Grid.Row="3" Grid.Column="2">单位电话：</Label>
             <TextBox x:Name="JobUnitTelBox" Margin="5" Grid.Row="3" Grid.Column="3" Text="{Binding CurrentPatient.JobUnitTel}" MaxLength="12"/>
@@ -103,28 +102,28 @@
             <TextBox x:Name="ConnectNameBox" Margin="5" Grid.Row="4" Grid.Column="1" Text="{Binding CurrentPatient.ConnectName}"></TextBox>
 
             <Label Margin="5" Grid.Row="4" Grid.Column="2">关系：</Label>
-            <ComboBox x:Name="ConnectGX" Margin="5" Grid.Row="4" Grid.Column="3" Text="{Binding CurrentPatient.ConnectGuanXi}"/>
+            <ComboBox x:Name="ConnectGX" Margin="5" Grid.Row="4" Grid.Column="3" SelectedItem="{Binding CurrentPatient.ConnectGuanXi}"/>
 
             <Label Margin="5" Grid.Row="4" Grid.Column="4">联系电话：</Label>
             <TextBox x:Name="ConnectTel" Margin="5" Grid.Row="4" Grid.Column="5" Text="{Binding CurrentPatient.ConnectTel}"/>
 
-            <Label Margin="5" Grid.Row="5" Grid.Column="0">卡号：</Label>
-            <TextBox x:Name="CardNumBox" Margin="5" Grid.Row="5" Grid.Column="1" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardEnum}"></TextBox>
-
             <Label Margin="5" Grid.Row="4" Grid.Column="6">卡类型：</Label>
-            <ComboBox x:Name="CardTypeCombo" Margin="5" Grid.Row="4" Grid.Column="7" Text="{Binding CurrentPatient.PatientCardNo}"/>
+            <ComboBox x:Name="CardTypeCombo" Margin="5" Grid.Row="4" Grid.Column="7" SelectedItem="{Binding CurrentPatient.PatientCardEnum}"/>
+
+            <Label Margin="5" Grid.Row="5" Grid.Column="0">卡号：</Label>
+            <TextBox x:Name="CardNumBox" Margin="5" Grid.Row="5" Grid.Column="1" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardNo}"></TextBox>
+
         </Grid>
-        <ListView x:Name="listView1" Grid.Row="2" Margin="5">
+        <ListView x:Name="listView1" Grid.Row="2" Margin="5" SelectionChanged="listView1_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="姓名" Width="100" />
-                    <GridViewColumn Header="性别" Width="80"/>
-                    <GridViewColumn Header="卡类型" Width="80" />
-                    <GridViewColumn Header="卡号" Width="80" />
-                    <GridViewColumn Header="医保类型" Width="100" />
-                    <GridViewColumn Header="证件类型" Width="80" />
-                    <GridViewColumn Header="证件号" Width="150" />
-                    <GridViewColumn Header="状态" Width="150" />
+                    <GridViewColumn Header="姓名" Width="100" DisplayMemberBinding="{Binding Path=Patient.Name}"/>
+                    <GridViewColumn Header="性别" Width="80" DisplayMemberBinding="{Binding Path=Patient.Gender}"/>
+                    <GridViewColumn Header="证件类型" Width="80" DisplayMemberBinding="{Binding Path=Patient.ZhengJianEnum}"/>
+                    <GridViewColumn Header="证件号" Width="150" DisplayMemberBinding="{Binding Path=Patient.ZhengJianNum}"/>
+                    <GridViewColumn Header="卡类型" Width="80" DisplayMemberBinding="{Binding Path=Patient.PatientCardEnum}"/>
+                    <GridViewColumn Header="卡号" Width="80" DisplayMemberBinding="{Binding Path=CardNo}"/>
+                    <GridViewColumn Header="状态" Width="150" DisplayMemberBinding="{Binding Path=CardManageEnum}"/>
                 </GridView>
             </ListView.View>
         </ListView>

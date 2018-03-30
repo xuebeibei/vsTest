@@ -42,6 +42,15 @@ namespace HISGUIPatientCardLib.ViewModels
             CommClient.PatientCardManage manage = new CommClient.PatientCardManage();
             return manage.SavePatientCardManage(patientCardManage, ref ErrorMsg);
         }
+        
+        /// <summary>
+        /// 更新患者登记信息
+        /// </summary>
+        public bool UpdatePatientMsg(CommContracts.Patient patient, ref string ErrorMsg)
+        {
+            CommClient.Patient client = new CommClient.Patient();
+            return client.UpdatePatient(patient, ref ErrorMsg);
+        }
 
         // 当前住院患者的住院号
         #region CurrentPatient

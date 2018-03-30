@@ -267,7 +267,7 @@ namespace BLL
             return true;
         }
 
-        public bool UpdatePatient(CommContracts.Patient Patient)
+        public bool UpdatePatient(CommContracts.Patient Patient, ref string ErrorMsg)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -275,12 +275,30 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Name = Patient.Name;
+                    temp.PID = Patient.Name;
+                    temp.PatientCardEnum = (DAL.PatientCardEnum)Patient.PatientCardEnum;
+                    temp.PatientCardNo = Patient.Name;
                     temp.Gender = (DAL.GenderEnum)Patient.Gender;
                     temp.BirthDay = Patient.BirthDay;
+                    temp.ZhengJianEnum = (DAL.ZhengJianEnum)Patient.ZhengJianEnum;
                     temp.ZhengJianNum = Patient.ZhengJianNum;
+                    temp.HunYin = (DAL.HunYinEnum)Patient.HunYin;
+                    temp.Country = (DAL.CountryEnum)Patient.Country;
+                    temp.PatientJob = (DAL.PatientJobEnum)Patient.PatientJob;
+                    temp.JobUnit = Patient.JobUnit;
+                    temp.JobUnitTel = Patient.JobUnitTel;
+                    temp.HomeAddress = Patient.HomeAddress;
+                    temp.HomeTel = Patient.HomeTel;
+                    temp.ConnectName = Patient.ConnectName;
+                    temp.ConnectTel = Patient.ConnectTel;
+                    temp.ConnectGuanXi = (DAL.GuanXiEnum)Patient.ConnectGuanXi;
                     temp.Volk = (DAL.VolkEnum)Patient.Volk;
                     temp.Tel = Patient.Tel;
                     temp.JiGuan_Sheng = Patient.JiGuan_Sheng;
+                    temp.JiGuan_Shi = Patient.JiGuan_Shi;
+                    temp.JiGuan_Xian = Patient.JiGuan_Xian;
+                    temp.FeeTypeEnum = (DAL.FeeTypeEnum)Patient.FeeTypeEnum;
+                    temp.YbCardNo = Patient.YbCardNo;
                 }
                 else
                 {
@@ -293,6 +311,7 @@ namespace BLL
                 }
                 catch (Exception ex)
                 {
+                    ErrorMsg = ex.Message;
                     return false;
                 }
             }

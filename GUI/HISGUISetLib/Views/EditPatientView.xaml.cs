@@ -67,7 +67,8 @@ namespace HISGUISetLib.Views
 
 
                 CommClient.Patient myd = new CommClient.Patient();
-                if (myd.UpdatePatient(Patient))
+                string error = "";
+                if (myd.UpdatePatient(Patient ,ref error))
                 {
                     (this.Parent as Window).DialogResult = true;
                     (this.Parent as Window).Close();

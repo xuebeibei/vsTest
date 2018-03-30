@@ -168,6 +168,9 @@ namespace HISGUICore
 
         public static bool IsIDCardNumOk(string strIDCardNum)
         {
+            if(string.IsNullOrEmpty(strIDCardNum))
+                return false;
+
             bool bIsIDCardOK = true;
 
             if (strIDCardNum.Length == 18)
@@ -209,6 +212,35 @@ namespace HISGUICore
             }
 
             sex = int.Parse(strSex);
+        }
+
+        public static string GetAge(int year, int month, int day)
+        {
+            DateTime CurrentDate = DateTime.Now;
+            DateTime BirthDate = new DateTime(year, month, day);
+
+            int days = ((TimeSpan)(CurrentDate - BirthDate)).Days;
+
+
+            int iyears = days / 365;
+
+
+            string result = String.Format("{0}周岁", iyears);
+
+
+            if (iyears <= 0)
+            {
+                int month1 = days / 31;
+                int adays = days % 31;
+
+
+                if (month1 > 0)
+                    result = String.Format("{0}月{1}天", month1, adays);
+                else
+                    result = String.Format("{0}天", adays);
+            }
+
+            return result;
         }
     } 
 }

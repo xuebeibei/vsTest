@@ -91,15 +91,15 @@ namespace HISGUIPatientCardLib.Views
             List<CommContracts.PatientCardManage> list = manage.GetAllPatientCardManage();
 
             var queryAdd = from u in list
-                           where u.CardManageEnum == CommContracts.CardManageEnum.eNew
+                           where u.CardManageEnum == CommContracts.CardManageEnum.新建卡
                            select u;
 
             var queryReturn = from u in list
-                              where u.CardManageEnum == CommContracts.CardManageEnum.eReturn
+                              where u.CardManageEnum == CommContracts.CardManageEnum.退还卡
                               select u;
 
             var queryLost = from u in list
-                            where u.CardManageEnum == CommContracts.CardManageEnum.eLost
+                            where u.CardManageEnum == CommContracts.CardManageEnum.挂失卡
                             select u;
 
 

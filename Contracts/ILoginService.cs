@@ -452,7 +452,7 @@ namespace CommContracts
         [OperationContract]
         List<CommContracts.Patient> GetAllPatient(string strName);
         [OperationContract]
-        bool UpdatePatient(CommContracts.Patient Patient);
+        bool UpdatePatient(CommContracts.Patient Patient, ref string ErrorMsg);
         [OperationContract]
         bool SavePatient(CommContracts.Patient Patient);
         [OperationContract]

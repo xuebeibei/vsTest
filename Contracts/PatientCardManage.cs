@@ -15,15 +15,15 @@ namespace CommContracts
         /// <summary>
         /// 新办卡
         /// </summary>
-        eNew,
+        新建卡,
         /// <summary>
         /// 挂失卡
         /// </summary>
-        eLost,
+        挂失卡,
         /// <summary>
         /// 退还卡
         /// </summary>
-        eReturn
+        退还卡
     }
 
     /// <summary>

@@ -86,6 +86,21 @@ namespace CommContracts
     [DataContract]
     public class Patient
     {
+        public Patient()
+        {
+            Name = "";
+            PatientCardEnum = PatientCardEnum.普通卡;
+            Gender = GenderEnum.男;
+            ZhengJianEnum = ZhengJianEnum.身份证;
+            Country = CountryEnum.中国;
+            Volk = VolkEnum.未填;
+            HunYin = HunYinEnum.未填;
+            PatientJob = PatientJobEnum.未填;
+            ConnectGuanXi = GuanXiEnum.未填;
+
+            FeeTypeEnum = FeeTypeEnum.自费;
+        }
+
         /// <summary>
         /// 患者ID
         /// </summary>
