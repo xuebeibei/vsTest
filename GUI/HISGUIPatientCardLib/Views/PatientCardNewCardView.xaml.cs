@@ -81,15 +81,11 @@ namespace HISGUIPatientCardLib.Views
             this.ReNewBtn.IsEnabled = false;
 
             this.txt_Name.Focus();
-            this.listView1.SelectedItems.Clear();
+            this.ManageCardRecordsList.SelectedItems.Clear();
+            this.ManageCardRecordsList.ItemsSource = null;
         }
 
         private bool LostPatientCard()
-        {
-            return false;
-        }
-
-        private bool UpdatePatientMsg()
         {
             return false;
         }
@@ -134,17 +130,16 @@ namespace HISGUIPatientCardLib.Views
         }
 
 
-
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            updateYbType();
+            //updateYbType();
         }
 
         private void updateYbType()
         {
             if (YBCombo.SelectedItem == null)
             {
-                VisualStateManager.GoToState(this, "VisualState2", false);
+               // VisualStateManager.GoToState(this, "VisualState2", false);
                 return;
             }
 
@@ -152,11 +147,11 @@ namespace HISGUIPatientCardLib.Views
 
             if (current == CommContracts.FeeTypeEnum.自费)
             {
-                VisualStateManager.GoToState(this, "VisualState2", false);
+               // VisualStateManager.GoToState(this, "VisualState2", false);
             }
             else if (current == CommContracts.FeeTypeEnum.城镇职工 || current == CommContracts.FeeTypeEnum.城乡居民)
             {
-                VisualStateManager.GoToState(this, "VisualState3", false);
+               // VisualStateManager.GoToState(this, "VisualState3", false);
             }
         }
 
@@ -222,7 +217,8 @@ namespace HISGUIPatientCardLib.Views
                 Error = "证件号不能为空";
                 bIsOK = false;
             }
-            else if((CommContracts.ZhengJianEnum)ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证 && !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.ZhengJianNum))
+            else if((CommContracts.ZhengJianEnum)ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证 &&
+                !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.ZhengJianNum))
             {
                 Error = "证件号不正确";
                 bIsOK = false;
@@ -293,7 +289,7 @@ namespace HISGUIPatientCardLib.Views
                 return;
 
             List<CommContracts.PatientCardManage> list = GetAllPatientCardRecords(PM);
-            this.listView1.ItemsSource = list;
+            this.ManageCardRecordsList.ItemsSource = list;
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
@@ -311,10 +307,16 @@ namespace HISGUIPatientCardLib.Views
 
         }
 
-        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
         {
-            var currentItem = this.listView1.SelectedItem;
+            PatientMsgGrid.IsEnabled = true;
+            this.SaveBtn.IsEnabled = true;
+            bIsEdit = true;
+        }
 
+        private void ManageCardRecordsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var currentItem = this.ManageCardRecordsList.SelectedItem;
             if (currentItem == null)
                 return;
 
@@ -323,18 +325,16 @@ namespace HISGUIPatientCardLib.Views
             var vm = this.DataContext as HISGUIPatientCardVM;
 
             vm.CurrentPatient = manage.Patient;
-            if(manage.Patient.ZhengJianEnum == CommContracts.ZhengJianEnum.身份证)
+            if (manage.Patient.ZhengJianEnum == CommContracts.ZhengJianEnum.身份证)
             {
                 GetDateFromIDCard(manage.Patient.ZhengJianNum);
             }
 
             PatientMsgGrid.IsEnabled = false;
-        }
-
-        private void EditBtn_Click(object sender, RoutedEventArgs e)
-        {
-            PatientMsgGrid.IsEnabled = true;
-            bIsEdit = true;
+            this.LostBtn.IsEnabled = true;
+            this.EditBtn.IsEnabled = true;
+            this.ReNewBtn.IsEnabled = true;
+            this.SaveBtn.IsEnabled = false;
         }
     }
 }
