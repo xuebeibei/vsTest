@@ -22,6 +22,7 @@ using HISGUIPatientCardLib.ViewModels;
 using System.Data;
 using Newtonsoft.Json;
 using System.IO;
+using Microsoft.VisualBasic;
 
 namespace HISGUIPatientCardLib.Views
 {
@@ -47,13 +48,27 @@ namespace HISGUIPatientCardLib.Views
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
+            String strPatientCardNum = Interaction.InputBox("请输入就诊卡卡号", "读卡", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
+                return;
+
+
             var vm = this.DataContext as HISGUIPatientCardVM;
 
             CommClient.Patient patientClient = new CommClient.Patient();
             CommContracts.Patient patient = new CommContracts.Patient();
-            patient = patientClient.ReadCurrentPatient(1);
 
-            vm.CurrentPatient = patient;
+            string ErrorMsg = "";
+            patient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+
+            if(patient == null)
+            {
+                MessageBox.Show(ErrorMsg);
+            }
+            else
+            {
+                vm.CurrentPatient = patient;
+            }
         }
 
         private void FindCardBtn_Click(object sender, RoutedEventArgs e)

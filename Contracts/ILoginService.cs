@@ -449,6 +449,10 @@ namespace CommContracts
 
         [OperationContract]
         CommContracts.Patient ReadCurrentPatient(int PatientID);
+
+        [OperationContract]
+        CommContracts.Patient ReadCurrentPatientByPatientCardNum(string strPatientCardNum, ref string ErrorMsg);
+
         [OperationContract]
         decimal GetCurrentPatientBalance(int PatientID);
 

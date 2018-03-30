@@ -31,6 +31,12 @@ namespace CommClient
             return client.ReadCurrentPatient(PatientID);
         }
 
+        public CommContracts.Patient ReadCurrentPatientByPatientCardNum(string strPatientCardNum, ref string ErrorMsg)
+        {
+            return client.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+        }
+
+
         public decimal GetCurrentPatientBalance(int PatientID)
         {
             return client.GetCurrentPatientBalance(PatientID);

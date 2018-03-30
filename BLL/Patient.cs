@@ -113,6 +113,51 @@ namespace BLL
             }
         }
 
+        public CommContracts.Patient ReadCurrentPatientByPatientCardNum(string strPatientCardNum, ref string ErrorMsg)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                CommContracts.Patient patient = new CommContracts.Patient();
+                try
+                {
+                    var query = from p in ctx.Patients
+                                where p.PatientCardNo == strPatientCardNum
+                                select p;
+                    if (query.Count() == 1)
+                    {
+                        var DALpatient = query.First();
+
+                        var config = new MapperConfiguration(cfg =>
+                        {
+                            cfg.CreateMap<DAL.Patient, CommContracts.Patient>();
+                        });
+                        var mapper = config.CreateMapper();
+
+                        patient = mapper.Map<CommContracts.Patient>(DALpatient);
+
+                        ErrorMsg = "";
+                    }
+                    else if(query.Count() < 1)
+                    {
+                        ErrorMsg = "未找到";
+                        return null;
+                    }
+                    else if(query.Count()>1)
+                    {
+                        ErrorMsg = "找到多个";
+                        return null;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    ErrorMsg = ex.Message;
+                    return null;
+                }
+                
+                return patient;
+            }
+        }
+
         public decimal GetCurrentPatientBalance(int PatientID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())

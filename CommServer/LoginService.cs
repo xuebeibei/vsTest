@@ -884,6 +884,12 @@ namespace CommServer
             return temp.ReadCurrentPatient(PatientID);
         }
 
+        public CommContracts.Patient ReadCurrentPatientByPatientCardNum(string strPatientCardNum, ref string ErrorMsg)
+        {
+            BLL.Patient temp = new BLL.Patient();
+            return temp.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+        }
+
         public decimal GetCurrentPatientBalance(int PatientID)
         {
             BLL.Patient temp = new BLL.Patient();

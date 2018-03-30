@@ -286,12 +286,12 @@ namespace HISGUIPatientCardLib.Views
         /// <param name="e"></param>
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
-            String PM = Interaction.InputBox("请输入带查找姓名", "查找", "", 100, 100);
+            String str = Interaction.InputBox("请输入待查找姓名", "查找", "", 100, 100);
 
-            if (string.IsNullOrEmpty(PM))
+            if (string.IsNullOrEmpty(str))
                 return;
 
-            List<CommContracts.PatientCardManage> list = GetAllPatientCardRecords(PM);
+            List<CommContracts.PatientCardManage> list = GetAllPatientCardRecords(str);
             this.ManageCardRecordsList.ItemsSource = list;
         }
 
