@@ -457,7 +457,6 @@ namespace DAL
         /// <summary>
         /// 费别
         /// </summary>
-        
         public FeeTypeEnum FeeTypeEnum { get; set; }
 
         /// <summary>
@@ -469,6 +468,12 @@ namespace DAL
         /// 患者就诊卡状态
         /// </summary>
         public PatientCardStatusEnum PatientCardStatus { get; set; }
+
+        /// <summary>
+        /// 患者就诊卡余额
+        /// </summary>
+        [DecimalPrecision(18, 2)]
+        public decimal PatientCardBalance { get; set; }
 
         /// <summary>
         /// 所有的门诊挂号

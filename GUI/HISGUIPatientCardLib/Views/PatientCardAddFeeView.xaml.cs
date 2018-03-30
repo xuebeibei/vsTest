@@ -68,7 +68,6 @@ namespace HISGUIPatientCardLib.Views
             if (string.IsNullOrEmpty(strPatientCardNum))
                 return;
 
-
             var vm = this.DataContext as HISGUIPatientCardVM;
 
             CommClient.Patient patientClient = new CommClient.Patient();
@@ -84,6 +83,8 @@ namespace HISGUIPatientCardLib.Views
             else
             {
                 vm.CurrentPatient = patient;
+                string strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
+                this.AgeBox.Text = strAge;
             }
         }
 

@@ -290,5 +290,11 @@ namespace CommContracts
         [DataMember]
         public PatientCardStatusEnum PatientCardStatus { get; set; }
 
+        /// <summary>
+        /// 患者就诊卡余额
+        /// </summary>
+        [DataMember]
+        public decimal PatientCardBalance { get; set; }
+
     }
 }
