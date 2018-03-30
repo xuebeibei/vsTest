@@ -174,31 +174,6 @@ namespace HISGUIPatientCardLib.Views
 
             if((CommContracts.ZhengJianEnum)this.ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证)
             {
-                //string strIDCardNum = ZJNumBox.Text.Trim();
-
-                //bool bIsIDCardOK = IDCardHellper.IsIDCardNumOk(strIDCardNum);
-
-                //if (!bIsIDCardOK)
-                //{
-                //    this.ZJNumBox.BorderBrush = new SolidColorBrush(Colors.Red);
-                //}
-                //else
-                //{
-                //    int year = 0, month = 0, day = 0, sex = 0;
-                //    IDCardHellper.GetBirthAndSexFromIDCard(strIDCardNum, ref year, ref month, ref day, ref sex);
-
-                //    this.myBirthControl.SetValue(year, month, day);
-
-                //    if (sex % 2 == 0)
-                //    {
-                //        this.GenderCombo.SelectedItem = CommContracts.GenderEnum.女;
-                //    }
-                //    else
-                //    {
-                //        this.GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
-                //    }
-                //this.AgeBox.Text = IDCardHellper.GetAge(year, month, day);
-                //}
                 GetDateFromIDCard(ZJNumBox.Text.Trim());
             }
         }
@@ -207,11 +182,7 @@ namespace HISGUIPatientCardLib.Views
         {
             bool bIsIDCardOK = IDCardHellper.IsIDCardNumOk(strIDCardNum);
 
-            if (!bIsIDCardOK)
-            {
-                this.ZJNumBox.BorderBrush = new SolidColorBrush(Colors.Red);
-            }
-            else
+            if (bIsIDCardOK)
             {
                 int year = 0, month = 0, day = 0, sex = 0;
                 IDCardHellper.GetBirthAndSexFromIDCard(strIDCardNum, ref year, ref month, ref day, ref sex);
@@ -234,29 +205,27 @@ namespace HISGUIPatientCardLib.Views
         /// 保存前对数据的检查
         /// </summary>
         /// <returns></returns>
-        private bool check()
+        private bool check(ref string Error)
         {
+            Error = "";
             var vm = this.DataContext as HISGUIPatientCardVM;
 
             bool bIsOK = true;
             if (string.IsNullOrEmpty(vm.CurrentPatient.Name))
             {
+                Error = "姓名不能为空";
                 bIsOK = false;
-                this.txt_Name.BorderBrush = new SolidColorBrush(Colors.Red);
-            }
-            else
-            {
-                this.txt_Name.BorderBrush = new SolidColorBrush(Colors.LightGray);
             }
 
-            if (string.IsNullOrEmpty(vm.CurrentPatient.ZhengJianNum) || !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.ZhengJianNum))
+            if (string.IsNullOrEmpty(vm.CurrentPatient.ZhengJianNum))
             {
+                Error = "证件号不能为空";
                 bIsOK = false;
-                this.ZJNumBox.BorderBrush = new SolidColorBrush(Colors.Red);
             }
-            else
+            else if((CommContracts.ZhengJianEnum)ZJCombo.SelectedItem == CommContracts.ZhengJianEnum.身份证 && !IDCardHellper.IsIDCardNumOk(vm.CurrentPatient.ZhengJianNum))
             {
-                this.ZJNumBox.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                Error = "证件号不正确";
+                bIsOK = false;
             }
 
             return bIsOK;
@@ -271,23 +240,24 @@ namespace HISGUIPatientCardLib.Views
         {
             var vm = this.DataContext as HISGUIPatientCardVM;
             vm.CurrentPatient.BirthDay = this.myBirthControl.GetValue();
-            if (!check())
+
+            string strMsg = "";
+            if (!check(ref strMsg))
             {
+                MessageBox.Show(strMsg);
                 return;
             }
 
             if(bIsEdit)
             {
-                string ErrorMsg = "";
-                if (vm.UpdatePatientMsg(vm.CurrentPatient, ref ErrorMsg))
+                if (vm.UpdatePatientMsg(vm.CurrentPatient, ref strMsg))
                 {
-                    MessageBox.Show("OK");
+                    strMsg = "修改患者信息完成！";
+                    newPatientCard();
                 }
                 else
                 {
-                    MessageBox.Show(ErrorMsg);
-                    this.PatientMsgGrid.IsEnabled = false;
-                    this.bIsEdit = false;
+                    MessageBox.Show(strMsg);
                 }
             }
             else
@@ -298,15 +268,14 @@ namespace HISGUIPatientCardLib.Views
                 manage.CardManageEnum = CommContracts.CardManageEnum.新建卡;
                 manage.UserID = vm.CurrentUser.ID;
 
-                string ErrorMsg = "";
-                if (vm.SavePatientCardManage(manage, ref ErrorMsg))
+                if (vm.SavePatientCardManage(manage, ref strMsg))
                 {
-                    MessageBox.Show("OK");
+                    strMsg = "新建卡完成！";
+                    newPatientCard();
                 }
                 else
                 {
-                    MessageBox.Show(ErrorMsg);
-                    newPatientCard();
+                    MessageBox.Show(strMsg);
                 }
             }
         }
@@ -319,6 +288,10 @@ namespace HISGUIPatientCardLib.Views
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
             String PM = Interaction.InputBox("请输入带查找姓名", "查找", "", 100, 100);
+
+            if (string.IsNullOrEmpty(PM))
+                return;
+
             List<CommContracts.PatientCardManage> list = GetAllPatientCardRecords(PM);
             this.listView1.ItemsSource = list;
         }

@@ -279,9 +279,9 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Name = Patient.Name;
-                    temp.PID = Patient.Name;
+                    temp.PID = Patient.PID;
                     temp.PatientCardEnum = (DAL.PatientCardEnum)Patient.PatientCardEnum;
-                    temp.PatientCardNo = Patient.Name;
+                    temp.PatientCardNo = Patient.PatientCardNo;
                     temp.Gender = (DAL.GenderEnum)Patient.Gender;
                     temp.BirthDay = Patient.BirthDay;
                     temp.ZhengJianEnum = (DAL.ZhengJianEnum)Patient.ZhengJianEnum;
