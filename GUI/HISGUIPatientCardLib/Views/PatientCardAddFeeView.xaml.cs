@@ -47,8 +47,8 @@ namespace HISGUIPatientCardLib.Views
             this.FeeTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.FeeTypeEnum));
             this.FeeTypeCombo.SelectedIndex = 0;
 
-            //this.PayTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
-            //this.PayTypeCombo.SelectedIndex = 0;
+            this.PrePayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PrePayWayEnum));
+            this.PrePayWayCombo.SelectedIndex = 0;
 
             this.ZJCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.ZhengJianEnum));
             this.ZJCombo.SelectedIndex = 0;

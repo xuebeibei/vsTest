@@ -85,7 +85,7 @@
             <Separator  Grid.Row="2" Grid.ColumnSpan="11"></Separator>
 
             <Label Content="支付方式："  Grid.Row="3" Grid.Column="0" Margin="5"></Label>
-            <ComboBox x:Name="PayTypeCombo"  Grid.Row="3" Grid.Column="1" Margin="5"></ComboBox>
+            <ComboBox x:Name="PrePayWayCombo"  Grid.Row="3" Grid.Column="1" Margin="5"></ComboBox>
 
             <Label Content="金    额："  Grid.Row="3" Grid.Column="2" Margin="5"></Label>
             <TextBox x:Name="FeeNumBox"  Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>
