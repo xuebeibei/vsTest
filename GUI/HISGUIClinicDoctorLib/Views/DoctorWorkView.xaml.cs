@@ -79,5 +79,86 @@ namespace HISGUIDoctorLib.Views
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
             }
         }
+
+        private void ClinicBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "门诊接诊";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            ClinicRecivingView eidtInspect = new ClinicRecivingView();
+
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void InHospitalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "住院治疗";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            InHospitalRecivingView eidtInspect = new InHospitalRecivingView();
+
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void WorkBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "排班管理";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                if (item.Header.ToString() == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            ClinicManagementView eidtInspect = new ClinicManagementView();
+
+            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
+            myTabItem.Header = header;
+            myTabItem.ToolTip = header;
+            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            myTabItem.Height = 28;
+
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
     }
 }
