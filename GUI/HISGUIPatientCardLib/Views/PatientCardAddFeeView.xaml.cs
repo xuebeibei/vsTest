@@ -75,12 +75,14 @@ namespace HISGUIPatientCardLib.Views
         {
             var vm = this.DataContext as HISGUIPatientCardVM;
             CommContracts.Patient patient = new CommContracts.Patient();
+            string strAge = "";
             if (string.IsNullOrEmpty(strPatientCardNum))
             {
                 vm.CurrentPatient = patient;
                 CommClient.PatientCardPrePay prePayClient = new CommClient.PatientCardPrePay();
                 List<CommContracts.PatientCardPrePay> list = prePayClient.GetAllPrePay(patient.ID);
                 this.listView1.ItemsSource = list;
+                this.AgeBox.Text = strAge;
                 return;
             }
 
@@ -100,19 +102,9 @@ namespace HISGUIPatientCardLib.Views
                 List<CommContracts.PatientCardPrePay> list = prePayClient.GetAllPrePay(patient.ID);
                 this.listView1.ItemsSource = list;
 
-                string strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
+                strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
                 this.AgeBox.Text = strAge;
             }
-        }
-
-        private void FindCardBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Grid1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         private void PayBtn_Click(object sender, RoutedEventArgs e)
