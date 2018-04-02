@@ -492,15 +492,7 @@ namespace DAL
         /// <summary>
         /// 现金支付
         /// </summary>
-        现金,
-        /// <summary>
-        /// 支付宝便捷支付
-        /// </summary>
-        支付宝,
-        /// <summary>
-        /// 微信便捷支付
-        /// </summary>
-        微信
+        现金
     }
     /// <summary>
     /// 申请状态
