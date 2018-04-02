@@ -93,12 +93,12 @@
         <ListView x:Name="listView1" Grid.Row="2" Margin="5">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="票据号" Width="150" />
-                    <GridViewColumn Header="状态" Width="100"/>
-                    <GridViewColumn Header="金额" Width="100" />
-                    <GridViewColumn Header="时间" Width="200" />
-                    <GridViewColumn Header="操作员" Width="150" />
-                    <GridViewColumn Header="支付方式" Width="150" />
+                    <GridViewColumn Header="票据号" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+                    <GridViewColumn Header="操作" Width="100"  DisplayMemberBinding="{Binding Path=PrePayType}"/>
+                    <GridViewColumn Header="金额" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
+                    <GridViewColumn Header="时间" Width="200"  DisplayMemberBinding="{Binding Path=CurrentTime}"/>
+                    <GridViewColumn Header="操作员" Width="150"  DisplayMemberBinding="{Binding Path=User.Username}"/>
+                    <GridViewColumn Header="支付方式" Width="150"  DisplayMemberBinding="{Binding Path=PrePayWayEnum}"/>
                 </GridView>
             </ListView.View>
         </ListView>

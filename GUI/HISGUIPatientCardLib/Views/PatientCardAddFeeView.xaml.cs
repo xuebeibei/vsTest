@@ -68,21 +68,38 @@ namespace HISGUIPatientCardLib.Views
             if (string.IsNullOrEmpty(strPatientCardNum))
                 return;
 
+            updatePatientsMsg(strPatientCardNum);
+        }
+
+        private void updatePatientsMsg(String strPatientCardNum)
+        {
             var vm = this.DataContext as HISGUIPatientCardVM;
+            CommContracts.Patient patient = new CommContracts.Patient();
+            if (string.IsNullOrEmpty(strPatientCardNum))
+            {
+                vm.CurrentPatient = patient;
+                CommClient.PatientCardPrePay prePayClient = new CommClient.PatientCardPrePay();
+                List<CommContracts.PatientCardPrePay> list = prePayClient.GetAllPrePay(patient.ID);
+                this.listView1.ItemsSource = list;
+                return;
+            }
 
             CommClient.Patient patientClient = new CommClient.Patient();
-            CommContracts.Patient patient = new CommContracts.Patient();
-
+            
             string ErrorMsg = "";
             patient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
 
-            if(patient == null)
+            if (patient == null)
             {
                 MessageBox.Show(ErrorMsg);
             }
             else
             {
                 vm.CurrentPatient = patient;
+                CommClient.PatientCardPrePay prePayClient = new CommClient.PatientCardPrePay();
+                List<CommContracts.PatientCardPrePay> list = prePayClient.GetAllPrePay(patient.ID);
+                this.listView1.ItemsSource = list;
+
                 string strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
                 this.AgeBox.Text = strAge;
             }
@@ -132,6 +149,7 @@ namespace HISGUIPatientCardLib.Views
                 if (patientClient.UpdatePatient(vm.CurrentPatient, ref ErrorMsg))
                 {
                     MessageBox.Show("OK");
+                    updatePatientsMsg(vm.CurrentPatient.PatientCardNo);
                 }
                 else
                 {
@@ -184,6 +202,7 @@ namespace HISGUIPatientCardLib.Views
                 if(patientClient.UpdatePatient(vm.CurrentPatient, ref ErrorMsg))
                 {
                     MessageBox.Show("OK");
+                    updatePatientsMsg(vm.CurrentPatient.PatientCardNo);
                 }
                 else
                 {
@@ -205,7 +224,7 @@ namespace HISGUIPatientCardLib.Views
 
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            updatePatientsMsg("");
         }
     }
 }
