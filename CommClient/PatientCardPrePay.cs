@@ -10,9 +10,9 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class PrePay : MyTableBase
+    public class PatientCardPrePay : MyTableBase
     {
-        public PrePay()
+        public PatientCardPrePay()
         {
         }
 
