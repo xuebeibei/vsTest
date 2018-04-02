@@ -59,6 +59,12 @@ namespace CommContracts
         public PrePayWayEnum PrePayWayEnum { get; set; }
 
         /// <summary>
+        /// 操作类型
+        /// </summary>
+        [DataMember]
+        public PrePayTypeEnum PrePayType { get; set; }
+
+        /// <summary>
         /// 预交金患者ID
         /// </summary>
         [DataMember]

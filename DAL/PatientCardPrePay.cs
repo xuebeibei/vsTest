@@ -49,6 +49,11 @@ namespace DAL
         public PrePayWayEnum PrePayWayEnum { get; set; }
 
         /// <summary>
+        /// 操作类型
+        /// </summary>
+        public PrePayTypeEnum PrePayType { get; set; }
+
+        /// <summary>
         /// 预交金患者ID
         /// </summary>
         public int PatientID { get; set; }
