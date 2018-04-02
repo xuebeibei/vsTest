@@ -9,9 +9,7 @@ namespace CommContracts
 {
     public enum PrePayWayEnum
     {
-        现金,
-        支付宝,
-        微信
+        现金
     }
 
     /// <summary>
