@@ -7,46 +7,46 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class PrePay
+    public class PatientCardPrePay
     {
-        public CommContracts.PrePay GetPrePay(int Id)
+        public CommContracts.PatientCardPrePay GetPrePay(int Id)
         {
-            CommContracts.PrePay prePay = new CommContracts.PrePay();
+            CommContracts.PatientCardPrePay prePay = new CommContracts.PatientCardPrePay();
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from t in ctx.PrePays
+                var query = from t in ctx.PatientCardPrePays
                             where t.ID == Id
                             select t;
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<DAL.PrePay, CommContracts.PrePay>();
+                    cfg.CreateMap<DAL.PatientCardPrePay, CommContracts.PatientCardPrePay>();
                 });
                 var mapper = config.CreateMapper();
 
 
                 foreach (var tem in query)
                 {
-                    prePay = mapper.Map<CommContracts.PrePay>(tem);
+                    prePay = mapper.Map<CommContracts.PatientCardPrePay>(tem);
                     break;
                 }
             }
             return prePay;
         }
 
-        public bool SavePrePay(CommContracts.PrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.PrePay, DAL.PrePay>();
+                    cfg.CreateMap<CommContracts.PatientCardPrePay, DAL.PatientCardPrePay>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.PrePay temp = new DAL.PrePay();
-                temp = mapper.Map<DAL.PrePay>(prePay);
+                DAL.PatientCardPrePay temp = new DAL.PatientCardPrePay();
+                temp = mapper.Map<DAL.PatientCardPrePay>(prePay);
                 
-                ctx.PrePays.Add(temp);
+                ctx.PatientCardPrePays.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -61,25 +61,25 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
         {
-            List<CommContracts.PrePay> list = new List<CommContracts.PrePay>();
+            List<CommContracts.PatientCardPrePay> list = new List<CommContracts.PatientCardPrePay>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.PrePays
+                var query = from a in ctx.PatientCardPrePays
                             where a.PatientID == PatientID 
-                            orderby a.PrePayTime descending 
+                            orderby a.CurrentTime descending 
                             select a;
-                foreach (DAL.PrePay ass in query)
+                foreach (DAL.PatientCardPrePay ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.PrePay, CommContracts.PrePay>();
+                        cfg.CreateMap<DAL.PatientCardPrePay, CommContracts.PatientCardPrePay>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.PrePay temp = mapper.Map<CommContracts.PrePay>(ass);
+                    CommContracts.PatientCardPrePay temp = mapper.Map<CommContracts.PatientCardPrePay>(ass);
                     list.Add(temp);
                 }
             }
@@ -90,11 +90,11 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.PrePays.Find(PrePayID);
+                var temp = ctx.PatientCardPrePays.Find(PrePayID);
                 if (temp == null)
                     return false;
                 else
-                    ctx.PrePays.Remove(temp);
+                    ctx.PatientCardPrePays.Remove(temp);
                 try
                 {
                     ctx.SaveChanges();

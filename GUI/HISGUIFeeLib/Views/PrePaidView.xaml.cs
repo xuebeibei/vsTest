@@ -100,7 +100,7 @@ namespace HISGUIFeeLib.Views
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             int PrePayID = 0;
-            var temp = this.AllPrePaidList.SelectedItem as CommContracts.PrePay;
+            var temp = this.AllPrePaidList.SelectedItem as CommContracts.PatientCardPrePay;
             if (temp == null)
             {
                 return;

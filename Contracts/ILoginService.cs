@@ -432,11 +432,11 @@ namespace CommContracts
         [OperationContract]
         bool DeleteMaterialItem(int MaterialID);
         [OperationContract]
-        CommContracts.PrePay GetPrePay(int Id);
+        CommContracts.PatientCardPrePay GetPrePay(int Id);
         [OperationContract]
-        bool SavePrePay(CommContracts.PrePay prePay);
+        bool SavePrePay(CommContracts.PatientCardPrePay prePay);
         [OperationContract]
-        List<CommContracts.PrePay> GetAllPrePay(int PatientID);
+        List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID);
 
         [OperationContract]
         bool DeletePrePay(int PrePayID);

@@ -842,27 +842,27 @@ namespace CommServer
             return temp.DeleteMaterialItem(MaterialID);
         }
 
-        public CommContracts.PrePay GetPrePay(int Id)
+        public CommContracts.PatientCardPrePay GetPrePay(int Id)
         {
-            BLL.PrePay temp = new BLL.PrePay();
+            BLL.PatientCardPrePay temp = new BLL.PatientCardPrePay();
             return temp.GetPrePay(Id);
         }
 
-        public bool SavePrePay(CommContracts.PrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
         {
-            BLL.PrePay temp = new BLL.PrePay();
+            BLL.PatientCardPrePay temp = new BLL.PatientCardPrePay();
             return temp.SavePrePay(prePay);
         }
 
-        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
         {
-            BLL.PrePay temp = new BLL.PrePay();
+            BLL.PatientCardPrePay temp = new BLL.PatientCardPrePay();
             return temp.GetAllPrePay(PatientID);
         }
 
         public bool DeletePrePay(int PrePayID)
         {
-            BLL.PrePay temp = new BLL.PrePay();
+            BLL.PatientCardPrePay temp = new BLL.PatientCardPrePay();
             return temp.DeletePrePay(PrePayID);
         }
 

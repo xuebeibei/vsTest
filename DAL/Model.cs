@@ -8,7 +8,9 @@ using System.Data.Entity;
 
 namespace DAL
 {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
+    /// <summary>
+    /// 数据库连接类
+    /// </summary>
     public class HisContext : DbContext
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
     {
@@ -127,7 +129,7 @@ namespace DAL
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SickBeds”的 XML 注释
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.PrePays”的 XML 注释
-        public DbSet<PrePay> PrePays { get; set; }
+        public DbSet<PatientCardPrePay> PatientCardPrePays { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.PrePays”的 XML 注释
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicineDoctorAdvices”的 XML 注释
@@ -314,6 +316,8 @@ namespace DAL
 
             modelBuilder.Entity<PatientCardManage>().ToTable("tpt.PatientCardManage");
             modelBuilder.Entity<LoginInAndOutRecords>().ToTable("tpt.LoginInAndOutRecords");
+
+            modelBuilder.Entity<PatientCardPrePay>().ToTable("tpt.PatientCardPrePays");
         }
     }
 }

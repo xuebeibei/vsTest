@@ -163,10 +163,10 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 decimal balance = 0.0m;
-                var temp = ctx.PrePays.Where(x => x.PatientID == PatientID).Count();
+                var temp = ctx.PatientCardPrePays.Where(x => x.PatientID == PatientID).Count();
                 if (temp > 0)
                 {
-                    var prePayBalance = ctx.PrePays.Where(s => (s.PatientID == PatientID)).Select(o => o.PrePayMoney).Sum();
+                    var prePayBalance = ctx.PatientCardPrePays.Where(s => (s.PatientID == PatientID)).Select(o => o.PrePayMoney).Sum();
                     balance += prePayBalance;
                 }
 

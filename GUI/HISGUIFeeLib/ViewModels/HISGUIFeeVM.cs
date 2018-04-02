@@ -391,7 +391,7 @@ namespace HISGUIFeeLib.ViewModels
             return myd.ReadLeavedPatient(InPatientID);
         }
         // 得到所有的缴费单
-        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
         {
             CommClient.PrePay myd = new CommClient.PrePay();
             return myd.GetAllPrePay(PatientID);
@@ -400,12 +400,12 @@ namespace HISGUIFeeLib.ViewModels
         public bool SavePrePay(int PatientID, decimal money, int UserID)
         {
             CommClient.PrePay myd = new CommClient.PrePay();
-            CommContracts.PrePay prePay = new CommContracts.PrePay();
+            CommContracts.PatientCardPrePay prePay = new CommContracts.PatientCardPrePay();
             prePay.PatientID = PatientID;
             prePay.PrePayMoney = money;
             prePay.PrePayWayEnum = CommContracts.PrePayWayEnum.现金;
             prePay.UserID = UserID;
-            prePay.PrePayTime = DateTime.Now;
+            prePay.CurrentTime = DateTime.Now;
             return myd.SavePrePay(prePay);
         }
 

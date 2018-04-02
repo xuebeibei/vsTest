@@ -283,7 +283,7 @@ namespace DAL
             this.Gender = GenderEnum.man;
             this.Volk = VolkEnum.hanzu;
             Registrations = new List<Registration>();
-            PrePays = new List<PrePay>();
+            PatientCardPrePays = new List<PatientCardPrePay>();
             DoctorAdviceBases = new List<DoctorAdviceBase>();
             InHospitalApplys = new List<InHospitalApply>();
             InHospitals = new List<InHospital>();
@@ -482,7 +482,7 @@ namespace DAL
         /// <summary>
         /// 所有的预付款
         /// </summary>
-        public virtual ICollection<PrePay> PrePays { get; set; }
+        public virtual ICollection<PatientCardPrePay> PatientCardPrePays { get; set; }
         /// <summary>
         /// 所有的医嘱
         /// </summary>

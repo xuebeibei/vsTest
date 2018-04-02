@@ -16,17 +16,17 @@ namespace CommClient
         {
         }
 
-        public CommContracts.PrePay GetPrePay(int Id)
+        public CommContracts.PatientCardPrePay GetPrePay(int Id)
         {
             return client.GetPrePay(Id);
         }
 
-        public bool SavePrePay(CommContracts.PrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
         {
             return client.SavePrePay(prePay);
         }
 
-        public List<CommContracts.PrePay> GetAllPrePay(int PatientID)
+        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
         {
             return client.GetAllPrePay(PatientID);
         }
