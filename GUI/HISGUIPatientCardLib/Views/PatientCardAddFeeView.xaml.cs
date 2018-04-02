@@ -100,12 +100,102 @@ namespace HISGUIPatientCardLib.Views
 
         private void PayBtn_Click(object sender, RoutedEventArgs e)
         {
+            // 保存收取
+            if (string.IsNullOrEmpty(this.FeeNumBox.Text))
+            {
+                return;
+            }
 
+            if (Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2) < 0)
+            {
+                return;
+            }
+
+            var vm = this.DataContext as HISGUIPatientCardVM;
+
+            CommContracts.PatientCardPrePay prePay = new CommContracts.PatientCardPrePay();
+            prePay.PrePayType = CommContracts.PrePayTypeEnum.缴款;
+            prePay.PrePayMoney = Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+            prePay.PrePayWayEnum = (CommContracts.PrePayWayEnum)this.PrePayWayCombo.SelectedItem;
+            prePay.PatientID = vm.CurrentPatient.ID;
+            prePay.UserID = vm.CurrentUser.ID;
+            prePay.CurrentTime = DateTime.Now;
+
+            CommClient.PatientCardPrePay prePayClient = new CommClient.PatientCardPrePay();
+
+            int prePayID = 0; string ErrorMsg = "";
+            if (prePayClient.SavePrePay(prePay, ref prePayID, ref ErrorMsg))
+            {
+                CommClient.Patient patientClient = new CommClient.Patient();
+                vm.CurrentPatient.PatientCardBalance += Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+
+                if (patientClient.UpdatePatient(vm.CurrentPatient, ref ErrorMsg))
+                {
+                    MessageBox.Show("OK");
+                }
+                else
+                {
+                    vm.CurrentPatient.PatientCardBalance -= Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+                    prePayClient.DeletePrePay(prePayID);
+
+                    MessageBox.Show("Error:" + ErrorMsg);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error:"+ ErrorMsg);
+            }
         }
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
+            // 保存退款 
+            if (string.IsNullOrEmpty(this.FeeNumBox.Text))
+            {
+                return;
+            }
 
+            if (Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2) < 0)
+            {
+                return;
+            }
+
+            if (Math.Round(Decimal.Parse(this.BalanceBox.Text), 2) - Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2) < 0)
+            {
+                return;
+            }
+
+            var vm = this.DataContext as HISGUIPatientCardVM;
+            CommContracts.PatientCardPrePay prePay = new CommContracts.PatientCardPrePay();
+            prePay.PrePayType = CommContracts.PrePayTypeEnum.退款;
+            prePay.PrePayMoney = Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+            prePay.PrePayWayEnum = (CommContracts.PrePayWayEnum)this.PrePayWayCombo.SelectedItem;
+            prePay.PatientID = vm.CurrentPatient.ID;
+            prePay.UserID = vm.CurrentUser.ID;
+            prePay.CurrentTime = DateTime.Now;
+
+            CommClient.PatientCardPrePay prePayClient = new CommClient.PatientCardPrePay();
+            int prePayID = 0; string ErrorMsg = "";
+            if (prePayClient.SavePrePay(prePay, ref prePayID, ref ErrorMsg))
+            {
+                CommClient.Patient patientClient = new CommClient.Patient();
+                vm.CurrentPatient.PatientCardBalance -= Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+
+                if(patientClient.UpdatePatient(vm.CurrentPatient, ref ErrorMsg))
+                {
+                    MessageBox.Show("OK");
+                }
+                else
+                {
+                    vm.CurrentPatient.PatientCardBalance += Math.Round(Decimal.Parse(this.FeeNumBox.Text), 2);
+                    prePayClient.DeletePrePay(prePayID);
+                    MessageBox.Show("Error:" + ErrorMsg);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Error" + ErrorMsg);
+            }
         }
 
         private void RePrintBtn_Click(object sender, RoutedEventArgs e)

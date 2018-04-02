@@ -372,6 +372,7 @@ namespace BLL
                     temp.FeeTypeEnum = (DAL.FeeTypeEnum)Patient.FeeTypeEnum;
                     temp.YbCardNo = Patient.YbCardNo;
                     temp.PatientCardStatus = (DAL.PatientCardStatusEnum)Patient.PatientCardStatus;
+                    temp.PatientCardBalance = Patient.PatientCardBalance;
                 }
                 else
                 {

@@ -76,7 +76,7 @@
     <Compile Include="OtherServiceItem.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="PatientCardManage.cs" />
-    <Compile Include="PrePay.cs" />
+    <Compile Include="PatientCardPrePay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecallHospital.cs" />
     <Compile Include="Registration.cs" />

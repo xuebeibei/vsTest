@@ -33,7 +33,7 @@ namespace BLL
             return prePay;
         }
 
-        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay, ref int prePayID, ref string ErrorMsg)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -50,11 +50,12 @@ namespace BLL
                 try
                 {
                     ctx.SaveChanges();
+
+                    prePayID = temp.ID;
                 }
-#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
-#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
+                    ErrorMsg = ex.Message;
                     return false;
                 }
             }

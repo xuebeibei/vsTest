@@ -21,9 +21,9 @@ namespace CommClient
             return client.GetPrePay(Id);
         }
 
-        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay, ref int prePayID, ref string ErrorMsg)
         {
-            return client.SavePrePay(prePay);
+            return client.SavePrePay(prePay, ref prePayID, ref ErrorMsg);
         }
 
         public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)

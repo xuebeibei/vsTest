@@ -434,7 +434,7 @@ namespace CommContracts
         [OperationContract]
         CommContracts.PatientCardPrePay GetPrePay(int Id);
         [OperationContract]
-        bool SavePrePay(CommContracts.PatientCardPrePay prePay);
+        bool SavePrePay(CommContracts.PatientCardPrePay prePay, ref int prePayID, ref string ErrorMsg);
         [OperationContract]
         List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID);
 

@@ -848,10 +848,10 @@ namespace CommServer
             return temp.GetPrePay(Id);
         }
 
-        public bool SavePrePay(CommContracts.PatientCardPrePay prePay)
+        public bool SavePrePay(CommContracts.PatientCardPrePay prePay, ref int prePayID, ref string ErrorMsg)
         {
             BLL.PatientCardPrePay temp = new BLL.PatientCardPrePay();
-            return temp.SavePrePay(prePay);
+            return temp.SavePrePay(prePay, ref prePayID, ref ErrorMsg);
         }
 
         public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)

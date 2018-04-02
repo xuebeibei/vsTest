@@ -393,26 +393,27 @@ namespace HISGUIFeeLib.ViewModels
         // 得到所有的缴费单
         public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
         {
-            CommClient.PrePay myd = new CommClient.PrePay();
+            CommClient.PatientCardPrePay myd = new CommClient.PatientCardPrePay();
             return myd.GetAllPrePay(PatientID);
         }
 
         public bool SavePrePay(int PatientID, decimal money, int UserID)
         {
-            CommClient.PrePay myd = new CommClient.PrePay();
+            CommClient.PatientCardPrePay myd = new CommClient.PatientCardPrePay();
             CommContracts.PatientCardPrePay prePay = new CommContracts.PatientCardPrePay();
             prePay.PatientID = PatientID;
             prePay.PrePayMoney = money;
             prePay.PrePayWayEnum = CommContracts.PrePayWayEnum.现金;
             prePay.UserID = UserID;
             prePay.CurrentTime = DateTime.Now;
-            return myd.SavePrePay(prePay);
+            int prePayID = 0; string ErrorMsg = "";
+            return myd.SavePrePay(prePay, ref prePayID, ref ErrorMsg);
         }
 
         // 删除缴费单
         public bool DeletePrePay(int PrePayID)
         {
-            CommClient.PrePay myd = new CommClient.PrePay();
+            CommClient.PatientCardPrePay myd = new CommClient.PatientCardPrePay();
             return myd.DeletePrePay(PrePayID);
         }
 
