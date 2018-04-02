@@ -94,24 +94,31 @@ namespace HISGUIPatientCardLib.Views
                            where u.CardManageEnum == CommContracts.CardManageEnum.新建卡
                            select u;
 
-            var queryReturn = from u in list
-                              where u.CardManageEnum == CommContracts.CardManageEnum.退还卡
+            var queryLost = from u in list
+                              where u.CardManageEnum == CommContracts.CardManageEnum.挂失卡
                               select u;
 
-            var queryLost = from u in list
-                            where u.CardManageEnum == CommContracts.CardManageEnum.挂失卡
+            var queryReNew = from u in list
+                            where u.CardManageEnum == CommContracts.CardManageEnum.补办卡
                             select u;
 
+            CommClient.PatientCardPrePay preClient = new CommClient.PatientCardPrePay();
+            List<CommContracts.PatientCardPrePay> list1 = preClient.GetAllPrePay(0);
 
-            //values.Add(new Value() { Label = "办理新卡", YValue = queryAdd.Count() });
-            //values.Add(new Value() { Label = "退卡", YValue = queryReturn.Count() });
-            //values.Add(new Value() { Label = "挂失补办", YValue = queryLost.Count() });
-            //values.Add(new Value() { Label = "充值", YValue = 0 });
+            var queryAddFee = from p in list1
+                              where p.PrePayType == CommContracts.PrePayTypeEnum.缴款
+                              select p;
 
-            values.Add(new Value() { Label = "办理新卡", YValue = 25 });
-            values.Add(new Value() { Label = "退卡", YValue = 60});
-            values.Add(new Value() { Label = "挂失补办", YValue = 35 });
-            values.Add(new Value() { Label = "充值", YValue = 50 });
+            var queryReturnFee = from p in list1
+                              where p.PrePayType == CommContracts.PrePayTypeEnum.退款
+                              select p;
+
+
+            values.Add(new Value() { Label = "办理新卡", YValue = queryAdd.Count() });
+            values.Add(new Value() { Label = "挂失", YValue = queryLost.Count() });
+            values.Add(new Value() { Label = "补办", YValue = queryReNew.Count() });
+            values.Add(new Value() { Label = "缴款", YValue = queryAddFee.Count() });
+            values.Add(new Value() { Label = "退款", YValue = queryReturnFee.Count() });
 
             MyChart.Series[0].DataSource = values;
         }

@@ -62,14 +62,14 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID)
+        public List<CommContracts.PatientCardPrePay> GetAllPrePay(int PatientID = 0)
         {
             List<CommContracts.PatientCardPrePay> list = new List<CommContracts.PatientCardPrePay>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.PatientCardPrePays
-                            where a.PatientID == PatientID 
+                            where (a.PatientID != 0 || (a.PatientID == PatientID))
                             orderby a.CurrentTime descending 
                             select a;
                 foreach (DAL.PatientCardPrePay ass in query)
