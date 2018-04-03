@@ -7,40 +7,53 @@
              mc:Ignorable="d" 
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
+    <HISGUICore:HISGUIViewBase.Resources>
+        <GridView x:Key="ChuZhenShiDuan">
+            <GridViewColumn Header="时段名称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="起始时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayType}"/>
+            <GridViewColumn Header="结束时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
+            <GridViewColumn Header="挂号截止时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
+        </GridView>
+        <GridView x:Key="HaoBie">
+            <GridViewColumn Header="号别名称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="出诊医生职称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="医事服务费" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+        </GridView>
+        <GridView x:Key="KeShi">
+            <GridViewColumn Header="科室名称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="科室楼层指引" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+        </GridView>
+        <GridView x:Key="YiSheng">
+            <GridViewColumn Header="医生姓名" Width="150"  DisplayMemberBinding="{Binding Path=Name}"/>
+            <GridViewColumn Header="性别" Width="150"  DisplayMemberBinding="{Binding Path=Gender}"/>
+            <GridViewColumn Header="职称" Width="150"  DisplayMemberBinding="{Binding Path=Job}"/>
+            <GridViewColumn Header="专长" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+        </GridView>
+        <GridView x:Key="HuShi">
+            <GridViewColumn Header="护士姓名" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="性别" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="职称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="专长" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+        </GridView>
+    </HISGUICore:HISGUIViewBase.Resources>
     <Grid>
         <DockPanel>
             <ToolBar Grid.Row="0" DockPanel.Dock="Top">
-                <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建" Click="NewBtn_Click"></Button>
-                <Button x:Name="FindBtn" Margin="5" Content="查找" ToolTip="查找" Click="FindBtn_Click"></Button>
-                <Button x:Name="EditBtn" Margin="5" Content="编辑" ToolTip="编辑" Click="EditBtn_Click"></Button>
-                <Button x:Name="DeleteBtn" Margin="5" Content="删除" ToolTip="删除" Click="DeleteBtn_Click"></Button>
-                <Button x:Name="ImportBtn" Margin="5" Content="导入" ToolTip="导入" Click="ImportBtn_Click"></Button>
-                <Button x:Name="ExportBtn" Margin="5" Content="导出" ToolTip="导出" Click="ExportBtn_Click"></Button>
-                <Button x:Name="PrintBtn" Margin="5" Content="打印" ToolTip="打印" Click="PrintBtn_Click"></Button>
+                <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建" Click="NewBtn_Click" ></Button>
+                <Button x:Name="EditBtn" Margin="5" Content="编辑" ToolTip="编辑" Click="EditBtn_Click" ></Button>
+                <Button x:Name="DeleteBtn" Margin="5" Content="删除" ToolTip="删除" Click="DeleteBtn_Click" ></Button>
+                <Button x:Name="ImportBtn" Margin="5" Content="导入" ToolTip="导入" Click="ImportBtn_Click" ></Button>
+                <Button x:Name="ExportBtn" Margin="5" Content="导出" ToolTip="导出" Click="ExportBtn_Click" ></Button>
+                <Button x:Name="PrintBtn" Margin="5" Content="打印" ToolTip="打印" Click="PrintBtn_Click" ></Button>
             </ToolBar>
             <TreeView x:Name="MyDataNameList" DockPanel.Dock="Left" Margin="5" SelectedItemChanged="MyDataNameList_SelectedItemChanged">
-                <TreeViewItem Margin="0, 5, 10, 5" Header="出诊时段字典"/>
-                <TreeViewItem Margin="0, 5, 10, 5" Header="号源名称字典"/>
-                <TreeViewItem Margin="0, 5, 10, 5" Header="号别字典"/>
-                <TreeViewItem Margin="0, 5, 10, 5" Header="出诊科室字典"/>
-                <TreeViewItem Margin="0, 5, 10, 5" Header="楼层指引字典"/>
-                <TreeViewItem Margin="0, 5, 10, 5" Header="医护人员字典"/>
-                <TreeViewItem Margin="0, 5, 15, 5" Header="医护人员专长字典"/>
+                <TreeViewItem Margin="0, 5, 15, 5" Header="出诊时段字典" IsSelected="True"/>
+                <TreeViewItem Margin="0, 5, 15, 5" Header="号别字典"/>
+                <TreeViewItem Margin="0, 5, 15, 5" Header="科室字典"/>
+                <TreeViewItem Margin="0, 5, 15, 5" Header="医生字典"/>
+                <TreeViewItem Margin="0, 5, 15, 5" Header="护士字典"/>
             </TreeView>
-            <Grid Grid.Row="1">
-                <ListView x:Name="listView1" Grid.Row="1" Margin="5">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="票据号" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-                            <GridViewColumn Header="操作" Width="100"  DisplayMemberBinding="{Binding Path=PrePayType}"/>
-                            <GridViewColumn Header="金额" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
-                            <GridViewColumn Header="时间" Width="200"  DisplayMemberBinding="{Binding Path=CurrentTime}"/>
-                            <GridViewColumn Header="操作员" Width="150"  DisplayMemberBinding="{Binding Path=User.Username}"/>
-                            <GridViewColumn Header="支付方式" Width="150"  DisplayMemberBinding="{Binding Path=PrePayWayEnum}"/>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
+            <ListView Name="listView1" Margin="5" SelectionMode="Single"/>
         </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

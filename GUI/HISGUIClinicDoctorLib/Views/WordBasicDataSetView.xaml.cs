@@ -36,6 +36,7 @@ namespace HISGUIDoctorLib.Views
 
         private void WordBasicDataSetView_Loaded(object sender, RoutedEventArgs e)
         {
+            this.listView1.View = this.Resources["ChuZhenShiDuan"] as GridView;
         }
 
         [Import]
@@ -76,12 +77,60 @@ namespace HISGUIDoctorLib.Views
 
         private void MyDataNameList_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
+            TreeViewItem item = MyDataNameList.SelectedItem as TreeViewItem;
+            if (item == null)
+                return;
 
+            if (item.Header == null)
+                return;
+
+            if (this.listView1 == null)
+                return;
+
+            string strCurrentName = item.Header.ToString();
+
+            SetMenuEnable(false);
+
+            if (strCurrentName == "出诊时段字典")
+            {
+                this.listView1.View = this.Resources["ChuZhenShiDuan"] as GridView;
+            }
+            else if(strCurrentName == "号别字典")
+            {
+                this.listView1.View = this.Resources["HaoBie"] as GridView;
+            }
+            else if (strCurrentName == "科室字典")
+            {
+                this.listView1.View = this.Resources["KeShi"] as GridView;
+            }
+            else if (strCurrentName == "医生字典")
+            {
+                this.listView1.View = this.Resources["YiSheng"] as GridView;
+                SetMenuEnable(true);
+
+                var vm = this.DataContext as HISGUIDoctorVM;
+
+                CommClient.Employee employeeClient = new CommClient.Employee();
+                List<CommContracts.Employee> list = employeeClient.getAllDoctor(vm.CurrentUser.Employee.DepartmentID);
+                this.listView1.ItemsSource = list;
+            }
+            else if (strCurrentName == "护士字典")
+            {
+                this.listView1.View = this.Resources["HuShi"] as GridView;
+                SetMenuEnable(true);
+            }
         }
 
-        private void FindBtn_Click(object sender, RoutedEventArgs e)
-        {
 
+
+        private void SetMenuEnable(bool IsEnable)
+        {
+            this.NewBtn.IsEnabled = IsEnable;
+            this.EditBtn.IsEnabled = IsEnable;
+            this.DeleteBtn.IsEnabled = IsEnable;
+            this.ExportBtn.IsEnabled = IsEnable;
+            this.ImportBtn.IsEnabled = IsEnable;
+            this.PrintBtn.IsEnabled = IsEnable;
         }
     }
 }
