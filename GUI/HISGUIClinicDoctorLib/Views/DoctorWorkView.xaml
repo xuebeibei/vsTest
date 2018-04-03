@@ -36,7 +36,7 @@
                     <TextBlock Name="Tt"  Margin="5"/>
                 </StatusBarItem>
             </StatusBar>
-            <TabControl x:Name="MyTabControl" Tag="100"/>
+            <TabControl x:Name="MyTabControl"/>
         </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
