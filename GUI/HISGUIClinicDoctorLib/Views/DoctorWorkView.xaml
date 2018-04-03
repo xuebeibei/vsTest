@@ -29,7 +29,10 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem x:Name="ClinicBtn" Header="门诊接诊" Margin="5" Click="ClinicBtn_Click"/>
                 <MenuItem x:Name="InHospitalBtn" Header="住院治疗" Margin="5" Click="InHospitalBtn_Click"/>
-                <MenuItem x:Name="WorkBtn" Header="排班管理" Margin="5" Click="WorkBtn_Click"/>
+                <MenuItem x:Name="WorkBtn" Header="排班管理" Margin="5">
+                    <MenuItem x:Name="BasicDataSet" Header="基础数据维护" Click="BasicDataSet_Click"></MenuItem>
+                    <MenuItem x:Name="WorkRecordSet" Header="排班记录" Click="WorkRecordSet_Click"></MenuItem>
+                </MenuItem>
             </Menu>
             <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
                 <StatusBarItem HorizontalAlignment="Right">

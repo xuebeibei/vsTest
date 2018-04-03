@@ -151,5 +151,15 @@ namespace HISGUIDoctorLib.Views
             MyTabControl.Items.Add(myTabItem);
             MyTabControl.SelectedItem = myTabItem;
         }
+
+        private void BasicDataSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void WorkRecordSet_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
