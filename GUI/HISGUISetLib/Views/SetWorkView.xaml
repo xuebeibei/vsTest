@@ -55,6 +55,8 @@
                 <TreeViewItem Margin="0,0,5,0" Header="化验项目" Selected="AssayItemSet"/>
                 <TreeViewItem Margin="0,0,5,0" Header="其他服务" Selected="OtherServiceSet"/>
                 <TreeViewItem Margin="0,0,5,0" Header="号源种类" Selected="SignalItemSet"/>
+                <TreeViewItem Margin="0,0,5,0" Header="出诊时间段字典" Selected="ClinicVistTimeSet"/>
+                
             </TreeViewItem>
             <TreeViewItem Margin="0,5,10,5" Header="患者">
                 <TreeViewItem Margin="0,0,5,0" Header="患者" Selected="PatientSet"/>
@@ -82,6 +84,7 @@
             <local:OtherServiceItemSetView x:Name="OtherServiceItemView" Visibility="Collapsed"></local:OtherServiceItemSetView>
             <local:SignalItemSetView x:Name="SignalItemView" Visibility="Collapsed"></local:SignalItemSetView>
             <local:PatientSetView x:Name="PatientView" Visibility="Collapsed"></local:PatientSetView>
+            <local:ClinicVistTimeView x:Name="MyClinicVistTimeView" Visibility="Collapsed"></local:ClinicVistTimeView>
         </Grid>
     </Grid>
 </HISGUICore:HISGUIViewBase>

@@ -94,6 +94,9 @@
     <Compile Include="Views\AssayItemSetView.xaml.cs">
       <DependentUpon>AssayItemSetView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ClinicVistTimeView.xaml.cs">
+      <DependentUpon>ClinicVistTimeView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DepartmentSetView.xaml.cs">
       <DependentUpon>DepartmentSetView.xaml</DependentUpon>
     </Compile>
@@ -224,6 +227,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\AssayItemSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClinicVistTimeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

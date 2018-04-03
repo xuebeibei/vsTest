@@ -94,6 +94,7 @@ namespace HISGUISetLib.Views
             SignalItemView.Visibility = Visibility.Collapsed;
             PatientView.Visibility = Visibility.Collapsed;
             TipLabel.Visibility = Visibility.Visible;
+            MyClinicVistTimeView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
@@ -220,6 +221,13 @@ namespace HISGUISetLib.Views
             TipLabel.Visibility = Visibility.Collapsed;
         }
 
+        private void ClinicVistTimeSet(object sender, RoutedEventArgs e)
+        {
+            InitVisable();
+            MyClinicVistTimeView.Visibility = Visibility.Visible;
+            TipLabel.Visibility = Visibility.Collapsed;
+        }
+
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUISetVM;
@@ -230,5 +238,6 @@ namespace HISGUISetLib.Views
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
             }
         }
+
     }
 }
