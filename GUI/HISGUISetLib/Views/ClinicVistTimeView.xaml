@@ -56,11 +56,11 @@
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="时段名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=Gender}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=BirthDay}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="候诊起始时间" DisplayMemberBinding="{Binding Path=IDCardNo}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="候诊结束时间" DisplayMemberBinding="{Binding Path=Volk}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="当天挂号截止时间" DisplayMemberBinding="{Binding Path=Tel}" Width="100"></GridViewColumn>
+                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=Gender}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=BirthDay}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="候诊起始时间" DisplayMemberBinding="{Binding Path=IDCardNo}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="候诊结束时间" DisplayMemberBinding="{Binding Path=Volk}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="当天挂号截止时间" DisplayMemberBinding="{Binding Path=Tel}" Width="150"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>
