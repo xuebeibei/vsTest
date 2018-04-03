@@ -78,6 +78,12 @@
     <Compile Include="MyContorls\BodyCharacteristics.xaml.cs">
       <DependentUpon>BodyCharacteristics.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyContorls\CloseableTabItem.xaml.cs">
+      <DependentUpon>CloseableTabItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MyContorls\CloseableTabItemHeader.xaml.cs">
+      <DependentUpon>CloseableTabItemHeader.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyContorls\DoctorFind.xaml.cs">
       <DependentUpon>DoctorFind.xaml</DependentUpon>
     </Compile>
@@ -115,15 +121,19 @@
     <Compile Include="HISGUIPublicDatas.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="HISGUIDictionary.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MyContorls\BirthDayControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyContorls\BodyCharacteristics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\CloseableTabItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\CloseableTabItemHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +181,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CommClient\CommClient.csproj">
@@ -180,6 +195,10 @@
     <ProjectReference Include="..\..\Contracts\CommContracts.csproj">
       <Project>{ea1940a3-a5d4-4b0f-8a6f-6e75867f15af}</Project>
       <Name>CommContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HISGUI\HISGUI.csproj">
+      <Project>{AABAD5D0-77D8-420F-AB70-67431005C7D8}</Project>
+      <Name>HISGUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

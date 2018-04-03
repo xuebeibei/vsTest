@@ -95,12 +95,7 @@ namespace HISGUIDoctorLib.Views
 
             ClinicRecivingView eidtInspect = new ClinicRecivingView();
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
-            myTabItem.Height = 28;
-
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
 
             myTabItem.Content = eidtInspect;
             MyTabControl.Items.Add(myTabItem);
@@ -122,12 +117,7 @@ namespace HISGUIDoctorLib.Views
 
             InHospitalRecivingView eidtInspect = new InHospitalRecivingView();
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
-            myTabItem.Height = 28;
-
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
 
             myTabItem.Content = eidtInspect;
             MyTabControl.Items.Add(myTabItem);
@@ -149,12 +139,7 @@ namespace HISGUIDoctorLib.Views
 
             ClinicManagementView eidtInspect = new ClinicManagementView();
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
-            myTabItem.Height = 28;
-
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
 
             myTabItem.Content = eidtInspect;
             MyTabControl.Items.Add(myTabItem);

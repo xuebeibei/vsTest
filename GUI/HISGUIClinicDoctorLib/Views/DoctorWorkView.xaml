@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:HISGUIDoctorLib.Views" 
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <HISGUICore:HISGUIViewBase.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/HISGUICore;component/HISGUIDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </HISGUICore:HISGUIViewBase.Resources>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -29,24 +22,9 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label x:Name="UserName" Margin="5" Foreground="White" ></Label>
-                <Button x:Name="LayoutBtn" Margin="5" Click="LayoutBtn_Click" Style="{StaticResource MyToolBtn}">退出</Button>
+                <Button x:Name="LayoutBtn" Margin="5" Click="LayoutBtn_Click" Style="{DynamicResource ButtonStyle1}">退出</Button>
             </StackPanel>
         </Grid>
-        <!--<TabControl x:Name="tabControl" Grid.Row="1" Margin="5"  VerticalAlignment="Stretch" >
-            <TabItem Header="门诊接诊">
-                <local:ClinicRecivingView></local:ClinicRecivingView>
-            </TabItem>
-            <TabItem Header="住院治疗">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:InHospitalRecivingView></local:InHospitalRecivingView>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="门诊排班">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:ClinicManagementView></local:ClinicManagementView>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>-->
         <DockPanel Grid.Row="1">
             <Menu DockPanel.Dock="Top">
                 <MenuItem x:Name="ClinicBtn" Header="门诊接诊" Margin="5" Click="ClinicBtn_Click"/>

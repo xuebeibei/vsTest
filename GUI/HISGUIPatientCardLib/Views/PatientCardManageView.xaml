@@ -6,13 +6,6 @@
              xmlns:local="clr-namespace:HISGUIPatientCardLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <HISGUICore:HISGUIViewBase.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/HISGUIPatientCardLib;component/MyDictionary.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </HISGUICore:HISGUIViewBase.Resources>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -30,7 +23,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label x:Name="UserName" Margin="5" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
-                <Button Click="LayoutBtn_Click" Margin="5" Style="{DynamicResource MyToolBtn}">退出</Button>
+                <Button Click="LayoutBtn_Click" Margin="5" Style="{DynamicResource ButtonStyle1}">退出</Button>
             </StackPanel>
         </Grid>
 
