@@ -7,7 +7,7 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
 
-    <Grid Background="White">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -18,8 +18,8 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label Foreground="White" Margin="5">SeimunDH</Label>
-                <Label Foreground="White" Margin="5">就诊卡管理</Label>
+                <Label Margin="5"  Style="{DynamicResource LoglLabelStyle}">SeimunDH</Label>
+                <Label Margin="5"  Style="{DynamicResource LoglLabelStyle}">就诊卡管理</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
                 <Label x:Name="UserName" Margin="5" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
