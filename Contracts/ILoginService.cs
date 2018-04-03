@@ -638,5 +638,17 @@ namespace CommContracts
         List<CommContracts.InjectionBill> GetAllInjectionBill(int nRegistrationID);
         [OperationContract]
         List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID);
+
+        [OperationContract]
+        List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "");
+
+        [OperationContract]
+        bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime);
+
+        [OperationContract]
+        bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime);
+
+        [OperationContract]
+        bool DeleteClinicVistTime(int ClinicVistTimeID);
     }
 }

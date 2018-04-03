@@ -239,6 +239,11 @@ namespace DAL
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
         public DbSet<LoginInAndOutRecords> LoginInAndOutRecords { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
+        
+        /// <summary>
+        /// 看诊时间段表
+        /// </summary>
+        public DbSet<ClinicVistTime> ClinicVistTimes { get; set; }
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

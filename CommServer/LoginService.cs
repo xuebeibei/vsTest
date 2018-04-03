@@ -1315,5 +1315,29 @@ namespace CommServer
             BLL.InjectionBill temp = new BLL.InjectionBill();
             return temp.GetAllInHospitalInjectionBill(InHospitalID);
         }
+
+        public List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "")
+        {
+            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            return temp.GetAllClinicVistTime(strName);
+        }
+
+        public bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        {
+            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            return temp.UpdateClinicVistTime(ClinicVistTime);
+        }
+
+        public bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        {
+            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            return temp.SaveClinicVistTime(ClinicVistTime);
+        }
+
+        public bool DeleteClinicVistTime(int ClinicVistTimeID)
+        {
+            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            return temp.DeleteClinicVistTime(ClinicVistTimeID);
+        }
     }
 }
