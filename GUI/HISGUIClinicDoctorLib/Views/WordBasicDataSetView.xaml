@@ -10,13 +10,12 @@
     <HISGUICore:HISGUIViewBase.Resources>
         <GridView x:Key="ChuZhenShiDuan">
             <GridViewColumn Header="时段名称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-            <GridViewColumn Header="起始时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayType}"/>
-            <GridViewColumn Header="结束时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
-            <GridViewColumn Header="挂号截止时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
+            <GridViewColumn Header="候诊起始时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayType}"/>
+            <GridViewColumn Header="候诊结束时间" Width="100"  DisplayMemberBinding="{Binding Path=PrePayMoney}"/>
         </GridView>
         <GridView x:Key="HaoBie">
             <GridViewColumn Header="号别名称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-            <GridViewColumn Header="出诊医生职称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="医生职称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
             <GridViewColumn Header="医事服务费" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
         </GridView>
         <GridView x:Key="KeShi">
@@ -26,13 +25,8 @@
         <GridView x:Key="YiSheng">
             <GridViewColumn Header="医生姓名" Width="150"  DisplayMemberBinding="{Binding Path=Name}"/>
             <GridViewColumn Header="性别" Width="150"  DisplayMemberBinding="{Binding Path=Gender}"/>
+            <GridViewColumn Header="科室" Width="150"  DisplayMemberBinding="{Binding Path=Department.Name}"/>
             <GridViewColumn Header="职称" Width="150"  DisplayMemberBinding="{Binding Path=Job}"/>
-            <GridViewColumn Header="专长" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-        </GridView>
-        <GridView x:Key="HuShi">
-            <GridViewColumn Header="护士姓名" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-            <GridViewColumn Header="性别" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
-            <GridViewColumn Header="职称" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
             <GridViewColumn Header="专长" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
         </GridView>
     </HISGUICore:HISGUIViewBase.Resources>
@@ -51,8 +45,7 @@
                 <TreeViewItem Margin="0, 5, 15, 5" Header="号别字典"/>
                 <TreeViewItem Margin="0, 5, 15, 5" Header="科室字典"/>
                 <TreeViewItem Margin="0, 5, 15, 5" Header="医生字典"/>
-                <TreeViewItem Margin="0, 5, 15, 5" Header="护士字典"/>
-            </TreeView>
+            </TreeView> 
             <ListView Name="listView1" Margin="5" SelectionMode="Single"/>
         </DockPanel>
     </Grid>

@@ -114,11 +114,6 @@ namespace HISGUIDoctorLib.Views
                 List<CommContracts.Employee> list = employeeClient.getAllDoctor(vm.CurrentUser.Employee.DepartmentID);
                 this.listView1.ItemsSource = list;
             }
-            else if (strCurrentName == "护士字典")
-            {
-                this.listView1.View = this.Resources["HuShi"] as GridView;
-                SetMenuEnable(true);
-            }
         }
 
 
