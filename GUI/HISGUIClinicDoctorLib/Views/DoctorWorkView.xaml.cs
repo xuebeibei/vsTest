@@ -86,7 +86,9 @@ namespace HISGUIDoctorLib.Views
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
@@ -108,7 +110,9 @@ namespace HISGUIDoctorLib.Views
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
@@ -130,7 +134,9 @@ namespace HISGUIDoctorLib.Views
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
