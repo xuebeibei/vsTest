@@ -8,10 +8,9 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
                 <Label Margin="5">科室：</Label>
-                <ComboBox x:Name="DepartmentCombo" Width="100" Margin="5" SelectionChanged="DepartmentCombo_SelectionChanged"></ComboBox>
-                <ComboBox x:Name="EmployeeCombo" Width="100" Margin="5" Visibility="Collapsed"></ComboBox>
+                <TextBlock x:Name="DepartmentBlock" Width="100" Margin="5" IsEnabled="False" VerticalAlignment="Center"></TextBlock>
                 <Button Margin="5" Visibility="Collapsed">查找</Button>
             </StackPanel>
             <Grid Grid.Row="1">
@@ -50,8 +49,6 @@
                         <Setter Property="Height" Value="30" />
                     </Style>
                 </DataGrid.RowStyle>
-                <!--<DataGrid.Columns>
-                </DataGrid.Columns>-->
             </DataGrid>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>

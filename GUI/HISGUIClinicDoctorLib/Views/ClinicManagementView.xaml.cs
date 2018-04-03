@@ -45,19 +45,20 @@ namespace HISGUIDoctorLib.Views
         public ClinicManagementView()
         {
             InitializeComponent();
-            CommClient.Department myd = new CommClient.Department();
-            this.DepartmentCombo.ItemsSource = myd.getALLDepartment(CommContracts.DepartmentEnum.临床科室);
-
-            currentManageDate = DateTime.Now.Date;
-            updateDateMsg();
-
-            updateDateClinicMsg();
+   
             this.Loaded += ClinicManagementView_Loaded;
         }
 
         private void ClinicManagementView_Loaded(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIDoctorVM;
+            CommClient.Department myd = new CommClient.Department();
+            this.DepartmentBlock.Text = vm.CurrentUser.Employee.Department.Name;
 
+            currentManageDate = DateTime.Now.Date;
+            updateDateMsg();
+
+            updateDateClinicMsg();
         }
 
         [Import]
@@ -66,16 +67,6 @@ namespace HISGUIDoctorLib.Views
             set { this.VM = value; }
         }
 
-        private void DepartmentCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var department = this.DepartmentCombo.SelectedItem as CommContracts.Department;
-            if (department == null)
-                return;
-            CommClient.Employee myd = new CommClient.Employee();
-            this.EmployeeCombo.ItemsSource = myd.getAllDoctor(department.ID);
-
-            updateDateClinicMsg();
-        }
         private void updateDateMsg()
         {
             this.DateMsg.Inlines.Clear();
@@ -149,19 +140,22 @@ namespace HISGUIDoctorLib.Views
         }
         private List<PaiBan> updateDateClinicMsgGrid()
         {
-            var department = this.DepartmentCombo.SelectedItem as CommContracts.Department;
+            var vm = this.DataContext as HISGUIDoctorVM;
+            var department = vm.CurrentUser.Employee.Department;
             if (department == null)
                 return null;
             if (department.ID < 0)
                 return null;
 
-            var vm = this.DataContext as HISGUIDoctorVM;
+            CommClient.Employee employeeClient = new CommClient.Employee();
+            List<CommContracts.Employee> DoctorList = employeeClient.getAllDoctor(department.ID);
+
             DateTime monday = getMonday(currentManageDate);
 
             List<PaiBan> data = new List<PaiBan>();
-            for (int i = 0; i < this.EmployeeCombo.Items.Count; i++)
+            for (int i = 0; i < DoctorList.Count(); i++)
             {
-                CommContracts.Employee employee = this.EmployeeCombo.Items.GetItemAt(i) as CommContracts.Employee;
+                CommContracts.Employee employee = DoctorList.ElementAt(i);
                 if (employee == null)
                     continue;
 
@@ -259,11 +253,13 @@ namespace HISGUIDoctorLib.Views
 
         private List<CommContracts.SignalSource> getSignalsFromView()
         {
-            var department = this.DepartmentCombo.SelectedItem as CommContracts.Department;
+            var vm = this.DataContext as HISGUIDoctorVM;
+            var department = vm.CurrentUser.Employee.Department;
             if (department == null)
                 return null;
             if (department.ID < 0)
                 return null;
+
 
             List<PaiBan> list = this.DateClinicMsgGrid.ItemsSource as List<PaiBan>;
             if (list == null)
