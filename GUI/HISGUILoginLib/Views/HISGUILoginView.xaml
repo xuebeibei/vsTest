@@ -32,7 +32,7 @@
                 <Label Grid.Row="2" Grid.Column="0" VerticalContentAlignment="Center">密码：</Label>
 
                 <TextBox x:Name="UserNameBox" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                <PasswordBox x:Name="passbox" Grid.Row="2" Grid.Column="1" Margin="5"/>
+                <PasswordBox x:Name="passbox" Grid.Row="2" Grid.Column="1" Margin="5" GotFocus="passbox_GotFocus"/>
                 <TextBlock x:Name="loginResult" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="5" Foreground="Red"/>
                 <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="5">
                     <Grid.ColumnDefinitions>

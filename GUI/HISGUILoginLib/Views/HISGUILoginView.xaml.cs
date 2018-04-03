@@ -135,5 +135,10 @@ namespace HISGUILoginLib.Views
             }
             
         }
+
+        private void passbox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            this.passbox.Clear();
+        }
     }
 }
