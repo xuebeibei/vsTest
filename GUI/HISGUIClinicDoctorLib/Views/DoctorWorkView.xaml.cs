@@ -154,7 +154,26 @@ namespace HISGUIDoctorLib.Views
 
         private void BasicDataSet_Click(object sender, RoutedEventArgs e)
         {
+            string header = "排班管理>基础数据";
 
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            WordBasicDataSetView eidtInspect = new WordBasicDataSetView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
         }
 
         private void WorkRecordSet_Click(object sender, RoutedEventArgs e)
