@@ -68,5 +68,25 @@ namespace HISGUICore.MyContorls
 
             return str;
         }
+
+        public void SetMyValue(string timeValue)
+        {
+            if(string.IsNullOrEmpty(timeValue))
+            {
+                return;
+            }
+
+            if(timeValue.Length == 8)
+            {
+                this.HHBox.Text = timeValue.Substring(0, 2);
+                this.MMBox.Text = timeValue.Substring(3, 2);
+                this.SSBox.Text = timeValue.Substring(6, 2);
+            }
+        }
+
+        public string GetMyValue()
+        {
+            return this.HHBox.Text + ":" + this.MMBox.Text + ":" + this.SSBox.Text;
+        }
     }
 }

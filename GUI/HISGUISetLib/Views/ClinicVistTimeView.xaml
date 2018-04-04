@@ -22,7 +22,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" x:Name="EditGrid">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>
                         <RowDefinition></RowDefinition>
@@ -37,21 +37,23 @@
                         <ColumnDefinition Width="160"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Margin="5">时段名称：</Label>
-                    <Label Grid.Row="0" Grid.Column="2" Margin="5">出诊起始时间：</Label>
-                    <Label Grid.Row="0" Grid.Column="4" Margin="5">出诊结束时间：</Label>
-                    <Label Grid.Row="1" Grid.Column="0" Margin="5">候诊起始时间：</Label>
-                    <Label Grid.Row="1" Grid.Column="2" Margin="5">候诊结束时间：</Label>
-                    <Label Grid.Row="1" Grid.Column="4" Margin="5">当天挂号截止时间：</Label>
+                    <Label Grid.Row="0" Grid.Column="2" Margin="5">出诊时间：</Label>
+                    <Label Grid.Row="0" Grid.Column="4" Margin="5">——</Label>
+                    
+                    <Label Grid.Row="1" Grid.Column="2" Margin="5">候诊时间：</Label>
+                    <Label Grid.Row="1" Grid.Column="4" Margin="5">——</Label>
+                    <Label Grid.Row="1" Grid.Column="0" Margin="5">可挂号截止时间：</Label>
 
                     <TextBox x:Name="VistTimeNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
-                    <Controls:MyTimeControl Grid.Row="0" Grid.Column="3"></Controls:MyTimeControl>
-                    <Controls:MyTimeControl Grid.Row="0" Grid.Column="5"></Controls:MyTimeControl>
-                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="1"></Controls:MyTimeControl>
-                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="3"></Controls:MyTimeControl>
-                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="5"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl x:Name="StartVistTime" Grid.Row="0" Grid.Column="3"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl x:Name="EndVistTime" Grid.Row="0" Grid.Column="5"></Controls:MyTimeControl>
 
+                    <Controls:MyTimeControl x:Name="LastSellTime" Grid.Row="1" Grid.Column="1"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl x:Name="StartWaitTime" Grid.Row="1" Grid.Column="3"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl x:Name="EndWaitTime" Grid.Row="1" Grid.Column="5"></Controls:MyTimeControl>
+                    
                 </Grid>
-                <ListView Name="AllClinicVistTimeList" Grid.Row="1" Margin="5" SelectionMode="Single" MouseDoubleClick="AllClinicVistTimeList_MouseDoubleClick">
+                <ListView Name="AllClinicVistTimeList" Grid.Row="1" Margin="5" SelectionMode="Single" SelectionChanged="AllClinicVistTimeList_SelectionChanged">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="时段名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
