@@ -28,12 +28,14 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="HHBox" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">:</TextBlock>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">时</TextBlock>
             <ComboBox x:Name="MMBox" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-            <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">:</TextBlock>
+            <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">分</TextBlock>
             <ComboBox x:Name="SSBox" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBlock Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">秒</TextBlock>
         </Grid>
     </Grid>
 </UserControl>

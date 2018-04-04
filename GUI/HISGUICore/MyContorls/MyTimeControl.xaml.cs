@@ -53,6 +53,27 @@ namespace HISGUICore.MyContorls
             SSBox.SelectedIndex = 0;
         }
 
+        private void SetMyComboRange(ComboBox comboBox, int nMin, int nMax)
+        {
+            if (nMin > nMax)
+                return;
+
+            if (comboBox == null)
+                return;
+
+            if (comboBox.Items == null)
+                return;
+            comboBox.Items.Clear();
+
+            for (int i = nMin; i <= nMax; i++)
+            {
+                ComboBoxItem item = new ComboBoxItem();
+                item.Content = MyIntToString(i);
+                comboBox.Items.Add(item);
+            }
+            comboBox.SelectedIndex = 0;
+        }
+
         private string MyIntToString(int num)
         {
             string str = "";
@@ -71,12 +92,15 @@ namespace HISGUICore.MyContorls
 
         public void SetMyValue(string timeValue)
         {
-            if(string.IsNullOrEmpty(timeValue))
+            if (string.IsNullOrEmpty(timeValue))
             {
+                this.HHBox.SelectedIndex = 0;
+                this.MMBox.SelectedIndex = 0;
+                this.SSBox.SelectedIndex = 0;
                 return;
             }
 
-            if(timeValue.Length == 8)
+            if (timeValue.Length == 8)
             {
                 this.HHBox.Text = timeValue.Substring(0, 2);
                 this.MMBox.Text = timeValue.Substring(3, 2);
@@ -87,6 +111,35 @@ namespace HISGUICore.MyContorls
         public string GetMyValue()
         {
             return this.HHBox.Text + ":" + this.MMBox.Text + ":" + this.SSBox.Text;
+        }
+
+        public void SetRangeValue(string minTimeValue, string maxTimeValue)
+        {
+            if (string.IsNullOrEmpty(minTimeValue) || string.IsNullOrEmpty(maxTimeValue))
+            {
+                return;
+            }
+            int nMinHH = 0, nMinMM = 0, nMinSS = 0, nMaxHH = 0, nMaxMM = 0, nMaxSS = 0;
+            if (minTimeValue.Length == 8)
+            {
+                nMinHH = int.Parse(minTimeValue.Substring(0, 2));
+                nMinMM = int.Parse(minTimeValue.Substring(3, 2));
+                nMinSS = int.Parse(minTimeValue.Substring(6, 2));
+
+                nMaxHH = int.Parse(maxTimeValue.Substring(0, 2));
+                nMaxMM = int.Parse(maxTimeValue.Substring(3, 2));
+                nMaxSS = int.Parse(maxTimeValue.Substring(6, 2));
+
+                DateTime minTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, nMinHH, nMinMM, nMinSS);
+                DateTime maxTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, nMaxHH, nMaxMM, nMaxSS);
+                if (minTime > maxTime)
+                    return;
+
+
+                SetMyComboRange(this.HHBox, nMinHH, nMaxHH);
+                SetMyComboRange(this.MMBox, nMinMM, nMaxMM);
+                SetMyComboRange(this.SSBox, nMinSS, nMaxSS);
+            }
         }
     }
 }
