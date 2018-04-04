@@ -33,6 +33,30 @@ namespace BLL
             return list;
         }
 
+        public List<CommContracts.Job> GetAllTypeJob(CommContracts.JobTypeEnum typeEnum)
+        {
+            List<CommContracts.Job> list = new List<CommContracts.Job>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Jobs
+                            where a.JobType == (DAL.JobTypeEnum)typeEnum
+                            select a;
+                foreach (DAL.Job ass in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Job, CommContracts.Job>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Job temp = mapper.Map<CommContracts.Job>(ass);
+                    list.Add(temp);
+                }
+            }
+            return list;
+        }
+
         public bool SaveJob(CommContracts.Job job)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())

@@ -378,6 +378,9 @@ namespace CommContracts
         List<CommContracts.Job> GetAllJob(string strName = "");
 
         [OperationContract]
+        List<CommContracts.Job> GetAllTypeJob(CommContracts.JobTypeEnum typeEnum);
+
+        [OperationContract]
         bool UpdateJob(CommContracts.Job job);
 
         [OperationContract]

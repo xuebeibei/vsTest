@@ -727,6 +727,12 @@ namespace CommServer
             return temp.GetAllJob(strName);
         }
 
+        public List<CommContracts.Job> GetAllTypeJob(CommContracts.JobTypeEnum typeEnum)
+        {
+            BLL.Job temp = new BLL.Job();
+            return temp.GetAllTypeJob(typeEnum);
+        }
+
         public bool UpdateJob(CommContracts.Job job)
         {
             BLL.Job temp = new BLL.Job();

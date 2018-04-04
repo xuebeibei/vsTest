@@ -22,6 +22,11 @@ namespace CommClient
             return client.GetAllJob(strName);
         }
 
+        public List<CommContracts.Job> GetAllTypeJob(CommContracts.JobTypeEnum typeEnum)
+        {
+            return client.GetAllTypeJob(typeEnum);
+        }
+
         public bool UpdateJob(CommContracts.Job job)
         {
             return client.UpdateJob(job);
