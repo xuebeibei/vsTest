@@ -653,5 +653,14 @@ namespace CommContracts
 
         [OperationContract]
         bool DeleteClinicVistTime(int ClinicVistTimeID);
+
+        [OperationContract]
+        List<CommContracts.RegistrationDitch> GetAllRegistrationDitch(string strName);
+        [OperationContract]
+        bool UpdateRegistrationDitch(CommContracts.RegistrationDitch RegistrationDitch);
+        [OperationContract]
+        bool SaveRegistrationDitch(CommContracts.RegistrationDitch RegistrationDitch);
+        [OperationContract]
+        bool DeleteRegistrationDitch(int RegistrationDitchID);
     }
 }

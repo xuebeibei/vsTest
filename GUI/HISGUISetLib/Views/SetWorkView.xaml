@@ -47,9 +47,11 @@
                 <TreeViewItem Margin="0,0,5,0" Header="检查项目"/>
                 <TreeViewItem Margin="0,0,5,0" Header="化验项目"/>
                 <TreeViewItem Margin="0,0,5,0" Header="其他服务"/>
+            </TreeViewItem>
+            <TreeViewItem Margin="0,5,10,5" Header="挂号" >
                 <TreeViewItem Margin="0,0,5,0" Header="号源种类"/>
                 <TreeViewItem Margin="0,0,5,0" Header="出诊时段"/>
-
+                <TreeViewItem Margin="0,0,5,0" Header="放号渠道"/>
             </TreeViewItem>
             <TreeViewItem Margin="0,5,10,5" Header="患者">
                 <TreeViewItem Margin="0,0,5,0" Header="患者"/>

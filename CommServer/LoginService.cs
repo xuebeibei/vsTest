@@ -1345,5 +1345,26 @@ namespace CommServer
             BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
             return temp.DeleteClinicVistTime(ClinicVistTimeID);
         }
+
+        public List<CommContracts.RegistrationDitch> GetAllRegistrationDitch(string strName)
+        {
+            BLL.RegistrationDitch temp = new BLL.RegistrationDitch();
+            return temp.GetAllRegistrationDitch(strName);
+        }
+        public bool UpdateRegistrationDitch(CommContracts.RegistrationDitch RegistrationDitch)
+        {
+            BLL.RegistrationDitch temp = new BLL.RegistrationDitch();
+            return temp.UpdateRegistrationDitch(RegistrationDitch);
+        }
+        public bool SaveRegistrationDitch(CommContracts.RegistrationDitch RegistrationDitch)
+        {
+            BLL.RegistrationDitch temp = new BLL.RegistrationDitch();
+            return temp.SaveRegistrationDitch(RegistrationDitch);
+        }
+        public bool DeleteRegistrationDitch(int RegistrationDitchID)
+        {
+            BLL.RegistrationDitch temp = new BLL.RegistrationDitch();
+            return temp.DeleteRegistrationDitch(RegistrationDitchID);
+        }
     }
 }

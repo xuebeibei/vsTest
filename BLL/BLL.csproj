@@ -71,6 +71,7 @@
     <Compile Include="LoginInAndOutRecords.cs" />
     <Compile Include="PatientCardManage.cs" />
     <Compile Include="RecallHospital.cs" />
+    <Compile Include="RegistrationDitch.cs" />
     <Compile Include="User.cs" />
     <Compile Include="MaterialCharge.cs" />
     <Compile Include="MaterialCheckStore.cs" />

@@ -172,6 +172,9 @@
     <Compile Include="Views\PatientSetView.xaml.cs">
       <DependentUpon>PatientSetView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RegistrationDitchView.xaml.cs">
+      <DependentUpon>RegistrationDitchView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetWorkView.xaml.cs">
       <DependentUpon>SetWorkView.xaml</DependentUpon>
     </Compile>
@@ -337,6 +340,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PatientSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RegistrationDitchView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

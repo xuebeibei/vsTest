@@ -245,6 +245,11 @@ namespace DAL
         /// </summary>
         public DbSet<ClinicVistTime> ClinicVistTimes { get; set; }
 
+        /// <summary>
+        /// 放号渠道表
+        /// </summary>
+        public DbSet<RegistrationDitch> RegistrationDitchs { get; set; }
+
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释

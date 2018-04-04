@@ -224,6 +224,13 @@ namespace HISGUISetLib.Views
 
                 this.CenterPanel.Children.Add(centerView);
             }
+            else if(viewItem.Header.ToString() == "放号渠道")
+            {
+                RegistrationDitchView centerView = new RegistrationDitchView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
             else if (viewItem.Header.ToString() == "患者")
             {
                 PatientSetView centerView = new PatientSetView();
