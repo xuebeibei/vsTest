@@ -36,6 +36,9 @@ namespace HISGUISetLib.Views
 
         private void SignalItemSetView_Loaded(object sender, RoutedEventArgs e)
         {
+            CommClient.Job jobClient = new CommClient.Job();
+
+            SignalItemDoctorJobBox.ItemsSource = jobClient.GetAllTypeJob(CommContracts.JobTypeEnum.医师);
             UpdateAllDate();
         }
 

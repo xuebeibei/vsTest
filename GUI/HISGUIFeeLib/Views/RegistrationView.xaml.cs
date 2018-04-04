@@ -137,7 +137,6 @@ namespace HISGUIFeeLib.Views
                     "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
                     "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
                     "看诊时间：" + currentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
-                    "时段：" + currentRegistration.SignalSource.SignalItem.SignalTimeEnum + "     " +
                     "费用：" + currentRegistration.RegisterFee + "元     " +
                     "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
                     "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
@@ -221,15 +220,13 @@ namespace HISGUIFeeLib.Views
                     foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
                     {
                         var query = from u in sourceList
-                                    where u.VistTime.Value.DayOfWeek == day &&
-                                    u.SignalItem.SignalTimeEnum == tim
+                                    where u.VistTime.Value.DayOfWeek == day 
                                     select u.MaxNum;
                         int HaveNum = query.Sum(); int UsedNum = 0;
                         if (bIsHasRegistration)
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistTime.Value.DayOfWeek == day &&
-                                             e.SignalSource.SignalItem.SignalTimeEnum == tim &&
                                              (!e.ReturnTime.HasValue)
                                              select e;
                             UsedNum = regisQuery.Count();

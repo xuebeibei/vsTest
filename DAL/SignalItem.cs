@@ -6,34 +6,42 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem”的 XML 注释
+    /// <summary>
+    /// 号别
+    /// </summary>
     public class SignalItem
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem”的 XML 注释
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalItem()”的 XML 注释
+        /// <summary>
+        /// 号别构造函数
+        /// </summary>
         public SignalItem()
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalItem()”的 XML 注释
         {
             SignalSources = new List<SignalSource>();
         }
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.ID”的 XML 注释
-        public int ID { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.ID”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.Name”的 XML 注释
-        public string Name { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.Name”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalTimeEnum”的 XML 注释
-        public SignalTimeEnum SignalTimeEnum { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalTimeEnum”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.MaxNum”的 XML 注释
-        public int MaxNum { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.MaxNum”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.SellPrice”的 XML 注释
-        public decimal SellPrice { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.SellPrice”的 XML 注释
 
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalSources”的 XML 注释
+        /// <summary>
+        /// 主键
+        /// </summary>
+        public int ID { get; set; }
+
+        /// <summary>
+        /// 号别名称
+        /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 医生职称
+        /// </summary>
+        public string DoctorJob { get; set; }
+
+        /// <summary>
+        /// 医事服务费
+        /// </summary>
+        public decimal SellPrice { get; set; }
+
+        /// <summary>
+        /// 号别所有的号源
+        /// </summary>
         public virtual ICollection<SignalSource> SignalSources { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“SignalItem.SignalSources”的 XML 注释
     }
 }

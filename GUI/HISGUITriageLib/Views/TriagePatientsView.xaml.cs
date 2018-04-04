@@ -92,7 +92,6 @@ namespace HISGUINurseLib.Views
                 "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
                 "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
                 "看诊时间：" + currentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
-                "时段：" + currentRegistration.SignalSource.SignalItem.SignalTimeEnum + "     " +
                 "费用：" + currentRegistration.RegisterFee + "元     " +
                 "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
                 "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
@@ -161,8 +160,7 @@ namespace HISGUINurseLib.Views
                 foreach (CommContracts.SignalTimeEnum tim in Enum.GetValues(typeof(CommContracts.SignalTimeEnum)))
                 {
                     var doctorQuery = (from u in sourceList
-                                       where u.DepartmentID == de &&
-                                       u.SignalItem.SignalTimeEnum == tim
+                                       where u.DepartmentID == de 
                                        select new { u.EmployeeID, u.ID }).Distinct();
 
                     foreach (var doc in doctorQuery)

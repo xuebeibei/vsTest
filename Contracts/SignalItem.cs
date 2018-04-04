@@ -15,24 +15,24 @@ namespace CommContracts
     }
 
     [DataContract]
-#pragma warning disable CS0659 // “SignalItem”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class SignalItem
-#pragma warning restore CS0659 // “SignalItem”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     {
         [DataMember]
         public int ID { get; set; }
         [DataMember]
         public string Name { get; set; }
+        /// <summary>
+        /// 医生职称
+        /// </summary>
         [DataMember]
-        public SignalTimeEnum SignalTimeEnum { get; set; }
-        [DataMember]
-        public int MaxNum { get; set; }
+        public string DoctorJob { get; set; }
+
         [DataMember]
         public decimal SellPrice { get; set; }
 
         public override string ToString()
         {
-            return Name +" "+ SignalTimeEnum +" "+ MaxNum;
+            return Name;
         }
 
         public override bool Equals(object obj)
@@ -43,6 +43,10 @@ namespace CommContracts
             if (temp.ID != this.ID)
                 return false;
             return true;
+        }
+        public override int GetHashCode()
+        {
+            return this.ID.GetHashCode();
         }
     }
 }

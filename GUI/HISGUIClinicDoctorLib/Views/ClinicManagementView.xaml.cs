@@ -281,7 +281,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Monday.MaxNum;
                     signalSource.Price = paiBan.Monday.SellPrice;
                     signalSource.SignalItemID = paiBan.Monday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(0);
@@ -296,7 +295,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Tuesday.MaxNum;
                     signalSource.Price = paiBan.Tuesday.SellPrice;
                     signalSource.SignalItemID = paiBan.Tuesday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(1);
@@ -312,7 +310,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Wednesday.MaxNum;
                     signalSource.Price = paiBan.Wednesday.SellPrice;
                     signalSource.SignalItemID = paiBan.Wednesday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(2);
@@ -327,7 +324,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Thursday.MaxNum;
                     signalSource.Price = paiBan.Thursday.SellPrice;
                     signalSource.SignalItemID = paiBan.Thursday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(3);
@@ -343,7 +339,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Friday.MaxNum;
                     signalSource.Price = paiBan.Friday.SellPrice;
                     signalSource.SignalItemID = paiBan.Friday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(4);
@@ -359,7 +354,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Saturday.MaxNum;
                     signalSource.Price = paiBan.Saturday.SellPrice;
                     signalSource.SignalItemID = paiBan.Saturday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(5);
@@ -375,7 +369,6 @@ namespace HISGUIDoctorLib.Views
                     CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.MaxNum = paiBan.Sunday.MaxNum;
                     signalSource.Price = paiBan.Sunday.SellPrice;
                     signalSource.SignalItemID = paiBan.Sunday.ID;
                     signalSource.VistTime = getMonday(currentManageDate).AddDays(6);

@@ -93,8 +93,7 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Name = signalItem.Name;
-                    temp.SignalTimeEnum = (DAL.SignalTimeEnum)signalItem.SignalTimeEnum;
-                    temp.MaxNum = signalItem.MaxNum;
+                    temp.DoctorJob = signalItem.DoctorJob;
                     temp.SellPrice = signalItem.SellPrice;
                 }
                 else

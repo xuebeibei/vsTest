@@ -32,9 +32,7 @@ namespace HISGUISetLib.Views
             {
                 this.SignalItem = signalItem;
                 this.NameEdit.Text = signalItem.Name;
-                this.MaxNum.Text = signalItem.MaxNum.ToString();
                 this.SellPrice.Text = signalItem.SellPrice.ToString();
-                this.SignalItemCombo.SelectedItem = signalItem.SignalTimeEnum;
                 bIsEdit = true;
             }
         }
@@ -53,11 +51,9 @@ namespace HISGUISetLib.Views
             if (bIsEdit)
             {
                 SignalItem.Name = this.NameEdit.Text.Trim();
-                if(!string.IsNullOrEmpty(this.MaxNum.Text.Trim()))
-                SignalItem.MaxNum = int.Parse(this.MaxNum.Text.Trim());
+                
                 if (!string.IsNullOrEmpty(this.SellPrice.Text.Trim()))
                     SignalItem.SellPrice = decimal.Parse(this.SellPrice.Text.Trim());
-                SignalItem.SignalTimeEnum = (CommContracts.SignalTimeEnum)this.SignalItemCombo.SelectedItem;
 
                 CommClient.SignalItem myd = new CommClient.SignalItem();
                 if (myd.UpdateSignalItem(SignalItem))
@@ -70,11 +66,8 @@ namespace HISGUISetLib.Views
             {
                 CommContracts.SignalItem signalItem = new CommContracts.SignalItem();
                 signalItem.Name = this.NameEdit.Text.Trim();
-                if (!string.IsNullOrEmpty(this.MaxNum.Text.Trim()))
-                    signalItem.MaxNum = int.Parse(this.MaxNum.Text.Trim());
                 if (!string.IsNullOrEmpty(this.SellPrice.Text.Trim()))
                     signalItem.SellPrice = decimal.Parse(this.SellPrice.Text.Trim());
-                signalItem.SignalTimeEnum = (CommContracts.SignalTimeEnum)this.SignalItemCombo.SelectedItem;
 
 
                 CommClient.SignalItem myd = new CommClient.SignalItem();
