@@ -70,8 +70,9 @@ namespace HISGUISetLib.Views
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
             CommContracts.ClinicVistTime vistTime = new CommContracts.ClinicVistTime();
-
             updateDateToView(vistTime);
+            EditGrid.IsEnabled = true;
+            this.VistTimeNameBox.Focus();
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
