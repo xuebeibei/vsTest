@@ -30,11 +30,11 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="160"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Margin="5">时段名称：</Label>
                     <Label Grid.Row="0" Grid.Column="2" Margin="5">出诊时间：</Label>
