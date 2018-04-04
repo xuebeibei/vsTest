@@ -66,7 +66,7 @@ namespace HISGUISetLib.Views
 
         private void FindItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            string strName = this.FindItemNameBox.Text.Trim();
+            string strName = "";
             UpdateAllDate(strName);
         }
 
@@ -133,6 +133,46 @@ namespace HISGUISetLib.Views
         {
             var vm = this.DataContext as HISGUISetVM;
             this.AllSignalItemList.ItemsSource = vm?.GetAllSignalItem(strName);
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ImportBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExportBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void PrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AllSignalItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

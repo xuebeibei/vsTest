@@ -7,27 +7,52 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBox x:Name="FindItemNameBox" Margin="5" Width="100"></TextBox>
-                <Button x:Name="FindItemBtn" Margin="5" Click="FindItemBtn_Click">查找</Button>
-                <Button x:Name="NewItemBtn" Margin="5" Click="NewItemBtn_Click">新增</Button>
-                <Button x:Name="DeleteItemBtn" Margin="5" Click="DeleteItemBtn_Click">删除</Button>
-                <Button x:Name="EditItemBtn" Margin="5" Click="EditItemBtn_Click">修改</Button>
-                <Button x:Name="ExportItemBtn" Margin="5" Click="ExportItemBtn_Click">导出</Button>
-                <Button x:Name="ImportItemBtn" Margin="5" Click="ImportItemBtn_Click">导入</Button>
-            </StackPanel>
-            <ListView Name="AllSignalItemList" Margin="5"
-                              SelectionMode="Single" MouseDoubleClick="AllSignalItemList_MouseDoubleClick">
-                <ListView.View>
-                    <GridView x:Name="gridViewSignalItem">
-                        <GridViewColumn Header="名称" DisplayMemberBinding="{Binding Path=Name}" Width="120"></GridViewColumn>
-                        <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=SignalTimeEnum}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="数量" DisplayMemberBinding="{Binding Path=MaxNum}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=SellPrice}" Width="80"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </StackPanel>
+        <DockPanel>
+            <ToolBar DockPanel.Dock="Top">
+                <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建" Click="NewBtn_Click" ></Button>
+                <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="SaveBtn_Click" ></Button>
+                <Button x:Name="EditBtn" Margin="5" Content="编辑" ToolTip="编辑" Click="EditBtn_Click" ></Button>
+                <Button x:Name="DeleteBtn" Margin="5" Content="删除" ToolTip="删除" Click="DeleteBtn_Click" ></Button>
+                <Button x:Name="ImportBtn" Margin="5" Content="导入" ToolTip="导入" Click="ImportBtn_Click" ></Button>
+                <Button x:Name="ExportBtn" Margin="5" Content="导出" ToolTip="导出" Click="ExportBtn_Click" ></Button>
+                <Button x:Name="PrintBtn" Margin="5" Content="打印" ToolTip="打印" Click="PrintBtn_Click" ></Button>
+            </ToolBar>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                        <ColumnDefinition Width="auto"></ColumnDefinition>
+                        <ColumnDefinition Width="180"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Margin="5">号别名称：</Label>
+                    <Label Grid.Row="0" Grid.Column="2" Margin="5">医生职称：</Label>
+                    <Label Grid.Row="0" Grid.Column="4" Margin="5">医事服务费：</Label>
+
+                    <TextBox x:Name="SignalItemNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
+                    <ComboBox x:Name="SignalItemDoctorJobBox" Grid.Row="0" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
+                    <TextBox x:Name="SignalPriceBox" Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
+                </Grid>
+                <ListView Name="AllSignalItemList" 
+                          Grid.Row="1"
+                          Margin="5"
+                          SelectionMode="Single" 
+                          SelectionChanged="AllSignalItemList_SelectionChanged">
+                    <ListView.View>
+                        <GridView x:Name="gridViewSignalItem">
+                            <GridViewColumn Header="号别名称" DisplayMemberBinding="{Binding Path=Name}" Width="120"></GridViewColumn>
+                            <GridViewColumn Header="医生职称" DisplayMemberBinding="{Binding Path=SignalTimeEnum}" Width="100"></GridViewColumn>
+                            <GridViewColumn Header="医事服务费" DisplayMemberBinding="{Binding Path=SellPrice}" Width="80"></GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
