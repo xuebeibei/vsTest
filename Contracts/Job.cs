@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum JobEnum
+    public enum JobGradeEnum
     {
         初级,        // 初级
         中级,         // 中级
@@ -24,6 +24,58 @@ namespace CommContracts
         就诊卡模块
     }
 
+
+    /// <summary>
+    /// 系统职位类别
+    /// </summary>
+    public enum JobTypeEnum
+    {
+        /// <summary>
+        /// 护理
+        /// </summary>
+        护理,
+        /// <summary>
+        /// 药学
+        /// </summary>
+        药学,
+        /// <summary>
+        /// 中药学
+        /// </summary>
+        中药学,
+        /// <summary>
+        /// 检验
+        /// </summary>
+        检验,
+        /// <summary>
+        /// 放射
+        /// </summary>
+        放射,
+        /// <summary>
+        /// 医师
+        /// </summary>
+        医师,
+        /// <summary>
+        /// 财务管理
+        /// </summary>
+        财务管理,
+        /// <summary>
+        /// 收费管理
+        /// </summary>
+        收费管理,
+        /// <summary>
+        /// 库房管理
+        /// </summary>
+        库房管理,
+        /// <summary>
+        /// 患者管理
+        /// </summary>
+        患者管理,
+        /// <summary>
+        /// 系统管理
+        /// </summary>
+        系统管理
+    }
+
     [DataContract]
 #pragma warning disable CS0659 // “Job”重写 Object.Equals(object o) 但不重写 Object.GetHashCode()
     public class Job
@@ -33,6 +85,7 @@ namespace CommContracts
         {
             Name = "";
         }
+
         [DataMember]
         public int ID { get; set; }
         [DataMember]
@@ -41,7 +94,13 @@ namespace CommContracts
         public bool Default { get; set; }
 
         [DataMember]
-        public JobEnum JobEnum { get; set; }
+        public JobGradeEnum JobGrade { get; set; }
+        /// <summary>
+        /// 职位类别
+        /// </summary>
+        [DataMember]
+        public JobTypeEnum JobType { get; set; }
+
         [DataMember]
         public PowerEnum PowerEnum { get; set; }
 

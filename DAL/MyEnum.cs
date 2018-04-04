@@ -81,7 +81,7 @@ namespace DAL
     /// <summary>
     /// 职位等级
     /// </summary>
-    public enum JobEnum
+    public enum JobGradeEnum
     {
         /// <summary>
         /// 最初级，受中级管制

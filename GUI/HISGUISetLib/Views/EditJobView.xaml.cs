@@ -25,15 +25,17 @@ namespace HISGUISetLib.Views
         public EditJobView(CommContracts.Job job = null)
         {
             InitializeComponent();
-            JobCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.JobEnum));
-            JobCombo.SelectedItem = CommContracts.JobEnum.初级;
+            JobGradeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.JobGradeEnum));
+            JobGradeCombo.SelectedItem = CommContracts.JobGradeEnum.初级;
+            JobTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.JobTypeEnum));
+
             PowerEnum.ItemsSource = Enum.GetValues(typeof(CommContracts.PowerEnum));
             bIsEdit = false;
             if (job != null)
             {
                 this.Job = job;
                 this.NameEdit.Text = job.Name;
-                this.JobCombo.SelectedItem = job.JobEnum;
+                this.JobGradeCombo.SelectedItem = job.JobGrade;
                 this.PowerEnum.SelectedItem = job.PowerEnum;
                 bIsEdit = true;
             }
@@ -46,7 +48,7 @@ namespace HISGUISetLib.Views
                 return;
             }
 
-            if (this.JobCombo.SelectedItem == null)
+            if (this.JobGradeCombo.SelectedItem == null)
             {
                 return;
             }
@@ -56,8 +58,9 @@ namespace HISGUISetLib.Views
             if (bIsEdit)
             {
                 Job.Name = this.NameEdit.Text.Trim();
-                Job.JobEnum = (CommContracts.JobEnum)this.JobCombo.SelectedItem;
+                Job.JobGrade = (CommContracts.JobGradeEnum)this.JobGradeCombo.SelectedItem;
                 Job.PowerEnum = (CommContracts.PowerEnum)this.PowerEnum.SelectedItem;
+                Job.JobType = (CommContracts.JobTypeEnum)this.JobTypeCombo.SelectedItem;
 
                 CommClient.Job myd = new CommClient.Job();
                 if (myd.UpdateJob(Job))
@@ -70,8 +73,9 @@ namespace HISGUISetLib.Views
             {
                 CommContracts.Job job = new CommContracts.Job();
                 job.Name = this.NameEdit.Text.Trim();
-                job.JobEnum = (CommContracts.JobEnum)this.JobCombo.SelectedItem;
+                job.JobGrade = (CommContracts.JobGradeEnum)this.JobGradeCombo.SelectedItem;
                 job.PowerEnum = (CommContracts.PowerEnum)this.PowerEnum.SelectedItem;
+                job.JobType = (CommContracts.JobTypeEnum)this.JobTypeCombo.SelectedItem;
 
                 CommClient.Job myd = new CommClient.Job();
                 if (myd.SaveJob(job))

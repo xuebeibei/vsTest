@@ -6,10 +6,12 @@
              xmlns:local="clr-namespace:HISGUISetLib.Views">
     <Grid>
         <StackPanel>
-            <Label Margin="5">名称*：</Label>
+            <Label Margin="5">职位名称*：</Label>
             <TextBox x:Name="NameEdit" Margin="5"></TextBox>
-            <Label Margin="5">类型：</Label>
-            <ComboBox x:Name="JobCombo" Margin="5"/>
+            <Label Margin="5">职位等级：</Label>
+            <ComboBox x:Name="JobGradeCombo" Margin="5"/>
+            <Label Margin="5">职位类别：</Label>
+            <ComboBox x:Name="JobTypeCombo" Margin="5"/>
             <Label Margin="5">工作模块</Label>
             <ComboBox x:Name="PowerEnum" Margin="5"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">

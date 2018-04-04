@@ -34,6 +34,57 @@ namespace DAL
     }
 
     /// <summary>
+    /// 系统职位类别
+    /// </summary>
+    public enum JobTypeEnum
+    {
+        /// <summary>
+        /// 护理
+        /// </summary>
+        护理,
+        /// <summary>
+        /// 药学
+        /// </summary>
+        药学,
+        /// <summary>
+        /// 中药学
+        /// </summary>
+        中药学,
+        /// <summary>
+        /// 检验
+        /// </summary>
+        检验,
+        /// <summary>
+        /// 放射
+        /// </summary>
+        放射,
+        /// <summary>
+        /// 医师
+        /// </summary>
+        医师,
+        /// <summary>
+        /// 财务管理
+        /// </summary>
+        财务管理,
+        /// <summary>
+        /// 收费管理
+        /// </summary>
+        收费管理,
+        /// <summary>
+        /// 库房管理
+        /// </summary>
+        库房管理,
+        /// <summary>
+        /// 患者管理
+        /// </summary>
+        患者管理,
+        /// <summary>
+        /// 系统管理
+        /// </summary>
+        系统管理
+    }
+
+    /// <summary>
     /// 职位类
     /// </summary>
     public class Job
@@ -45,7 +96,7 @@ namespace DAL
         {
             Name = "";
             Employees = new List<Employee>();
-            JobEnum = JobEnum.初级;
+            JobGrade = JobGradeEnum.初级;
         }
         /// <summary>
         /// 主键ID
@@ -55,14 +106,16 @@ namespace DAL
         /// 职位名称
         /// </summary>
         public string Name { get; set; }
-        /// <summary>
-        /// 是否默认职位，弃用
-        /// </summary>
-        public bool Default { get; set; }
+
         /// <summary>
         /// 职位等级
         /// </summary>
-        public JobEnum JobEnum { get; set; }
+        public JobGradeEnum JobGrade { get; set; }
+
+        /// <summary>
+        /// 职位类别
+        /// </summary>
+        public JobTypeEnum JobType { get; set; }
         /// <summary>
         /// 工作模块
         /// </summary>

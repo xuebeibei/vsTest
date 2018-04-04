@@ -64,7 +64,7 @@ namespace HISGUISetLib.Views
             EditJobView eidtJob = new EditJobView();
             window.Content = eidtJob;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 400;
             window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
@@ -108,7 +108,7 @@ namespace HISGUISetLib.Views
             EditJobView eidtJob = new EditJobView(temp);
             window.Content = eidtJob;
             window.Width = 400;
-            window.Height = 300;
+            window.Height = 400;
             window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
