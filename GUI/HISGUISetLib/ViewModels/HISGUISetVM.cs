@@ -381,5 +381,19 @@ namespace HISGUISetLib.ViewModels
 
             return false;
         }
+
+        /// <summary>
+        /// 当前操作的就诊时间段
+        /// </summary>
+        #region CurrentClinicVistTime
+        public static readonly DependencyProperty CurrentClinicVistTimeProperty = DependencyProperty.Register(
+            "CurrentClinicVistTime", typeof(CommContracts.ClinicVistTime), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.ClinicVistTime CurrentClinicVistTime
+        {
+            get { return (CommContracts.ClinicVistTime)GetValue(CurrentClinicVistTimeProperty); }
+            set { SetValue(CurrentClinicVistTimeProperty, value); }
+        }
+        #endregion
     }
 }
