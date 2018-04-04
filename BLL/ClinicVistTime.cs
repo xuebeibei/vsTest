@@ -94,21 +94,11 @@ namespace BLL
                 {
                     temp.ID = ClinicVistTime.ID;
                     temp.Name = ClinicVistTime.Name;
-                    temp.StartVistTimeHH = ClinicVistTime.StartVistTimeHH;
-                    temp.StartVistTimeMM = ClinicVistTime.StartVistTimeMM;
-                    temp.StartVistTimeSS = ClinicVistTime.StartVistTimeSS;
-                    temp.EndVistTimeHH = ClinicVistTime.EndVistTimeHH;
-                    temp.EndVistTimeMM = ClinicVistTime.EndVistTimeMM;
-                    temp.EndVistTimeSS = ClinicVistTime.EndVistTimeSS;
-                    temp.StartWaitTimeHH = ClinicVistTime.StartWaitTimeHH;
-                    temp.StartWaitTimeMM = ClinicVistTime.StartWaitTimeMM;
-                    temp.StartWaitTimeSS = ClinicVistTime.StartWaitTimeSS;
-                    temp.EndWaitTimeHH = ClinicVistTime.EndWaitTimeHH;
-                    temp.EndWaitTimeMM = ClinicVistTime.EndWaitTimeMM;
-                    temp.EndWaitTimeSS = ClinicVistTime.EndWaitTimeSS;
-                    temp.LastSellTimeHH = ClinicVistTime.LastSellTimeHH;
-                    temp.LastSellTimeMM = ClinicVistTime.LastSellTimeMM;
-                    temp.LastSellTimeSS = ClinicVistTime.LastSellTimeSS;
+                    temp.StartVistTime = ClinicVistTime.StartVistTime;
+                    temp.EndVistTime = ClinicVistTime.EndVistTime;
+                    temp.StartWaitTime = ClinicVistTime.StartWaitTime;
+                    temp.EndWaitTime = ClinicVistTime.EndWaitTime;
+                    temp.LastSellTime = ClinicVistTime.LastSellTime;
                 }
                 else
                 {
