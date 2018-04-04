@@ -79,11 +79,13 @@ namespace HISGUIPatientCardLib.Views
 
         private void AddCardButton_Click(object sender, RoutedEventArgs e)
         {
-            string header = "办理就诊卡";
+            string header = "就诊卡";
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
@@ -92,11 +94,7 @@ namespace HISGUIPatientCardLib.Views
 
             PatientCardNewCardView eidtInspect = new PatientCardNewCardView();
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
-            myTabItem.Height = 28;
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
             
             
             myTabItem.Content = eidtInspect;
@@ -110,7 +108,9 @@ namespace HISGUIPatientCardLib.Views
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
@@ -120,11 +120,7 @@ namespace HISGUIPatientCardLib.Views
             PatientCardAddFeeView eidtInspect = new PatientCardAddFeeView();
             eidtInspect.DataContext = this.DataContext;
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
-            myTabItem.Height = 28;
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
             myTabItem.DataContext = this.DataContext;
 
 
@@ -148,7 +144,9 @@ namespace HISGUIPatientCardLib.Views
 
             foreach (TabItem item in MyTabControl.Items)
             {
-                if (item.Header.ToString() == header)
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
                 {
                     MyTabControl.SelectedItem = item;
                     return;
@@ -157,10 +155,7 @@ namespace HISGUIPatientCardLib.Views
 
             StatisticsView eidtInspect = new StatisticsView();
 
-            MyTabItemWithClose myTabItem = new MyTabItemWithClose();
-            myTabItem.Header = header;
-            myTabItem.ToolTip = header;
-            myTabItem.Margin = new Thickness(0, 0, 1, 0);
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
             myTabItem.Height = 28;
 
 

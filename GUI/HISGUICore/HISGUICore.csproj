@@ -114,9 +114,6 @@
     <Compile Include="MyContorls\SelectItemsList.xaml.cs">
       <DependentUpon>SelectItemsList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MyContorls\MyTabItemWithClose.xaml.cs">
-      <DependentUpon>MyTabItemWithClose.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HISGUIPublicDatas.cs" />
   </ItemGroup>
@@ -174,10 +171,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyContorls\SelectItemsList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MyContorls\MyTabItemWithClose.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
