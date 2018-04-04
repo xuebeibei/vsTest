@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="HISGUICore.MyContorls.MyTimeControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUICore.MyContorls">
+    <UserControl.Resources>
+        <LinearGradientBrush x:Key="TextBoxBorder" EndPoint="0,20" MappingMode="Absolute" StartPoint="0,0">
+            <GradientStop Color="#ABADB3" Offset="0.05"/>
+            <GradientStop Color="#E2E3EA" Offset="0.07"/>
+            <GradientStop Color="#E3E9EF" Offset="1"/>
+        </LinearGradientBrush>
+        <!--Border的样式-->
+        <Style TargetType="{x:Type Border}" x:Key="gBox">
+            <Setter Property="BorderBrush" Value="{StaticResource TextBoxBorder}"/>
+            <Setter Property="Background" Value="{x:Null}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="0"/>
+            <Setter Property="Padding" Value="5"/>
+            
+        </Style>
+    </UserControl.Resources>
+    <Grid Margin="5">
+        <Grid Grid.Row="0" Grid.Column="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="HHBox" Grid.Column="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBlock Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">:</TextBlock>
+            <ComboBox x:Name="MMBox" Grid.Column="2" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+            <TextBlock Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="2">:</TextBlock>
+            <ComboBox x:Name="SSBox" Grid.Column="4" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+        </Grid>
+    </Grid>
+</UserControl>

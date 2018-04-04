@@ -44,13 +44,12 @@
                     <Label Grid.Row="1" Grid.Column="4" Margin="5">当天挂号截止时间：</Label>
 
                     <TextBox x:Name="VistTimeNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
-                    <TextBox x:Name="StartVistTimeBox" Grid.Row="0" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.StartVistTime}"/>
+                    <Controls:MyTimeControl Grid.Row="0" Grid.Column="3"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl Grid.Row="0" Grid.Column="5"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="1"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="3"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl Grid.Row="1" Grid.Column="5"></Controls:MyTimeControl>
 
-                    <TextBox x:Name="EndVistTimeBox" Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.EndVistTime}"/>
-                    <TextBox x:Name="StartWaitTimeBox" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.StartWaitTime}"/>
-
-                    <TextBox x:Name="EndWaitTimeBox" Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.EndWaitTime}"/>
-                    <TextBox x:Name="LastSellTimeBox" Grid.Row="1" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.LastSellTime}"/>
                 </Grid>
                 <ListView Name="AllClinicVistTimeList" Grid.Row="1" Margin="5" SelectionMode="Single" MouseDoubleClick="AllClinicVistTimeList_MouseDoubleClick">
                     <ListView.View>

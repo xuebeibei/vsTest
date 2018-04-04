@@ -102,6 +102,9 @@
     <Compile Include="MyContorls\MyTextEdit.xaml.cs">
       <DependentUpon>MyTextEdit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MyContorls\MyTimeControl.xaml.cs">
+      <DependentUpon>MyTimeControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MyContorls\PageFind.xaml.cs">
       <DependentUpon>PageFind.xaml</DependentUpon>
     </Compile>
@@ -155,6 +158,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MyContorls\MyTextEdit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyContorls\MyTimeControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
