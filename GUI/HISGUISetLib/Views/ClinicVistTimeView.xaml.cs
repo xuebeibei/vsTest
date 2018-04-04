@@ -59,7 +59,7 @@ namespace HISGUISetLib.Views
             if(vistTimeClient.SaveClinicVistTime(vm.CurrentClinicVistTime))
             {
                 MessageBox.Show("OK");
-                updateAllClinicVistTimeList(); MessageBox.Show("OK");
+                updateAllClinicVistTimeList();
             }
             else
             {
@@ -73,6 +73,8 @@ namespace HISGUISetLib.Views
             updateDateToView(vistTime);
             EditGrid.IsEnabled = true;
             this.VistTimeNameBox.Focus();
+            if (this.AllClinicVistTimeList.SelectedItem != null)
+                this.AllClinicVistTimeList.SelectedItem = null;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
