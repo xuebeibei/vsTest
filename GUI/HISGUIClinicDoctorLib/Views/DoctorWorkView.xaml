@@ -6,12 +6,8 @@
              xmlns:local="clr-namespace:HISGUIDoctorLib.Views" 
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid  Background="#38434E">
+    <DockPanel>
+        <Grid Background="#38434E" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
@@ -21,7 +17,7 @@
                 <Label Margin="5" Style="{DynamicResource LoglLabelStyle}">医生工作站</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Label x:Name="UserName" Margin="5" Foreground="White" ></Label>
+                <Label x:Name="UserName" Margin="5" Style="{DynamicResource LoglLabelStyle}" ></Label>
                 <Button x:Name="LayoutBtn" Margin="5" Click="LayoutBtn_Click" Style="{DynamicResource ButtonStyle1}">退出</Button>
             </StackPanel>
         </Grid>
@@ -41,5 +37,5 @@
             </StatusBar>
             <TabControl x:Name="MyTabControl"/>
         </DockPanel>
-    </Grid>
+    </DockPanel>
 </HISGUICore:HISGUIViewBase>
