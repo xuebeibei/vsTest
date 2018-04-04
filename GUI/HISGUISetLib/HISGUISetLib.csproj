@@ -133,9 +133,6 @@
     <Compile Include="Views\EditSickRoomView.xaml.cs">
       <DependentUpon>EditSickRoomView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditSignalItemView.xaml.cs">
-      <DependentUpon>EditSignalItemView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EditStorehouseView.xaml.cs">
       <DependentUpon>EditStorehouseView.xaml</DependentUpon>
     </Compile>
@@ -288,10 +285,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditSickRoomView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\EditSignalItemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
