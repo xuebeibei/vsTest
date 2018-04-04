@@ -22,7 +22,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Grid Grid.Row="0">
+                <Grid Grid.Row="0" x:Name="EditGrid">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="180"></ColumnDefinition>
@@ -35,9 +35,9 @@
                     <Label Grid.Row="0" Grid.Column="2" Margin="5">医生职位名称：</Label>
                     <Label Grid.Row="0" Grid.Column="4" Margin="5">医事服务费：</Label>
 
-                    <TextBox x:Name="SignalItemNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
-                    <ComboBox x:Name="SignalItemDoctorJobBox" Grid.Row="0" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
-                    <TextBox x:Name="SignalPriceBox" Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
+                    <TextBox x:Name="SignalItemNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentSignalItem.Name}"/>
+                    <ComboBox x:Name="SignalItemDoctorJobComBo" Grid.Row="0" Grid.Column="3" Margin="5" Text="{Binding CurrentSignalItem.DoctorJob}"/>
+                    <TextBox x:Name="SignalPriceBox" Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding CurrentSignalItem.SellPrice}"/>
                 </Grid>
                 <ListView Name="AllSignalItemList" 
                           Grid.Row="1"

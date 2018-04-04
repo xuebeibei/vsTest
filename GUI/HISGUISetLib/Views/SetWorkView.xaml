@@ -7,7 +7,7 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <DockPanel>
-        <Grid Margin="5" Background="#38434E" DockPanel.Dock="Top">
+        <Grid Background="#38434E" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>

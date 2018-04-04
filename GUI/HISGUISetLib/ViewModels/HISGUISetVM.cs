@@ -395,5 +395,19 @@ namespace HISGUISetLib.ViewModels
             set { SetValue(CurrentClinicVistTimeProperty, value); }
         }
         #endregion
+
+        /// <summary>
+        /// 当前操作的号别
+        /// </summary>
+        #region CurrentSignalItem
+        public static readonly DependencyProperty CurrentSignalItemProperty = DependencyProperty.Register(
+            "CurrentSignalItem", typeof(CommContracts.SignalItem), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.SignalItem CurrentSignalItem
+        {
+            get { return (CommContracts.SignalItem)GetValue(CurrentSignalItemProperty); }
+            set { SetValue(CurrentSignalItemProperty, value); }
+        }
+        #endregion
     }
 }

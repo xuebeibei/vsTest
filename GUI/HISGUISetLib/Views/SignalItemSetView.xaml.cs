@@ -28,6 +28,8 @@ namespace HISGUISetLib.Views
     [Export("SignalItemSetView", typeof(SignalItemSetView))]
     public partial class SignalItemSetView : HISGUIViewBase
     {
+        private bool bIsEdit = false;
+
         public SignalItemSetView()
         {
             InitializeComponent();
@@ -38,7 +40,7 @@ namespace HISGUISetLib.Views
         {
             CommClient.Job jobClient = new CommClient.Job();
 
-            SignalItemDoctorJobBox.ItemsSource = jobClient.GetAllTypeJob(CommContracts.JobTypeEnum.医师);
+            SignalItemDoctorJobComBo.ItemsSource = jobClient.GetAllTypeJob(CommContracts.JobTypeEnum.医师);
             UpdateAllDate();
         }
 
@@ -48,32 +50,84 @@ namespace HISGUISetLib.Views
             set { this.VM = value; }
         }
 
-        private void NewItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-            // 新增号源种类
-            var window = new Window();
-
-            EditSignalItemView eidtSignalItem = new EditSignalItemView();
-            window.Content = eidtSignalItem;
-            window.Width = 400;
-            window.Height = 500;
-            window.ResizeMode = ResizeMode.NoResize;
-            bool? bResult = window.ShowDialog();
-
-            if (bResult.Value)
-            {
-                MessageBox.Show("号源种类新建完成！");
-                UpdateAllDate();
-            }
-        }
-
         private void FindItemBtn_Click(object sender, RoutedEventArgs e)
         {
             string strName = "";
             UpdateAllDate(strName);
         }
 
-        private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
+        private void UpdateAllDate(string strName = "")
+        {
+            var vm = this.DataContext as HISGUISetVM;
+            this.AllSignalItemList.ItemsSource = vm?.GetAllSignalItem(strName);
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUISetVM;
+            CommContracts.SignalItem item = new CommContracts.SignalItem();
+            vm.CurrentSignalItem = item;
+
+            EditGrid.IsEnabled = true;
+            this.SignalItemNameBox.Focus();
+            this.AllSignalItemList.SelectedItem = null;
+            bIsEdit = false;
+        }
+
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(this.SignalItemNameBox.Text.Trim()))
+            {
+                return;
+            }
+
+            if (this.SignalItemDoctorJobComBo.SelectedItem == null)
+            {
+                return;
+            }
+
+            var vm = this.DataContext as HISGUISetVM;
+
+            vm.CurrentSignalItem.Name = this.SignalItemNameBox.Text.Trim();
+            vm.CurrentSignalItem.DoctorJob = this.SignalItemDoctorJobComBo.Text.Trim();
+            if (!string.IsNullOrEmpty(this.SignalPriceBox.Text.Trim()))
+                vm.CurrentSignalItem.SellPrice = decimal.Parse(this.SignalPriceBox.Text.Trim());
+
+
+            CommClient.SignalItem myd = new CommClient.SignalItem();
+
+            if(bIsEdit)
+            {
+                if (myd.UpdateSignalItem(vm.CurrentSignalItem))
+                {
+                    MessageBox.Show("OK");
+                    UpdateAllDate();
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+            }
+            else
+            {
+                if (myd.SaveSignalItem(vm.CurrentSignalItem))
+                {
+                    MessageBox.Show("OK");
+                    UpdateAllDate();
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
+            }
+        }
+
+        private void EditBtn_Click(object sender, RoutedEventArgs e)
+        {
+            EditGrid.IsEnabled = true;
+        }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
             var currentDapertment = this.AllSignalItemList.SelectedItem as CommContracts.SignalItem;
             if (currentDapertment == null)
@@ -94,70 +148,6 @@ namespace HISGUISetLib.Views
             }
         }
 
-        private void EditItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-            var temp = this.AllSignalItemList.SelectedItem as CommContracts.SignalItem;
-            if (temp == null)
-                return;
-
-            // 新增号源种类
-            var window = new Window();
-
-            EditSignalItemView eidtSignalItem = new EditSignalItemView(temp);
-            window.Content = eidtSignalItem;
-            window.Width = 400;
-            window.Height = 500;
-            window.ResizeMode = ResizeMode.NoResize;
-            bool? bResult = window.ShowDialog();
-
-            if (bResult.Value)
-            {
-                MessageBox.Show("号源种类修改完成！");
-                UpdateAllDate();
-            }
-        }
-
-        private void ExportItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-            //ExportToExecl();
-        }
-
-        private void ImportItemBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AllSignalItemList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void UpdateAllDate(string strName = "")
-        {
-            var vm = this.DataContext as HISGUISetVM;
-            this.AllSignalItemList.ItemsSource = vm?.GetAllSignalItem(strName);
-        }
-
-        private void NewBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SaveBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void EditBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void ImportBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -175,7 +165,17 @@ namespace HISGUISetLib.Views
 
         private void AllSignalItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            var item = this.AllSignalItemList.SelectedItem as CommContracts.SignalItem;
 
+            if (item == null)
+                return;
+
+            var vm = this.DataContext as HISGUISetVM;
+
+            vm.CurrentSignalItem = item;
+
+            EditGrid.IsEnabled = false;
+            bIsEdit = true;
         }
     }
 }
