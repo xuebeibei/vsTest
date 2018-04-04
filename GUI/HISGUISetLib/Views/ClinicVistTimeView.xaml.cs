@@ -56,6 +56,7 @@ namespace HISGUISetLib.Views
             vm.CurrentClinicVistTime.EndWaitTime = this.EndWaitTime.GetMyValue();
             vm.CurrentClinicVistTime.LastSellTime = this.LastSellTime.GetMyValue();
 
+
             if(vistTimeClient.SaveClinicVistTime(vm.CurrentClinicVistTime))
             {
                 MessageBox.Show("OK");
