@@ -43,24 +43,24 @@
                     <Label Grid.Row="1" Grid.Column="2" Margin="5">候诊结束时间：</Label>
                     <Label Grid.Row="1" Grid.Column="4" Margin="5">当天挂号截止时间：</Label>
 
-                    <TextBox x:Name="VistTimeNameBox" Grid.Row="0" Grid.Column="1" Margin="5"></TextBox>
-                    <TextBox x:Name="StartVistTimeBox" Grid.Row="0" Grid.Column="3" Margin="5"></TextBox>
+                    <TextBox x:Name="VistTimeNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
+                    <TextBox x:Name="StartVistTimeBox" Grid.Row="0" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.StartVistTime}"/>
 
-                    <TextBox x:Name="EndVistTimeBox" Grid.Row="0" Grid.Column="5" Margin="5"></TextBox>
-                    <TextBox x:Name="StartWaitTimeBox" Grid.Row="1" Grid.Column="1" Margin="5"></TextBox>
+                    <TextBox x:Name="EndVistTimeBox" Grid.Row="0" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.EndVistTime}"/>
+                    <TextBox x:Name="StartWaitTimeBox" Grid.Row="1" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.StartWaitTime}"/>
 
-                    <TextBox x:Name="EndWaitTimeBox" Grid.Row="1" Grid.Column="3" Margin="5"></TextBox>
-                    <TextBox x:Name="LastSellTimeBox" Grid.Row="1" Grid.Column="5" Margin="5"></TextBox>
+                    <TextBox x:Name="EndWaitTimeBox" Grid.Row="1" Grid.Column="3" Margin="5" Text="{Binding CurrentClinicVistTime.EndWaitTime}"/>
+                    <TextBox x:Name="LastSellTimeBox" Grid.Row="1" Grid.Column="5" Margin="5" Text="{Binding CurrentClinicVistTime.LastSellTime}"/>
                 </Grid>
                 <ListView Name="AllClinicVistTimeList" Grid.Row="1" Margin="5" SelectionMode="Single" MouseDoubleClick="AllClinicVistTimeList_MouseDoubleClick">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn Header="时段名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=Gender}" Width="150"></GridViewColumn>
-                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=BirthDay}" Width="150"></GridViewColumn>
-                            <GridViewColumn Header="候诊起始时间" DisplayMemberBinding="{Binding Path=IDCardNo}" Width="150"></GridViewColumn>
-                            <GridViewColumn Header="候诊结束时间" DisplayMemberBinding="{Binding Path=Volk}" Width="150"></GridViewColumn>
-                            <GridViewColumn Header="当天挂号截止时间" DisplayMemberBinding="{Binding Path=Tel}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=StartVistTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=EndVistTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="候诊起始时间" DisplayMemberBinding="{Binding Path=StartWaitTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="候诊结束时间" DisplayMemberBinding="{Binding Path=EndWaitTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="当天挂号截止时间" DisplayMemberBinding="{Binding Path=LastSellTime}" Width="150"></GridViewColumn>
                         </GridView>
                     </ListView.View>
                 </ListView>

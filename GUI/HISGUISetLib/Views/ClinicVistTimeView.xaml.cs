@@ -41,7 +41,9 @@ namespace HISGUISetLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUISetVM;
+            CommClient.ClinicVistTime vistTimeClient = new CommClient.ClinicVistTime();
+            vistTimeClient.SaveClinicVistTime(vm.CurrentClinicVistTime);
         }
 
         private void AllClinicVistTimeList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -51,7 +53,9 @@ namespace HISGUISetLib.Views
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            var vm = this.DataContext as HISGUISetVM;
+            CommContracts.ClinicVistTime vistTime = new CommContracts.ClinicVistTime();
+            vm.CurrentClinicVistTime = vistTime;
         }
 
         private void EditBtn_Click(object sender, RoutedEventArgs e)
