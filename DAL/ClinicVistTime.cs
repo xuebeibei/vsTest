@@ -22,28 +22,79 @@ namespace DAL
         public string Name { get; set; }
 
         /// <summary>
-        /// 看诊起始时间
+        /// 看诊起始时间的小时
         /// </summary>
-        public DateTime StartVistTime { get; set; }
+        public int StartVistTimeHH { get; set; }
 
         /// <summary>
-        /// 看诊结束时间
+        /// 看诊起始时间的分钟
         /// </summary>
-        public DateTime EndVistTime { get; set; }
+        public int StartVistTimeMM { get; set; }
 
         /// <summary>
-        /// 候诊起始时间
+        /// 看诊起始时间的秒钟
         /// </summary>
-        public DateTime StartWaitTime { get; set; }
+        public int StartVistTimeSS { get; set; }
 
         /// <summary>
-        /// 候诊结束时间
+        /// 看诊结束时间的小时
         /// </summary>
-        public DateTime EndWaitTime { get; set; }
+        public int EndVistTimeHH { get; set; }
 
         /// <summary>
-        /// 当天最后挂号时间
+        /// 看诊结束时间的分钟
         /// </summary>
-        public DateTime LastSellTime { get; set; }
+        public int EndVistTimeMM { get; set; }
+
+        /// <summary>
+        /// 看诊结束时间的秒钟
+        /// </summary>
+        public int EndVistTimeSS { get; set; }
+
+
+        /// <summary>
+        /// 候诊起始时间的小时
+        /// </summary>
+        public int StartWaitTimeHH { get; set; }
+
+        /// <summary>
+        /// 候诊起始时间的分钟
+        /// </summary>
+        public int StartWaitTimeMM { get; set; }
+
+        /// <summary>
+        /// 候诊起始时间的秒钟
+        /// </summary>
+        public int StartWaitTimeSS { get; set; }
+
+        /// <summary>
+        /// 候诊结束时间的小时
+        /// </summary>
+        public int EndWaitTimeHH { get; set; }
+
+        /// <summary>
+        /// 候诊结束时间的分钟
+        /// </summary>
+        public int EndWaitTimeMM { get; set; }
+
+        /// <summary>
+        /// 候诊结束时间的秒钟
+        /// </summary>
+        public int EndWaitTimeSS { get; set; }
+
+        /// <summary>
+        /// 当天最后挂号时间的小时
+        /// </summary>
+        public int LastSellTimeHH { get; set; }
+
+        /// <summary>
+        /// 当天最后挂号时间的分钟
+        /// </summary>
+        public int LastSellTimeMM { get; set; }
+
+        /// <summary>
+        /// 当天最后挂号时间的秒钟
+        /// </summary>
+        public int LastSellTimeSS { get; set; }
     }
 }

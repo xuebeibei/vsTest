@@ -92,48 +92,23 @@ namespace BLL
                 var temp = ctx.ClinicVistTimes.FirstOrDefault(m => m.ID == ClinicVistTime.ID);
                 if (temp != null)
                 {
-                    //temp.Name = ClinicVistTime.Name;
-                    //temp.ClinicVistTimeEnum = (DAL.ClinicVistTimeEnum)ClinicVistTime.ClinicVistTimeEnum;
-                    //temp.PowerEnum = (DAL.PowerEnum)ClinicVistTime.PowerEnum;
-
-
                     temp.ID = ClinicVistTime.ID;
-
-                    /// <summary>
-                    /// 时间段名称
-                    /// </summary>
-
                     temp.Name = ClinicVistTime.Name;
-
-                    /// <summary>
-                    /// 看诊起始时间
-                    /// </summary>
-
-                    temp.StartVistTime = ClinicVistTime.StartVistTime;
-
-                    /// <summary>
-                    /// 看诊结束时间
-                    /// </summary>
-
-                    temp.EndVistTime = ClinicVistTime.EndVistTime;
-
-                    /// <summary>
-                    /// 候诊起始时间
-                    /// </summary>
-
-                    temp.StartWaitTime = ClinicVistTime.StartWaitTime;
-
-                    /// <summary>
-                    /// 候诊结束时间
-                    /// </summary>
-
-                    temp.EndWaitTime = ClinicVistTime.EndWaitTime;
-
-                    /// <summary>
-                    /// 当天最后挂号时间
-                    /// </summary>
-
-                    temp.LastSellTime = ClinicVistTime.LastSellTime;
+                    temp.StartVistTimeHH = ClinicVistTime.StartVistTimeHH;
+                    temp.StartVistTimeMM = ClinicVistTime.StartVistTimeMM;
+                    temp.StartVistTimeSS = ClinicVistTime.StartVistTimeSS;
+                    temp.EndVistTimeHH = ClinicVistTime.EndVistTimeHH;
+                    temp.EndVistTimeMM = ClinicVistTime.EndVistTimeMM;
+                    temp.EndVistTimeSS = ClinicVistTime.EndVistTimeSS;
+                    temp.StartWaitTimeHH = ClinicVistTime.StartWaitTimeHH;
+                    temp.StartWaitTimeMM = ClinicVistTime.StartWaitTimeMM;
+                    temp.StartWaitTimeSS = ClinicVistTime.StartWaitTimeSS;
+                    temp.EndWaitTimeHH = ClinicVistTime.EndWaitTimeHH;
+                    temp.EndWaitTimeMM = ClinicVistTime.EndWaitTimeMM;
+                    temp.EndWaitTimeSS = ClinicVistTime.EndWaitTimeSS;
+                    temp.LastSellTimeHH = ClinicVistTime.LastSellTimeHH;
+                    temp.LastSellTimeMM = ClinicVistTime.LastSellTimeMM;
+                    temp.LastSellTimeSS = ClinicVistTime.LastSellTimeSS;
                 }
                 else
                 {
