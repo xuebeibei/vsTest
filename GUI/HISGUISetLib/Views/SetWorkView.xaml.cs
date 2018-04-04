@@ -50,6 +50,7 @@ namespace HISGUISetLib.Views
             {
                 this.UserName.Content = vm.CurrentUser.Username;
             }
+
         }
 
 
@@ -76,156 +77,11 @@ namespace HISGUISetLib.Views
 
         private void InitVisable()
         {
-            HospitalSetView.Visibility = Visibility.Collapsed;
-            DepartmentView.Visibility = Visibility.Collapsed;
-            JobView.Visibility = Visibility.Collapsed;
-            StorehourseView.Visibility = Visibility.Collapsed;
-            SupplierView.Visibility = Visibility.Collapsed;
-            SickRoomView.Visibility = Visibility.Collapsed;
-            SickBedView.Visibility = Visibility.Collapsed;
-            EmployeeView.Visibility = Visibility.Collapsed;
-            UserView.Visibility = Visibility.Collapsed;
-            MedicineView.Visibility = Visibility.Collapsed;
-            MaterialView.Visibility = Visibility.Collapsed;
-            InspectView.Visibility = Visibility.Collapsed;
-            TherapyItemView.Visibility = Visibility.Collapsed;
-            AssayItemView.Visibility = Visibility.Collapsed;
-            OtherServiceItemView.Visibility = Visibility.Collapsed;
-            SignalItemView.Visibility = Visibility.Collapsed;
-            PatientView.Visibility = Visibility.Collapsed;
-            TipLabel.Visibility = Visibility.Visible;
-            MyClinicVistTimeView.Visibility = Visibility.Collapsed;
         }
 
         private void NewItemBtn_Click(object sender, RoutedEventArgs e)
         {
             InitVisable();
-        }
-
-        private void HospitalInfoSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            HospitalSetView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void DepartmentSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            DepartmentView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void JobSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            JobView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void StorehouseSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            StorehourseView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void SupplierSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            SupplierView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void SickRoomSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            SickRoomView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void EmployeeSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            EmployeeView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void UserSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            UserView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void OtherServiceSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            OtherServiceItemView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void AssayItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            AssayItemView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void InspectItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            InspectView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void MaterialItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            MaterialView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void MedicineItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            MedicineView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void SickBedSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            SickBedView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void TherapyItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            TherapyItemView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void SignalItemSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            SignalItemView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void PatientSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            PatientView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
-        }
-
-        private void ClinicVistTimeSet(object sender, RoutedEventArgs e)
-        {
-            InitVisable();
-            MyClinicVistTimeView.Visibility = Visibility.Visible;
-            TipLabel.Visibility = Visibility.Collapsed;
         }
 
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)
@@ -239,5 +95,142 @@ namespace HISGUISetLib.Views
             }
         }
 
+        private void AllSetTreeView_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            TreeViewItem viewItem = this.AllSetTreeView.SelectedItem as TreeViewItem;
+            if (viewItem == null)
+                return;
+
+            this.CenterPanel.Children.Clear();
+
+            var vm = this.DataContext as HISGUISetVM;
+
+            if (viewItem.Header.ToString() == "医院信息")
+            {
+                HospitalInfoSetView centerView = new HospitalInfoSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "科室")
+            {
+                DepartmentSetView centerView = new DepartmentSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "职位")
+            {
+                JobSetView centerView = new JobSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "库房")
+            {
+                StorehouseSetView centerView = new StorehouseSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "供应商")
+            {
+                SupplierSetView centerView = new SupplierSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "病房")
+            {
+                SickRoomSetView centerView = new SickRoomSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "病床")
+            {
+                SickBedSetView centerView = new SickBedSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "人员")
+            {
+                EmployeeSetView centerView = new EmployeeSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "用户")
+            {
+                UserSetView centerView = new UserSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "药品")
+            {
+                MedicineSetView centerView = new MedicineSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "物资")
+            {
+                MaterialSetView centerView = new MaterialSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "治疗项目")
+            {
+                TherapyItemSetView centerView = new TherapyItemSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "检查项目")
+            {
+                InspectSetView centerView = new InspectSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "化验项目")
+            {
+                AssayItemSetView centerView = new AssayItemSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "其他服务")
+            {
+                OtherServiceItemSetView centerView = new OtherServiceItemSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "号源种类")
+            {
+                SignalItemSetView centerView = new SignalItemSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "出诊时段")
+            {
+                ClinicVistTimeView centerView = new ClinicVistTimeView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "患者")
+            {
+                PatientSetView centerView = new PatientSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+        }
     }
 }
