@@ -45,10 +45,10 @@
 
                     <TextBox x:Name="NameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
                     <Controls:MyTimeControl x:Name="StartTime" Grid.Row="0" Grid.Column="3"></Controls:MyTimeControl>
-                    <ComboBox x:Name="PriorityCombo" Margin="5" Grid.Row="0" Grid.Column="5"></ComboBox>
+                    <ComboBox x:Name="PriorityCombo" Margin="5" Grid.Row="0" Grid.Column="5" SelectedItem="{Binding CurrentClinicVistTime.Priority}"></ComboBox>
 
-                    <TextBox x:Name="ProportionBox" Margin="5" Grid.Row="1" Grid.Column="1"></TextBox>
-                    <TextBox x:Name="StatusBox" Margin="5" Grid.Row="1" Grid.Column="3" IsEnabled="False"></TextBox>
+                    <TextBox x:Name="ProportionBox" Margin="5" Grid.Row="1" Grid.Column="1" Text="{Binding CurrentClinicVistTime.Proportion}"></TextBox>
+                    <TextBox x:Name="StatusBox" Margin="5" Grid.Row="1" Grid.Column="3" IsEnabled="False" Text="{Binding CurrentClinicVistTime.Status}"></TextBox>
 
                 </Grid>
                 <ListView Name="AllRegistrationDitchViewList" Grid.Row="1" Margin="5" SelectionMode="Single" SelectionChanged="AllRegistrationDitchViewList_SelectionChanged">
