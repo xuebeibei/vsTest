@@ -114,6 +114,14 @@ namespace HISGUIDoctorLib.Views
             List<CommContracts.SignalItem> listOfAllSignalItems = myd.GetAllSignalItem();
             DataGridLength length = new DataGridLength(1, DataGridLengthUnitType.Star);
 
+            CommClient.ClinicVistTime vistTimeClient = new CommClient.ClinicVistTime();
+            List<CommContracts.ClinicVistTime> vistTimeList = vistTimeClient.GetAllClinicVistTime();
+
+            if (vistTimeList == null)
+            {
+                return;
+            }
+
             this.DateClinicMsgGrid.Columns.Add(new DataGridTextColumn()
             {
                 Header = "人员",
@@ -126,17 +134,19 @@ namespace HISGUIDoctorLib.Views
 
             for (int i = 0; i < 7; i++)
             {
-                DateTime tempDate = getMonday(currentManageDate).AddDays(i);
-                this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
+                for (int j = 0; j < vistTimeList.Count(); j++)
                 {
-                    Header = tempDate.ToString("yyyy-MM-dd dddd"),
-                    SelectedItemBinding = new Binding(tempDate.DayOfWeek.ToString()),
-                    ItemsSource = listOfAllSignalItems,
-                    Width = length,
-                    IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
-                });
+                    DateTime tempDate = getMonday(currentManageDate).AddDays(i);
+                    this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
+                    {
+                        Header = tempDate.ToString("MM-dd dddd") + vistTimeList.ElementAt(j).Name,
+                        SelectedItemBinding = new Binding(tempDate.DayOfWeek.ToString()),
+                        ItemsSource = listOfAllSignalItems,
+                        Width = length,
+                        IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
+                    });
+                }
             }
-
         }
         private List<PaiBan> updateDateClinicMsgGrid()
         {
