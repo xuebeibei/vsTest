@@ -90,8 +90,6 @@ namespace CommContracts
         public int ID { get; set; }
         [DataMember]
         public string Name { get; set; }
-        [DataMember]
-        public bool Default { get; set; }
 
         [DataMember]
         public JobGradeEnum JobGrade { get; set; }
