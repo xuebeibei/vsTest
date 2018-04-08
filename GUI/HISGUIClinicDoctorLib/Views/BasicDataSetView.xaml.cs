@@ -25,10 +25,10 @@ using System.Windows.Threading;
 namespace HISGUIDoctorLib.Views
 {
     [Export]
-    [Export("WordBasicDataSetView", typeof(WordBasicDataSetView))]
-    public partial class WordBasicDataSetView : HISGUIViewBase
+    [Export("BasicDataSetView", typeof(BasicDataSetView))]
+    public partial class BasicDataSetView : HISGUIViewBase
     {
-        public WordBasicDataSetView()
+        public BasicDataSetView()
         {
             InitializeComponent();
             this.Loaded += WordBasicDataSetView_Loaded;
@@ -94,14 +94,29 @@ namespace HISGUIDoctorLib.Views
             if (strCurrentName == "出诊时段字典")
             {
                 this.listView1.View = this.Resources["ChuZhenShiDuan"] as GridView;
+                var vm = this.DataContext as HISGUIDoctorVM;
+
+                CommClient.ClinicVistTime client = new CommClient.ClinicVistTime();
+                List<CommContracts.ClinicVistTime> list = client.GetAllClinicVistTime();
+                this.listView1.ItemsSource = list;
             }
             else if(strCurrentName == "号别字典")
             {
                 this.listView1.View = this.Resources["HaoBie"] as GridView;
+                var vm = this.DataContext as HISGUIDoctorVM;
+
+                CommClient.SignalItem client = new CommClient.SignalItem();
+                List<CommContracts.SignalItem> list = client.GetAllSignalItem();
+                this.listView1.ItemsSource = list;
             }
             else if (strCurrentName == "科室字典")
             {
                 this.listView1.View = this.Resources["KeShi"] as GridView;
+                var vm = this.DataContext as HISGUIDoctorVM;
+
+                CommClient.Department client = new CommClient.Department();
+                List<CommContracts.Department> list = client.getALLDepartment(CommContracts.DepartmentEnum.临床科室);
+                this.listView1.ItemsSource = list;
             }
             else if (strCurrentName == "医生字典")
             {
@@ -115,9 +130,7 @@ namespace HISGUIDoctorLib.Views
                 this.listView1.ItemsSource = list;
             }
         }
-
-
-
+        
         private void SetMenuEnable(bool IsEnable)
         {
             this.NewBtn.IsEnabled = IsEnable;

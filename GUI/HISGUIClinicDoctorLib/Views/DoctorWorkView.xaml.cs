@@ -167,7 +167,7 @@ namespace HISGUIDoctorLib.Views
                 }
             }
 
-            WordBasicDataSetView eidtInspect = new WordBasicDataSetView();
+            BasicDataSetView eidtInspect = new BasicDataSetView();
 
             CloseableTabItem myTabItem = new CloseableTabItem(header);
 
