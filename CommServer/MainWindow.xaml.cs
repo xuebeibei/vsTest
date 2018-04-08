@@ -21,8 +21,10 @@ namespace CommServer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private LoginService service;
-        private ServiceHost host;
+        private LoginService loginService;
+        private ServiceHost loginServiceHost;
+        private RegistrationService registrationService;
+        private ServiceHost registrationServiceHost;
 
         public MainWindow()
         {
@@ -31,15 +33,20 @@ namespace CommServer
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            service = new LoginService(this);
-            host = new ServiceHost(service);
-            host.Open();
+            loginService = new LoginService(this);
+            loginServiceHost = new ServiceHost(loginService);
+            loginServiceHost.Open();
+
+            registrationService = new RegistrationService(this);
+            registrationServiceHost = new ServiceHost(registrationService);
+            registrationServiceHost.Open();
         }
 
         private void Window_Closing(object sender,
             System.ComponentModel.CancelEventArgs e)
         {
-            host.Close();
+            loginServiceHost.Close();
+            registrationServiceHost.Close();
         }
     }
 }
