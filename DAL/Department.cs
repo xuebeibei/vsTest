@@ -19,7 +19,6 @@ namespace DAL
             this.Name = "";
             this.Abbr = "";
             this.DepartmentEnum = DepartmentEnum.其他科室;
-            this.ParentID = 0;
             Employees = new List<Employee>();
             SickRooms = new List<SickRoom>();
         }
@@ -39,10 +38,11 @@ namespace DAL
         /// 科室类型
         /// </summary>
         public DepartmentEnum DepartmentEnum { get; set; }
+
         /// <summary>
-        /// 父科室，弃用
+        /// 科室楼层指引
         /// </summary>
-        public int ParentID { get; set; }    // 父类科室
+        public string DepartmentAddress { get; set; }
 
         /// <summary>
         /// 员工列表
