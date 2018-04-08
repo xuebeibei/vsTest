@@ -95,9 +95,10 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Name = RegistrationDitch.Name;
-                    temp.Priority = RegistrationDitch.Priority;
+                    temp.Priority = (DAL.PriorityEnum)RegistrationDitch.Priority;
                     temp.Proportion = RegistrationDitch.Proportion;
-                    temp.Status = RegistrationDitch.Status;
+                    temp.Status = (DAL.RegistrationDitchStatusEnum)RegistrationDitch.Status;
+                    temp.StartTime = RegistrationDitch.StartTime;
                 }
                 else
                 {

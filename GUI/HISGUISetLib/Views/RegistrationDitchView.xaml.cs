@@ -28,6 +28,8 @@ namespace HISGUISetLib.Views
     [Export("RegistrationDitchView", typeof(RegistrationDitchView))]
     public partial class RegistrationDitchView : HISGUIViewBase
     {
+        private bool bIsEdit;
+
         public RegistrationDitchView()
         {
             InitializeComponent();
@@ -42,44 +44,54 @@ namespace HISGUISetLib.Views
 
         private void RegistrationDitchView_Loaded(object sender, RoutedEventArgs e)
         {
+            this.PriorityCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PriorityEnum));
+            this.StatusCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.RegistrationDitchStatusEnum));
+
+            newRegistrationDitch();
+
             updateAllRegistrationDitchList();
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-            CommContracts.RegistrationDitch vistTime = new CommContracts.RegistrationDitch();
-            updateDateToView(vistTime);
-            EditGrid.IsEnabled = true;
-            this.NameBox.Focus();
-            if (this.AllRegistrationDitchViewList.SelectedItem != null)
-                this.AllRegistrationDitchViewList.SelectedItem = null;
+            newRegistrationDitch();
         }
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUISetVM;
+            
+            if (vm.CurrentRegistrationDitch == null)
+                return;
+
             CommClient.RegistrationDitch vistTimeClient = new CommClient.RegistrationDitch();
+            vm.CurrentRegistrationDitch.StartTime = this.StartTime.GetMyValue();
 
-            if(vm.CurrentRegistrationDitch == null)
+            if(bIsEdit == true)
             {
-                CommContracts.RegistrationDitch ditch = new CommContracts.RegistrationDitch();
-                vm.CurrentRegistrationDitch = ditch;
-            }
-            vm.CurrentRegistrationDitch.Name = this.NameBox.Text;
-            vm.CurrentRegistrationDitch.Priority = 0;
-            vm.CurrentRegistrationDitch.Proportion = int.Parse(this.ProportionBox.Text);
-            //vm.CurrentRegistrationDitch.Status = bool.Parse(this.StatusBox.Text);
-            vm.CurrentRegistrationDitch.Status = true;
-
-
-            if (vistTimeClient.SaveRegistrationDitch(vm.CurrentRegistrationDitch))
-            {
-                MessageBox.Show("OK");
-                updateAllRegistrationDitchList();
+                if (vistTimeClient.UpdateRegistrationDitch(vm.CurrentRegistrationDitch))
+                {
+                    MessageBox.Show("OK");
+                    newRegistrationDitch();
+                    updateAllRegistrationDitchList();
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
             }
             else
             {
-                MessageBox.Show("Error");
+                if (vistTimeClient.SaveRegistrationDitch(vm.CurrentRegistrationDitch))
+                {
+                    MessageBox.Show("OK");
+                    newRegistrationDitch();
+                    updateAllRegistrationDitchList();
+                }
+                else
+                {
+                    MessageBox.Show("Error");
+                }
             }
         }
 
@@ -90,7 +102,19 @@ namespace HISGUISetLib.Views
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUISetVM;
 
+            CommClient.RegistrationDitch ditchClient = new CommClient.RegistrationDitch();
+            if(ditchClient.DeleteRegistrationDitch(vm.CurrentRegistrationDitch.ID))
+            {
+                MessageBox.Show("OK");
+                newRegistrationDitch();
+                updateAllRegistrationDitchList();
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
         }
 
         private void ImportBtn_Click(object sender, RoutedEventArgs e)
@@ -123,6 +147,8 @@ namespace HISGUISetLib.Views
         {
             var vm = this.DataContext as HISGUISetVM;
             vm.CurrentRegistrationDitch = RegistrationDitch;
+            this.StartTime.SetMyValue(vm.CurrentRegistrationDitch.StartTime);
+            bIsEdit = true;
         }
 
         private void updateAllRegistrationDitchList()
@@ -130,6 +156,17 @@ namespace HISGUISetLib.Views
             CommClient.RegistrationDitch registrationDitchClient = new CommClient.RegistrationDitch();
             List<CommContracts.RegistrationDitch> list = registrationDitchClient.GetAllRegistrationDitch();
             this.AllRegistrationDitchViewList.ItemsSource = list;
+        }
+
+        private void newRegistrationDitch()
+        {
+            bIsEdit = false;
+            CommContracts.RegistrationDitch vistTime = new CommContracts.RegistrationDitch();
+            updateDateToView(vistTime);
+            EditGrid.IsEnabled = true;
+            this.NameBox.Focus();
+            if (this.AllRegistrationDitchViewList.SelectedItem != null)
+                this.AllRegistrationDitchViewList.SelectedItem = null;
         }
     }
 }

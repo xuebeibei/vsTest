@@ -171,6 +171,18 @@
     <Compile Include="Migrations\201804041034287_PaperTest16.Designer.cs">
       <DependentUpon>201804041034287_PaperTest16.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804080316434_PaperTest17.cs" />
+    <Compile Include="Migrations\201804080316434_PaperTest17.Designer.cs">
+      <DependentUpon>201804080316434_PaperTest17.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804080326264_PaperTest18.cs" />
+    <Compile Include="Migrations\201804080326264_PaperTest18.Designer.cs">
+      <DependentUpon>201804080326264_PaperTest18.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804080347553_PaperTest19.cs" />
+    <Compile Include="Migrations\201804080347553_PaperTest19.Designer.cs">
+      <DependentUpon>201804080347553_PaperTest19.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
@@ -273,6 +285,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804041034287_PaperTest16.resx">
       <DependentUpon>201804041034287_PaperTest16.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804080316434_PaperTest17.resx">
+      <DependentUpon>201804080316434_PaperTest17.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804080326264_PaperTest18.resx">
+      <DependentUpon>201804080326264_PaperTest18.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804080347553_PaperTest19.resx">
+      <DependentUpon>201804080347553_PaperTest19.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
