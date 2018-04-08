@@ -81,6 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RecallHospital.cs" />
     <Compile Include="Registration.cs" />
+    <Compile Include="RegistrationDitch.cs" />
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />
     <Compile Include="SignalItem.cs" />

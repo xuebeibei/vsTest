@@ -409,5 +409,19 @@ namespace HISGUISetLib.ViewModels
             set { SetValue(CurrentSignalItemProperty, value); }
         }
         #endregion
+
+        /// <summary>
+        /// 当前操作的放号渠道
+        /// </summary>
+        #region CurrentRegistrationDitch
+        public static readonly DependencyProperty CurrentRegistrationDitchProperty = DependencyProperty.Register(
+            "CurrentRegistrationDitch", typeof(CommContracts.RegistrationDitch), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.RegistrationDitch CurrentRegistrationDitch
+        {
+            get { return (CommContracts.RegistrationDitch)GetValue(CurrentRegistrationDitchProperty); }
+            set { SetValue(CurrentRegistrationDitchProperty, value); }
+        }
+        #endregion
     }
 }
