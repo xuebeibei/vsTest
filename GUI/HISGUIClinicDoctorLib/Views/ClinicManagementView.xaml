@@ -38,17 +38,6 @@
                       SelectionMode="Single" 
                       SelectionUnit="Cell"
                       CanUserDeleteRows="False">
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Height" Value="30" />
-                    </Style>
-                </DataGrid.RowStyle>
             </DataGrid>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
