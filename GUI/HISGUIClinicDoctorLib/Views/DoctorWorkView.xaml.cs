@@ -128,9 +128,33 @@ namespace HISGUIDoctorLib.Views
             MyTabControl.SelectedItem = myTabItem;
         }
 
-        private void WorkBtn_Click(object sender, RoutedEventArgs e)
+        private void BasicDataSet_Click(object sender, RoutedEventArgs e)
         {
-            string header = "排班管理";
+            string header = "排班管理>基础数据";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            BasicDataSetView eidtInspect = new BasicDataSetView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+                
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void WorkRecordSet_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "排班管理>排班记录";
 
             foreach (TabItem item in MyTabControl.Items)
             {
@@ -150,35 +174,6 @@ namespace HISGUIDoctorLib.Views
             myTabItem.Content = eidtInspect;
             MyTabControl.Items.Add(myTabItem);
             MyTabControl.SelectedItem = myTabItem;
-        }
-
-        private void BasicDataSet_Click(object sender, RoutedEventArgs e)
-        {
-            string header = "排班管理>基础数据";
-
-            foreach (TabItem item in MyTabControl.Items)
-            {
-                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
-
-                if (itemHeader.Title == header)
-                {
-                    MyTabControl.SelectedItem = item;
-                    return;
-                }
-            }
-
-            BasicDataSetView eidtInspect = new BasicDataSetView();
-
-            CloseableTabItem myTabItem = new CloseableTabItem(header);
-
-            myTabItem.Content = eidtInspect;
-            MyTabControl.Items.Add(myTabItem);
-            MyTabControl.SelectedItem = myTabItem;
-        }
-
-        private void WorkRecordSet_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
