@@ -100,7 +100,7 @@ namespace HISGUIDoctorLib.Views
                 List<CommContracts.ClinicVistTime> list = client.GetAllClinicVistTime();
                 this.listView1.ItemsSource = list;
             }
-            else if(strCurrentName == "号别字典")
+            else if (strCurrentName == "号别字典")
             {
                 this.listView1.View = this.Resources["HaoBie"] as GridView;
                 var vm = this.DataContext as HISGUIDoctorVM;
@@ -130,7 +130,7 @@ namespace HISGUIDoctorLib.Views
                 this.listView1.ItemsSource = list;
             }
         }
-        
+
         private void SetMenuEnable(bool IsEnable)
         {
             this.NewBtn.IsEnabled = IsEnable;
@@ -139,6 +139,31 @@ namespace HISGUIDoctorLib.Views
             this.ExportBtn.IsEnabled = IsEnable;
             this.ImportBtn.IsEnabled = IsEnable;
             this.PrintBtn.IsEnabled = IsEnable;
+        }
+
+        private void listView1_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TreeViewItem item = MyDataNameList.SelectedItem as TreeViewItem;
+            if (item == null)
+                return;
+
+            string strCurrentName = item.Header.ToString();
+            if (strCurrentName == "科室字典")
+            {
+                var currentDepartment = this.listView1.SelectedItem as CommContracts.Department;
+                if (currentDepartment == null)
+                {
+                    return;
+                }
+
+                SetMenuEnable(false);
+                var vm = this.DataContext as HISGUIDoctorVM;
+                if (currentDepartment.ID == vm.CurrentUser.Employee.DepartmentID)
+                {
+                    // 只允许修改自身所在科室的信息
+                    this.EditBtn.IsEnabled = true;
+                }
+            }
         }
     }
 }

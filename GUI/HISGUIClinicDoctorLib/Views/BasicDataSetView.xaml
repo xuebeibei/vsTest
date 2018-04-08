@@ -4,7 +4,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUIDoctorLib.Views"
-             mc:Ignorable="d" 
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <HISGUICore:HISGUIViewBase.Resources>
@@ -25,7 +24,7 @@
             <GridViewColumn Header="科室名称" DisplayMemberBinding="{Binding Path=Name}" Width="120"></GridViewColumn>
             <GridViewColumn Header="简称" DisplayMemberBinding="{Binding Path=Abbr}" Width="100"></GridViewColumn>
             <GridViewColumn Header="类别" DisplayMemberBinding="{Binding Path=DepartmentEnum}" Width="80"></GridViewColumn>
-            <GridViewColumn Header="科室楼层指引" Width="150"  DisplayMemberBinding="{Binding Path=No}"/>
+            <GridViewColumn Header="科室楼层指引" DisplayMemberBinding="{Binding Path=DepartmentAddress}" Width="150" />
         </GridView>
         <GridView x:Key="YiSheng">
             <GridViewColumn Header="医生姓名" Width="150"  DisplayMemberBinding="{Binding Path=Name}"/>
@@ -51,7 +50,7 @@
                 <TreeViewItem Margin="0, 5, 15, 5" Header="科室字典"/>
                 <TreeViewItem Margin="0, 5, 15, 5" Header="医生字典"/>
             </TreeView> 
-            <ListView Name="listView1" Margin="5" SelectionMode="Single"/>
+            <ListView Name="listView1" Margin="0,5,5,5" SelectionMode="Single" SelectionChanged="listView1_SelectionChanged"/>
         </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>
