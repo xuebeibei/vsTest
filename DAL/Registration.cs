@@ -29,7 +29,7 @@ namespace DAL
                         (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
                         "岁\r\n" +
                         "科室：外科\r\n" +
-                        "看诊时间：" + SignalSource.VistTime.ToString() + "\r\n";
+                        "看诊时间：" + SignalSource.VistDate.ToString() + "\r\n";
             return str;
         }
 

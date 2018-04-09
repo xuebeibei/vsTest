@@ -109,7 +109,7 @@ namespace HISGUIDoctorLib.Views
                 str = "号源名称：" + vm.CurrentRegistration.SignalSource.SignalItem.Name + "     " +
                     "科室：" + vm.CurrentRegistration.SignalSource.DepartmentID + "     " +
                     "看诊状态：" + vm.CurrentRegistration.SeeDoctorStatus.ToString() + "     " +
-                    "看诊时间：" + vm.CurrentRegistration.SignalSource.VistTime.Value.Date.ToString("yyyy-MM-dd") + "     " +
+                    "看诊时间：" + vm.CurrentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
                     "费用：" + vm.CurrentRegistration.RegisterFee + "元     " +
                     "挂号经办人：" + vm.CurrentRegistration.RegisterUser.Username + "     " +
                     "经办时间：" + vm.CurrentRegistration.RegisterTime.Value.Date + "     " ;

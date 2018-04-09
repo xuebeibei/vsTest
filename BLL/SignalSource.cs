@@ -22,8 +22,8 @@ namespace BLL
             {
                 var temp = (from u in ctx.SignalSources
                             where u.DepartmentID == DepartmentID &&
-                            (u.VistTime.HasValue && u.VistTime.Value.Date >= DateTime.Now.Date)
-                            select DbFunctions.TruncateTime(u.VistTime)).Distinct();
+                            (u.VistDate.HasValue && u.VistDate.Value.Date >= DateTime.Now.Date)
+                            select DbFunctions.TruncateTime(u.VistDate)).Distinct();
 
                 List<DateTime> myList = new List<DateTime>();
 
@@ -238,10 +238,11 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.Price = signalSource.Price;
-                    temp.VistTime = signalSource.VistTime;
+                    temp.VistDate = signalSource.VistDate;
                     temp.SignalItemID = signalSource.SignalItemID;
                     temp.EmployeeID = signalSource.EmployeeID;
                     temp.DepartmentID = signalSource.DepartmentID;
+                    temp.ClinicVistTimeID = signalSource.ClinicVistTimeID;
                 }
                 else
                 {
@@ -303,8 +304,8 @@ namespace BLL
                             where
                             (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.EmployeeID == EmployeeID) &&
-                            a.VistTime.Value <= endDate &&
-                            a.VistTime.Value >= startDate
+                            a.VistDate.Value <= endDate &&
+                            a.VistDate.Value >= startDate
                             select a;
                 foreach (DAL.SignalSource ass in query)
                 {

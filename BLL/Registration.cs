@@ -31,7 +31,7 @@ namespace BLL
                 var query = from r in ctx.Registrations
                             where
                             (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
-                            (VistTime == null || r.SignalSource.VistTime == VistTime) &&
+                            (VistTime == null || r.SignalSource.VistDate == VistTime) &&
                             (!HaveArrive || r.ArriveTime.HasValue)
                             select r;
 
@@ -181,8 +181,8 @@ namespace BLL
                             where
                             (DepartmentID <= 0 || a.SignalSource.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.SignalSource.EmployeeID == EmployeeID) &&
-                            a.SignalSource.VistTime.Value <= endDate &&
-                            a.SignalSource.VistTime.Value >= startDate
+                            a.SignalSource.VistDate.Value <= endDate &&
+                            a.SignalSource.VistDate.Value >= startDate
                             select a;
                 foreach (DAL.Registration ass in query)
                 {
@@ -209,7 +209,7 @@ namespace BLL
                 var query = from a in ctx.Registrations
                             where
                             a.PatientID == PatientID &&
-                            (!DateTime.HasValue || a.SignalSource.VistTime <= DateTime)
+                            (!DateTime.HasValue || a.SignalSource.VistDate <= DateTime)
                             orderby a.RegisterTime descending
                             select a;
                 foreach (DAL.Registration ass in query)

@@ -15,7 +15,7 @@ namespace CommContracts
         [DataMember]
         public decimal Price { get; set; }           // 号源单价
         [DataMember]
-        public DateTime? VistTime { get; set; }       // 看诊日期
+        public DateTime? VistDate { get; set; }       // 看诊日期
         [DataMember]
         public int MaxNum { get; set; }               // 最大号源
         [DataMember]
@@ -26,6 +26,18 @@ namespace CommContracts
         public int DepartmentID { get; set; }         // 所属科室
         [DataMember]
         public SignalItem SignalItem { get; set; }
+
+        /// <summary>
+        ///  时段ID
+        /// </summary>
+        [DataMember]
+        public int ClinicVistTimeID { get; set; }
+
+        /// <summary>
+        /// 值班时段
+        /// </summary>
+        [DataMember]
+        public ClinicVistTime ClinicVistTime { get; set; }
 
     }
 }
