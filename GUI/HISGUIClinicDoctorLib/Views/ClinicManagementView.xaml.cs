@@ -25,32 +25,25 @@ namespace HISGUIDoctorLib.Views
 {
     public class PaiBan
     {
+        public PaiBan()
+        {
+            WorkPlanIDList = new List<int>();
+            WorkPlanSignalItemList = new List<CommContracts.SignalItem>();
+            for (int i = 0; i < 7; i++)
+            {
+                WorkPlanIDList.Add(0);
+                WorkPlanSignalItemList.Add(new CommContracts.SignalItem());
+            }
+        }
+
         public int EmployeeID { get; set; }
         public string Name { get; set; }
         public int VistTimeID { get; set; }
         public string VistTimeName { get; set; }
 
-        public int MondayID { get; set; }
+        public List<int> WorkPlanIDList { get; set; }
 
-        public int TuesdayID { get; set; }
-
-        public int WednesdayID { get; set; }
-
-        public int ThursdayID { get; set; }
-
-        public int FridayID { get; set; }
-
-        public int SaturdayID { get; set; }
-
-        public int SundayID { get; set; }
-
-        public CommContracts.SignalItem Monday { get; set; }
-        public CommContracts.SignalItem Tuesday { get; set; }
-        public CommContracts.SignalItem Wednesday { get; set; }
-        public CommContracts.SignalItem Thursday { get; set; }
-        public CommContracts.SignalItem Friday { get; set; }
-        public CommContracts.SignalItem Saturday { get; set; }
-        public CommContracts.SignalItem Sunday { get; set; }
+        public List<CommContracts.SignalItem> WorkPlanSignalItemList { get; set; }
     }
 
     [Export]
@@ -159,7 +152,7 @@ namespace HISGUIDoctorLib.Views
                 this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
                 {
                     Header = tempDate.ToString("yyyy-MM-dd dddd"),
-                    SelectedItemBinding = new Binding(tempDate.DayOfWeek.ToString()),
+                    SelectedItemBinding = new Binding("WorkPlanSignalItemList["+(int)tempDate.DayOfWeek+"]"),
                     ItemsSource = listOfAllSignalItems,
                     Width = length,
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
@@ -226,57 +219,11 @@ namespace HISGUIDoctorLib.Views
                                 continue;
                             if (tem.ClinicVistTimeID != vistTime.ID)
                                 continue;
-                            
+
                             DayOfWeek dayOfWeek = tem.VistDate.Value.DayOfWeek;
 
-                            switch (dayOfWeek)
-                            {
-                                case DayOfWeek.Monday:
-                                    {
-                                        paiBan.Monday = tem.SignalItem;
-                                        paiBan.MondayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Tuesday:
-                                    {
-                                        paiBan.Tuesday = tem.SignalItem;
-                                        paiBan.TuesdayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Wednesday:
-                                    {
-                                        paiBan.Wednesday = tem.SignalItem;
-                                        paiBan.WednesdayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Thursday:
-                                    {
-                                        paiBan.Thursday = tem.SignalItem;
-                                        paiBan.TuesdayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Saturday:
-                                    {
-                                        paiBan.Saturday = tem.SignalItem;
-                                        paiBan.SaturdayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Sunday:
-                                    {
-                                        paiBan.Sunday = tem.SignalItem;
-                                        paiBan.SundayID = tem.ID;
-                                    }
-                                    break;
-                                case DayOfWeek.Friday:
-                                    {
-                                        paiBan.Friday = tem.SignalItem;
-                                        paiBan.FridayID = tem.ID;
-                                    }
-                                    break;
-
-                                default:
-                                    break;
-                            }
+                            paiBan.WorkPlanIDList[(int)dayOfWeek] = tem.ID;
+                            paiBan.WorkPlanSignalItemList[(int)dayOfWeek] = tem.SignalItem;
                         }
                         data.Add(paiBan);
                     }
@@ -308,15 +255,22 @@ namespace HISGUIDoctorLib.Views
             MessageBox.Show("门诊号源保存失败！");
         }
 
+        /// <summary>
+        /// 从界面中得到需要保存的排班记录列表
+        /// 注意：界面上是从周一到周日分别对应的是0-6
+        ///       然而，外国的一周是从周日开始的，所以枚举类型DayOfWeek是周日到周一对应0-6
+        ///       会造成Bug
+        /// </summary>
+        /// <returns></returns>
         private List<CommContracts.WorkPlan> getSignalsFromView()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
+
             var department = vm.CurrentUser.Employee.Department;
             if (department == null)
                 return null;
             if (department.ID < 0)
                 return null;
-
 
             List<PaiBan> list = this.DateClinicMsgGrid.ItemsSource as List<PaiBan>;
             if (list == null)
@@ -333,113 +287,33 @@ namespace HISGUIDoctorLib.Views
                 if (paiBan.EmployeeID <= 0)
                     continue;
 
-                if (paiBan.Monday != null)
+                for (int week = 0; week < 7; week++)
                 {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Monday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Monday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(0);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
+                    if(paiBan.WorkPlanSignalItemList[week] != null)
                     {
-                        sourceList.Add(signalSource);
-                    }
-                }
+                        if (paiBan.WorkPlanSignalItemList[week].ID == 0)
+                            continue;
+                        
+                        CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
+                        signalSource.ID = paiBan.WorkPlanIDList[week];
+                        signalSource.DepartmentID = department.ID;
+                        signalSource.EmployeeID = paiBan.EmployeeID;
+                        signalSource.Price = paiBan.WorkPlanSignalItemList[week].SellPrice;
+                        signalSource.SignalItemID = paiBan.WorkPlanSignalItemList[week].ID;
+                        signalSource.ClinicVistTimeID = paiBan.VistTimeID;
 
-                if (paiBan.Tuesday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Tuesday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Tuesday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(1);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
-                }
+                        
+                        if (week == 0)
+                            signalSource.VistDate = getMonday(currentManageDate).AddDays(6);
+                        else
+                            signalSource.VistDate = getMonday(currentManageDate).AddDays(week - 1);
 
 
-                if (paiBan.Wednesday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Wednesday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Wednesday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(2);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
-                }
-
-                if (paiBan.Thursday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Thursday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Thursday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(3);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
-                }
-
-
-                if (paiBan.Friday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Friday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Friday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(4);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
-                }
-
-
-                if (paiBan.Saturday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Saturday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Saturday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(5);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
-                }
-
-
-                if (paiBan.Sunday != null)
-                {
-                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
-                    signalSource.DepartmentID = department.ID;
-                    signalSource.EmployeeID = paiBan.EmployeeID;
-                    signalSource.Price = paiBan.Sunday.SellPrice;
-                    signalSource.SignalItemID = paiBan.Sunday.ID;
-                    signalSource.ClinicVistTimeID = paiBan.VistTimeID;
-                    signalSource.VistDate = getMonday(currentManageDate).AddDays(6);
-                    if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
-                    {
-                        sourceList.Add(signalSource);
-                    }
+                        if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
+                        {
+                            sourceList.Add(signalSource);
+                        }
+                    }   
                 }
             }
             return sourceList;
@@ -458,7 +332,7 @@ namespace HISGUIDoctorLib.Views
             if (selectedCells == null)
                 return;
 
-            foreach(var cellitem in selectedCells)
+            foreach (var cellitem in selectedCells)
             {
                 if (cellitem == null)
                     continue;
@@ -470,47 +344,8 @@ namespace HISGUIDoctorLib.Views
                 DateTime columnDate = DateTime.Parse(strColumn);
 
                 int workPlanID = 0;
-                switch (columnDate.DayOfWeek)
-                {
-                    case DayOfWeek.Monday:
-                        {
-                            workPlanID = paiBan.MondayID;
-                        }
-                        break;
-                    case DayOfWeek.Tuesday:
-                        {
-                            workPlanID = paiBan.TuesdayID;
-                        }
-                        break;
-                    case DayOfWeek.Wednesday:
-                        {
-                            workPlanID = paiBan.WednesdayID;
-                        }
-                        break;
-                    case DayOfWeek.Thursday:
-                        {
-                            workPlanID = paiBan.ThursdayID;
-                        }
-                        break;
-                    case DayOfWeek.Saturday:
-                        {
-                            workPlanID = paiBan.SaturdayID;
-                        }
-                        break;
-                    case DayOfWeek.Sunday:
-                        {
-                            workPlanID = paiBan.SundayID;
-                        }
-                        break;
-                    case DayOfWeek.Friday:
-                        {
-                            workPlanID = paiBan.FridayID;
-                        }
-                        break;
 
-                    default:
-                        break;
-                }
+                workPlanID = paiBan.WorkPlanIDList[(int)columnDate.DayOfWeek];
 
                 CommClient.WorkPlan workPlanClient = new CommClient.WorkPlan();
                 workPlanClient.UpdateWorkPlanStatus(workPlanID, CommContracts.WorkPlanStatus.停诊);
