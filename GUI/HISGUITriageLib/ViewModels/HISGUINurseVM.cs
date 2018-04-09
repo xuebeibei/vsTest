@@ -52,7 +52,7 @@ namespace HISGUINurseLib.ViewModels
         public List<CommContracts.WorkPlan> GetOneDaySignalSourceList(DateTime date)
         {
             CommClient.WorkPlan myd = new CommClient.WorkPlan();
-            return myd.GetSignalSourceList(0, 0, date, date);
+            return myd.GetWorkPlanList(0, 0, date, date);
         }
 
         // 得到某一天的所有到诊患者

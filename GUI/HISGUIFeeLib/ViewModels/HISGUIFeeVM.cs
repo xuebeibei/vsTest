@@ -426,7 +426,7 @@ namespace HISGUIFeeLib.ViewModels
         public List<CommContracts.WorkPlan> GetDepartmentSignalSourceList(int DepartmentID, DateTime startDate, DateTime endDate)
         {
             CommClient.WorkPlan myd = new CommClient.WorkPlan();
-            return myd.GetSignalSourceList(DepartmentID, 0, startDate, endDate);
+            return myd.GetWorkPlanList(DepartmentID, 0, startDate, endDate);
         }
 
         public List<CommContracts.Registration> GetDepartmentRegistrationList(int DepartmentID, DateTime startDate, DateTime endDate)

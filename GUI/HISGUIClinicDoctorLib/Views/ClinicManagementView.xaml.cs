@@ -29,6 +29,21 @@ namespace HISGUIDoctorLib.Views
         public string Name { get; set; }
         public int VistTimeID { get; set; }
         public string VistTimeName { get; set; }
+
+        public int MondayID { get; set; }
+
+        public int TuesdayID { get; set; }
+
+        public int WednesdayID { get; set; }
+
+        public int ThursdayID { get; set; }
+
+        public int FridayID { get; set; }
+
+        public int SaturdayID { get; set; }
+
+        public int SundayID { get; set; }
+
         public CommContracts.SignalItem Monday { get; set; }
         public CommContracts.SignalItem Tuesday { get; set; }
         public CommContracts.SignalItem Wednesday { get; set; }
@@ -219,36 +234,43 @@ namespace HISGUIDoctorLib.Views
                                 case DayOfWeek.Monday:
                                     {
                                         paiBan.Monday = tem.SignalItem;
+                                        paiBan.MondayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Tuesday:
                                     {
                                         paiBan.Tuesday = tem.SignalItem;
+                                        paiBan.TuesdayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Wednesday:
                                     {
                                         paiBan.Wednesday = tem.SignalItem;
+                                        paiBan.WednesdayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Thursday:
                                     {
                                         paiBan.Thursday = tem.SignalItem;
+                                        paiBan.TuesdayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Saturday:
                                     {
                                         paiBan.Saturday = tem.SignalItem;
+                                        paiBan.SaturdayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Sunday:
                                     {
                                         paiBan.Sunday = tem.SignalItem;
+                                        paiBan.SundayID = tem.ID;
                                     }
                                     break;
                                 case DayOfWeek.Friday:
                                     {
                                         paiBan.Friday = tem.SignalItem;
+                                        paiBan.FridayID = tem.ID;
                                     }
                                     break;
 
@@ -429,5 +451,72 @@ namespace HISGUIDoctorLib.Views
             return tempDate;
         }
 
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedCells = DateClinicMsgGrid.SelectedCells;
+
+            if (selectedCells == null)
+                return;
+
+            foreach(var cellitem in selectedCells)
+            {
+                if (cellitem == null)
+                    continue;
+
+                PaiBan paiBan = cellitem.Item as PaiBan;
+
+                string strColumn = cellitem.Column.Header.ToString();
+
+                DateTime columnDate = DateTime.Parse(strColumn);
+
+                int workPlanID = 0;
+                switch (columnDate.DayOfWeek)
+                {
+                    case DayOfWeek.Monday:
+                        {
+                            workPlanID = paiBan.MondayID;
+                        }
+                        break;
+                    case DayOfWeek.Tuesday:
+                        {
+                            workPlanID = paiBan.TuesdayID;
+                        }
+                        break;
+                    case DayOfWeek.Wednesday:
+                        {
+                            workPlanID = paiBan.WednesdayID;
+                        }
+                        break;
+                    case DayOfWeek.Thursday:
+                        {
+                            workPlanID = paiBan.ThursdayID;
+                        }
+                        break;
+                    case DayOfWeek.Saturday:
+                        {
+                            workPlanID = paiBan.SaturdayID;
+                        }
+                        break;
+                    case DayOfWeek.Sunday:
+                        {
+                            workPlanID = paiBan.SundayID;
+                        }
+                        break;
+                    case DayOfWeek.Friday:
+                        {
+                            workPlanID = paiBan.FridayID;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+
+                CommClient.WorkPlan workPlanClient = new CommClient.WorkPlan();
+                workPlanClient.UpdateWorkPlanStatus(workPlanID, CommContracts.WorkPlanStatus.停诊);
+            }
+
+            updateDateClinicMsg();
+        }
     }
 }

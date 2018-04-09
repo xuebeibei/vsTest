@@ -7,6 +7,25 @@ using System.Threading.Tasks;
 namespace DAL
 {
     /// <summary>
+    /// 排班表内记录的状态
+    /// </summary>
+    public enum WorkPlanStatus
+    {
+        /// <summary>
+        /// 正常
+        /// </summary>
+        eIsOk,
+        /// <summary>
+        /// 已经删除，不用
+        /// </summary>
+        eIsDelete,
+        /// <summary>
+        /// 暂停
+        /// </summary>
+        eIsTempStop
+    }
+
+    /// <summary>
     /// 门诊排班表
     /// </summary>
     public class WorkPlan
@@ -70,6 +89,11 @@ namespace DAL
         /// 值班时段
         /// </summary>
         public virtual ClinicVistTime ClinicVistTime { get; set; }
+
+        /// <summary>
+        /// 排班记录状态
+        /// </summary>
+        public WorkPlanStatus WorkPlanStatus { get; set; }
 
         /// <summary>
         /// 所有门诊挂号

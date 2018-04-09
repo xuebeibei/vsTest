@@ -70,23 +70,28 @@ namespace CommContracts
         bool DeleteDepartment(int departmentID);
 
         [OperationContract]
-        List<CommContracts.WorkPlan> GetAllSignalSource();
+        List<CommContracts.WorkPlan> GetAllWorkPlan();
 
         [OperationContract]
-        List<DateTime> getAllSignalDate(int DepartmentID);
+        List<DateTime> getAllWorkPlanDate(int DepartmentID);
 
         [OperationContract]
-        List<int> getAllSignalTimeIntival(int DepartmentID);
+        List<int> getAllWorkPlanIntival(int DepartmentID);
 
         [OperationContract]
-        string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival);
+        string getWorkPlanTip(int DepartmentID, DateTime dateTime, int TimeIntival);
 
         [OperationContract]
-        bool UpdateSignalSource(int nSignalSourceID);
+        bool UpdateWorkPlanHasUsedNum(int nSignalSourceID);
         [OperationContract]
-        bool SaveSignalSourceList(List<CommContracts.WorkPlan> list);
+        bool SaveWorkPlanList(List<CommContracts.WorkPlan> list);
         [OperationContract]
-        List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
+        List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
+        [OperationContract]
+        bool UpdateWorkPlan(CommContracts.WorkPlan signalSource);
+
+        [OperationContract]
+        bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus);
 
         [OperationContract]
         bool SaveRegistration(Registration registration);

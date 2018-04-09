@@ -149,44 +149,56 @@ namespace CommServer
             return temp.DeleteDepartment(departmentID);
         }
 
-        public List<CommContracts.WorkPlan> GetAllSignalSource()
+        public List<CommContracts.WorkPlan> GetAllWorkPlan()
         {
             BLL.WorkPlan tempDepart = new BLL.WorkPlan();
-            return tempDepart.GetAllSignalSource();
+            return tempDepart.GetAllWorkPlan();
         }
 
-        public List<DateTime> getAllSignalDate(int DepartmentID)
+        public List<DateTime> getAllWorkPlanDate(int DepartmentID)
         {
             BLL.WorkPlan tempDepart = new BLL.WorkPlan();
-            return tempDepart.getAllSignalDate(DepartmentID);
+            return tempDepart.getAllWorkPlanDate(DepartmentID);
         }
 
-        public List<int> getAllSignalTimeIntival(int DepartmentID)
+        public List<int> getAllWorkPlanIntival(int DepartmentID)
         {
             BLL.WorkPlan tempDepart = new BLL.WorkPlan();
-            return tempDepart.getAllSignalTimeIntival(DepartmentID);
+            return tempDepart.getAllWorkPlanIntival(DepartmentID);
         }
 
-        public string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival)
+        public string getWorkPlanTip(int DepartmentID, DateTime dateTime, int TimeIntival)
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
-            return temp.getSignalSourceTip(DepartmentID, dateTime, TimeIntival);
+            return temp.getWorkPlanTip(DepartmentID, dateTime, TimeIntival);
         }
 
-        public bool UpdateSignalSource(int nSignalSourceID)
+        public bool UpdateWorkPlanHasUsedNum(int nSignalSourceID)
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
-            return temp.UpdateSignalSource(nSignalSourceID);
+            return temp.UpdateWorkPlanHasUsedNum(nSignalSourceID);
         }
-        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
+        public bool SaveWorkPlanList(List<CommContracts.WorkPlan> list)
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
-            return temp.SaveSignalSourceList(list);
+            return temp.SaveWorkPlanList(list);
         }
-        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
-            return temp.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
+            return temp.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate);
+        }
+
+        public bool UpdateWorkPlan(CommContracts.WorkPlan signalSource)
+        {
+            BLL.WorkPlan temp = new BLL.WorkPlan();
+            return temp.UpdateWorkPlan(signalSource);
+        }
+
+        public bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus)
+        {
+            BLL.WorkPlan temp = new BLL.WorkPlan();
+            return temp.UpdateWorkPlanStatus(workPlanID, workPlanStatus);
         }
 
         public bool SaveRegistration(Registration registration)

@@ -16,39 +16,49 @@ namespace CommClient
         {
         }
 
-        public List<CommContracts.WorkPlan> GetAllSignalSource()
+        public List<CommContracts.WorkPlan> GetAllWorkPlan()
         {
-            return client.GetAllSignalSource();
+            return client.GetAllWorkPlan();
         }
 
-        public List<DateTime> getAllSignalDate(int DepartmentID)
+        public List<DateTime> getAllWorkPlanDate(int DepartmentID)
         {
-            return client.getAllSignalDate(DepartmentID);
+            return client.getAllWorkPlanDate(DepartmentID);
         }
 
-        public List<int> getAllSignalTimeIntival(int DepartmentID)
+        public List<int> getAllWorkPlanIntival(int DepartmentID)
         {
-            return client.getAllSignalTimeIntival(DepartmentID);
+            return client.getAllWorkPlanIntival(DepartmentID);
         }
 
-        public string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival)
+        public string getWorkPlanTip(int DepartmentID, DateTime dateTime, int TimeIntival)
         {
-            return client.getSignalSourceTip(DepartmentID, dateTime, TimeIntival);
+            return client.getWorkPlanTip(DepartmentID, dateTime, TimeIntival);
         }
 
-        public bool UpdateSignalSource(int nSignalSourceID)
+        public bool UpdateWorkPlanHasUsedNum(int nSignalSourceID)
         {
-            return client.UpdateSignalSource(nSignalSourceID);
+            return client.UpdateWorkPlanHasUsedNum(nSignalSourceID);
         }
 
-        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
+        public bool SaveWorkPlanList(List<CommContracts.WorkPlan> list)
         {
-            return client.SaveSignalSourceList(list);
+            return client.SaveWorkPlanList(list);
         }
 
-        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
-            return client.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
+            return client.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate);
+        }
+
+        public bool UpdateWorkPlan(CommContracts.WorkPlan signalSource)
+        {
+            return client.UpdateWorkPlan(signalSource);
+        }
+
+        public bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus)
+        {
+            return client.UpdateWorkPlanStatus(workPlanID, workPlanStatus);
         }
     }
 }

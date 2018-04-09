@@ -40,6 +40,7 @@
                       CanUserDeleteRows="False">
             </DataGrid>
             <StackPanel Orientation="Horizontal">
+                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">休班</Button>
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
             </StackPanel>
         </StackPanel>
