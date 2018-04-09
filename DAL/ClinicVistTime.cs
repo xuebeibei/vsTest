@@ -16,7 +16,7 @@ namespace DAL
         /// </summary>
         public ClinicVistTime()
         {
-            SignalSources = new List<SignalSource>();
+            SignalSources = new List<WorkPlan>();
         }
 
         /// <summary>
@@ -57,6 +57,6 @@ namespace DAL
         /// <summary>
         /// 该时段对应的排班记录
         /// </summary>
-        public virtual ICollection<SignalSource> SignalSources { get; set; }
+        public virtual ICollection<WorkPlan> SignalSources { get; set; }
     }
 }

@@ -120,7 +120,7 @@
     <Compile Include="Registration.cs" />
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />
-    <Compile Include="SignalSource.cs" />
+    <Compile Include="WorkPlan.cs" />
     <Compile Include="Specimen.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />

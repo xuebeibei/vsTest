@@ -181,7 +181,7 @@ namespace HISGUIDoctorLib.Views
                 if (employee == null)
                     continue;
 
-                List<CommContracts.SignalSource> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6));
+                List<CommContracts.WorkPlan> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6));
                 if (sourceList == null || sourceList.Count <= 0)
                 {
                     foreach (var vistTime in vistTimeList)
@@ -266,7 +266,7 @@ namespace HISGUIDoctorLib.Views
 
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-            List<CommContracts.SignalSource> sourceList = getSignalsFromView();
+            List<CommContracts.WorkPlan> sourceList = getSignalsFromView();
             if (sourceList != null)
             {
                 if (sourceList.Count > 0)
@@ -286,7 +286,7 @@ namespace HISGUIDoctorLib.Views
             MessageBox.Show("门诊号源保存失败！");
         }
 
-        private List<CommContracts.SignalSource> getSignalsFromView()
+        private List<CommContracts.WorkPlan> getSignalsFromView()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
             var department = vm.CurrentUser.Employee.Department;
@@ -300,7 +300,7 @@ namespace HISGUIDoctorLib.Views
             if (list == null)
                 return null;
 
-            List<CommContracts.SignalSource> sourceList = new List<CommContracts.SignalSource>();
+            List<CommContracts.WorkPlan> sourceList = new List<CommContracts.WorkPlan>();
 
             for (int i = 0; i < list.Count; i++)
             {
@@ -313,7 +313,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Monday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Monday.SellPrice;
@@ -328,7 +328,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Tuesday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Tuesday.SellPrice;
@@ -344,7 +344,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Wednesday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Wednesday.SellPrice;
@@ -359,7 +359,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Thursday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Thursday.SellPrice;
@@ -375,7 +375,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Friday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Friday.SellPrice;
@@ -391,7 +391,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Saturday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Saturday.SellPrice;
@@ -407,7 +407,7 @@ namespace HISGUIDoctorLib.Views
 
                 if (paiBan.Sunday != null)
                 {
-                    CommContracts.SignalSource signalSource = new CommContracts.SignalSource();
+                    CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                     signalSource.DepartmentID = department.ID;
                     signalSource.EmployeeID = paiBan.EmployeeID;
                     signalSource.Price = paiBan.Sunday.SellPrice;

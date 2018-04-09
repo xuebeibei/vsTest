@@ -47,7 +47,7 @@ namespace HISGUIFeeLib.Views
     public class SignalSourceNums
     {
         public int HasUsedNum { get; set; }
-        public CommContracts.SignalSource SignalSource { get; set; }
+        public CommContracts.WorkPlan SignalSource { get; set; }
     }
 
     [Export]
@@ -200,7 +200,7 @@ namespace HISGUIFeeLib.Views
 
             List<SignalSourceMsg> data = new List<SignalSourceMsg>();
 
-            List<CommContracts.SignalSource> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
+            List<CommContracts.WorkPlan> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
             bool bIsHasRegistration = false;
             List<CommContracts.Registration> registrationList = vm?.GetDepartmentRegistrationList(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
             if (!(registrationList == null || registrationList.Count <= 0))
@@ -338,7 +338,7 @@ namespace HISGUIFeeLib.Views
                     return;
 
                 var vm = this.DataContext as HISGUIFeeVM;
-                List<CommContracts.SignalSource> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, dt, dt);
+                List<CommContracts.WorkPlan> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, dt, dt);
 
                 List<CommContracts.Registration> registrationList = vm?.GetDepartmentRegistrationList(department.ID, dt, dt);
 

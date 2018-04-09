@@ -16,7 +16,7 @@ namespace DAL
         /// </summary>
         public SignalItem()
         {
-            SignalSources = new List<SignalSource>();
+            SignalSources = new List<WorkPlan>();
         }
 
         /// <summary>
@@ -42,6 +42,6 @@ namespace DAL
         /// <summary>
         /// 号别所有的号源
         /// </summary>
-        public virtual ICollection<SignalSource> SignalSources { get; set; }
+        public virtual ICollection<WorkPlan> SignalSources { get; set; }
     }
 }

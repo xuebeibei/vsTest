@@ -9,12 +9,12 @@ namespace DAL
     /// <summary>
     /// 门诊排班表
     /// </summary>
-    public class SignalSource
+    public class WorkPlan
     {
         /// <summary>
         /// 构造函数
         /// </summary>
-        public SignalSource()
+        public WorkPlan()
         {
             Registrations = new List<Registration>();
         }

@@ -70,7 +70,7 @@ namespace CommContracts
         bool DeleteDepartment(int departmentID);
 
         [OperationContract]
-        List<CommContracts.SignalSource> GetAllSignalSource();
+        List<CommContracts.WorkPlan> GetAllSignalSource();
 
         [OperationContract]
         List<DateTime> getAllSignalDate(int DepartmentID);
@@ -84,9 +84,9 @@ namespace CommContracts
         [OperationContract]
         bool UpdateSignalSource(int nSignalSourceID);
         [OperationContract]
-        bool SaveSignalSourceList(List<CommContracts.SignalSource> list);
+        bool SaveSignalSourceList(List<CommContracts.WorkPlan> list);
         [OperationContract]
-        List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
+        List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
 
         [OperationContract]
         bool SaveRegistration(Registration registration);

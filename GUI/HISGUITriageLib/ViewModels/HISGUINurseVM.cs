@@ -49,9 +49,9 @@ namespace HISGUINurseLib.ViewModels
         }
 
         // 得到某一天所有的号源
-        public List<CommContracts.SignalSource> GetOneDaySignalSourceList(DateTime date)
+        public List<CommContracts.WorkPlan> GetOneDaySignalSourceList(DateTime date)
         {
-            CommClient.SignalSource myd = new CommClient.SignalSource();
+            CommClient.WorkPlan myd = new CommClient.WorkPlan();
             return myd.GetSignalSourceList(0, 0, date, date);
         }
 

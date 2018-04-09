@@ -14,13 +14,13 @@ using AutoMapper;
 
 namespace BLL
 {
-    public class SignalSource
+    public class WorkPlan
     {
         public List<DateTime> getAllSignalDate(int DepartmentID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = (from u in ctx.SignalSources
+                var temp = (from u in ctx.WorkPlans
                             where u.DepartmentID == DepartmentID &&
                             (u.VistDate.HasValue && u.VistDate.Value.Date >= DateTime.Now.Date)
                             select DbFunctions.TruncateTime(u.VistDate)).Distinct();
@@ -155,43 +155,43 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.SignalSource> GetAllSignalSource()
+        public List<CommContracts.WorkPlan> GetAllSignalSource()
         {
-            List<CommContracts.SignalSource> list = new List<CommContracts.SignalSource>();
+            List<CommContracts.WorkPlan> list = new List<CommContracts.WorkPlan>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.SignalSources
+                var query = from a in ctx.WorkPlans
                             select a;
-                foreach (DAL.SignalSource ass in query)
+                foreach (DAL.WorkPlan ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.SignalSource, CommContracts.SignalSource>();
+                        cfg.CreateMap<DAL.WorkPlan, CommContracts.WorkPlan>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.SignalSource temp = mapper.Map<CommContracts.SignalSource>(ass);
+                    CommContracts.WorkPlan temp = mapper.Map<CommContracts.WorkPlan>(ass);
                     list.Add(temp);
                 }
             }
             return list;
         }
 
-        public bool SaveSignalSource(CommContracts.SignalSource signalSource)
+        public bool SaveSignalSource(CommContracts.WorkPlan signalSource)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.SignalSource, DAL.SignalSource>();
+                    cfg.CreateMap<CommContracts.WorkPlan, DAL.WorkPlan>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.SignalSource temp = new DAL.SignalSource();
-                temp = mapper.Map<DAL.SignalSource>(signalSource);
+                DAL.WorkPlan temp = new DAL.WorkPlan();
+                temp = mapper.Map<DAL.WorkPlan>(signalSource);
 
-                ctx.SignalSources.Add(temp);
+                ctx.WorkPlans.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -210,10 +210,10 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SignalSources.FirstOrDefault(m => m.ID == signalSourceID);
+                var temp = ctx.WorkPlans.FirstOrDefault(m => m.ID == signalSourceID);
                 if (temp != null)
                 {
-                    ctx.SignalSources.Remove(temp);
+                    ctx.WorkPlans.Remove(temp);
                 }
 
                 try
@@ -230,11 +230,11 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateSignalSource(CommContracts.SignalSource signalSource)
+        public bool UpdateSignalSource(CommContracts.WorkPlan signalSource)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SignalSources.FirstOrDefault(m => m.ID == signalSource.ID);
+                var temp = ctx.WorkPlans.FirstOrDefault(m => m.ID == signalSource.ID);
                 if (temp != null)
                 {
                     temp.Price = signalSource.Price;
@@ -263,7 +263,7 @@ namespace BLL
             return true;
         }
 
-        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -271,14 +271,14 @@ namespace BLL
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<CommContracts.SignalSource, DAL.SignalSource>();
+                        cfg.CreateMap<CommContracts.WorkPlan, DAL.WorkPlan>();
                     });
                     var mapper = config.CreateMapper();
 
-                    DAL.SignalSource temp = new DAL.SignalSource();
-                    temp = mapper.Map<DAL.SignalSource>(signalSource);
+                    DAL.WorkPlan temp = new DAL.WorkPlan();
+                    temp = mapper.Map<DAL.WorkPlan>(signalSource);
 
-                    ctx.SignalSources.Add(temp);
+                    ctx.WorkPlans.Add(temp);
                 }
                 try
                 {
@@ -294,28 +294,28 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
-            List<CommContracts.SignalSource> list = new List<CommContracts.SignalSource>();
+            List<CommContracts.WorkPlan> list = new List<CommContracts.WorkPlan>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.SignalSources
+                var query = from a in ctx.WorkPlans
                             where
                             (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.EmployeeID == EmployeeID) &&
                             a.VistDate.Value <= endDate &&
                             a.VistDate.Value >= startDate
                             select a;
-                foreach (DAL.SignalSource ass in query)
+                foreach (DAL.WorkPlan ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.SignalSource, CommContracts.SignalSource>();
+                        cfg.CreateMap<DAL.WorkPlan, CommContracts.WorkPlan>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.SignalSource temp = mapper.Map<CommContracts.SignalSource>(ass);
+                    CommContracts.WorkPlan temp = mapper.Map<CommContracts.WorkPlan>(ass);
                     list.Add(temp);
                 }
             }

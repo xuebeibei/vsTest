@@ -8,7 +8,7 @@ using System.Runtime.Serialization;
 namespace CommContracts
 {
     [DataContract]
-    public class SignalSource
+    public class WorkPlan
     {
         [DataMember]
         public int ID { get; set; }                  // 号源ID

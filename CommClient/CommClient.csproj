@@ -85,7 +85,7 @@
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />
     <Compile Include="SignalItem.cs" />
-    <Compile Include="SignalSource.cs" />
+    <Compile Include="WorkPlan.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMaterialNum.cs" />
     <Compile Include="StoreRoomMedicineNum.cs" />

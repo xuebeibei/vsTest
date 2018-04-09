@@ -302,15 +302,15 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.UpdateRegistration(registration);
         }
 
-        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
         {
-            CommClient.SignalSource myd = new CommClient.SignalSource();
+            CommClient.WorkPlan myd = new CommClient.WorkPlan();
             return myd.SaveSignalSourceList(list);
         }
 
-        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
-            CommClient.SignalSource myd = new CommClient.SignalSource();
+            CommClient.WorkPlan myd = new CommClient.WorkPlan();
             return myd.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
 

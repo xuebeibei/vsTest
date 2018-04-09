@@ -145,7 +145,7 @@ namespace HISGUINurseLib.Views
 
             var vm = this.DataContext as HISGUINurseVM;
 
-            List<CommContracts.SignalSource> sourceList = vm?.GetOneDaySignalSourceList(DateTime.Now.Date);
+            List<CommContracts.WorkPlan> sourceList = vm?.GetOneDaySignalSourceList(DateTime.Now.Date);
             if (sourceList == null || sourceList.Count == 0)
                 return waitList;
 

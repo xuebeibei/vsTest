@@ -149,43 +149,43 @@ namespace CommServer
             return temp.DeleteDepartment(departmentID);
         }
 
-        public List<CommContracts.SignalSource> GetAllSignalSource()
+        public List<CommContracts.WorkPlan> GetAllSignalSource()
         {
-            BLL.SignalSource tempDepart = new BLL.SignalSource();
+            BLL.WorkPlan tempDepart = new BLL.WorkPlan();
             return tempDepart.GetAllSignalSource();
         }
 
         public List<DateTime> getAllSignalDate(int DepartmentID)
         {
-            BLL.SignalSource tempDepart = new BLL.SignalSource();
+            BLL.WorkPlan tempDepart = new BLL.WorkPlan();
             return tempDepart.getAllSignalDate(DepartmentID);
         }
 
         public List<int> getAllSignalTimeIntival(int DepartmentID)
         {
-            BLL.SignalSource tempDepart = new BLL.SignalSource();
+            BLL.WorkPlan tempDepart = new BLL.WorkPlan();
             return tempDepart.getAllSignalTimeIntival(DepartmentID);
         }
 
         public string getSignalSourceTip(int DepartmentID, DateTime dateTime, int TimeIntival)
         {
-            BLL.SignalSource temp = new BLL.SignalSource();
+            BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.getSignalSourceTip(DepartmentID, dateTime, TimeIntival);
         }
 
         public bool UpdateSignalSource(int nSignalSourceID)
         {
-            BLL.SignalSource temp = new BLL.SignalSource();
+            BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.UpdateSignalSource(nSignalSourceID);
         }
-        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
         {
-            BLL.SignalSource temp = new BLL.SignalSource();
+            BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.SaveSignalSourceList(list);
         }
-        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
-            BLL.SignalSource temp = new BLL.SignalSource();
+            BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
 

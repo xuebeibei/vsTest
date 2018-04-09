@@ -43,7 +43,7 @@ namespace CommContracts
         [DataMember]
         public Patient Patient { get; set; }                      // 患者
         [DataMember]
-        public SignalSource SignalSource { get; set; }            // 号源
+        public WorkPlan SignalSource { get; set; }            // 号源
         [DataMember]
         public User RegisterUser { get; set; }                    // 经办人
         [DataMember]

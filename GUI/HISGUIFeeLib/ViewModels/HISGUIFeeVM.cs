@@ -423,9 +423,9 @@ namespace HISGUIFeeLib.ViewModels
             CommClient.Department myd = new CommClient.Department();
             return myd.getALLDepartment(departmentEnum);
         }
-        public List<CommContracts.SignalSource> GetDepartmentSignalSourceList(int DepartmentID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetDepartmentSignalSourceList(int DepartmentID, DateTime startDate, DateTime endDate)
         {
-            CommClient.SignalSource myd = new CommClient.SignalSource();
+            CommClient.WorkPlan myd = new CommClient.WorkPlan();
             return myd.GetSignalSourceList(DepartmentID, 0, startDate, endDate);
         }
 

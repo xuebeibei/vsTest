@@ -10,13 +10,13 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class SignalSource : MyTableBase
+    public class WorkPlan : MyTableBase
     {
-        public SignalSource()
+        public WorkPlan()
         {
         }
 
-        public List<CommContracts.SignalSource> GetAllSignalSource()
+        public List<CommContracts.WorkPlan> GetAllSignalSource()
         {
             return client.GetAllSignalSource();
         }
@@ -41,12 +41,12 @@ namespace CommClient
             return client.UpdateSignalSource(nSignalSourceID);
         }
 
-        public bool SaveSignalSourceList(List<CommContracts.SignalSource> list)
+        public bool SaveSignalSourceList(List<CommContracts.WorkPlan> list)
         {
             return client.SaveSignalSourceList(list);
         }
 
-        public List<CommContracts.SignalSource> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
         {
             return client.GetSignalSourceList(DepartmentID, EmployeeID, startDate, endDate);
         }
