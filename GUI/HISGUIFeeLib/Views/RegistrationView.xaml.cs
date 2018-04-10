@@ -19,6 +19,7 @@ using Prism.Regions;
 using HISGUICore;
 using HISGUIFeeLib.ViewModels;
 using System.Data;
+using Microsoft.VisualBasic;
 
 namespace HISGUIFeeLib.Views
 {
@@ -81,93 +82,124 @@ namespace HISGUIFeeLib.Views
             set { this.VM = value; }
         }
 
-        private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
+        private void updatePatientsMsg(String strPatientCardNum)
         {
-            myCurrentPatientID = 1;// 默认值
             var vm = this.DataContext as HISGUIFeeVM;
-            PatientMsg.Inlines.Clear();
-            myCurrentBalance = vm?.GetCurrentPatientBalance(myCurrentPatientID);
-            if (this.AddCheck.IsChecked.Value)
+            CommContracts.Patient patient = new CommContracts.Patient();
+            string strAge = "";
+            if (string.IsNullOrEmpty(strPatientCardNum))
             {
-                CommContracts.Patient patient = vm?.ReadCurrentPatient(myCurrentPatientID);
-                if (patient == null)
-                    return;
-
-                string str =
-                    "姓名：" + patient.Name + "     " +
-                    "性别：" + patient.Gender + "     " +
-                    "生日：" + patient.BirthDay + "     " +
-                    "身份证号：" + patient.ZhengJianNum + "     " +
-                    "民族：" + patient.Volk + "     " +
-                    "籍贯：" + patient.JiGuan_Sheng + "     " +
-                    "电话：" + patient.Tel + "     "
-                    ;
-                PatientMsg.Inlines.Add(new Run(str));
-                PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
-                {
-                    Foreground = Brushes.Green,
-                    FontSize = 25
-                });
+                vm.CurrentPatient = patient;
+                this.AgeBox.Text = strAge;
+                return;
             }
-            else if (this.DeleteCheck.IsChecked.Value)
+
+            CommClient.Patient patientClient = new CommClient.Patient();
+
+            string ErrorMsg = "";
+            patient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+
+            if (patient == null)
             {
-                currentRegistration = vm?.ReadLastRegistration(myCurrentPatientID);
-                if (currentRegistration == null)
-                    return;
-                if (currentRegistration.Patient == null)
-                    return;
+                MessageBox.Show(ErrorMsg);
+            }
+            else
+            {
+                vm.CurrentPatient = patient;
 
-                string str =
-                    "姓名：" + currentRegistration.Patient.Name + "     " +
-                    "性别：" + currentRegistration.Patient.Gender + "     " +
-                    "生日：" + currentRegistration.Patient.BirthDay + "     " +
-                    "身份证号：" + currentRegistration.Patient.ZhengJianNum + "     " +
-                    "民族：" + currentRegistration.Patient.Volk + "     " +
-                    "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
-                    "电话：" + currentRegistration.Patient.Tel + "     ";
-                ;
-                PatientMsg.Inlines.Add(new Run(str));
-                PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
-                {
-                    Foreground = Brushes.Green,
-                    FontSize = 25
-                });
-
-                str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " +
-                    "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
-                    "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
-                    "看诊时间：" + currentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
-                    "费用：" + currentRegistration.RegisterFee + "元     " +
-                    "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
-                    "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
-                PatientMsg.Inlines.Add(new Run(str));
-
-                if (currentRegistration.ReturnTime.HasValue)
-                {
-                    this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
-                    this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
-                    this.ServiceMoneyEdit.Text = currentRegistration.ReturnServiceMoney.ToString();
-                    this.RealPayMoneyEdit.Text = (currentRegistration.RegisterFee - currentRegistration.ReturnServiceMoney).ToString();
-
-                    this.ServiceMoneyEdit.IsEnabled = false;
-                    this.ReturnBtn.IsEnabled = false;
-                }
-                else
-                {
-                    this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
-                    this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
-                    this.ServiceMoneyEdit.Focus();
-
-                    this.ServiceMoneyEdit.IsEnabled = true;
-                    this.ReturnBtn.IsEnabled = true;
-                }
-
+                strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
+                this.AgeBox.Text = strAge;
             }
         }
 
-        private void FindPatientBtn_Click(object sender, RoutedEventArgs e)
+        private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
+            String strPatientCardNum = Interaction.InputBox("请输入就诊卡卡号", "读卡", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
+                return;
 
+            updatePatientsMsg(strPatientCardNum);
+
+            //myCurrentPatientID = 1;// 默认值
+            //var vm = this.DataContext as HISGUIFeeVM;
+            //PatientMsg.Inlines.Clear();
+            //myCurrentBalance = vm?.GetCurrentPatientBalance(myCurrentPatientID);
+            //if (this.AddCheck.IsChecked.Value)
+            //{
+            //    CommContracts.Patient patient = vm?.ReadCurrentPatient(myCurrentPatientID);
+            //    if (patient == null)
+            //        return;
+
+            //    string str =
+            //        "姓名：" + patient.Name + "     " +
+            //        "性别：" + patient.Gender + "     " +
+            //        "生日：" + patient.BirthDay + "     " +
+            //        "身份证号：" + patient.ZhengJianNum + "     " +
+            //        "民族：" + patient.Volk + "     " +
+            //        "籍贯：" + patient.JiGuan_Sheng + "     " +
+            //        "电话：" + patient.Tel + "     "
+            //        ;
+            //    PatientMsg.Inlines.Add(new Run(str));
+            //    PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
+            //    {
+            //        Foreground = Brushes.Green,
+            //        FontSize = 25
+            //    });
+            //}
+            //else if (this.DeleteCheck.IsChecked.Value)
+            //{
+            //    currentRegistration = vm?.ReadLastRegistration(myCurrentPatientID);
+            //    if (currentRegistration == null)
+            //        return;
+            //    if (currentRegistration.Patient == null)
+            //        return;
+
+            //    string str =
+            //        "姓名：" + currentRegistration.Patient.Name + "     " +
+            //        "性别：" + currentRegistration.Patient.Gender + "     " +
+            //        "生日：" + currentRegistration.Patient.BirthDay + "     " +
+            //        "身份证号：" + currentRegistration.Patient.ZhengJianNum + "     " +
+            //        "民族：" + currentRegistration.Patient.Volk + "     " +
+            //        "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
+            //        "电话：" + currentRegistration.Patient.Tel + "     ";
+            //    ;
+            //    PatientMsg.Inlines.Add(new Run(str));
+            //    PatientMsg.Inlines.Add(new Run("账户余额：" + myCurrentBalance.Value + "元\n")
+            //    {
+            //        Foreground = Brushes.Green,
+            //        FontSize = 25
+            //    });
+
+            //    str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " +
+            //        "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
+            //        "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
+            //        "看诊时间：" + currentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
+            //        "费用：" + currentRegistration.RegisterFee + "元     " +
+            //        "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
+            //        "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
+            //    PatientMsg.Inlines.Add(new Run(str));
+
+            //    if (currentRegistration.ReturnTime.HasValue)
+            //    {
+            //        this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
+            //        this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
+            //        this.ServiceMoneyEdit.Text = currentRegistration.ReturnServiceMoney.ToString();
+            //        this.RealPayMoneyEdit.Text = (currentRegistration.RegisterFee - currentRegistration.ReturnServiceMoney).ToString();
+
+            //        this.ServiceMoneyEdit.IsEnabled = false;
+            //        this.ReturnBtn.IsEnabled = false;
+            //    }
+            //    else
+            //    {
+            //        this.ReturnWayCombo.SelectedItem = currentRegistration.PayWayEnum;
+            //        this.DueReturnMoneyEdit.Text = currentRegistration.RegisterFee.ToString();
+            //        this.ServiceMoneyEdit.Focus();
+
+            //        this.ServiceMoneyEdit.IsEnabled = true;
+            //        this.ReturnBtn.IsEnabled = true;
+            //    }
+
+            //}
         }
 
         private void departmentList_Selected(object sender, RoutedEventArgs e)
@@ -324,9 +356,20 @@ namespace HISGUIFeeLib.Views
             string data = SignalSourceGrid.SelectedCells[0].Column.Header.ToString();
             int rowIdnex = SignalSourceGrid.Items.IndexOf(SignalSourceGrid.SelectedCells[0].Item);   // 行坐标
 
-            DateTime dt = DateTime.ParseExact(data, "yyyy-MM-dd dddd", System.Globalization.CultureInfo.CurrentCulture);
+            DateTime dt = new DateTime();
+            try
+            {
+                dt = DateTime.ParseExact(data, "yyyy-MM-dd dddd", System.Globalization.CultureInfo.CurrentCulture);
+            }
+            catch(Exception ex)
+            {
+                string str = ex.Message;
+                return;
+            }
+
             if (dt == null)
                 return;
+
             List<SignalSourceMsg> list = SignalSourceGrid.ItemsSource as List<SignalSourceMsg>;
 
             if (list != null)
@@ -373,8 +416,8 @@ namespace HISGUIFeeLib.Views
             clearAllDate();
             this.PayBtn.Visibility = Visibility.Visible;
             this.ReturnBtn.Visibility = Visibility.Collapsed;
-            this.PayPanel.Visibility = Visibility.Visible;
-            this.ReturnPanel.Visibility = Visibility.Collapsed;
+            //this.PayPanel.Visibility = Visibility.Visible;
+            //this.ReturnPanel.Visibility = Visibility.Collapsed;
             this.EditGrid.Visibility = Visibility.Visible;
         }
 
@@ -383,8 +426,8 @@ namespace HISGUIFeeLib.Views
             clearAllDate();
             this.PayBtn.Visibility = Visibility.Collapsed;
             this.ReturnBtn.Visibility = Visibility.Visible;
-            this.PayPanel.Visibility = Visibility.Collapsed;
-            this.ReturnPanel.Visibility = Visibility.Visible;
+            //this.PayPanel.Visibility = Visibility.Collapsed;
+            //this.ReturnPanel.Visibility = Visibility.Visible;
             this.EditGrid.Visibility = Visibility.Collapsed;
         }
 
@@ -394,7 +437,6 @@ namespace HISGUIFeeLib.Views
             myCurrentBalance = 0;
             currentRegistration = new CommContracts.Registration();
 
-            PatientMsg.Inlines.Clear();
             ReturnWayCombo.SelectedItem = null;
             DueReturnMoneyEdit.Text = "";
             ServiceMoneyEdit.Text = "";
@@ -463,6 +505,9 @@ namespace HISGUIFeeLib.Views
             var vm = this.DataContext as HISGUIFeeVM;
             CommContracts.Registration registration = new CommContracts.Registration();
             registration.PatientID = myCurrentPatientID;
+
+            if (this.PayWayCombo.SelectedItem == null)
+                return;
 
             registration.PayWayEnum = (CommContracts.PayWayEnum)this.PayWayCombo.SelectedItem;
             registration.RegisterFee = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
@@ -533,6 +578,21 @@ namespace HISGUIFeeLib.Views
             {
                 this.ReturnBtn.Focus();
             }
+        }
+
+        private void FindBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RePrintBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClearBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

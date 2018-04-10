@@ -494,5 +494,18 @@ namespace HISGUIFeeLib.ViewModels
         }
 
         #endregion
+
+        // 当前患者
+        #region CurrentPatient
+        public static readonly DependencyProperty CurrentPatientProperty = DependencyProperty.Register(
+            "CurrentPatient", typeof(CommContracts.Patient), typeof(HISGUIFeeVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Patient CurrentPatient
+        {
+            get { return (CommContracts.Patient)GetValue(CurrentPatientProperty); }
+            set { SetValue(CurrentPatientProperty, value); }
+        }
+
+        #endregion
     }
 }
