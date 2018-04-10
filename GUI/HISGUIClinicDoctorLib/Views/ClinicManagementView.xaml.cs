@@ -44,6 +44,8 @@ namespace HISGUIDoctorLib.Views
         public List<int> WorkPlanIDList { get; set; }
 
         public List<CommContracts.SignalItem> WorkPlanSignalItemList { get; set; }
+
+        public int MaxVistNum { get; set; }
     }
 
     [Export]
@@ -158,6 +160,15 @@ namespace HISGUIDoctorLib.Views
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
                 });
             }
+
+            this.DateClinicMsgGrid.Columns.Add(new DataGridTextColumn()
+            {
+                Header = "最大工作量",
+                Binding = new Binding("MaxVistNum"),
+                Width = 100,
+                IsReadOnly = false,
+                Foreground = Brushes.Green // 设置该列字体颜色
+            });
         }
         private List<PaiBan> updateDateClinicMsgGrid()
         {
@@ -199,6 +210,7 @@ namespace HISGUIDoctorLib.Views
                         paiBan.Name = employee.Name;
                         paiBan.VistTimeID = vistTime.ID;
                         paiBan.VistTimeName = vistTime.Name;
+                        paiBan.MaxVistNum = 0;
                         data.Add(paiBan);
                     }
                 }
@@ -224,6 +236,8 @@ namespace HISGUIDoctorLib.Views
 
                             paiBan.WorkPlanIDList[(int)dayOfWeek] = tem.ID;
                             paiBan.WorkPlanSignalItemList[(int)dayOfWeek] = tem.SignalItem;
+
+                            paiBan.MaxVistNum = tem.MaxNum;
                         }
                         data.Add(paiBan);
                     }
@@ -301,6 +315,7 @@ namespace HISGUIDoctorLib.Views
                         signalSource.Price = paiBan.WorkPlanSignalItemList[week].SellPrice;
                         signalSource.SignalItemID = paiBan.WorkPlanSignalItemList[week].ID;
                         signalSource.ClinicVistTimeID = paiBan.VistTimeID;
+                        signalSource.MaxNum = paiBan.MaxVistNum;
 
                         
                         if (week == 0)
