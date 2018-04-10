@@ -72,5 +72,102 @@ namespace HISGUIFeeLib.Views
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
             }
         }
+
+        private void RegistrationBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "挂号";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            RegistrationView eidtInspect = new RegistrationView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void ChargeBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+            string header = "收费";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            ChargeView eidtInspect = new ChargeView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void InAndLeaveHospitalBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "出入院";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            InAndLeaveHospitalView eidtInspect = new InAndLeaveHospitalView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void PrePaidBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "缴退费";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            PrePaidView eidtInspect = new PrePaidView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
     }
 }

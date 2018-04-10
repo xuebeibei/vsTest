@@ -7,54 +7,38 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Border Background="White" Grid.RowSpan="2"/>
-        <Grid Margin="5">
+    <DockPanel>
+        <Grid Background="#38434E" DockPanel.Dock="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label>SeimunDH</Label>
-                <Label>收费站</Label>
+                <Label Margin="5" Style="{DynamicResource LoglLabelStyle}">SeimunDH</Label>
+                <Label Margin="5" Style="{DynamicResource LoglLabelStyle}">收费站</Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <TextBlock x:Name="Tt" Margin="5" TextWrapping="Wrap"></TextBlock>
-                <Label x:Name="UserName"></Label>
-                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click">退出</Button>
+                <Label x:Name="UserName" Style="{DynamicResource LoglLabelStyle}" ></Label>
+                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click" Style="{DynamicResource ButtonStyle1}">退出</Button>
             </StackPanel>
         </Grid>
-        <TabControl x:Name="tabControl" Grid.Row="1" Margin="5" VerticalAlignment="Stretch" >
-
-            <TabItem Header="挂号管理">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:RegistrationView x:Name="MyRegistrationView"></local:RegistrationView>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="收费管理">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <local:ChargeView x:Name="MyChargeView"></local:ChargeView>
-                </ScrollViewer>
-            </TabItem>
-            <TabItem Header="出入院管理">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <local:InAndLeaveHospitalView x:Name="InAndLeaveHospitalView"></local:InAndLeaveHospitalView>
-                    </Grid>
-                </ScrollViewer>
-            </TabItem>
-
-            <TabItem Header="缴退费管理">
-                <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <Grid>
-                        <local:PrePaidView x:Name="prePaidView"></local:PrePaidView>
-                    </Grid>
-                </ScrollViewer>
-            </TabItem>
-        </TabControl>
-    </Grid>
+        <DockPanel Grid.Row="1">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem x:Name="RegistrationBtn" Header="挂号" Margin="5" Click="RegistrationBtn_Click"/>
+                <MenuItem x:Name="ChargeBtn" Header="收费" Margin="5" Click="ChargeBtn_Click"/>
+                <MenuItem x:Name="InAndLeaveHospitalBtn" Header="出入院" Margin="5" Click="InAndLeaveHospitalBtn_Click"/>
+                <MenuItem x:Name="PrePaidBtn" Header="缴退费管理" Margin="5" Click="PrePaidBtn_Click"/>
+                <!--<MenuItem x:Name="WorkBtn" Header="设置" Margin="5">
+                    <MenuItem x:Name="BasicDataSet" Header="基础数据" Click="BasicDataSet_Click"></MenuItem>
+                    <MenuItem x:Name="WorkRecordSet" Header="号源管理" Click="WorkRecordSet_Click"></MenuItem>
+                </MenuItem>-->
+            </Menu>
+            <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock Name="Tt"  Margin="5"/>
+                </StatusBarItem>
+            </StatusBar>
+            <TabControl x:Name="MyTabControl"/>
+        </DockPanel>
+    </DockPanel>
 </HISGUICore:HISGUIViewBase>
