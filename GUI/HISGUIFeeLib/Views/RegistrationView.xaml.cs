@@ -60,25 +60,41 @@ namespace HISGUIFeeLib.Views
         public RegistrationView()
         {
             InitializeComponent();
-            myCurrentBalance = 0.0m;
-            currentRegistration = new CommContracts.Registration();
-            myCurrentPatientID = 0;
-            updateSignalSourceMsg();
-            this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
-            this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
-            this.Loaded += RegistrationView_Loaded;
-        }
 
-        private void RegistrationView_Loaded(object sender, RoutedEventArgs e)
-        {
-            var vm = this.DataContext as HISGUIFeeVM;
-            this.departmentList.ItemsSource = vm?.getAllDepartment();//数据绑定
+            this.Loaded += RegistrationView_Loaded;
         }
 
         [Import]
         private HISGUIFeeVM ImportVM
         {
             set { this.VM = value; }
+        }
+
+        private void RegistrationView_Loaded(object sender, RoutedEventArgs e)
+        {
+            myCurrentBalance = 0.0m;
+            currentRegistration = new CommContracts.Registration();
+            myCurrentPatientID = 0;
+            updateSignalSourceMsg();
+            InitCombo();
+
+            var vm = this.DataContext as HISGUIFeeVM;
+            this.departmentList.ItemsSource = vm?.getAllDepartment();//数据绑定
+        }
+
+        private void InitCombo()
+        {
+            this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
+            this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
+
+            this.FeeTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.FeeTypeEnum));
+            this.FeeTypeCombo.SelectedIndex = 0;
+
+            this.ZJCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.ZhengJianEnum));
+            this.ZJCombo.SelectedIndex = 0;
+
+            this.CardTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PatientCardEnum));
+            this.CardTypeCombo.SelectedIndex = 0;
         }
 
         private void updatePatientsMsg(String strPatientCardNum)
