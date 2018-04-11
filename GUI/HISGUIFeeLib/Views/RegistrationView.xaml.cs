@@ -202,6 +202,7 @@ namespace HISGUIFeeLib.Views
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistDate.Value.DayOfWeek == day &&
+                                             e.SignalSource.ClinicVistTimeID == tim.ID && 
                                              (!e.ReturnTime.HasValue)
                                              select e;
                             UsedNum = regisQuery.Count();
