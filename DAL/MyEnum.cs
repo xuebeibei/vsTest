@@ -184,24 +184,8 @@ namespace DAL
         /// </summary>
         一日3次
     }
-    /// <summary>
-    /// 看诊时段
-    /// </summary>
-    public enum SignalTimeEnum
-    {
-        /// <summary>
-        /// 上午
-        /// </summary>
-        上午,
-        /// <summary>
-        /// 下午
-        /// </summary>
-        下午,
-        /// <summary>
-        /// 晚上
-        /// </summary>
-        晚上
-    }
+
+
     /// <summary>
     /// 患者在收费出收取费用时候的支付方式
     /// </summary>

@@ -27,7 +27,7 @@ namespace HISGUINurseLib.Views
     public class WaitMsg
     {
         public string Department { get; set; }
-        public CommContracts.SignalTimeEnum TimeEnum { get; set; }
+        public CommContracts.ClinicVistTime ClinicVistTime { get; set; }
         public string Doctor { get; set; }
         public int WaitNum { get; set; }
     }
@@ -157,30 +157,30 @@ namespace HISGUINurseLib.Views
 
             foreach (var de in departmentQuery)
             {
-                foreach (CommContracts.SignalTimeEnum tim in Enum.GetValues(typeof(CommContracts.SignalTimeEnum)))
-                {
-                    var doctorQuery = (from u in sourceList
-                                       where u.DepartmentID == de 
-                                       select new { u.EmployeeID, u.ID }).Distinct();
+                //foreach (CommContracts.SignalTimeEnum tim in Enum.GetValues(typeof(CommContracts.SignalTimeEnum)))
+                //{
+                //    var doctorQuery = (from u in sourceList
+                //                       where u.DepartmentID == de 
+                //                       select new { u.EmployeeID, u.ID }).Distinct();
 
-                    foreach (var doc in doctorQuery)
-                    {
-                        WaitMsg waitMsg = new WaitMsg();
-                        waitMsg.Department = de.ToString();
-                        waitMsg.TimeEnum = tim;
-                        waitMsg.Doctor = doc.EmployeeID.ToString();
+                //    foreach (var doc in doctorQuery)
+                //    {
+                //        WaitMsg waitMsg = new WaitMsg();
+                //        waitMsg.Department = de.ToString();
+                //        waitMsg.ClinicVistTime = tim;
+                //        waitMsg.Doctor = doc.EmployeeID.ToString();
 
-                        var numQuery = (from u in registrationList
-                                        where u.SignalSourceID == doc.ID && 
-                                        u.ArriveTime.HasValue && 
-                                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中 
-                                        select u).Count();
+                //        var numQuery = (from u in registrationList
+                //                        where u.SignalSourceID == doc.ID && 
+                //                        u.ArriveTime.HasValue && 
+                //                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中 
+                //                        select u).Count();
 
-                        waitMsg.WaitNum = numQuery;
+                //        waitMsg.WaitNum = numQuery;
 
-                        waitList.Add(waitMsg);
-                    }
-                }
+                //        waitList.Add(waitMsg);
+                //    }
+                //}
             }
 
             return waitList;

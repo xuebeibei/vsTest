@@ -7,12 +7,6 @@ using System.Runtime.Serialization;
 
 namespace CommContracts
 {
-    public enum SignalTimeEnum
-    {
-        上午,
-        下午,
-        晚上
-    }
 
     [DataContract]
     public class SignalItem

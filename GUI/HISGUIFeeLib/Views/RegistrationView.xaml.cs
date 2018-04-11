@@ -27,15 +27,14 @@ namespace HISGUIFeeLib.Views
     {
         public SignalSourceMsg()
         {
-            TimeEnum = CommContracts.SignalTimeEnum.上午;
         }
 
-        public SignalSourceMsg(CommContracts.SignalTimeEnum signalTimeEnum)
+        public SignalSourceMsg(CommContracts.ClinicVistTime signalTimeEnum)
         {
-            TimeEnum = signalTimeEnum;
+            ClinicVistTime = signalTimeEnum;
         }
 
-        public CommContracts.SignalTimeEnum TimeEnum { get; set; }
+        public CommContracts.ClinicVistTime ClinicVistTime { get; set; }
         public string Monday { get; set; }
         public string Tuesday { get; set; }
         public string Wednesday { get; set; }
@@ -220,9 +219,20 @@ namespace HISGUIFeeLib.Views
         private List<SignalSourceMsg> updateSignalSourceGrid()
         {
             List<SignalSourceMsg> nullData = new List<SignalSourceMsg>();
-            nullData.Add(new SignalSourceMsg(CommContracts.SignalTimeEnum.上午));
-            nullData.Add(new SignalSourceMsg(CommContracts.SignalTimeEnum.下午));
-            nullData.Add(new SignalSourceMsg(CommContracts.SignalTimeEnum.晚上));
+
+            CommClient.ClinicVistTime clinicVistClient = new CommClient.ClinicVistTime();
+            List<CommContracts.ClinicVistTime> vistTimeList = new List<CommContracts.ClinicVistTime>();
+            vistTimeList = clinicVistClient.GetAllClinicVistTime();
+
+            if (vistTimeList == null)
+                return null;
+            else
+            {
+                foreach(CommContracts.ClinicVistTime tem in vistTimeList)
+                {
+                    nullData.Add(new SignalSourceMsg(tem));
+                }
+            }
 
             var department = this.departmentList.SelectedItem as CommContracts.Department;
             if (department == null)
@@ -246,7 +256,7 @@ namespace HISGUIFeeLib.Views
             }
             else
             {
-                foreach (CommContracts.SignalTimeEnum tim in Enum.GetValues(typeof(CommContracts.SignalTimeEnum)))
+                foreach (CommContracts.ClinicVistTime tim in vistTimeList)
                 {
                     SignalSourceMsg msg = new SignalSourceMsg(tim);
                     foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
@@ -322,7 +332,7 @@ namespace HISGUIFeeLib.Views
             this.SignalSourceGrid.Columns.Add(new DataGridTextColumn()
             {
                 Header = "时段\\日期",
-                Binding = new Binding("TimeEnum"),
+                Binding = new Binding("ClinicVistTime.Name"),
                 Width = 63,
                 IsReadOnly = true
                 //,
@@ -374,7 +384,7 @@ namespace HISGUIFeeLib.Views
 
             if (list != null)
             {
-                CommContracts.SignalTimeEnum timeEnum = list.ElementAt(rowIdnex).TimeEnum;
+                CommContracts.ClinicVistTime timeEnum = list.ElementAt(rowIdnex).ClinicVistTime;
 
                 var department = this.departmentList.SelectedItem as CommContracts.Department;
                 if (department == null)
