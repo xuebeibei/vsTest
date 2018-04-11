@@ -56,7 +56,6 @@ namespace HISGUIFeeLib.Views
     {
         private CommContracts.Registration currentRegistration;
         private decimal? myCurrentBalance;
-        private int myCurrentPatientID;
         public RegistrationView()
         {
             InitializeComponent();
@@ -74,7 +73,6 @@ namespace HISGUIFeeLib.Views
         {
             myCurrentBalance = 0.0m;
             currentRegistration = new CommContracts.Registration();
-            myCurrentPatientID = 0;
             updateSignalSourceMsg();
             InitCombo();
 
@@ -378,7 +376,6 @@ namespace HISGUIFeeLib.Views
 
         private void clearAllDate()
         {
-            myCurrentPatientID = 0;
             myCurrentBalance = 0;
             currentRegistration = new CommContracts.Registration();
 
@@ -449,7 +446,7 @@ namespace HISGUIFeeLib.Views
         {
             var vm = this.DataContext as HISGUIFeeVM;
             CommContracts.Registration registration = new CommContracts.Registration();
-            registration.PatientID = myCurrentPatientID;
+            registration.PatientID = vm.CurrentPatient.ID;
 
             if (this.PayWayCombo.SelectedItem == null)
                 return;
