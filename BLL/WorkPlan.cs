@@ -22,7 +22,7 @@ namespace BLL
             {
                 var temp = (from u in ctx.WorkPlans
                             where u.DepartmentID == DepartmentID &&
-                            (u.VistDate.HasValue && u.VistDate.Value.Date >= DateTime.Now.Date) && 
+                            (u.VistDate.HasValue && u.VistDate.Value.Date >= DateTime.Now.Date) &&
                             (u.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk || u.WorkPlanStatus == DAL.WorkPlanStatus.eIsTempStop)
                             select DbFunctions.TruncateTime(u.VistDate)).Distinct();
 
@@ -245,6 +245,7 @@ namespace BLL
                     temp.DepartmentID = signalSource.DepartmentID;
                     temp.ClinicVistTimeID = signalSource.ClinicVistTimeID;
                     temp.WorkPlanStatus = (DAL.WorkPlanStatus)signalSource.WorkPlanStatus;
+                    temp.MaxNum = signalSource.MaxNum;
                 }
                 else
                 {
@@ -294,6 +295,13 @@ namespace BLL
             {
                 foreach (var signalSource in list)
                 {
+                    if (signalSource.ID != 0)
+                    {
+                        UpdateWorkPlan(signalSource);
+                        continue;
+                    }
+
+
                     var config = new MapperConfiguration(cfg =>
                     {
                         cfg.CreateMap<CommContracts.WorkPlan, DAL.WorkPlan>();
