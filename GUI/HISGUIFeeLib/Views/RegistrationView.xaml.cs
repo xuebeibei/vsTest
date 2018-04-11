@@ -181,7 +181,7 @@ namespace HISGUIFeeLib.Views
                     foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
                     {
                         var query = from u in sourceList
-                                    where u.VistDate.Value.DayOfWeek == day 
+                                    where u.VistDate.Value.DayOfWeek == day && u.ClinicVistTimeID == tim.ID 
                                     select u.MaxNum;
                         int HaveNum = query.Sum(); int UsedNum = 0;
                         if (bIsHasRegistration)
