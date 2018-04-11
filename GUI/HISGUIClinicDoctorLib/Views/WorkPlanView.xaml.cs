@@ -49,12 +49,12 @@ namespace HISGUIDoctorLib.Views
     }
 
     [Export]
-    [Export("ClinicManagementView", typeof(ClinicManagementView))]
-    public partial class ClinicManagementView : HISGUIViewBase
+    [Export("WorkPlanView", typeof(WorkPlanView))]
+    public partial class WorkPlanView : HISGUIViewBase
     {
         private DateTime currentManageDate;  // 用来实现日历翻页的
 
-        public ClinicManagementView()
+        public WorkPlanView()
         {
             InitializeComponent();
 

@@ -167,7 +167,7 @@ namespace HISGUIDoctorLib.Views
                 }
             }
 
-            ClinicManagementView eidtInspect = new ClinicManagementView();
+            WorkPlanView eidtInspect = new WorkPlanView();
 
             CloseableTabItem myTabItem = new CloseableTabItem(header);
 
