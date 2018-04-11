@@ -27,21 +27,27 @@ namespace HISGUIFeeLib.Views
     {
         public SignalSourceMsg()
         {
+            weekStringList = new List<string>();
+            for(int i = 0; i< 7; i++)
+            {
+                weekStringList.Add("");
+            }
         }
 
         public SignalSourceMsg(CommContracts.ClinicVistTime signalTimeEnum)
         {
             ClinicVistTime = signalTimeEnum;
+
+            weekStringList = new List<string>();
+            for (int i = 0; i < 7; i++)
+            {
+                weekStringList.Add("");
+            }
         }
 
         public CommContracts.ClinicVistTime ClinicVistTime { get; set; }
-        public string Monday { get; set; }
-        public string Tuesday { get; set; }
-        public string Wednesday { get; set; }
-        public string Thursday { get; set; }
-        public string Friday { get; set; }
-        public string Saturday { get; set; }
-        public string Sunday { get; set; }
+
+        public List<string> weekStringList { get; set; }
     }
 
     public class SignalSourceNums
@@ -209,47 +215,7 @@ namespace HISGUIFeeLib.Views
                         }
 
                         string str = HaveNum - UsedNum == 0 ? "" : (HaveNum - UsedNum).ToString();
-
-                        switch (day)
-                        {
-                            case DayOfWeek.Monday:
-                                {
-                                    msg.Monday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Tuesday:
-                                {
-                                    msg.Tuesday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Wednesday:
-                                {
-                                    msg.Wednesday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Thursday:
-                                {
-                                    msg.Thursday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Saturday:
-                                {
-                                    msg.Saturday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Sunday:
-                                {
-                                    msg.Sunday = str;
-                                    break;
-                                }
-                            case DayOfWeek.Friday:
-                                {
-                                    msg.Friday = str;
-                                    break;
-                                }
-                            default:
-                                break;
-                        }
+                        msg.weekStringList[(int)day] = str;
                     }
                     data.Add(msg);
                 }
@@ -279,7 +245,7 @@ namespace HISGUIFeeLib.Views
                 this.SignalSourceGrid.Columns.Add(new DataGridTextColumn()
                 {
                     Header = tempDate.ToString("yyyy-MM-dd dddd"),
-                    Binding = new Binding(tempDate.DayOfWeek.ToString()),
+                    Binding = new Binding("weekStringList["+(int)tempDate.DayOfWeek+"]"),
                     Width = length,
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
                 });
