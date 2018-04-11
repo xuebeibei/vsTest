@@ -353,27 +353,6 @@ namespace HISGUIFeeLib.Views
                 SignalList.ItemsSource = numsList;
             }
         }
-
-        private void AddCheck_Click(object sender, RoutedEventArgs e)
-        {
-            clearAllDate();
-            this.PayBtn.Visibility = Visibility.Visible;
-            this.ReturnBtn.Visibility = Visibility.Collapsed;
-            //this.PayPanel.Visibility = Visibility.Visible;
-            //this.ReturnPanel.Visibility = Visibility.Collapsed;
-            this.EditGrid.Visibility = Visibility.Visible;
-        }
-
-        private void DeleteCheck_Click(object sender, RoutedEventArgs e)
-        {
-            clearAllDate();
-            this.PayBtn.Visibility = Visibility.Collapsed;
-            this.ReturnBtn.Visibility = Visibility.Visible;
-            //this.PayPanel.Visibility = Visibility.Collapsed;
-            //this.ReturnPanel.Visibility = Visibility.Visible;
-            this.EditGrid.Visibility = Visibility.Collapsed;
-        }
-
         private void clearAllDate()
         {
             myCurrentBalance = 0;
