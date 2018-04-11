@@ -447,11 +447,11 @@ namespace HISGUIFeeLib.ViewModels
             return myd.UpdateRegistration(registration);
         }
 
-        // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID)
+        // 查找某个患者挂号情况
+        public List<CommContracts.Registration> GetPatientRegistrations(int PatientID)
         {
             CommClient.Registration myd = new CommClient.Registration();
-            return myd.ReadLastRegistration(PatientID);
+            return myd.GetPatientRegistrations(PatientID);
         }
 
         // 当前医生收费的挂号单I

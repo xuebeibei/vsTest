@@ -199,10 +199,10 @@ namespace BLL
             return list;
         }
 
-        // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
+        // 查找某个患者的挂号记录
+        public List<CommContracts.Registration> GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
-            CommContracts.Registration list = new CommContracts.Registration();
+            List<CommContracts.Registration> list = new List<CommContracts.Registration>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
@@ -221,8 +221,7 @@ namespace BLL
                     var mapper = config.CreateMapper();
 
                     CommContracts.Registration temp = mapper.Map<CommContracts.Registration>(ass);
-                    list = temp;
-                    break;
+                    list.Add(temp);
                 }
             }
             return list;

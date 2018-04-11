@@ -46,10 +46,10 @@ namespace CommClient
             return client.UpdateRegistration(registration);
         }
 
-        // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
+        // 查找某个患者挂号记录
+        public List<CommContracts.Registration> GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
-            return client.ReadLastRegistration(PatientID,DateTime);
+            return client.GetPatientRegistrations(PatientID,DateTime);
         }
 
     }

@@ -483,8 +483,8 @@ namespace CommContracts
         bool DeleteSignalItem(int signalItemID);
 
         [OperationContract]
-        // 查找某个患者最后一次挂号情况
-        CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null);
+        // 查找某个患者的挂号记录
+        List<CommContracts.Registration> GetPatientRegistrations(int PatientID, DateTime? DateTime = null);
 
         [OperationContract]
         bool SaveMaterialCheckStock(CommContracts.MaterialCheckStore MaterialCheckStore);

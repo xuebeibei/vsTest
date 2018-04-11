@@ -1008,11 +1008,11 @@ namespace CommServer
             return temp.DeletePatient(PatientID);
         }
 
-        // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
+        // 查找某个患者的挂号记录
+        public List<CommContracts.Registration> GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
             BLL.Registration temp = new BLL.Registration();
-            return temp.ReadLastRegistration(PatientID, DateTime);
+            return temp.GetPatientRegistrations(PatientID, DateTime);
         }
 
         public bool SaveMaterialInStock(CommContracts.MaterialInStore MaterialInStore)

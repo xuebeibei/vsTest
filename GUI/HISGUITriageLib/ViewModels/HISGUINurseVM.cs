@@ -34,11 +34,13 @@ namespace HISGUINurseLib.ViewModels
             this.RegionManager.RequestNavigate("DownRegion", "NurseWorkView");
         }
 
-        // 查找某个患者最后一次挂号情况
-        public CommContracts.Registration ReadLastRegistration(int PatientID, DateTime? DateTime = null)
+        // 查找某个患者的挂号记录
+        public CommContracts.Registration GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
-            CommClient.Registration myd = new CommClient.Registration();
-            return myd.ReadLastRegistration(PatientID, DateTime);
+            //CommClient.Registration myd = new CommClient.Registration();
+            //return myd.GetPatientRegistrations(PatientID, DateTime).ElementAt(0);
+
+            return new CommContracts.Registration();
         }
 
         // 更新挂号单

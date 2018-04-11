@@ -71,7 +71,7 @@ namespace HISGUINurseLib.Views
             var vm = this.DataContext as HISGUINurseVM;
             PatientMsg.Inlines.Clear();
 
-            currentRegistration = vm?.ReadLastRegistration(currentPatientID ,DateTime.Now);
+            currentRegistration = vm?.GetPatientRegistrations(currentPatientID ,DateTime.Now);
             if (currentRegistration == null)
                 return;
             if (currentRegistration.Patient == null)

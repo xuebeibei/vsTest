@@ -10,6 +10,7 @@
         <DockPanel>
             <ToolBar Grid.Row="0" DockPanel.Dock="Top">
                 <Button x:Name="ReadCardBtn" Margin="5" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
+                <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建挂号" Click="NewBtn_Click"></Button>
                 <Button x:Name="PayBtn" Margin="5" Content="挂号" ToolTip="挂号" Click="PayBtn_Click"></Button>
                 <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询挂号记录" Click="FindBtn_Click"></Button>
                 <Button x:Name="ReturnBtn" Margin="5" Content="退号" ToolTip="退号" Click="ReturnBtn_Click"></Button>
@@ -20,7 +21,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition></RowDefinition>
-                    <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
@@ -72,7 +72,7 @@
                     <Label Content="账户余额："  Grid.Row="1" Grid.Column="8" Margin="5"></Label>
                     <TextBox x:Name="BalanceBox"  Grid.Row="1" Grid.Column="9" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardBalance}"></TextBox>
                 </Grid>
-                <Grid x:Name="EditGrid" Grid.Row="1">
+                <Grid x:Name="GuaHaoGrid" Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"></ColumnDefinition>
                         <ColumnDefinition/>
@@ -83,7 +83,7 @@
                     </Grid.RowDefinitions>
                     <ListView x:Name="departmentList" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5" SelectionMode="Single" SelectionChanged="departmentList_Selected"/>
                     <DataGrid x:Name="SignalSourceGrid" Margin="5" Grid.Row="0" Grid.Column="1" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" CanUserDeleteRows="False" IsReadOnly="True" 
-                                  HeadersVisibility="Column"  MinHeight="100" SelectedCellsChanged="SignalSourceGrid_SelectedCellsChanged" >
+                                  HeadersVisibility="Column"  MinHeight="100" SelectedCellsChanged="SignalSourceGrid_SelectedCellsChanged">
                     </DataGrid>
 
                     <DataGrid Name="SignalList" Grid.Row="1" Grid.Column="1" Margin="5" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserDeleteRows="False" 
@@ -106,48 +106,22 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-                <!--<Grid Grid.Row="2">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="120"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="150"></ColumnDefinition>
-                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                        <ColumnDefinition Width="100"></ColumnDefinition>
-                        <ColumnDefinition></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition></RowDefinition>
-                        <RowDefinition></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <Label Margin="5" Grid.Row="0" Grid.Column="0">支付方式：</Label>
-                    <ComboBox x:Name="PayWayCombo" Margin="5" Grid.Row="0" Grid.Column="1"></ComboBox>
-                    
-                    <Label Margin="5" Grid.Row="0" Grid.Column="2">折扣金额：</Label>
-                    <TextBox x:Name="DiscountEdit" Margin="5" IsEnabled="False" Grid.Row="0" Grid.Column="3"></TextBox>
-                    
-                    <Label Margin="5" Grid.Row="0" Grid.Column="4">应收金额：</Label>
-                    <TextBox x:Name="DuePayMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="0" Grid.Column="5"></TextBox>
-                    
-                    <Label Margin="5" Grid.Row="0" Grid.Column="6">实收金额：</Label>
-                    <TextBox x:Name="RealPayMoneyEdit" Margin="5" TextChanged="RealPayMoneyEdit_TextChanged" KeyDown="RealPayMoneyEdit_KeyDown" Grid.Row="0" Grid.Column="7"></TextBox>
-                    
-                    <Label Margin="5" Grid.Row="0" Grid.Column="8">找零金额：</Label>
-                    <TextBox x:Name="ChargeMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="0" Grid.Column="9"></TextBox>
-                    
-                    <Label Margin="5" Grid.Row="1" Grid.Column="0">退费方式：</Label>
-                    <ComboBox x:Name="ReturnWayCombo" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="1"></ComboBox>
-                    <Label Margin="5" Grid.Row="1" Grid.Column="2">应退金额：</Label>
-                    <TextBox x:Name="DueReturnMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="3"></TextBox>
-                    <Label Margin="5" Grid.Row="1" Grid.Column="4">手续费用：</Label>
-                    <TextBox x:Name="ServiceMoneyEdit" Margin="5" TextChanged="ServiceMoneyEdit_TextChanged" KeyDown="ServiceMoneyEdit_KeyDown" Grid.Row="1" Grid.Column="5"></TextBox>
-                    <Label Margin="5" Grid.Row="1" Grid.Column="6">实退金额：</Label>
-                    <TextBox x:Name="RealReturnMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="7"></TextBox>
-                </Grid>-->
+                <Grid x:Name="GuaHaoJiLuGrid" Grid.Row="1" Visibility="Collapsed">
+                    <DataGrid x:Name="GuaHaoJiLuList" Margin="5" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserDeleteRows="False" 
+                                  IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="科室" Binding="{Binding Path=SignalSource.DepartmentID}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="医生" Binding="{Binding Path=SignalSource.EmployeeID}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="日期" Binding="{Binding Path=SignalSource.VistDate}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="时段" Binding="{Binding Path=SignalSource.ClinicVistTime.Name}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="号别" Binding="{Binding Path= SignalSource.SignalItem.Name}" Width="63"></DataGridTextColumn>
+                            <DataGridTextColumn Header="费用" Binding="{Binding Path=RegisterFee}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="状态" Binding="{Binding Path=SeeDoctorStatus}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="挂号时间" Binding="{Binding Path= RegisterTime}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="挂号员" Binding="{Binding Path=RegisterUser.Username}" Width="5*"></DataGridTextColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
             </Grid>
         </DockPanel>
     </Grid>

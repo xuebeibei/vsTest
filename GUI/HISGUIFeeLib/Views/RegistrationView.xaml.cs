@@ -382,24 +382,30 @@ namespace HISGUIFeeLib.Views
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
-            //var vm = this.DataContext as HISGUIFeeVM;
-            //currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
-            //currentRegistration.ReturnTime = DateTime.Now;
+            CommContracts.Registration registration = new CommContracts.Registration();
+            registration = this.GuaHaoJiLuList.SelectedItem as CommContracts.Registration;
+            if (registration == null)
+                return;
 
-            //if (vm.CurrentUser != null)
-            //    currentRegistration.RegisterUserID = vm.CurrentUser.ID;
 
-            //bool? result = vm.UpdateRegistration(currentRegistration);
-            //if (result.HasValue)
-            //{
-            //    if (result.Value)
-            //    {
-            //        MessageBox.Show("退号成功！");
-            //        clearAllDate();
-            //        return;
-            //    }
-            //}
-            //MessageBox.Show("退号失败！");
+            var vm = this.DataContext as HISGUIFeeVM;
+            registration.ReturnServiceMoney = 0;
+            registration.ReturnTime = DateTime.Now;
+
+            if (vm.CurrentUser != null)
+                registration.RegisterUserID = vm.CurrentUser.ID;
+
+            bool? result = vm.UpdateRegistration(registration);
+            if (result.HasValue)
+            {
+                if (result.Value)
+                {
+                    MessageBox.Show("退号成功！");
+
+                    return;
+                }
+            }
+            MessageBox.Show("退号失败！");
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
@@ -409,7 +415,19 @@ namespace HISGUIFeeLib.Views
 
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
+            if(this.GuaHaoJiLuGrid.Visibility != Visibility.Visible)
+            {
+                this.GuaHaoGrid.Visibility = Visibility.Collapsed;
+                this.GuaHaoJiLuGrid.Visibility = Visibility.Visible;
+            }
 
+            var vm = this.DataContext as HISGUIFeeVM;
+            if (vm.CurrentPatient == null)
+                return;
+            CommClient.Registration registrationClient = new CommClient.Registration();
+
+            List<CommContracts.Registration> list = registrationClient.GetPatientRegistrations(vm.CurrentPatient.ID);
+            GuaHaoJiLuList.ItemsSource = list;
         }
 
         private void RePrintBtn_Click(object sender, RoutedEventArgs e)
@@ -420,6 +438,12 @@ namespace HISGUIFeeLib.Views
         private void ClearBtn_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void NewBtn_Click(object sender, RoutedEventArgs e)
+        {
+            this.GuaHaoGrid.Visibility = Visibility.Visible;
+            this.GuaHaoJiLuGrid.Visibility = Visibility.Collapsed;
         }
     }
 }
