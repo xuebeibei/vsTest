@@ -104,11 +104,17 @@
     <Compile Include="Views\InAndLeaveHospitalView.xaml.cs">
       <DependentUpon>InAndLeaveHospitalView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PayView.xaml.cs">
+      <DependentUpon>PayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PrePaidView.xaml.cs">
       <DependentUpon>PrePaidView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RegistrationView.xaml.cs">
       <DependentUpon>RegistrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReturnPayView.xaml.cs">
+      <DependentUpon>ReturnPayView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -162,11 +168,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\PayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PrePaidView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RegistrationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ReturnPayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

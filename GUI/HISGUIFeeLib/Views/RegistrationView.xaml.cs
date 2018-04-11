@@ -28,7 +28,7 @@ namespace HISGUIFeeLib.Views
         public SignalSourceMsg()
         {
             weekStringList = new List<string>();
-            for(int i = 0; i< 7; i++)
+            for (int i = 0; i < 7; i++)
             {
                 weekStringList.Add("");
             }
@@ -61,7 +61,7 @@ namespace HISGUIFeeLib.Views
     public partial class RegistrationView : HISGUIViewBase
     {
         private CommContracts.Registration currentRegistration;
-        private decimal? myCurrentBalance;
+
         public RegistrationView()
         {
             InitializeComponent();
@@ -77,7 +77,6 @@ namespace HISGUIFeeLib.Views
 
         private void RegistrationView_Loaded(object sender, RoutedEventArgs e)
         {
-            myCurrentBalance = 0.0m;
             currentRegistration = new CommContracts.Registration();
             updateSignalSourceMsg();
             InitCombo();
@@ -88,9 +87,6 @@ namespace HISGUIFeeLib.Views
 
         private void InitCombo()
         {
-            this.PayWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
-            this.ReturnWayCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PayWayEnum));
-
             this.FeeTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.FeeTypeEnum));
             this.FeeTypeCombo.SelectedIndex = 0;
 
@@ -167,7 +163,7 @@ namespace HISGUIFeeLib.Views
                 return null;
             else
             {
-                foreach(CommContracts.ClinicVistTime tem in vistTimeList)
+                foreach (CommContracts.ClinicVistTime tem in vistTimeList)
                 {
                     nullData.Add(new SignalSourceMsg(tem));
                 }
@@ -201,14 +197,14 @@ namespace HISGUIFeeLib.Views
                     foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
                     {
                         var query = from u in sourceList
-                                    where u.VistDate.Value.DayOfWeek == day && u.ClinicVistTimeID == tim.ID 
+                                    where u.VistDate.Value.DayOfWeek == day && u.ClinicVistTimeID == tim.ID
                                     select u.MaxNum;
                         int HaveNum = query.Sum(); int UsedNum = 0;
                         if (bIsHasRegistration)
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistDate.Value.DayOfWeek == day &&
-                                             e.SignalSource.ClinicVistTimeID == tim.ID && 
+                                             e.SignalSource.ClinicVistTimeID == tim.ID &&
                                              (!e.ReturnTime.HasValue)
                                              select e;
                             UsedNum = regisQuery.Count();
@@ -245,7 +241,7 @@ namespace HISGUIFeeLib.Views
                 this.SignalSourceGrid.Columns.Add(new DataGridTextColumn()
                 {
                     Header = tempDate.ToString("yyyy-MM-dd dddd"),
-                    Binding = new Binding("weekStringList["+(int)tempDate.DayOfWeek+"]"),
+                    Binding = new Binding("weekStringList[" + (int)tempDate.DayOfWeek + "]"),
                     Width = length,
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
                 });
@@ -271,7 +267,7 @@ namespace HISGUIFeeLib.Views
             {
                 dt = DateTime.ParseExact(data, "yyyy-MM-dd dddd", System.Globalization.CultureInfo.CurrentCulture);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 string str = ex.Message;
                 return;
@@ -322,19 +318,11 @@ namespace HISGUIFeeLib.Views
         }
         private void clearAllDate()
         {
-            myCurrentBalance = 0;
+            var vm = this.DataContext as HISGUIFeeVM;
+            CommContracts.Patient patient = new CommContracts.Patient();
+            vm.CurrentPatient = patient;
+
             currentRegistration = new CommContracts.Registration();
-
-            ReturnWayCombo.SelectedItem = null;
-            DueReturnMoneyEdit.Text = "";
-            ServiceMoneyEdit.Text = "";
-            RealPayMoneyEdit.Text = "";
-
-            PayWayCombo.SelectedItem = null;
-            DiscountEdit.Text = "";
-            DuePayMoneyEdit.Text = "";
-            RealPayMoneyEdit.Text = "";
-            ChargeMoneyEdit.Text = "";
 
             departmentList.SelectedItem = null;
             SignalSourceGrid.SelectedItem = null;
@@ -344,80 +332,49 @@ namespace HISGUIFeeLib.Views
             updateSignalSourceMsg();
         }
 
-        private void SignalList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var tem = this.SignalList.SelectedItem as SignalSourceNums;
-            if (tem == null)
-                return;
-
-            if (tem.SignalSource == null)
-                return;
-
-            this.DiscountEdit.Text = 0.0.ToString();
-            this.DuePayMoneyEdit.Text = tem.SignalSource.Price.ToString();
-            if (myCurrentBalance.Value >= tem.SignalSource.Price)
-            {
-                this.PayWayCombo.SelectedItem = CommContracts.PayWayEnum.账户支付;
-            }
-            else
-            {
-                this.PayWayCombo.SelectedItem = CommContracts.PayWayEnum.现金支付;
-            }
-
-            this.RealPayMoneyEdit.Focus();
-        }
-
-        private void RealPayMoneyEdit_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            decimal Discount = 0, DuePay = 0, RealPay = 0, charge = 0;
-            Discount = string.IsNullOrEmpty(this.DiscountEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DiscountEdit.Text);
-            DuePay = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
-            RealPay = string.IsNullOrEmpty(this.RealPayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.RealPayMoneyEdit.Text);
-            charge = RealPay - Discount - DuePay;
-
-            this.ChargeMoneyEdit.Text = charge.ToString();
-        }
-
-        private void RealPayMoneyEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return || e.Key == Key.Enter)
-            {
-                decimal charge = string.IsNullOrEmpty(this.ChargeMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ChargeMoneyEdit.Text);
-                if (charge >= 0)
-                    this.PayBtn.Focus();
-            }
-        }
-
         private void PayBtn_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            CommContracts.Registration registration = new CommContracts.Registration();
-            registration.PatientID = vm.CurrentPatient.ID;
 
-            if (this.PayWayCombo.SelectedItem == null)
+            if (vm.CurrentPatient == null)
                 return;
-
-            registration.PayWayEnum = (CommContracts.PayWayEnum)this.PayWayCombo.SelectedItem;
-            registration.RegisterFee = string.IsNullOrEmpty(this.DuePayMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DuePayMoneyEdit.Text);
-            registration.RegisterTime = DateTime.Now;
-            if (vm.CurrentUser != null)
-                registration.RegisterUserID = vm.CurrentUser.ID;
+            if (vm.CurrentUser == null)
+                return;
             var signal = this.SignalList.SelectedItem as SignalSourceNums;
             if (signal == null)
                 return;
             if (signal.SignalSource == null)
                 return;
 
-            registration.SignalSourceID = signal.SignalSource.ID;
+            CommContracts.Registration registration = new CommContracts.Registration();
+            registration.PatientID = vm.CurrentPatient.ID;
 
-            bool? result = vm.SaveRegistration(registration);
-            if (result.HasValue)
+            PayView payView = new PayView(0.0.ToString(), signal.SignalSource.Price.ToString());
+            var window = new Window();
+
+            window.Content = payView;
+            window.Width = 500;
+            window.Height = 300;
+            window.ResizeMode = ResizeMode.NoResize;
+            bool? bResult = window.ShowDialog();
+
+            if (bResult.Value)
             {
-                if (result.Value)
+                registration.PayWayEnum = payView.PayWayEnum;
+                registration.RegisterFee = payView.MoneyNum;
+                registration.RegisterTime = DateTime.Now;
+                registration.RegisterUserID = vm.CurrentUser.ID;
+                registration.SignalSourceID = signal.SignalSource.ID;
+
+                bool? result = vm.SaveRegistration(registration);
+                if (result.HasValue)
                 {
-                    MessageBox.Show("挂号成功！");
-                    clearAllDate();
-                    return;
+                    if (result.Value)
+                    {
+                        MessageBox.Show("挂号成功！");
+                        clearAllDate();
+                        return;
+                    }
                 }
             }
             MessageBox.Show("挂号失败！");
@@ -425,47 +382,29 @@ namespace HISGUIFeeLib.Views
 
         private void ReturnBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUIFeeVM;
-            currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
-            currentRegistration.ReturnTime = DateTime.Now;
+            //var vm = this.DataContext as HISGUIFeeVM;
+            //currentRegistration.ReturnServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
+            //currentRegistration.ReturnTime = DateTime.Now;
 
-            if (vm.CurrentUser != null)
-                currentRegistration.RegisterUserID = vm.CurrentUser.ID;
+            //if (vm.CurrentUser != null)
+            //    currentRegistration.RegisterUserID = vm.CurrentUser.ID;
 
-            bool? result = vm.UpdateRegistration(currentRegistration);
-            if (result.HasValue)
-            {
-                if (result.Value)
-                {
-                    MessageBox.Show("退号成功！");
-                    clearAllDate();
-                    return;
-                }
-            }
-            MessageBox.Show("退号失败！");
+            //bool? result = vm.UpdateRegistration(currentRegistration);
+            //if (result.HasValue)
+            //{
+            //    if (result.Value)
+            //    {
+            //        MessageBox.Show("退号成功！");
+            //        clearAllDate();
+            //        return;
+            //    }
+            //}
+            //MessageBox.Show("退号失败！");
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
 
-        }
-
-        private void ServiceMoneyEdit_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            decimal DueReturn = 0, ServiceMoney = 0, RealReturn = 0;
-            DueReturn = string.IsNullOrEmpty(this.DueReturnMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.DueReturnMoneyEdit.Text);
-            ServiceMoney = string.IsNullOrEmpty(this.ServiceMoneyEdit.Text.Trim()) ? 0.0m : decimal.Parse(this.ServiceMoneyEdit.Text);
-            RealReturn = DueReturn - ServiceMoney;
-
-            this.RealReturnMoneyEdit.Text = RealReturn.ToString();
-        }
-
-        private void ServiceMoneyEdit_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Return || e.Key == Key.Enter)
-            {
-                this.ReturnBtn.Focus();
-            }
         }
 
         private void FindBtn_Click(object sender, RoutedEventArgs e)

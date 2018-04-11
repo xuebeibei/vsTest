@@ -84,20 +84,10 @@
                     <ListView x:Name="departmentList" Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Margin="5" SelectionMode="Single" SelectionChanged="departmentList_Selected"/>
                     <DataGrid x:Name="SignalSourceGrid" Margin="5" Grid.Row="0" Grid.Column="1" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="Cell" CanUserDeleteRows="False" IsReadOnly="True" 
                                   HeadersVisibility="Column"  MinHeight="100" SelectedCellsChanged="SignalSourceGrid_SelectedCellsChanged" >
-                        <!--<DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
-                            <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow">
-                                    <Setter Property="Height" Value="30" />
-                                </Style>
-                            </DataGrid.RowStyle>-->
                     </DataGrid>
 
                     <DataGrid Name="SignalList" Grid.Row="1" Grid.Column="1" Margin="5" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserDeleteRows="False" 
-                                  IsReadOnly="True" HeadersVisibility="Column" SelectionChanged="SignalList_SelectionChanged">
+                                  IsReadOnly="True" HeadersVisibility="Column">
                         <!--<DataGrid.ColumnHeaderStyle>
                                 <Style TargetType="DataGridColumnHeader">
                                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -116,7 +106,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Grid>
-                <Grid Grid.Row="2">
+                <!--<Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"></ColumnDefinition>
                         <ColumnDefinition Width="120"></ColumnDefinition>
@@ -157,7 +147,7 @@
                     <TextBox x:Name="ServiceMoneyEdit" Margin="5" TextChanged="ServiceMoneyEdit_TextChanged" KeyDown="ServiceMoneyEdit_KeyDown" Grid.Row="1" Grid.Column="5"></TextBox>
                     <Label Margin="5" Grid.Row="1" Grid.Column="6">实退金额：</Label>
                     <TextBox x:Name="RealReturnMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="7"></TextBox>
-                </Grid>
+                </Grid>-->
             </Grid>
         </DockPanel>
     </Grid>
