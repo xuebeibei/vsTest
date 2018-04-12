@@ -112,12 +112,12 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="科室" Binding="{Binding Path=SignalSource.DepartmentID}" Width="*"></DataGridTextColumn>
                             <DataGridTextColumn Header="医生" Binding="{Binding Path=SignalSource.EmployeeID}" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="日期" Binding="{Binding Path=SignalSource.VistDate}" Width="*"></DataGridTextColumn>
+                            <DataGridTextColumn Header="日期" Binding="{Binding Path=SignalSource.VistDate, StringFormat='{}{0:yyyy-MM-dd}'}"  Width="*"></DataGridTextColumn>
                             <DataGridTextColumn Header="时段" Binding="{Binding Path=SignalSource.ClinicVistTime.Name}" Width="*"></DataGridTextColumn>
                             <DataGridTextColumn Header="号别" Binding="{Binding Path= SignalSource.SignalItem.Name}" Width="63"></DataGridTextColumn>
                             <DataGridTextColumn Header="费用" Binding="{Binding Path=RegisterFee}" Width="*"></DataGridTextColumn>
                             <DataGridTextColumn Header="状态" Binding="{Binding Path=SeeDoctorStatus}" Width="*"></DataGridTextColumn>
-                            <DataGridTextColumn Header="挂号时间" Binding="{Binding Path= RegisterTime}" Width="100"></DataGridTextColumn>
+                            <DataGridTextColumn Header="挂号时间" Binding="{Binding Path= RegisterTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}" Width="100"></DataGridTextColumn>
                             <DataGridTextColumn Header="挂号员" Binding="{Binding Path=RegisterUser.Username}" Width="5*"></DataGridTextColumn>
                         </DataGrid.Columns>
                     </DataGrid>
