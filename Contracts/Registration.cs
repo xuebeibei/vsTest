@@ -23,38 +23,86 @@ namespace CommContracts
         {
 
         }
+        /// <summary>
+        /// 挂号单ID
+        /// </summary>
         [DataMember]
-        public int ID { get; set; }                               // 挂号单ID
+        public int ID { get; set; } 
+        /// <summary>
+        /// 患者ID
+        /// </summary>
         [DataMember]
-        public int PatientID { get; set; }                        // 患者ID
+        public int PatientID { get; set; }                        
+        /// <summary>
+        /// 号源ID
+        /// </summary>
         [DataMember]
-        public int SignalSourceID { get; set; }                   // 号源ID
+        public int SignalSourceID { get; set; }
+        /// <summary>
+        /// 经办人ID
+        /// </summary>
         [DataMember]
-        public int RegisterUserID { get; set; }                   // 经办人ID
+        public int RegisterUserID { get; set; }
+        /// <summary>
+        /// 挂号费用
+        /// </summary>
         [DataMember]
-        public decimal RegisterFee { get; set; }                   // 挂号费用
+        public decimal RegisterFee { get; set; }
+        /// <summary>
+        /// 经办时间
+        /// </summary>
         [DataMember]
-        public DateTime? RegisterTime { get; set; }                // 经办时间
+        public DateTime? RegisterTime { get; set; }
+        /// <summary>
+        /// 看诊状态
+        /// </summary>
         [DataMember]
-        public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }  // 看诊状态
+        public SeeDoctorStatusEnum SeeDoctorStatus { get; set; }
+        /// <summary>
+        /// 分诊状态
+        /// </summary>
         [DataMember]
-        public TriageStatusEnum TriageStatus { get; set; }        // 分诊状态
+        public TriageStatusEnum TriageStatus { get; set; }
+        /// <summary>
+        /// 患者
+        /// </summary>
         [DataMember]
-        public Patient Patient { get; set; }                      // 患者
+        public Patient Patient { get; set; }
+        /// <summary>
+        /// 号源
+        /// </summary>
         [DataMember]
-        public WorkPlan SignalSource { get; set; }            // 号源
+        public WorkPlan SignalSource { get; set; }
+        /// <summary>
+        /// 经办人
+        /// </summary>
         [DataMember]
-        public User RegisterUser { get; set; }                    // 经办人
+        public User RegisterUser { get; set; }
+        /// <summary>
+        /// 支付方式
+        /// </summary>
         [DataMember]
-        public PayWayEnum PayWayEnum { get; set; }                // 支付方式
+        public PayWayEnum PayWayEnum { get; set; }
+        /// <summary>
+        /// 到诊用户ID
+        /// </summary>
         [DataMember]
-        public int ArriveUserID { get; set; }                     // 到诊用户ID
+        public int ArriveUserID { get; set; }
+        /// <summary>
+        /// 到诊时间
+        /// </summary>
         [DataMember]
-        public DateTime? ArriveTime { get; set; }                 // 到诊时间 
+        public DateTime? ArriveTime { get; set; }
+        /// <summary>
+        /// 开始看诊时间
+        /// </summary>
         [DataMember]
-        public DateTime? StartSeeDoctorTime { get; set; }               // 开始看诊时间 
+        public DateTime? StartSeeDoctorTime { get; set; }
+        /// <summary>
+        /// 结束看诊时间
+        /// </summary>
         [DataMember]
-        public DateTime? EndSeeDoctorTime { get; set; }                 // 结束看诊时间
+        public DateTime? EndSeeDoctorTime { get; set; }
 
         public override bool Equals(object obj)
         {

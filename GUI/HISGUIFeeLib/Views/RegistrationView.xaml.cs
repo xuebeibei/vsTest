@@ -385,24 +385,34 @@ namespace HISGUIFeeLib.Views
             if (registration == null)
                 return;
 
+            if(registration.SignalSource.VistDate.Value.Date < DateTime.Now.Date)
+            {
+                MessageBox.Show("超出就诊日期，不能退号！");
+                return;
+            }
+            else if(registration.SignalSource.VistDate.Value.Date == DateTime.Now.Date)
+            {
+                if(DateTime.Now.TimeOfDay > DateTime.Parse(registration.SignalSource.ClinicVistTime.LastSellTime).TimeOfDay)
+                {
+                    MessageBox.Show("超出退号时间，不能退号！");
+                    return;
+                }
+            }
 
-            //var vm = this.DataContext as HISGUIFeeVM;
-            //registration.ReturnServiceMoney = 0;
-            //registration.ReturnTime = DateTime.Now;
 
-            //if (vm.CurrentUser != null)
-            //    registration.RegisterUserID = vm.CurrentUser.ID;
+            var vm = this.DataContext as HISGUIFeeVM;
+            CommClient.CancelRegistration cancelRegistrationClient = new CommClient.CancelRegistration();
+            CommContracts.CancelRegistration cancelRegistration = new CommContracts.CancelRegistration();
 
-            //bool? result = vm.UpdateRegistration(registration);
-            //if (result.HasValue)
-            //{
-            //    if (result.Value)
-            //    {
-            //        MessageBox.Show("退号成功！");
+            cancelRegistration.RegistrationID = registration.ID;
+            cancelRegistration.CancelTime = DateTime.Now;
 
-            //        return;
-            //    }
-            //}
+            if(cancelRegistrationClient.SaveCancelRegistration(cancelRegistration))
+            {
+                MessageBox.Show("退号成功！");
+                return;
+            }
+
             MessageBox.Show("退号失败！");
         }
 

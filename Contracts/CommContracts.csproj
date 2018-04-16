@@ -49,6 +49,7 @@
     <Compile Include="AssayDoctorAdviceDetail.cs" />
     <Compile Include="AssayItem.cs" />
     <Compile Include="BodyRegion.cs" />
+    <Compile Include="CancelRegistration.cs" />
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
     <Compile Include="ClinicVistTime.cs" />

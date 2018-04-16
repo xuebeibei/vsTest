@@ -10,7 +10,7 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class Registration : MyTableBase
+    public class Registration : RegistrationBase
     {
         public Registration()
         {

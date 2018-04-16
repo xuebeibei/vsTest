@@ -10,15 +10,25 @@ using System.Collections;
 
 namespace CommClient
 {
-    public class RegistrationDitch
+    public class RegistrationBase
     {
+
         protected IRegistrationService client;
+        public RegistrationBase()
+        {
+            client = ChannelFactory<IRegistrationService>.CreateChannel(
+                new NetTcpBinding(SecurityMode.None),
+                new EndpointAddress("net.tcp://192.168.1.114:50557/RegistrationService"));
+
+        }
+    }
+
+    public class RegistrationDitch : RegistrationBase
+    {
 
         public RegistrationDitch()
         {
-            client = ChannelFactory<IRegistrationService>.CreateChannel(
-               new NetTcpBinding(SecurityMode.None),
-               new EndpointAddress("net.tcp://192.168.1.114:50557/RegistrationService"));
+
         }
 
         public List<CommContracts.RegistrationDitch> GetAllRegistrationDitch(string strName = "")
