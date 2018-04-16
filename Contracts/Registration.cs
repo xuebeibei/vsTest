@@ -48,12 +48,6 @@ namespace CommContracts
         [DataMember]
         public PayWayEnum PayWayEnum { get; set; }                // 支付方式
         [DataMember]
-        public decimal ReturnServiceMoney { get; set; }           // 退号手续费
-        [DataMember]
-        public int ReturnUserID { get; set; }                     // 退号人ID
-        [DataMember]
-        public DateTime? ReturnTime { get; set; }                 // 退号时间
-        [DataMember]
         public int ArriveUserID { get; set; }                     // 到诊用户ID
         [DataMember]
         public DateTime? ArriveTime { get; set; }                 // 到诊时间 

@@ -143,9 +143,6 @@ namespace BLL
                     temp.SeeDoctorStatus = (DAL.SeeDoctorStatusEnum)registration.SeeDoctorStatus;
                     temp.TriageStatus = (DAL.TriageStatusEnum)registration.TriageStatus;
                     temp.PayWayEnum = (DAL.PayWayEnum)registration.PayWayEnum;
-                    temp.ReturnServiceMoney = registration.ReturnServiceMoney;
-                    temp.ReturnUserID = registration.ReturnUserID;
-                    temp.ReturnTime = registration.ReturnTime;
                     temp.ArriveUserID = registration.ArriveUserID;
                     temp.ArriveTime = registration.ArriveTime;
                     temp.StartSeeDoctorTime = registration.StartSeeDoctorTime;

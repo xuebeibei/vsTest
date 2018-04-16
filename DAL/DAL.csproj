@@ -203,6 +203,10 @@
     <Compile Include="Migrations\201804090705317_PaperTest24.Designer.cs">
       <DependentUpon>201804090705317_PaperTest24.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804120901565_PaperTest25.cs" />
+    <Compile Include="Migrations\201804120901565_PaperTest25.Designer.cs">
+      <DependentUpon>201804120901565_PaperTest25.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
@@ -329,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804090705317_PaperTest24.resx">
       <DependentUpon>201804090705317_PaperTest24.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804120901565_PaperTest25.resx">
+      <DependentUpon>201804120901565_PaperTest25.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

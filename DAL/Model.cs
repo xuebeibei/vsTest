@@ -22,9 +22,16 @@ namespace DAL
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SignalSources”的 XML 注释
         public DbSet<WorkPlan> WorkPlans { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SignalSources”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Registrations”的 XML 注释
+
+        /// <summary>
+        /// 挂号单
+        /// </summary>
         public DbSet<Registration> Registrations { get; set; }
+
+        /// <summary>
+        /// 退号单
+        /// </summary>
+        public DbSet<CancelRegistration> CancelRegistrations { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Registrations”的 XML 注释
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Patients”的 XML 注释
         public DbSet<Patient> Patients { get; set; }

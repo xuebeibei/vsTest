@@ -11,28 +11,40 @@
                 <ColumnDefinition Width="auto"></ColumnDefinition>
                 <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="150"></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Margin="5" Grid.Row="0" Grid.Column="0">退费方式：</Label>
-            <ComboBox x:Name="ReturnWayCombo" Margin="10,5,0,5" IsEnabled="False" Grid.Column="1"/>
-            <Label Margin="10,5,0,5" Grid.Column="2">应退金额：</Label>
-            <TextBox x:Name="DueReturnMoneyEdit" Margin="0,5,10,5" IsEnabled="False" Grid.Column="3"/>
-            <Label Margin="5" Grid.Row="1">手续费用：</Label>
-            <TextBox x:Name="ServiceMoneyEdit" Margin="10,5,0,5" TextChanged="ServiceMoneyEdit_TextChanged" KeyDown="ServiceMoneyEdit_KeyDown" Grid.Row="1" Grid.Column="1"></TextBox>
-            <Label Margin="10,5,0,5" Grid.Row="1" Grid.Column="2">实退金额：</Label>
-            <TextBox x:Name="RealReturnMoneyEdit" Margin="0,5,10,5" IsEnabled="False" Grid.Row="1" Grid.Column="3"></TextBox>
+            <!--<Label Margin="5" Grid.Row="0" Grid.Column="0">退费方式：</Label>
+            <StackPanel Margin="5" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" Orientation="Horizontal">
+                <RadioButton x:Name="XianJin" Margin="5" Width="100">现金</RadioButton>
+                <RadioButton x:Name="suaka" Margin="5" Width="100">刷卡</RadioButton>
+                <RadioButton x:Name="zhuanzhang" Margin="5" Width="100">转账</RadioButton>
+            </StackPanel>-->
+            <Label Margin="5" Grid.Row="1" Grid.Column="0">退费方式：</Label>
+            <ComboBox x:Name="ReturnWayCombo" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="1"/>
+            <Label Margin="5" Grid.Row="1" Grid.Column="2">应退金额：</Label>
+            <TextBox x:Name="DueReturnMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="1" Grid.Column="3"/>
+            <Label Margin="5" Grid.Row="2">手续费用：</Label>
+            <TextBox x:Name="ServiceMoneyEdit" Margin="5" TextChanged="ServiceMoneyEdit_TextChanged" KeyDown="ServiceMoneyEdit_KeyDown" Grid.Row="2" Grid.Column="1"></TextBox>
+            <Label Margin="5" Grid.Row="2" Grid.Column="2">实退金额：</Label>
+            <TextBox x:Name="RealReturnMoneyEdit" Margin="5" IsEnabled="False" Grid.Row="2" Grid.Column="3"></TextBox>
+
+            <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="OkBtn" Margin="5" Grid.Column="2" Click="OkBtn_Click">确认</Button>
+                <Button x:Name="CancelBtn" Margin="5" Grid.Column="3" Click="CancelBtn_Click">取消</Button>
+            </Grid>
         </Grid>
     </Grid>
 </UserControl>

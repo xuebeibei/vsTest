@@ -1,11 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DAL
 {
+    /// <summary>
+    /// 退号
+    /// </summary>
+    public class CancelRegistration
+    {
+        /// <summary>
+        /// 退号ID
+        /// </summary>
+        public int ID { get; set; }
+
+        /// <summary>
+        /// 退号对应的挂号ID
+        /// </summary>
+        public int RegistrationID { get; set; }
+        /// <summary>
+        /// 退号对应的挂号单
+        /// </summary>
+        public virtual Registration Registration { get; set; }
+        
+        /// <summary>
+        /// 退号时间
+        /// </summary>
+        public DateTime CancelTime { get; set; }
+
+        /// <summary>
+        /// 此记录最后的更新时间
+        /// </summary>
+        public DateTime LastUpdateTime { get; set; }
+    }
+    /// <summary>
+    /// 我们通过如下映射来得到一对一的关系
+    /// </summary>
+    public class CancelRegistrationMap : EntityTypeConfiguration<CancelRegistration>
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public CancelRegistrationMap()
+        {
+            HasOptional(p => p.Registration).WithRequired();
+        }
+    }
+
     /// <summary>
     /// 挂号
     /// </summary>
@@ -22,21 +66,6 @@ namespace DAL
             this.TriageStatus = TriageStatusEnum.no;
             this.MedicalRecords = new List<MedicalRecord>();
         }
-
-
-        ///// <summary>
-        ///// 展示
-        ///// </summary>
-        ///// <returns></returns>
-        //public override string ToString()
-        //{
-        //    string str = Patient.Name + " " +
-        //                (Patient.Gender == DAL.GenderEnum.man ? "男 " : "女 ") +
-        //                "岁\r\n" +
-        //                "科室：外科\r\n" +
-        //                "看诊时间：" + SignalSource.VistDate.ToString() + "\r\n";
-        //    return str;
-        //}
 
         /// <summary>
         /// 挂号单ID
@@ -81,19 +110,7 @@ namespace DAL
         /// 支付方式
         /// </summary>
         public PayWayEnum PayWayEnum { get; set; }
-        /// <summary>
-        /// 退号手续费
-        /// </summary>
-        public decimal ReturnServiceMoney { get; set; }
-        /// <summary>
-        /// 退号人ID
-        /// </summary>
-        public int ReturnUserID { get; set; }
-
-        /// <summary>
-        /// 退号时间
-        /// </summary>
-        public DateTime? ReturnTime { get; set; }
+ 
         /// <summary>
         /// 到诊用户ID
         /// </summary>

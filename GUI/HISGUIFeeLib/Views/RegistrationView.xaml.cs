@@ -204,8 +204,7 @@ namespace HISGUIFeeLib.Views
                         {
                             var regisQuery = from e in registrationList
                                              where e.SignalSource.VistDate.Value.DayOfWeek == day &&
-                                             e.SignalSource.ClinicVistTimeID == tim.ID &&
-                                             (!e.ReturnTime.HasValue)
+                                             e.SignalSource.ClinicVistTimeID == tim.ID 
                                              select e;
                             UsedNum = regisQuery.Count();
                         }
@@ -302,8 +301,7 @@ namespace HISGUIFeeLib.Views
                     {
                         int hasNum = 0;
                         var query = from u in registrationList
-                                    where u.SignalSourceID == source.ID &&
-                                    (!u.ReturnTime.HasValue)
+                                    where u.SignalSourceID == source.ID 
                                     select u;
                         hasNum = query.Count();
                         nums.HasUsedNum = hasNum;
@@ -388,23 +386,23 @@ namespace HISGUIFeeLib.Views
                 return;
 
 
-            var vm = this.DataContext as HISGUIFeeVM;
-            registration.ReturnServiceMoney = 0;
-            registration.ReturnTime = DateTime.Now;
+            //var vm = this.DataContext as HISGUIFeeVM;
+            //registration.ReturnServiceMoney = 0;
+            //registration.ReturnTime = DateTime.Now;
 
-            if (vm.CurrentUser != null)
-                registration.RegisterUserID = vm.CurrentUser.ID;
+            //if (vm.CurrentUser != null)
+            //    registration.RegisterUserID = vm.CurrentUser.ID;
 
-            bool? result = vm.UpdateRegistration(registration);
-            if (result.HasValue)
-            {
-                if (result.Value)
-                {
-                    MessageBox.Show("退号成功！");
+            //bool? result = vm.UpdateRegistration(registration);
+            //if (result.HasValue)
+            //{
+            //    if (result.Value)
+            //    {
+            //        MessageBox.Show("退号成功！");
 
-                    return;
-                }
-            }
+            //        return;
+            //    }
+            //}
             MessageBox.Show("退号失败！");
         }
 

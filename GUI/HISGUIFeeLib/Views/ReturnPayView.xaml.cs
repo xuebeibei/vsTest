@@ -50,5 +50,15 @@ namespace HISGUIFeeLib.Views
                 //this.ReturnBtn.Focus();
             }
         }
+
+        private void OkBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

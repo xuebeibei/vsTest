@@ -174,15 +174,13 @@ namespace BLL
                 // 挂号付费
                 temp = (from u in ctx.Registrations
                         where u.PatientID == PatientID &&
-                        u.PayWayEnum == DAL.PayWayEnum.账户支付 &&
-                        !u.ReturnTime.HasValue
+                        u.PayWayEnum == DAL.PayWayEnum.账户支付 
                         select u.RegisterFee).Count();
                 if(temp>0)
                 {
                     var RegistrationBalance = (from u in ctx.Registrations
                                              where u.PatientID == PatientID &&
-                                             u.PayWayEnum == DAL.PayWayEnum.账户支付 &&
-                                             !u.ReturnTime.HasValue
+                                             u.PayWayEnum == DAL.PayWayEnum.账户支付 
                                              select u.RegisterFee).Sum();
                     balance -= RegistrationBalance;
                 }
