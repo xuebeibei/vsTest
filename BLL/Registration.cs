@@ -174,13 +174,16 @@ namespace BLL
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.Registrations
-                            where
-                            (DepartmentID <= 0 || a.SignalSource.DepartmentID == DepartmentID) &&
-                            (EmployeeID <= 0 || a.SignalSource.EmployeeID == EmployeeID) &&
-                            a.SignalSource.VistDate.Value <= endDate &&
-                            a.SignalSource.VistDate.Value >= startDate
-                            select a;
+                var query = from r in ctx.Registrations
+                            join cr in ctx.CancelRegistrations 
+                            on r.ID equals cr.RegistrationID into rr
+                            from cr in rr.DefaultIfEmpty()
+                            where cr == null &&
+                            (DepartmentID <= 0 || r.SignalSource.DepartmentID == DepartmentID) &&
+                            (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
+                            r.SignalSource.VistDate.Value <= endDate &&
+                            r.SignalSource.VistDate.Value >= startDate
+                            select r;
                 foreach (DAL.Registration ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
