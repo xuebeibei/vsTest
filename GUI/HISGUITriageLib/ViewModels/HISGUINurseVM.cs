@@ -37,10 +37,10 @@ namespace HISGUINurseLib.ViewModels
         // 查找某个患者的挂号记录
         public CommContracts.Registration GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
-            //CommClient.Registration myd = new CommClient.Registration();
-            //return myd.GetPatientRegistrations(PatientID, DateTime).ElementAt(0);
+            CommClient.Registration myd = new CommClient.Registration();
+            return myd.GetPatientRegistrations(PatientID, DateTime).ElementAt(0);
 
-            return new CommContracts.Registration();
+            //return new CommContracts.Registration();
         }
 
         // 更新挂号单
@@ -191,6 +191,19 @@ namespace HISGUINurseLib.ViewModels
             get { return (CommContracts.Registration)GetValue(CurrentRegistrationProperty); }
             set { SetValue(CurrentRegistrationProperty, value); }
         }
+        #endregion
+
+        // 当前患者
+        #region CurrentPatient
+        public static readonly DependencyProperty CurrentPatientProperty = DependencyProperty.Register(
+            "CurrentPatient", typeof(CommContracts.Patient), typeof(HISGUINurseVM), new PropertyMetadata((sender, e) => { }));
+
+        public CommContracts.Patient CurrentPatient
+        {
+            get { return (CommContracts.Patient)GetValue(CurrentPatientProperty); }
+            set { SetValue(CurrentPatientProperty, value); }
+        }
+
         #endregion
     }
 }

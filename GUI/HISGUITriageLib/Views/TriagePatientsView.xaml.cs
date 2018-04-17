@@ -20,7 +20,7 @@ using HISGUICore;
 using HISGUICore.MyContorls;
 using HISGUINurseLib.ViewModels;
 using System.Data;
-
+using Microsoft.VisualBasic;
 
 namespace HISGUINurseLib.Views
 {
@@ -67,43 +67,51 @@ namespace HISGUINurseLib.Views
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentPatientID = 1;// 默认值
             var vm = this.DataContext as HISGUINurseVM;
-            PatientMsg.Inlines.Clear();
-
-            currentRegistration = vm?.GetPatientRegistrations(currentPatientID ,DateTime.Now);
-            if (currentRegistration == null)
-                return;
-            if (currentRegistration.Patient == null)
+            String strPatientCardNum = Interaction.InputBox("请输入就诊卡卡号", "读卡", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
                 return;
 
-            string str =
-                "姓名：" + currentRegistration.Patient.Name + "     " +
-                "性别：" + currentRegistration.Patient.Gender + "     " +
-                "生日：" + currentRegistration.Patient.BirthDay + "     " +
-                "身份证号：" + currentRegistration.Patient.ZhengJianNum + "     " +
-                "民族：" + currentRegistration.Patient.Volk + "     " +
-                "籍贯：" + currentRegistration.Patient.JiGuan_Sheng + "     " +
-                "电话：" + currentRegistration.Patient.Tel + "\n";
-            ;
-            PatientMsg.Inlines.Add(new Run(str));
+            updatePatientsMsg(strPatientCardNum);
 
-            str = "号源名称：" + currentRegistration.SignalSource.SignalItem.Name + "     " +
-                "科室：" + currentRegistration.SignalSource.DepartmentID + "     " +
-                "看诊状态：" + currentRegistration.SeeDoctorStatus.ToString() + "     " +
-                "看诊时间：" + currentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
-                "费用：" + currentRegistration.RegisterFee + "元     " +
-                "挂号经办人：" + currentRegistration.RegisterUser.Username + "     " +
-                "经办时间：" + currentRegistration.RegisterTime.Value.Date + "     " + "\n";
-            PatientMsg.Inlines.Add(new Run(str));
-
-            if(currentRegistration.ArriveTime.HasValue)
+            currentRegistration = vm?.GetPatientRegistrations(vm.CurrentPatient.ID, DateTime.Now);
+            if(currentRegistration != null)
             {
-                this.ArriveBtn.IsEnabled = false;
+                this.DepartmentBox.Text = currentRegistration.SignalSource.DepartmentID.ToString();
+                this.VistDateBox.Text = currentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd");
+                this.ClinicVistTimeBox.Text = "";
+                this.SignalItemBox.Text = currentRegistration.SignalSource.SignalItem.Name;
+                this.StatusBox.Text = currentRegistration.SeeDoctorStatus.ToString();
+            }
+        }
+
+        private void updatePatientsMsg(String strPatientCardNum)
+        {
+            var vm = this.DataContext as HISGUINurseVM;
+            CommContracts.Patient patient = new CommContracts.Patient();
+            string strAge = "";
+            if (string.IsNullOrEmpty(strPatientCardNum))
+            {
+                vm.CurrentPatient = patient;
+                this.AgeBox.Text = strAge;
+                return;
+            }
+
+            CommClient.Patient patientClient = new CommClient.Patient();
+
+            string ErrorMsg = "";
+            patient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+
+            if (patient == null)
+            {
+                MessageBox.Show(ErrorMsg);
             }
             else
             {
-                this.ArriveBtn.IsEnabled = true;
+                vm.CurrentPatient = patient;
+
+                strAge = IDCardHellper.GetAge(patient.BirthDay.Value.Year, patient.BirthDay.Value.Month, patient.BirthDay.Value.Day);
+                this.AgeBox.Text = strAge;
             }
         }
 
@@ -151,36 +159,40 @@ namespace HISGUINurseLib.Views
 
             List<CommContracts.Registration> registrationList = vm?.GetOneDayRegistrationList(DateTime.Now.Date);
 
+            List<CommContracts.ClinicVistTime> vistTimelist = new List<CommContracts.ClinicVistTime>();
+            CommClient.ClinicVistTime clinicVistTimeClent = new CommClient.ClinicVistTime();
+            vistTimelist = clinicVistTimeClent.GetAllClinicVistTime();
+
 
             var departmentQuery = (from u in sourceList
                                    select u.DepartmentID).Distinct();
 
             foreach (var de in departmentQuery)
             {
-                //foreach (CommContracts.SignalTimeEnum tim in Enum.GetValues(typeof(CommContracts.SignalTimeEnum)))
-                //{
-                //    var doctorQuery = (from u in sourceList
-                //                       where u.DepartmentID == de 
-                //                       select new { u.EmployeeID, u.ID }).Distinct();
+                foreach (CommContracts.ClinicVistTime tim in vistTimelist)
+                {
+                    var doctorQuery = (from u in sourceList
+                                       where u.DepartmentID == de
+                                       select new { u.EmployeeID, u.ID }).Distinct();
 
-                //    foreach (var doc in doctorQuery)
-                //    {
-                //        WaitMsg waitMsg = new WaitMsg();
-                //        waitMsg.Department = de.ToString();
-                //        waitMsg.ClinicVistTime = tim;
-                //        waitMsg.Doctor = doc.EmployeeID.ToString();
+                    foreach (var doc in doctorQuery)
+                    {
+                        WaitMsg waitMsg = new WaitMsg();
+                        waitMsg.Department = de.ToString();
+                        waitMsg.ClinicVistTime = tim;
+                        waitMsg.Doctor = doc.EmployeeID.ToString();
 
-                //        var numQuery = (from u in registrationList
-                //                        where u.SignalSourceID == doc.ID && 
-                //                        u.ArriveTime.HasValue && 
-                //                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中 
-                //                        select u).Count();
+                        var numQuery = (from u in registrationList
+                                        where u.SignalSourceID == doc.ID &&
+                                        u.ArriveTime.HasValue &&
+                                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中
+                                        select u).Count();
 
-                //        waitMsg.WaitNum = numQuery;
+                        waitMsg.WaitNum = numQuery;
 
-                //        waitList.Add(waitMsg);
-                //    }
-                //}
+                        waitList.Add(waitMsg);
+                    }
+                }
             }
 
             return waitList;

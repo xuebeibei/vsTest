@@ -6,21 +6,95 @@
              xmlns:local="clr-namespace:HISGUINurseLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                <Button x:Name="ReadCardBtn" Margin="5" Click="ReadCardBtn_Click">读卡</Button>
-                <TextBox x:Name="FindName" Margin="5" Width="150"/>
-                <Button x:Name="FindBtn" Margin="5" Click="FindBtn_Click">查找</Button>
-            </StackPanel>
-            <TextBlock x:Name="PatientMsg" Margin="5" Height="100" Background="AliceBlue" TextWrapping="Wrap"/>
-            <Separator x:Name="Spe" Margin="5"/>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="ArriveBtn" Margin="5" Click="ArriveBtn_Click">标记到诊</Button>
-                <Button x:Name="EditBMIBtn" Margin="5" Click="EditBMIBtn_Click" Visibility="Collapsed">完善体征信息</Button>
-            </StackPanel>
-            <Separator x:Name="Spe1" Margin="5"/>
-            <DataGrid x:Name="AllWaitGrid" Margin="5" 
+    <DockPanel>
+        <ToolBar Grid.Row="0" DockPanel.Dock="Top">
+            <Button x:Name="ReadCardBtn" Margin="5" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
+            <Button x:Name="ArriveBtn" Margin="5" Click="ArriveBtn_Click">标记到诊</Button>
+            <Button x:Name="EditBMIBtn" Margin="5" Click="EditBMIBtn_Click" Visibility="Collapsed">完善体征信息</Button>
+            <!--<Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建挂号" Click="NewBtn_Click"></Button>
+            <Button x:Name="PayBtn" Margin="5" Content="挂号" ToolTip="挂号" Click="PayBtn_Click"></Button>
+            <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询挂号记录" Click="FindBtn_Click"></Button>
+            <Button x:Name="ReturnBtn" Margin="5" Content="退号" ToolTip="退号" Click="ReturnBtn_Click"></Button>
+            <Button x:Name="RePrintBtn" Margin="5" Content="补打" ToolTip="补打凭证" Click="RePrintBtn_Click"></Button>
+            <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>-->
+        </ToolBar>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="120"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="150"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Label Content="就诊卡号："  Grid.Row="0" Grid.Column="0" Margin="5"></Label>
+                <TextBox x:Name="CardNoBox"  Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentPatient.PatientCardNo}"></TextBox>
+
+                <Label Content="卡类型："  Grid.Row="0" Grid.Column="2" Margin="5"></Label>
+                <ComboBox x:Name="CardTypeCombo"  Grid.Row="0" Grid.Column="3" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.PatientCardEnum}"></ComboBox>
+
+                <Label Content="姓       名："  Grid.Row="0" Grid.Column="4" Margin="5"></Label>
+                <TextBox x:Name="NameBox"  Grid.Row="0" Grid.Column="5" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.Name}"></TextBox>
+
+                <Label Content="性       别："  Grid.Row="0" Grid.Column="6" Margin="5"></Label>
+                <TextBox x:Name="GenderBox"  Grid.Row="0" Grid.Column="7" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.Gender}"></TextBox>
+
+                <Label Content="年       龄："  Grid.Row="0" Grid.Column="8" Margin="5"></Label>
+                <TextBox x:Name="AgeBox"  Grid.Row="0" Grid.Column="9" Margin="5" IsEnabled="False"></TextBox>
+
+
+                <Label Content="证件类型："  Grid.Row="1" Grid.Column="0" Margin="5"></Label>
+                <ComboBox x:Name="ZJCombo"  Grid.Row="1" Grid.Column="1" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.ZhengJianEnum}"></ComboBox>
+
+                <Label Content="证件号："  Grid.Row="1" Grid.Column="2" Margin="5"></Label>
+                <TextBox x:Name="ZJNumBox"  Grid.Row="1" Grid.Column="3" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.ZhengJianNum}"></TextBox>
+
+                <Label Content="费用类别："  Grid.Row="1" Grid.Column="4" Margin="5"></Label>
+                <ComboBox x:Name="FeeTypeCombo"  Grid.Row="1" Grid.Column="5" Margin="5" IsEnabled="False" SelectedItem="{Binding CurrentPatient.FeeTypeEnum}"></ComboBox>
+
+                <Label Content="医保卡号："  Grid.Row="1" Grid.Column="6" Margin="5"></Label>
+                <TextBox x:Name="YBNumBox"  Grid.Row="1" Grid.Column="7" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.YbCardNo}"></TextBox>
+
+                <Label Content="账户余额："  Grid.Row="1" Grid.Column="8" Margin="5"></Label>
+                <TextBox x:Name="BalanceBox"  Grid.Row="1" Grid.Column="9" Margin="5" IsEnabled="False" Text="{Binding CurrentPatient.PatientCardBalance}"></TextBox>
+                
+                <Separator  Grid.Row="2" Grid.ColumnSpan="11"></Separator>
+
+                <Label Content="挂号科室："  Grid.Row="3" Grid.Column="0" Margin="5"></Label>
+                <TextBox x:Name="DepartmentBox"  Grid.Row="3" Grid.Column="1" Margin="5"></TextBox>
+
+                <Label Content="看诊日期："  Grid.Row="3" Grid.Column="2" Margin="5"></Label>
+                <TextBox x:Name="VistDateBox"  Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>
+
+                <Label Content="看诊时段："  Grid.Row="3" Grid.Column="4" Margin="5"></Label>
+                <TextBox x:Name="ClinicVistTimeBox"  Grid.Row="3" Grid.Column="5" Margin="5"></TextBox>
+
+                <Label Content="号    别："  Grid.Row="3" Grid.Column="6" Margin="5"></Label>
+                <TextBox x:Name="SignalItemBox"  Grid.Row="3" Grid.Column="7" Margin="5"></TextBox>
+
+                <Label Content="状    态："  Grid.Row="3" Grid.Column="8" Margin="5"></Label>
+                <TextBox x:Name="StatusBox"  Grid.Row="3" Grid.Column="9" Margin="5"></TextBox>
+
+            </Grid>
+            <DataGrid x:Name="AllWaitGrid" Margin="5"  Grid.Row="1"
                           CanUserAddRows="False" 
                           AutoGenerateColumns="False" 
                           SelectionMode="Single"
@@ -29,7 +103,7 @@
                           IsReadOnly="True" 
                           HeadersVisibility="Column" 
                           SelectedCellsChanged="AllWaitGrid_SelectedCellsChanged" >
-                <DataGrid.ColumnHeaderStyle>
+                <!--<DataGrid.ColumnHeaderStyle>
                     <Style TargetType="DataGridColumnHeader">
                         <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     </Style>
@@ -38,14 +112,14 @@
                     <Style TargetType="DataGridRow">
                         <Setter Property="Height" Value="30" />
                     </Style>
-                </DataGrid.RowStyle>
+                </DataGrid.RowStyle>-->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="科室" Binding="{Binding Path=Department}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="时段" Binding="{Binding Path=TimeEnum}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="医生" Binding="{Binding Path=Doctor}" Width="*" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="候诊数量" Binding="{Binding Path=WaitNum}" Width="3*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="科室" Binding="{Binding Path=Department}" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="时段" Binding="{Binding Path=TimeEnum}" Width="200" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="医生" Binding="{Binding Path=Doctor}" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="候诊数量" Binding="{Binding Path=WaitNum}" Width="100" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-        </StackPanel>
-    </Grid>
+        </Grid>
+    </DockPanel>
 </HISGUICore:HISGUIViewBase>
