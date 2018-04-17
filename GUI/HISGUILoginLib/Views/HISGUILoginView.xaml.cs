@@ -41,8 +41,8 @@ namespace HISGUILoginLib.Views
             var vm = this.DataContext as HISGUILoginVM;
             this.UserNameBox.Clear();
             this.passbox.Clear();
-            this.UserNameBox.Text = "ll";
-            this.passbox.Password = "ll";
+            this.UserNameBox.Text = "whs";
+            this.passbox.Password = "whs";
             this.loginResult.Text = "";
         }
 
