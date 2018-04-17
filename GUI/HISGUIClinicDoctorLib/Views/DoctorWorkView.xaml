@@ -21,7 +21,7 @@
                 <Button x:Name="LayoutBtn" Margin="5" Click="LayoutBtn_Click" Style="{DynamicResource ButtonStyle1}">退出</Button>
             </StackPanel>
         </Grid>
-        <DockPanel Grid.Row="1">
+        <DockPanel>
             <Menu DockPanel.Dock="Top">
                 <MenuItem x:Name="ClinicBtn" Header="门诊接诊" Margin="5" Click="ClinicBtn_Click"/>
                 <MenuItem x:Name="InHospitalBtn" Header="住院治疗" Margin="5" Click="InHospitalBtn_Click"/>

@@ -79,5 +79,53 @@ namespace HISGUINurseLib.Views
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
             }
         }
+
+        private void TriagePatientsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "门诊分诊";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            TriagePatientsView eidtInspect = new TriagePatientsView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void InjectionBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "注射输液";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            InjectionView eidtInspect = new InjectionView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
     }
 }
