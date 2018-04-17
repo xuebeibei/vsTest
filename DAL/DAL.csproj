@@ -208,6 +208,14 @@
     <Compile Include="Migrations\201804120901565_PaperTest25.Designer.cs">
       <DependentUpon>201804120901565_PaperTest25.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804160934519_PapserTest.cs" />
+    <Compile Include="Migrations\201804160934519_PapserTest.Designer.cs">
+      <DependentUpon>201804160934519_PapserTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804160937066_PapserTest1.cs" />
+    <Compile Include="Migrations\201804160937066_PapserTest1.Designer.cs">
+      <DependentUpon>201804160937066_PapserTest1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
@@ -337,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804120901565_PaperTest25.resx">
       <DependentUpon>201804120901565_PaperTest25.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804160934519_PapserTest.resx">
+      <DependentUpon>201804160934519_PapserTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804160937066_PapserTest1.resx">
+      <DependentUpon>201804160937066_PapserTest1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

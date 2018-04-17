@@ -183,10 +183,10 @@ namespace CommServer
             BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.SaveWorkPlanList(list);
         }
-        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate, int ClinicVistTimeID)
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
-            return temp.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate);
+            return temp.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate, ClinicVistTimeID);
         }
 
         public bool UpdateWorkPlan(CommContracts.WorkPlan signalSource)

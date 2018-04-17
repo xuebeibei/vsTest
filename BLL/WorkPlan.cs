@@ -327,7 +327,7 @@ namespace BLL
             return true;
         }
 
-        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate, int ClinicVistTimeID)
         {
             List<CommContracts.WorkPlan> list = new List<CommContracts.WorkPlan>();
 
@@ -337,6 +337,7 @@ namespace BLL
                             where
                             (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.EmployeeID == EmployeeID) &&
+                            (ClinicVistTimeID <= 0 || a.ClinicVistTimeID == ClinicVistTimeID) && 
                             a.VistDate.Value <= endDate &&
                             a.VistDate.Value >= startDate &&
                             (a.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk || a.WorkPlanStatus == DAL.WorkPlanStatus.eIsTempStop)

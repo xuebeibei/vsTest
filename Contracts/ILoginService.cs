@@ -86,7 +86,7 @@ namespace CommContracts
         [OperationContract]
         bool SaveWorkPlanList(List<CommContracts.WorkPlan> list);
         [OperationContract]
-        List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate);
+        List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate, int ClinicVistTimeID);
         [OperationContract]
         bool UpdateWorkPlan(CommContracts.WorkPlan signalSource);
 

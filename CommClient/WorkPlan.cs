@@ -46,9 +46,9 @@ namespace CommClient
             return client.SaveWorkPlanList(list);
         }
 
-        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetWorkPlanList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate, int ClinicVistTimeID)
         {
-            return client.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate);
+            return client.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate, ClinicVistTimeID);
         }
 
         public bool UpdateWorkPlan(CommContracts.WorkPlan signalSource)

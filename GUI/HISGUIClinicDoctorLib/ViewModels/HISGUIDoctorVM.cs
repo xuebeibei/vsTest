@@ -308,10 +308,10 @@ namespace HISGUIDoctorLib.ViewModels
             return myd.SaveWorkPlanList(list);
         }
 
-        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate)
+        public List<CommContracts.WorkPlan> GetSignalSourceList(int DepartmentID, int EmployeeID, DateTime startDate, DateTime endDate, int ClinicVistTimeID)
         {
             CommClient.WorkPlan myd = new CommClient.WorkPlan();
-            return myd.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate);
+            return myd.GetWorkPlanList(DepartmentID, EmployeeID, startDate, endDate, ClinicVistTimeID);
         }
 
         public bool SaveInHospitalApply(CommContracts.InHospitalApply inpatient)

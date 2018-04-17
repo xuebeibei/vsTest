@@ -88,16 +88,6 @@
 
                     <DataGrid Name="SignalList" Grid.Row="1" Grid.Column="1" Margin="5" CanUserAddRows="False"  AutoGenerateColumns="False" SelectionMode="Single" SelectionUnit="FullRow" CanUserDeleteRows="False" 
                                   IsReadOnly="True" HeadersVisibility="Column">
-                        <!--<DataGrid.ColumnHeaderStyle>
-                                <Style TargetType="DataGridColumnHeader">
-                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                </Style>
-                            </DataGrid.ColumnHeaderStyle>
-                            <DataGrid.RowStyle>
-                                <Style TargetType="DataGridRow">
-                                    <Setter Property="Height" Value="30" />
-                                </Style>
-                            </DataGrid.RowStyle>-->
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="号源类别" Binding="{Binding Path= SignalSource.SignalItem.Name}" Width="63"></DataGridTextColumn>
                             <DataGridTextColumn Header="最大号源" Binding="{Binding Path=SignalSource.MaxNum}" Width="*"></DataGridTextColumn>

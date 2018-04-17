@@ -200,7 +200,7 @@ namespace HISGUIDoctorLib.Views
                 if (employee == null)
                     continue;
 
-                List<CommContracts.WorkPlan> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6));
+                List<CommContracts.WorkPlan> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6), 0);
                 if (sourceList == null || sourceList.Count <= 0)
                 {
                     foreach (var vistTime in vistTimeList)
