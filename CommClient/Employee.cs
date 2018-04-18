@@ -40,5 +40,10 @@ namespace CommClient
         {
             return client.DeleteEmployee(employeeID);
         }
+
+        public CommContracts.Department GetCurrentDepartment(int employeeID)
+        {
+            return client.GetCurrentDepartment(employeeID);
+        }
     }
 }

@@ -67,6 +67,7 @@
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="DoctorAdviceDetailBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeDepartmentHistory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GoodsBase.cs" />
     <Compile Include="InHospital.cs" />
@@ -216,6 +217,18 @@
     <Compile Include="Migrations\201804160937066_PapserTest1.Designer.cs">
       <DependentUpon>201804160937066_PapserTest1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804170944358_PaperTest26.cs" />
+    <Compile Include="Migrations\201804170944358_PaperTest26.Designer.cs">
+      <DependentUpon>201804170944358_PaperTest26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804171129075_PaperTest27.cs" />
+    <Compile Include="Migrations\201804171129075_PaperTest27.Designer.cs">
+      <DependentUpon>201804171129075_PaperTest27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201804171129556_PaperTest28.cs" />
+    <Compile Include="Migrations\201804171129556_PaperTest28.Designer.cs">
+      <DependentUpon>201804171129556_PaperTest28.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
@@ -351,6 +364,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804160937066_PapserTest1.resx">
       <DependentUpon>201804160937066_PapserTest1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804170944358_PaperTest26.resx">
+      <DependentUpon>201804170944358_PaperTest26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804171129075_PaperTest27.resx">
+      <DependentUpon>201804171129075_PaperTest27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804171129556_PaperTest28.resx">
+      <DependentUpon>201804171129556_PaperTest28.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

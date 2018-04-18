@@ -23,8 +23,6 @@
                     <GridView x:Name="gridViewEmployee">
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Name}" Width="120"></GridViewColumn>
                         <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Gender}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="科室" DisplayMemberBinding="{Binding Path=Department.Name}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="职位" DisplayMemberBinding="{Binding Path=Job.Name}" Width="80"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>

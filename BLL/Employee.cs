@@ -16,7 +16,11 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from e in ctx.Employees
-                            where (DepartmentID >0 && e.DepartmentID == DepartmentID)
+                            join d in ctx.EmployeeDepartmentHistorys
+                            on e.ID equals d.EmployeeID
+                            where !d.EndDate.HasValue
+
+                            //where (DepartmentID >0 && e.DepartmentID == DepartmentID)
                             select e;
 
                 var config = new MapperConfiguration(cfg =>
@@ -42,9 +46,13 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.Employees
-                            where a.Name.StartsWith(strName)
-                            select a;
-                foreach (DAL.Employee ass in query)
+                            join b in ctx.EmployeeDepartmentHistorys 
+                            on a.ID equals b.EmployeeID into tt
+                            from b in tt.DefaultIfEmpty()
+                            where !b.EndDate.HasValue
+                            && a.Name.StartsWith(strName)
+                            select new { a, b.Department};
+                foreach (var ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
@@ -52,7 +60,7 @@ namespace BLL
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.Employee temp = mapper.Map<CommContracts.Employee>(ass);
+                    CommContracts.Employee temp = mapper.Map<CommContracts.Employee>(ass.a);
                     list.Add(temp);
                 }
             }
@@ -65,8 +73,7 @@ namespace BLL
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Employee, DAL.Employee>().ForMember(x => x.Job, opt => opt.Ignore())
-                    .ForMember(x=>x.Department, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.Employee, DAL.Employee>().ForMember(x => x.Job, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
@@ -121,7 +128,7 @@ namespace BLL
                 {
                     temp.Name = employee.Name;
                     temp.Gender = (DAL.GenderEnum)employee.Gender;
-                    temp.DepartmentID = employee.DepartmentID;
+                    //temp.DepartmentID = employee.DepartmentID;
                     temp.JobID = employee.JobID;
                 }
                 else
@@ -141,6 +148,35 @@ namespace BLL
                 }
             }
             return true;
+        }
+
+        public CommContracts.Department GetCurrentDepartment(int employeeID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from u in ctx.EmployeeDepartmentHistorys
+                            where u.EmployeeID == employeeID &&
+                            !u.EndDate.HasValue
+                            select u.Department;
+
+                if(query.Count() ==1)
+                {
+                    DAL.Department department = query.First() as DAL.Department;
+
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Department, CommContracts.Department>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Department temp = new CommContracts.Department();
+                    temp = mapper.Map<CommContracts.Department>(department);
+
+                    return temp;
+                }
+
+                return null;
+            }
         }
     }
 }

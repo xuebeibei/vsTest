@@ -76,22 +76,5 @@ namespace CommContracts
         public Patient Patient { get; set; }
         [DataMember]
         public DoctorAdviceBaseEnum DoctorAdviceEnum { get; set; }
-
-        public override string ToString()
-        {
-            string str = "";
-
-            str = "编号：" + this.NO + "  " +
-                "日期：" + this.WriteTime.ToString() + "  " +
-                "科室：" + (this.WriteDoctorUser == null ? "" :
-                (this.WriteDoctorUser.Employee == null ? "" :
-                (this.WriteDoctorUser.Employee.Department == null ? "" : this.WriteDoctorUser.Employee.Department.Name)
-                )
-                ) + "  " +
-                "医生：" + (this.WriteDoctorUser == null ? "" :
-                (this.WriteDoctorUser.Employee == null ? "" : this.WriteDoctorUser.Employee.Name)
-                ) + "  ";
-            return str;
-        }
     }
 }

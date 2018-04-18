@@ -29,7 +29,8 @@ namespace HISGUICore.MyContorls
         {
             CommClient.Employee myd = new CommClient.Employee();
             // 得到医生
-            List<CommContracts.Employee> listOfSignalSource = myd.getAllDoctor();
+            CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
+            List<CommContracts.Employee> listOfSignalSource = historyClient.GetAllDepartmentEmployee(0);
 
             this.listView1.ItemsSource = listOfSignalSource;
             SelectDoctor = new CommContracts.Employee();

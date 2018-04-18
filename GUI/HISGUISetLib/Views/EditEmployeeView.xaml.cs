@@ -27,6 +27,7 @@ namespace HISGUISetLib.Views
             InitializeComponent();
             CommClient.Department myd = new CommClient.Department();
             CommClient.Job myd1 = new CommClient.Job();
+            CommClient.Employee myd2 = new CommClient.Employee();
 
             GenderCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.GenderEnum));
             GenderCombo.SelectedItem = CommContracts.GenderEnum.男;
@@ -38,7 +39,7 @@ namespace HISGUISetLib.Views
                 this.Employee = employee;
                 this.NameEdit.Text = employee.Name;
                 this.GenderCombo.SelectedItem = employee.Gender;
-                this.DeparmentCombo.SelectedItem = employee.Department;
+                this.DeparmentCombo.SelectedItem = myd2.GetCurrentDepartment(employee.ID);
                 this.JobCombo.SelectedItem = employee.Job;
                 bIsEdit = true;
             }
@@ -66,12 +67,19 @@ namespace HISGUISetLib.Views
                 return;
             }
 
+            CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
+            CommContracts.EmployeeDepartmentHistory history = new CommContracts.EmployeeDepartmentHistory();
+            history.DepartmentID = ((CommContracts.Department)this.DeparmentCombo.SelectedItem).ID;
+            history.EmployeeID = Employee.ID;
+            if (!historyClient.SaveEmployeeDepartmentHistory(history))
+            {
+                return;
+            }
 
             if (bIsEdit)
             {
                 Employee.Name = this.NameEdit.Text.Trim();
                 Employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
-                Employee.DepartmentID = ((CommContracts.Department)this.DeparmentCombo.SelectedItem).ID;
                 Employee.JobID = ((CommContracts.Job)this.JobCombo.SelectedItem).ID;
 
                 CommClient.Employee myd = new CommClient.Employee();
@@ -86,7 +94,6 @@ namespace HISGUISetLib.Views
                 CommContracts.Employee employee = new CommContracts.Employee();
                 employee.Name = this.NameEdit.Text.Trim();
                 employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
-                employee.DepartmentID = ((CommContracts.Department)this.DeparmentCombo.SelectedItem).ID;
                 employee.JobID = ((CommContracts.Job)this.JobCombo.SelectedItem).ID;
 
                 CommClient.Employee myd = new CommClient.Employee();

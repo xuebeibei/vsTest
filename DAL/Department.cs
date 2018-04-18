@@ -19,8 +19,8 @@ namespace DAL
             this.Name = "";
             this.Abbr = "";
             this.DepartmentEnum = DepartmentEnum.其他科室;
-            Employees = new List<Employee>();
             SickRooms = new List<SickRoom>();
+            EmployeeDepartmentHistorys = new List<EmployeeDepartmentHistory>();
         }
         /// <summary>
         /// 主键ID
@@ -45,12 +45,13 @@ namespace DAL
         public string DepartmentAddress { get; set; }
 
         /// <summary>
-        /// 员工列表
-        /// </summary>
-        public virtual ICollection<Employee> Employees { get; set; }
-        /// <summary>
         /// 病房列表
         /// </summary>
         public virtual ICollection<SickRoom> SickRooms { get; set; }
+
+        /// <summary>
+        /// 员工部门变更历史
+        /// </summary>
+        public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistorys { get; set; }
     }
 }

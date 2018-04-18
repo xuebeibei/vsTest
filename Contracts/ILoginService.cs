@@ -108,6 +108,9 @@ namespace CommContracts
         bool DeleteEmployee(int employeeID);
 
         [OperationContract]
+        CommContracts.Department GetCurrentDepartment(int employeeID);
+
+        [OperationContract]
         CommContracts.Medicine GetMedicine(int id);
 
         [OperationContract]
@@ -639,5 +642,17 @@ namespace CommContracts
 
         [OperationContract]
         bool DeleteClinicVistTime(int ClinicVistTimeID);
+
+        [OperationContract]
+        List<CommContracts.Employee> GetAllDepartmentEmployee(int DepartmentID);
+        [OperationContract]
+        List<CommContracts.EmployeeDepartmentHistory> GetAllEmployeeDepartmentHistory(int EmployeeID);
+        [OperationContract]
+        bool SaveEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory);
+        [OperationContract]
+        bool DeleteEmployeeDepartmentHistory(int EmployeeDepartmentHistoryID);
+        [OperationContract]
+        bool UpdateEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory);
+
     }
 }

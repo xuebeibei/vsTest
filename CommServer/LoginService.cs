@@ -234,6 +234,12 @@ namespace CommServer
             return temp.DeleteEmployee(employeeID);
         }
 
+        public CommContracts.Department GetCurrentDepartment(int employeeID)
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.GetCurrentDepartment(employeeID);
+        }
+
         public CommContracts.Medicine GetMedicine(int id)
         {
             BLL.Medicine temp = new BLL.Medicine();
@@ -1338,5 +1344,35 @@ namespace CommServer
             BLL.RegistrationDitch temp = new BLL.RegistrationDitch();
             return temp.DeleteRegistrationDitch(RegistrationDitchID);
         }
+
+        public List<CommContracts.Employee> GetAllDepartmentEmployee(int DepartmentID)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.GetAllDepartmentEmployee(DepartmentID);
+        }
+        public List<CommContracts.EmployeeDepartmentHistory> GetAllEmployeeDepartmentHistory(int EmployeeID)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.GetAllEmployeeDepartmentHistory(EmployeeID);
+        }
+
+        public bool SaveEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.SaveEmployeeDepartmentHistory(EmployeeDepartmentHistory);
+        }
+
+        public bool DeleteEmployeeDepartmentHistory(int EmployeeDepartmentHistoryID)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.DeleteEmployeeDepartmentHistory(EmployeeDepartmentHistoryID);
+        }
+
+        public bool UpdateEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.UpdateEmployeeDepartmentHistory(EmployeeDepartmentHistory);
+        }
+
     }
 }

@@ -126,7 +126,10 @@ namespace HISGUIDoctorLib.Views
                 var vm = this.DataContext as HISGUIDoctorVM;
 
                 CommClient.Employee employeeClient = new CommClient.Employee();
-                List<CommContracts.Employee> list = employeeClient.getAllDoctor(vm.CurrentUser.Employee.DepartmentID);
+                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).ID;
+                CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
+
+                List<CommContracts.Employee> list =  historyClient.GetAllDepartmentEmployee(nCurrentDepartmentID);
                 this.listView1.ItemsSource = list;
             }
         }
@@ -158,7 +161,11 @@ namespace HISGUIDoctorLib.Views
 
                 SetMenuEnable(false);
                 var vm = this.DataContext as HISGUIDoctorVM;
-                if (currentDepartment.ID == vm.CurrentUser.Employee.DepartmentID)
+
+                CommClient.Employee employeeClient = new CommClient.Employee();
+                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).ID;
+
+                if (currentDepartment.ID == nCurrentDepartmentID)
                 {
                     // 只允许修改自身所在科室的信息
                     this.EditBtn.IsEnabled = true;

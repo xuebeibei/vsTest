@@ -65,7 +65,9 @@ namespace HISGUIDoctorLib.Views
         {
             var vm = this.DataContext as HISGUIDoctorVM;
             CommClient.Department myd = new CommClient.Department();
-            this.DepartmentBlock.Text = vm.CurrentUser.Employee.Department.Name;
+
+            CommClient.Employee employeeClient = new CommClient.Employee();
+            this.DepartmentBlock.Text = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).Name;
 
             currentManageDate = DateTime.Now.Date;
             updateDateMsg();
@@ -173,14 +175,17 @@ namespace HISGUIDoctorLib.Views
         private List<PaiBan> updateDateClinicMsgGrid()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            var department = vm.CurrentUser.Employee.Department;
+            CommClient.Employee employeeClient = new CommClient.Employee();
+
+            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID);
+
             if (department == null)
                 return null;
             if (department.ID < 0)
                 return null;
 
-            CommClient.Employee employeeClient = new CommClient.Employee();
-            List<CommContracts.Employee> DoctorList = employeeClient.getAllDoctor(department.ID);
+            CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
+            List<CommContracts.Employee> DoctorList = historyClient.GetAllDepartmentEmployee(department.ID);
             if (DoctorList == null)
                 return null;
 
@@ -279,8 +284,9 @@ namespace HISGUIDoctorLib.Views
         private List<CommContracts.WorkPlan> getSignalsFromView()
         {
             var vm = this.DataContext as HISGUIDoctorVM;
+            CommClient.Employee employeeClient = new CommClient.Employee();
 
-            var department = vm.CurrentUser.Employee.Department;
+            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID);
             if (department == null)
                 return null;
             if (department.ID < 0)
@@ -303,11 +309,11 @@ namespace HISGUIDoctorLib.Views
 
                 for (int week = 0; week < 7; week++)
                 {
-                    if(paiBan.WorkPlanSignalItemList[week] != null)
+                    if (paiBan.WorkPlanSignalItemList[week] != null)
                     {
                         if (paiBan.WorkPlanSignalItemList[week].ID == 0)
                             continue;
-                        
+
                         CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                         signalSource.ID = paiBan.WorkPlanIDList[week];
                         signalSource.DepartmentID = department.ID;
@@ -317,7 +323,7 @@ namespace HISGUIDoctorLib.Views
                         signalSource.ClinicVistTimeID = paiBan.VistTimeID;
                         signalSource.MaxNum = paiBan.MaxVistNum;
 
-                        
+
                         if (week == 0)
                             signalSource.VistDate = getMonday(currentManageDate).AddDays(6);
                         else
@@ -328,7 +334,7 @@ namespace HISGUIDoctorLib.Views
                         {
                             sourceList.Add(signalSource);
                         }
-                    }   
+                    }
                 }
             }
             return sourceList;

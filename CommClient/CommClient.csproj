@@ -50,6 +50,7 @@
     <Compile Include="Department.cs" />
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="Employee.cs" />
+    <Compile Include="EmployeeDepartmentHistory.cs" />
     <Compile Include="InHospital.cs" />
     <Compile Include="InHospitalApply.cs" />
     <Compile Include="InjectionBill.cs" />

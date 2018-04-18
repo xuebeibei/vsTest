@@ -176,7 +176,9 @@ namespace HISGUIFeeLib.Views
 
                 if (MyCurrentInpatient.InHospitalPatientDoctors != null && MyCurrentInpatient.InHospitalPatientDoctors.Count() > 0)
                 {
-                    this.InDepartmentEdit.Text = MyCurrentInpatient.InHospitalPatientDoctors.ElementAt(0).Doctor.Department.Name;
+                    CommClient.Employee employeeClient = new CommClient.Employee();
+                    this.InDepartmentEdit.Text = employeeClient.GetCurrentDepartment(MyCurrentInpatient.InHospitalPatientDoctors.ElementAt(0).Doctor.ID).Name;
+
                     this.InDoctorEdit.Text = MyCurrentInpatient.InHospitalPatientDoctors.ElementAt(0).Doctor.Name;
                 }
 
@@ -287,7 +289,9 @@ namespace HISGUIFeeLib.Views
                     this.LeaveHospitalTime.DisplayDateStart = MyCurrentInpatient.InTime;
                 if (MyCurrentInpatient.InHospitalPatientDoctors != null && MyCurrentInpatient.InHospitalPatientDoctors.Count() > 0)
                 {
-                    this.LeaveHospitalDepartment.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Department.Name;
+                    CommClient.Employee employeeClient = new CommClient.Employee();
+                    this.LeaveHospitalDepartment.Text = employeeClient.GetCurrentDepartment(MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.ID).Name;
+
                     this.LeaveHospitalDoctor.Text = MyCurrentInpatient.InHospitalPatientDoctors.Last().Doctor.Name;
                 }
             }
@@ -463,7 +467,9 @@ namespace HISGUIFeeLib.Views
             if (tempDoctor != null)
             {
                 this.InDoctorEdit.Text = tempDoctor.Name;
-                this.InDepartmentEdit.Text = tempDoctor.Department.Name;
+
+                CommClient.Employee employeeClient = new CommClient.Employee();
+                this.InDepartmentEdit.Text = employeeClient.GetCurrentDepartment(tempDoctor.ID).Name;
             }
         }
 
@@ -476,7 +482,8 @@ namespace HISGUIFeeLib.Views
             if (tempDoctor != null)
             {
                 this.LeaveHospitalDoctor.Text = tempDoctor.Name;
-                this.LeaveHospitalDepartment.Text = tempDoctor.Department.Name;
+                CommClient.Employee employeeClient = new CommClient.Employee();
+                this.LeaveHospitalDepartment.Text = employeeClient.GetCurrentDepartment(tempDoctor.ID).Name;
             }
         }
 
