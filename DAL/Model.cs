@@ -257,7 +257,16 @@ namespace DAL
         /// </summary>
         public DbSet<RegistrationDitch> RegistrationDitchs { get; set; }
 
+        /// <summary>
+        /// 员工部门变更表
+        /// </summary>
         public DbSet<EmployeeDepartmentHistory> EmployeeDepartmentHistorys { get; set; }
+
+        /// <summary>
+        /// 员工职位变更表
+        /// </summary>
+        public DbSet<EmployeeJobHistory> EmployeeJobHistorys { get; set; }
+
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

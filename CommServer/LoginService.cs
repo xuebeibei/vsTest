@@ -201,14 +201,6 @@ namespace CommServer
             return temp.UpdateWorkPlanStatus(workPlanID, workPlanStatus);
         }
 
-       
-
-        public List<CommContracts.Employee> getAllDoctor(int DepartmentID)
-        {
-            BLL.Employee temp = new BLL.Employee();
-            return temp.getAllDoctor(DepartmentID);
-        }
-
 
         public List<CommContracts.Employee> GetAllEmployee(string strName = "")
         {
@@ -238,6 +230,12 @@ namespace CommServer
         {
             BLL.Employee temp = new BLL.Employee();
             return temp.GetCurrentDepartment(employeeID);
+        }
+
+        public CommContracts.Job GetCurrentJob(int employeeID)
+        {
+            BLL.Employee temp = new BLL.Employee();
+            return temp.GetCurrentJob(employeeID);
         }
 
         public CommContracts.Medicine GetMedicine(int id)
@@ -1372,6 +1370,35 @@ namespace CommServer
         {
             BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
             return temp.UpdateEmployeeDepartmentHistory(EmployeeDepartmentHistory);
+        }
+
+        public List<CommContracts.Employee> GetAllJobEmployee(int JobID)
+        {
+            BLL.EmployeeJobHistory temp = new BLL.EmployeeJobHistory();
+            return temp.GetAllJobEmployee(JobID);
+        }
+        public List<CommContracts.EmployeeJobHistory> GetAllEmployeeJobHistory(int EmployeeID)
+        {
+            BLL.EmployeeJobHistory temp = new BLL.EmployeeJobHistory();
+            return temp.GetAllEmployeeJobHistory(EmployeeID);
+        }
+
+        public bool SaveEmployeeJobHistory(CommContracts.EmployeeJobHistory EmployeeJobHistory)
+        {
+            BLL.EmployeeJobHistory temp = new BLL.EmployeeJobHistory();
+            return temp.SaveEmployeeJobHistory(EmployeeJobHistory);
+        }
+
+        public bool DeleteEmployeeJobHistory(int EmployeeJobHistoryID)
+        {
+            BLL.EmployeeJobHistory temp = new BLL.EmployeeJobHistory();
+            return temp.DeleteEmployeeJobHistory(EmployeeJobHistoryID);
+        }
+
+        public bool UpdateEmployeeJobHistory(CommContracts.EmployeeJobHistory EmployeeJobHistory)
+        {
+            BLL.EmployeeJobHistory temp = new BLL.EmployeeJobHistory();
+            return temp.UpdateEmployeeJobHistory(EmployeeJobHistory);
         }
 
     }

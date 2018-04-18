@@ -85,7 +85,13 @@ namespace HISGUILoginLib.Views
                 string json_out = JsonConvert.SerializeObject(vm.CurrentUser);
                 vm?.MainData.SetToken("LoginUser", json_out);
 
-                switch (vm.CurrentUser.Employee.Job.PowerEnum)
+                CommClient.Employee employeeColient = new CommClient.Employee();
+
+                var job = employeeColient.GetCurrentJob(vm.CurrentUser.EmployeeID);
+                if (job == null)
+                    return;
+
+                switch (job.PowerEnum)
                 {
                     case CommContracts.PowerEnum.设置模块:
                         {

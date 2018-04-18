@@ -21,12 +21,12 @@ namespace CommContracts
         public string Name { get; set; }
         [DataMember]
         public string Abbr { get; set; }
+
+        /// <summary>
+        /// 性别
+        /// </summary>
         [DataMember]
-        public int JobID { get; set; }
-        [DataMember]
-        public GenderEnum Gender { get; set; }   // 性别
-        [DataMember]
-        public Job Job { get; set; }
+        public GenderEnum Gender { get; set; }
         public override string ToString()
         {
             return Name;

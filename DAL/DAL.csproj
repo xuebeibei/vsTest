@@ -68,6 +68,7 @@
     <Compile Include="DoctorAdviceDetailBase.cs" />
     <Compile Include="Employee.cs" />
     <Compile Include="EmployeeDepartmentHistory.cs" />
+    <Compile Include="EmployeeJobHistory.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GoodsBase.cs" />
     <Compile Include="InHospital.cs" />
@@ -229,6 +230,10 @@
     <Compile Include="Migrations\201804171129556_PaperTest28.Designer.cs">
       <DependentUpon>201804171129556_PaperTest28.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804180218458_PaperTest29.cs" />
+    <Compile Include="Migrations\201804180218458_PaperTest29.Designer.cs">
+      <DependentUpon>201804180218458_PaperTest29.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="MyEnum.cs" />
@@ -373,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804171129556_PaperTest28.resx">
       <DependentUpon>201804171129556_PaperTest28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804180218458_PaperTest29.resx">
+      <DependentUpon>201804180218458_PaperTest29.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

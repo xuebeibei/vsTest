@@ -9,36 +9,6 @@ namespace BLL
 {
     public class Employee
     {
-        public List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0)
-        {
-            List<CommContracts.Employee> list = new List<CommContracts.Employee>();
-
-            using (DAL.HisContext ctx = new DAL.HisContext())
-            {
-                var query = from e in ctx.Employees
-                            join d in ctx.EmployeeDepartmentHistorys
-                            on e.ID equals d.EmployeeID
-                            where !d.EndDate.HasValue
-
-                            //where (DepartmentID >0 && e.DepartmentID == DepartmentID)
-                            select e;
-
-                var config = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<DAL.Employee, CommContracts.Employee>();
-                });
-                var mapper = config.CreateMapper();
-
-                foreach (DAL.Employee tem in query)
-                {
-                    var dto = mapper.Map<CommContracts.Employee>(tem);
-                    list.Add(dto);
-                }
-            }
-
-            return list;
-        }
-
         public List<CommContracts.Employee> GetAllEmployee(string strName = "")
         {
             List<CommContracts.Employee> list = new List<CommContracts.Employee>();
@@ -73,7 +43,7 @@ namespace BLL
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.Employee, DAL.Employee>().ForMember(x => x.Job, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.Employee, DAL.Employee>();
                 });
                 var mapper = config.CreateMapper();
 
@@ -128,8 +98,6 @@ namespace BLL
                 {
                     temp.Name = employee.Name;
                     temp.Gender = (DAL.GenderEnum)employee.Gender;
-                    //temp.DepartmentID = employee.DepartmentID;
-                    temp.JobID = employee.JobID;
                 }
                 else
                 {
@@ -171,6 +139,35 @@ namespace BLL
 
                     CommContracts.Department temp = new CommContracts.Department();
                     temp = mapper.Map<CommContracts.Department>(department);
+
+                    return temp;
+                }
+
+                return null;
+            }
+        }
+
+        public CommContracts.Job GetCurrentJob(int employeeID)
+        {
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from u in ctx.EmployeeJobHistorys
+                            where u.EmployeeID == employeeID &&
+                            !u.EndDate.HasValue
+                            select u.Job;
+
+                if (query.Count() == 1)
+                {
+                    DAL.Job Job = query.First() as DAL.Job;
+
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.Job, CommContracts.Job>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.Job temp = new CommContracts.Job();
+                    temp = mapper.Map<CommContracts.Job>(Job);
 
                     return temp;
                 }

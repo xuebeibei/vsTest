@@ -94,9 +94,6 @@ namespace CommContracts
         bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus);
 
         [OperationContract]
-        List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0);
-
-        [OperationContract]
         List<CommContracts.Employee> GetAllEmployee(string strName = "");
         [OperationContract]
         bool UpdateEmployee(CommContracts.Employee employee);
@@ -109,6 +106,9 @@ namespace CommContracts
 
         [OperationContract]
         CommContracts.Department GetCurrentDepartment(int employeeID);
+
+        [OperationContract]
+        CommContracts.Job GetCurrentJob(int employeeID);
 
         [OperationContract]
         CommContracts.Medicine GetMedicine(int id);
@@ -653,6 +653,18 @@ namespace CommContracts
         bool DeleteEmployeeDepartmentHistory(int EmployeeDepartmentHistoryID);
         [OperationContract]
         bool UpdateEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory);
+
+
+        [OperationContract]
+        List<CommContracts.Employee> GetAllJobEmployee(int JobID);
+        [OperationContract]
+        List<CommContracts.EmployeeJobHistory> GetAllEmployeeJobHistory(int EmployeeID);
+        [OperationContract]
+        bool SaveEmployeeJobHistory(CommContracts.EmployeeJobHistory EmployeeJobHistory);
+        [OperationContract]
+        bool DeleteEmployeeJobHistory(int EmployeeJobHistoryID);
+        [OperationContract]
+        bool UpdateEmployeeJobHistory(CommContracts.EmployeeJobHistory EmployeeJobHistory);
 
     }
 }

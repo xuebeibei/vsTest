@@ -95,7 +95,7 @@ namespace DAL
         public Job()
         {
             Name = "";
-            Employees = new List<Employee>();
+            EmployeeJobHistorys = new List<EmployeeJobHistory>();
             JobGrade = JobGradeEnum.初级;
         }
         /// <summary>
@@ -122,8 +122,8 @@ namespace DAL
         public PowerEnum PowerEnum { get; set; }
 
         /// <summary>
-        /// 该职位的员工列表
+        /// 员工职位变更历史
         /// </summary>
-        public virtual ICollection<Employee> Employees { get; set; }
+        public virtual ICollection<EmployeeJobHistory> EmployeeJobHistorys { get; set; }
     }
 }

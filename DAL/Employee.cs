@@ -20,6 +20,7 @@ namespace DAL
             Users = new List<User>();
             InHospitalPatientDoctors = new List<InHospitalPatientDoctor>();
             EmployeeDepartmentHistorys = new List<EmployeeDepartmentHistory>();
+            EmployeeJobHistorys = new List<EmployeeJobHistory>();
         }
 
         /// <summary>
@@ -34,10 +35,6 @@ namespace DAL
         /// 员工姓名拼音简称
         /// </summary>
         public string Abbr { get; set; }
-        /// <summary>
-        /// 员工所在职位ID
-        /// </summary>
-        public int JobID { get; set; }
 
         /// <summary>
         /// 性别
@@ -48,10 +45,6 @@ namespace DAL
         /// 员工对应的用户
         /// </summary>
         public virtual ICollection<User> Users { get; set; }
-        /// <summary>
-        /// 员工的职务
-        /// </summary>
-        public virtual Job Job { get; set; }
 
         /// <summary>
         /// 员工所负责的患者
@@ -62,5 +55,10 @@ namespace DAL
         /// 员工部门变更历史
         /// </summary>
         public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistorys { get; set; }
+
+        /// <summary>
+        /// 员工职位变更历史
+        /// </summary>
+        public virtual ICollection<EmployeeJobHistory> EmployeeJobHistorys { get; set; }
     }
 }

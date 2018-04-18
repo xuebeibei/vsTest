@@ -40,7 +40,7 @@ namespace HISGUISetLib.Views
                 this.NameEdit.Text = employee.Name;
                 this.GenderCombo.SelectedItem = employee.Gender;
                 this.DeparmentCombo.SelectedItem = myd2.GetCurrentDepartment(employee.ID);
-                this.JobCombo.SelectedItem = employee.Job;
+                this.JobCombo.SelectedItem = myd2.GetCurrentJob(employee.ID);
                 bIsEdit = true;
             }
         }
@@ -76,11 +76,20 @@ namespace HISGUISetLib.Views
                 return;
             }
 
+            CommClient.EmployeeJobHistory jobHistoryClient = new CommClient.EmployeeJobHistory();
+            CommContracts.EmployeeJobHistory jobhistory = new CommContracts.EmployeeJobHistory();
+            jobhistory.JobID = ((CommContracts.Job)this.JobCombo.SelectedItem).ID;
+            jobhistory.EmployeeID = Employee.ID;
+            if (!jobHistoryClient.SaveEmployeeJobHistory(jobhistory))
+            {
+                return;
+            }
+
+
             if (bIsEdit)
             {
                 Employee.Name = this.NameEdit.Text.Trim();
                 Employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
-                Employee.JobID = ((CommContracts.Job)this.JobCombo.SelectedItem).ID;
 
                 CommClient.Employee myd = new CommClient.Employee();
                 if (myd.UpdateEmployee(Employee))
@@ -94,7 +103,6 @@ namespace HISGUISetLib.Views
                 CommContracts.Employee employee = new CommContracts.Employee();
                 employee.Name = this.NameEdit.Text.Trim();
                 employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
-                employee.JobID = ((CommContracts.Job)this.JobCombo.SelectedItem).ID;
 
                 CommClient.Employee myd = new CommClient.Employee();
                 if (myd.SaveEmployee(employee))

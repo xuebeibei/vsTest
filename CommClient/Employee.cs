@@ -16,11 +16,6 @@ namespace CommClient
         {
         }
 
-        public List<CommContracts.Employee> getAllDoctor(int DepartmentID = 0)
-        {
-            return client.getAllDoctor(DepartmentID);
-        }
-
         public List<CommContracts.Employee> GetAllEmployee(string strName = "")
         {
             return client.GetAllEmployee(strName);
@@ -44,6 +39,11 @@ namespace CommClient
         public CommContracts.Department GetCurrentDepartment(int employeeID)
         {
             return client.GetCurrentDepartment(employeeID);
+        }
+
+        public CommContracts.Job GetCurrentJob(int employeeID)
+        {
+            return client.GetCurrentJob(employeeID);
         }
     }
 }
