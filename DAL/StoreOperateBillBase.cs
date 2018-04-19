@@ -37,7 +37,7 @@ namespace DAL
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“StoreOperateBillBase.ReCheckUserID”的 XML 注释
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“StoreOperateBillBase.OperateUser”的 XML 注释
-        public virtual User OperateUser { get; set; }  // 制单用户
+        public virtual Employee OperateUser { get; set; }  // 制单用户
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“StoreOperateBillBase.OperateUser”的 XML 注释
     }
 }

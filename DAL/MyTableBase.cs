@@ -6,23 +6,26 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“MyTableBase”的 XML 注释
+    /// <summary>
+    /// 母表
+    /// </summary>
     public class MyTableBase
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“MyTableBase”的 XML 注释
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“MyTableBase.ID”的 XML 注释
+        /// <summary>
+        /// 主键
+        /// </summary>
         public int ID { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“MyTableBase.ID”的 XML 注释
-
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“MyTableBase.UserID”的 XML 注释
+        /// <summary>
+        /// 用户ID
+        /// </summary>
         public int UserID { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“MyTableBase.UserID”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“MyTableBase.CurrentTime”的 XML 注释
+        /// <summary>
+        /// 创建时间
+        /// </summary>
         public DateTime CurrentTime { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“MyTableBase.CurrentTime”的 XML 注释
-
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“MyTableBase.User”的 XML 注释
-        public virtual User User { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“MyTableBase.User”的 XML 注释
+        /// <summary>
+        /// 表所对应的员工
+        /// </summary>
+        public virtual Employee User { get; set; }
     }
 }

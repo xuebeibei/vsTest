@@ -184,28 +184,6 @@ namespace HISGUISetLib.ViewModels
             return false;
         }
 
-        // 得到所有的用户
-        public List<CommContracts.User> GetAllUser(string strName = "")
-        {
-            CommClient.User myd = new CommClient.User();
-
-            List<CommContracts.User> list = new List<CommContracts.User>();
-            list = myd.GetAllLoginUser(strName);
-            return list;
-        }
-
-        // 删除供用户
-        public bool DeleteUser(int userID)
-        {
-            CommClient.User myd = new CommClient.User();
-            if (myd.DeleteLoginUser(userID))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         // 得到所有的药品
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
         {

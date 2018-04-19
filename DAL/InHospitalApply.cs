@@ -42,7 +42,7 @@ namespace DAL
         /// <summary>
         /// 申请人用户
         /// </summary>
-        public virtual User User { get; set; }
+        public virtual Employee User { get; set; }
         /// <summary>
         /// 被申请的患者
         /// </summary>

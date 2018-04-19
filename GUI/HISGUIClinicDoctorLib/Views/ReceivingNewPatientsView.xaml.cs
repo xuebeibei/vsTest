@@ -111,7 +111,7 @@ namespace HISGUIDoctorLib.Views
                     "看诊状态：" + vm.CurrentRegistration.SeeDoctorStatus.ToString() + "     " +
                     "看诊时间：" + vm.CurrentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
                     "费用：" + vm.CurrentRegistration.RegisterFee + "元     " +
-                    "挂号经办人：" + vm.CurrentRegistration.RegisterUser.Username + "     " +
+                    "挂号经办人：" + vm.CurrentRegistration.RegisterUser.LoginName + "     " +
                     "经办时间：" + vm.CurrentRegistration.RegisterTime.Value.Date + "     " ;
                 PatientMsg.Inlines.Add(new Run(str));
             }

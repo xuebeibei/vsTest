@@ -96,7 +96,7 @@ namespace DAL
         /// <summary>
         /// 经办人
         /// </summary>
-        public virtual User RegisterUser { get; set; }                    // 经办人
+        public virtual Employee RegisterUser { get; set; }                    // 经办人
         /// <summary>
         /// 病例列表
         /// </summary>

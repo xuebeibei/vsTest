@@ -6,39 +6,44 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    
     /// <summary>
-    /// 收费单基类
+    /// 登录记录
     /// </summary>
-    public class ChargeBase
+    public class EmployeeLoginHistory
     {
         /// <summary>
         /// 主键
         /// </summary>
         public int ID { get; set; }
+
         /// <summary>
-        /// 收费单编号
+        /// 员工
         /// </summary>
-        public string NO { get; set; }
+        public int EmployeeID { get; set; }
+
         /// <summary>
-        /// 收费时间
+        /// 登录地址
         /// </summary>
-        public DateTime? ChargeTime { get; set; }
+        public string LoginMachineCode { get; set; }
+
         /// <summary>
-        /// 收费人员ID
+        /// 登录时间
         /// </summary>
-        public int ChargeUserID { get; set; }
+        public DateTime LoginTime { get; set; }
+
         /// <summary>
-        /// 收费金额
+        /// 登出时间
         /// </summary>
-        public decimal SumOfMoney { get; set; }
+        public DateTime? LoginOutTime { get; set; }
+
         /// <summary>
-        /// 支付方式 0账户支付,1现金支付
+        /// 修改时间
         /// </summary>
-        public PayWayEnum PayWayEnum { get; set; }
+        public DateTime ModifiedDate { get; set; }
+
         /// <summary>
-        /// 收费人员
+        /// 员工
         /// </summary>
-        public virtual Employee ChargeUser { get; set; }
+        public virtual Employee Employees { get; set; }
     }
 }

@@ -19,63 +19,32 @@ namespace CommServer
             this.hostApp = hostApp;
         }
 
-        public CommContracts.User UserAuthenticate(User user)
+        public CommContracts.Employee UserAuthenticate(string LoginName, string Password, string MachineCode)
         {
-            // 这里调用BLL中的逻辑
-            BLL.User temp = new BLL.User();
-            return temp.Authenticate(user);
+            BLL.Employee temp = new BLL.Employee();
+            return temp.Authenticate(LoginName, Password, MachineCode);
         }
 
-        public CommContracts.User getUser(int UserID)
+        public bool UserLogout(Employee user)
         {
-            BLL.User temp = new BLL.User();
-            return temp.getUser(UserID);
-        }
-
-        public List<CommContracts.User> GetAllLoginUser(string strName = "")
-        {
-            BLL.User temp = new BLL.User();
-            return temp.GetAllLoginUser(strName);
-        }
-
-        public bool UpdateLoginUser(CommContracts.User user)
-        {
-            BLL.User temp = new BLL.User();
-            return temp.UpdateLoginUser(user);
-        }
-
-        public bool SaveLoginUser(CommContracts.User user)
-        {
-            BLL.User temp = new BLL.User();
-            return temp.SaveLoginUser(user);
-        }
-
-        public bool DeleteLoginUser(int userID)
-        {
-            BLL.User temp = new BLL.User();
-            return temp.DeleteLoginUser(userID);
-        }
-
-        public bool UserLogout(User user)
-        {
-            BLL.User temp = new BLL.User();
+            BLL.Employee temp = new BLL.Employee();
             return temp.Logout(user);
         }
 
 
-        public List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName)
+        public List<CommContracts.EmployeeLoginHistory> GetAllLoginInAndOutRecords(string strName)
         {
             BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
             return temp.GetAllLoginInAndOutRecords(strName);
         }
 
-        public bool UpdateLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        public bool UpdateLoginInAndOutRecords(CommContracts.EmployeeLoginHistory LoginInAndOutRecords)
         {
             BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
             return temp.UpdateLoginInAndOutRecords(LoginInAndOutRecords);
         }
 
-        public bool SaveLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        public bool SaveEmployeeLoginHistory(CommContracts.EmployeeLoginHistory LoginInAndOutRecords)
         {
             BLL.LoginInAndOutRecords temp = new BLL.LoginInAndOutRecords();
             return temp.SaveLoginInAndOutRecords(LoginInAndOutRecords);
@@ -214,10 +183,10 @@ namespace CommServer
             return temp.UpdateEmployee(employee);
         }
 
-        public bool SaveEmployee(CommContracts.Employee employee)
+        public bool SaveEmployee(CommContracts.Employee employee, ref int employeeID)
         {
             BLL.Employee temp = new BLL.Employee();
-            return temp.SaveEmployee(employee);
+            return temp.SaveEmployee(employee, ref employeeID);
         }
 
         public bool DeleteEmployee(int employeeID)

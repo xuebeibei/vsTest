@@ -32,7 +32,7 @@ namespace CommContracts
         [DataMember]
         public InHospitalApplyEnum InHospitalApplyEnum { get; set; }
         [DataMember]
-        public User User { get; set; }
+        public Employee User { get; set; }
         [DataMember]
         public Patient Patient { get; set; }
     }

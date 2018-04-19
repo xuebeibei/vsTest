@@ -16,6 +16,27 @@ namespace CommClient
         {
         }
 
+        public CommContracts.Employee Authenticate(string username, string password, string MachineCode)
+        {
+            Log log = Log.getInstance();
+            CommContracts.Employee user = new CommContracts.Employee();
+            try
+            {
+                user = client.UserAuthenticate(username, password, MachineCode);
+            }
+            catch (Exception ex)
+            {
+                log.write("end client.UserAuthenticate(login) Error:" + ex.Message + " ; " + ex.ToString());
+                return null;
+            }
+            return user;
+        }
+
+        public bool Logout(CommContracts.Employee user, string MachineCode)
+        {
+            return client.UserLogout(user);
+        }
+
         public List<CommContracts.Employee> GetAllEmployee(string strName = "")
         {
             return client.GetAllEmployee(strName);
@@ -26,9 +47,9 @@ namespace CommClient
             return client.UpdateEmployee(employee);
         }
 
-        public bool SaveEmployee(CommContracts.Employee employee)
+        public bool SaveEmployee(CommContracts.Employee employee, ref int employeeID)
         {
-            return client.SaveEmployee(employee);
+            return client.SaveEmployee(employee, ref employeeID);
         }
 
         public bool DeleteEmployee(int employeeID)

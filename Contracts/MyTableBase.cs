@@ -21,6 +21,6 @@ namespace CommContracts
         [DataMember]
         public DateTime CurrentTime { get; set; }
         [DataMember]
-        public virtual User User { get; set; }
+        public virtual Employee User { get; set; }
     }
 }

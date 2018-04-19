@@ -4,23 +4,49 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:HISGUISetLib.Views">
-    <Grid>
-        <StackPanel>
-            <Label Margin="5">姓名*：</Label>
-            <TextBox x:Name="NameEdit" Margin="5"></TextBox>
-            <Label Margin="5">简称：</Label>
-            <TextBox x:Name="AbbrEdit" Margin="5"></TextBox>
-            <Label Margin="5">性别：</Label>
-            <ComboBox x:Name="GenderCombo" Margin="5"/>
-            <Label Margin="5">科室：</Label>
-            <ComboBox x:Name="DeparmentCombo" Margin="5"/>
-            <Label Margin="5">职位：</Label>
-            <ComboBox x:Name="JobCombo" Margin="5"/>
+    <DockPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="auto"></ColumnDefinition>
+                <ColumnDefinition Width="120"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Label Margin="5" Grid.Row="0" Grid.Column="0">姓名*：</Label>
+            <TextBox x:Name="NameEdit" Margin="5" Grid.Row="0" Grid.Column="1"></TextBox>
+            <Label Margin="5" Grid.Row="0" Grid.Column="2">简称：</Label>
+            <TextBox x:Name="AbbrEdit" Margin="5" Grid.Row="0" Grid.Column="3"></TextBox>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-                <Button x:Name="CancelBtn" Margin="5" Click="CancelBtn_Click">取消</Button>
-            </StackPanel>
-        </StackPanel>
-    </Grid>
+            <Label Margin="5" Grid.Row="1" Grid.Column="0">性别：</Label>
+            <ComboBox x:Name="GenderCombo" Margin="5" Grid.Row="1" Grid.Column="1"/>
+            <Label Margin="5" Grid.Row="1" Grid.Column="2">登录名：</Label>
+            <TextBox x:Name="LoginNameEdit" Margin="5" Grid.Row="1" Grid.Column="3"></TextBox>
+
+            <Label Margin="5" Grid.Row="2" Grid.Column="0">密码：</Label>
+            <PasswordBox x:Name="PasswordEdit" Margin="5" Grid.Row="2" Grid.Column="1"></PasswordBox>
+            <Label Margin="5" Grid.Row="2" Grid.Column="2">科室：</Label>
+            <ComboBox x:Name="DeparmentCombo" Margin="5" Grid.Row="2" Grid.Column="3"/>
+
+            <Label Margin="5" Grid.Row="3" Grid.Column="0">职位：</Label>
+            <ComboBox x:Name="JobCombo" Margin="5" Grid.Row="3" Grid.Column="1"/>
+
+            <Grid Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="SaveBtn" Grid.Column="2" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="CancelBtn" Grid.Column="3" Margin="5" Click="CancelBtn_Click">取消</Button>
+            </Grid>
+        </Grid>
+    </DockPanel>
 </UserControl>

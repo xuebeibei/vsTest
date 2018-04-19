@@ -62,7 +62,7 @@ namespace DAL
         /// <summary>
         /// 开具医生
         /// </summary>
-        public virtual User WriteDoctorUser { get; set; }
+        public virtual Employee WriteDoctorUser { get; set; }
         /// <summary>
         /// 所属患者
         /// </summary>

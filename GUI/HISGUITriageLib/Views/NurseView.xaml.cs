@@ -44,7 +44,7 @@ namespace HISGUINurseLib.Views
         private void NurseWorkView_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUINurseVM;
-            this.UserName.Content = vm.CurrentUser.Username;
+            this.UserName.Content = vm.CurrentUser.LoginName;
         }
 
         [Import]

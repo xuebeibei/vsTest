@@ -73,7 +73,7 @@
     <Compile Include="IRegistrationService.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="LeaveHospital.cs" />
-    <Compile Include="LoginInAndOutRecords.cs" />
+    <Compile Include="EmployeeLoginHistory.cs" />
     <Compile Include="MaterialCharge.cs" />
     <Compile Include="MaterialChargeDetail.cs" />
     <Compile Include="MaterialCheckStore.cs" />
@@ -102,7 +102,6 @@
     <Compile Include="StoreRoomMaterialNum.cs" />
     <Compile Include="TherapyCharge.cs" />
     <Compile Include="TherapyChargeDetail.cs" />
-    <Compile Include="User.cs" />
     <Compile Include="ILoginService.cs" />
     <Compile Include="Material.cs" />
     <Compile Include="MedicalRecord.cs" />

@@ -49,7 +49,7 @@ namespace HISGUIDoctorLib.Views
             var temp = this.AllPatientList.SelectedItem as CommContracts.Registration;
 
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.AllPatientList.ItemsSource = vm?.GetDoctorInHospitalPatients(vm.CurrentUser.EmployeeID);
+            this.AllPatientList.ItemsSource = vm?.GetDoctorInHospitalPatients(vm.CurrentUser.ID);
             if (temp != null)
             {
                 this.AllPatientList.SelectedItem = temp;

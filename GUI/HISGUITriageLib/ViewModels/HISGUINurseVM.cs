@@ -141,12 +141,6 @@ namespace HISGUINurseLib.ViewModels
             return list;
         }
 
-        public CommContracts.User getUser(int UserID)
-        {
-            CommClient.User user = new CommClient.User();
-            return user.getUser(UserID);
-        }
-
         // 更新医嘱
         public bool UpdateDoctorAdvice(CommContracts.DoctorAdviceBase doctorAdvice)
         {

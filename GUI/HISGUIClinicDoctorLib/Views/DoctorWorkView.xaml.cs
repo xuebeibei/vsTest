@@ -67,7 +67,7 @@ namespace HISGUIDoctorLib.Views
         private void DoctorWork_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIDoctorVM;
-            this.UserName.Content = vm.CurrentUser.Username;
+            this.UserName.Content = vm.CurrentUser.LoginName;
         }
 
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)

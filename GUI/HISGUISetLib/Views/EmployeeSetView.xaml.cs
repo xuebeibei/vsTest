@@ -64,7 +64,7 @@ namespace HISGUISetLib.Views
             EditEmployeeView eidtEmployee = new EditEmployeeView();
             window.Content = eidtEmployee;
             window.Width = 400;
-            window.Height = 500;
+            window.Height = 200;
             window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
@@ -108,7 +108,7 @@ namespace HISGUISetLib.Views
             EditEmployeeView eidtEmployee = new EditEmployeeView(temp);
             window.Content = eidtEmployee;
             window.Width = 400;
-            window.Height = 500;
+            window.Height = 200;
             window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 

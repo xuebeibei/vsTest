@@ -35,7 +35,7 @@ namespace CommContracts
         [DataMember]
         public decimal SumOfMoney { get; set; }                   // 收费金额
         [DataMember]
-        public User ChargeUser { get; set; }
+        public Employee ChargeUser { get; set; }
         [DataMember]
         public ChargeEnum ChargeEnum { get; set; }
         [DataMember]

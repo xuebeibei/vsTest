@@ -48,7 +48,7 @@ namespace HISGUISetLib.Views
             var vm = this.DataContext as HISGUISetVM;
             if(vm.CurrentUser != null)
             {
-                this.UserName.Content = vm.CurrentUser.Username;
+                this.UserName.Content = vm.CurrentUser.LoginName;
             }
 
         }
@@ -89,7 +89,7 @@ namespace HISGUISetLib.Views
             var vm = this.DataContext as HISGUISetVM;
 
             bool? bRe = vm.Logout(vm.CurrentUser);
-            if(bRe.HasValue && bRe.Value)
+            if (bRe.HasValue && bRe.Value)
             {
                 vm?.RegionManager.RequestNavigate("DownRegion", "HISGUILoginView");
             }
@@ -157,13 +157,6 @@ namespace HISGUISetLib.Views
             else if (viewItem.Header.ToString() == "人员")
             {
                 EmployeeSetView centerView = new EmployeeSetView();
-                centerView.DataContext = this.DataContext;
-
-                this.CenterPanel.Children.Add(centerView);
-            }
-            else if (viewItem.Header.ToString() == "用户")
-            {
-                UserSetView centerView = new UserSetView();
                 centerView.DataContext = this.DataContext;
 
                 this.CenterPanel.Children.Add(centerView);

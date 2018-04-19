@@ -71,7 +71,7 @@ namespace CommContracts
         [DataMember]
         public int InpatientID { get; set; }                    // 住院看诊标记
         [DataMember]
-        public User WriteDoctorUser { get; set; }       // 开具医生
+        public Employee WriteDoctorUser { get; set; }       // 开具医生
         [DataMember]
         public Patient Patient { get; set; }
         [DataMember]

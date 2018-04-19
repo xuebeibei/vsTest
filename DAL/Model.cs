@@ -15,7 +15,7 @@ namespace DAL
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
     {
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
-        public DbSet<User> Users { get; set; }
+        //public DbSet<User> Users { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
         public DbSet<Department> Departments { get; set; }
@@ -242,10 +242,11 @@ namespace DAL
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.PatientCardManages”的 XML 注释
         public DbSet<PatientCardManage> PatientCardManages { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.PatientCardManages”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
-        public DbSet<LoginInAndOutRecords> LoginInAndOutRecords { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.LoginInAndOutRecords”的 XML 注释
+
+        /// <summary>
+        /// 员工登录记录
+        /// </summary>
+        public DbSet<EmployeeLoginHistory> EmployeeLoginHistorys { get; set; }
         
         /// <summary>
         /// 看诊时间段表
@@ -343,7 +344,6 @@ namespace DAL
             modelBuilder.Entity<InjectionBill>().ToTable("tpt.InjectionBill");
 
             modelBuilder.Entity<PatientCardManage>().ToTable("tpt.PatientCardManage");
-            modelBuilder.Entity<LoginInAndOutRecords>().ToTable("tpt.LoginInAndOutRecords");
 
             modelBuilder.Entity<PatientCardPrePay>().ToTable("tpt.PatientCardPrePays");
         }

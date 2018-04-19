@@ -23,11 +23,6 @@ namespace HISGUIMedicineLib.ViewModels
     [Export("HISGUIMedicineVM", typeof(HISGUIVMBase))]
     class HISGUIMedicineVM : HISGUIVMBase
     {
-        public CommContracts.User getUser(int UserID)
-        {
-            CommClient.User user = new CommClient.User();
-            return user.getUser(UserID);
-        }
 
         //显示药品管理主界面
         public void MedicineWorkManage()

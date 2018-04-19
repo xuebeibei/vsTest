@@ -42,12 +42,6 @@ namespace HISGUIDoctorLib.ViewModels
             DoctorWorkManage();
         }
 
-        public CommContracts.User getUser(int UserID)
-        {
-            CommClient.User user = new CommClient.User();
-            return user.getUser(UserID);
-        }
-
         // 获得当前医生的门诊患者
         public List<CommContracts.Registration> GetDoctorClinicPatients(int EmployeeID = 0, DateTime? VistTime = null)
         {

@@ -67,7 +67,7 @@ namespace HISGUIDoctorLib.Views
             CommClient.Department myd = new CommClient.Department();
 
             CommClient.Employee employeeClient = new CommClient.Employee();
-            this.DepartmentBlock.Text = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).Name;
+            this.DepartmentBlock.Text = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID).Name;
 
             currentManageDate = DateTime.Now.Date;
             updateDateMsg();
@@ -177,7 +177,7 @@ namespace HISGUIDoctorLib.Views
             var vm = this.DataContext as HISGUIDoctorVM;
             CommClient.Employee employeeClient = new CommClient.Employee();
 
-            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID);
+            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID);
 
             if (department == null)
                 return null;
@@ -286,7 +286,7 @@ namespace HISGUIDoctorLib.Views
             var vm = this.DataContext as HISGUIDoctorVM;
             CommClient.Employee employeeClient = new CommClient.Employee();
 
-            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID);
+            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID);
             if (department == null)
                 return null;
             if (department.ID < 0)

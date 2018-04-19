@@ -133,9 +133,9 @@ namespace HISGUICore
 
         }
 
-        public bool Logout(CommContracts.User user)
+        public bool Logout(CommContracts.Employee user)
         {
-            CommClient.User myd = new CommClient.User();
+            CommClient.Employee myd = new CommClient.Employee();
             return myd.Logout(user, MachineCode.GetMachineCodeString());
         }
 
@@ -155,11 +155,11 @@ namespace HISGUICore
 
         #region CurrentUser
         public static readonly DependencyProperty CurrentUserProperty = DependencyProperty.Register(
-            "CurrentUser", typeof(CommContracts.User), typeof(HISGUIVMBase), new PropertyMetadata((sender, e) => { }));
+            "CurrentUser", typeof(CommContracts.Employee), typeof(HISGUIVMBase), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.User CurrentUser
+        public CommContracts.Employee CurrentUser
         {
-            get { return (CommContracts.User)GetValue(CurrentUserProperty); }
+            get { return (CommContracts.Employee)GetValue(CurrentUserProperty); }
             set { SetValue(CurrentUserProperty, value); }
         }
         #endregion

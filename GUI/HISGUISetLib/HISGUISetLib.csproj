@@ -142,9 +142,6 @@
     <Compile Include="Views\EditTherapyItemView.xaml.cs">
       <DependentUpon>EditTherapyItemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EditUserView.xaml.cs">
-      <DependentUpon>EditUserView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EmployeeSetView.xaml.cs">
       <DependentUpon>EmployeeSetView.xaml</DependentUpon>
     </Compile>
@@ -195,9 +192,6 @@
     </Compile>
     <Compile Include="Views\TherapyItemSetView.xaml.cs">
       <DependentUpon>TherapyItemSetView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UserSetView.xaml.cs">
-      <DependentUpon>UserSetView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -303,10 +297,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditUserView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\EmployeeSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -372,10 +362,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TherapyItemSetView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\UserSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

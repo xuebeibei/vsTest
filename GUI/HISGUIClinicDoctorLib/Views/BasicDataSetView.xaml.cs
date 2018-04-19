@@ -126,10 +126,10 @@ namespace HISGUIDoctorLib.Views
                 var vm = this.DataContext as HISGUIDoctorVM;
 
                 CommClient.Employee employeeClient = new CommClient.Employee();
-                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).ID;
+                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID).ID;
                 CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
 
-                List<CommContracts.Employee> list =  historyClient.GetAllDepartmentEmployee(nCurrentDepartmentID);
+                List<CommContracts.Employee> list = historyClient.GetAllDepartmentEmployee(nCurrentDepartmentID);
                 this.listView1.ItemsSource = list;
             }
         }
@@ -163,7 +163,7 @@ namespace HISGUIDoctorLib.Views
                 var vm = this.DataContext as HISGUIDoctorVM;
 
                 CommClient.Employee employeeClient = new CommClient.Employee();
-                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.EmployeeID).ID;
+                int nCurrentDepartmentID = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID).ID;
 
                 if (currentDepartment.ID == nCurrentDepartmentID)
                 {

@@ -210,13 +210,7 @@ namespace HISGUIFeeLib.ViewModels
                     list = therapy.getAllInHospitalTherapyDoctorAdvice(this.CurrentInpatient.ID);
             }
             return list;
-        }
-
-        public CommContracts.User getUser(int UserID)
-        {
-            CommClient.User user = new CommClient.User();
-            return user.getUser(UserID);
-        }
+        } 
 
         // 得到当前门诊患者的所有化验申请单
         public List<CommContracts.AssayDoctorAdvice> GetAllJianYan()

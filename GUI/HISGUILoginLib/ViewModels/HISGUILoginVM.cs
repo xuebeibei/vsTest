@@ -29,7 +29,7 @@ namespace HISGUILoginLib.ViewModels
     {
         public bool Login(string UserName, string PassWord)
         {
-            CommClient.User login = new CommClient.User();
+            CommClient.Employee login = new CommClient.Employee();
 
             try
             {

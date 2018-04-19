@@ -77,7 +77,7 @@ namespace CommContracts
         /// 经办人
         /// </summary>
         [DataMember]
-        public User RegisterUser { get; set; }
+        public Employee RegisterUser { get; set; }
         /// <summary>
         /// 支付方式
         /// </summary>

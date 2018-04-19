@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,10 +19,10 @@ namespace DAL
         public Employee()
         {
             Name = "";
-            Users = new List<User>();
             InHospitalPatientDoctors = new List<InHospitalPatientDoctor>();
             EmployeeDepartmentHistorys = new List<EmployeeDepartmentHistory>();
             EmployeeJobHistorys = new List<EmployeeJobHistory>();
+            EmployeeLoginHistorys = new List<EmployeeLoginHistory>();
         }
 
         /// <summary>
@@ -42,9 +44,19 @@ namespace DAL
         public GenderEnum Gender { get; set; }
 
         /// <summary>
-        /// 员工对应的用户
+        /// 登录名
         /// </summary>
-        public virtual ICollection<User> Users { get; set; }
+        public string LoginName { get; set; }
+
+        /// <summary>
+        /// 密码
+        /// </summary>
+        public string Password { get; set; }
+
+        /// <summary>
+        /// 修改日期
+        /// </summary>
+        public DateTime ModifiedDate { get; set; }
 
         /// <summary>
         /// 员工所负责的患者
@@ -60,5 +72,10 @@ namespace DAL
         /// 员工职位变更历史
         /// </summary>
         public virtual ICollection<EmployeeJobHistory> EmployeeJobHistorys { get; set; }
+
+        /// <summary>
+        /// 员工登录历史
+        /// </summary>
+        public virtual ICollection<EmployeeLoginHistory> EmployeeLoginHistorys { get; set; }
     }
 }

@@ -187,7 +187,7 @@ namespace HISGUIFeeLib.Views
                 this.InHospitalStatus.Text = MyCurrentInpatient.InHospitalStatusEnum.ToString();
                 if (MyCurrentInpatient.User != null)
                 {
-                    this.InUserName.Text = MyCurrentInpatient.User.Username;
+                    this.InUserName.Text = MyCurrentInpatient.User.LoginName;
                 }
 
                 this.InHospitalTime.DisplayDateEnd = DateTime.Now;
@@ -577,8 +577,8 @@ namespace HISGUIFeeLib.Views
 
                 CommContracts.InHospitalPatientDoctor inHospitalPatientDoctor = new CommContracts.InHospitalPatientDoctor();
                 inHospitalPatientDoctor.StartTime = DateTime.Now;
-                inHospitalPatientDoctor.DoctorID = tempApply.User.EmployeeID;
-                inHospitalPatientDoctor.Doctor = tempApply.User.Employee;
+                inHospitalPatientDoctor.DoctorID = tempApply.User.ID;
+                inHospitalPatientDoctor.Doctor = tempApply.User;
                 inHospitalPatientDoctor.UserID = vm.CurrentUser.ID;
 
                 MyCurrentInpatient.InHospitalPatientDoctors.Add(inHospitalPatientDoctor);

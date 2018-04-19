@@ -87,7 +87,7 @@ namespace HISGUILoginLib.Views
 
                 CommClient.Employee employeeColient = new CommClient.Employee();
 
-                var job = employeeColient.GetCurrentJob(vm.CurrentUser.EmployeeID);
+                var job = employeeColient.GetCurrentJob(vm.CurrentUser.ID);
                 if (job == null)
                     return;
 

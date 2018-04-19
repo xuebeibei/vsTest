@@ -32,6 +32,6 @@ namespace CommContracts
         [DataMember]
         public int ReCheckUserID { get; set; }         // 复检用户 
         [DataMember]
-        public User OperateUser { get; set; }  // 制单用户
+        public Employee OperateUser { get; set; }  // 制单用户
     }
 }

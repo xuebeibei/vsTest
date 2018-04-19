@@ -9,25 +9,25 @@ namespace BLL
 {
     public class LoginInAndOutRecords
     {
-        public List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName)
+        public List<CommContracts.EmployeeLoginHistory> GetAllLoginInAndOutRecords(string strName)
         {
-            List<CommContracts.LoginInAndOutRecords> list = new List<CommContracts.LoginInAndOutRecords>();
+            List<CommContracts.EmployeeLoginHistory> list = new List<CommContracts.EmployeeLoginHistory>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from t in ctx.LoginInAndOutRecords
-                            where t.User.Username.StartsWith(strName) 
+                var query = from t in ctx.EmployeeLoginHistorys
+                            where t.Employees.LoginName.StartsWith(strName)
                             select t;
 
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<DAL.LoginInAndOutRecords, CommContracts.LoginInAndOutRecords>();
+                    cfg.CreateMap<DAL.EmployeeLoginHistory, CommContracts.EmployeeLoginHistory>();
                 });
                 var mapper = config.CreateMapper();
 
-                foreach (DAL.LoginInAndOutRecords tem in query)
+                foreach (DAL.EmployeeLoginHistory tem in query)
                 {
-                    var dto = mapper.Map<CommContracts.LoginInAndOutRecords>(tem);
+                    var dto = mapper.Map<CommContracts.EmployeeLoginHistory>(tem);
                     list.Add(dto);
                 }
             }
@@ -35,28 +35,27 @@ namespace BLL
             return list;
         }
 
-        public bool SaveLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        public bool SaveLoginInAndOutRecords(CommContracts.EmployeeLoginHistory LoginInAndOutRecords)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.LoginInAndOutRecords, DAL.LoginInAndOutRecords>().ForMember(x => x.User, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.EmployeeLoginHistory, DAL.EmployeeLoginHistory>().ForMember(x => x.Employees, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.LoginInAndOutRecords temp = new DAL.LoginInAndOutRecords();
-                temp = mapper.Map<DAL.LoginInAndOutRecords>(LoginInAndOutRecords);
+                DAL.EmployeeLoginHistory temp = new DAL.EmployeeLoginHistory();
+                temp = mapper.Map<DAL.EmployeeLoginHistory>(LoginInAndOutRecords);
 
-                ctx.LoginInAndOutRecords.Add(temp);
+                ctx.EmployeeLoginHistorys.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
                 }
-#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
-#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
+                    string str = ex.Message;
                     return false;
                 }
             }
@@ -67,37 +66,37 @@ namespace BLL
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.LoginInAndOutRecords.FirstOrDefault(m => m.ID == LoginInAndOutRecordsID);
+                var temp = ctx.EmployeeLoginHistorys.FirstOrDefault(m => m.ID == LoginInAndOutRecordsID);
                 if (temp != null)
                 {
-                    ctx.LoginInAndOutRecords.Remove(temp);
+                    ctx.EmployeeLoginHistorys.Remove(temp);
                 }
 
                 try
                 {
                     ctx.SaveChanges();
                 }
-#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
-#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
+                    string str = ex.Message;
                     return false;
                 }
             }
             return true;
         }
 
-        public bool UpdateLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords)
+        public bool UpdateLoginInAndOutRecords(CommContracts.EmployeeLoginHistory LoginInAndOutRecords)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.LoginInAndOutRecords.FirstOrDefault(m => m.ID == LoginInAndOutRecords.ID);
+                var temp = ctx.EmployeeLoginHistorys.FirstOrDefault(m => m.ID == LoginInAndOutRecords.ID);
                 if (temp != null)
                 {
-                    temp.UserID = LoginInAndOutRecords.UserID;
+                    temp.EmployeeID = LoginInAndOutRecords.EmployeeID;
                     temp.LoginMachineCode = LoginInAndOutRecords.LoginMachineCode;
-                    temp.LoginInOrLoginOut = LoginInAndOutRecords.LoginInOrLoginOut;
-                    temp.CurrentTime = LoginInAndOutRecords.CurrentTime;
+                    temp.LoginTime = LoginInAndOutRecords.LoginTime;
+                    temp.LoginOutTime = LoginInAndOutRecords.LoginOutTime;
+                    temp.ModifiedDate = DateTime.Now;
                 }
                 else
                 {
@@ -108,10 +107,9 @@ namespace BLL
                 {
                     ctx.SaveChanges();
                 }
-#pragma warning disable CS0168 // 声明了变量“ex”，但从未使用过
                 catch (Exception ex)
-#pragma warning restore CS0168 // 声明了变量“ex”，但从未使用过
                 {
+                    string str = ex.Message;
                     return false;
                 }
             }

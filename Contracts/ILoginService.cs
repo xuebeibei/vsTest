@@ -12,27 +12,16 @@ namespace CommContracts
     public interface ILoginService
     {
         [OperationContract]
-        CommContracts.User UserAuthenticate(User login);
+        CommContracts.Employee UserAuthenticate(string LoginName, string Password, string MachineCode);
         [OperationContract]
-        CommContracts.User getUser(int UserID);
-        [OperationContract]
-        List<CommContracts.User> GetAllLoginUser(string strName = "");
-        [OperationContract]
-        bool UpdateLoginUser(CommContracts.User job);
-        [OperationContract]
-        bool SaveLoginUser(CommContracts.User job);
-        [OperationContract]
-        bool DeleteLoginUser(int jobID);
+        bool UserLogout(Employee login);
 
         [OperationContract]
-        bool UserLogout(User login);
-
+        List<CommContracts.EmployeeLoginHistory> GetAllLoginInAndOutRecords(string strName);
         [OperationContract]
-        List<CommContracts.LoginInAndOutRecords> GetAllLoginInAndOutRecords(string strName);
+        bool UpdateLoginInAndOutRecords(CommContracts.EmployeeLoginHistory LoginInAndOutRecords);
         [OperationContract]
-        bool UpdateLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords);
-        [OperationContract]
-        bool SaveLoginInAndOutRecords(CommContracts.LoginInAndOutRecords LoginInAndOutRecords);
+        bool SaveEmployeeLoginHistory(CommContracts.EmployeeLoginHistory LoginInAndOutRecords);
         [OperationContract]
         bool DeleteLoginInAndOutRecords(int LoginInAndOutRecordsID);
 
@@ -99,7 +88,7 @@ namespace CommContracts
         bool UpdateEmployee(CommContracts.Employee employee);
 
         [OperationContract]
-        bool SaveEmployee(CommContracts.Employee employee);
+        bool SaveEmployee(CommContracts.Employee employee, ref int employeeID);
 
         [OperationContract]
         bool DeleteEmployee(int employeeID);

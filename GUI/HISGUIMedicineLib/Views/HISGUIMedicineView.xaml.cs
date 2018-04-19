@@ -44,8 +44,8 @@ namespace HISGUIMedicineLib.Views
         {
             var vm = this.DataContext as HISGUIMedicineVM;
             var jsons1 = vm?.MainData.SelectToken("LoginUser") + "";
-            CommContracts.User user = new CommContracts.User();
-            user = JsonConvert.DeserializeObject<CommContracts.User>(jsons1);
+            CommContracts.Employee user = new CommContracts.Employee();
+            user = JsonConvert.DeserializeObject<CommContracts.Employee>(jsons1);
 
             vm.CurrentUser = user;
 

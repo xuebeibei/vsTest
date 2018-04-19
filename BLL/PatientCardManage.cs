@@ -17,7 +17,7 @@ namespace BLL
             {
                 var query = from t in ctx.PatientCardManages
                             where t.Patient.Name.StartsWith(strName) ||
-                            t.User.Username.StartsWith(strName)
+                            t.User.LoginName.StartsWith(strName)
                             orderby t.CurrentTime descending
                             select t;
 
