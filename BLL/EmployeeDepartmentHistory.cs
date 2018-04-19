@@ -16,10 +16,42 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from e in ctx.EmployeeDepartmentHistorys
-                            where 
-                            (DepartmentID == 0 || e.DepartmentID == DepartmentID) &&
+                            where (DepartmentID == 0 || e.DepartmentID == DepartmentID) &&
                             !e.EndDate.HasValue
                             select e.Employee;
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.Employee, CommContracts.Employee>();
+                });
+                var mapper = config.CreateMapper();
+
+                foreach (DAL.Employee tem in query)
+                {
+                    var dto = mapper.Map<CommContracts.Employee>(tem);
+                    list.Add(dto);
+                }
+            }
+
+            return list;
+        }
+
+        public List<CommContracts.Employee> GetAllDepartmentDoctor(int DepartmentID)
+        {
+            List<CommContracts.Employee> list = new List<CommContracts.Employee>();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from ed in ctx.EmployeeDepartmentHistorys
+                            from ej in ctx.EmployeeJobHistorys
+                            from j in ctx.Jobs
+                            where (ed.DepartmentID == 0 || ed.DepartmentID == DepartmentID) &&
+                            !ed.EndDate.HasValue &&
+                            ed.EmployeeID == ej.EmployeeID &&
+                            ej.JobID == j.ID &&
+                            j.JobType == DAL.JobTypeEnum.医师 &&
+                            !ej.EndDate.HasValue
+                            select ed.Employee;
+
                 var config = new MapperConfiguration(cfg =>
                 {
                     cfg.CreateMap<DAL.Employee, CommContracts.Employee>();

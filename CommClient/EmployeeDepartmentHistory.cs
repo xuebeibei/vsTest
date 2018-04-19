@@ -18,6 +18,11 @@ namespace CommClient
             return client.GetAllDepartmentEmployee(DepartmentID);
         }
 
+        public List<CommContracts.Employee> GetAllDepartmentDoctor(int DepartmentID)
+        {
+            return client.GetAllDepartmentDoctor(DepartmentID);
+        }
+
         public bool SaveEmployeeDepartmentHistory(CommContracts.EmployeeDepartmentHistory EmployeeDepartmentHistory)
         {
             return client.SaveEmployeeDepartmentHistory(EmployeeDepartmentHistory);

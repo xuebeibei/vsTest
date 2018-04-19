@@ -1317,6 +1317,13 @@ namespace CommServer
             BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
             return temp.GetAllDepartmentEmployee(DepartmentID);
         }
+
+        public List<CommContracts.Employee> GetAllDepartmentDoctor(int DepartmentID)
+        {
+            BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();
+            return temp.GetAllDepartmentDoctor(DepartmentID);
+        }
+
         public List<CommContracts.EmployeeDepartmentHistory> GetAllEmployeeDepartmentHistory(int EmployeeID)
         {
             BLL.EmployeeDepartmentHistory temp = new BLL.EmployeeDepartmentHistory();

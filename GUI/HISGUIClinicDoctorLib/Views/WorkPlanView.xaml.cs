@@ -185,7 +185,7 @@ namespace HISGUIDoctorLib.Views
                 return null;
 
             CommClient.EmployeeDepartmentHistory historyClient = new CommClient.EmployeeDepartmentHistory();
-            List<CommContracts.Employee> DoctorList = historyClient.GetAllDepartmentEmployee(department.ID);
+            List<CommContracts.Employee> DoctorList = historyClient.GetAllDepartmentDoctor(department.ID);
             if (DoctorList == null)
                 return null;
 

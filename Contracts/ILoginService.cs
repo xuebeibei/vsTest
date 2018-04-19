@@ -634,6 +634,10 @@ namespace CommContracts
 
         [OperationContract]
         List<CommContracts.Employee> GetAllDepartmentEmployee(int DepartmentID);
+
+        [OperationContract]
+        List<CommContracts.Employee> GetAllDepartmentDoctor(int DepartmentID);
+
         [OperationContract]
         List<CommContracts.EmployeeDepartmentHistory> GetAllEmployeeDepartmentHistory(int EmployeeID);
         [OperationContract]
