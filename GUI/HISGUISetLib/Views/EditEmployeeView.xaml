@@ -8,9 +8,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
                 <ColumnDefinition Width="auto"></ColumnDefinition>
-                <ColumnDefinition Width="120"></ColumnDefinition>
+                <ColumnDefinition Width="150"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
@@ -30,7 +30,17 @@
             <TextBox x:Name="LoginNameEdit" Margin="5" Grid.Row="1" Grid.Column="3"></TextBox>
 
             <Label Margin="5" Grid.Row="2" Grid.Column="0">密码：</Label>
-            <PasswordBox x:Name="PasswordEdit" Margin="5" Grid.Row="2" Grid.Column="1"></PasswordBox>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <PasswordBox x:Name="PasswordEdit" Margin="5" Grid.Column="0" IsEnabled="False"></PasswordBox>
+                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                    <CheckBox x:Name="IsEditPassword" Margin="5" Grid.Column="1" Checked="IsEditPassword_Checked">编辑</CheckBox>
+                </StackPanel>
+            </Grid>
+            
             <Label Margin="5" Grid.Row="2" Grid.Column="2">科室：</Label>
             <ComboBox x:Name="DeparmentCombo" Margin="5" Grid.Row="2" Grid.Column="3"/>
 

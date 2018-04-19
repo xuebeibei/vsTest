@@ -94,7 +94,8 @@ namespace HISGUISetLib.Views
                 Employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
                 Employee.LoginName = this.LoginNameEdit.Text;
 
-                Employee.Password = MyMD5.strToMD5Str(this.PasswordEdit.Password.Trim());
+                if (this.IsEditPassword.IsChecked.Value)
+                    Employee.Password = MyMD5.strToMD5Str(this.PasswordEdit.Password.Trim());
 
                 CommClient.Employee myd = new CommClient.Employee();
                 if (!myd.UpdateEmployee(Employee))
@@ -124,7 +125,9 @@ namespace HISGUISetLib.Views
                 employee.Name = this.NameEdit.Text.Trim();
                 employee.Gender = (CommContracts.GenderEnum)this.GenderCombo.SelectedItem;
                 employee.LoginName = this.LoginNameEdit.Text;
-                employee.Password = MyMD5.strToMD5Str(this.PasswordEdit.Password.Trim());
+
+                if (this.IsEditPassword.IsChecked.Value)
+                    employee.Password = MyMD5.strToMD5Str(this.PasswordEdit.Password.Trim());
 
                 CommClient.Employee myd = new CommClient.Employee();
 
@@ -186,6 +189,18 @@ namespace HISGUISetLib.Views
         {
             (this.Parent as Window).DialogResult = false;
             (this.Parent as Window).Close();
+        }
+
+        private void IsEditPassword_Checked(object sender, RoutedEventArgs e)
+        {
+            if(this.IsEditPassword.IsChecked.Value)
+            {
+                this.PasswordEdit.IsEnabled = true;
+            }
+            else
+            {
+                this.PasswordEdit.IsEnabled = false;
+            }
         }
     }
 }
