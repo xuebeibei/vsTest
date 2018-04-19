@@ -50,14 +50,17 @@ namespace HISGUISetLib.Views
             var vm = this.DataContext as HISGUISetVM;
             CommClient.ClinicVistTime vistTimeClient = new CommClient.ClinicVistTime();
 
-            vm.CurrentClinicVistTime.StartVistTime = this.StartVistTime.GetMyValue();
-            vm.CurrentClinicVistTime.EndVistTime = this.EndVistTime.GetMyValue();
-            vm.CurrentClinicVistTime.StartWaitTime = this.StartWaitTime.GetMyValue();
-            vm.CurrentClinicVistTime.EndWaitTime = this.EndWaitTime.GetMyValue();
-            vm.CurrentClinicVistTime.LastSellTime = this.LastSellTime.GetMyValue();
+            CommContracts.ClinicVistTime clinicVistTime = new CommContracts.ClinicVistTime();
+
+            clinicVistTime.Name = this.VistTimeNameBox.Text;
+            clinicVistTime.StartVistTime = this.StartVistTime.GetMyValue();
+            clinicVistTime.EndVistTime = this.EndVistTime.GetMyValue();
+            clinicVistTime.StartWaitTime = this.StartWaitTime.GetMyValue();
+            clinicVistTime.EndWaitTime = this.EndWaitTime.GetMyValue();
+            clinicVistTime.LastSellTime = this.LastSellTime.GetMyValue();
 
 
-            if(vistTimeClient.SaveClinicVistTime(vm.CurrentClinicVistTime))
+            if(vistTimeClient.SaveClinicVistTime(clinicVistTime))
             {
                 MessageBox.Show("OK");
                 updateAllClinicVistTimeList();
