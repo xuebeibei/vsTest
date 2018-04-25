@@ -7,38 +7,69 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
-        </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <ListView x:Name="AllPatientList" Margin="5" Grid.Row="1" SelectionMode="Single">
-                <ListView.View>
-                    <GridView x:Name="gridViewPatient">
-                        <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="性别" DisplayMemberBinding="{Binding Path=Patient.Gender}" Width="60"></GridViewColumn>
-                        <GridViewColumn Header="状态" DisplayMemberBinding="{Binding Path=SeeDoctorStatus}" Width="60"></GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-        </Grid>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button x:Name="CallBtn" Margin="5" Click="CallBtn_Click">呼叫下一个</Button>
-                <Button x:Name="StartBtn" Margin="5" Click="StartBtn_Click" IsEnabled="False">开始看诊</Button>
-                <Button x:Name="OverBtn" Margin="5" Click="OverBtn_Click" IsEnabled="False">正常结束看诊</Button>
-                <Button x:Name="TurnToInHospitalBtn" Margin="5" Click="TurnToInHospitalBtn_Click" IsEnabled="False">入院结束看诊</Button>
-            </StackPanel>
-            <Grid HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1">
-                <Label x:Name="TipMsgLabel">医生工作站</Label>
-            </Grid>
-            <local:ReceivingNewPatientsView x:Name="PatientMsgView" Visibility="Collapsed" Grid.Row="1"></local:ReceivingNewPatientsView>
-        </Grid>
-    </Grid>
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top">
+            <Button x:Name="CallBtn" Margin="5" Content="呼叫" ToolTip="呼叫下一个" Click="CallBtn_Click"></Button>
+            <Button x:Name="StartBtn" Margin="5" Content="开始看诊" ToolTip="开始看诊" Click="StartBtn_Click" IsEnabled="False"></Button>
+            <Button x:Name="OverBtn" Margin="5" Content="结束看诊" ToolTip="结束看诊" Click="OverBtn_Click" IsEnabled="False"></Button>
 
+            <Button x:Name="TurnToInHospitalBtn" Margin="5" Content="入院" ToolTip="入院" Click="TurnToInHospitalBtn_Click" IsEnabled="False"></Button>
+            <Separator></Separator>
+            <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建" Click="NewBtn_Click"></Button>
+            <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="NewBtn_Click"></Button>
+            <Button x:Name="DeleteBtn" Margin="5" Content="删除" ToolTip="删除" Click="DeleteBtn_Click"></Button>
+        </ToolBar>
+        <DockPanel>
+            <Grid DockPanel.Dock="Left">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Margin="5">
+                    <Border BorderBrush="Black" BorderThickness="0.3"></Border>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Width="100">
+                            <Image Source="PersonImage.png"></Image>
+                        </Label>
+                        <StackPanel>
+                            <TextBlock x:Name="NameBlock" Text="张三" FontSize="15" Margin="10,5,5,5"></TextBlock>
+                            <Grid  Margin="10,5,5,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Row="0" Grid.Column="0" Text="男"></TextBlock>
+                                <TextBlock Grid.Row="0" Grid.Column="1" Text="35岁"></TextBlock>
+                            </Grid>
+                            <TextBlock x:Name="FeeTypeBlock" Text="自费"  Margin="10,5,5,5"></TextBlock>
+                            <TextBlock x:Name="TelBlock" Text="15910288408"  Margin="10,5,5,5"></TextBlock>
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+
+                <TreeView Grid.Row="1" x:Name="DoctorDocsTree" Margin="5">
+                    <TreeViewItem Header="病历">
+                    </TreeViewItem>
+                    <TreeViewItem Header="检查">
+                    </TreeViewItem>
+                    <TreeViewItem Header="检验">
+                    </TreeViewItem>
+                    <TreeViewItem Header="处方">
+                        <!--<TreeViewItem Header="西/中成药处方">
+                        </TreeViewItem>
+                        <TreeViewItem Header="中药处方">
+                        </TreeViewItem>-->
+                    </TreeViewItem>
+                    <TreeViewItem Header="治疗">
+                    </TreeViewItem>
+                </TreeView>
+            </Grid>
+            <!--<Grid x:Name="CenterGrid" Margin="1, 0.3, 0.3, 0.3">
+                <Border BorderBrush="Black" BorderThickness="0.3"></Border>
+            </Grid>-->
+            <TabControl x:Name="MyTabControl" Margin="5">
+                
+            </TabControl>
+        </DockPanel>
+    </DockPanel>
 </HISGUICore:HISGUIViewBase>

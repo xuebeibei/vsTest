@@ -25,22 +25,25 @@ using Microsoft.Win32;
 namespace HISGUISetLib.Views
 {
     [Export]
-    [Export("SignalItemSetView", typeof(SignalItemSetView))]
-    public partial class SignalItemSetView : HISGUIViewBase
+    [Export("SignalTypeSetView", typeof(SignalTypeSetView))]
+    public partial class SignalTypeSetView : HISGUIViewBase
     {
         private bool bIsEdit = false;
+        private CommContracts.SignalType m_SignalType;
 
-        public SignalItemSetView()
+        public SignalTypeSetView()
         {
             InitializeComponent();
-            this.Loaded += SignalItemSetView_Loaded;
+            this.Loaded += SignalTypeSetView_Loaded;
         }
 
-        private void SignalItemSetView_Loaded(object sender, RoutedEventArgs e)
+        private void SignalTypeSetView_Loaded(object sender, RoutedEventArgs e)
         {
             CommClient.Job jobClient = new CommClient.Job();
+            CommClient.WorkType typeClient = new CommClient.WorkType();
 
             SignalItemDoctorJobComBo.ItemsSource = jobClient.GetAllTypeJob(CommContracts.JobTypeEnum.医师);
+            SignalItemWorkTypeComBo.ItemsSource = typeClient.GetAllWorkType();
             UpdateAllDate();
         }
 
@@ -58,15 +61,17 @@ namespace HISGUISetLib.Views
 
         private void UpdateAllDate(string strName = "")
         {
-            var vm = this.DataContext as HISGUISetVM;
-            this.AllSignalItemList.ItemsSource = vm?.GetAllSignalItem(strName);
+            CommClient.SignalType signalTypeClient = new CommClient.SignalType();
+            this.AllSignalItemList.ItemsSource = signalTypeClient.GetAllSignalType(strName);
         }
 
         private void NewBtn_Click(object sender, RoutedEventArgs e)
         {
-            var vm = this.DataContext as HISGUISetVM;
-            CommContracts.SignalItem item = new CommContracts.SignalItem();
-            vm.CurrentSignalItem = item;
+            CommContracts.SignalType item = new CommContracts.SignalType();
+            this.SignalItemNameBox.Text = "";
+            this.SignalItemDoctorJobComBo.SelectedItem = null;
+            this.SignalItemWorkTypeComBo.SelectedItem = null;
+            this.SignalItemPrice.Text = "";
 
             EditGrid.IsEnabled = true;
             this.SignalItemNameBox.Focus();
@@ -85,20 +90,17 @@ namespace HISGUISetLib.Views
             {
                 return;
             }
+            
+            CommClient.SignalType myd = new CommClient.SignalType();
 
-            var vm = this.DataContext as HISGUISetVM;
-
-            vm.CurrentSignalItem.Name = this.SignalItemNameBox.Text.Trim();
-            vm.CurrentSignalItem.DoctorJob = this.SignalItemDoctorJobComBo.Text.Trim();
-            if (!string.IsNullOrEmpty(this.SignalPriceBox.Text.Trim()))
-                vm.CurrentSignalItem.SellPrice = decimal.Parse(this.SignalPriceBox.Text.Trim());
-
-
-            CommClient.SignalItem myd = new CommClient.SignalItem();
-
-            if(bIsEdit)
+            if (bIsEdit)
             {
-                if (myd.UpdateSignalItem(vm.CurrentSignalItem))
+                m_SignalType.Name = this.SignalItemNameBox.Text.Trim();
+                m_SignalType.JobID = (this.SignalItemDoctorJobComBo.SelectionBoxItem as CommContracts.Job).ID;
+                m_SignalType.WorkTypeID = (this.SignalItemWorkTypeComBo.SelectedItem as CommContracts.WorkType).ID;
+                m_SignalType.DoctorClinicFee = decimal.Parse(this.SignalItemPrice.Text.Trim());
+
+                if (myd.UpdateSignalType(m_SignalType))
                 {
                     MessageBox.Show("OK");
                     UpdateAllDate();
@@ -110,7 +112,13 @@ namespace HISGUISetLib.Views
             }
             else
             {
-                if (myd.SaveSignalItem(vm.CurrentSignalItem))
+                CommContracts.SignalType signalType = new CommContracts.SignalType();
+                signalType.Name = this.SignalItemNameBox.Text.Trim();
+                signalType.JobID = (this.SignalItemDoctorJobComBo.SelectedItem as CommContracts.Job).ID;
+                signalType.WorkTypeID = (this.SignalItemWorkTypeComBo.SelectedItem as CommContracts.WorkType).ID;
+                signalType.DoctorClinicFee = decimal.Parse(this.SignalItemPrice.Text.Trim());
+
+                if (myd.SaveSignalType(signalType))
                 {
                     MessageBox.Show("OK");
                     UpdateAllDate();
@@ -129,14 +137,14 @@ namespace HISGUISetLib.Views
 
         private void DeleteBtn_Click(object sender, RoutedEventArgs e)
         {
-            var currentDapertment = this.AllSignalItemList.SelectedItem as CommContracts.SignalItem;
+            var currentDapertment = this.AllSignalItemList.SelectedItem as CommContracts.SignalType;
             if (currentDapertment == null)
                 return;
 
             if (MessageBox.Show("确认删除该号源种类？", "删除", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
             {
-                var vm = this.DataContext as HISGUISetVM;
-                bool? bIsOK = vm?.DeleteSignalItem(currentDapertment.ID);
+                CommClient.SignalType signalTypeClient = new CommClient.SignalType();
+                bool? bIsOK = signalTypeClient.DeleteSignalType(m_SignalType.ID);
                 if (bIsOK.HasValue)
                 {
                     if (bIsOK.Value)
@@ -165,14 +173,18 @@ namespace HISGUISetLib.Views
 
         private void AllSignalItemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var item = this.AllSignalItemList.SelectedItem as CommContracts.SignalItem;
+            var item = this.AllSignalItemList.SelectedItem as CommContracts.SignalType;
 
             if (item == null)
                 return;
 
             var vm = this.DataContext as HISGUISetVM;
 
-            vm.CurrentSignalItem = item;
+            m_SignalType = item;
+            this.SignalItemNameBox.Text = m_SignalType.Name;
+            this.SignalItemDoctorJobComBo.SelectedItem = m_SignalType.Job;
+            this.SignalItemWorkTypeComBo.SelectedItem = m_SignalType.WorkType;
+            this.SignalItemPrice.Text = m_SignalType.DoctorClinicFee.ToString();
 
             EditGrid.IsEnabled = false;
             bIsEdit = true;

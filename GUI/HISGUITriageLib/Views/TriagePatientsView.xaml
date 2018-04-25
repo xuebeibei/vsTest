@@ -11,12 +11,6 @@
             <Button x:Name="ReadCardBtn" Margin="5" Content="读卡" ToolTip="读卡" Click="ReadCardBtn_Click"></Button>
             <Button x:Name="ArriveBtn" Margin="5" Click="ArriveBtn_Click">标记到诊</Button>
             <Button x:Name="EditBMIBtn" Margin="5" Click="EditBMIBtn_Click" Visibility="Collapsed">完善体征信息</Button>
-            <!--<Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建挂号" Click="NewBtn_Click"></Button>
-            <Button x:Name="PayBtn" Margin="5" Content="挂号" ToolTip="挂号" Click="PayBtn_Click"></Button>
-            <Button x:Name="FindBtn" Margin="5" Content="查询" ToolTip="查询挂号记录" Click="FindBtn_Click"></Button>
-            <Button x:Name="ReturnBtn" Margin="5" Content="退号" ToolTip="退号" Click="ReturnBtn_Click"></Button>
-            <Button x:Name="RePrintBtn" Margin="5" Content="补打" ToolTip="补打凭证" Click="RePrintBtn_Click"></Button>
-            <Button x:Name="ClearBtn" Margin="5" Content="清屏" ToolTip="清屏" Click="ClearBtn_Click"></Button>-->
         </ToolBar>
         <Grid>
             <Grid.RowDefinitions>
@@ -79,19 +73,19 @@
                 <Separator  Grid.Row="2" Grid.ColumnSpan="11"></Separator>
 
                 <Label Content="挂号科室："  Grid.Row="3" Grid.Column="0" Margin="5"></Label>
-                <TextBox x:Name="DepartmentBox"  Grid.Row="3" Grid.Column="1" Margin="5"></TextBox>
+                <TextBox x:Name="DepartmentBox"  Grid.Row="3" Grid.Column="1" Margin="5" IsEnabled="False"></TextBox>
 
                 <Label Content="看诊日期："  Grid.Row="3" Grid.Column="2" Margin="5"></Label>
-                <TextBox x:Name="VistDateBox"  Grid.Row="3" Grid.Column="3" Margin="5"></TextBox>
+                <TextBox x:Name="VistDateBox"  Grid.Row="3" Grid.Column="3" Margin="5" IsEnabled="False"></TextBox>
 
                 <Label Content="看诊时段："  Grid.Row="3" Grid.Column="4" Margin="5"></Label>
-                <TextBox x:Name="ClinicVistTimeBox"  Grid.Row="3" Grid.Column="5" Margin="5"></TextBox>
+                <TextBox x:Name="ClinicVistTimeBox"  Grid.Row="3" Grid.Column="5" Margin="5" IsEnabled="False"></TextBox>
 
                 <Label Content="号    别："  Grid.Row="3" Grid.Column="6" Margin="5"></Label>
-                <TextBox x:Name="SignalItemBox"  Grid.Row="3" Grid.Column="7" Margin="5"></TextBox>
+                <TextBox x:Name="SignalItemBox"  Grid.Row="3" Grid.Column="7" Margin="5" IsEnabled="False"></TextBox>
 
                 <Label Content="状    态："  Grid.Row="3" Grid.Column="8" Margin="5"></Label>
-                <TextBox x:Name="StatusBox"  Grid.Row="3" Grid.Column="9" Margin="5"></TextBox>
+                <TextBox x:Name="StatusBox"  Grid.Row="3" Grid.Column="9" Margin="5" IsEnabled="False"></TextBox>
 
             </Grid>
             <DataGrid x:Name="AllWaitGrid" Margin="5"  Grid.Row="1"
@@ -103,20 +97,9 @@
                           IsReadOnly="True" 
                           HeadersVisibility="Column" 
                           SelectedCellsChanged="AllWaitGrid_SelectedCellsChanged" >
-                <!--<DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Height" Value="30" />
-                    </Style>
-                </DataGrid.RowStyle>-->
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="科室" Binding="{Binding Path=Department}" Width="100" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="时段" Binding="{Binding Path=TimeEnum}" Width="200" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="医生" Binding="{Binding Path=Doctor}" Width="100" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="时段" Binding="{Binding Path=ClinicVistTime.Shift.Name}" Width="200" IsReadOnly="True"/>
                     <DataGridTextColumn Header="候诊数量" Binding="{Binding Path=WaitNum}" Width="100" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>

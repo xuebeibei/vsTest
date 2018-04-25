@@ -52,5 +52,9 @@ namespace CommClient
             return client.GetPatientRegistrations(PatientID,DateTime);
         }
 
+        public CommContracts.Registration CallNextRegistration(int nDepartmentID, DateTime dateTime)
+        {
+            return client.CallNextRegistration(nDepartmentID, dateTime);
+        }
     }
 }

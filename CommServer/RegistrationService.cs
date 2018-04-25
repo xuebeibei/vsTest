@@ -89,5 +89,11 @@ namespace CommServer
             BLL.CancelRegistration temp = new BLL.CancelRegistration();
             return temp.SaveCancelRegistration(cancelRegistration);
         }
+
+        public CommContracts.Registration CallNextRegistration(int nDepartmentID, DateTime dateTime)
+        {
+            BLL.Registration temp = new BLL.Registration();
+            return temp.CallNextRegistration(nDepartmentID, dateTime);
+        }
     }
 }

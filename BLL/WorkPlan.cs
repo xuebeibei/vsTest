@@ -22,9 +22,9 @@ namespace BLL
             {
                 var temp = (from u in ctx.WorkPlans
                             where u.DepartmentID == DepartmentID &&
-                            (u.VistDate.HasValue && u.VistDate.Value.Date >= DateTime.Now.Date) &&
+                            (u.WorkPlanDate.HasValue && u.WorkPlanDate.Value.Date >= DateTime.Now.Date) &&
                             (u.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk || u.WorkPlanStatus == DAL.WorkPlanStatus.eIsTempStop)
-                            select DbFunctions.TruncateTime(u.VistDate)).Distinct();
+                            select DbFunctions.TruncateTime(u.WorkPlanDate)).Distinct();
 
                 List<DateTime> myList = new List<DateTime>();
 
@@ -238,12 +238,11 @@ namespace BLL
                 var temp = ctx.WorkPlans.FirstOrDefault(m => m.ID == signalSource.ID);
                 if (temp != null)
                 {
-                    temp.Price = signalSource.Price;
-                    temp.VistDate = signalSource.VistDate;
-                    temp.SignalItemID = signalSource.SignalItemID;
+                    temp.WorkPlanDate = signalSource.WorkPlanDate;
+                    temp.WorkTypeID = signalSource.WorkTypeID;
                     temp.EmployeeID = signalSource.EmployeeID;
                     temp.DepartmentID = signalSource.DepartmentID;
-                    temp.ClinicVistTimeID = signalSource.ClinicVistTimeID;
+                    temp.ShiftID = signalSource.ShiftID;
                     temp.WorkPlanStatus = (DAL.WorkPlanStatus)signalSource.WorkPlanStatus;
                     temp.MaxNum = signalSource.MaxNum;
                 }
@@ -334,12 +333,14 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from a in ctx.WorkPlans
+                            from b in ctx.SignalTypes
                             where
                             (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
                             (EmployeeID <= 0 || a.EmployeeID == EmployeeID) &&
-                            (ClinicVistTimeID <= 0 || a.ClinicVistTimeID == ClinicVistTimeID) && 
-                            a.VistDate.Value <= endDate &&
-                            a.VistDate.Value >= startDate &&
+                            (ClinicVistTimeID <= 0 || a.ShiftID == ClinicVistTimeID) &&
+                            a.WorkTypeID == b.WorkTypeID &&
+                            a.WorkPlanDate.Value <= endDate &&
+                            a.WorkPlanDate.Value >= startDate &&
                             (a.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk || a.WorkPlanStatus == DAL.WorkPlanStatus.eIsTempStop)
                             select a;
                 foreach (DAL.WorkPlan ass in query)
@@ -351,7 +352,70 @@ namespace BLL
                     var mapper = config.CreateMapper();
 
                     CommContracts.WorkPlan temp = mapper.Map<CommContracts.WorkPlan>(ass);
+
                     list.Add(temp);
+                }
+            }
+            return list;
+        }
+
+        public List<CommContracts.WorkPlanToSignalSource> GetAllWorkPlan111(int DepartmentID, DateTime startDate, DateTime endDate)
+        {
+            List<CommContracts.WorkPlanToSignalSource> list = new List<CommContracts.WorkPlanToSignalSource>();
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                //var query = from a in ctx.WorkPlans
+                //            from b in ctx.SignalTypes
+                //            where
+                //            (DepartmentID <= 0 || a.DepartmentID == DepartmentID) &&
+                //            a.WorkTypeID == b.WorkTypeID &&
+                //            a.WorkPlanDate.Value <= endDate &&
+                //            a.WorkPlanDate.Value >= startDate &&
+                //            (a.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk || a.WorkPlanStatus == DAL.WorkPlanStatus.eIsTempStop)
+                //            select a;
+
+                var query = from w in ctx.WorkPlans
+                            from s in ctx.SignalTypes
+                            from j in ctx.EmployeeJobHistorys 
+                            where w.DepartmentID == DepartmentID &&
+                            w.WorkPlanDate.Value <= endDate &&
+                            w.WorkPlanDate.Value >= startDate &&
+                            w.WorkPlanStatus == DAL.WorkPlanStatus.eIsOk && 
+                            s.WorkTypeID == w.WorkTypeID && 
+                            w.Employee.ID == j.EmployeeID && 
+                            !j.EndDate.HasValue && 
+                            j.JobID == s.JobID
+
+
+                            select new { w, s };
+
+                int n = query.Count();
+
+                
+                foreach(var temp in query)
+                {
+                    var config = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.WorkPlan, CommContracts.WorkPlan>();
+                    });
+                    var mapper = config.CreateMapper();
+
+                    CommContracts.WorkPlan w = mapper.Map<CommContracts.WorkPlan>(temp.w);
+
+                    var config1 = new MapperConfiguration(cfg =>
+                    {
+                        cfg.CreateMap<DAL.SignalType, CommContracts.SignalType>();
+                    });
+                    var mapper1 = config1.CreateMapper();
+
+                    CommContracts.SignalType s = mapper1.Map<CommContracts.SignalType>(temp.s);
+
+                    CommContracts.WorkPlanToSignalSource ws = new CommContracts.WorkPlanToSignalSource();
+                    ws.WorkPlan = w;
+                    ws.SignalType = s;
+                    list.Add(ws);
+
+                    
                 }
             }
             return list;

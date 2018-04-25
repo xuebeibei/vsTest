@@ -36,6 +36,7 @@ namespace HISGUISetLib.Views
 
         private void JobSetView_Loaded(object sender, RoutedEventArgs e)
         {
+
             UpdateAllDate();
         }
 
@@ -63,9 +64,9 @@ namespace HISGUISetLib.Views
 
             EditJobView eidtJob = new EditJobView();
             window.Content = eidtJob;
-            window.Width = 400;
-            window.Height = 400;
-            window.ResizeMode = ResizeMode.NoResize;
+            window.Width = 520;
+            window.Height = 200;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -107,9 +108,9 @@ namespace HISGUISetLib.Views
 
             EditJobView eidtJob = new EditJobView(temp);
             window.Content = eidtJob;
-            window.Width = 400;
-            window.Height = 400;
-            window.ResizeMode = ResizeMode.NoResize;
+            window.Width = 520;
+            window.Height = 200;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)

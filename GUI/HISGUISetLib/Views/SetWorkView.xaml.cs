@@ -26,7 +26,7 @@ namespace HISGUISetLib.Views
 {
     [Export]
     [Export("SetWorkView", typeof(SetWorkView))]
-    public partial class SetWorkView : HISGUIViewBase    
+    public partial class SetWorkView : HISGUIViewBase
     {
         protected DispatcherTimer ShowTimer;
         public SetWorkView()
@@ -46,7 +46,7 @@ namespace HISGUISetLib.Views
         {
             //InitVisable();
             var vm = this.DataContext as HISGUISetVM;
-            if(vm.CurrentUser != null)
+            if (vm.CurrentUser != null)
             {
                 this.UserName.Content = vm.CurrentUser.LoginName;
             }
@@ -161,6 +161,20 @@ namespace HISGUISetLib.Views
 
                 this.CenterPanel.Children.Add(centerView);
             }
+            else if (viewItem.Header.ToString() == "值班时段")
+            {
+                ShiftSetView centerView = new ShiftSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
+            else if (viewItem.Header.ToString() == "值班类别")
+            {
+                WorkTypeSetView centerView = new WorkTypeSetView();
+                centerView.DataContext = this.DataContext;
+
+                this.CenterPanel.Children.Add(centerView);
+            }
             else if (viewItem.Header.ToString() == "药品")
             {
                 MedicineSetView centerView = new MedicineSetView();
@@ -205,7 +219,7 @@ namespace HISGUISetLib.Views
             }
             else if (viewItem.Header.ToString() == "号源种类")
             {
-                SignalItemSetView centerView = new SignalItemSetView();
+                SignalTypeSetView centerView = new SignalTypeSetView();
                 centerView.DataContext = this.DataContext;
 
                 this.CenterPanel.Children.Add(centerView);
@@ -217,7 +231,7 @@ namespace HISGUISetLib.Views
 
                 this.CenterPanel.Children.Add(centerView);
             }
-            else if(viewItem.Header.ToString() == "放号渠道")
+            else if (viewItem.Header.ToString() == "放号渠道")
             {
                 RegistrationDitchView centerView = new RegistrationDitchView();
                 centerView.DataContext = this.DataContext;

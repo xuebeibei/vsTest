@@ -48,5 +48,8 @@ namespace CommContracts
         bool SaveRegistrationDitch(CommContracts.RegistrationDitch RegistrationDitch);
         [OperationContract]
         bool DeleteRegistrationDitch(int RegistrationDitchID);
+
+        [OperationContract]
+        CommContracts.Registration CallNextRegistration(int nDepartmentID, DateTime dateTime);
     }
 }

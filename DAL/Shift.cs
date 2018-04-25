@@ -7,41 +7,43 @@ using System.Threading.Tasks;
 namespace DAL
 {
     /// <summary>
-    /// 号别
+    /// 班次
     /// </summary>
-    public class SignalItem
+    public class Shift
     {
-        /// <summary>
-        /// 号别构造函数
-        /// </summary>
-        public SignalItem()
+        public Shift()
         {
-            SignalSources = new List<WorkPlan>();
+            WorkPlans = new List<WorkPlan>();
         }
-
         /// <summary>
         /// 主键
         /// </summary>
         public int ID { get; set; }
 
         /// <summary>
-        /// 号别名称
+        /// 名称
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 医生职称
+        /// 起始时间
         /// </summary>
-        public string DoctorJob { get; set; }
+        public string StartTime { get; set; }
 
         /// <summary>
-        /// 医事服务费
+        /// 结束时间
         /// </summary>
-        public decimal SellPrice { get; set; }
+        public string EndTime { get; set; }
 
         /// <summary>
-        /// 号别所有的号源
+        /// 修改日期
         /// </summary>
-        public virtual ICollection<WorkPlan> SignalSources { get; set; }
+        public DateTime ModifiedDate { get; set; }
+
+
+        /// <summary>
+        /// 该时段对应的排班记录
+        /// </summary>
+        public virtual ICollection<WorkPlan> WorkPlans { get; set; }
     }
 }

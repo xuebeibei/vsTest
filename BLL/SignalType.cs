@@ -7,46 +7,46 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class ClinicVistTime
+    public class SignalType
     {
-        public List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "")
+        public List<CommContracts.SignalType> GetAllSignalType(string strName = "")
         {
-            List<CommContracts.ClinicVistTime> list = new List<CommContracts.ClinicVistTime>();
+            List<CommContracts.SignalType> list = new List<CommContracts.SignalType>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.ClinicVistTimes
-                            where a.Name.StartsWith(strName)
+                var query = from a in ctx.SignalTypes
+                            where a.WorkType.Name.StartsWith(strName)
                             select a;
-                foreach (DAL.ClinicVistTime ass in query)
+                foreach (DAL.SignalType ass in query)
                 {
                     var config = new MapperConfiguration(cfg =>
                     {
-                        cfg.CreateMap<DAL.ClinicVistTime, CommContracts.ClinicVistTime>();
+                        cfg.CreateMap<DAL.SignalType, CommContracts.SignalType>();
                     });
                     var mapper = config.CreateMapper();
 
-                    CommContracts.ClinicVistTime temp = mapper.Map<CommContracts.ClinicVistTime>(ass);
+                    CommContracts.SignalType temp = mapper.Map<CommContracts.SignalType>(ass);
                     list.Add(temp);
                 }
             }
             return list;
         }
 
-        public bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool SaveSignalType(CommContracts.SignalType SignalType)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.ClinicVistTime, DAL.ClinicVistTime>();
+                    cfg.CreateMap<CommContracts.SignalType, DAL.SignalType>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.ClinicVistTime temp = new DAL.ClinicVistTime();
-                temp = mapper.Map<DAL.ClinicVistTime>(ClinicVistTime);
+                DAL.SignalType temp = new DAL.SignalType();
+                temp = mapper.Map<DAL.SignalType>(SignalType);
 
-                ctx.ClinicVistTimes.Add(temp);
+                ctx.SignalTypes.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -61,14 +61,14 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteClinicVistTime(int ClinicVistTimeID)
+        public bool DeleteSignalType(int SignalTypeID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.ClinicVistTimes.FirstOrDefault(m => m.ID == ClinicVistTimeID);
+                var temp = ctx.SignalTypes.FirstOrDefault(m => m.ID == SignalTypeID);
                 if (temp != null)
                 {
-                    ctx.ClinicVistTimes.Remove(temp);
+                    ctx.SignalTypes.Remove(temp);
                 }
 
                 try
@@ -85,20 +85,18 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool UpdateSignalType(CommContracts.SignalType SignalType)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.ClinicVistTimes.FirstOrDefault(m => m.ID == ClinicVistTime.ID);
+                var temp = ctx.SignalTypes.FirstOrDefault(m => m.ID == SignalType.ID);
                 if (temp != null)
                 {
-                    temp.ID = ClinicVistTime.ID;
-                    temp.Name = ClinicVistTime.Name;
-                    temp.StartVistTime = ClinicVistTime.StartVistTime;
-                    temp.EndVistTime = ClinicVistTime.EndVistTime;
-                    temp.StartWaitTime = ClinicVistTime.StartWaitTime;
-                    temp.EndWaitTime = ClinicVistTime.EndWaitTime;
-                    temp.LastSellTime = ClinicVistTime.LastSellTime;
+                    temp.WorkTypeID = SignalType.WorkTypeID;
+                    temp.Name = SignalType.Name;
+                    temp.JobID = SignalType.JobID;
+                    temp.WorkTypeID = SignalType.WorkTypeID;
+                    temp.DoctorClinicFee = SignalType.DoctorClinicFee;
                 }
                 else
                 {

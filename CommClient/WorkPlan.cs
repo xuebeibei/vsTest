@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CommContracts;
 using System.ServiceModel;
 using System.Collections;
+using System.Data;
 
 namespace CommClient
 {
@@ -59,6 +60,11 @@ namespace CommClient
         public bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus)
         {
             return client.UpdateWorkPlanStatus(workPlanID, workPlanStatus);
+        }
+
+        public List<CommContracts.WorkPlanToSignalSource> GetAllWorkPlan111(int DepartmentID, DateTime startDate, DateTime endDate)
+        {
+            return client.GetAllWorkPlan111(DepartmentID, startDate, endDate);
         }
     }
 }

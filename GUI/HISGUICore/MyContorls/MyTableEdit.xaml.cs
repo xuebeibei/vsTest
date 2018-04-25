@@ -520,7 +520,7 @@ namespace HISGUICore.MyContorls
                 window.Width = 400;
                 window.Height = 500;
                 window.Content = list;
-                window.ResizeMode = ResizeMode.NoResize;
+                //window.ResizeMode = ResizeMode.NoResize;
                 bool? bResult = window.ShowDialog();
 
                 if (bResult.Value)

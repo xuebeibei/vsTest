@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using System.Collections;
+using System.Data;
 
 namespace CommContracts
 {
@@ -81,6 +82,9 @@ namespace CommContracts
 
         [OperationContract]
         bool UpdateWorkPlanStatus(int workPlanID, CommContracts.WorkPlanStatus workPlanStatus);
+
+        [OperationContract]
+        List<CommContracts.WorkPlanToSignalSource> GetAllWorkPlan111(int DepartmentID, DateTime startDate, DateTime endDate);
 
         [OperationContract]
         List<CommContracts.Employee> GetAllEmployee(string strName = "");
@@ -449,13 +453,13 @@ namespace CommContracts
         bool DeletePatient(int PatientID);
 
         [OperationContract]
-        List<CommContracts.SignalItem> GetAllSignalItem(string strName = "");
+        List<CommContracts.SignalType> GetAllSignalType(string strName = "");
         [OperationContract]
-        bool UpdateSignalItem(CommContracts.SignalItem signalItem);
+        bool UpdateSignalType(CommContracts.SignalType SignalType);
         [OperationContract]
-        bool SaveSignalItem(CommContracts.SignalItem signalItem);
+        bool SaveSignalType(CommContracts.SignalType SignalType);
         [OperationContract]
-        bool DeleteSignalItem(int signalItemID);
+        bool DeleteSignalType(int SignalTypeID);
 
 
 
@@ -621,13 +625,13 @@ namespace CommContracts
         List<CommContracts.InjectionBill> GetAllInHospitalInjectionBill(int InHospitalID);
 
         [OperationContract]
-        List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "");
+        List<CommContracts.SignalTime> GetAllClinicVistTime(string strName = "");
 
         [OperationContract]
-        bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime);
+        bool UpdateClinicVistTime(CommContracts.SignalTime ClinicVistTime);
 
         [OperationContract]
-        bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime);
+        bool SaveClinicVistTime(CommContracts.SignalTime ClinicVistTime);
 
         [OperationContract]
         bool DeleteClinicVistTime(int ClinicVistTimeID);
@@ -658,6 +662,40 @@ namespace CommContracts
         bool DeleteEmployeeJobHistory(int EmployeeJobHistoryID);
         [OperationContract]
         bool UpdateEmployeeJobHistory(CommContracts.EmployeeJobHistory EmployeeJobHistory);
+
+        [OperationContract]
+        List<CommContracts.Shift> GetAllShift(string strName = "");
+
+        [OperationContract]
+        bool UpdateShift(CommContracts.Shift Shift);
+
+        [OperationContract]
+        bool SaveShift(CommContracts.Shift Shift);
+
+        [OperationContract]
+        bool DeleteShift(int ShiftID);
+
+        [OperationContract]
+        List<CommContracts.WorkType> GetAllWorkType(string strName = "");
+
+        [OperationContract]
+        bool UpdateWorkType(CommContracts.WorkType WorkType);
+
+        [OperationContract]
+        bool SaveWorkType(CommContracts.WorkType WorkType);
+
+        [OperationContract]
+        bool DeleteWorkType(int WorkTypeID);
+
+
+        [OperationContract]
+        List<CommContracts.ClinicMedicalRecordModel> GetAllClinicMedicalRecordModel(string strName);
+        [OperationContract]
+        bool UpdateClinicMedicalRecordModel(CommContracts.ClinicMedicalRecordModel ClinicMedicalRecordModel);
+        [OperationContract]
+        bool SaveClinicMedicalRecordModel(CommContracts.ClinicMedicalRecordModel ClinicMedicalRecordModel);
+        [OperationContract]
+        bool DeleteClinicMedicalRecordModel(int ClinicMedicalRecordModelID);
 
     }
 }

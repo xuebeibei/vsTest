@@ -37,16 +37,16 @@
                         <ColumnDefinition Width="185"></ColumnDefinition>
                     </Grid.ColumnDefinitions>
                     <Label Grid.Row="0" Grid.Column="0" Margin="5">时段名称：</Label>
-                    <Label Grid.Row="0" Grid.Column="2" Margin="5">出诊时间：</Label>
+                    <Label Grid.Row="0" Grid.Column="2" Margin="5">工作时间：</Label>
                     <Label Grid.Row="0" Grid.Column="4" Margin="5">——</Label>
                     
                     <Label Grid.Row="1" Grid.Column="2" Margin="5">候诊时间：</Label>
                     <Label Grid.Row="1" Grid.Column="4" Margin="5">——</Label>
                     <Label Grid.Row="1" Grid.Column="0" Margin="5">挂号截止：</Label>
 
-                    <TextBox x:Name="VistTimeNameBox" Grid.Row="0" Grid.Column="1" Margin="5" Text="{Binding CurrentClinicVistTime.Name}"/>
-                    <Controls:MyTimeControl x:Name="StartVistTime" Grid.Row="0" Grid.Column="3"></Controls:MyTimeControl>
-                    <Controls:MyTimeControl x:Name="EndVistTime" Grid.Row="0" Grid.Column="5"></Controls:MyTimeControl>
+                    <ComboBox x:Name="ShiftCombo" Grid.Row="0" Grid.Column="1" Margin="5" SelectionChanged="ShiftCombo_SelectionChanged"/>
+                    <Controls:MyTimeControl x:Name="StartVistTime" Grid.Row="0" Grid.Column="3" IsEnabled="False"></Controls:MyTimeControl>
+                    <Controls:MyTimeControl x:Name="EndVistTime" Grid.Row="0" Grid.Column="5" IsEnabled="False"></Controls:MyTimeControl>
 
                     <Controls:MyTimeControl x:Name="LastSellTime" Grid.Row="1" Grid.Column="1"></Controls:MyTimeControl>
                     <Controls:MyTimeControl x:Name="StartWaitTime" Grid.Row="1" Grid.Column="3"></Controls:MyTimeControl>
@@ -56,9 +56,9 @@
                 <ListView Name="AllClinicVistTimeList" Grid.Row="1" Margin="5" SelectionMode="Single" SelectionChanged="AllClinicVistTimeList_SelectionChanged">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="时段名称" DisplayMemberBinding="{Binding Path=Name}" Width="100"></GridViewColumn>
-                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=StartVistTime}" Width="150"></GridViewColumn>
-                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=EndVistTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="时段名称" DisplayMemberBinding="{Binding Path=Shift.Name}" Width="100"></GridViewColumn>
+                            <GridViewColumn Header="出诊起始时间" DisplayMemberBinding="{Binding Path=Shift.StartTime}" Width="150"></GridViewColumn>
+                            <GridViewColumn Header="出诊结束时间" DisplayMemberBinding="{Binding Path=Shift.EndTime}" Width="150"></GridViewColumn>
                             <GridViewColumn Header="候诊起始时间" DisplayMemberBinding="{Binding Path=StartWaitTime}" Width="150"></GridViewColumn>
                             <GridViewColumn Header="候诊结束时间" DisplayMemberBinding="{Binding Path=EndWaitTime}" Width="150"></GridViewColumn>
                             <GridViewColumn Header="当天挂号截止时间" DisplayMemberBinding="{Binding Path=LastSellTime}" Width="150"></GridViewColumn>

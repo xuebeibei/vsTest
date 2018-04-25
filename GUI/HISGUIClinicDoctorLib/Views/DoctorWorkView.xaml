@@ -25,6 +25,12 @@
             <Menu DockPanel.Dock="Top">
                 <MenuItem x:Name="ClinicBtn" Header="门诊接诊" Margin="5" Click="ClinicBtn_Click"/>
                 <MenuItem x:Name="InHospitalBtn" Header="住院治疗" Margin="5" Click="InHospitalBtn_Click"/>
+                <MenuItem x:Name="ModelBtn" Header="模板管理" Margin="5">
+                    <MenuItem x:Name="BingLiModelBtn" Header="病历模板" Click="BingLiModelBtn_Click"></MenuItem>
+                    <MenuItem x:Name="ChuFangModelBtn" Header="处方模板" Click="ChuFangModelBtn_Click"></MenuItem>
+                    <MenuItem x:Name="JianChaModelBtn" Header="检查模板" Click="JianChaModelBtn_Click"></MenuItem>
+                    <MenuItem x:Name="JianYanModelBtn" Header="检验模板" Click="JianYanModelBtn_Click"></MenuItem>
+                </MenuItem>
                 <MenuItem x:Name="WorkBtn" Header="排班管理" Margin="5">
                     <MenuItem x:Name="BasicDataSet" Header="基础数据" Click="BasicDataSet_Click"></MenuItem>
                     <MenuItem x:Name="WorkRecordSet" Header="排班记录" Click="WorkRecordSet_Click"></MenuItem>

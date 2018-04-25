@@ -58,10 +58,10 @@ namespace HISGUINurseLib.ViewModels
         }
 
         // 得到某一天的所有到诊患者
-        public List<CommContracts.Registration> GetOneDayRegistrationList(DateTime date)
+        public List<CommContracts.Registration> GetOneDayRegistrationList(int DepartmentID, DateTime date)
         {
             CommClient.Registration myd = new CommClient.Registration();
-            return myd.GetDepartmentRegistrationList(0, 0, date, date);
+            return myd.GetDepartmentRegistrationList(DepartmentID, 0, date, date);
         }
 
         // 得到所有需要执行的门诊患者

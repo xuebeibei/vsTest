@@ -21,6 +21,7 @@ namespace DAL
             this.DepartmentEnum = DepartmentEnum.其他科室;
             SickRooms = new List<SickRoom>();
             EmployeeDepartmentHistorys = new List<EmployeeDepartmentHistory>();
+            WorkPlans = new List<WorkPlan>();
         }
         /// <summary>
         /// 主键ID
@@ -53,5 +54,10 @@ namespace DAL
         /// 员工部门变更历史
         /// </summary>
         public virtual ICollection<EmployeeDepartmentHistory> EmployeeDepartmentHistorys { get; set; }
+
+        /// <summary>
+        /// 该部门对应的排班记录
+        /// </summary>
+        public virtual ICollection<WorkPlan> WorkPlans { get; set; }
     }
 }

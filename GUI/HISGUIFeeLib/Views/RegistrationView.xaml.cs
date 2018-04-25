@@ -34,7 +34,7 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        public SignalSourceMsg(CommContracts.ClinicVistTime signalTimeEnum)
+        public SignalSourceMsg(CommContracts.SignalTime signalTimeEnum)
         {
             ClinicVistTime = signalTimeEnum;
 
@@ -45,14 +45,16 @@ namespace HISGUIFeeLib.Views
             }
         }
 
-        public CommContracts.ClinicVistTime ClinicVistTime { get; set; }
+        public CommContracts.SignalTime ClinicVistTime { get; set; }
 
         public List<string> weekStringList { get; set; }
     }
 
     public class SignalSourceNums
     {
-        public int HasUsedNum { get; set; }
+        public int hasUnUsedNum { get; set; }
+
+        public CommContracts.SignalType SignalType { get; set; }
         public CommContracts.WorkPlan SignalSource { get; set; }
     }
 
@@ -136,15 +138,6 @@ namespace HISGUIFeeLib.Views
             updatePatientsMsg(strPatientCardNum);
         }
 
-        private void departmentList_Selected(object sender, RoutedEventArgs e)
-        {
-            var department = this.departmentList.SelectedItem as CommContracts.Department;
-            if (department == null)
-                return;
-
-            updateSignalSourceMsg();
-            updateSignalList();
-        }
         private void updateSignalSourceMsg()
         {
             initSignalSourceGrid();
@@ -155,29 +148,36 @@ namespace HISGUIFeeLib.Views
         {
             List<SignalSourceMsg> nullData = new List<SignalSourceMsg>();
 
-            CommClient.ClinicVistTime clinicVistClient = new CommClient.ClinicVistTime();
-            List<CommContracts.ClinicVistTime> vistTimeList = new List<CommContracts.ClinicVistTime>();
+            var department = this.departmentList.SelectedItem as CommContracts.Department;
+            if (department == null)
+                return nullData;
+
+            CommClient.WorkPlan workPlanClient = new CommClient.WorkPlan();
+            List<CommContracts.WorkPlanToSignalSource> myList = workPlanClient.GetAllWorkPlan111(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
+
+
+            int n = myList.Count();
+
+
+
+            CommClient.SignalTime clinicVistClient = new CommClient.SignalTime();
+            List<CommContracts.SignalTime> vistTimeList = new List<CommContracts.SignalTime>();
             vistTimeList = clinicVistClient.GetAllClinicVistTime();
 
             if (vistTimeList == null)
                 return null;
             else
             {
-                foreach (CommContracts.ClinicVistTime tem in vistTimeList)
+                foreach (CommContracts.SignalTime tem in vistTimeList)
                 {
                     nullData.Add(new SignalSourceMsg(tem));
                 }
             }
 
-            var department = this.departmentList.SelectedItem as CommContracts.Department;
-            if (department == null)
-                return nullData;
-
             var vm = this.DataContext as HISGUIFeeVM;
 
             List<SignalSourceMsg> data = new List<SignalSourceMsg>();
 
-            List<CommContracts.WorkPlan> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date, 0);
             bool bIsHasRegistration = false;
             List<CommContracts.Registration> registrationList = vm?.GetDepartmentRegistrationList(department.ID, DateTime.Now.Date, DateTime.Now.AddDays(6).Date);
             if (!(registrationList == null || registrationList.Count <= 0))
@@ -185,35 +185,28 @@ namespace HISGUIFeeLib.Views
                 bIsHasRegistration = true;
             }
 
-            if (sourceList == null || sourceList.Count <= 0)
+            foreach (CommContracts.SignalTime tim in vistTimeList)
             {
-                return nullData;
-            }
-            else
-            {
-                foreach (CommContracts.ClinicVistTime tim in vistTimeList)
+                SignalSourceMsg msg = new SignalSourceMsg(tim);
+                foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
                 {
-                    SignalSourceMsg msg = new SignalSourceMsg(tim);
-                    foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+                    var query = from u in myList
+                                where u.WorkPlan.WorkPlanDate.Value.DayOfWeek == day && u.WorkPlan.ShiftID == tim.ShiftID
+                                select u.WorkPlan.MaxNum;
+                    int HaveNum = query.Sum(); int UsedNum = 0;
+                    if (bIsHasRegistration)
                     {
-                        var query = from u in sourceList
-                                    where u.VistDate.Value.DayOfWeek == day && u.ClinicVistTimeID == tim.ID
-                                    select u.MaxNum;
-                        int HaveNum = query.Sum(); int UsedNum = 0;
-                        if (bIsHasRegistration)
-                        {
-                            var regisQuery = from e in registrationList
-                                             where e.SignalSource.VistDate.Value.DayOfWeek == day &&
-                                             e.SignalSource.ClinicVistTimeID == tim.ID 
-                                             select e;
-                            UsedNum = regisQuery.Count();
-                        }
-
-                        string str = HaveNum - UsedNum == 0 ? "" : (HaveNum - UsedNum).ToString();
-                        msg.weekStringList[(int)day] = str;
+                        var regisQuery = from e in registrationList
+                                         where e.SignalDate.DayOfWeek == day &&
+                                         e.SignalTime.ShiftID == tim.ShiftID
+                                         select e;
+                        UsedNum = regisQuery.Count();
                     }
-                    data.Add(msg);
+
+                    string str = HaveNum - UsedNum == 0 ? "" : (HaveNum - UsedNum).ToString();
+                    msg.weekStringList[(int)day] = str;
                 }
+                data.Add(msg);
             }
             return data;
         }
@@ -227,7 +220,7 @@ namespace HISGUIFeeLib.Views
             this.SignalSourceGrid.Columns.Add(new DataGridTextColumn()
             {
                 Header = "时段\\日期",
-                Binding = new Binding("ClinicVistTime.Name"),
+                Binding = new Binding("ClinicVistTime.Shift.Name"),
                 Width = 63,
                 IsReadOnly = true
                 //,
@@ -258,6 +251,7 @@ namespace HISGUIFeeLib.Views
             SignalList.ItemsSource = null;
             if (SignalSourceGrid.SelectedCells == null || SignalSourceGrid.SelectedCells.Count <= 0)
                 return;
+
             string data = SignalSourceGrid.SelectedCells[0].Column.Header.ToString();
             int rowIdnex = SignalSourceGrid.Items.IndexOf(SignalSourceGrid.SelectedCells[0].Item);   // 行坐标
 
@@ -279,34 +273,42 @@ namespace HISGUIFeeLib.Views
 
             if (list != null)
             {
-                CommContracts.ClinicVistTime timeEnum = list.ElementAt(rowIdnex).ClinicVistTime;
+                CommContracts.SignalTime timeEnum = list.ElementAt(rowIdnex).ClinicVistTime;
 
                 var department = this.departmentList.SelectedItem as CommContracts.Department;
                 if (department == null)
                     return;
 
                 var vm = this.DataContext as HISGUIFeeVM;
-                List<CommContracts.WorkPlan> sourceList = vm?.GetDepartmentSignalSourceList(department.ID, dt, dt, timeEnum.ID);
+                CommClient.WorkPlan workPlanClient = new CommClient.WorkPlan();
+                List<CommContracts.WorkPlanToSignalSource> myList = workPlanClient.GetAllWorkPlan111(department.ID, dt, dt);
+
+                var query = from u in myList
+                            where u.WorkPlan.ShiftID == timeEnum.ShiftID
+                            select u;
 
                 List<CommContracts.Registration> registrationList = vm?.GetDepartmentRegistrationList(department.ID, dt, dt);
 
                 List<SignalSourceNums> numsList = new List<SignalSourceNums>();
 
-                foreach (var source in sourceList)
+                foreach (var tem in query)
                 {
-                    if (source == null)
-                        continue;
                     SignalSourceNums nums = new SignalSourceNums();
+
                     if (!(registrationList == null || registrationList.Count <= 0))
                     {
                         int hasNum = 0;
-                        var query = from u in registrationList
-                                    where u.SignalSourceID == source.ID 
-                                    select u;
-                        hasNum = query.Count();
-                        nums.HasUsedNum = hasNum;
+                        var query1 = from u in registrationList
+                                     where u.SignalTime.ShiftID == timeEnum.ShiftID
+                                     && u.SignalTypeID == tem.SignalType.ID
+                                     select u;
+                        hasNum = query1.Count();
+                        nums.hasUnUsedNum = tem.WorkPlan.MaxNum - hasNum;
                     }
-                    nums.SignalSource = source;
+                    else
+                        nums.hasUnUsedNum = tem.WorkPlan.MaxNum;
+                    nums.SignalSource = tem.WorkPlan;
+                    nums.SignalType = tem.SignalType;
                     numsList.Add(nums);
                 }
 
@@ -347,13 +349,13 @@ namespace HISGUIFeeLib.Views
             CommContracts.Registration registration = new CommContracts.Registration();
             registration.PatientID = vm.CurrentPatient.ID;
 
-            PayView payView = new PayView(0.0.ToString(), signal.SignalSource.Price.ToString());
+            PayView payView = new PayView(0.0.ToString(), signal.SignalType.DoctorClinicFee.ToString());
             var window = new Window();
 
             window.Content = payView;
             window.Width = 500;
             window.Height = 300;
-            window.ResizeMode = ResizeMode.NoResize;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -362,7 +364,26 @@ namespace HISGUIFeeLib.Views
                 registration.RegisterFee = payView.MoneyNum;
                 registration.RegisterTime = DateTime.Now;
                 registration.RegisterUserID = vm.CurrentUser.ID;
-                registration.SignalSourceID = signal.SignalSource.ID;
+                registration.DepartmentID = signal.SignalSource.DepartmentID;
+                registration.SignalDate = signal.SignalSource.WorkPlanDate.Value;
+                CommClient.SignalTime signaltimeClient = new CommClient.SignalTime();
+                List<CommContracts.SignalTime> sigTimeList = signaltimeClient.GetAllClinicVistTime();
+                var query = from a in sigTimeList
+                            where a.ShiftID == signal.SignalSource.ShiftID
+                            select a;
+
+                if (query.Count() == 1)
+                {
+                    foreach (var aa in query)
+                    {
+                        registration.SignalTimeID = aa.ID;
+                    }
+                }
+
+
+
+                registration.RegisterFee = signal.SignalType.DoctorClinicFee;
+                registration.SignalTypeID = signal.SignalType.ID;
 
                 bool? result = vm.SaveRegistration(registration);
                 if (result.HasValue)
@@ -385,19 +406,19 @@ namespace HISGUIFeeLib.Views
             if (registration == null)
                 return;
 
-            if(registration.SignalSource.VistDate.Value.Date < DateTime.Now.Date)
-            {
-                MessageBox.Show("超出就诊日期，不能退号！");
-                return;
-            }
-            else if(registration.SignalSource.VistDate.Value.Date == DateTime.Now.Date)
-            {
-                if(DateTime.Now.TimeOfDay > DateTime.Parse(registration.SignalSource.ClinicVistTime.LastSellTime).TimeOfDay)
-                {
-                    MessageBox.Show("超出退号时间，不能退号！");
-                    return;
-                }
-            }
+            //if(registration.SignalSource.WorkPlanDate.Value.Date < DateTime.Now.Date)
+            //{
+            //    MessageBox.Show("超出就诊日期，不能退号！");
+            //    return;
+            //}
+            //else if(registration.SignalSource.WorkPlanDate.Value.Date == DateTime.Now.Date)
+            //{
+            //    if(DateTime.Now.TimeOfDay > DateTime.Parse(registration.SignalSource.Shift.LastSellTime).TimeOfDay)
+            //    {
+            //        MessageBox.Show("超出退号时间，不能退号！");
+            //        return;
+            //    }
+            //}
 
 
             var vm = this.DataContext as HISGUIFeeVM;
@@ -407,7 +428,7 @@ namespace HISGUIFeeLib.Views
             cancelRegistration.RegistrationID = registration.ID;
             cancelRegistration.CancelTime = DateTime.Now;
 
-            if(cancelRegistrationClient.SaveCancelRegistration(cancelRegistration))
+            if (cancelRegistrationClient.SaveCancelRegistration(cancelRegistration))
             {
                 MessageBox.Show("退号成功！");
                 return;
@@ -423,7 +444,7 @@ namespace HISGUIFeeLib.Views
 
         private void FindBtn_Click(object sender, RoutedEventArgs e)
         {
-            if(this.GuaHaoJiLuGrid.Visibility != Visibility.Visible)
+            if (this.GuaHaoJiLuGrid.Visibility != Visibility.Visible)
             {
                 this.GuaHaoGrid.Visibility = Visibility.Collapsed;
                 this.GuaHaoJiLuGrid.Visibility = Visibility.Visible;
@@ -452,6 +473,16 @@ namespace HISGUIFeeLib.Views
         {
             this.GuaHaoGrid.Visibility = Visibility.Visible;
             this.GuaHaoJiLuGrid.Visibility = Visibility.Collapsed;
+        }
+
+        private void departmentList_Selected(object sender, SelectionChangedEventArgs e)
+        {
+            var department = this.departmentList.SelectedItem as CommContracts.Department;
+            if (department == null)
+                return;
+
+            updateSignalSourceMsg();
+            updateSignalList();
         }
     }
 }

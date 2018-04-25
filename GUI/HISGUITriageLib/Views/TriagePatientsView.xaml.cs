@@ -27,7 +27,7 @@ namespace HISGUINurseLib.Views
     public class WaitMsg
     {
         public string Department { get; set; }
-        public CommContracts.ClinicVistTime ClinicVistTime { get; set; }
+        public CommContracts.SignalTime ClinicVistTime { get; set; }
         public string Doctor { get; set; }
         public int WaitNum { get; set; }
     }
@@ -37,14 +37,10 @@ namespace HISGUINurseLib.Views
     public partial class TriagePatientsView : HISGUIViewBase
     {
         private CommContracts.Registration currentRegistration;
-        private int currentPatientID;
-        private int currentUserID;
         public TriagePatientsView()
         {
             InitializeComponent();
             currentRegistration = new CommContracts.Registration();
-            currentPatientID = 0;
-            currentUserID = 1;// 默认值
             
             this.Loaded += Triage_Loaded;
         }
@@ -57,12 +53,24 @@ namespace HISGUINurseLib.Views
 
         private void Triage_Loaded(object sender, RoutedEventArgs e)
         {
+            InitCombo();
             updateAllWaitGrid();
         }
 
         private void WaitingGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
-            
+        }
+
+        private void InitCombo()
+        {
+            this.FeeTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.FeeTypeEnum));
+            this.FeeTypeCombo.SelectedIndex = 0;
+
+            this.ZJCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.ZhengJianEnum));
+            this.ZJCombo.SelectedIndex = 0;
+
+            this.CardTypeCombo.ItemsSource = Enum.GetValues(typeof(CommContracts.PatientCardEnum));
+            this.CardTypeCombo.SelectedIndex = 0;
         }
 
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
@@ -77,10 +85,10 @@ namespace HISGUINurseLib.Views
             currentRegistration = vm?.GetPatientRegistrations(vm.CurrentPatient.ID, DateTime.Now);
             if(currentRegistration != null)
             {
-                this.DepartmentBox.Text = currentRegistration.SignalSource.DepartmentID.ToString();
-                this.VistDateBox.Text = currentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd");
-                this.ClinicVistTimeBox.Text = "";
-                this.SignalItemBox.Text = currentRegistration.SignalSource.SignalItem.Name;
+                this.DepartmentBox.Text = currentRegistration.Department.Name;
+                this.VistDateBox.Text = currentRegistration.SignalDate.Date.ToString("yyyy-MM-dd");
+                this.ClinicVistTimeBox.Text = currentRegistration.SignalTime.Shift.Name;
+                this.SignalItemBox.Text = currentRegistration.SignalType.Name;
                 this.StatusBox.Text = currentRegistration.SeeDoctorStatus.ToString();
             }
         }
@@ -122,23 +130,30 @@ namespace HISGUINurseLib.Views
 
         private void ArriveBtn_Click(object sender, RoutedEventArgs e)
         {
-            currentRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.候诊中;
-            currentRegistration.ArriveTime = DateTime.Now;
-            currentRegistration.ArriveUserID = currentUserID;
-
-            var vm = this.DataContext as HISGUINurseVM;
-            bool? result = vm.UpdateRegistration(currentRegistration);
-            if (result.HasValue)
+            if(currentRegistration.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.未到诊)
             {
-                if (result.Value)
+                var vm = this.DataContext as HISGUINurseVM;
+                currentRegistration.SeeDoctorStatus = CommContracts.SeeDoctorStatusEnum.候诊中;
+                currentRegistration.ArriveTime = DateTime.Now;
+                currentRegistration.ArriveUserID = vm.CurrentUser.ID;
+
+                bool? result = vm.UpdateRegistration(currentRegistration);
+                if (result.HasValue)
                 {
-                    MessageBox.Show("到诊成功！");
-                    updateAllWaitGrid();
-                    this.ArriveBtn.IsEnabled = false;
-                    return;
+                    if (result.Value)
+                    {
+                        MessageBox.Show("到诊成功！");
+                        updateAllWaitGrid();
+                        this.ArriveBtn.IsEnabled = false;
+                        return;
+                    }
                 }
+                MessageBox.Show("到诊失败！");
             }
-            MessageBox.Show("到诊失败！");
+            else
+            {
+                MessageBox.Show("到诊失败，就诊状态为：" + currentRegistration.SeeDoctorStatus.ToString());
+            }
         }
 
         private void updateAllWaitGrid()
@@ -152,50 +167,37 @@ namespace HISGUINurseLib.Views
             List<WaitMsg> waitList = new List<WaitMsg>();
 
             var vm = this.DataContext as HISGUINurseVM;
-
-            List<CommContracts.WorkPlan> sourceList = vm?.GetOneDaySignalSourceList(DateTime.Now.Date);
-            if (sourceList == null || sourceList.Count == 0)
-                return waitList;
-
-            List<CommContracts.Registration> registrationList = vm?.GetOneDayRegistrationList(DateTime.Now.Date);
-
-            List<CommContracts.ClinicVistTime> vistTimelist = new List<CommContracts.ClinicVistTime>();
-            CommClient.ClinicVistTime clinicVistTimeClent = new CommClient.ClinicVistTime();
-            vistTimelist = clinicVistTimeClent.GetAllClinicVistTime();
+            CommClient.Employee employeeClient = new CommClient.Employee();
+            
+            var department = employeeClient.GetCurrentDepartment(vm.CurrentUser.ID);
+            if (department == null)
+                return null;
 
 
-            var departmentQuery = (from u in sourceList
-                                   select u.DepartmentID).Distinct();
+            // 得到该科室所有已到诊患者
+            List<CommContracts.Registration> registrationList = vm?.GetOneDayRegistrationList(department.ID, DateTime.Now.Date);
 
-            foreach (var de in departmentQuery)
+            foreach(var aa in registrationList)
             {
-                foreach (CommContracts.ClinicVistTime tim in vistTimelist)
-                {
-                    var doctorQuery = (from u in sourceList
-                                       where u.DepartmentID == de
-                                       select new { u.EmployeeID, u.ID }).Distinct();
+                WaitMsg waitMsg = new WaitMsg();
+                waitMsg.Department = aa.Department.Name;
+                waitMsg.ClinicVistTime = aa.SignalTime;
+                //waitMsg.Doctor = doc.EmployeeID.ToString();
 
-                    foreach (var doc in doctorQuery)
-                    {
-                        WaitMsg waitMsg = new WaitMsg();
-                        waitMsg.Department = de.ToString();
-                        waitMsg.ClinicVistTime = tim;
-                        waitMsg.Doctor = doc.EmployeeID.ToString();
+                var numQuery = (from u in registrationList
+                                where
+                                //u.SignalSourceID == doc.ID &&
+                                u.ArriveTime.HasValue &&
+                                u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中
+                                select u).Count();
 
-                        var numQuery = (from u in registrationList
-                                        where u.SignalSourceID == doc.ID &&
-                                        u.ArriveTime.HasValue &&
-                                        u.SeeDoctorStatus == CommContracts.SeeDoctorStatusEnum.候诊中
-                                        select u).Count();
-
-                        waitMsg.WaitNum = numQuery;
-
-                        waitList.Add(waitMsg);
-                    }
-                }
+                waitMsg.WaitNum = numQuery;
+                waitList.Add(waitMsg);
             }
 
             return waitList;
+
+
         }
 
         private void AllWaitGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
@@ -213,7 +215,7 @@ namespace HISGUINurseLib.Views
             window.Content = eidtAssayItem;
             window.Width = 400;
             window.Height = 500;
-            window.ResizeMode = ResizeMode.NoResize;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -222,54 +224,5 @@ namespace HISGUINurseLib.Views
                 //UpdateAllDate();
             }
         }
-
-        //private void ShowAllRegistration()
-        //{
-        //    var vm = this.DataContext as NurseVM;
-
-        //    Dictionary<int, string> dictionary = new Dictionary<int, string>();
-        //    dictionary = vm?.GetAllUnTriagePatient();
-
-        //    List<PatientMsgBox> list = new List<PatientMsgBox>();
-        //    if (dictionary != null)
-        //    {
-        //        for (int i = 0; i < dictionary.Count(); i++)
-        //        {
-        //            // 实例化一个控件
-        //            list.Add(new PatientMsgBox(dictionary.ElementAt(i).Key, dictionary.ElementAt(i).Value));
-        //        }
-
-        //        this.aaa.ItemsSource = list;
-        //    }
-        //}
-
-        //private void Button_Click(object sender, RoutedEventArgs e)
-        //{
-        //    if (this.aaa.SelectedItems.Count <= 0)
-        //    {
-        //        MessageBox.Show("请选择患者!");
-        //        return;
-        //    }
-
-        //    var vm = this.DataContext as NurseVM;
-        //    //if(vm?.CurrentPatientList == null)
-        //    //{
-
-        //    //}
-        //    //vm?.CurrentPatientList.Clear();
-        //    List<int> list = new List<int>();
-        //    for (int i = 0; i < this.aaa.SelectedItems.Count; i++)
-        //    {
-        //        PatientMsgBox aa = this.aaa.SelectedItems[i] as PatientMsgBox;
-        //        if (aa != null)
-        //        {
-        //            list.Add(aa.ID);
-        //        }
-        //    }
-
-        //    vm?.setList(list);
-
-        //    vm?.SelectDoctor();
-        //}
     }
 }

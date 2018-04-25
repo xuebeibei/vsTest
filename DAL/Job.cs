@@ -116,6 +116,7 @@ namespace DAL
         /// 职位类别
         /// </summary>
         public JobTypeEnum JobType { get; set; }
+
         /// <summary>
         /// 工作模块
         /// </summary>

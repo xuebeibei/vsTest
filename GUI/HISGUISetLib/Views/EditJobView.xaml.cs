@@ -36,7 +36,9 @@ namespace HISGUISetLib.Views
                 this.Job = job;
                 this.NameEdit.Text = job.Name;
                 this.JobGradeCombo.SelectedItem = job.JobGrade;
+                this.JobTypeCombo.SelectedItem = job.JobType;
                 this.PowerEnum.SelectedItem = job.PowerEnum;
+                
                 bIsEdit = true;
             }
         }

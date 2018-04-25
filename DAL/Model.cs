@@ -159,9 +159,11 @@ namespace DAL
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceDoctorAdvices”的 XML 注释
         public DbSet<OtherServiceDoctorAdvice> OtherServiceDoctorAdvices { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.OtherServiceDoctorAdvices”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SignalItems”的 XML 注释
-        public DbSet<SignalItem> SignalItems { get; set; }
+
+        /// <summary>
+        /// 号别表
+        /// </summary>
+        public DbSet<SignalType> SignalTypes { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.SignalItems”的 XML 注释
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.DoctorAdviceBases”的 XML 注释
@@ -251,7 +253,7 @@ namespace DAL
         /// <summary>
         /// 看诊时间段表
         /// </summary>
-        public DbSet<ClinicVistTime> ClinicVistTimes { get; set; }
+        public DbSet<SignalTime> SignalTimes { get; set; }
 
         /// <summary>
         /// 放号渠道表
@@ -267,6 +269,18 @@ namespace DAL
         /// 员工职位变更表
         /// </summary>
         public DbSet<EmployeeJobHistory> EmployeeJobHistorys { get; set; }
+
+        /// <summary>
+        /// 班次表
+        /// </summary>
+        public DbSet<Shift> Shifts { get; set; }
+
+        /// <summary>
+        /// 值班类别表
+        /// </summary>
+        public DbSet<WorkType> WorkTypes { get; set; }
+
+        public DbSet<ClinicMedicalRecordModel> ClinicMedicalRecordModels { get; set; }
 
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释

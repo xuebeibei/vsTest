@@ -106,13 +106,13 @@ namespace HISGUIDoctorLib.Views
                 ;
                 PatientMsg.Inlines.Add(new Run(str));
 
-                str = "号源名称：" + vm.CurrentRegistration.SignalSource.SignalItem.Name + "     " +
-                    "科室：" + vm.CurrentRegistration.SignalSource.DepartmentID + "     " +
+                str = "号源名称：" + vm.CurrentRegistration.SignalType.Name + "     " +
+                    "科室：" + vm.CurrentRegistration.Department.Name + "     " +
                     "看诊状态：" + vm.CurrentRegistration.SeeDoctorStatus.ToString() + "     " +
-                    "看诊时间：" + vm.CurrentRegistration.SignalSource.VistDate.Value.Date.ToString("yyyy-MM-dd") + "     " +
+                    "看诊时间：" + vm.CurrentRegistration.SignalTime.Shift.StartTime +"到" +  vm.CurrentRegistration.SignalTime.Shift.EndTime + "     " +
                     "费用：" + vm.CurrentRegistration.RegisterFee + "元     " +
                     "挂号经办人：" + vm.CurrentRegistration.RegisterUser.LoginName + "     " +
-                    "经办时间：" + vm.CurrentRegistration.RegisterTime.Value.Date + "     " ;
+                    "经办时间：" + vm.CurrentRegistration.RegisterTime.Value.Date + "     ";
                 PatientMsg.Inlines.Add(new Run(str));
             }
             else

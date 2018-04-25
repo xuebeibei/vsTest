@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace CommClient
 {
-    public class ClinicVistTime : MyTableBase
+    public class SignalTime : MyTableBase
     {
-        public ClinicVistTime()
+        public SignalTime()
         {
         }
 
-        public List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "")
+        public List<CommContracts.SignalTime> GetAllClinicVistTime(string strName = "")
         {
             return client.GetAllClinicVistTime(strName);
         }
 
-        public bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool UpdateClinicVistTime(CommContracts.SignalTime ClinicVistTime)
         {
             return client.UpdateClinicVistTime(ClinicVistTime);
         }
 
-        public bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool SaveClinicVistTime(CommContracts.SignalTime ClinicVistTime)
         {
             return client.SaveClinicVistTime(ClinicVistTime);
         }

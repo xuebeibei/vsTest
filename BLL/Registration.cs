@@ -26,27 +26,27 @@ namespace BLL
         {
             List<CommContracts.Registration> list = new List<CommContracts.Registration>();
 
-            using (DAL.HisContext ctx = new DAL.HisContext())
-            {
-                var query = from r in ctx.Registrations
-                            where
-                            (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
-                            (VistTime == null || r.SignalSource.VistDate == VistTime) &&
-                            (!HaveArrive || r.ArriveTime.HasValue)
-                            select r;
+            //using (DAL.HisContext ctx = new DAL.HisContext())
+            //{
+            //    var query = from r in ctx.Registrations
+            //                where
+            //                (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
+            //                (VistTime == null || r.SignalSource.WorkPlanDate == VistTime) &&
+            //                (!HaveArrive || r.ArriveTime.HasValue)
+            //                select r;
 
-                var config = new MapperConfiguration(cfg =>
-                {
-                    cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
-                });
-                var mapper = config.CreateMapper();
+            //    var config = new MapperConfiguration(cfg =>
+            //    {
+            //        cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+            //    });
+            //    var mapper = config.CreateMapper();
 
-                foreach (DAL.Registration tem in query)
-                {
-                    var dto = mapper.Map<CommContracts.Registration>(tem);
-                    list.Add(dto);
-                }
-            }
+            //    foreach (DAL.Registration tem in query)
+            //    {
+            //        var dto = mapper.Map<CommContracts.Registration>(tem);
+            //        list.Add(dto);
+            //    }
+            //}
 
             return list;
         }
@@ -105,7 +105,6 @@ namespace BLL
                     cfg.CreateMap<CommContracts.Registration, DAL.Registration>().
                     ForMember(x => x.MedicalRecords, opt => opt.Ignore()).
                     ForMember(x => x.Patient, opt => opt.Ignore()).
-                    ForMember(x => x.SignalSource, opt => opt.Ignore()).
                     ForMember(x => x.RegisterUser, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
@@ -126,6 +125,7 @@ namespace BLL
                 }
             }
             return true;
+            //return false;
         }
 
         public bool UpdateRegistration(CommContracts.Registration registration)
@@ -136,7 +136,6 @@ namespace BLL
                 if (temp != null)
                 {
                     temp.PatientID = registration.PatientID;
-                    temp.SignalSourceID = registration.SignalSourceID;
                     temp.RegisterUserID = registration.RegisterUserID;
                     temp.RegisterFee = registration.RegisterFee;
                     temp.RegisterTime = registration.RegisterTime;
@@ -175,14 +174,14 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from r in ctx.Registrations
-                            join cr in ctx.CancelRegistrations 
+                            join cr in ctx.CancelRegistrations
                             on r.ID equals cr.RegistrationID into rr
                             from cr in rr.DefaultIfEmpty()
                             where cr == null &&
-                            (DepartmentID <= 0 || r.SignalSource.DepartmentID == DepartmentID) &&
-                            (EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
-                            r.SignalSource.VistDate.Value <= endDate &&
-                            r.SignalSource.VistDate.Value >= startDate
+                            (DepartmentID <= 0 || r.DepartmentID == DepartmentID) &&
+                            //(EmployeeID <= 0 || r.SignalSource.EmployeeID == EmployeeID) &&
+                            r.SignalDate <= endDate &&
+                            r.SignalDate >= startDate
                             select r;
                 foreach (DAL.Registration ass in query)
                 {
@@ -209,7 +208,7 @@ namespace BLL
                 var query = from a in ctx.Registrations
                             where
                             a.PatientID == PatientID &&
-                            (!DateTime.HasValue || a.SignalSource.VistDate <= DateTime)
+                            (!DateTime.HasValue || a.SignalDate <= DateTime)
                             orderby a.RegisterTime descending
                             select a;
                 foreach (DAL.Registration ass in query)
@@ -225,6 +224,48 @@ namespace BLL
                 }
             }
             return list;
+        }
+
+        public CommContracts.Registration CallNextRegistration(int nDepartmentID, DateTime dateTime)
+        {
+            DateTime date = dateTime.Date;
+            DateTime endDate = date.AddDays(1);
+
+            CommContracts.Registration returnTemp = new CommContracts.Registration();
+
+            using (DAL.HisContext ctx = new DAL.HisContext())
+            {
+                var query = from a in ctx.Registrations
+                            where
+                            a.DepartmentID == nDepartmentID &&
+                            a.TriageStatus == DAL.TriageStatusEnum.no &&
+                            a.ArriveTime.Value >= date && 
+                            a.ArriveTime.Value < endDate
+                            orderby a.ArriveTime descending
+                            select a;
+                
+                if(query.Count() > 0)
+                {
+                    foreach(var tem in query)
+                    {
+                        var config = new MapperConfiguration(cfg =>
+                        {
+                            cfg.CreateMap<DAL.Registration, CommContracts.Registration>();
+                        });
+                        var mapper = config.CreateMapper();
+
+                        returnTemp = mapper.Map<CommContracts.Registration>(tem);
+                        returnTemp.TriageStatus = CommContracts.TriageStatusEnum.yes;
+
+                        if (UpdateRegistration(returnTemp))
+                        {
+                            return returnTemp;
+                        }
+                    }
+                }
+            }
+
+            return null;
         }
 
     }

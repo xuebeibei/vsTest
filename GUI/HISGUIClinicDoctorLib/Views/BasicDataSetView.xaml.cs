@@ -91,24 +91,24 @@ namespace HISGUIDoctorLib.Views
 
             SetMenuEnable(false);
 
-            if (strCurrentName == "出诊时段字典")
+            if (strCurrentName == "值班时段字典")
             {
                 this.listView1.View = this.Resources["ChuZhenShiDuan"] as GridView;
                 var vm = this.DataContext as HISGUIDoctorVM;
 
-                CommClient.ClinicVistTime client = new CommClient.ClinicVistTime();
-                List<CommContracts.ClinicVistTime> list = client.GetAllClinicVistTime();
+                CommClient.Shift client = new CommClient.Shift();
+                List<CommContracts.Shift> list = client.GetAllShift();
                 this.listView1.ItemsSource = list;
             }
-            else if (strCurrentName == "号别字典")
-            {
-                this.listView1.View = this.Resources["HaoBie"] as GridView;
-                var vm = this.DataContext as HISGUIDoctorVM;
+            //else if (strCurrentName == "号别字典")
+            //{
+            //    this.listView1.View = this.Resources["HaoBie"] as GridView;
+            //    var vm = this.DataContext as HISGUIDoctorVM;
 
-                CommClient.SignalItem client = new CommClient.SignalItem();
-                List<CommContracts.SignalItem> list = client.GetAllSignalItem();
-                this.listView1.ItemsSource = list;
-            }
+            //    CommClient.SignalItem client = new CommClient.SignalItem();
+            //    List<CommContracts.SignalType> list = client.GetAllSignalItem();
+            //    this.listView1.ItemsSource = list;
+            //}
             else if (strCurrentName == "科室字典")
             {
                 this.listView1.View = this.Resources["KeShi"] as GridView;

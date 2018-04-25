@@ -35,69 +35,73 @@ namespace DAL
         /// </summary>
         public WorkPlan()
         {
-            Registrations = new List<Registration>();
         }
 
         /// <summary>
         /// 门诊排班记录ID
         /// </summary>
-        public int ID { get; set; }                  // 号源ID
-
-        /// <summary>
-        /// 门诊医事服务费
-        /// </summary>
-        [DecimalPrecision(18, 4)]
-        public decimal Price { get; set; }           // 号源单价
-
-
-        /// <summary>
-        /// 排班日期
-        /// </summary>
-        public DateTime? VistDate { get; set; }       // 看诊日期
-
-        /// <summary>
-        /// 工作量
-        /// </summary>
-        public int MaxNum { get; set; }               // 最大号源
-
-        /// <summary>
-        /// 门诊坐诊类别ID，即号源类别ID
-        /// </summary>
-        public int SignalItemID { get; set; }         // 号源种类
-
-        /// <summary>
-        /// 排班医生ID
-        /// </summary>
-        public int EmployeeID { get; set; }           // 值班医生
+        public int ID { get; set; }
 
         /// <summary>
         /// 排班科室ID
         /// </summary>
-        public int DepartmentID { get; set; }         // 所属科室
+        public int DepartmentID { get; set; }
+
 
         /// <summary>
-        /// 门诊坐诊类别，即号源类别
+        /// 值班人员ID
         /// </summary>
-        public virtual SignalItem SignalItem { get; set; }
-        
+        public int EmployeeID { get; set; }
+
+        /// <summary>
+        /// 排班日期
+        /// </summary>
+        public DateTime? WorkPlanDate { get; set; }
+
         /// <summary>
         ///  时段ID
         /// </summary>
-        public int ClinicVistTimeID { get; set; }
+        public int ShiftID { get; set; }
 
         /// <summary>
-        /// 值班时段
+        /// 值班类别ID，即号源类别ID
         /// </summary>
-        public virtual ClinicVistTime ClinicVistTime { get; set; }
+        public int WorkTypeID { get; set; }
+
+        /// <summary>
+        /// 工作量
+        /// </summary>
+        public int MaxNum { get; set; }
 
         /// <summary>
         /// 排班记录状态
         /// </summary>
         public WorkPlanStatus WorkPlanStatus { get; set; }
 
+
+
+        ///////////////////外键/////////////////////
+
+
+
         /// <summary>
-        /// 所有门诊挂号
+        /// 排班科室
         /// </summary>
-        public virtual ICollection<Registration> Registrations { get; set; } // 所有门诊挂号     
+        public virtual Department Department { get; set; }
+
+        /// <summary>
+        /// 值班人员
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
+        /// <summary>
+        /// 值班类别，是门诊值班还是住院值班还是急诊值班
+        /// </summary>
+        public virtual WorkType WorkType { get; set; }
+
+        /// <summary>
+        /// 值班时段
+        /// </summary>
+        public virtual Shift Shift { get; set; }
     }
 }

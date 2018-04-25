@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using CommContracts;
 using System.Collections;
+using System.Data;
 
 namespace CommServer
 {
@@ -168,6 +169,12 @@ namespace CommServer
         {
             BLL.WorkPlan temp = new BLL.WorkPlan();
             return temp.UpdateWorkPlanStatus(workPlanID, workPlanStatus);
+        }
+
+        public List<CommContracts.WorkPlanToSignalSource> GetAllWorkPlan111(int DepartmentID, DateTime startDate, DateTime endDate)
+        {
+            BLL.WorkPlan temp = new BLL.WorkPlan();
+            return temp.GetAllWorkPlan111(DepartmentID, startDate, endDate);
         }
 
 
@@ -900,28 +907,28 @@ namespace CommServer
             return temp.GetAllInHospitalMedicineCharge(InpatientID);
         }
 
-        public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
+        public List<CommContracts.SignalType> GetAllSignalType(string strName = "")
         {
-            BLL.SignalItem temp = new BLL.SignalItem();
-            return temp.GetAllSignalItem(strName);
+            BLL.SignalType temp = new BLL.SignalType();
+            return temp.GetAllSignalType(strName);
         }
 
-        public bool UpdateSignalItem(CommContracts.SignalItem signalItem)
+        public bool UpdateSignalType(CommContracts.SignalType SignalType)
         {
-            BLL.SignalItem temp = new BLL.SignalItem();
-            return temp.UpdateSignalItem(signalItem);
+            BLL.SignalType temp = new BLL.SignalType();
+            return temp.UpdateSignalType(SignalType);
         }
 
-        public bool SaveSignalItem(CommContracts.SignalItem signalItem)
+        public bool SaveSignalType(CommContracts.SignalType SignalType)
         {
-            BLL.SignalItem temp = new BLL.SignalItem();
-            return temp.SaveSignalItem(signalItem);
+            BLL.SignalType temp = new BLL.SignalType();
+            return temp.SaveSignalType(SignalType);
         }
 
-        public bool DeleteSignalItem(int signalItemID)
+        public bool DeleteSignalType(int SignalTypeID)
         {
-            BLL.SignalItem temp = new BLL.SignalItem();
-            return temp.DeleteSignalItem(signalItemID);
+            BLL.SignalType temp = new BLL.SignalType();
+            return temp.DeleteSignalType(SignalTypeID);
         }
 
         public List<CommContracts.Patient> GetAllPatient(string strName = "")
@@ -1267,27 +1274,27 @@ namespace CommServer
             return temp.GetAllInHospitalInjectionBill(InHospitalID);
         }
 
-        public List<CommContracts.ClinicVistTime> GetAllClinicVistTime(string strName = "")
+        public List<CommContracts.SignalTime> GetAllClinicVistTime(string strName = "")
         {
-            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            BLL.SignalTime temp = new BLL.SignalTime();
             return temp.GetAllClinicVistTime(strName);
         }
 
-        public bool UpdateClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool UpdateClinicVistTime(CommContracts.SignalTime ClinicVistTime)
         {
-            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            BLL.SignalTime temp = new BLL.SignalTime();
             return temp.UpdateClinicVistTime(ClinicVistTime);
         }
 
-        public bool SaveClinicVistTime(CommContracts.ClinicVistTime ClinicVistTime)
+        public bool SaveClinicVistTime(CommContracts.SignalTime ClinicVistTime)
         {
-            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            BLL.SignalTime temp = new BLL.SignalTime();
             return temp.SaveClinicVistTime(ClinicVistTime);
         }
 
         public bool DeleteClinicVistTime(int ClinicVistTimeID)
         {
-            BLL.ClinicVistTime temp = new BLL.ClinicVistTime();
+            BLL.SignalTime temp = new BLL.SignalTime();
             return temp.DeleteClinicVistTime(ClinicVistTimeID);
         }
 
@@ -1377,5 +1384,77 @@ namespace CommServer
             return temp.UpdateEmployeeJobHistory(EmployeeJobHistory);
         }
 
+        public List<CommContracts.Shift> GetAllShift(string strName = "")
+        {
+            BLL.Shift temp = new BLL.Shift();
+            return temp.GetAllShift(strName);
+        }
+
+        public bool UpdateShift(CommContracts.Shift Shift)
+        {
+            BLL.Shift temp = new BLL.Shift();
+            return temp.UpdateShift(Shift);
+        }
+
+        public bool SaveShift(CommContracts.Shift Shift)
+        {
+            BLL.Shift temp = new BLL.Shift();
+            return temp.SaveShift(Shift);
+        }
+
+        public bool DeleteShift(int ShiftID)
+        {
+            BLL.Shift temp = new BLL.Shift();
+            return temp.DeleteShift(ShiftID);
+        }
+
+
+        public List<CommContracts.WorkType> GetAllWorkType(string strName = "")
+        {
+            BLL.WorkType temp = new BLL.WorkType();
+            return temp.GetAllWorkType(strName);
+        }
+
+        public bool UpdateWorkType(CommContracts.WorkType WorkType)
+        {
+            BLL.WorkType temp = new BLL.WorkType();
+            return temp.UpdateWorkType(WorkType);
+        }
+
+        public bool SaveWorkType(CommContracts.WorkType WorkType)
+        {
+            BLL.WorkType temp = new BLL.WorkType();
+            return temp.SaveWorkType(WorkType);
+        }
+
+        public bool DeleteWorkType(int WorkTypeID)
+        {
+            BLL.WorkType temp = new BLL.WorkType();
+            return temp.DeleteWorkType(WorkTypeID);
+        }
+
+        public List<CommContracts.ClinicMedicalRecordModel> GetAllClinicMedicalRecordModel(string strName)
+        {
+            BLL.ClinicMedicalRecordModel temp = new BLL.ClinicMedicalRecordModel();
+            return temp.GetAllClinicMedicalRecordModel(strName);
+        }
+
+        public bool UpdateClinicMedicalRecordModel(CommContracts.ClinicMedicalRecordModel ClinicMedicalRecordModel)
+        {
+            BLL.ClinicMedicalRecordModel temp = new BLL.ClinicMedicalRecordModel();
+            return temp.UpdateClinicMedicalRecordModel(ClinicMedicalRecordModel);
+        }
+
+        public bool SaveClinicMedicalRecordModel(CommContracts.ClinicMedicalRecordModel ClinicMedicalRecordModel)
+        {
+            BLL.ClinicMedicalRecordModel temp = new BLL.ClinicMedicalRecordModel();
+            return temp.SaveClinicMedicalRecordModel(ClinicMedicalRecordModel);
+        }
+
+        public bool DeleteClinicMedicalRecordModel(int ClinicMedicalRecordModelID)
+        {
+            BLL.ClinicMedicalRecordModel temp = new BLL.ClinicMedicalRecordModel();
+            return temp.DeleteClinicMedicalRecordModel(ClinicMedicalRecordModelID);
+        }
     }
 }

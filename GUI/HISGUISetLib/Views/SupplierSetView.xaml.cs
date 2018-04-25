@@ -60,7 +60,7 @@ namespace HISGUISetLib.Views
             window.Content = eidtSupplier;
             window.Width = 400;
             window.Height = 500;
-            window.ResizeMode = ResizeMode.NoResize;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -104,7 +104,7 @@ namespace HISGUISetLib.Views
             window.Content = eidtSupplier;
             window.Width = 400;
             window.Height = 500;
-            window.ResizeMode = ResizeMode.NoResize;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)

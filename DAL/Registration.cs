@@ -27,7 +27,7 @@ namespace DAL
         /// <summary>
         /// 挂号单ID
         /// </summary>
-        public int ID { get; set; } 
+        public int ID { get; set; }
 
         /// <summary>
         /// 患者ID
@@ -35,18 +35,34 @@ namespace DAL
         public int PatientID { get; set; }
 
         /// <summary>
-        /// 号源ID
+        /// 挂号科室
         /// </summary>
-        public int SignalSourceID { get; set; }
+        public int DepartmentID { get; set; }
+
         /// <summary>
-        /// 经办人ID
+        /// 号日期
         /// </summary>
-        public int RegisterUserID { get; set; }
+        public DateTime SignalDate { get; set; }
+
+        /// <summary>
+        /// 就诊时间
+        /// </summary>
+        public int SignalTimeID { get; set; }
+
+        /// <summary>
+        /// 号类别
+        /// </summary>
+        public int SignalTypeID { get; set; }
 
         /// <summary>
         /// 挂号费用
         /// </summary>
         public decimal RegisterFee { get; set; }
+
+        /// <summary>
+        /// 经办人ID
+        /// </summary>
+        public int RegisterUserID { get; set; }
 
         /// <summary>
         /// 经办时间
@@ -67,7 +83,7 @@ namespace DAL
         /// 支付方式
         /// </summary>
         public PayWayEnum PayWayEnum { get; set; }
- 
+
         /// <summary>
         /// 到诊用户ID
         /// </summary>
@@ -89,14 +105,27 @@ namespace DAL
         /// 患者
         /// </summary>
         public virtual Patient Patient { get; set; }                      // 
-        /// <summary>
-        /// 号源
-        /// </summary>
-        public virtual WorkPlan SignalSource { get; set; }            // 号源
+
         /// <summary>
         /// 经办人
         /// </summary>
         public virtual Employee RegisterUser { get; set; }                    // 经办人
+
+        /// <summary>
+        /// 科室
+        /// </summary>
+        public virtual Department Department { get; set; }
+        
+        /// <summary>
+        /// 就诊时间
+        /// </summary>
+        public virtual SignalTime SignalTime { get; set; }
+
+        /// <summary>
+        /// 号类型
+        /// </summary>
+        public virtual SignalType SignalType { get; set; }
+
         /// <summary>
         /// 病例列表
         /// </summary>

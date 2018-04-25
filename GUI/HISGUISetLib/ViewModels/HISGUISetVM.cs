@@ -184,6 +184,50 @@ namespace HISGUISetLib.ViewModels
             return false;
         }
 
+        // 得到所有的值班时段
+        public List<CommContracts.Shift> GetAllShift(string strName = "")
+        {
+            CommClient.Shift myd = new CommClient.Shift();
+
+            List<CommContracts.Shift> list = new List<CommContracts.Shift>();
+            list = myd.GetAllShift(strName);
+            return list;
+        }
+
+        // 删除供值班时段
+        public bool DeleteShift(int ShiftID)
+        {
+            CommClient.Shift myd = new CommClient.Shift();
+            if (myd.DeleteShift(ShiftID))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        // 得到所有的值班类别
+        public List<CommContracts.WorkType> GetAllWorkType(string strName = "")
+        {
+            CommClient.WorkType myd = new CommClient.WorkType();
+
+            List<CommContracts.WorkType> list = new List<CommContracts.WorkType>();
+            list = myd.GetAllWorkType(strName);
+            return list;
+        }
+
+        // 删除供值班类别
+        public bool DeleteWorkType(int WorkTypeID)
+        {
+            CommClient.WorkType myd = new CommClient.WorkType();
+            if (myd.DeleteWorkType(WorkTypeID))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         // 得到所有的药品
         public List<CommContracts.Medicine> GetAllMedicine(string strName = "")
         {
@@ -316,27 +360,27 @@ namespace HISGUISetLib.ViewModels
             return false;
         }
 
-        // 得到所有的号源种类
-        public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
-        {
-            CommClient.SignalItem myd = new CommClient.SignalItem();
+        //// 得到所有的号源种类
+        //public List<CommContracts.SignalType> GetAllSignalItem(string strName = "")
+        //{
+        //    CommClient.SignalItem myd = new CommClient.SignalItem();
 
-            List<CommContracts.SignalItem> list = new List<CommContracts.SignalItem>();
-            list = myd.GetAllSignalItem(strName);
-            return list;
-        }
+        //    List<CommContracts.SignalType> list = new List<CommContracts.SignalType>();
+        //    list = myd.GetAllSignalItem(strName);
+        //    return list;
+        //}
 
-        // 删除供号源种类
-        public bool DeleteSignalItem(int SignalItemID)
-        {
-            CommClient.SignalItem myd = new CommClient.SignalItem();
-            if (myd.DeleteSignalItem(SignalItemID))
-            {
-                return true;
-            }
+        //// 删除供号源种类
+        //public bool DeleteSignalItem(int SignalItemID)
+        //{
+        //    CommClient.SignalItem myd = new CommClient.SignalItem();
+        //    if (myd.DeleteSignalItem(SignalItemID))
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
         // 得到所有的患者
         public List<CommContracts.Patient> GetAllPatient(string strName = "")
@@ -365,28 +409,28 @@ namespace HISGUISetLib.ViewModels
         /// </summary>
         #region CurrentClinicVistTime
         public static readonly DependencyProperty CurrentClinicVistTimeProperty = DependencyProperty.Register(
-            "CurrentClinicVistTime", typeof(CommContracts.ClinicVistTime), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+            "CurrentClinicVistTime", typeof(CommContracts.SignalTime), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.ClinicVistTime CurrentClinicVistTime
+        public CommContracts.SignalTime CurrentClinicVistTime
         {
-            get { return (CommContracts.ClinicVistTime)GetValue(CurrentClinicVistTimeProperty); }
+            get { return (CommContracts.SignalTime)GetValue(CurrentClinicVistTimeProperty); }
             set { SetValue(CurrentClinicVistTimeProperty, value); }
         }
         #endregion
 
-        /// <summary>
-        /// 当前操作的号别
-        /// </summary>
-        #region CurrentSignalItem
-        public static readonly DependencyProperty CurrentSignalItemProperty = DependencyProperty.Register(
-            "CurrentSignalItem", typeof(CommContracts.SignalItem), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
+        ///// <summary>
+        ///// 当前操作的号别
+        ///// </summary>
+        //#region CurrentSignalItem
+        //public static readonly DependencyProperty CurrentSignalItemProperty = DependencyProperty.Register(
+        //    "CurrentSignalItem", typeof(CommContracts.SignalType), typeof(HISGUISetVM), new PropertyMetadata((sender, e) => { }));
 
-        public CommContracts.SignalItem CurrentSignalItem
-        {
-            get { return (CommContracts.SignalItem)GetValue(CurrentSignalItemProperty); }
-            set { SetValue(CurrentSignalItemProperty, value); }
-        }
-        #endregion
+        //public CommContracts.SignalType CurrentSignalItem
+        //{
+        //    get { return (CommContracts.SignalType)GetValue(CurrentSignalItemProperty); }
+        //    set { SetValue(CurrentSignalItemProperty, value); }
+        //}
+        //#endregion
 
         /// <summary>
         /// 当前操作的放号渠道

@@ -29,15 +29,17 @@
         <TreeView x:Name="AllSetTreeView" Margin="5" DockPanel.Dock="Left" SelectedItemChanged="AllSetTreeView_SelectedItemChanged">
             <TreeViewItem Margin="0,5,10,5" Header="医院结构" >
                 <TreeViewItem Margin="0,0,5,0" Header="医院信息"/>
-                <TreeViewItem Margin="0,0,5,0" Header="科室"/>
-                <TreeViewItem Margin="0,0,5,0" Header="职位"/>
                 <TreeViewItem Margin="0,0,5,0" Header="库房"/>
                 <TreeViewItem Margin="0,0,5,0" Header="供应商"/>
                 <TreeViewItem Margin="0,0,5,0" Header="病房"/>
                 <TreeViewItem Margin="0,0,5,0" Header="病床"/>
             </TreeViewItem>
-            <TreeViewItem Margin="0,5,10,5" Header="用户档案" >
+            <TreeViewItem Margin="0,5,10,5" Header="人力资源" >
+                <TreeViewItem Margin="0,0,5,0" Header="科室"/>
+                <TreeViewItem Margin="0,0,5,0" Header="职位"/>
                 <TreeViewItem Margin="0,0,5,0" Header="人员"/>
+                <TreeViewItem Margin="0,0,5,0" Header="值班时段"/>
+                <TreeViewItem Margin="0,0,5,0" Header="值班类别"/>
             </TreeViewItem>
             <TreeViewItem Margin="0,5,10,5" Header="字典" >
                 <TreeViewItem Margin="0,0,5,0" Header="药品"/>

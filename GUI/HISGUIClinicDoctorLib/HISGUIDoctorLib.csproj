@@ -97,6 +97,15 @@
     <Compile Include="Views\CaseHistory.xaml.cs">
       <DependentUpon>CaseHistory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ClinicMedicalRecordModelView.xaml.cs">
+      <DependentUpon>ClinicMedicalRecordModelView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicMedicalRecordView.xaml.cs">
+      <DependentUpon>ClinicMedicalRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewFileView.xaml.cs">
+      <DependentUpon>NewFileView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\WorkPlanView.xaml.cs">
       <DependentUpon>WorkPlanView.xaml</DependentUpon>
     </Compile>
@@ -189,6 +198,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ClinicMedicalRecordModelView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ClinicMedicalRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewFileView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\WorkPlanView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +278,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Views\PersonImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

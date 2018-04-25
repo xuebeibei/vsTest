@@ -494,7 +494,7 @@ namespace HISGUIFeeLib.Views
             window.Content = tempview;
             window.Width = 400;
             window.Height = 300;
-            window.ResizeMode = ResizeMode.NoResize;
+            //window.ResizeMode = ResizeMode.NoResize;
             bool? bResult = window.ShowDialog();
             if (bResult.Value)
             {

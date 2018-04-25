@@ -7,46 +7,49 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class SignalItem
+    public class WorkType
     {
-        public List<CommContracts.SignalItem> GetAllSignalItem(string strName = "")
+        public List<CommContracts.WorkType> GetAllWorkType(string strName)
         {
-            List<CommContracts.SignalItem> list = new List<CommContracts.SignalItem>();
+            List<CommContracts.WorkType> list = new List<CommContracts.WorkType>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.SignalItems
-                            where a.Name.StartsWith(strName)
-                            select a;
-                foreach (DAL.SignalItem ass in query)
-                {
-                    var config = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<DAL.SignalItem, CommContracts.SignalItem>();
-                    });
-                    var mapper = config.CreateMapper();
+                var query = from t in ctx.WorkTypes
+                            where t.Name.StartsWith(strName) 
+                            select t;
 
-                    CommContracts.SignalItem temp = mapper.Map<CommContracts.SignalItem>(ass);
-                    list.Add(temp);
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.WorkType, CommContracts.WorkType>();
+                });
+                var mapper = config.CreateMapper();
+
+                foreach (DAL.WorkType tem in query)
+                {
+                    var dto = mapper.Map<CommContracts.WorkType>(tem);
+                    list.Add(dto);
                 }
             }
+
             return list;
         }
 
-        public bool SaveSignalItem(CommContracts.SignalItem signalItem)
+        public bool SaveWorkType(CommContracts.WorkType WorkType)
         {
+            WorkType.ModifiedDate = DateTime.Now;
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.SignalItem, DAL.SignalItem>();
+                    cfg.CreateMap<CommContracts.WorkType, DAL.WorkType>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.SignalItem temp = new DAL.SignalItem();
-                temp = mapper.Map<DAL.SignalItem>(signalItem);
+                DAL.WorkType temp = new DAL.WorkType();
+                temp = mapper.Map<DAL.WorkType>(WorkType);
 
-                ctx.SignalItems.Add(temp);
+                ctx.WorkTypes.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -61,14 +64,14 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteSignalItem(int signalItemID)
+        public bool DeleteWorkType(int WorkTypeID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SignalItems.FirstOrDefault(m => m.ID == signalItemID);
+                var temp = ctx.WorkTypes.FirstOrDefault(m => m.ID == WorkTypeID);
                 if (temp != null)
                 {
-                    ctx.SignalItems.Remove(temp);
+                    ctx.WorkTypes.Remove(temp);
                 }
 
                 try
@@ -85,16 +88,15 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateSignalItem(CommContracts.SignalItem signalItem)
+        public bool UpdateWorkType(CommContracts.WorkType WorkType)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SignalItems.FirstOrDefault(m => m.ID == signalItem.ID);
+                var temp = ctx.WorkTypes.FirstOrDefault(m => m.ID == WorkType.ID);
                 if (temp != null)
                 {
-                    temp.Name = signalItem.Name;
-                    temp.DoctorJob = signalItem.DoctorJob;
-                    temp.SellPrice = signalItem.SellPrice;
+                    temp.Name = WorkType.Name;
+                    temp.ModifiedDate = DateTime.Now;
                 }
                 else
                 {

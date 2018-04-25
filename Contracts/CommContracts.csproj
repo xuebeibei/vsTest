@@ -52,7 +52,8 @@
     <Compile Include="CancelRegistration.cs" />
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
-    <Compile Include="ClinicVistTime.cs" />
+    <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="SignalTime.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="DoctorAdviceDetailBase.cs" />
@@ -95,7 +96,8 @@
     <Compile Include="PatientCardPrePay.cs" />
     <Compile Include="RecallHospital.cs" />
     <Compile Include="RegistrationDitch.cs" />
-    <Compile Include="SignalItem.cs" />
+    <Compile Include="Shift.cs" />
+    <Compile Include="SignalType.cs" />
     <Compile Include="StoreNumBase.cs" />
     <Compile Include="StoreOperateBillBase.cs" />
     <Compile Include="StoreOperateBillDetailBase.cs" />
@@ -131,6 +133,8 @@
     <Compile Include="TherapyDoctorAdviceDetail.cs" />
     <Compile Include="TherapyItem.cs" />
     <Compile Include="Triage.cs" />
+    <Compile Include="WorkPlanToSignalSource.cs" />
+    <Compile Include="WorkType.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

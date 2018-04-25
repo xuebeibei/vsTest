@@ -38,6 +38,7 @@ namespace HISGUISetLib.Views
         public EditEmployeeView(CommContracts.Employee employee = null)
         {
             InitializeComponent();
+
             CommClient.Department myd = new CommClient.Department();
             CommClient.Job myd1 = new CommClient.Job();
             CommClient.Employee myd2 = new CommClient.Employee();

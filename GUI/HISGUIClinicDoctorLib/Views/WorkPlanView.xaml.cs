@@ -28,22 +28,22 @@ namespace HISGUIDoctorLib.Views
         public PaiBan()
         {
             WorkPlanIDList = new List<int>();
-            WorkPlanSignalItemList = new List<CommContracts.SignalItem>();
+            WorkPlanWorkTypeList = new List<CommContracts.WorkType>();
             for (int i = 0; i < 7; i++)
             {
                 WorkPlanIDList.Add(0);
-                WorkPlanSignalItemList.Add(new CommContracts.SignalItem());
+                WorkPlanWorkTypeList.Add(new CommContracts.WorkType());
             }
         }
 
         public int EmployeeID { get; set; }
         public string Name { get; set; }
-        public int VistTimeID { get; set; }
-        public string VistTimeName { get; set; }
+        public int ShiftID { get; set; }
+        public string ShiftName { get; set; }
 
         public List<int> WorkPlanIDList { get; set; }
 
-        public List<CommContracts.SignalItem> WorkPlanSignalItemList { get; set; }
+        public List<CommContracts.WorkType> WorkPlanWorkTypeList { get; set; }
 
         public int MaxVistNum { get; set; }
     }
@@ -124,8 +124,8 @@ namespace HISGUIDoctorLib.Views
         {
             this.DateClinicMsgGrid.Columns.Clear();
 
-            CommClient.SignalItem myd = new CommClient.SignalItem();
-            List<CommContracts.SignalItem> listOfAllSignalItems = myd.GetAllSignalItem();
+            CommClient.WorkType myd = new CommClient.WorkType();
+            List<CommContracts.WorkType> listOfAllWorkTypes = myd.GetAllWorkType();
             DataGridLength length = new DataGridLength(1, DataGridLengthUnitType.Star);
 
 
@@ -143,7 +143,7 @@ namespace HISGUIDoctorLib.Views
             this.DateClinicMsgGrid.Columns.Add(new DataGridTextColumn()
             {
                 Header = "时段",
-                Binding = new Binding("VistTimeName"),
+                Binding = new Binding("ShiftName"),
                 Width = 100,
                 IsReadOnly = true
                 //,
@@ -156,8 +156,8 @@ namespace HISGUIDoctorLib.Views
                 this.DateClinicMsgGrid.Columns.Add(new DataGridComboBoxColumn()
                 {
                     Header = tempDate.ToString("yyyy-MM-dd dddd"),
-                    SelectedItemBinding = new Binding("WorkPlanSignalItemList["+(int)tempDate.DayOfWeek+"]"),
-                    ItemsSource = listOfAllSignalItems,
+                    SelectedItemBinding = new Binding("WorkPlanWorkTypeList["+(int)tempDate.DayOfWeek+"]"),
+                    ItemsSource = listOfAllWorkTypes,
                     Width = length,
                     IsReadOnly = (tempDate.Date >= DateTime.Now.Date ? false : true)
                 });
@@ -189,9 +189,9 @@ namespace HISGUIDoctorLib.Views
             if (DoctorList == null)
                 return null;
 
-            CommClient.ClinicVistTime vistTimeClient = new CommClient.ClinicVistTime();
-            List<CommContracts.ClinicVistTime> vistTimeList = vistTimeClient.GetAllClinicVistTime();
-            if (vistTimeList == null)
+            CommClient.Shift vistTimeClient = new CommClient.Shift();
+            List<CommContracts.Shift> shiftList = vistTimeClient.GetAllShift();
+            if (shiftList == null)
             {
                 return null;
             }
@@ -208,39 +208,39 @@ namespace HISGUIDoctorLib.Views
                 List<CommContracts.WorkPlan> sourceList = vm?.GetSignalSourceList(department.ID, employee.ID, monday, monday.AddDays(6), 0);
                 if (sourceList == null || sourceList.Count <= 0)
                 {
-                    foreach (var vistTime in vistTimeList)
+                    foreach (var shift in shiftList)
                     {
                         PaiBan paiBan = new PaiBan();
                         paiBan.EmployeeID = employee.ID;
                         paiBan.Name = employee.Name;
-                        paiBan.VistTimeID = vistTime.ID;
-                        paiBan.VistTimeName = vistTime.Name;
+                        paiBan.ShiftID = shift.ID;
+                        paiBan.ShiftName = shift.Name;
                         paiBan.MaxVistNum = 0;
                         data.Add(paiBan);
                     }
                 }
                 else
                 {
-                    foreach (var vistTime in vistTimeList)
+                    foreach (var vistTime in shiftList)
                     {
                         PaiBan paiBan = new PaiBan();
                         paiBan.EmployeeID = employee.ID;
                         paiBan.Name = employee.Name;
 
-                        paiBan.VistTimeID = vistTime.ID;
-                        paiBan.VistTimeName = vistTime.Name;
+                        paiBan.ShiftID = vistTime.ID;
+                        paiBan.ShiftName = vistTime.Name;
 
                         foreach (var tem in sourceList)
                         {
                             if (tem == null)
                                 continue;
-                            if (tem.ClinicVistTimeID != vistTime.ID)
+                            if (tem.ShiftID != vistTime.ID)
                                 continue;
 
-                            DayOfWeek dayOfWeek = tem.VistDate.Value.DayOfWeek;
+                            DayOfWeek dayOfWeek = tem.WorkPlanDate.Value.DayOfWeek;
 
                             paiBan.WorkPlanIDList[(int)dayOfWeek] = tem.ID;
-                            paiBan.WorkPlanSignalItemList[(int)dayOfWeek] = tem.SignalItem;
+                            paiBan.WorkPlanWorkTypeList[(int)dayOfWeek] = tem.WorkType;
 
                             paiBan.MaxVistNum = tem.MaxNum;
                         }
@@ -309,28 +309,27 @@ namespace HISGUIDoctorLib.Views
 
                 for (int week = 0; week < 7; week++)
                 {
-                    if (paiBan.WorkPlanSignalItemList[week] != null)
+                    if (paiBan.WorkPlanWorkTypeList[week] != null)
                     {
-                        if (paiBan.WorkPlanSignalItemList[week].ID == 0)
+                        if (paiBan.WorkPlanWorkTypeList[week].ID == 0)
                             continue;
 
                         CommContracts.WorkPlan signalSource = new CommContracts.WorkPlan();
                         signalSource.ID = paiBan.WorkPlanIDList[week];
                         signalSource.DepartmentID = department.ID;
                         signalSource.EmployeeID = paiBan.EmployeeID;
-                        signalSource.Price = paiBan.WorkPlanSignalItemList[week].SellPrice;
-                        signalSource.SignalItemID = paiBan.WorkPlanSignalItemList[week].ID;
-                        signalSource.ClinicVistTimeID = paiBan.VistTimeID;
+                        signalSource.WorkTypeID = paiBan.WorkPlanWorkTypeList[week].ID;
+                        signalSource.ShiftID = paiBan.ShiftID;
                         signalSource.MaxNum = paiBan.MaxVistNum;
 
 
                         if (week == 0)
-                            signalSource.VistDate = getMonday(currentManageDate).AddDays(6);
+                            signalSource.WorkPlanDate = getMonday(currentManageDate).AddDays(6);
                         else
-                            signalSource.VistDate = getMonday(currentManageDate).AddDays(week - 1);
+                            signalSource.WorkPlanDate = getMonday(currentManageDate).AddDays(week - 1);
 
 
-                        if (signalSource.VistDate.Value.Date >= DateTime.Now.Date)
+                        if (signalSource.WorkPlanDate.Value.Date >= DateTime.Now.Date)
                         {
                             sourceList.Add(signalSource);
                         }
@@ -373,6 +372,11 @@ namespace HISGUIDoctorLib.Views
             }
 
             updateDateClinicMsg();
+        }
+
+        private void CopyBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

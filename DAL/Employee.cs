@@ -23,6 +23,7 @@ namespace DAL
             EmployeeDepartmentHistorys = new List<EmployeeDepartmentHistory>();
             EmployeeJobHistorys = new List<EmployeeJobHistory>();
             EmployeeLoginHistorys = new List<EmployeeLoginHistory>();
+            WorkPlans = new List<WorkPlan>();
         }
 
         /// <summary>
@@ -54,6 +55,11 @@ namespace DAL
         public string Password { get; set; }
 
         /// <summary>
+        /// 门诊医师服务数量
+        /// </summary>
+        public int DoctorClinicNum { get; set; }
+
+        /// <summary>
         /// 修改日期
         /// </summary>
         public DateTime ModifiedDate { get; set; }
@@ -77,5 +83,10 @@ namespace DAL
         /// 员工登录历史
         /// </summary>
         public virtual ICollection<EmployeeLoginHistory> EmployeeLoginHistorys { get; set; }
+
+        /// <summary>
+        /// 该员工对应的排班记录
+        /// </summary>
+        public virtual ICollection<WorkPlan> WorkPlans { get; set; }
     }
 }

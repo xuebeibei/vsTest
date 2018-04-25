@@ -127,6 +127,9 @@
     <Compile Include="Views\EditPatientView.xaml.cs">
       <DependentUpon>EditPatientView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditShiftView.xaml.cs">
+      <DependentUpon>EditShiftView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditSickBedView.xaml.cs">
       <DependentUpon>EditSickBedView.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,9 @@
     </Compile>
     <Compile Include="Views\EditTherapyItemView.xaml.cs">
       <DependentUpon>EditTherapyItemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditWorkTypeView.xaml.cs">
+      <DependentUpon>EditWorkTypeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmployeeSetView.xaml.cs">
       <DependentUpon>EmployeeSetView.xaml</DependentUpon>
@@ -175,14 +181,17 @@
     <Compile Include="Views\SetWorkView.xaml.cs">
       <DependentUpon>SetWorkView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShiftSetView.xaml.cs">
+      <DependentUpon>ShiftSetView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SickBedSetView.xaml.cs">
       <DependentUpon>SickBedSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SickRoomSetView.xaml.cs">
       <DependentUpon>SickRoomSetView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SignalItemSetView.xaml.cs">
-      <DependentUpon>SignalItemSetView.xaml</DependentUpon>
+    <Compile Include="Views\SignalTypeSetView.xaml.cs">
+      <DependentUpon>SignalTypeSetView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StorehouseSetView.xaml.cs">
       <DependentUpon>StorehouseSetView.xaml</DependentUpon>
@@ -192,6 +201,9 @@
     </Compile>
     <Compile Include="Views\TherapyItemSetView.xaml.cs">
       <DependentUpon>TherapyItemSetView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\WorkTypeSetView.xaml.cs">
+      <DependentUpon>WorkTypeSetView.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -277,6 +289,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\EditShiftView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EditSickBedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -294,6 +310,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditTherapyItemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EditWorkTypeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -341,6 +361,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ShiftSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\SickBedSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -349,7 +373,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SignalItemSetView.xaml">
+    <Page Include="Views\SignalTypeSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -362,6 +386,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TherapyItemSetView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\WorkTypeSetView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

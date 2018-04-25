@@ -3,60 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization;
 
-namespace DAL
+namespace CommContracts
 {
     /// <summary>
     /// 门诊医生看诊时间段
     /// </summary>
-    public class ClinicVistTime
+    [DataContract]
+    public class SignalTime
     {
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        public ClinicVistTime()
-        {
-            SignalSources = new List<WorkPlan>();
-        }
-
         /// <summary>
         /// 主键ID
         /// </summary>
+        [DataMember]
         public int ID { get; set; }
 
         /// <summary>
-        /// 时间段名称
+        /// 班次ID
         /// </summary>
-        public string Name { get; set; }
-
-        /// <summary>
-        /// 看诊起始时间
-        /// </summary>
-        public string StartVistTime { get; set; }
-
-        /// <summary>
-        /// 看诊结束时间
-        /// </summary>
-        public string EndVistTime { get; set; }
+        [DataMember]
+        public int ShiftID { get; set; }
 
         /// <summary>
         /// 候诊起始时间
         /// </summary>
+        [DataMember]
         public string StartWaitTime { get; set; }
 
         /// <summary>
         /// 候诊结束时间
         /// </summary>
+        [DataMember]
         public string EndWaitTime { get; set; }
 
         /// <summary>
         /// 当天最后挂号时间
         /// </summary>
+        [DataMember]
         public string LastSellTime { get; set; }
 
+
         /// <summary>
-        /// 该时段对应的排班记录
+        /// 对应班次
         /// </summary>
-        public virtual ICollection<WorkPlan> SignalSources { get; set; }
+        [DataMember]
+        public Shift Shift { get; set; }
+
     }
 }

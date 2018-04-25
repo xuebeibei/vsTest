@@ -7,42 +7,41 @@
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
-        <StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="0" VerticalAlignment="Center">
-                <Label Margin="5">科室：</Label>
-                <TextBlock x:Name="DepartmentBlock" Width="100" Margin="5" IsEnabled="False" VerticalAlignment="Center"></TextBlock>
-                <Button Margin="5" Visibility="Collapsed">查找</Button>
-            </StackPanel>
-            <Grid Grid.Row="1">
+        <DockPanel>
+            <ToolBar Grid.Row="0" DockPanel.Dock="Top">
+                <Button x:Name="LastWeekBtn" Margin="5" Content="上一周" ToolTip="读卡" Click="LastWeekBtn_Click"></Button>
+                <Button x:Name="NextWeekBtn" Margin="5" Content="下一周" ToolTip="新建挂号" Click="NextWeekBtn_Click"></Button>
+                <Button x:Name="NowWeekBtn" Margin="5" Content="今天" ToolTip="挂号" Click="NowWeekBtn_Click"></Button>
+                <Button x:Name="CopyBtn" Margin="5" Content="复制上周" ToolTip="查询挂号记录" Click="CopyBtn_Click"></Button>
+                <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="退号" Click="SaveBtn_Click"></Button>
+                <Button x:Name="DeleteBtn" Margin="5" Content="休班" ToolTip="补打凭证" Click="DeleteBtn_Click"></Button>
+            </ToolBar>
+            <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                     <ColumnDefinition></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <StackPanel Grid.Column="0" Orientation="Horizontal">
-                    <Button x:Name="LastWeekBtn" Margin="5" Click="LastWeekBtn_Click">上一周</Button>
-                    <Button x:Name="NextWeekBtn" Margin="5" Click="NextWeekBtn_Click">下一周</Button>
-                    <Button x:Name="NowWeekBtn" Margin="5" Click="NowWeekBtn_Click">今天</Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Center">
+                    <Label Margin="5">科室：</Label>
+                    <TextBlock x:Name="DepartmentBlock" Width="100" Margin="5" IsEnabled="False" VerticalAlignment="Center"></TextBlock>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center">
                     <TextBlock x:Name="DateMsg"></TextBlock>
                 </StackPanel>
-                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button x:Name="CopyBtn" Margin="5">复制上周</Button>
-                </StackPanel>
-            </Grid>
-            <DataGrid x:Name="DateClinicMsgGrid" Margin="5" Grid.Row="2" 
+                <DataGrid x:Name="DateClinicMsgGrid" Margin="5" Grid.Row="1" Grid.ColumnSpan="3"
                       CanUserAddRows="False" 
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False" 
                       SelectionMode="Single" 
                       SelectionUnit="Cell"
                       CanUserDeleteRows="False">
-            </DataGrid>
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">休班</Button>
-                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
-            </StackPanel>
-        </StackPanel>
+                </DataGrid>
+            </Grid>
+        </DockPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

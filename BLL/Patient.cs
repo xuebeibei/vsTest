@@ -55,6 +55,9 @@ namespace BLL
                             select u.PID).ToList();
                 string str = "";
 
+                if (query.Count() <= 0)
+                    return NumStringHelper.GetFirstNum();
+
                 string strLast = query.Last();
                 if (string.IsNullOrEmpty(strLast))
                 {
@@ -77,6 +80,8 @@ namespace BLL
                              orderby u.ID ascending
                              select u.PatientCardNo).ToList();
                 string str = "";
+                if (query.Count() <= 0)
+                    return NumStringHelper.GetFirstNum();
 
                 string strLast = query.Last();
                 if (string.IsNullOrEmpty(strLast))

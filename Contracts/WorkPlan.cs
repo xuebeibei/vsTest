@@ -29,28 +29,46 @@ namespace CommContracts
     [DataContract]
     public class WorkPlan
     {
+        /// <summary>
+        /// 主键
+        /// </summary>
         [DataMember]
-        public int ID { get; set; }                  // 号源ID
+        public int ID { get; set; }
+        /// <summary>
+        /// 门诊排班记录ID
+        /// </summary>
         [DataMember]
-        public decimal Price { get; set; }           // 号源单价
+        public int DepartmentID { get; set; }
+
+        /// <summary>
+        /// 值班人员ID
+        /// </summary>
         [DataMember]
-        public DateTime? VistDate { get; set; }       // 看诊日期
+        public int EmployeeID { get; set; }
+
+        /// <summary>
+        /// 排班日期
+        /// </summary>
         [DataMember]
-        public int MaxNum { get; set; }               // 最大号源
-        [DataMember]
-        public int SignalItemID { get; set; }         // 号源种类
-        [DataMember]
-        public int EmployeeID { get; set; }           // 值班医生
-        [DataMember]
-        public int DepartmentID { get; set; }         // 所属科室
-        [DataMember]
-        public SignalItem SignalItem { get; set; }
+        public DateTime? WorkPlanDate { get; set; }
 
         /// <summary>
         ///  时段ID
         /// </summary>
         [DataMember]
-        public int ClinicVistTimeID { get; set; }
+        public int ShiftID { get; set; }
+
+        /// <summary>
+        /// 值班类别
+        /// </summary>
+        [DataMember]
+        public int WorkTypeID { get; set; }
+
+        /// <summary>
+        /// 工作量
+        /// </summary>
+        [DataMember]
+        public int MaxNum { get; set; }
 
         /// <summary>
         /// 排班记录状态
@@ -58,11 +76,25 @@ namespace CommContracts
         [DataMember]
         public WorkPlanStatus WorkPlanStatus { get; set; }
 
+
+        /// <summary>
+        /// 排班科室
+        /// </summary>
+        public virtual Department Department { get; set; }
+
+        /// <summary>
+        /// 值班人员
+        /// </summary>
+        public virtual Employee Employee { get; set; }
+
+        [DataMember]
+        public WorkType WorkType { get; set; }
+
         /// <summary>
         /// 值班时段
         /// </summary>
         [DataMember]
-        public ClinicVistTime ClinicVistTime { get; set; }
+        public Shift Shift { get; set; }
 
     }
 }

@@ -52,6 +52,13 @@ namespace CommContracts
         [DataMember]
         public string Password { get; set; }
 
+
+        /// <summary>
+        /// 门诊医师服务数量
+        /// </summary>
+        [DataMember]
+        public int DoctorClinicNum { get; set; }
+
         /// <summary>
         /// 修改日期
         /// </summary>

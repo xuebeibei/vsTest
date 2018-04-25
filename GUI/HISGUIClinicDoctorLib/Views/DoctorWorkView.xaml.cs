@@ -175,5 +175,44 @@ namespace HISGUIDoctorLib.Views
             MyTabControl.Items.Add(myTabItem);
             MyTabControl.SelectedItem = myTabItem;
         }
+
+        private void BingLiModelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string header = "模板管理>病历模板";
+
+            foreach (TabItem item in MyTabControl.Items)
+            {
+                CloseableTabItemHeader itemHeader = item.Header as CloseableTabItemHeader;
+
+                if (itemHeader.Title == header)
+                {
+                    MyTabControl.SelectedItem = item;
+                    return;
+                }
+            }
+
+            ClinicMedicalRecordModelView eidtInspect = new ClinicMedicalRecordModelView();
+
+            CloseableTabItem myTabItem = new CloseableTabItem(header);
+
+            myTabItem.Content = eidtInspect;
+            MyTabControl.Items.Add(myTabItem);
+            MyTabControl.SelectedItem = myTabItem;
+        }
+
+        private void ChuFangModelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void JianChaModelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void JianYanModelBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

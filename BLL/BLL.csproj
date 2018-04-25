@@ -56,7 +56,8 @@
     <Compile Include="AssayDoctorAdvice.cs" />
     <Compile Include="AssayItem.cs" />
     <Compile Include="CancelRegistration.cs" />
-    <Compile Include="ClinicVistTime.cs" />
+    <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="SignalTime.cs" />
     <Compile Include="Department.cs" />
     <Compile Include="DoctorAdviceBase.cs" />
     <Compile Include="Employee.cs" />
@@ -95,9 +96,10 @@
     <Compile Include="PatientCardPrePay.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Registration.cs" />
+    <Compile Include="Shift.cs" />
     <Compile Include="SickBed.cs" />
     <Compile Include="SickRoom.cs" />
-    <Compile Include="SignalItem.cs" />
+    <Compile Include="SignalType.cs" />
     <Compile Include="WorkPlan.cs" />
     <Compile Include="StoreRoom.cs" />
     <Compile Include="StoreRoomMaterialNum.cs" />
@@ -107,6 +109,7 @@
     <Compile Include="TherapyDoctorAdvice.cs" />
     <Compile Include="TherapyItem.cs" />
     <Compile Include="Triage.cs" />
+    <Compile Include="WorkType.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\CommContracts.csproj">
