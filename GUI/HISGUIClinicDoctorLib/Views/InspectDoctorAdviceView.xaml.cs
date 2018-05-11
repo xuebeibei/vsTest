@@ -88,7 +88,9 @@ namespace HISGUIDoctorLib.Views
 
             var vm = this.DataContext as HISGUIDoctorVM;
 
-            inspectDoctorAdvice.NO = "";// ?
+            inspectDoctorAdvice.NO = "";
+            //inspectDoctorAdvice.PatientID = vm.CurrentRegistration.PatientID;
+            //inspectDoctorAdvice.RegistrationID = vm.CurrentRegistration.ID;
             if (vm.IsClinicOrInHospital)
             {
                 if (vm.CurrentRegistration != null)

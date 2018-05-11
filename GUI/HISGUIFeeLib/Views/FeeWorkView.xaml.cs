@@ -32,7 +32,9 @@ namespace HISGUIFeeLib.Views
         public FeeWorkView()
         {
             InitializeComponent();
-           
+
+            
+
             ShowTimer = new System.Windows.Threading.DispatcherTimer();
             ShowTimer.Tick += new EventHandler(ShowCurTimer);//起个Timer一直获取当前时间
             ShowTimer.Interval = new TimeSpan(0, 0, 0, 1, 0);
@@ -61,6 +63,8 @@ namespace HISGUIFeeLib.Views
         }
         private void View_Loaded(object sender, RoutedEventArgs e)
         {
+            var vm = this.DataContext as HISGUIFeeVM;
+            UserName.Content = vm.CurrentUser.LoginName;
         }
 
         private void LayoutBtn_Click(object sender, RoutedEventArgs e)

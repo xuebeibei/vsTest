@@ -235,6 +235,7 @@ namespace BLL
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
+                // 简化 呼叫，等看诊操作都调试好之后，再开放呼叫功能
                 var query = from a in ctx.Registrations
                             where
                             a.DepartmentID == nDepartmentID &&

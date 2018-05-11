@@ -84,15 +84,15 @@ namespace HISGUIMedicineLib.Views
             string str = this.ItemTypeCombo.Text;
             if (str == "西药")
             {
-                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.xiyao;
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.西药;
             }
             else if (str == "中成药")
             {
-                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.zhongchengyao;
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.中成药;
             }
             else if (str == "中药")
             {
-                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.zhongyao;
+                nCurrentItemType = (int)CommContracts.MedicineTypeEnum.中药;
             }
 
             List<CommContracts.StoreRoomMedicineNum> list = vm?.getAllMedicineItemNum(

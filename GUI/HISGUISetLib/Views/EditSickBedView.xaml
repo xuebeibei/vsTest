@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:HISGUISetLib.Views"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
+    <Grid Background="White">
         <StackPanel>
             <Label Margin="5">名称*：</Label>
             <TextBox x:Name="NameEdit" Margin="5"></TextBox>

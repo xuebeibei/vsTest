@@ -38,7 +38,13 @@ namespace HISGUINurseLib.ViewModels
         public CommContracts.Registration GetPatientRegistrations(int PatientID, DateTime? DateTime = null)
         {
             CommClient.Registration myd = new CommClient.Registration();
-            return myd.GetPatientRegistrations(PatientID, DateTime).ElementAt(0);
+            List<CommContracts.Registration> list = myd.GetPatientRegistrations(PatientID, DateTime);
+            if (list == null)
+                return null;
+            else if (list.Count() <= 0)
+                return null;
+
+            return list.ElementAt(0);
 
             //return new CommContracts.Registration();
         }

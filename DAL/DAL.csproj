@@ -61,6 +61,7 @@
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="HospitalMsg.cs" />
     <Compile Include="Migrations\201804191143353_PaperTest13.cs" />
     <Compile Include="Migrations\201804191143353_PaperTest13.Designer.cs">
       <DependentUpon>201804191143353_PaperTest13.cs</DependentUpon>
@@ -116,6 +117,14 @@
     <Compile Include="Migrations\201804250933404_AddClinicMedicalRecordModel.cs" />
     <Compile Include="Migrations\201804250933404_AddClinicMedicalRecordModel.Designer.cs">
       <DependentUpon>201804250933404_AddClinicMedicalRecordModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100520570_PaperTest26.cs" />
+    <Compile Include="Migrations\201805100520570_PaperTest26.Designer.cs">
+      <DependentUpon>201805100520570_PaperTest26.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805100528197_PaperTest27.cs" />
+    <Compile Include="Migrations\201805100528197_PaperTest27.Designer.cs">
+      <DependentUpon>201805100528197_PaperTest27.cs</DependentUpon>
     </Compile>
     <Compile Include="SignalTime.cs" />
     <Compile Include="DecimalPrecisionAttribute.cs" />
@@ -348,6 +357,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201804250933404_AddClinicMedicalRecordModel.resx">
       <DependentUpon>201804250933404_AddClinicMedicalRecordModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100520570_PaperTest26.resx">
+      <DependentUpon>201805100520570_PaperTest26.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805100528197_PaperTest27.resx">
+      <DependentUpon>201805100528197_PaperTest27.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

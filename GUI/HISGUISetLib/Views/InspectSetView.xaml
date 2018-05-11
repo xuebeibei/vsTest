@@ -8,7 +8,7 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <ToolBar>
                 <TextBox x:Name="FindItemNameBox" Margin="5" Width="100"></TextBox>
                 <Button x:Name="FindItemBtn" Margin="5" Click="FindItemBtn_Click">查找</Button>
                 <Button x:Name="NewItemBtn" Margin="5" Click="NewItemBtn_Click">新增</Button>
@@ -16,7 +16,7 @@
                 <Button x:Name="EditItemBtn" Margin="5" Click="EditItemBtn_Click">修改</Button>
                 <Button x:Name="ExportItemBtn" Margin="5" Click="ExportItemBtn_Click">导出</Button>
                 <Button x:Name="ImportItemBtn" Margin="5" Click="ImportItemBtn_Click">导入</Button>
-            </StackPanel>
+            </ToolBar>
             <ListView Name="AllInspectList" Margin="5"
                               SelectionMode="Single" MouseDoubleClick="AllInspectList_MouseDoubleClick">
                 <ListView.View>
@@ -27,7 +27,6 @@
                         <GridViewColumn Header="价格" DisplayMemberBinding="{Binding Path=Price}" Width="60"></GridViewColumn>
                         <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="医保甲乙类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="检查部位" DisplayMemberBinding="{Binding Path=BodyRegion.Name}" Width="80"></GridViewColumn>
                         
                     </GridView>
                 </ListView.View>

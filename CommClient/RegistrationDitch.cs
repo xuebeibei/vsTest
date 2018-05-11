@@ -18,7 +18,7 @@ namespace CommClient
         {
             client = ChannelFactory<IRegistrationService>.CreateChannel(
                 new NetTcpBinding(SecurityMode.None),
-                new EndpointAddress("net.tcp://192.168.43.98:50557/RegistrationService"));
+                new EndpointAddress("net.tcp://192.168.1.221:50557/RegistrationService"));
 
         }
     }

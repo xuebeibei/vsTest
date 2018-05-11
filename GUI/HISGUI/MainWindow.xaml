@@ -6,9 +6,9 @@
         xmlns:prism="http://www.codeplex.com/prism"
         xmlns:local="clr-namespace:HISGUI"
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="1132"
-        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None" AllowsTransparency="True">
-    <!--WindowState="Maximized" WindowStyle="None" AllowsTransparency="True" -->
+        Title="医院信息管理系统" Height="700" Width="1132">
+    <!--
+        MouseLeftButtonDown="Window_MouseLeftButtonDown" WindowStyle="None" AllowsTransparency="True" -->
     <Grid>
         <ContentControl prism:RegionManager.RegionName="MainRegion"/>
     </Grid>

@@ -9,15 +9,15 @@ namespace CommContracts
 {
     public enum MedicineTypeEnum
     {
-        xiyao,
-        zhongchengyao,
-        zhongyao
+        西药,
+        中成药,
+        中药
     }
     public enum YiBaoEnum
     {
-        jia,
-        yi,
-        feijiafeiyi
+        甲类,
+        乙类,
+        非甲非乙
     }
 
     public enum DosageFormEnum

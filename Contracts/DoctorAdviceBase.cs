@@ -76,5 +76,10 @@ namespace CommContracts
         public Patient Patient { get; set; }
         [DataMember]
         public DoctorAdviceBaseEnum DoctorAdviceEnum { get; set; }
+
+        public override string ToString()
+        {
+            return this.NO + " " + this.WriteTime.ToString();
+        }
     }
 }

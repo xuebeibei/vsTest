@@ -8,7 +8,7 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
+            <ToolBar>
                 <TextBox x:Name="FindItemNameBox" Margin="5" Width="100"></TextBox>
                 <Button x:Name="FindItemBtn" Margin="5" Click="FindItemBtn_Click">查找</Button>
                 <Button x:Name="NewItemBtn" Margin="5" Click="NewItemBtn_Click">新增</Button>
@@ -16,7 +16,7 @@
                 <Button x:Name="EditItemBtn" Margin="5" Click="EditItemBtn_Click">修改</Button>
                 <Button x:Name="ExportItemBtn" Margin="5" Click="ExportItemBtn_Click">导出</Button>
                 <Button x:Name="ImportItemBtn" Margin="5" Click="ImportItemBtn_Click">导入</Button>
-            </StackPanel>
+            </ToolBar>
             <ListView Name="AllMaterialList" Margin="5"
                               SelectionMode="Single" MouseDoubleClick="AllMaterialList_MouseDoubleClick">
                 <ListView.View>
@@ -28,7 +28,6 @@
                         <GridViewColumn Header="单位" DisplayMemberBinding="{Binding Path=Unit}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="规格" DisplayMemberBinding="{Binding Path=Specifications}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="生产厂家" DisplayMemberBinding="{Binding Path=Manufacturer}" Width="80"></GridViewColumn>
-                        <GridViewColumn Header="贵重" DisplayMemberBinding="{Binding Path=Valuable}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="医保甲乙类" DisplayMemberBinding="{Binding Path=YiBaoEnum}" Width="80"></GridViewColumn>
                         <GridViewColumn Header="最大库存量" DisplayMemberBinding="{Binding Path=MaxNum}" Width="50"></GridViewColumn>
                         <GridViewColumn Header="最小库存量" DisplayMemberBinding="{Binding Path=MinNum}" Width="50"></GridViewColumn>

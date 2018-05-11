@@ -1456,5 +1456,27 @@ namespace CommServer
             BLL.ClinicMedicalRecordModel temp = new BLL.ClinicMedicalRecordModel();
             return temp.DeleteClinicMedicalRecordModel(ClinicMedicalRecordModelID);
         }
+
+
+        public List<CommContracts.HospitalMsg> GetAllHospitalMsg(string strName = "")
+        {
+            BLL.HospitalMsg temp = new BLL.HospitalMsg();
+            return temp.GetAllHospitalMsg(strName);
+        }
+        public bool UpdateHospitalMsg(CommContracts.HospitalMsg HospitalMsg)
+        {
+            BLL.HospitalMsg temp = new BLL.HospitalMsg();
+            return temp.UpdateHospitalMsg(HospitalMsg);
+        }
+        public bool SaveHospitalMsg(CommContracts.HospitalMsg HospitalMsg)
+        {
+            BLL.HospitalMsg temp = new BLL.HospitalMsg();
+            return temp.SaveHospitalMsg(HospitalMsg);
+        }
+        public bool DeleteHospitalMsg(int HospitalMsgID)
+        {
+            BLL.HospitalMsg temp = new BLL.HospitalMsg();
+            return temp.DeleteHospitalMsg(HospitalMsgID);
+        }
     }
 }

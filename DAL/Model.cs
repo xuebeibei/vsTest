@@ -12,15 +12,15 @@ namespace DAL
     /// 数据库连接类
     /// </summary>
     public class HisContext : DbContext
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext”的 XML 注释
     {
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
-        //public DbSet<User> Users { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Users”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
+
+        /// <summary>
+        /// 科室
+        /// </summary>
         public DbSet<Department> Departments { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Departments”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.SignalSources”的 XML 注释
+        /// <summary>
+        /// 排班
+        /// </summary>
         public DbSet<WorkPlan> WorkPlans { get; set; }
 
         /// <summary>
@@ -32,20 +32,24 @@ namespace DAL
         /// 退号单
         /// </summary>
         public DbSet<CancelRegistration> CancelRegistrations { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Registrations”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Patients”的 XML 注释
+        /// <summary>
+        /// 患者
+        /// </summary>
         public DbSet<Patient> Patients { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Patients”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Jobs”的 XML 注释
+        /// <summary>
+        /// 职位
+        /// </summary>
         public DbSet<Job> Jobs { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Jobs”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Employees”的 XML 注释
+        /// <summary>
+        /// 员工
+        /// </summary>
         public DbSet<Employee> Employees { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Employees”的 XML 注释
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Triages”的 XML 注释
         public DbSet<Triage> Triages { get; set; }
-#pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Triages”的 XML 注释
-#pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.Medicines”的 XML 注释
+        /// <summary>
+        /// 药品
+        /// </summary>
         public DbSet<Medicine> Medicines { get; set; }
 #pragma warning restore CS1591 // 缺少对公共可见类型或成员“HisContext.Medicines”的 XML 注释
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.MedicalRecords”的 XML 注释
@@ -249,7 +253,7 @@ namespace DAL
         /// 员工登录记录
         /// </summary>
         public DbSet<EmployeeLoginHistory> EmployeeLoginHistorys { get; set; }
-        
+
         /// <summary>
         /// 看诊时间段表
         /// </summary>
@@ -281,6 +285,11 @@ namespace DAL
         public DbSet<WorkType> WorkTypes { get; set; }
 
         public DbSet<ClinicMedicalRecordModel> ClinicMedicalRecordModels { get; set; }
+
+        /// <summary>
+        /// 医院信息
+        /// </summary>
+        public DbSet<HospitalMsg> HospitalMsgs { get; set; }
 
 
 #pragma warning disable CS1591 // 缺少对公共可见类型或成员“HisContext.OnModelCreating(DbModelBuilder)”的 XML 注释

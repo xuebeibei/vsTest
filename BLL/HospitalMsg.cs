@@ -7,46 +7,48 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class SickBed
+    public class HospitalMsg
     {
-        public List<CommContracts.SickBed> GetAllSickBed(string strName = "")
+        public List<CommContracts.HospitalMsg> GetAllHospitalMsg(string strName)
         {
-            List<CommContracts.SickBed> list = new List<CommContracts.SickBed>();
+            List<CommContracts.HospitalMsg> list = new List<CommContracts.HospitalMsg>();
 
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var query = from a in ctx.SickBeds
-                            where a.Name.StartsWith(strName)
-                            select a;
-                foreach (DAL.SickBed ass in query)
-                {
-                    var config = new MapperConfiguration(cfg =>
-                    {
-                        cfg.CreateMap<DAL.SickBed, CommContracts.SickBed>();
-                    });
-                    var mapper = config.CreateMapper();
+                var query = from t in ctx.HospitalMsgs
+                            where t.HospitalName.StartsWith(strName) 
+                            select t;
 
-                    CommContracts.SickBed temp = mapper.Map<CommContracts.SickBed>(ass);
-                    list.Add(temp);
+                var config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<DAL.HospitalMsg, CommContracts.HospitalMsg>();
+                });
+                var mapper = config.CreateMapper();
+
+                foreach (DAL.HospitalMsg tem in query)
+                {
+                    var dto = mapper.Map<CommContracts.HospitalMsg>(tem);
+                    list.Add(dto);
                 }
             }
+
             return list;
         }
 
-        public bool SaveSickBed(CommContracts.SickBed sickBed)
+        public bool SaveHospitalMsg(CommContracts.HospitalMsg HospitalMsg)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.SickBed, DAL.SickBed>().ForMember(x=>x.SickRoom, opt => opt.Ignore());
+                    cfg.CreateMap<CommContracts.HospitalMsg, DAL.HospitalMsg>();
                 });
                 var mapper = config.CreateMapper();
 
-                DAL.SickBed temp = new DAL.SickBed();
-                temp = mapper.Map<DAL.SickBed>(sickBed);
+                DAL.HospitalMsg temp = new DAL.HospitalMsg();
+                temp = mapper.Map<DAL.HospitalMsg>(HospitalMsg);
 
-                ctx.SickBeds.Add(temp);
+                ctx.HospitalMsgs.Add(temp);
                 try
                 {
                     ctx.SaveChanges();
@@ -61,14 +63,14 @@ namespace BLL
             return true;
         }
 
-        public bool DeleteSickBed(int sickBedID)
+        public bool DeleteHospitalMsg(int HospitalMsgID)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SickBeds.FirstOrDefault(m => m.ID == sickBedID);
+                var temp = ctx.HospitalMsgs.FirstOrDefault(m => m.ID == HospitalMsgID);
                 if (temp != null)
                 {
-                    ctx.SickBeds.Remove(temp);
+                    ctx.HospitalMsgs.Remove(temp);
                 }
 
                 try
@@ -85,18 +87,16 @@ namespace BLL
             return true;
         }
 
-        public bool UpdateSickBed(CommContracts.SickBed sickBed)
+        public bool UpdateHospitalMsg(CommContracts.HospitalMsg HospitalMsg)
         {
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
-                var temp = ctx.SickBeds.FirstOrDefault(m => m.ID == sickBed.ID);
+                var temp = ctx.HospitalMsgs.FirstOrDefault(m => m.ID == HospitalMsg.ID);
                 if (temp != null)
                 {
-                    temp.Name = sickBed.Name;
-                    temp.Price = sickBed.Price;
-                    temp.Unit = sickBed.Unit;
-                    temp.SickRoomID = sickBed.SickRoomID;
-                    temp.Remarks = sickBed.Remarks;
+                    temp.HospitalName = HospitalMsg.HospitalName;
+                    temp.YiBaoNo = HospitalMsg.YiBaoNo;
+                    temp.bIsYiBao = HospitalMsg.bIsYiBao;
                 }
                 else
                 {

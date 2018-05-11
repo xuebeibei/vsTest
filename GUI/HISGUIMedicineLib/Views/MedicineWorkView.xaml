@@ -6,65 +6,36 @@
              xmlns:local="clr-namespace:HISGUIMedicineLib.Views"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore"
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition></RowDefinition>
-        </Grid.RowDefinitions>
-        <Border CornerRadius ="4" Background="White" Grid.RowSpan="2"/>
-        <Grid Margin="5">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label>SeimunDH</Label>
-                <Label>库存管理</Label>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <TextBlock x:Name="Tt" Margin="5" TextWrapping="Wrap"></TextBlock>
-                <Label x:Name="UserName"></Label>
-                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click">退出</Button>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
-                <Label Margin="5">当前库房：</Label>
-                <ComboBox x:Name="StoreCombo" Margin="5" Width="100"></ComboBox>
-                <Label Margin="5">当前物品：</Label>
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                    <RadioButton x:Name="MedicineRadio" Margin="5" IsChecked="True" Click="MedicineRadio_Click">药品</RadioButton>
-                    <RadioButton x:Name="MaterialRadio" Margin="5" Click="MaterialRadio_Click">物资</RadioButton>
+    <DockPanel>
+        <DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <ComboBox x:Name="StoreCombo" Margin="5" Width="100" SelectionChanged="StoreCombo_SelectionChanged"></ComboBox>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                        <RadioButton x:Name="MedicineRadio" Margin="5" IsChecked="True" Click="MedicineRadio_Click">药品</RadioButton>
+                        <RadioButton x:Name="MaterialRadio" Margin="5" Click="MaterialRadio_Click">物资</RadioButton>
+                    </StackPanel>
+                    <MenuItem x:Name="InStoreBtn" Header="入库" Margin="5" Click="InStoreBtn_Click"/>
+                    <MenuItem x:Name="OutStoreBtn" Header="出库" Margin="5" Click="OutStoreBtn_Click"/>
+                    <MenuItem x:Name="StoreNumBtn" Header="库存" Margin="5" Click="StoreNumBtn_Click"/>
+                    <MenuItem x:Name="CheckStoreNumBtn" Header="盘点" Margin="5" Click="CheckStoreNumBtn_Click"/>
+                </Menu>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Label x:Name="UserName" Margin="5" Content="{Binding CurrentUser.Username}"></Label>
+                    <Button x:Name="LayoutBtn" Click="LayoutBtn_Click" Margin="5" Background="White" BorderThickness="0">退出</Button>
                 </StackPanel>
-            </StackPanel>
-
-            <TabControl x:Name="tabControl" Margin="5"  VerticalAlignment="Stretch"  Grid.Row="1">
-                <TabItem Header="入库管理">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:InStockView x:Name="InStockView"></local:InStockView>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="出库管理">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:OutStockView x:Name="OutStockView"></local:OutStockView>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="当前库存">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:ItemsNumView x:Name="ItemsNumView"></local:ItemsNumView>
-                    </ScrollViewer>
-                </TabItem>
-                <TabItem Header="库存盘点">
-                    <ScrollViewer VerticalScrollBarVisibility="Auto">
-                        <local:CheckView x:Name="CheckView"></local:CheckView>
-                    </ScrollViewer>
-                </TabItem>
-            </TabControl>
-        </Grid>
-    </Grid>
+            </Grid>
+            
+            <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
+                <StatusBarItem HorizontalAlignment="Right">
+                    <TextBlock Name="Tt"  Margin="5"/>
+                </StatusBarItem>
+            </StatusBar>
+            <TabControl x:Name="MyTabControl" Margin="2"/>
+        </DockPanel>
+    </DockPanel>
 </HISGUICore:HISGUIViewBase>

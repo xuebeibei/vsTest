@@ -123,15 +123,15 @@ namespace DAL
         /// <summary>
         /// 西药
         /// </summary>
-        xiyao,
+        西药,
         /// <summary>
         /// 中成药
         /// </summary>
-        zhongchengyao,
+        中成药,
         /// <summary>
         /// 中药
         /// </summary>
-        zhongyao
+        中药
     }
 
     /// <summary>
@@ -142,15 +142,15 @@ namespace DAL
         /// <summary>
         /// 甲类
         /// </summary>
-        jia,
+        甲类,
         /// <summary>
         /// 乙类
         /// </summary>
-        yi,
+        乙类,
         /// <summary>
         /// 非甲乙类
         /// </summary>
-        feijiafeiyi
+        非甲乙类
     }
     /// <summary>
     /// 药品用法，用以产生注射单，暂时未用到
@@ -208,23 +208,23 @@ namespace DAL
         /// <summary>
         /// 普通处方
         /// </summary>
-        PuTong,
+        普通处方,
         /// <summary>
         /// 急诊处方
         /// </summary>
-        JiZhen,
+        急诊处方,
         /// <summary>
         /// 儿科处方 
         /// </summary>
-        ErKe,
+        儿科处方,
         /// <summary>
         /// 麻精一
         /// </summary>
-        MaJingYi,
+        麻精一,
         /// <summary>
         /// 精二
         /// </summary>
-        JingEr
+        精二
     }
     /// <summary>
     /// 处方内容类别
@@ -234,11 +234,11 @@ namespace DAL
         /// <summary>
         /// 西药和中成药处方
         /// </summary>
-        XiChengYao,
+        西药和中成药处方,
         /// <summary>
         /// 中药处方
         /// </summary>
-        ZhongYao
+        中药处方
     }
     /// <summary>
     /// 医嘱单的收费情况
@@ -284,23 +284,23 @@ namespace DAL
         /// <summary>
         /// 门诊病例
         /// </summary>
-        MenZhen,
+        门诊病例,
         /// <summary>
         /// 入院记录,暂时未用
         /// </summary>
-        RuYuan,              
+        入院记录,              
         /// <summary>
         /// 病程记录
         /// </summary>
-        BingCheng,  
+        病程记录,  
         /// <summary>
         /// 出院记录
         /// </summary>
-        ChuYuan,              
+        出院记录,              
         /// <summary>
         /// 病案首页
         /// </summary>
-        BiangAnShouYe
+        病案首页
     }
     /// <summary>
     /// 医保类别

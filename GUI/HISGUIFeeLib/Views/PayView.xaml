@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Width="464" Height="240">
 
-    <DockPanel>
+    <DockPanel Background="White">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -17,21 +17,21 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition></RowDefinition>
-                <RowDefinition></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2">
+            <!--<Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="2">
                 <StackPanel  Orientation="Horizontal" 
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                     <Label FontSize="15">号源已锁定，请在</Label>
                     <Label Foreground="Orange" FontSize="20">4分32秒</Label>
                     <Label FontSize="15">内完成挂号，否则号源将自动取消</Label>
                 </StackPanel>
-            </Grid>
+            </Grid>-->
            
 
             <Label Margin="5" Grid.Row="2" Grid.Column="0">支付方式：</Label>

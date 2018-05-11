@@ -152,8 +152,17 @@
       <Project>{8fe73f6f-1765-4814-885d-320d7694e890}</Project>
       <Name>HISGUICore</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HISGUI\HISGUI.csproj">
+      <Project>{AABAD5D0-77D8-420F-AB70-67431005C7D8}</Project>
+      <Name>HISGUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
     <Page Include="Views\CheckView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

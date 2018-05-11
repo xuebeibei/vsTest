@@ -16,11 +16,11 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <!--<StackPanel Orientation="Horizontal" Grid.Row="0">
                 <RadioButton x:Name="ClinicRadio" Margin="5" IsChecked="True" Click="ClinicRadio_Click">门诊</RadioButton>
                 <RadioButton x:Name="HospitalRadio" Margin="5" Click="HospitalRadio_Click">住院</RadioButton>
-            </StackPanel>
-            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" SelectionChanged="AllPatientList_SelectionChanged">
+            </StackPanel>-->
+            <ListView x:Name="AllPatientList" Grid.Row="1" Margin="5" Visibility="Collapsed" SelectionChanged="AllPatientList_SelectionChanged">
                 <ListView.View>
                     <GridView x:Name="gridViewAllPatient">
                         <GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="60"></GridViewColumn>
@@ -30,10 +30,13 @@
             </ListView>
         </Grid>
         <StackPanel Grid.Column="1">
+            
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Grid.Row="0">
+                    <RadioButton x:Name="ClinicRadio" Margin="5" IsChecked="True" Click="ClinicRadio_Click">门诊</RadioButton>
+                    <RadioButton x:Name="HospitalRadio" Margin="5" Click="HospitalRadio_Click">住院</RadioButton>
+                </StackPanel>
                 <Button x:Name="ReadCard" Margin="5" Click="ReadCard_Click">读卡</Button>
-                <TextBox x:Name="FindName" Margin="5" Width="150"/>
-                <Button x:Name="FindBtn" Margin="5" Click="FindBtn_Click">查找</Button>
             </StackPanel>
             <Separator x:Name="Spe" Margin="5"/>
             <TextBlock x:Name="PatientMsg" Margin="5" Background="AliceBlue" TextWrapping="Wrap">
@@ -63,18 +66,14 @@
                     <GridView x:Name="gridViewAllWillPay">
                         <GridViewColumn Header="产生时间" DisplayMemberBinding="{Binding Path=WriteTime}" Width="150"></GridViewColumn>
                         <GridViewColumn Header="参考金额" DisplayMemberBinding="{Binding Path=SumOfMoney}" Width="100"></GridViewColumn>
-                        <GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=WriteDoctorUser.Employee.Name}" Width="100"></GridViewColumn>
+                        <!--<GridViewColumn Header="医生" DisplayMemberBinding="{Binding Path=WriteDoctorUser.Employee.Name}" Width="100"></GridViewColumn>-->
                         <GridViewColumn Header="类型" DisplayMemberBinding="{Binding Path=DoctorAdviceEnum}" Width="100"></GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
             <StackPanel x:Name="DetailsPanel">
             </StackPanel>
-            <Grid Name="printGrid">
-                <TextBlock Height="115" HorizontalAlignment="Left" Margin="79,31,0,0" Name="textBlock1" Text="打印测试" VerticalAlignment="Top" Width="322" FontSize="56" />
-            </Grid>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                
                 <Button x:Name="PayBtn" Margin="5" Click="PayBtn_Click" Visibility="Collapsed">收费</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
             </StackPanel>

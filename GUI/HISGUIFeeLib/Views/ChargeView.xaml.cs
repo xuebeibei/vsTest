@@ -20,6 +20,7 @@ using HISGUICore;
 using HISGUIFeeLib.ViewModels;
 using System.Data;
 using HISGUICore.MyContorls;
+using Microsoft.VisualBasic;
 
 namespace HISGUIFeeLib.Views
 {
@@ -47,7 +48,7 @@ namespace HISGUIFeeLib.Views
 
         private void ChargeView_Loaded(object sender, RoutedEventArgs e)
         {
-            ShowAllPatient();
+            showAllInHospitalPatient();
 
             var vm = this.DataContext as HISGUIFeeVM;
             if (this.ClinicRadio.IsChecked.Value)
@@ -134,6 +135,7 @@ namespace HISGUIFeeLib.Views
                 }
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -196,6 +198,7 @@ namespace HISGUIFeeLib.Views
 
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -253,6 +256,7 @@ namespace HISGUIFeeLib.Views
 
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -310,6 +314,7 @@ namespace HISGUIFeeLib.Views
 
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -367,6 +372,7 @@ namespace HISGUIFeeLib.Views
 
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -424,6 +430,7 @@ namespace HISGUIFeeLib.Views
 
                 MessageBox.Show("收费成功！");
                 UpdateAllChage();
+                ShowPatientMsg();
                 return;
             }
             else
@@ -478,30 +485,60 @@ namespace HISGUIFeeLib.Views
 
         private void ReadCard_Click(object sender, RoutedEventArgs e)
         {
-            myCurrentPatientID = 1; // 默认值
+            String strPatientCardNum = Interaction.InputBox("请输入就诊卡卡号", "读卡", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
+                return;
+
+            var vm = this.DataContext as HISGUIFeeVM;
+            CommContracts.Patient tempPatient = new CommContracts.Patient();
+
+            CommClient.Patient patientClient = new CommClient.Patient();
+
+            string ErrorMsg = "";
+            tempPatient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+            vm.CurrentPatient = tempPatient;
+
+            myCurrentPatientID = tempPatient.ID;
+
+            CommClient.Registration registrationClient = new CommClient.Registration();
+            List<CommContracts.Registration> registrationList = registrationClient.GetPatientRegistrations(vm.CurrentPatient.ID, DateTime.Now);
+            if (registrationList == null || registrationList.Count() <= 0)
+                return;
+
+            vm.CurrentRegistration = registrationList.ElementAt(0);
+
+
             ShowPatientMsg();
+
             UpdateAllChage();
         }
 
         private void ShowPatientMsg()
         {
+            PatientMsg.Inlines.Clear();
+
             var vm = this.DataContext as HISGUIFeeVM;
-            CommContracts.Patient tempPatient = vm?.ReadCurrentPatient(myCurrentPatientID);
+
+            if (vm.CurrentPatient == null)
+                return;
             decimal? dBalance = vm?.GetCurrentPatientBalance(myCurrentPatientID);
 
             PatientMsg.Inlines.Clear();
             string str =
-                "姓名：" + tempPatient.Name + " " +
-                "性别：" + tempPatient.Gender + " " +
-                "生日：" + tempPatient.BirthDay + " " +
-                "身份证号：" + tempPatient.ZhengJianNum + " " +
-                "民族：" + tempPatient.Volk + " " +
-                "籍贯：" + tempPatient.JiGuan_Sheng + " " +
-                "电话：" + tempPatient.Tel + " "
+                "姓名：" + vm.CurrentPatient.Name + " " +
+                "性别：" + vm.CurrentPatient.Gender + " " +
+                "生日：" + vm.CurrentPatient.BirthDay + " " +
+                "身份证号：" + vm.CurrentPatient.ZhengJianNum + " " +
+                "民族：" + vm.CurrentPatient.Volk + " " +
+                "籍贯：" + vm.CurrentPatient.JiGuan_Sheng + " " +
+                "电话：" + vm.CurrentPatient.Tel + " "
                 ;
             PatientMsg.Inlines.Add(new Run(str));
             PatientMsg.Inlines.Add(new Run("账户余额：" + dBalance.Value) { Foreground = Brushes.Green, FontSize = 25 });
+
+
         }
+
 
         public void UpdateAllChage()
         {
@@ -544,31 +581,32 @@ namespace HISGUIFeeLib.Views
 
         }
 
-        private void ShowAllPatient()
+        private void showAllInHospitalPatient()
         {
             var vm = this.DataContext as HISGUIFeeVM;
-            if (this.ClinicRadio.IsChecked.Value)
-            {
-                this.AllPatientList.ItemsSource = vm?.GetAllClinicPatients(DateTime.Now, DateTime.Now);
-            }
-            else if (this.HospitalRadio.IsChecked.Value)
-            {
-                this.AllPatientList.ItemsSource = vm?.GetAllInHospitalChargePatient();
-            }
+            List<CommContracts.InHospital> list = vm?.GetAllInHospitalChargePatient();
+
+            this.AllPatientList.ItemsSource = list;
+
+            myCurrentPatientID = 0;
+            vm.CurrentPatient = null;
+            ShowPatientMsg();
+            UpdateAllChage();
         }
 
         private void ClinicRadio_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
             vm.IsClinicOrInHospital = true;
-            ShowAllPatient();
+            AllPatientList.Visibility = Visibility.Collapsed;
         }
 
         private void HospitalRadio_Click(object sender, RoutedEventArgs e)
         {
             var vm = this.DataContext as HISGUIFeeVM;
             vm.IsClinicOrInHospital = false;
-            ShowAllPatient();
+            AllPatientList.Visibility = Visibility.Visible;
+            showAllInHospitalPatient();
         }
 
         private void AllWillPayList_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -1237,8 +1275,10 @@ namespace HISGUIFeeLib.Views
                     return;
                 myCurrentPatientID = inp.PatientID;
                 vm.CurrentInpatient = inp;
+                vm.CurrentPatient = inp.Patient;
                 vm.IsClinicOrInHospital = false;
             }
+
 
             ShowPatientMsg();
             UpdateAllChage();
@@ -1255,11 +1295,11 @@ namespace HISGUIFeeLib.Views
         /// </summary>
         private void myPrint()
         {
-            PrintDialog dlg = new PrintDialog();
-            if (dlg.ShowDialog() == true)
-            {
-                dlg.PrintVisual(printGrid, "Print Receipt");
-            }
+            //PrintDialog dlg = new PrintDialog();
+            //if (dlg.ShowDialog() == true)
+            //{
+            //    dlg.PrintVisual(printGrid, "Print Receipt");
+            //}
         }
     }
 }

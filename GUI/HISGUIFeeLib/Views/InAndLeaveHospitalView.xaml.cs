@@ -20,6 +20,7 @@ using HISGUICore;
 using HISGUIFeeLib.ViewModels;
 using System.Data;
 using HISGUICore.MyContorls;
+using Microsoft.VisualBasic;
 
 namespace HISGUIFeeLib.Views
 {
@@ -435,19 +436,42 @@ namespace HISGUIFeeLib.Views
         private void ReadCardBtn_Click(object sender, RoutedEventArgs e)
         {
             // 读卡
+            //var vm = this.DataContext as HISGUIFeeVM;
+            //if (InManageCheck.IsChecked.Value)
+            //{
+            //    MyCurrentInpatient = vm?.ReadNewInHospital(7);
+            //}
+            //else if (LeaveManageCheck.IsChecked.Value)
+            //{
+            //    MyCurrentInpatient = vm?.ReadCurrentInHospital(9);
+            //}
+            //else if (RecallManageCheck.IsChecked.Value)
+            //{
+            //    MyCurrentInpatient = vm?.ReadLeavedPatient(9);
+            //}
+
+            //updateInDateToView();
+            //updateLeaveDateToView();
+            String strPatientCardNum = Interaction.InputBox("请输入就诊卡卡号", "读卡", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
+                return;
+
             var vm = this.DataContext as HISGUIFeeVM;
-            if (InManageCheck.IsChecked.Value)
-            {
-                MyCurrentInpatient = vm?.ReadNewInHospital(7);
-            }
-            else if (LeaveManageCheck.IsChecked.Value)
-            {
-                MyCurrentInpatient = vm?.ReadCurrentInHospital(9);
-            }
-            else if (RecallManageCheck.IsChecked.Value)
-            {
-                MyCurrentInpatient = vm?.ReadLeavedPatient(9);
-            }
+            CommContracts.Patient tempPatient = new CommContracts.Patient();
+
+            CommClient.Patient patientClient = new CommClient.Patient();
+
+            string ErrorMsg = "";
+            tempPatient = patientClient.ReadCurrentPatientByPatientCardNum(strPatientCardNum, ref ErrorMsg);
+            vm.CurrentPatient = tempPatient;
+
+            CommClient.InHospital registrationClient = new CommClient.InHospital();
+            List<CommContracts.InHospital> InHospitalList = registrationClient.GetAllInHospitalList(0, vm.CurrentPatient.Name);
+            if (InHospitalList == null || InHospitalList.Count() <= 0)
+                return;
+
+            MyCurrentInpatient = InHospitalList.ElementAt(0);
+
 
             updateInDateToView();
             updateLeaveDateToView();

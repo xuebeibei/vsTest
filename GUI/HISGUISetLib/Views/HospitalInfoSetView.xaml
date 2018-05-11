@@ -3,18 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:HISGUISetLib.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:local="clr-namespace:HISGUISetLib.Views">
     <Grid>
         <StackPanel>
-            <Label Margin="5">医院名称：</Label>
-            <TextBox Margin="5"></TextBox>
-            <CheckBox VerticalContentAlignment="Center" Margin="5">是医保定点医院</CheckBox>
-            <Label Margin="5">定点编码：</Label>
-            <TextBox Margin="5"></TextBox>
+            <Grid x:Name="EditGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Margin="5" Grid.Row="0" Grid.Column="0">医院名称：</Label>
+                <TextBox x:Name="HospitalNameBox" Margin="5" Grid.Row="0" Grid.Column="1"></TextBox>
+                <CheckBox x:Name="bIsYiBaoCheckBox" VerticalContentAlignment="Center" Margin="5" Click="bIsYiBaoCheckBox_Click" Grid.Row="0" Grid.Column="2">是医保定点医院</CheckBox>
+                <Label Margin="5" Grid.Row="0" Grid.Column="3">定点编码：</Label>
+                <TextBox x:Name="YiBaoNoBox" Margin="5" MaxLength="6" Grid.Row="0" Grid.Column="4"></TextBox>
+            </Grid>
+            
             <StackPanel Orientation="Horizontal">
-                <Button Margin="5">保存</Button>
+                <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
+                <Button x:Name="EditBtn" Margin="5" Click="EditBtn_Click">编辑</Button>
             </StackPanel>
         </StackPanel>
     </Grid>

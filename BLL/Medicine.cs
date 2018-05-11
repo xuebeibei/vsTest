@@ -88,7 +88,7 @@ namespace BLL
             {
                 var query = from a in ctx.Medicines
                             where a.Name.StartsWith(strName) &&
-                            (a.MedicineTypeEnum == DAL.MedicineTypeEnum.xiyao || a.MedicineTypeEnum == DAL.MedicineTypeEnum.zhongchengyao)
+                            (a.MedicineTypeEnum == DAL.MedicineTypeEnum.西药 || a.MedicineTypeEnum == DAL.MedicineTypeEnum.中成药)
                             select a;
                 foreach (DAL.Medicine ass in query)
                 {

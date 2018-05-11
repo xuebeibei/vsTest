@@ -8,13 +8,13 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
     <Grid>
         <StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <ToolBar HorizontalAlignment="Left">
                 <Button x:Name="NewBtn" Margin="5" Click="NewBtn_Click">新建</Button>
                 <Button x:Name="SaveBtn" Margin="5" Click="SaveBtn_Click">保存</Button>
                 <Button x:Name="SaveTempletBtn" Margin="5" Click="SaveTempletBtn_Click">保存为模板</Button>
                 <Button x:Name="PrintBtn" Margin="5" Click="PrintBtn_Click">打印</Button>
                 <Button x:Name="DeleteBtn" Margin="5" Click="DeleteBtn_Click">作废</Button>
-            </StackPanel>
+            </ToolBar>
             <StackPanel>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <StackPanel x:Name="RemedyPanel">

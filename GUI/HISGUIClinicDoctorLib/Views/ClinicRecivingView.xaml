@@ -9,66 +9,61 @@
 
     <DockPanel>
         <ToolBar DockPanel.Dock="Top">
-            <Button x:Name="CallBtn" Margin="5" Content="呼叫" ToolTip="呼叫下一个" Click="CallBtn_Click"></Button>
-            <Button x:Name="StartBtn" Margin="5" Content="开始看诊" ToolTip="开始看诊" Click="StartBtn_Click" IsEnabled="False"></Button>
-            <Button x:Name="OverBtn" Margin="5" Content="结束看诊" ToolTip="结束看诊" Click="OverBtn_Click" IsEnabled="False"></Button>
-
-            <Button x:Name="TurnToInHospitalBtn" Margin="5" Content="入院" ToolTip="入院" Click="TurnToInHospitalBtn_Click" IsEnabled="False"></Button>
+            <Button x:Name="CallBtn" Margin="5" Content="读卡" ToolTip="呼叫下一个" Click="CallBtn_Click"></Button>
+            <!--<Button x:Name="StartBtn" Margin="5" Content="开始看诊" ToolTip="开始看诊" Click="StartBtn_Click" IsEnabled="False"></Button>
+            <Button x:Name="OverBtn" Margin="5" Content="结束看诊" ToolTip="结束看诊" Click="OverBtn_Click" IsEnabled="False"></Button>-->
+            <Button x:Name="TurnToInHospitalBtn" Margin="5" Content="申请入院" ToolTip="申请入院" Click="TurnToInHospitalBtn_Click"></Button>
             <Separator></Separator>
-            <Button x:Name="NewBtn" Margin="5" Content="新建" ToolTip="新建" Click="NewBtn_Click"></Button>
-            <Button x:Name="SaveBtn" Margin="5" Content="保存" ToolTip="保存" Click="NewBtn_Click"></Button>
-            <Button x:Name="DeleteBtn" Margin="5" Content="删除" ToolTip="删除" Click="DeleteBtn_Click"></Button>
+            <Button x:Name="BingLiBtn" Margin="5" Content="病历" ToolTip="病历" Click="BingLiBtn_Click"></Button>
+            <Button x:Name="JianChaBtn" Margin="5" Content="检查" ToolTip="检查" Click="JianChaBtn_Click"></Button>
+            <Button x:Name="HuaYanBtn" Margin="5" Content="化验" ToolTip="化验" Click="HuaYanBtn_Click"></Button>
+            <Button x:Name="ChuFangBtn" Margin="5" Content="用药" ToolTip="用药" Click="ChuFangBtn_Click"></Button>
+            <Button x:Name="ZhiLiaoBtn" Margin="5" Content="治疗" ToolTip="治疗" Click="ZhiLiaoBtn_Click"></Button>
+            <Button x:Name="QiTaBtn" Margin="5" Content="其他" ToolTip="其他" Click="QiTaBtn_Click"></Button>
         </ToolBar>
         <DockPanel>
             <Grid DockPanel.Dock="Left">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid Grid.Row="0" Margin="5">
-                    <Border BorderBrush="Black" BorderThickness="0.3"></Border>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" Width="100">
-                            <Image Source="PersonImage.png"></Image>
-                        </Label>
-                        <StackPanel>
-                            <TextBlock x:Name="NameBlock" Text="张三" FontSize="15" Margin="10,5,5,5"></TextBlock>
-                            <Grid  Margin="10,5,5,5">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Grid.Row="0" Grid.Column="0" Text="男"></TextBlock>
-                                <TextBlock Grid.Row="0" Grid.Column="1" Text="35岁"></TextBlock>
-                            </Grid>
-                            <TextBlock x:Name="FeeTypeBlock" Text="自费"  Margin="10,5,5,5"></TextBlock>
-                            <TextBlock x:Name="TelBlock" Text="15910288408"  Margin="10,5,5,5"></TextBlock>
+                <Border BorderBrush="Black" BorderThickness="0.5" Margin="5"></Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0">
+                        <Image Source="PersonImage.png"></Image>
+                    </Label>
+                    <StackPanel Grid.Row="1" Margin="0">
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="姓名：" Margin="5"></Label>
+                            <TextBlock x:Name="NameBlock" Text="{Binding CurrentRegistration.Patient.Name}"  Margin="5" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="性别：" Margin="5"></Label>
+                            <TextBlock x:Name="GenderBlock" Text="{Binding CurrentRegistration.Patient.Gender}" Margin="5" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="年龄：" Margin="5"></Label>
+                            <TextBlock x:Name="AgeBlock" Text="" Margin="5" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="费别：" Margin="5"></Label>
+                            <TextBlock x:Name="FeeTypeBlock" Text="{Binding CurrentRegistration.Patient.FeeTypeEnum}" Margin="5" VerticalAlignment="Center"></TextBlock>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="电话号码：" Margin="5"></Label>
+                            <TextBlock x:Name="TelBlock" Text="{Binding CurrentRegistration.Patient.Tel}" Margin="5" VerticalAlignment="Center"></TextBlock>
                         </StackPanel>
                     </StackPanel>
                 </Grid>
-
-                <TreeView Grid.Row="1" x:Name="DoctorDocsTree" Margin="5">
-                    <TreeViewItem Header="病历">
-                    </TreeViewItem>
-                    <TreeViewItem Header="检查">
-                    </TreeViewItem>
-                    <TreeViewItem Header="检验">
-                    </TreeViewItem>
-                    <TreeViewItem Header="处方">
-                        <!--<TreeViewItem Header="西/中成药处方">
-                        </TreeViewItem>
-                        <TreeViewItem Header="中药处方">
-                        </TreeViewItem>-->
-                    </TreeViewItem>
-                    <TreeViewItem Header="治疗">
-                    </TreeViewItem>
-                </TreeView>
             </Grid>
-            <!--<Grid x:Name="CenterGrid" Margin="1, 0.3, 0.3, 0.3">
-                <Border BorderBrush="Black" BorderThickness="0.3"></Border>
-            </Grid>-->
             <TabControl x:Name="MyTabControl" Margin="5">
-                
             </TabControl>
         </DockPanel>
     </DockPanel>

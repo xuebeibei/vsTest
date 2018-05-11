@@ -20,6 +20,7 @@ namespace HISGUIDoctorLib.Views
     /// </summary>
     public partial class NewFileView : UserControl
     {
+        public string GetHeader { get; set; }
         public NewFileView()
         {
             InitializeComponent();
@@ -27,12 +28,23 @@ namespace HISGUIDoctorLib.Views
 
         private void OkBtn_Click(object sender, RoutedEventArgs e)
         {
+            GetHeader = this.NameBox.Text;
 
+            (this.Parent as Window).DialogResult = true;
+            (this.Parent as Window).Close();
         }
 
         private void CancelBtn_Click(object sender, RoutedEventArgs e)
         {
+            (this.Parent as Window).DialogResult = false;
+            (this.Parent as Window).Close();
+        }
 
+        private void FileTypeTree_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            string strHeader = "";
+
+            NameBox.Text = "空" + strHeader;
         }
     }
 }

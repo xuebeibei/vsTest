@@ -89,7 +89,7 @@ namespace HISGUICore.MyContorls
             else if (editEnum == MyTableEditEnum.zhongyao)
             {
                 CommClient.Medicine myd = new CommClient.Medicine();
-                List<CommContracts.Medicine> list = myd.GetOneTypeMedicine(CommContracts.MedicineTypeEnum.zhongyao, strFindName);
+                List<CommContracts.Medicine> list = myd.GetOneTypeMedicine(CommContracts.MedicineTypeEnum.中药, strFindName);
 
                 this.Grid1.ItemsSource = list;
                 this.Grid1.Focus();

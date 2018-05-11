@@ -697,5 +697,17 @@ namespace CommContracts
         [OperationContract]
         bool DeleteClinicMedicalRecordModel(int ClinicMedicalRecordModelID);
 
+        [OperationContract]
+        List<CommContracts.HospitalMsg> GetAllHospitalMsg(string strName = "");
+
+        [OperationContract]
+        bool UpdateHospitalMsg(CommContracts.HospitalMsg HospitalMsg);
+
+        [OperationContract]
+        bool SaveHospitalMsg(CommContracts.HospitalMsg HospitalMsg);
+
+        [OperationContract]
+        bool DeleteHospitalMsg(int HospitalMsgID);
+
     }
 }

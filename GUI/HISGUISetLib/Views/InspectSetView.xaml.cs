@@ -77,7 +77,7 @@ namespace HISGUISetLib.Views
 
         private void DeleteItemBtn_Click(object sender, RoutedEventArgs e)
         {
-            var currentInspect = this.AllInspectList.SelectedItem as CommContracts.InspectDoctorAdvice;
+            var currentInspect = this.AllInspectList.SelectedItem as CommContracts.InspectItem;
             if (currentInspect == null)
                 return;
 

@@ -49,6 +49,7 @@ namespace DAL
         /// 医保甲乙类 
         /// </summary>
         public YiBaoEnum YiBaoEnum { get; set; }
+
         /// <summary>
         /// 检查医嘱明细列表
         /// </summary>

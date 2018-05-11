@@ -8,31 +8,25 @@
              xmlns:Controls="clr-namespace:HISGUICore.MyContorls;assembly=HISGUICore">
 
     <DockPanel>
-        <Grid Background="#38434E" DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label Margin="5" Style="{DynamicResource LoglLabelStyle}">SeimunDH</Label>
-                <Label Margin="5" Style="{DynamicResource LoglLabelStyle}">收费站</Label>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Label x:Name="UserName" Style="{DynamicResource LoglLabelStyle}" Margin="5" Content="{Binding CurrentUser.Username}"></Label>
-                <Button x:Name="LayoutBtn" Click="LayoutBtn_Click" Style="{DynamicResource ButtonStyle1}" Margin="5">退出</Button>
-            </StackPanel>
-        </Grid>
-        <DockPanel Grid.Row="1">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem x:Name="RegistrationBtn" Header="挂号" Margin="5" Click="RegistrationBtn_Click"/>
-                <MenuItem x:Name="ChargeBtn" Header="收费" Margin="5" Click="ChargeBtn_Click"/>
-                <MenuItem x:Name="InAndLeaveHospitalBtn" Header="出入院" Margin="5" Click="InAndLeaveHospitalBtn_Click"/>
-                <MenuItem x:Name="PrePaidBtn" Header="缴退费管理" Margin="5" Click="PrePaidBtn_Click"/>
-                <!--<MenuItem x:Name="WorkBtn" Header="设置" Margin="5">
-                    <MenuItem x:Name="BasicDataSet" Header="基础数据" Click="BasicDataSet_Click"></MenuItem>
-                    <MenuItem x:Name="WorkRecordSet" Header="号源管理" Click="WorkRecordSet_Click"></MenuItem>
-                </MenuItem>-->
-            </Menu>
+        <DockPanel>
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    
+                </Grid.ColumnDefinitions>
+                <Menu>
+                    <MenuItem x:Name="RegistrationBtn" Header="挂号" Margin="5" Click="RegistrationBtn_Click"/>
+                    <MenuItem x:Name="ChargeBtn" Header="收费" Margin="5" Click="ChargeBtn_Click"/>
+                    <MenuItem x:Name="InAndLeaveHospitalBtn" Header="出入院" Margin="5" Click="InAndLeaveHospitalBtn_Click"/>
+                    <MenuItem x:Name="PrePaidBtn" Header="缴退费" Margin="5" Click="PrePaidBtn_Click"/>
+                </Menu>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Label x:Name="UserName" Margin="5" Content="{Binding CurrentUser.Username}"></Label>
+                    <Button x:Name="LayoutBtn" Click="LayoutBtn_Click" Margin="5">退出</Button>
+                </StackPanel>
+            </Grid>
+            
             <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
                 <StatusBarItem HorizontalAlignment="Right">
                     <TextBlock Name="Tt"  Margin="5"/>

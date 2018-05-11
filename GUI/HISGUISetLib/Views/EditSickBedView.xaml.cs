@@ -63,7 +63,7 @@ namespace HISGUISetLib.Views
             {
                 SickBed.Name = this.NameEdit.Text.Trim();
                 SickBed.Remarks = this.RemarksEdit.Text.Trim();
-                SickBed.SickRoom = (CommContracts.SickRoom)this.SickRoomCombo.SelectedItem;
+                SickBed.SickRoomID = ((CommContracts.SickRoom)this.SickRoomCombo.SelectedItem).ID;
 
 
                 CommClient.SickBed myd = new CommClient.SickBed();
@@ -78,7 +78,7 @@ namespace HISGUISetLib.Views
                 CommContracts.SickBed sickBed = new CommContracts.SickBed();
                 sickBed.Name = this.NameEdit.Text.Trim();
                 sickBed.Remarks = this.RemarksEdit.Text.Trim();
-                sickBed.SickRoom = (CommContracts.SickRoom)this.SickRoomCombo.SelectedItem;
+                sickBed.SickRoomID = ((CommContracts.SickRoom)this.SickRoomCombo.SelectedItem).ID;
 
 
                 CommClient.SickBed myd = new CommClient.SickBed();

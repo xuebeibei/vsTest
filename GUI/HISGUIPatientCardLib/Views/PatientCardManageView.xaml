@@ -12,27 +12,24 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid Background="#38434E">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="auto"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <StackPanel Orientation="Horizontal" Grid.Column="0">
-                <Label Margin="5"  Style="{DynamicResource LoglLabelStyle}">SeimunDH</Label>
-                <Label Margin="5"  Style="{DynamicResource LoglLabelStyle}">就诊卡管理</Label>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
-                <Label x:Name="UserName" Margin="5" Foreground="White" Content="{Binding CurrentUser.Username}"></Label>
-                <Button Click="LayoutBtn_Click" Margin="5" Style="{DynamicResource ButtonStyle1}">退出</Button>
-            </StackPanel>
-        </Grid>
 
-        <DockPanel Grid.Row="1">
-            <Menu DockPanel.Dock="Top">
-                <MenuItem Header="就诊卡" Margin="5" Click="AddCardButton_Click"/>
-                <MenuItem Header="预交金" Margin="5" Click="AddFeeBtn_Click"/>
-                <MenuItem Header="工作量" Margin="5" Click="MenuItemStatistic_Click"/>
-            </Menu>
+        <DockPanel Grid.Row="1" Background="White">
+            <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Grid.Column="0">
+                    <MenuItem Header="就诊卡" Margin="5" Click="AddCardButton_Click"/>
+                    <MenuItem Header="预交金" Margin="5" Click="AddFeeBtn_Click"/>
+                    <!--<MenuItem Header="工作量" Margin="5" Click="MenuItemStatistic_Click"/>-->
+                </Menu>
+                <StackPanel Orientation="Horizontal" Grid.Column="1" HorizontalAlignment="Right">
+                    <Label x:Name="UserName" Margin="5"  Content="{Binding CurrentUser.LoginName}" Width="50"></Label>
+                    <Button Click="LayoutBtn_Click" Margin="5">退出</Button>
+                </StackPanel>
+            </Grid>
+            
             <StatusBar DockPanel.Dock="Bottom" Style="{DynamicResource StatusBarStyle1}">
                 <StatusBarItem HorizontalAlignment="Right">
                     <TextBlock Name="Tt"  Margin="5"/>

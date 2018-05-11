@@ -10,22 +10,10 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="3*"></ColumnDefinition>
             <ColumnDefinition Width="2*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <TreeView x:Name="FileTypeTree" Margin="2" Grid.Row="0" Grid.Column="0">
-            <TreeViewItem Header="病历"></TreeViewItem>
-            <TreeViewItem Header="处方">
-                <TreeViewItem Header="西药/中成药处方"></TreeViewItem>
-                <TreeViewItem Header="中药处方"></TreeViewItem>
-            </TreeViewItem>
-            <TreeViewItem Header="检查"></TreeViewItem>
-            <TreeViewItem Header="检验"></TreeViewItem>
-            <TreeViewItem Header="治疗"></TreeViewItem>
-            <TreeViewItem Header="入院申请"></TreeViewItem>
-        </TreeView>
-        <Grid Grid.Row="0" Grid.Column="1">
+        <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition></RowDefinition>
@@ -33,21 +21,21 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
-                <!--<ColumnDefinition></ColumnDefinition>-->
             </Grid.ColumnDefinitions>
             <TextBox Grid.Row="0" Grid.Column="0" Margin="2"></TextBox>
             <ComboBox Grid.Row="0" Grid.Column="1" Margin="2"></ComboBox>
-            <ListView x:Name="FileModelList" Margin="2" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"></ListView>
+            <ListView x:Name="FileModelList" Margin="2" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            </ListView>
         </Grid>
         
-        <Border Grid.Row="0" Grid.Column="2" BorderBrush="Black" BorderThickness="0.3" Margin="2">
+        <Border Grid.Row="0" Grid.Column="1" BorderBrush="Black" BorderThickness="0.3" Margin="2">
             <StackPanel>
                 <Label Content="解释"></Label>
                 <TextBlock x:Name="ReMarksBlock"></TextBlock>
             </StackPanel>
         </Border>
 
-        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3">
+        <DockPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right">
                 <Button x:Name="OkBtn" Content="确定" Click="OkBtn_Click" Margin="2"></Button>
                 <Button x:Name="CancelBtn" Content="取消" Click="CancelBtn_Click" Margin="2"></Button>

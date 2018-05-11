@@ -14,11 +14,12 @@
             <ColumnDefinition Width="auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" HorizontalAlignment="Left">
-            <Label>门诊挂号系统</Label>
+            <Label>SeimunDH</Label>
         </StackPanel>
         <StackPanel Grid.Column="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Content="挂号"  Width="100" />
-            <Button Content="工作量" Width="100"/>
+            <Button Content="最小化"  Width="100" />
+            <Button Content="最大化" Width="100"/>
+            <Button Content="关闭" Width="100"/>
         </StackPanel>
     </Grid>
 </HISGUICore:HISGUIViewBase>

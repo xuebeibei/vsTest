@@ -7,21 +7,15 @@
              xmlns:prism="http://www.codeplex.com/prism"
              xmlns:HISGUICore="clr-namespace:HISGUICore;assembly=HISGUICore">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" Grid.ColumnSpan="3">
+        <Border Grid.Row="0">
             <ContentControl prism:RegionManager.RegionName="UpRegion"/>
         </Border>
 
-        <Border Grid.Row="1" Grid.ColumnSpan="3">
+        <Border Grid.Row="1">
             <ContentControl prism:RegionManager.RegionName="DownRegion"/>
         </Border>
     </Grid>

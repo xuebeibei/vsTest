@@ -58,12 +58,12 @@ namespace BLL
 
         public List<CommContracts.MedicineDoctorAdvice> getAllXiCheng(int RegistrationID)
         {
-            return getAllMedicineDoctorAdvices(RegistrationID, 0, DAL.DoctorAdviceContentEnum.XiChengYao);
+            return getAllMedicineDoctorAdvices(RegistrationID, 0, DAL.DoctorAdviceContentEnum.西药和中成药处方);
         }
 
         public List<CommContracts.MedicineDoctorAdvice> getAllZhong(int RegistrationID)
         {
-            return getAllMedicineDoctorAdvices(RegistrationID, 0, DAL.DoctorAdviceContentEnum.ZhongYao);
+            return getAllMedicineDoctorAdvices(RegistrationID, 0, DAL.DoctorAdviceContentEnum.中药处方);
         }
 
         private List<CommContracts.MedicineDoctorAdvice> getAllMedicineDoctorAdvices(int RegistrationID, int InpatientID, DAL.DoctorAdviceContentEnum recipeContentEnum)
@@ -98,12 +98,12 @@ namespace BLL
 
         public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalXiCheng(int InpatientID)
         {
-            return getAllMedicineDoctorAdvices(0, InpatientID, DAL.DoctorAdviceContentEnum.XiChengYao);
+            return getAllMedicineDoctorAdvices(0, InpatientID, DAL.DoctorAdviceContentEnum.西药和中成药处方);
         }
 
         public List<CommContracts.MedicineDoctorAdvice> getAllInHospitalZhong(int InpatientID)
         {
-            return getAllMedicineDoctorAdvices(0, InpatientID, DAL.DoctorAdviceContentEnum.ZhongYao);
+            return getAllMedicineDoctorAdvices(0, InpatientID, DAL.DoctorAdviceContentEnum.中药处方);
         }
     }
 }

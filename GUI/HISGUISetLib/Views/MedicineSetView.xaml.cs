@@ -66,6 +66,7 @@ namespace HISGUISetLib.Views
             window.Width = 400;
             window.Height = 500;
             //window.ResizeMode = ResizeMode.NoResize;
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             bool? bResult = window.ShowDialog();
 
             if (bResult.Value)
@@ -132,7 +133,28 @@ namespace HISGUISetLib.Views
         private void UpdateAllDate(string strName = "")
         {
             var vm = this.DataContext as HISGUISetVM;
-            this.AllMedicineList.ItemsSource = vm?.GetAllMedicine(strName);
+            List<CommContracts.Medicine> list = new List<CommContracts.Medicine>();
+            list = vm?.GetAllMedicine(strName);
+            CommContracts.MedicineTypeEnum medicineTypeEnum = CommContracts.MedicineTypeEnum.西药;
+            if(MedicineTypeCombo.Text == "西药")
+            {
+                medicineTypeEnum = CommContracts.MedicineTypeEnum.西药;
+            }
+            else if (MedicineTypeCombo.Text == "中成药")
+            {
+                medicineTypeEnum = CommContracts.MedicineTypeEnum.中成药;
+            }
+            else if (MedicineTypeCombo.Text == "中药")
+            {
+                medicineTypeEnum = CommContracts.MedicineTypeEnum.中药;
+            }
+
+            var query = from u in list
+                        where u.MedicineTypeEnum == medicineTypeEnum
+                        select u;
+            List<CommContracts.Medicine> sourceList = new List<CommContracts.Medicine>();
+            sourceList = query.ToList();
+            this.AllMedicineList.ItemsSource = sourceList;
         }
     }
 }
