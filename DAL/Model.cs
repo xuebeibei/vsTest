@@ -18,6 +18,19 @@ namespace DAL
         /// 科室
         /// </summary>
         public DbSet<Department> Departments { get; set; }
+
+        /// <summary>
+        /// 一级科室
+        /// </summary>
+        public DbSet<LevelOneDepartment> LevelOneDepartments { get; set; }
+
+
+        /// <summary>
+        /// 二级科室
+        /// </summary>
+        public DbSet<LevelTwoDepartment> LevelTwoDepartments { get; set; }
+
+
         /// <summary>
         /// 排班
         /// </summary>

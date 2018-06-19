@@ -10,6 +10,8 @@ using Prism.Modularity;
 using HISGUICore;
 using HISGUIRegistrationLib.Views;
 
+
+
 namespace HISGUIRegistrationLib
 {
     [ModuleExport(typeof(HISGUIRegistrationModule))]
@@ -18,8 +20,7 @@ namespace HISGUIRegistrationLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(HISGUIRegistrationView));
-
+            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(RegistrationView));
         }
     }
 }

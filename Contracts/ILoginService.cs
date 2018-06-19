@@ -709,5 +709,14 @@ namespace CommContracts
         [OperationContract]
         bool DeleteHospitalMsg(int HospitalMsgID);
 
+        [OperationContract]
+        List<CommContracts.LevelOneDepartment> GetAllLevelOneDepartment(string strName);
+        [OperationContract]
+        bool UpdateLevelOneDepartment(CommContracts.LevelOneDepartment LevelOneDepartment);
+        [OperationContract]
+        bool SaveLevelOneDepartment(CommContracts.LevelOneDepartment LevelOneDepartment);
+        [OperationContract]
+        bool DeleteLevelOneDepartment(int LevelOneDepartmentID);
+
     }
 }

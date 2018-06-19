@@ -1478,5 +1478,29 @@ namespace CommServer
             BLL.HospitalMsg temp = new BLL.HospitalMsg();
             return temp.DeleteHospitalMsg(HospitalMsgID);
         }
+
+        public List<CommContracts.LevelOneDepartment> GetAllLevelOneDepartment(string strName)
+        {
+            BLL.LevelOneDepartment temp = new BLL.LevelOneDepartment();
+            return temp.GetAllLevelOneDepartment(strName);
+        }
+
+        public bool UpdateLevelOneDepartment(CommContracts.LevelOneDepartment LevelOneDepartment)
+        {
+            BLL.LevelOneDepartment temp = new BLL.LevelOneDepartment();
+            return temp.UpdateLevelOneDepartment(LevelOneDepartment);
+        }
+
+        public bool SaveLevelOneDepartment(CommContracts.LevelOneDepartment LevelOneDepartment)
+        {
+            BLL.LevelOneDepartment temp = new BLL.LevelOneDepartment();
+            return temp.SaveLevelOneDepartment(LevelOneDepartment);
+        }
+
+        public bool DeleteLevelOneDepartment(int LevelOneDepartmentID)
+        {
+            BLL.LevelOneDepartment temp = new BLL.LevelOneDepartment();
+            return temp.DeleteLevelOneDepartment(LevelOneDepartmentID);
+        }
     }
 }

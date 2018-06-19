@@ -62,6 +62,8 @@
     <Compile Include="ChargeDetailBase.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
     <Compile Include="HospitalMsg.cs" />
+    <Compile Include="LevelOneDepartment.cs" />
+    <Compile Include="LevelTwoDepartment.cs" />
     <Compile Include="Migrations\201804191143353_PaperTest13.cs" />
     <Compile Include="Migrations\201804191143353_PaperTest13.Designer.cs">
       <DependentUpon>201804191143353_PaperTest13.cs</DependentUpon>
@@ -125,6 +127,18 @@
     <Compile Include="Migrations\201805100528197_PaperTest27.cs" />
     <Compile Include="Migrations\201805100528197_PaperTest27.Designer.cs">
       <DependentUpon>201805100528197_PaperTest27.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806190141412_PaperTest28.cs" />
+    <Compile Include="Migrations\201806190141412_PaperTest28.Designer.cs">
+      <DependentUpon>201806190141412_PaperTest28.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806190153595_PaperTest29.cs" />
+    <Compile Include="Migrations\201806190153595_PaperTest29.Designer.cs">
+      <DependentUpon>201806190153595_PaperTest29.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806190206122_PaperTest30.cs" />
+    <Compile Include="Migrations\201806190206122_PaperTest30.Designer.cs">
+      <DependentUpon>201806190206122_PaperTest30.cs</DependentUpon>
     </Compile>
     <Compile Include="SignalTime.cs" />
     <Compile Include="DecimalPrecisionAttribute.cs" />
@@ -363,6 +377,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805100528197_PaperTest27.resx">
       <DependentUpon>201805100528197_PaperTest27.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806190141412_PaperTest28.resx">
+      <DependentUpon>201806190141412_PaperTest28.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806190153595_PaperTest29.resx">
+      <DependentUpon>201806190153595_PaperTest29.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806190206122_PaperTest30.resx">
+      <DependentUpon>201806190206122_PaperTest30.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

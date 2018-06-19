@@ -7,3 +7,4 @@ Plugins\HISGUIMedicineLib.dll
 Plugins\HISGUIFeeLib.dll
 Plugins\HISGUISetLib.dll
 Plugins\HISGUIPatientCardLib.dll
+Plugins\HISGUIRegistrationLib.dll

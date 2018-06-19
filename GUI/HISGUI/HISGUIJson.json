@@ -1,3 +1,335 @@
 {
-   "UserName": "Apple"
+	"UserName": "Apple",
+	"Department": [{
+			"ID": "1",
+			"Name": "针灸推拿科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "2",
+			"Name": "耳鼻喉科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "3",
+			"Name": "妇产科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "4",
+			"Name": "外科",
+			"SubDepartment": [{
+					"ID": "5",
+					"Name": "骨科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "6",
+					"Name": "颈腰腿痛门诊",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "7",
+					"Name": "普通外科",
+					"SubDepartment": ""
+				}
+			]
+		},
+		{
+			"ID": "8",
+			"Name": "内科",
+			"SubDepartment": [{
+					"ID": "9",
+					"Name": "呼吸科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "10",
+					"Name": "内分泌科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "11",
+					"Name": "社区科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "12",
+					"Name": "心血管内科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "13",
+					"Name": "肾内科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "15",
+					"Name": "肿瘤科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "16",
+					"Name": "综合内科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "17",
+					"Name": "神经内科",
+					"SubDepartment": ""
+				}
+			]
+		},
+		{
+			"ID": "18",
+			"Name": "精神科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "19",
+			"Name": "皮肤科",
+			"SubDepartment": [{
+					"ID": "20",
+					"Name": "整形与医疗美容科",
+					"SubDepartment": ""
+				},
+				{
+					"ID": "21",
+					"Name": "皮肤科",
+					"SubDepartment": ""
+				}
+			]
+		},
+		{
+			"ID": "22",
+			"Name": "眼科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "23",
+			"Name": "中医科",
+			"SubDepartment": ""
+		},
+		{
+			"ID": "24",
+			"Name": "口腔科",
+			"SubDepartment": ""
+		}
+	],
+	"RegistrationList": [{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-14",
+			"HaoBie": "普通",
+			"Num": "1",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-14",
+			"HaoBie": "专家",
+			"Num": "2",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-14",
+			"HaoBie": "普通",
+			"Num": "1",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-14",
+			"HaoBie": "专家",
+			"Num": "2",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-14",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-14",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-15",
+			"HaoBie": "普通",
+			"Num": "1",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-15",
+			"HaoBie": "专家",
+			"Num": "2",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-15",
+			"HaoBie": "普通",
+			"Num": "1",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-15",
+			"HaoBie": "专家",
+			"Num": "2",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-15",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-15",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-16",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-16",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-16",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-16",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-16",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-16",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-17",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-17",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-17",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-17",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-17",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-17",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-18",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "上午",
+			"riqi": "2018-06-18",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-18",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "下午",
+			"riqi": "2018-06-18",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-18",
+			"HaoBie": "普通",
+			"Num": "0",
+			"Fee": "50"
+		},
+		{
+			"ShiJianDuan": "晚上",
+			"riqi": "2018-06-18",
+			"HaoBie": "专家",
+			"Num": "0",
+			"Fee": "120"
+		}
+	]
+
 }
