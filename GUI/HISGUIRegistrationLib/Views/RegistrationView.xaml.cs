@@ -49,18 +49,6 @@ namespace HISGUIRegistrationLib.Views
         public string OperationString { get; set; }
     }
 
-    public class RegistrationSource
-    {
-        public int ID { get; set; }
-        public string DoctorName { get; set; }
-        public string DepartmentName { get; set; }
-        public string SourceType { get; set; }
-        public string TimeBucket { get; set; }
-        public int NumberRemaining { get; set; }
-        public decimal Fee { get; set; }
-    }
-
-
     [Export]
     [Export("RegistrationView", typeof(RegistrationView))]
     public partial class RegistrationView : HISGUIViewBase
