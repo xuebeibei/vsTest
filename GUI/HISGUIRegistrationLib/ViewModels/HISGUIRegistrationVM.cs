@@ -39,5 +39,18 @@ namespace HISGUIRegistrationLib.ViewModels
             return DoctorClinicWorkPlan.GetAllDoctorClinicWorkPlan();
         }
 
+        public bool SaveClinicRegistration(CommContracts.ClinicRegistration clinicRegistration)
+        {
+            CommClient.ClinicRegistration clinicRegistrationClient = new CommClient.ClinicRegistration();
+            return clinicRegistrationClient.SaveClinicRegistration(clinicRegistration);
+        }
+
+        public List<CommContracts.ClinicRegistration> GetAllClinicRegistration()
+        {
+            CommClient.ClinicRegistration ClinicRegistration = new CommClient.ClinicRegistration();
+
+            return ClinicRegistration.GetAllClinicRegistration();
+        }
+
     }
 }

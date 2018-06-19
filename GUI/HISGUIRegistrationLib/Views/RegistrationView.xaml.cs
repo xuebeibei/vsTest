@@ -167,11 +167,38 @@ namespace HISGUIRegistrationLib.Views
             object ID = ((Button)sender).CommandParameter;
             if (ID == null)
             {
-                MessageBox.Show("null  -----   dd");
+                MessageBox.Show("请选择有效的号源挂号！");
+                
                 return;
             }
+            var vm = this.DataContext as HISGUIRegistrationVM;
+            if (vm == null)
+                return;
 
-            MessageBox.Show("挂号成功！");
+            CommContracts.ClinicRegistration registration = new CommContracts.ClinicRegistration();
+            registration.DoctorClinicWorkPlanID = int.Parse(ID.ToString());
+            registration.PatientID = 1;
+            registration.VistDoctorDate = this.m_SelectDateEdit.SelectedDate.Value;
+            registration.RegistrationTime = DateTime.Now;
+            if(vm.SaveClinicRegistration(registration))
+            {
+                MessageBox.Show("挂号成功！");
+                updateAllClinicRegistrationList();
+            }
+            else
+            {
+                MessageBox.Show("挂号失败！");
+            }
+        }
+
+        private void updateAllClinicRegistrationList()
+        {
+            var vm = this.DataContext as HISGUIRegistrationVM;
+            if (vm == null)
+                return;
+
+            List<CommContracts.ClinicRegistration> list = vm.GetAllClinicRegistration();
+            this.m_AllGuahaoList.ItemsSource = list;
         }
     }
 }

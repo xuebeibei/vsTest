@@ -35,6 +35,11 @@ namespace DAL
         /// </summary>
         public DbSet<DoctorClinicWorkPlan> DoctorClinicWorkPlans { get; set; }
 
+        /// <summary>
+        /// 门诊挂号单表
+        /// </summary>
+        public DbSet<ClinicRegistration> ClinicRegistrations { get; set; }
+
 
         /// <summary>
         /// 排班

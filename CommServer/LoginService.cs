@@ -1527,5 +1527,32 @@ namespace CommServer
             BLL.DoctorClinicWorkPlan temp = new BLL.DoctorClinicWorkPlan();
             return temp.DeleteDoctorClinicWorkPlan(DoctorClinicWorkPlanID);
         }
+
+
+
+
+        public List<CommContracts.ClinicRegistration> GetAllClinicRegistration(string strName)
+        {
+            BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
+            return temp.GetAllClinicRegistration(strName);
+        }
+
+        public bool UpdateClinicRegistration(CommContracts.ClinicRegistration ClinicRegistration)
+        {
+            BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
+            return temp.UpdateClinicRegistration(ClinicRegistration);
+        }
+
+        public bool SaveClinicRegistration(CommContracts.ClinicRegistration ClinicRegistration)
+        {
+            BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
+            return temp.SaveClinicRegistration(ClinicRegistration);
+        }
+
+        public bool DeleteClinicRegistration(int ClinicRegistrationID)
+        {
+            BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
+            return temp.DeleteClinicRegistration(ClinicRegistrationID);
+        }
     }
 }
