@@ -61,6 +61,7 @@
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="DoctorClinicWorkPlan.cs" />
     <Compile Include="HospitalMsg.cs" />
     <Compile Include="LevelOneDepartment.cs" />
     <Compile Include="LevelTwoDepartment.cs" />
@@ -139,6 +140,10 @@
     <Compile Include="Migrations\201806190206122_PaperTest30.cs" />
     <Compile Include="Migrations\201806190206122_PaperTest30.Designer.cs">
       <DependentUpon>201806190206122_PaperTest30.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806190409345_PaperTest31.cs" />
+    <Compile Include="Migrations\201806190409345_PaperTest31.Designer.cs">
+      <DependentUpon>201806190409345_PaperTest31.cs</DependentUpon>
     </Compile>
     <Compile Include="SignalTime.cs" />
     <Compile Include="DecimalPrecisionAttribute.cs" />
@@ -386,6 +391,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806190206122_PaperTest30.resx">
       <DependentUpon>201806190206122_PaperTest30.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806190409345_PaperTest31.resx">
+      <DependentUpon>201806190409345_PaperTest31.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

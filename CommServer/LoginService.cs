@@ -1502,5 +1502,30 @@ namespace CommServer
             BLL.LevelOneDepartment temp = new BLL.LevelOneDepartment();
             return temp.DeleteLevelOneDepartment(LevelOneDepartmentID);
         }
+
+
+        public List<CommContracts.DoctorClinicWorkPlan> GetAllDoctorClinicWorkPlan(string strName)
+        {
+            BLL.DoctorClinicWorkPlan temp = new BLL.DoctorClinicWorkPlan();
+            return temp.GetAllDoctorClinicWorkPlan(strName);
+        }
+
+        public bool UpdateDoctorClinicWorkPlan(CommContracts.DoctorClinicWorkPlan DoctorClinicWorkPlan)
+        {
+            BLL.DoctorClinicWorkPlan temp = new BLL.DoctorClinicWorkPlan();
+            return temp.UpdateDoctorClinicWorkPlan(DoctorClinicWorkPlan);
+        }
+
+        public bool SaveDoctorClinicWorkPlan(CommContracts.DoctorClinicWorkPlan DoctorClinicWorkPlan)
+        {
+            BLL.DoctorClinicWorkPlan temp = new BLL.DoctorClinicWorkPlan();
+            return temp.SaveDoctorClinicWorkPlan(DoctorClinicWorkPlan);
+        }
+
+        public bool DeleteDoctorClinicWorkPlan(int DoctorClinicWorkPlanID)
+        {
+            BLL.DoctorClinicWorkPlan temp = new BLL.DoctorClinicWorkPlan();
+            return temp.DeleteDoctorClinicWorkPlan(DoctorClinicWorkPlanID);
+        }
     }
 }

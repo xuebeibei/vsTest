@@ -53,6 +53,7 @@
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="DoctorClinicWorkPlan.cs" />
     <Compile Include="HospitalMsg.cs" />
     <Compile Include="LevelOneDepartment.cs" />
     <Compile Include="SignalTime.cs" />

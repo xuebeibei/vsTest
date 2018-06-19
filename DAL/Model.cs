@@ -30,6 +30,11 @@ namespace DAL
         /// </summary>
         public DbSet<LevelTwoDepartment> LevelTwoDepartments { get; set; }
 
+        /// <summary>
+        /// 门诊医生挂号号源表
+        /// </summary>
+        public DbSet<DoctorClinicWorkPlan> DoctorClinicWorkPlans { get; set; }
+
 
         /// <summary>
         /// 排班

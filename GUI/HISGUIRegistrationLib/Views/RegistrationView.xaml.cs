@@ -79,54 +79,58 @@ namespace HISGUIRegistrationLib.Views
             if (selectDate == null)
                 return;
 
-            string[] strDepartments = "骨科 妇科".Split(' ');
+            var vm = this.DataContext as HISGUIRegistrationVM;
+            List<CommContracts.DoctorClinicWorkPlan> doctorClinicWorkPlanList = new List<CommContracts.DoctorClinicWorkPlan>();
+            doctorClinicWorkPlanList = vm.GetAllDoctorClinicWorkPlan();
+
             string[] strTimes = "上午 下午 晚上".Split(' ');
             string[] sourceTypes = "普通 专家".Split(' ');
 
             ObservableCollection<TimeBucket> timeBucketList = new ObservableCollection<TimeBucket>();
 
-            int nNum = 1;
-            for (int i = 0; i < 7; i++)
+            int nZhou = (int)selectDate.Value.DayOfWeek+1;
+
+            foreach (var strTime in strTimes)
             {
-                foreach (var strDepartment in strDepartments)
+                TimeBucket timeBucketTemp = new TimeBucket();
+                timeBucketTemp.TimeBucketName = strTime;
+                timeBucketTemp.DepartmentName = selectItem.Name;
+                timeBucketTemp.KanZhenDate = selectDate.Value.Date;
+
+                ObservableCollection<SourceType> souceTypeOb = new ObservableCollection<SourceType>();
+                foreach (var strSourcetype in sourceTypes)
                 {
-                    foreach (var strTime in strTimes)
+                    if (strTime == "晚上")
                     {
-                        TimeBucket timeBucketTemp = new TimeBucket();
-                        timeBucketTemp.TimeBucketName = strTime;
-                        timeBucketTemp.DepartmentName = strDepartment;
-                        timeBucketTemp.KanZhenDate = DateTime.Now.Date.AddDays(i);
-
-                        ObservableCollection<SourceType> souceTypeOb = new ObservableCollection<SourceType>();
-                        foreach (var strSourcetype in sourceTypes)
-                        {
-                            if (strTime == "晚上")
-                            {
-                                continue;
-                            }
-                            SourceType souceType = new SourceType();
-                            souceType.SourceTypeName = strSourcetype;
-
-                            ObservableCollection<SourceDetail> tempDetails = new ObservableCollection<SourceDetail>();
-                            tempDetails.Add(new SourceDetail() { ID = nNum++, DoctorName = strDepartment + "医生1", NumberRemaining = i + 1, OperationString = "挂号" });
-                            tempDetails.Add(new SourceDetail() { ID = nNum++, DoctorName = strDepartment + "医生2", NumberRemaining = i + 1, OperationString = "挂号" });
-
-                            souceType.Details = tempDetails;
-
-                            souceTypeOb.Add(souceType);
-                        }
-                        timeBucketTemp.SourceTypes = souceTypeOb;
-                        timeBucketList.Add(timeBucketTemp);
+                        continue;
                     }
+
+                    var query1 = from x in doctorClinicWorkPlanList
+                                 where x.Zhou == nZhou && x.TimeBucket.StartsWith(strTime)
+                                 && x.LevelTwoDepartmentID == selectItem.ID && x.SourceType.StartsWith(strSourcetype)
+                                 select x;
+                    SourceType souceType = new SourceType();
+                    souceType.SourceTypeName = strSourcetype;
+
+                    ObservableCollection<SourceDetail> tempDetails = new ObservableCollection<SourceDetail>();
+
+                    foreach (var tem in query1)
+                    {
+
+                        tempDetails.Add(new SourceDetail() { ID = tem.ID, DoctorName = tem.Doctor, NumberRemaining = tem.MaxNum, OperationString = "挂号" });
+                        tempDetails.Add(new SourceDetail() { ID = tem.ID, DoctorName = tem.Doctor, NumberRemaining = tem.MaxNum, OperationString = "挂号" });
+
+                        souceType.Details = tempDetails;
+
+
+                    }
+                    souceTypeOb.Add(souceType);
+
                 }
-
+                timeBucketTemp.SourceTypes = souceTypeOb;
+                timeBucketList.Add(timeBucketTemp);
             }
-
-            var query = from u in timeBucketList
-                        where u.DepartmentName == selectItem.Name && u.KanZhenDate == selectDate
-                        select u;
-
-            this.m_myGridView.ItemsSource = query;
+            this.m_myGridView.ItemsSource = timeBucketList;
         }
 
         [Import]
@@ -161,7 +165,7 @@ namespace HISGUIRegistrationLib.Views
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             object ID = ((Button)sender).CommandParameter;
-            if(ID == null)
+            if (ID == null)
             {
                 MessageBox.Show("null  -----   dd");
                 return;

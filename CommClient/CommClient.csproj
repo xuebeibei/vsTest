@@ -47,6 +47,7 @@
     <Compile Include="AssayItem.cs" />
     <Compile Include="CancelRegistration.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
+    <Compile Include="DoctorClinicWorkPlan.cs" />
     <Compile Include="HospitalMsg.cs" />
     <Compile Include="LevelOneDepartment.cs" />
     <Compile Include="SignalTime.cs" />

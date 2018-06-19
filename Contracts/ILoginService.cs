@@ -718,5 +718,16 @@ namespace CommContracts
         [OperationContract]
         bool DeleteLevelOneDepartment(int LevelOneDepartmentID);
 
+
+
+        [OperationContract]
+        List<CommContracts.DoctorClinicWorkPlan> GetAllDoctorClinicWorkPlan(string strName);
+        [OperationContract]
+        bool UpdateDoctorClinicWorkPlan(CommContracts.DoctorClinicWorkPlan DoctorClinicWorkPlan);
+        [OperationContract]
+        bool SaveDoctorClinicWorkPlan(CommContracts.DoctorClinicWorkPlan DoctorClinicWorkPlan);
+        [OperationContract]
+        bool DeleteDoctorClinicWorkPlan(int DoctorClinicWorkPlanID);
+
     }
 }

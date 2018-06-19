@@ -28,22 +28,16 @@ namespace HISGUIRegistrationLib.ViewModels
         public List<CommContracts.LevelOneDepartment> GetAllLevelOneDepartment()
         {
             CommClient.LevelOneDepartment LevelOneDepartment = new CommClient.LevelOneDepartment();
-            //if (IsClinicOrInHospital)
-            //{
-            //    if (CurrentRegistration != null)
-            //        return LevelOneDepartment.getAllXiCheng(CurrentRegistration.ID)
-            //    else
-            //        return null;
-            //}
-            //else
-            //{
-            //    if (CurrentInHospital != null)
-            //        return LevelOneDepartment.getAllInHospitalXiCheng(CurrentInHospital.ID);
-            //    else
-            //        return null;
-            //}
 
             return LevelOneDepartment.GetAllLevelOneDepartment();
         }
+
+        public List<CommContracts.DoctorClinicWorkPlan> GetAllDoctorClinicWorkPlan()
+        {
+            CommClient.DoctorClinicWorkPlan DoctorClinicWorkPlan = new CommClient.DoctorClinicWorkPlan();
+
+            return DoctorClinicWorkPlan.GetAllDoctorClinicWorkPlan();
+        }
+
     }
 }
