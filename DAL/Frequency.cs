@@ -16,6 +16,7 @@ namespace DAL
         /// </summary>
         public Frequency()
         {
+            DoctorAdviceDetailGroups = new List<DoctorAdviceDetailGroup>();
         }
         /// <summary>
         /// 主键ID
@@ -37,5 +38,10 @@ namespace DAL
         /// 实际计算参数
         /// </summary>
         public decimal CoefficientNum { get; set; }
+
+        /// <summary>
+        /// 医嘱明细组列表
+        /// </summary>
+        public ICollection<DoctorAdviceDetailGroup> DoctorAdviceDetailGroups { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace DAL
         /// </summary>
         public AdministrationRoute()
         {
+            DoctorAdviceDetailGroups = new List<DoctorAdviceDetailGroup>();
         }
         /// <summary>
         /// 主键ID
@@ -37,5 +38,10 @@ namespace DAL
         /// 备注
         /// </summary>
         public string Remarks { get; set; }
+
+        /// <summary>
+        /// 医嘱明细组列表
+        /// </summary>
+        public ICollection<DoctorAdviceDetailGroup> DoctorAdviceDetailGroups { get; set; }
     }
 }

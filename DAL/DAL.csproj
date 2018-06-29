@@ -93,6 +93,10 @@
     <Compile Include="Migrations\201806270447531_PaperTest4.Designer.cs">
       <DependentUpon>201806270447531_PaperTest4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806290702251_AddDoctorAdviceGroupUsage.cs" />
+    <Compile Include="Migrations\201806290702251_AddDoctorAdviceGroupUsage.Designer.cs">
+      <DependentUpon>201806290702251_AddDoctorAdviceGroupUsage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="SignalTime.cs" />
     <Compile Include="DecimalPrecisionAttribute.cs" />
@@ -206,6 +210,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806270447531_PaperTest4.resx">
       <DependentUpon>201806270447531_PaperTest4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806290702251_AddDoctorAdviceGroupUsage.resx">
+      <DependentUpon>201806290702251_AddDoctorAdviceGroupUsage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
