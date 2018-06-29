@@ -32,5 +32,7 @@ namespace CommContracts
         /// 患者ID
         /// </summary>
         public int PatientID { get; set; }
+
+        public Patient Patient { get; set; }
     }
 }

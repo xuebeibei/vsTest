@@ -20,7 +20,7 @@ namespace HISGUIRegistrationLib
         public override void RegisterViews()
         {
             base.RegisterViews();
-            this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(RegistrationView));
+            //this.RegionManger.RegisterViewWithRegion("DownRegion", typeof(RegistrationView));
         }
     }
 }

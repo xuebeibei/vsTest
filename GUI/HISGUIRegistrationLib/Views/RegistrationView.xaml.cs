@@ -23,6 +23,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Configuration;
 using System.Collections.ObjectModel;
+using Microsoft.VisualBasic;
 
 namespace HISGUIRegistrationLib.Views
 {
@@ -63,6 +64,7 @@ namespace HISGUIRegistrationLib.Views
         {
             LoadDepartment();
             LoadRegistrationSource();
+            updateAllClinicRegistrationList();
         }
 
         private void LoadRegistrationSource()
@@ -199,6 +201,29 @@ namespace HISGUIRegistrationLib.Views
 
             List<CommContracts.ClinicRegistration> list = vm.GetAllClinicRegistration();
             this.m_AllGuahaoList.ItemsSource = list;
+        }
+
+        private void TuiFeiBtn_Click(object sender, RoutedEventArgs e)
+        {
+            var vm = this.DataContext as HISGUIRegistrationVM;
+            if (vm == null)
+                return;
+            String strPatientCardNum = Interaction.InputBox("请输入退号单ID", "退号", "", 100, 100);
+            if (string.IsNullOrEmpty(strPatientCardNum))
+                return;
+            bool? result = vm.DeleteClinicRegistration(int.Parse(strPatientCardNum));
+            if(result.HasValue)
+            {
+                if(result.Value)
+                {
+                    MessageBox.Show("退号成功!");
+                    updateAllClinicRegistrationList();
+                    return;
+                }
+            }
+
+            MessageBox.Show("退号失败!");
+
         }
     }
 }

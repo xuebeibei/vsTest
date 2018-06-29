@@ -40,6 +40,46 @@ namespace DAL
         /// </summary>
         public DbSet<ClinicRegistration> ClinicRegistrations { get; set; }
 
+        /// <summary>
+        /// 医嘱项字典表
+        /// </summary>
+        public DbSet<DoctorAdviceItem> DoctorAdviceItems { get; set; }
+
+        /// <summary>
+        /// 给药频率
+        /// </summary>
+        public DbSet<Frequency> Frequencys { get; set; }
+
+        /// <summary>
+        /// 给药途径
+        /// </summary>
+        public DbSet<AdministrationRoute> AdministrationRoutes { get; set; }
+
+        /// <summary>
+        /// 医嘱明细记录表
+        /// </summary>
+        public DbSet<DoctorAdviceDetail> DoctorAdviceDetails { get; set; }
+
+        /// <summary>
+        /// 医嘱诊断字典
+        /// </summary>
+        public DbSet<DiagnoseItem> DiagnoseItems { get; set; }
+
+        /// <summary>
+        /// 医嘱明细组表
+        /// </summary>
+        public DbSet<DoctorAdviceDetailGroup> DoctorAdviceDetailGroups{ get;set; }
+
+        /// <summary>
+        /// 医嘱诊断明细表
+        /// </summary>
+        public DbSet<ClinicDoctorAdvice_DiagnoseItem> ClinicDoctorAdvice_DiagnoseItems { get; set; }
+
+        /// <summary>
+        /// 门诊医嘱表
+        /// </summary>
+        public DbSet<ClinicDoctorAdvice> ClinicDoctorAdvices { get; set; }
+
 
         /// <summary>
         /// 排班

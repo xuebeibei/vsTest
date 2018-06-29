@@ -287,6 +287,7 @@ namespace DAL
             DoctorAdviceBases = new List<DoctorAdviceBase>();
             InHospitalApplys = new List<InHospitalApply>();
             InHospitals = new List<InHospital>();
+            ClinicRegistrations = new List<ClinicRegistration>();
         }
 
         /// <summary>
@@ -500,5 +501,8 @@ namespace DAL
         /// 所有的就诊卡
         /// </summary>
         public virtual ICollection<PatientCardManage> PatientCards { get; set; }
+
+
+        public ICollection<ClinicRegistration> ClinicRegistrations { get; set; }
     }
 }

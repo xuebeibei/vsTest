@@ -740,5 +740,61 @@ namespace CommContracts
         [OperationContract]
         bool DeleteClinicRegistration(int ClinicRegistrationID);
 
+        [OperationContract]
+        List<CommContracts.DiagnoseItem> GetAllDiagnoseItem(string strName);
+        [OperationContract]
+        bool UpdateDiagnoseItem(CommContracts.DiagnoseItem DiagnoseItem);
+        [OperationContract]
+        bool SaveDiagnoseItem(CommContracts.DiagnoseItem DiagnoseItem);
+        [OperationContract]
+        bool DeleteDiagnoseItem(int DiagnoseItemID);
+
+        [OperationContract]
+        List<CommContracts.DoctorAdviceItem> GetAllDoctorAdviceItem(string strName);
+        [OperationContract]
+        bool UpdateDoctorAdviceItem(CommContracts.DoctorAdviceItem DoctorAdviceItem);
+        [OperationContract]
+        bool SaveDoctorAdviceItem(CommContracts.DoctorAdviceItem DoctorAdviceItem);
+        [OperationContract]
+        bool DeleteDoctorAdviceItem(int DoctorAdviceItemID);
+
+        [OperationContract]
+        List<CommContracts.Frequency> GetAllFrequency(string strName);
+        [OperationContract]
+        bool UpdateFrequency(CommContracts.Frequency Frequency);
+        [OperationContract]
+        bool SaveFrequency(CommContracts.Frequency Frequency);
+        [OperationContract]
+        bool DeleteFrequency(int FrequencyID);
+
+
+
+        [OperationContract]
+        List<CommContracts.AdministrationRoute> GetAllAdministrationRoute(string strName);
+        [OperationContract]
+        bool UpdateAdministrationRoute(CommContracts.AdministrationRoute AdministrationRoute);
+        [OperationContract]
+        bool SaveAdministrationRoute(CommContracts.AdministrationRoute AdministrationRoute);
+        [OperationContract]
+        bool DeleteAdministrationRoute(int AdministrationRouteID);
+
+
+        [OperationContract]
+        List<CommContracts.DoctorAdviceDetail> GetAllDoctorAdviceDetail(string strName);
+        [OperationContract]
+        bool UpdateDoctorAdviceDetail(CommContracts.DoctorAdviceDetail DoctorAdviceDetail);
+        [OperationContract]
+        bool SaveDoctorAdviceDetail(CommContracts.DoctorAdviceDetail DoctorAdviceDetail);
+        [OperationContract]
+        bool DeleteDoctorAdviceDetail(int DoctorAdviceDetailID);
+
+        [OperationContract]
+        List<CommContracts.ClinicDoctorAdvice> GetAllClinicDoctorAdvice(string strName);
+        [OperationContract]
+        bool UpdateClinicDoctorAdvice(CommContracts.ClinicDoctorAdvice ClinicDoctorAdvice);
+        [OperationContract]
+        bool SaveClinicDoctorAdvice(CommContracts.ClinicDoctorAdvice ClinicDoctorAdvice);
+        [OperationContract]
+        bool DeleteClinicDoctorAdvice(int ClinicDoctorAdviceID);
     }
 }

@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorWorkLib.Views.DoctorAdviceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorWorkLib.Views">
+    <UserControl.Resources>
+            <DataTemplate x:Key="MergeHeader1">
+                <DataGrid HorizontalGridLinesBrush="Transparent" BorderThickness="0" Margin="0" CanUserReorderColumns="False"  CanUserSortColumns="False" CanUserResizeColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="医嘱内容" IsReadOnly="True" Width="380" />
+                        <DataGridTextColumn Header="单次" IsReadOnly="True"  Width="50" />
+                        <DataGridTextColumn Header="单位" IsReadOnly="True"  Width="50" />
+                        <DataGridTextColumn Header="总量" IsReadOnly="True"  Width="50" />
+                        <DataGridTextColumn Header="单位" IsReadOnly="True"  Width="50" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+            <DataTemplate x:Key="MergeColumn1">
+            <DataGrid ItemsSource="{Binding DoctorAdviceItems}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" GridLinesVisibility="None" BorderThickness="0,0,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="医嘱内容" IsReadOnly="True" Width="380" Binding="{Binding DoctorAdviceItem.Name}" />
+                    <DataGridTextColumn Header="单次" IsReadOnly="True"  Width="50" Binding="{Binding SignalDose}"/>
+                        <DataGridTextColumn Header="单位" IsReadOnly="True"  Width="50" Binding="{Binding DoctorAdviceItem.MinPackageUnit}" />
+                        <DataGridTextColumn Header="总量" IsReadOnly="True" Width="50" Binding="{Binding TotalNum}" />
+                        <DataGridTextColumn Header="单位" IsReadOnly="True" Width="50" Binding="{Binding DoctorAdviceItem.SellPackageName}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+
+
+            <DataTemplate x:Key="MergeHeader2">
+                <DataGrid HorizontalGridLinesBrush="Transparent" BorderThickness="0" Margin="0" CanUserReorderColumns="False"  CanUserSortColumns="False" CanUserResizeColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="医师备注" IsReadOnly="True"  Width="100" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="MergeColumn2">
+                <DataGrid ItemsSource="{Binding DoctorAdviceItems}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" GridLinesVisibility="None" BorderThickness="0,0,0,0" HorizontalAlignment="Left" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" HeadersVisibility="None" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="医师备注" IsReadOnly="True" Width="100" Binding="{Binding DoctorName}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </DataTemplate>
+
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Margin="0" Orientation="Horizontal">
+            <CheckBox x:Name="m_选择CheckBo" Content="" VerticalAlignment="Center" Checked="m_选择CheckBo_Checked"/>
+            <Label Content="医嘱单：" VerticalAlignment="Center"/>
+            <TextBox x:Name="m_医嘱单Text" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" Margin="0,10,10,10" IsReadOnly="True"/>
+            <TextBox x:Name="m_开医嘱时间Text" TextWrapping="Wrap" Text="" Width="120" VerticalAlignment="Center" IsReadOnly="True"/>
+        </StackPanel>
+        <DataGrid x:Name="m_myGridView" Grid.Row="1" Grid.Column="0" BorderThickness="0" CanUserResizeRows="False" CanUserResizeColumns="False" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="组" Binding="{Binding GroupNum}" Width="50"/>
+                <DataGridTemplateColumn Header="嵌入的Grid1" Width="580" HeaderTemplate="{StaticResource MergeHeader1}" CellTemplate="{StaticResource MergeColumn1}"/>
+                <DataGridTextColumn Header="用法" Binding="{Binding Usage}" Width="150"/>
+
+                <DataGridTemplateColumn Header="嵌入的Grid2" Width="200" HeaderTemplate="{StaticResource MergeHeader2}" CellTemplate="{StaticResource MergeColumn2}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrationRoute.cs" />
     <Compile Include="AssayCharge.cs" />
     <Compile Include="AssayChargeDetail.cs" />
     <Compile Include="AssayDoctorAdvice.cs" />
@@ -52,9 +53,16 @@
     <Compile Include="CancelRegistration.cs" />
     <Compile Include="ChargeBase.cs" />
     <Compile Include="ChargeDetailBase.cs" />
+    <Compile Include="ClinicDoctorAdvice.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
     <Compile Include="ClinicRegistration.cs" />
+    <Compile Include="DiagnoseItem.cs" />
+    <Compile Include="ClinicDoctorAdvice_DiagnoseItem.cs" />
+    <Compile Include="DoctorAdviceDetail.cs" />
+    <Compile Include="DoctorAdviceDetailGroup.cs" />
+    <Compile Include="DoctorAdviceItem.cs" />
     <Compile Include="DoctorClinicWorkPlan.cs" />
+    <Compile Include="Frequency.cs" />
     <Compile Include="HospitalMsg.cs" />
     <Compile Include="LevelOneDepartment.cs" />
     <Compile Include="SignalTime.cs" />

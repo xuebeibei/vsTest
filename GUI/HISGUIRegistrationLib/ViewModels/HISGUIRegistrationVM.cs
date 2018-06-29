@@ -52,5 +52,11 @@ namespace HISGUIRegistrationLib.ViewModels
             return ClinicRegistration.GetAllClinicRegistration();
         }
 
+        public bool DeleteClinicRegistration(int ID)
+        {
+            CommClient.ClinicRegistration ClinicRegistration = new CommClient.ClinicRegistration();
+            return ClinicRegistration.DeleteClinicRegistration(ID);
+        }
+
     }
 }

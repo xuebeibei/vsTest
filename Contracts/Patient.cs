@@ -296,5 +296,6 @@ namespace CommContracts
         [DataMember]
         public decimal PatientCardBalance { get; set; }
 
+
     }
 }

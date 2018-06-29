@@ -91,10 +91,11 @@
                 <TextBox x:Name="m_PCardNumEdit" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,11,10,1" Grid.Row="3" TextWrapping="Wrap" Text="410883195602212564" VerticalAlignment="Stretch" Grid.ColumnSpan="3"/>
                 <Label Content="手机号码：" HorizontalAlignment="Stretch" Margin="10,10,0,0" Grid.Row="4" VerticalAlignment="Top" Height="25"/>
                 <TextBox x:Name="m_PTelEdit" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,11,10,1" Grid.Row="4" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch" Grid.ColumnSpan="3"/>
-                <Label Content="费      别：" HorizontalAlignment="Left" Margin="10,9.999,0,0" Grid.Row="5" VerticalAlignment="Top" Width="70" Height="25"/>
+                <Button x:Name="TuiFeiBtn" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Height="25" Margin="5" Content="退  号" Click="TuiFeiBtn_Click"></Button>
+                <!--<Label Content="费      别：" HorizontalAlignment="Left" Margin="10,9.999,0,0" Grid.Row="5" VerticalAlignment="Top" Width="70" Height="25"/>
                 <ComboBox x:Name="m_PFeeTypeComBox" Grid.Column="1" HorizontalAlignment="Stretch" Margin="10,10.999,10,1" Grid.Row="5" VerticalAlignment="Stretch" Grid.ColumnSpan="3">
                     <ComboBoxItem Content="自费" IsSelected="True"></ComboBoxItem>
-                </ComboBox>
+                </ComboBox>-->
                 <Button Content="联系人" Height="23" VerticalAlignment="Center" Margin="10,11,10,1" Grid.Column="3"/>
                 <Label Content="年      龄：" Grid.Column="2" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Center" Height="25.24" Width="70.85"/>
                 <TextBox Grid.Column="3" Height="23" Margin="10,10,10,0" Grid.Row="1" TextWrapping="Wrap" Text="52岁" VerticalAlignment="Center"/>
@@ -132,10 +133,11 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="挂号ID" DisplayMemberBinding="{Binding Path=ID}" Width="100"></GridViewColumn>
+                    <GridViewColumn Header="患者姓名" DisplayMemberBinding="{Binding Path=Patient.Name}" Width="100"></GridViewColumn>
                     <GridViewColumn Header="看诊日期" DisplayMemberBinding="{Binding Path=VistDoctorDate}" Width="80"></GridViewColumn>
                     <GridViewColumn Header="挂号日期" DisplayMemberBinding="{Binding Path=RegistrationTime}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="对应医生工作排班ID" DisplayMemberBinding="{Binding Path=DoctorClinicWorkPlanID}" Width="100"></GridViewColumn>
-                    <GridViewColumn Header="患者ID" DisplayMemberBinding="{Binding Path=PatientID}" Width="80"></GridViewColumn>
+                    <!--<GridViewColumn Header="对应医生工作排班ID" DisplayMemberBinding="{Binding Path=DoctorClinicWorkPlanID}" Width="100"></GridViewColumn>-->
+                    <!--<GridViewColumn Header="患者ID" DisplayMemberBinding="{Binding Path=PatientID}" Width="80"></GridViewColumn>-->
                 </GridView>
             </ListView.View>
         </ListView>

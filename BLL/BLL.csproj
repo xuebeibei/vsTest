@@ -52,13 +52,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdministrationRoute.cs" />
     <Compile Include="AssayCharge.cs" />
     <Compile Include="AssayDoctorAdvice.cs" />
     <Compile Include="AssayItem.cs" />
     <Compile Include="CancelRegistration.cs" />
+    <Compile Include="ClinicDoctorAdvice.cs" />
     <Compile Include="ClinicMedicalRecordModel.cs" />
     <Compile Include="ClinicRegistration.cs" />
+    <Compile Include="DiagnoseItem.cs" />
+    <Compile Include="DoctorAdviceDetail.cs" />
+    <Compile Include="DoctorAdviceItem.cs" />
     <Compile Include="DoctorClinicWorkPlan.cs" />
+    <Compile Include="Frequency.cs" />
     <Compile Include="HospitalMsg.cs" />
     <Compile Include="LevelOneDepartment.cs" />
     <Compile Include="SignalTime.cs" />

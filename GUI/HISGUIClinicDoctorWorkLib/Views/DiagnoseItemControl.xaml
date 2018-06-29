@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="HISGUIClinicDoctorWorkLib.Views.DiagnoseItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:HISGUIClinicDoctorWorkLib.Views">
+    <Grid Background="AliceBlue">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBlock x:Name="m_ContentText" Text="" Margin="5,0,5,0" VerticalAlignment="Center"/>
+        <Button x:Name="m_ClearBtn" Content="×" Grid.Column="1" Margin="0" Width="25" VerticalAlignment="Center" Click="ClearBtnClicked"/>
+    </Grid>
+</UserControl>

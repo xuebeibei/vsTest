@@ -16,9 +16,7 @@ namespace BLL
             using (DAL.HisContext ctx = new DAL.HisContext())
             {
                 var query = from t in ctx.ClinicRegistrations
-                            //where t.PatientID.StartsWith(strName) ||
-                            //t.AbbrPY.StartsWith(strName) ||
-                            //t.AbbrWB.StartsWith(strName)
+                            where t.Patient.Name.StartsWith(strName) 
                             select t;
 
                 var config = new MapperConfiguration(cfg =>
@@ -43,7 +41,7 @@ namespace BLL
             {
                 var config = new MapperConfiguration(cfg =>
                 {
-                    cfg.CreateMap<CommContracts.ClinicRegistration, DAL.ClinicRegistration>();
+                    cfg.CreateMap<CommContracts.ClinicRegistration, DAL.ClinicRegistration>().ForMember(x => x.Patient, opt => opt.Ignore());
                 });
                 var mapper = config.CreateMapper();
 

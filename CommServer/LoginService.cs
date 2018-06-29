@@ -1528,9 +1528,6 @@ namespace CommServer
             return temp.DeleteDoctorClinicWorkPlan(DoctorClinicWorkPlanID);
         }
 
-
-
-
         public List<CommContracts.ClinicRegistration> GetAllClinicRegistration(string strName)
         {
             BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
@@ -1553,6 +1550,151 @@ namespace CommServer
         {
             BLL.ClinicRegistration temp = new BLL.ClinicRegistration();
             return temp.DeleteClinicRegistration(ClinicRegistrationID);
+        }
+
+        public List<CommContracts.DiagnoseItem> GetAllDiagnoseItem(string strName)
+        {
+            BLL.DiagnoseItem temp = new BLL.DiagnoseItem();
+            return temp.GetAllDiagnoseItem(strName);
+        }
+
+        public bool UpdateDiagnoseItem(CommContracts.DiagnoseItem DiagnoseItem)
+        {
+            BLL.DiagnoseItem temp = new BLL.DiagnoseItem();
+            return temp.UpdateDiagnoseItem(DiagnoseItem);
+        }
+
+        public bool SaveDiagnoseItem(CommContracts.DiagnoseItem DiagnoseItem)
+        {
+            BLL.DiagnoseItem temp = new BLL.DiagnoseItem();
+            return temp.SaveDiagnoseItem(DiagnoseItem);
+        }
+
+        public bool DeleteDiagnoseItem(int DiagnoseItemID)
+        {
+            BLL.DiagnoseItem temp = new BLL.DiagnoseItem();
+            return temp.DeleteDiagnoseItem(DiagnoseItemID);
+        }
+
+        public List<CommContracts.DoctorAdviceItem> GetAllDoctorAdviceItem(string strName)
+        {
+            BLL.DoctorAdviceItem temp = new BLL.DoctorAdviceItem();
+            return temp.GetAllDoctorAdviceItem(strName);
+        }
+
+        public bool UpdateDoctorAdviceItem(CommContracts.DoctorAdviceItem DoctorAdviceItem)
+        {
+            BLL.DoctorAdviceItem temp = new BLL.DoctorAdviceItem();
+            return temp.UpdateDoctorAdviceItem(DoctorAdviceItem);
+        }
+
+        public bool SaveDoctorAdviceItem(CommContracts.DoctorAdviceItem DoctorAdviceItem)
+        {
+            BLL.DoctorAdviceItem temp = new BLL.DoctorAdviceItem();
+            return temp.SaveDoctorAdviceItem(DoctorAdviceItem);
+        }
+
+        public bool DeleteDoctorAdviceItem(int DoctorAdviceItemID)
+        {
+            BLL.DoctorAdviceItem temp = new BLL.DoctorAdviceItem();
+            return temp.DeleteDoctorAdviceItem(DoctorAdviceItemID);
+        }
+
+        public List<CommContracts.Frequency> GetAllFrequency(string strName)
+        {
+            BLL.Frequency temp = new BLL.Frequency();
+            return temp.GetAllFrequency(strName);
+        }
+
+        public bool UpdateFrequency(CommContracts.Frequency Frequency)
+        {
+            BLL.Frequency temp = new BLL.Frequency();
+            return temp.UpdateFrequency(Frequency);
+        }
+
+        public bool SaveFrequency(CommContracts.Frequency Frequency)
+        {
+            BLL.Frequency temp = new BLL.Frequency();
+            return temp.SaveFrequency(Frequency);
+        }
+
+        public bool DeleteFrequency(int FrequencyID)
+        {
+            BLL.Frequency temp = new BLL.Frequency();
+            return temp.DeleteFrequency(FrequencyID);
+        }
+        
+
+        public List<CommContracts.AdministrationRoute> GetAllAdministrationRoute(string strName)
+        {
+            BLL.AdministrationRoute temp = new BLL.AdministrationRoute();
+            return temp.GetAllAdministrationRoute(strName);
+        }
+
+        public bool UpdateAdministrationRoute(CommContracts.AdministrationRoute AdministrationRoute)
+        {
+            BLL.AdministrationRoute temp = new BLL.AdministrationRoute();
+            return temp.UpdateAdministrationRoute(AdministrationRoute);
+        }
+
+        public bool SaveAdministrationRoute(CommContracts.AdministrationRoute AdministrationRoute)
+        {
+            BLL.AdministrationRoute temp = new BLL.AdministrationRoute();
+            return temp.SaveAdministrationRoute(AdministrationRoute);
+        }
+
+        public bool DeleteAdministrationRoute(int AdministrationRouteID)
+        {
+            BLL.AdministrationRoute temp = new BLL.AdministrationRoute();
+            return temp.DeleteAdministrationRoute(AdministrationRouteID);
+        }
+
+        public List<CommContracts.DoctorAdviceDetail> GetAllDoctorAdviceDetail(string strName)
+        {
+            BLL.DoctorAdviceDetail temp = new BLL.DoctorAdviceDetail();
+            return temp.GetAllDoctorAdviceDetail(strName);
+        }
+
+        public bool UpdateDoctorAdviceDetail(CommContracts.DoctorAdviceDetail DoctorAdviceDetail)
+        {
+            BLL.DoctorAdviceDetail temp = new BLL.DoctorAdviceDetail();
+            return temp.UpdateDoctorAdviceDetail(DoctorAdviceDetail);
+        }
+
+        public bool SaveDoctorAdviceDetail(CommContracts.DoctorAdviceDetail DoctorAdviceDetail)
+        {
+            BLL.DoctorAdviceDetail temp = new BLL.DoctorAdviceDetail();
+            return temp.SaveDoctorAdviceDetail(DoctorAdviceDetail);
+        }
+
+        public bool DeleteDoctorAdviceDetail(int DoctorAdviceDetailID)
+        {
+            BLL.DoctorAdviceDetail temp = new BLL.DoctorAdviceDetail();
+            return temp.DeleteDoctorAdviceDetail(DoctorAdviceDetailID);
+        }
+
+        public List<CommContracts.ClinicDoctorAdvice> GetAllClinicDoctorAdvice(string strName)
+        {
+            BLL.ClinicDoctorAdvice temp = new BLL.ClinicDoctorAdvice();
+            return temp.GetAllClinicDoctorAdvice(strName);
+        }
+
+        public bool UpdateClinicDoctorAdvice(CommContracts.ClinicDoctorAdvice ClinicDoctorAdvice)
+        {
+            BLL.ClinicDoctorAdvice temp = new BLL.ClinicDoctorAdvice();
+            return temp.UpdateClinicDoctorAdvice(ClinicDoctorAdvice);
+        }
+
+        public bool SaveClinicDoctorAdvice(CommContracts.ClinicDoctorAdvice ClinicDoctorAdvice)
+        {
+            BLL.ClinicDoctorAdvice temp = new BLL.ClinicDoctorAdvice();
+            return temp.SaveClinicDoctorAdvice(ClinicDoctorAdvice);
+        }
+
+        public bool DeleteClinicDoctorAdvice(int ClinicDoctorAdviceID)
+        {
+            BLL.ClinicDoctorAdvice temp = new BLL.ClinicDoctorAdvice();
+            return temp.DeleteClinicDoctorAdvice(ClinicDoctorAdviceID);
         }
     }
 }

@@ -36,5 +36,11 @@ namespace DAL
         /// </summary>
         public int PatientID { get; set; }
 
+
+        /// <summary>
+        /// 就诊患者
+        /// </summary>
+        public virtual Patient Patient { get; set; }
+
     }
 }
